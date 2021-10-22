@@ -1,0 +1,14 @@
+﻿= Notas de desarrollo
+
+Notas de desarrollo importantes
+
+https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
+
+.TODOs
+- [ ] Terminar diagramas.
+- [ ] Terminar Esquema de base de datos.
+- [ ] Generar esquema de base de datos.
+- [ ] Pensar en como hacer los settings (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
+
+
+
