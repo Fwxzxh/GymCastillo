@@ -6,4 +6,23 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Docs\Assets\Castillo.png" />
+      <None Remove="Docs\Assets\CastilloF1.png" />
+      <None Remove="Docs\Assets\CastilloF2C.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Docs\Assets\Castillo.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Docs\Assets\CastilloF2C.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
 </Project>

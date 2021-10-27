@@ -1,0 +1,50 @@
+﻿<Window x:Class="GymCastillo.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymCastillo"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Title="LoginWindow" Height="350" Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Margin="15"
+                    VerticalAlignment="Center">
+            <TextBox materialDesign:HintAssist.Hint="Usuario"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
+                     BorderBrush="Yellow"
+                     Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                     Margin="10"/>
+            <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
+                         BorderBrush="Yellow"
+                         materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
+                         Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                         Margin="10"/>
+            <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Click="loginBtn_Click"
+                    Content="Iniciar"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    Margin="15"
+                    VerticalAlignment="Center">
+            <Image Source="\Docs\Assets\Castillo.png"/>
+        </StackPanel>
+    </Grid>
+</Window>
