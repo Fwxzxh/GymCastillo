@@ -9,6 +9,6 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 - [ ] Terminar Esquema de base de datos.
 - [ ] Generar esquema de base de datos.
 - [ ] Pensar en como hacer los settings (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
-
-
+- [ ] Pensar en como estructurar el modulo de Ventas Gral.
+- [ ] Preguntar si debemos de dar de baja usuarios o borrarlos con respecto al tiempo inactivos.
 
