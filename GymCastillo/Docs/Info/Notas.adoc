@@ -5,10 +5,32 @@ Notas de desarrollo importantes
 https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 
 .TODOs
+- [ ] Agregar el campo de Instructor respaldo a Clase en código/diagrama y BD.
+- [ ] Pensar en como manejar las fotos.
+- [ ] Agregar dependecia del logger.
 - [ ] Terminar diagramas.
-- [ ] Terminar Esquema de base de datos.
-- [ ] Generar esquema de base de datos.
-- [ ] Pensar en como hacer los settings (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
-- [ ] Pensar en como estructurar el modulo de Ventas Gral.
-- [ ] Preguntar si debemos de dar de baja usuarios o borrarlos con respecto al tiempo inactivos.
+- [ ] Pensar en como hacer los settings
+    (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
+- [*] Terminar Esquema de base de datos.
+- [*] Generar esquema de base de datos.
 
+.Preguntas
+- Debemos de dar de baja los usuarios después de x tiempo inactivos?
+- Preguntar que datos desean saber sobre las ventas además de
+    (ventas, inventario y productos).
+- Toman lista en clada clase? o solo al entrar al gym? (en Clientes)
+- Preguntar como se manejan las asistencias para los instructores?
+    (Al entrar al gym o por clase?).
+- A los instructores se les paga un sueldo fijo o por clase y se les decuenta
+    una parte por faltas a la clase.
+- Como funcionan los paquetes? son 20 clases diferentes al més?
+    o 20 sesiones de una o más clases?
+- El campo de condición especial también aplica a instructores?
+- Preguntar si esta bien dejar el pago al instructor relativo a la clase que es
+    (agregar el campo de pagoinstructor a la tabla/clase de Clase).
+
+.Ui
+- En la lista de clientes listar los clientes con los datos básicos
+    (para búsqueda y consulta), si se quiere saber más sobre alguno mostras un botón de más
+    y alli si hacer la querry que trae todos los datos del usuario.
+- a

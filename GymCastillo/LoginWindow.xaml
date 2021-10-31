@@ -34,7 +34,7 @@
                          Foreground="{DynamicResource MaterialDesignDarkForeground}"
                          Margin="10"/>
             <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
-                    Click="loginBtn_Click"
+                    Click="LoginBtnClick"
                     Content="Iniciar"
                     VerticalAlignment="Center"
                     Margin="10"

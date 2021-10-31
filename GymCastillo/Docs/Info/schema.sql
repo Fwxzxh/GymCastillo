@@ -89,6 +89,8 @@ create table Usuario (
                          Nombre varchar(30) not null not null,
                          ApellidoPaterno varchar(30) not null,
                          ApellidoMaterno varchar(30) not null,
+                         Username varchar(20) not null,
+                         Password varchar(15) not null,
                          FechaNacimiento datetime not null,
                          Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                          CondicionEspecial bool not null,
@@ -156,3 +158,9 @@ create table Ingresos (
                           NumeroRecibo varchar(30) not null,
                           Monto decimal
 );
+
+-- Creamos el usuario admin
+insert into usuario
+    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Username, Password, FechaNacimiento, Telefono, CondicionEspecial, FechaUltimoAcceso)
+values
+    (1, 'admin', 'admin', 'admin', 'admin', 'admin', sysdate(), '0', false, sysdate());

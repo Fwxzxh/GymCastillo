@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GymCastillo.Model.DataTypes;
 
 namespace GymCastillo {
     /// <summary>
@@ -21,7 +22,7 @@ namespace GymCastillo {
             InitializeComponent();
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e) {
+        private void LoginBtnClick(object sender, RoutedEventArgs e) {
             MainWindow main = new();
             main.Show();
             Close();
