@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Init;
 
 namespace GymCastillo {
     /// <summary>
@@ -26,6 +28,11 @@ namespace GymCastillo {
             MainWindow main = new();
             main.Show();
             Close();
+
+            // test login
+            if (Init.LogIn("admin", "admin")) {
+                MessageBox.Show("Login ok");
+            }
         }
     }
 }
