@@ -1,5 +1,4 @@
 ﻿using System;
-using GymCastillo.Model.DataTypes.Init;
 using log4net;
 using MySqlConnector;
 
