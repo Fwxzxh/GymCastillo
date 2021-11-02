@@ -1,11 +1,14 @@
 ﻿using System;
+using GymCastillo.Model.DataTypes.Init;
+using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes.Init {
+namespace GymCastillo.Model.Init {
     /// <summary>
     /// Clase que se encarga del proseso de LogIn.
     /// </summary>
     public static class Init {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// String que contiene el username del usuario logueado.
@@ -19,6 +22,7 @@ namespace GymCastillo.Model.DataTypes.Init {
         /// <param name="password">string con la contraseña del usuario.</param>
         /// <returns><c>True</c> si el logIn fue exitoso, si no <c>False</c></returns>
         public static bool LogIn(string username, string password) {
+            Log.Info("Testing Logger POG.");
             var connObj = new MySqlConnection(GetInitData.GetConnString());
             connObj.Open();
 

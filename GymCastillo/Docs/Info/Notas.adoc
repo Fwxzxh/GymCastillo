@@ -11,6 +11,9 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 - [ ] Terminar diagramas.
 - [ ] Pensar en como hacer los settings
     (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
+- [ ] Los settings también pueden funcionar con
+    https://docs.microsoft.com/en-us/troubleshoot/dotnet/csharp/store-custom-information-config-file[xml],
+    https://www.c-sharpcorner.com/article/four-ways-to-read-configuration-setting-in-c-sharp/[otra guia]
 - [*] Terminar Esquema de base de datos.
 - [*] Generar esquema de base de datos.
 
@@ -33,4 +36,3 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 - En la lista de clientes listar los clientes con los datos básicos
     (para búsqueda y consulta), si se quiere saber más sobre alguno mostras un botón de más
     y alli si hacer la querry que trae todos los datos del usuario.
-- a

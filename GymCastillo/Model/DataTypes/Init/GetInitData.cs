@@ -2,12 +2,12 @@
     /// <summary>
     /// Helper que expone toda la información necesaria para el inicio del programa.
     /// </summary>
-    public class GetInitData {
+    public static class GetInitData {
 
         /// <summary>
         /// Cadena de conneción a la base de datos.
         /// </summary>
-        public string ConnString { get; set; }
+        public static string ConnString { get; set; }
 
         /// <summary>
         /// Método que obtiene el string de connección y lo guarda en el campo de ConnString.
