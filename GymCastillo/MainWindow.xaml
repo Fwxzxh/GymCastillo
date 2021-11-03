@@ -15,7 +15,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowState="Normal"
-        Title="MainWindow" Height="720" Width="1280">
+        Title="Gym Castillo" Height="720" Width="1280">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
