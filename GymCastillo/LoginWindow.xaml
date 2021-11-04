@@ -24,11 +24,13 @@
         <StackPanel Margin="15"
                     VerticalAlignment="Center">
             <TextBox materialDesign:HintAssist.Hint="Usuario"
+                     x:Name="txtUsuario"
                      materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
                      BorderBrush="Yellow"
                      Foreground="{DynamicResource MaterialDesignDarkForeground}"
                      Margin="10"/>
             <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
+                         x:Name="txtPassword"
                          BorderBrush="Yellow"
                          materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
                          Foreground="{DynamicResource MaterialDesignDarkForeground}"

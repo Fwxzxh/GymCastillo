@@ -29,7 +29,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Nombre"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          
+                         x:Name="txtNombre"
                          VerticalContentAlignment="Center"
                          Width="250"
                          FontSize="20"
@@ -38,6 +38,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Apellido Paterno"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         x:Name="txtApPaterno"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -45,6 +46,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Apellido Materno"
                          materialDesign:HintAssist.FloatingScale=".6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         x:Name="txtApMaterno"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -56,6 +58,7 @@
                 <DatePicker materialDesign:HintAssist.Hint="Fecha Nacimiento"
                             materialDesign:HintAssist.FloatingScale="0.6"
                             materialDesign:TextFieldAssist.HasClearButton="True"
+                            x:Name="dpFechaNacimiento"
                             Width="250"
                             FontSize="19"
                             Margin="20 0"
@@ -64,12 +67,14 @@
                 <TextBox materialDesign:HintAssist.Hint="Teléfono"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         x:Name="txtTelefono"
                          Width="250"
                          MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <CheckBox Content="Condición especial"
+                          x:Name="cbEspecial"
                           VerticalContentAlignment="Center"
                           VerticalAlignment="Center"
                           FontSize="20"
@@ -83,6 +88,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         x:Name="txtNombreContacto"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -90,6 +96,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         x:Name="txtTelefonoContacto"
                          Width="250"
                          MaxLength="10"
                          FontSize="20"
@@ -99,10 +106,16 @@
                           materialDesign:HintAssist.Hint="Tipo de Usuario"
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
+                          x:Name="cbTipoUsuario"
                           FontSize="20"
                           Margin="20 0"
                           Width="250"/>
             </StackPanel>
+            <materialDesign:PopupBox>
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon Kind="DotsHorizontal" />
+                </materialDesign:PopupBox.ToggleContent>
+            </materialDesign:PopupBox>
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
@@ -119,6 +132,8 @@
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        x:Name="btnGuardar"
+                        Click="btnGuardar_Click"
                         Content="Guardar"
                         Margin="20"
                         FontSize="20"/>

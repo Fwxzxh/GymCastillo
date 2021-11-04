@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace GymCastillo.View {
     public partial class ClientesUserControl : UserControl {
         public ClientesUserControl() {
             InitializeComponent();
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e) {
+            DialogHost.Show("hola", sender);
         }
     }
 }
