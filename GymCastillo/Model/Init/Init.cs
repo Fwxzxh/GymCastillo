@@ -21,7 +21,7 @@ namespace GymCastillo.Model.Init {
         /// <param name="password">string con la contraseña del usuario.</param>
         /// <returns><c>True</c> si el logIn fue exitoso, si no <c>False</c></returns>
         public static bool LogIn(string username, string password) {
-            Log.Info("Testing Logger POG.");
+            Log.Debug("Se ha empezado el proceso de LogIn");
             var connObj = new MySqlConnection(GetInitData.GetConnString());
             connObj.Open();
 
@@ -36,20 +36,32 @@ namespace GymCastillo.Model.Init {
 
             try {
                 var cmd = login.ExecuteReader(); // TODO: prob cambiar a async
+                Log.Debug("Se ha realizado la query de LogIn con éxito.");
 
                 if (cmd.HasRows) {
+                    Log.Debug("LogIn Exitoso");
                     LogedUsername = username;
                     return true;
                 }
                 else {
+                    Log.Debug("LogIn Fallido, credenciales erroneas");
                     return false;
                 }
             }
             catch (Exception e) {
-                // TODO:
-                Console.WriteLine(e);
+                Log.Error("Ha ocurrido un error al hacer la query de logIn.");
+                Log.Error($"Error: {e.Message}");
                 throw;
+                // TODO: Ver como manejar el caso en el que el string de conección este mal
             }
+        }
+
+        /// <summary>
+        /// Método que se encarga de hacer Update de la ultima conección del usuario conectado.
+        /// </summary>
+        // TODO:
+        private static void UpdateLastConection() {
+
         }
     }
 }

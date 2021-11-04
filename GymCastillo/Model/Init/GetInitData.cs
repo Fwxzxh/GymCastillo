@@ -17,7 +17,7 @@
 
             // WARN: Temporal!!!
             var user = "root";
-            var pass = "root";
+            var pass = "Jorgedavid12";
 
             var connString = $"server=localhost; database=mexty; Uid={user}; pwd={pass}; Database=gymcastillo";
             return connString;

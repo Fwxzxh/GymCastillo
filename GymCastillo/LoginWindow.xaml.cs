@@ -1,37 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Init;
+using log4net;
 
 namespace GymCastillo {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
     public partial class LoginWindow : Window {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         public LoginWindow() {
             InitializeComponent();
+            Log.Debug("Se ha inicializado con éxito la pantalla de LogIn");
         }
 
+        /// <summary>
+        /// Evento del boton de LogIn.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginBtnClick(object sender, RoutedEventArgs e) {
-            MainWindow main = new();
-            main.Show();
-            Close();
+            Log.Debug("Se ha precionado el botón de logIn.");
+            LogIn();
+        }
 
-            // test login
-            if (Init.LogIn("admin", "admin")) {
-                MessageBox.Show("Login ok");
+        /// <summary>
+        /// Método que se encarga de el proceso de logIn
+        /// </summary>
+        private void LogIn() {
+            try {
+                if (Init.LogIn(txtUsuario.Text, txtPassword.Password)) {
+                    // Cargamos la ventana principal
+                    Log.Info("LogIn exitoso.");
+                    MainWindow main = new();
+                    main.Show();
+                    Close();
+                }
+                else {
+                    Log.Info("LogIn fallido, credenciales erroneas.");
+                    MessageBox.Show("Usuario y/o contraseña erroneos.");
+                }
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error en el proceso de logIn.");
+                Log.Error($"Error: {e.Message}");
+                // TODO: ver como manejar el error
             }
         }
     }
