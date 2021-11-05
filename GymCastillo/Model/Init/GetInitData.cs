@@ -25,6 +25,5 @@ namespace GymCastillo.Model.Init {
 
             return ConnString;
         }
-
     }
 }
