@@ -18,13 +18,16 @@ namespace GymCastillo.View {
     /// <summary>
     /// Interaction logic for ClientesUserControl.xaml
     /// </summary>
-    public partial class ClientesUserControl : UserControl {
-        public ClientesUserControl() {
+    public partial class NewClientesUserControl : UserControl {
+        public NewClientesUserControl() {
             InitializeComponent();
         }
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e) {
-            DialogHost.Show("hola", sender);
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

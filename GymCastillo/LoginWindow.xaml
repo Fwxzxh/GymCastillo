@@ -11,9 +11,9 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        Title="LoginWindow" Height="350" Width="600"
+        Title="Login" Height="350" Width="600"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -26,14 +26,20 @@
             <TextBox materialDesign:HintAssist.Hint="Usuario"
                      x:Name="txtUsuario"
                      materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     PreviewKeyDown="txtUsuario_PreviewKeyDown"
                      BorderBrush="Yellow"
                      Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                     Padding="5"
                      Margin="10"/>
             <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
                          x:Name="txtPassword"
                          BorderBrush="Yellow"
+                         PreviewKeyDown="txtPassword_PreviewKeyDown"
                          materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
                          Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                         Padding="5"
                          Margin="10"/>
             <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
                     Click="LoginBtnClick"

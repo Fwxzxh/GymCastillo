@@ -11,7 +11,7 @@
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
-             d:DesignHeight="720" d:DesignWidth="1200">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
@@ -25,18 +25,18 @@
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Clientes"
-                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <local:ClientesUserControl/>
+                    <local:GridClientesUserControl/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Instructores"
-                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>

@@ -11,11 +11,11 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
-        WindowState="Normal"
-        Title="Gym Castillo" Height="720" Width="1280">
+        WindowState="Maximized"
+        Title="Gym Castillo" Height="1080" Width="1920">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"

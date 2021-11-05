@@ -39,19 +39,31 @@ namespace GymCastillo {
                     Close();
                 }
                 else {
-                    Log.Info("LogIn fallido, credenciales erroneas.");
-                    MessageBox.Show("Usuario y/o contraseña erroneos.");
+                    Log.Info("Login fallido, credenciales erroneas.");
+                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
-            catch (MySqlException e) {
+            catch (MySqlException) {
                 Log.Error("Se ha intentado ");
                 MessageBox.Show("Tus datos de conección son erroneos");
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error en el proceso de logIn.");
+                Log.Error("Ha ocurrido un error en el proceso de login.");
                 Log.Error($"Error: {e.Message}");
                 // TODO: ver como manejar el error
+            }
+        }
+
+        private void txtUsuario_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
+            if (e.Key == System.Windows.Input.Key.Enter) {
+                txtPassword.Focus();
+            }
+        }
+
+        private void txtPassword_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
+            if (e.Key == System.Windows.Input.Key.Enter) {
+                LogIn();
             }
         }
     }
