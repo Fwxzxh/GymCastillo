@@ -2,6 +2,7 @@
 using System.Windows;
 using GymCastillo.Model.Init;
 using log4net;
+using MySqlConnector;
 
 namespace GymCastillo {
     /// <summary>
@@ -9,6 +10,7 @@ namespace GymCastillo {
     /// </summary>
     public partial class LoginWindow : Window {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
         public LoginWindow() {
             InitializeComponent();
             Log.Debug("Se ha inicializado con éxito la pantalla de LogIn");
@@ -40,6 +42,11 @@ namespace GymCastillo {
                     Log.Info("LogIn fallido, credenciales erroneas.");
                     MessageBox.Show("Usuario y/o contraseña erroneos.");
                 }
+            }
+
+            catch (MySqlException e) {
+                Log.Error("Se ha intentado ");
+                MessageBox.Show("Tus datos de conección son erroneos");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error en el proceso de logIn.");

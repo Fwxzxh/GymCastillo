@@ -1,4 +1,6 @@
-﻿namespace GymCastillo.Model.Init {
+﻿using System.Configuration;
+
+namespace GymCastillo.Model.Init {
     /// <summary>
     /// Helper que expone toda la información necesaria para el inicio del programa.
     /// </summary>
@@ -16,11 +18,12 @@
         public static string GetConnString() {
 
             // WARN: Temporal!!!
-            var user = "root";
-            var pass = "Jorgedavid12";
+            var user = ConfigurationManager.AppSettings.Get("DbUser");
+            var pass = ConfigurationManager.AppSettings.Get("DBPass");
 
-            var connString = $"server=localhost; database=mexty; Uid={user}; pwd={pass}; Database=gymcastillo";
-            return connString;
+            ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=gymcastillo";
+
+            return ConnString;
         }
 
     }
