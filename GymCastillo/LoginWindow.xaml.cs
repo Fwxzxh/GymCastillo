@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
@@ -32,26 +33,32 @@ namespace GymCastillo {
         private void LogIn() {
             try {
                 if (Init.LogIn(txtUsuario.Text, txtPassword.Password)) {
+
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");
                     MainWindow main = new();
                     main.Show();
                     Close();
+                    throw new Exception("hello");
                 }
                 else {
-                    Log.Info("Login fallido, credenciales erroneas.");
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Info("LogIn fallido, credenciales erroneas.");
+                    ShowPrettyMessages.WarningOk(
+                        "Usuario y/o contraseña incorrectos.",
+                        "Error de credenciales");
                 }
             }
-
-            catch (MySqlException) {
-                Log.Error("Se ha intentado ");
-                MessageBox.Show("Tus datos de conección son erroneos");
+            catch (MySqlException e) {
+                Log.Error("El string de connexión probablemente sea erroneo.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.WarningOk(
+                    "Error: verifica tus credenciales de base de datos, probablemente sean erroneas.",
+                    "Error de conexión");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error en el proceso de login.");
                 Log.Error($"Error: {e.Message}");
-                // TODO: ver como manejar el error
+                ShowPrettyMessages.ErrorOk($"Error: {e.Message}", "Error desconocido en LogIn");
             }
         }
 
