@@ -39,7 +39,6 @@ namespace GymCastillo {
                     MainWindow main = new();
                     main.Show();
                     Close();
-                    throw new Exception("hello");
                 }
                 else {
                     Log.Info("LogIn fallido, credenciales erroneas.");
