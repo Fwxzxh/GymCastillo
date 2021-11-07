@@ -8,6 +8,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
     public abstract class AbstUsuario {
 
         /// <summary>
+        /// Id en la base de datos.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Nombre sin apellidos.
         /// </summary>
         public string Nombre { get; set; }

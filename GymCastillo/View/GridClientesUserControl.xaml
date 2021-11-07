@@ -34,6 +34,7 @@
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
         <DataGrid Grid.Row="1"
+                  x:Name="ClientesDataGrid"
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
                   CanUserResizeRows="False"
@@ -43,6 +44,7 @@
                   HorizontalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
+                                    Binding="{Binding Nombre}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -54,6 +56,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Apellido Paterno"
+                                    Binding="{Binding ApellidoPaterno}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -65,6 +68,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Apellido Materno"
+                                    Binding="{Binding ApellidoMaterno}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -76,6 +80,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Teléfono"
+                                    Binding="{Binding Telefono}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">

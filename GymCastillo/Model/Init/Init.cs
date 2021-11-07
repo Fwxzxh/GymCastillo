@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using GymCastillo.Model.Helpers;
 using log4net;
 using MySqlConnector;
 
@@ -51,8 +53,11 @@ namespace GymCastillo.Model.Init {
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al hacer la query de logIn.");
                 Log.Error($"Error: {e.Message}");
-                throw;
-                // TODO: Ver como manejar el caso en el que el string de conección este mal
+                ShowPrettyMessages.ErrorOk($"Error: {e.Message}", "Error desconocido en Init");
+                return false;
+            }
+            finally {
+                connObj.Close();
             }
         }
 
