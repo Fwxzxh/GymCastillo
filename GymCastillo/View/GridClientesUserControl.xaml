@@ -38,6 +38,8 @@
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
                   CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
@@ -46,7 +48,7 @@
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
@@ -58,7 +60,7 @@
                 <DataGridTextColumn Header="Apellido Paterno"
                                     Binding="{Binding ApellidoPaterno}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
@@ -70,7 +72,7 @@
                 <DataGridTextColumn Header="Apellido Materno"
                                     Binding="{Binding ApellidoMaterno}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
@@ -82,7 +84,7 @@
                 <DataGridTextColumn Header="Teléfono"
                                     Binding="{Binding Telefono}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"

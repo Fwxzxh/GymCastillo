@@ -42,6 +42,8 @@
                 <TabItem.Content>
                     <local:GridInstructoresUserControl/>
                 </TabItem.Content>
+                
+      
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
