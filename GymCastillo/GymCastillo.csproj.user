@@ -10,6 +10,12 @@
     <Compile Update="View\GridClientesUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\GridInstructoresUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\GridUsuariosUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\NewClientesUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +34,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\GridClientesUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GridInstructoresUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GridUsuariosUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\NewClientesUserControl.xaml">

@@ -39,6 +39,20 @@
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <local:GridInstructoresUserControl/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Usuarios"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:GridInstructoresUserControl/>
+                </TabItem.Content>
             </TabItem>
         </TabControl>
     </Grid>
