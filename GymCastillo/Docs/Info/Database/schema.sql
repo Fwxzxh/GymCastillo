@@ -41,8 +41,7 @@ create table Clase (
                        NombreClase varchar(30),
                        Descripcion varchar(500),
                        CostoHora decimal,
-                       Horario varchar(2000),
-                       Espacio int
+                       Horario varchar(2000)
 );
 
 create table ClienteClase (
@@ -118,13 +117,6 @@ create table ClienteRenta (
                               FechaUltimoPago datetime,
                               MontoUltimoPago decimal,
                               DeudaCliente decimal
-);
-
-create table Espacio (
-    -- Tabla que guarda los registros de los espacios.
-                         IdEspacio int auto_increment primary key,
-                         NombreEspacio varchar(40),
-                         Descripcion varchar(2000)
 );
 
 create table Renta (
