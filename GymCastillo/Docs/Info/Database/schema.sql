@@ -6,7 +6,7 @@ use GymCastillo;
 
 
 create table TipoCliente (
-    -- Tabla que guarda los registros de los tipos de Clientes.
+    -- Tabla que guarda los registros de los tipos de Clientes, (de clase, con membresía, y membresía de promoción).
                              IdTipoCliente int auto_increment primary key,
                              NombreTipoCliente varchar(100),
                              Descripcion varchar(2000)

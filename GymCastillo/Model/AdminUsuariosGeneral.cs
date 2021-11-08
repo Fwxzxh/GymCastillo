@@ -48,7 +48,7 @@ namespace GymCastillo.Model {
         /// </summary>
         /// <param name="objeto">El objeto a borrar</param>
         public static void Delete(AbstUsuario objeto) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -57,8 +57,7 @@ namespace GymCastillo.Model {
         /// </summary>
         /// <param name="objeto">El objeto a dar de alta.</param>
         public static void Alta(AbstUsuario objeto) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-
     }
 }

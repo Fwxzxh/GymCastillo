@@ -86,18 +86,22 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@APaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@AMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@NacFecha", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@NacFecha",
+                    FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Tel", Telefono);
                 command.Parameters.AddWithValue("@Cond", CondicionEspecial.ToString());
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelContacto", TelefonoContacto);
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Monto", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Monto",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Act", Activo.ToString());
                 command.Parameters.AddWithValue("@Asistencias", Asistencias);
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DeudaCliente",
+                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
                 var res = ExecSql.NonQuery(command, "Update Cliente").Result;
 

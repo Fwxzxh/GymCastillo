@@ -46,6 +46,7 @@ namespace GymCastillo.Model.Database {
                         //Foto = await reader.Result.IsDBNullAsync("Foto") ? null : reader.Result.GetBytes("Foto"), TODO: Ver como obtener la foto.
                         FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
                         //IdClases = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
+                        // TODO agregar campo de nombre de clsaes List<Clase>
                         //Clases = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
                         CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") && reader.Result.GetBoolean("CondicionEspecial"),
                         IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoClient"),
