@@ -38,7 +38,8 @@ namespace GymCastillo.Model {
             catch (Exception e) {
                 Log.Error("Ha ocurrio un error desconocido a la hora de hacer el Update.");
                 Log.Error($"Error: {e.Message}");
-                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}", "Error desconocido");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
             }
         }
 

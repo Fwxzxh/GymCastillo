@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
@@ -63,43 +64,52 @@ namespace GymCastillo.Model.DataTypes {
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Cliente.");
 
-            await using var connection = new MySqlConnection(GetInitData.ConnString);
-            await connection.OpenAsync();
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
 
-            // TODO: Hacer la query de verdad.
-            const string updateQuery = @"update cliente set 
-                                Nombre=@Nombre, ApellidoPaterno=@APaterno, ApellidoMaterno=@AMaterno, 
-                                FechaNacimiento=@NacFecha, Telefono=@Tel, CondicionEspecial=@Cond, 
-                                NombreContacto=@NombreContacto, TelefonoContacto=@TelContacto, 
-                                -- Foto=@Foto,
-                                FechaUltimoAcceso=@FechaUltimoAcceso, MontoUltimoPago=@Monto,
-                                Activo=@Act, Asistencias=@Asistencias,
-                                IdTipoCliente=@IdTipoCliente, DeudaCliente=@DeudaCliente
-                                where IdCliente=@Id";
+                // TODO: Hacer la query de verdad.
+                const string updateQuery = @"update cliente set 
+                                    Nombre=@Nombre, ApellidoPaterno=@APaterno, ApellidoMaterno=@AMaterno, 
+                                    FechaNacimiento=@NacFecha, Telefono=@Tel, CondicionEspecial=@Cond, 
+                                    NombreContacto=@NombreContacto, TelefonoContacto=@TelContacto, 
+                                    -- Foto=@Foto,
+                                    FechaUltimoAcceso=@FechaUltimoAcceso, MontoUltimoPago=@Monto,
+                                    Activo=@Act, Asistencias=@Asistencias,
+                                    IdTipoCliente=@IdTipoCliente, DeudaCliente=@DeudaCliente
+                                    where IdCliente=@Id";
 
-            await using var command = new MySqlCommand(updateQuery, connection);
+                await using var command = new MySqlCommand(updateQuery, connection);
 
-            // TODO: Agregar los campos que faltan.
-            command.Parameters.AddWithValue("@Id", Id.ToString());
-            command.Parameters.AddWithValue("@Nombre", Nombre);
-            command.Parameters.AddWithValue("@APaterno", ApellidoPaterno);
-            command.Parameters.AddWithValue("@AMaterno", ApellidoMaterno);
-            command.Parameters.AddWithValue("@NacFecha", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
-            command.Parameters.AddWithValue("@Tel", Telefono);
-            command.Parameters.AddWithValue("@Cond", CondicionEspecial.ToString());
-            command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
-            command.Parameters.AddWithValue("@TelContacto", TelefonoContacto);
-            //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
-            command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-            command.Parameters.AddWithValue("@Monto", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
-            command.Parameters.AddWithValue("@Act", Activo.ToString());
-            command.Parameters.AddWithValue("@Asistencias", Asistencias);
-            command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-            command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                // TODO: Agregar los campos que faltan.
+                command.Parameters.AddWithValue("@Id", Id.ToString());
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@APaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@AMaterno", ApellidoMaterno);
+                command.Parameters.AddWithValue("@NacFecha", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Tel", Telefono);
+                command.Parameters.AddWithValue("@Cond", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+                command.Parameters.AddWithValue("@TelContacto", TelefonoContacto);
+                //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Monto", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Act", Activo.ToString());
+                command.Parameters.AddWithValue("@Asistencias", Asistencias);
+                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
-            var res = ExecSql.NonQuery(command, "Update Cliente").Result;
+                var res = ExecSql.NonQuery(command, "Update Cliente").Result;
 
-            return res;
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>
