@@ -13,7 +13,7 @@ INSERT INTO tipocliente VALUES (default, 'Con Membresia en promocion', 'Con Clas
 
 -- Borrar espacio en clases
 ALTER TABLE clase 
-DROP COLUMN 'horario';
+DROP COLUMN espacio;
 
 -- Clases v1
 INSERT INTO clase VALUES (default, 'Zumba', 'No se que es zumba', 50.0, '1;700:800;1,3;700:800;1,5;700:800;1');
