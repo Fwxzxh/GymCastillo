@@ -123,7 +123,6 @@ create table Renta (
     -- Tabla que guarda los registros de las rentas de espacios.
                        IdRenta int AUTO_INCREMENT PRIMARY KEY,
                        IdClienteRenta int,
-                       IdEspacio int,
                        FOREIGN KEY (IdClienteRenta) references ClienteRenta (IdClienteRenta)
 );
 
