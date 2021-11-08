@@ -11,10 +11,6 @@ INSERT INTO tipocliente VALUES (default, 'De Clase', 'Solo Gym');
 INSERT INTO tipocliente VALUES (default, 'Con Membresia', 'Con Clases');
 INSERT INTO tipocliente VALUES (default, 'Con Membresia en promocion', 'Con Clases y descuento');
 
--- Borrar espacio en clases
-ALTER TABLE clase 
-DROP COLUMN espacio;
-
 -- Clases v1
 INSERT INTO clase VALUES (default, 'Zumba', 'No se que es zumba', 50.0, '1;700:800;1,3;700:800;1,5;700:800;1');
 INSERT INTO clase VALUES (default, 'Salsa', 'No se que es bailar', 70.0, '2;700:800;2,4;700:800;2,6;700:800;2');
