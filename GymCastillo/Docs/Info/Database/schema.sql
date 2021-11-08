@@ -124,8 +124,7 @@ create table Renta (
                        IdRenta int AUTO_INCREMENT PRIMARY KEY,
                        IdClienteRenta int,
                        IdEspacio int,
-                       FOREIGN KEY (IdClienteRenta) references ClienteRenta (IdClienteRenta),
-                       FOREIGN KEY (IdEspacio) references Espacio (IdEspacio)
+                       FOREIGN KEY (IdClienteRenta) references ClienteRenta (IdClienteRenta)
 );
 
 -- Pagos

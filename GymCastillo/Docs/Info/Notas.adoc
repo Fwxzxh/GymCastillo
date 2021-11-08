@@ -7,13 +7,6 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 .TODOs
 - [ ] Agregar el campo de Instructor respaldo a Clase en código/diagrama y BD.
 - [ ] Pensar en como manejar las fotos.
-- [*] Agregar dependecia del logger.
-- [ ] Terminar diagramas.
-- [*] Pensar en como hacer los settings
-    https://docs.microsoft.com/en-us/troubleshoot/dotnet/csharp/store-custom-information-config-file[xml],
-    https://www.c-sharpcorner.com/article/four-ways-to-read-configuration-setting-in-c-sharp/[otra guia]
-- [*] Terminar Esquema de base de datos.
-- [*] Generar esquema de base de datos.
 
 .Preguntas
 * Hay paquetes de 1 dia? de una semana? o se tiene que pagar el més completo.
