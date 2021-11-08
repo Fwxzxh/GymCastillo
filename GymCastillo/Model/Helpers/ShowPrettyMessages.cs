@@ -25,6 +25,15 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
+        /// Método que muestra un mensaje de información con un boton de Ok.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="title"></param>
+        public static void InfoOk(string message, string title) {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        /// <summary>
         /// Clase que muestra un mensaje de pregunta y botones de Si y No.
         /// </summary>
         /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>

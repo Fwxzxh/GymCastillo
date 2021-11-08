@@ -1,4 +1,5 @@
-﻿using GymCastillo.Model.DataTypes.Abstract;
+﻿using System.Threading.Tasks;
+using GymCastillo.Model.DataTypes.Abstract;
 
 namespace GymCastillo.Model.DataTypes {
     /// <summary>
@@ -21,7 +22,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que Actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
         /// <returns></returns>
-        public override int Update() {
+        public override Task<int> Update() {
             throw new System.NotImplementedException();
         }
 
@@ -38,14 +39,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns></returns>
         public override int Alta() {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que valida la instancia actual de la base de datos.
-        /// </summary>
-        /// <returns></returns>
-        public override bool Validate() {
             throw new System.NotImplementedException();
         }
     }

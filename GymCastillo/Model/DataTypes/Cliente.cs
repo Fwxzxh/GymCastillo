@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading.Tasks;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.Init;
+using log4net;
+using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes {
+
     /// <summary>
     /// Clase que contiene los campos y métodos del objeto Cliente
     /// </summary>
     public class Cliente : AbstClientInstructor{
+    private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Si el cliente tiene alguna condición especial.
@@ -52,8 +60,46 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
-        public override int Update() {
-            throw new NotImplementedException();
+        public override async Task<int> Update() {
+            Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Cliente.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+
+            // TODO: Hacer la query de verdad.
+            const string updateQuery = @"update cliente set 
+                                Nombre=@Nombre, ApellidoPaterno=@APaterno, ApellidoMaterno=@AMaterno, 
+                                FechaNacimiento=@NacFecha, Telefono=@Tel, CondicionEspecial=@Cond, 
+                                NombreContacto=@NombreContacto, TelefonoContacto=@TelContacto, 
+                                -- Foto=@Foto,
+                                FechaUltimoAcceso=@FechaUltimoAcceso, MontoUltimoPago=@Monto,
+                                Activo=@Act, Asistencias=@Asistencias,
+                                IdTipoCliente=@IdTipoCliente, DeudaCliente=@DeudaCliente
+                                where IdCliente=@Id";
+
+            await using var command = new MySqlCommand(updateQuery, connection);
+
+            // TODO: Agregar los campos que faltan.
+            command.Parameters.AddWithValue("@Id", Id.ToString());
+            command.Parameters.AddWithValue("@Nombre", Nombre);
+            command.Parameters.AddWithValue("@APaterno", ApellidoPaterno);
+            command.Parameters.AddWithValue("@AMaterno", ApellidoMaterno);
+            command.Parameters.AddWithValue("@NacFecha", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+            command.Parameters.AddWithValue("@Tel", Telefono);
+            command.Parameters.AddWithValue("@Cond", CondicionEspecial.ToString());
+            command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+            command.Parameters.AddWithValue("@TelContacto", TelefonoContacto);
+            //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
+            command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+            command.Parameters.AddWithValue("@Monto", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+            command.Parameters.AddWithValue("@Act", Activo.ToString());
+            command.Parameters.AddWithValue("@Asistencias", Asistencias);
+            command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+            command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+
+            var res = ExecSql.NonQuery(command, "Update Cliente").Result;
+
+            return res;
         }
 
         /// <summary>
@@ -69,14 +115,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns>El número de columnas afectadas de la bd.</returns>
         public override int Alta() {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que valida el objeto actual del tipo cliente.
-        /// </summary>
-        /// <returns> <c>True </c> Si la instancia actual del objeto es válido o no.</returns>
-        public override bool Validate() {
             throw new NotImplementedException();
         }
 

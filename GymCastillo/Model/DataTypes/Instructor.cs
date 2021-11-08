@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes.Abstract;
 
 namespace GymCastillo.Model.DataTypes {
@@ -30,7 +31,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que actualiza la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
-        public override int Update() {
+        public override Task<int> Update() {
             throw new NotImplementedException();
         }
 
@@ -47,14 +48,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns>La cantidad de columanas afectadas.</returns>
         public override int Alta() {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que valida la instancia actual del instructor.
-        /// </summary>
-        /// <returns><c>Ture</c> Si pasa las validaciones.</returns>
-        public override bool Validate() {
             throw new NotImplementedException();
         }
 

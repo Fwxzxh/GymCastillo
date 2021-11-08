@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace GymCastillo.Model.DataTypes.Abstract {
@@ -62,7 +63,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// Método que Actualiza el objeto en la base de datos.
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
-        public abstract int Update();
+        public abstract Task<int> Update();
 
         /// <summary>
         /// Método que Borra el objeto en la base de datos.
@@ -75,11 +76,5 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
         public abstract int Alta();
-
-        /// <summary>
-        /// Método que valida los campos del objeto en la base de datos.
-        /// </summary>
-        /// <returns></returns>
-        public abstract bool Validate();
     }
 }
