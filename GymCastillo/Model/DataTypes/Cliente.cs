@@ -58,6 +58,16 @@ namespace GymCastillo.Model.DataTypes {
         public bool Activo { get; set; }
 
         /// <summary>
+        /// Medio por el que el cliente conoció el gym.
+        /// </summary>
+        public string MedioConocio { get; set; }
+
+        /// <summary>
+        /// Locker asignado a el cliente.
+        /// </summary>
+        public string Locker { get; set; }
+
+        /// <summary>
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>

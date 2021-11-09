@@ -32,6 +32,8 @@ create table Cliente (
     -- IdClase int,
                          IdTipoCliente int,
                          DeudaCliente decimal,
+                         MedioConocio varchar(300),
+                         Locker varchar(10),
                          foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente)
 );
 
