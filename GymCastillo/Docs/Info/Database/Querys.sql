@@ -15,7 +15,7 @@ SELECT * FROM ingresos;
 -- Consultas de información
 	-- Full cliente
 SELECT  ci.idcliente, ci.nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento, ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
-ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, ci.DeudaCliente,
+ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, ci.fechavencimientopago, ci.DeudaCliente, ci.medioconocio, ci.locker,
 ci.IdTipoCliente, tc.NombreTipoCliente, 
 group_concat(ca.IdClase) IDClase, group_concat(ca.NombreClase) NomClase
 FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
