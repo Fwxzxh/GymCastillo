@@ -28,6 +28,7 @@ create table Cliente (
                          MontoUltimoPago decimal,
                          Activo bool,
                          Asistencias varchar(200), -- TODO: ver como manejar asistencias.
+                         FechaVencimientoPago datetime,
     -- IdClase int,
                          IdTipoCliente int,
                          DeudaCliente decimal,

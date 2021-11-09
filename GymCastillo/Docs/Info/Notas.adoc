@@ -29,3 +29,26 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
     (para búsqueda y consulta), si se quiere saber más sobre alguno mostras un botón de más
     y alli si hacer la querry que trae todos los datos del usuario.
 
+
+.Información a obtener con las querys x pantalla
+* AdmClientes
+** Id
+** Nombre
+** ApellidoPaterno
+** ApellidoMaterno
+** FechaNacimiento
+** Telefono (editable)
+** CondiciónEspecial (editable)
+** NombreContacto (editable)
+** TelefonoContacto (editable)
+** Foto (editable)
+** FechaUltimoAcceso (Automatico)
+** IdTipoCliente (editable)
+** NombreTipoCliente (automatico con IdTipoCliente)
+** DeudaCliente (editable en otra pantalla)
+** Activo (editable)
+** Asistencias (Automatico)
+* AdmClasesCliente
+** IdClases: List<int> (editable solo en alta y baja)
+** Clases: List<Clases> (Automatico con IdClases)
+

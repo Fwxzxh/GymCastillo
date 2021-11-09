@@ -43,9 +43,9 @@ namespace GymCastillo.Model.DataTypes {
         public string Asistencias { get; set; }
 
         /// <summary>
-        /// La fecha del último pago del cliente.
+        /// La fecha en la que se vence el pago del cliente.
         /// </summary>
-        public DateTime FechaUltimoPago { get; set; }
+        public DateTime FechaVencimientoPago { get; set; }
 
         /// <summary>
         /// Monto del último pago del cliente.
