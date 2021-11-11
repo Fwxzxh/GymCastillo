@@ -84,7 +84,7 @@ namespace GymCastillo.Model {
                 var validator = new UsuarioValidation();
                 validator.ValidateAndThrowAsync(objeto);
 
-                // Hacemos el delete.
+                // Hacemos la alta.
                 var res = objeto.Alta().Result;
 
                 // Verificamos los cambios.

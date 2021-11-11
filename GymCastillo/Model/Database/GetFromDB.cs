@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
@@ -31,7 +30,7 @@ namespace GymCastillo.Model.Database {
                                             ci.Telefono,ci.CondicionEspecial,ci.NombreContacto,ci.TelefonoContacto,
                                             ci.FechaUltimoAcceso,ci.MontoUltimoPago,ci.Activo,ci.Asistencias,
                                             ci.FechaVencimientoPago,ci.DeudaCliente,ci.MedioConocio,ci.Locker,
-                                            ci.IdTipoCliente,tc.NombreTipoCliente,
+                                            ci.IdTipoCliente, tc.NombreTipoCliente,
                                             group_concat(ca.NombreClase) as NombreClase
                                     FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
                                     WHERE cc.IdCliente = ci.IdCliente
@@ -58,7 +57,7 @@ namespace GymCastillo.Model.Database {
                         Nombre = await reader.Result.IsDBNullAsync("Nombre") ? "" : reader.Result.GetString("Nombre"),
                         ApellidoPaterno = await reader.Result.IsDBNullAsync("ApellidoPaterno") ? "" : reader.Result.GetString("ApellidoPaterno"),
                         ApellidoMaterno = await reader.Result.IsDBNullAsync("ApellidoMaterno") ? "" : reader.Result.GetString("ApellidoMaterno"),
-                        FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento"),
+                        FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento").Date,
 
                         Telefono = await reader.Result.IsDBNullAsync("Telefono") ? "" : reader.Result.GetString("Telefono"),
                         CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") && reader.Result.GetBoolean("CondicionEspecial"),
@@ -72,12 +71,12 @@ namespace GymCastillo.Model.Database {
                         Activo = !await reader.Result.IsDBNullAsync("Activo") && reader.Result.GetBoolean("Activo"),
                         Asistencias = await reader.Result.IsDBNullAsync("Asistencias") ? "" : reader.Result.GetString("Asistencias"),
 
-                        FechaVencimientoPago = Convert.ToDateTime(await reader.Result.IsDBNullAsync("FechaVencimientoPago") ? "" : reader.Result.GetString("FechaVencimientoPago")),
+                        FechaVencimientoPago = reader.Result.GetDateTime("FechaVencimientoPago"),
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetDecimal("DeudaCliente"),
-                        MedioConocio = await reader.Result.IsDBNullAsync("MedioConocido") ? "" : reader.Result.GetString("MedioConocido"),
+                        MedioConocio = await reader.Result.IsDBNullAsync("MedioConocio") ? "" : reader.Result.GetString("MedioConocio"),
                         Locker = await reader.Result.IsDBNullAsync("Locker") ? "" : reader.Result.GetString("Locker"),
 
-                        IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoClient"),
+                        IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoCliente"),
                         NombreTipoCliente = await reader.Result.IsDBNullAsync("NombreTipoCliente") ? "" : reader.Result.GetString("NombreTipoCliente"),
                         ClasesString = await reader.Result.IsDBNullAsync("NombreClase") ? "" : reader.Result.GetString("NombreClase"),
                     };

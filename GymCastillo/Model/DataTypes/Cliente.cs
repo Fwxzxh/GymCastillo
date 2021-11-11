@@ -207,7 +207,6 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
                 command.Parameters.AddWithValue("Locker", Locker);
 
-
                 var res = ExecSql.NonQuery(command, "Alta Cliente").Result;
                 Log.Debug("Se ha dado de alta un cliente.");
                 return res;
