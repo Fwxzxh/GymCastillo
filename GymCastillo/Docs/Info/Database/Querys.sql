@@ -20,10 +20,10 @@ SELECT ci.IdCliente,ci.Nombre,ci.ApellidoPaterno,ci.ApellidoMaterno,ci.FechaNaci
        ci.FechaVencimientoPago,ci.DeudaCliente,ci.medioconocio,ci.Locker,
        ci.IdTipoCliente,tc.NombreTipoCliente,
        group_concat(ca.NombreClase) as NombreClase
-FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
-WHERE cc.IdCliente = ci.IdCliente
-AND cc.IdClase = ca.IdClase
-AND tc.IdTipoCliente = ci.IdTipoCliente
+FROM tipocliente tc
+INNER JOIN cliente ci ON ci.IdTipoCliente = tc.IdTipoCliente
+LEFT JOIN clienteclase cc ON cc.IdCliente = ci.IdCliente
+LEFT JOIN clase ca ON ca.IdClase = cc.IdClase
 group by ci.IdCliente;
 
 -- Consultas de modificación
