@@ -39,7 +39,6 @@ UPDATE cliente SET
         IdTipoCliente=@IdTipoCliente,
         Activo=@Activo
 WHERE IdCliente=@IdCliente;
-
 	-- 2.- Todos los editables de clase
 UPDATE clase
 SET costohora=@costohora, horario=@horario 
@@ -48,10 +47,14 @@ WHERE idclase=@idclase;
 UPDATE instructor
 SET pagohora=@pagohora, fechaultimopago=@fechaultimopago, montoultimopago=@montoultimopago
 WHERE idinstructor=@idinstructor;	
-	-- 4.- Inactividad de cliente
+	-- 4.- Baja de cliente
 UPDATE cliente
 SET Activo=FALSE
 WHERE idcliente=@idcliente;
+	-- 5.- Baja clase
+UPDATE clase
+SET Estatus=FALSE
+WHERE idclase=@idclase;
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
@@ -63,11 +66,14 @@ WHERE idcliente=@idcliente AND idclase=@idclase;
 	-- 3.- Baja de CLASES A INSTRUCTORES
 DROP instructorclase
 WHERE idinstructor=@idinstructor AND idclase=@idclase;
+	-- 4.- Eliminación CLASE
+DROP clase
+WHERE idclase=@idclase;
 
 -- Inserts
 	-- Cliente
 INSERT INTO cliente VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @montoultimopago, @activo, @asistencias, @fechavencimientopago, @idtipocliente, @deudacliente, @medioconocio, @locker);
 	-- Clase
-INSERT INTO clase VALUES (default, @nombreclase, @descripcion, @costohora, @horario);
+INSERT INTO clase VALUES (default, @nombreclase, @descripcion, @costohora, @horario, @estatus);
 	-- ClienteClase
 INSERT INTO clienteclase VALUES (@idcliente, @idclase);
