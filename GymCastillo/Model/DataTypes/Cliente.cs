@@ -13,7 +13,7 @@ namespace GymCastillo.Model.DataTypes {
     /// <summary>
     /// Clase que contiene los campos y métodos del objeto Cliente
     /// </summary>
-    public class Cliente : AbstClientInstructor{
+    public class Cliente : AbstClientInstructor {
     private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -78,40 +78,24 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                // TODO: Hacer la query de verdad.
                 const string updateQuery = @"update cliente set 
-                                    Nombre=@Nombre, ApellidoPaterno=@APaterno, ApellidoMaterno=@AMaterno, 
-                                    FechaNacimiento=@NacFecha, Telefono=@Tel, CondicionEspecial=@Cond, 
-                                    NombreContacto=@NombreContacto, TelefonoContacto=@TelContacto, 
-                                    -- Foto=@Foto,
-                                    FechaUltimoAcceso=@FechaUltimoAcceso, MontoUltimoPago=@Monto,
-                                    Activo=@Act, Asistencias=@Asistencias,
-                                    IdTipoCliente=@IdTipoCliente, DeudaCliente=@DeudaCliente
-                                    where IdCliente=@Id";
+                                                Telefono=@Telefono,
+                                                CondicionEspecial=@CondicionEspecial,
+                                                NombreContacto=@NombreContacto, 
+                                                TelefonoContacto=@TelefonoContacto, 
+                                                IdTipoCliente=@IdTipoCliente, Activo=@Activo
+                                            where IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                // TODO: Agregar los campos que faltan.
-                command.Parameters.AddWithValue("@Id", Id.ToString());
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@APaterno", ApellidoPaterno);
-                command.Parameters.AddWithValue("@AMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@NacFecha",
-                    FechaNacimiento.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Tel", Telefono);
-                command.Parameters.AddWithValue("@Cond", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                command.Parameters.AddWithValue("@Telefono", Telefono);
+                command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
-                command.Parameters.AddWithValue("@TelContacto", TelefonoContacto);
+                command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
-                command.Parameters.AddWithValue("@FechaUltimoAcceso",
-                    FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Monto",
-                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Act", Activo.ToString());
-                command.Parameters.AddWithValue("@Asistencias", Asistencias);
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-                command.Parameters.AddWithValue("@DeudaCliente",
-                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Activo", Activo.ToString());
 
                 var res = ExecSql.NonQuery(command, "Update Cliente").Result;
 
@@ -130,16 +114,111 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que borra (desactiva) la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
-        public override int Delete() {
-            throw new NotImplementedException();
+        public override async Task<int> Delete() {
+            // checamos si esta activo y si si hacemos querry para cambiar el status de activo y cambiamos el status de activo en la instancia.
+            // si ya esta inactivo hacemos la query para borrarlo.
+            Log.Debug("Se ha iniciado el proceso de Delete en cliente.");
+            if (Activo == false) {
+                // eliminamos
+                try {
+                    await using var connection = new MySqlConnection(GetInitData.ConnString);
+                    await connection.OpenAsync();
+
+                    const string deleteQuery = @"delete from cliente where IdCliente=@IdCliente";
+
+                    await using var command = new MySqlCommand(deleteQuery, connection);
+                    command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+
+                    var res = ExecSql.NonQuery(command, "Delete Cliente").Result;
+                    Log.Debug("Se ha eliminado un cliente de la tabla.");
+                    return res;
+                }
+                catch (Exception e) {
+                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del cliente.");
+                    Log.Error($"Error: {e.Message}");
+                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                        "Error desconocido");
+                    return 0;
+                }
+            }
+            else {
+                // desactivamos
+                try {
+                    await using var connection = new MySqlConnection(GetInitData.ConnString);
+                    await connection.OpenAsync();
+
+                    const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+
+                    await using var command = new MySqlCommand(deleteQuery, connection);
+                    command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+
+                    var res = ExecSql.NonQuery(command, "Update Cliente").Result;
+
+                    // Desactivamos la instancia actual
+                    Activo = false;
+
+                    Log.Debug("Se ha desactivado un cliente de la tabla.");
+
+                    return res;
+                }
+                catch (Exception e) {
+                    Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                    Log.Error($"Error: {e.Message}");
+                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                        "Error desconocido");
+                    return 0;
+                }
+            }
         }
 
         /// <summary>
         /// Método que da de alta la instancia actual del cliente en la base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas de la bd.</returns>
-        public override int Alta() {
-            throw new NotImplementedException();
+        public override async Task<int> Alta() {
+            // se actualizan todos los datos principales (de contacto)
+            Log.Debug("Se ha iniciado el proceso de dar de alta un cliente.");
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+
+                // TODO: hacer la query.
+                const string altaQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Telefono", Telefono);
+                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+                command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+                //command.Parameters.AddWithValue("@Foto", Foto); TODO: Fotooooo
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@Activo", true.ToString()); // True al dar de alta.
+                command.Parameters.AddWithValue("@Asistencias", ""); // Vacias porque es nuevo
+                command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
+                command.Parameters.AddWithValue("Locker", Locker);
+
+
+                var res = ExecSql.NonQuery(command, "Alta Cliente").Result;
+                Log.Debug("Se ha dado de alta un cliente.");
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>

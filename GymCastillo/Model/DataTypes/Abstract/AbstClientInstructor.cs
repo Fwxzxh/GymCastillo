@@ -18,6 +18,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public List<Clase> Clases { get; set; }
 
         /// <summary>
+        /// Contiene los nombres de las clases separados por comas.
+        /// </summary>
+        public string ClasesString { get; set; }
+
+        /// <summary>
         /// Método que obtiene el horario del cliente o Instructor.
         /// </summary>
         /// <returns>El horario en string</returns>

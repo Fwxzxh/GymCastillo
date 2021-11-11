@@ -39,7 +39,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que borra la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
-        public override int Delete() {
+        public override Task<int> Delete() {
             throw new NotImplementedException();
         }
 
@@ -47,7 +47,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que da de alta la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columanas afectadas.</returns>
-        public override int Alta() {
+        public override Task<int> Alta() {
             throw new NotImplementedException();
         }
 

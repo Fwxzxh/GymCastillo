@@ -69,12 +69,12 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// Método que Borra el objeto en la base de datos.
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
-        public abstract int Delete();
+        public abstract Task<int> Delete();
 
         /// <summary>
         /// Método que da de alta el objeto en la base de datos.
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
-        public abstract int Alta();
+        public abstract Task<int> Alta();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
@@ -25,7 +26,25 @@ namespace GymCastillo.Model.Database {
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
 
-            const string sqlQuery = "select * from cliente"; // TODO: hacer la query de verdad.
+            const string sqlQuery = @"SELECT 
+                                            ci.IdCliente,ci.Nombre,ci.ApellidoPaterno,ci.ApellidoMaterno,ci.FechaNacimiento,
+                                            ci.Telefono,ci.CondicionEspecial,ci.NombreContacto,ci.TelefonoContacto,
+                                            ci.FechaUltimoAcceso,ci.MontoUltimoPago,ci.Activo,ci.Asistencias,
+                                            ci.FechaVencimientoPago,ci.DeudaCliente,ci.MedioConocio,ci.Locker,
+                                            ci.IdTipoCliente,tc.NombreTipoCliente,
+                                            group_concat(ca.NombreClase) as NombreClase
+                                    FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
+                                    WHERE cc.IdCliente = ci.IdCliente
+                                    AND cc.IdClase = ca.IdClase
+                                    AND tc.IdTipoCliente = ci.IdTipoCliente
+                                    group by ci.IdCliente;";
+
+            // Obtiene: IdCLiente, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNaciemiento
+            // Telefono, CondicionEspecial, NombreContacto, TelefonoContacto
+            // FechaUltimoAcceso, MontoUltimoPago, Activo, Asistencias
+            // FechaVencimientoPago, DeudaCliente, MedioConocido, Locker,
+            // IdTipoCliente, NombreTipoCliente
+            // NombreClase
 
             var listUsuario = new List<Cliente>();
 
@@ -35,28 +54,34 @@ namespace GymCastillo.Model.Database {
 
                 while (await reader.Result.ReadAsync()) {
                     var cliente = new Cliente() {
-                        Id = await reader.Result.IsDBNullAsync("IdCliente") ? 0 : reader.Result.GetInt32("IdCliente"),
+                        Id = reader.Result.GetInt32("IdCliente"),
                         Nombre = await reader.Result.IsDBNullAsync("Nombre") ? "" : reader.Result.GetString("Nombre"),
                         ApellidoPaterno = await reader.Result.IsDBNullAsync("ApellidoPaterno") ? "" : reader.Result.GetString("ApellidoPaterno"),
                         ApellidoMaterno = await reader.Result.IsDBNullAsync("ApellidoMaterno") ? "" : reader.Result.GetString("ApellidoMaterno"),
                         FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento"),
+
                         Telefono = await reader.Result.IsDBNullAsync("Telefono") ? "" : reader.Result.GetString("Telefono"),
+                        CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") && reader.Result.GetBoolean("CondicionEspecial"),
                         NombreContacto = await reader.Result.IsDBNullAsync("NombreContacto") ? "" : reader.Result.GetString("NombreContacto"),
                         TelefonoContacto = await reader.Result.IsDBNullAsync("TelefonoContacto") ? "" : reader.Result.GetString("TelefonoContacto"),
+
                         //Foto = await reader.Result.IsDBNullAsync("Foto") ? null : reader.Result.GetBytes("Foto"), TODO: Ver como obtener la foto.
+
                         FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
-                        //IdClases = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
-                        // TODO agregar campo de nombre de clsaes List<Clase>
-                        //Clases = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
-                        CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") && reader.Result.GetBoolean("CondicionEspecial"),
-                        IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoClient"),
-                        //NombreTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? "" : reader.Result.GetString("Nombre"),
-                        DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetDecimal("DeudaCliente"),
-                        Asistencias = await reader.Result.IsDBNullAsync("Asistencias") ? "" : reader.Result.GetString("Asistencias"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
-                        //FechaUltimoPago = Convert.ToDateTime(await reader.Result.IsDBNullAsync("FechaUltimoPago") ? "" : reader.Result.GetString("FechaUltimoPago")),
                         Activo = !await reader.Result.IsDBNullAsync("Activo") && reader.Result.GetBoolean("Activo"),
+                        Asistencias = await reader.Result.IsDBNullAsync("Asistencias") ? "" : reader.Result.GetString("Asistencias"),
+
+                        FechaVencimientoPago = Convert.ToDateTime(await reader.Result.IsDBNullAsync("FechaVencimientoPago") ? "" : reader.Result.GetString("FechaVencimientoPago")),
+                        DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetDecimal("DeudaCliente"),
+                        MedioConocio = await reader.Result.IsDBNullAsync("MedioConocido") ? "" : reader.Result.GetString("MedioConocido"),
+                        Locker = await reader.Result.IsDBNullAsync("Locker") ? "" : reader.Result.GetString("Locker"),
+
+                        IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoClient"),
+                        NombreTipoCliente = await reader.Result.IsDBNullAsync("NombreTipoCliente") ? "" : reader.Result.GetString("NombreTipoCliente"),
+                        ClasesString = await reader.Result.IsDBNullAsync("NombreClase") ? "" : reader.Result.GetString("NombreClase"),
                     };
+
                     listUsuario.Add(cliente);
                 }
                 Log.Debug("Se han obtenido con éxito la información de los clientes.");
