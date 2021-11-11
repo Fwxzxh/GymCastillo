@@ -65,5 +65,9 @@ DROP instructorclase
 WHERE idinstructor=@idinstructor AND idclase=@idclase;
 
 -- Inserts
-	-- 
--- INSERT INTO cliente VALUES (default,,,,);
+	-- Cliente
+INSERT INTO cliente VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @montoultimopago, @activo, @asistencias, @fechavencimientopago, @idtipocliente, @deudacliente, @medioconocio, @locker);
+	-- Clase
+INSERT INTO clase VALUES (default, @nombreclase, @descripcion, @costohora, @horario);
+	-- ClienteClase
+INSERT INTO clienteclase VALUES (@idcliente, @idclase);
