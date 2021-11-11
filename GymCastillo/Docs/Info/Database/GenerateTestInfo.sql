@@ -12,11 +12,11 @@ INSERT INTO tipocliente VALUES (default, 'Con Membresia', 'Con Clases');
 INSERT INTO tipocliente VALUES (default, 'Con Membresia en promocion', 'Con Clases y descuento');
 
 -- Clases v1
-INSERT INTO clase VALUES (default, 'Zumba', 'No se que es zumba', 50.0, '1;700:800;1,3;700:800;1,5;700:800;1');
-INSERT INTO clase VALUES (default, 'Salsa', 'No se que es bailar', 70.0, '2;700:800;2,4;700:800;2,6;700:800;2');
-INSERT INTO clase VALUES (default, 'Kung Fu', 'No se que hace esto aqui', 65.0, '1;900:1000;1,3;900:1000;1,5;900:1000;1');
-INSERT INTO clase VALUES (default, 'Zumba 2', 'No se que es zumba 2', 45.0, '2;900:1000;2,4;900:1000;2,6;900:1000;2');
-INSERT INTO clase VALUES (default, 'Jaripeo', 'No se que si asi se escribe', 80.0, '1;1100:1200;1,3;1100:1200;1,5;1100:1200;1');
+INSERT INTO clase VALUES (default, 'Zumba', 'No se que es zumba', 50.0, '1;700:800;1,3;700:800;1,5;700:800;1', TRUE);
+INSERT INTO clase VALUES (default, 'Salsa', 'No se que es bailar', 70.0, '2;700:800;2,4;700:800;2,6;700:800;2', TRUE);
+INSERT INTO clase VALUES (default, 'Kung Fu', 'No se que hace esto aqui', 65.0, '1;900:1000;1,3;900:1000;1,5;900:1000;1', TRUE);
+INSERT INTO clase VALUES (default, 'Zumba 2', 'No se que es zumba 2', 45.0, '2;900:1000;2,4;900:1000;2,6;900:1000;2', TRUE);
+INSERT INTO clase VALUES (default, 'Jaripeo', 'No se que si asi se escribe', 80.0, '1;1100:1200;1,3;1100:1200;1,5;1100:1200;1', TRUE);
 
 -- Cliente con tipo
 INSERT INTO cliente VALUES (default, 'Persona6', 'ApellidoP6', 'ApellidoM6', CURDATE(), '1111111116', FALSE, 'Amigo6' ,'2222222226', null, CURDATE(), 350.0, TRUE, '**', CURDATE(), 1, null, 'Publicidad', 'B1');
