@@ -44,7 +44,8 @@ create table Clase (
                        NombreClase varchar(30),
                        Descripcion varchar(500),
                        CostoHora decimal,
-                       Horario varchar(2000)
+                       Horario varchar(2000),
+                       Estatus bool
 );
 
 create table ClienteClase (
