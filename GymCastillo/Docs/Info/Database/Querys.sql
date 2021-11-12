@@ -47,17 +47,16 @@ WHERE idinstructor=@idinstructor;
 UPDATE cliente
 SET status=FALSE 
 WHERE idcliente=@idcliente;
-	-- 5.- Todos los editables de cliente (modificar si/no locker preguntar)
+	-- 5.- Todos los editables de usuario
 UPDATE usuario
 SET telefono=@telefono, domicilio=@domicilio, username=@username, password=@password, condicionespecial=@condicionespecial,
 nombrecontacto=@nombrecontacto, telefonocontacto=@telefonocontacto
 WHERE idusuario=@idusuario;
-	-- 5.- Todos los editables de cliente (modificar si/no locker preguntar)
+	-- 6.- Todos los editables de clienterenta
 UPDATE clienterenta
 SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto,
 telefonocontacto=@telefonocontacto
 WHERE clienterenta=@clienterenta;
-
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
