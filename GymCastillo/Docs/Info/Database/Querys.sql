@@ -13,7 +13,7 @@ SELECT * FROM pagos;
 SELECT * FROM ingresos;
 
 -- Consultas de información
-	-- Full cliente
+	-- Full Cliente
 SELECT  ci.idcliente, ci.nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento, ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
 ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, ci.DeudaCliente,
 ci.IdTipoCliente, tc.NombreTipoCliente, 
@@ -23,94 +23,105 @@ WHERE cc.IdCliente = ci.IdCliente
 AND cc.IdClase = ca.IdClase
 AND tc.IdTipoCliente = ci.IdTipoCliente
 group by ci.IdCliente;
-
--- Consultas de modificación
-SELECT 
-FROM ;
+	-- Full Clase
 
 -- Updates
 	-- 1.- Todos los editables de cliente (modificar si/no locker preguntar)
 UPDATE cliente
-SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial,
-nombrecontacto=@nombrecontacto, telefonocontacto=@telefonocontacto, idtipocliente=@idtipocliente
-WHERE idcliente=@idcliente;
+SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial,
+nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, idtipocliente=@IdTipoCliente
+WHERE idcliente=@IdCliente;
 	-- 2.- Todos los editables de clase
 UPDATE clase
-SET costohora=@costohora, horario=@horario 
-WHERE idclase=@idclase;
+SET costohora=@CostoHora, horario=@Horario 
+WHERE idclase=@IdClase;
 	-- 3.- Todos los editables de instructor
 UPDATE instructor
-SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto, 
-telefonocontacto=@telefonocontacto, pagohora=@pagohora, fechaultimopago=@fechaultimopago, montoultimopago=@montoultimopago
-WHERE idinstructor=@idinstructor;	
+SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, nombrecontacto=@NombreContacto, 
+telefonocontacto=@TelefonoContacto, pagohora=@PagoHora, fechaultimopago=@FechaUltimoPago, montoultimopago=@MontoUltimoPago
+WHERE idinstructor=@IdInstructor;	
 	-- 4.- Inactividad de cliente
 UPDATE cliente
-SET Activo=FALSE
-WHERE idcliente=@idcliente;
-	-- 5.- Todos los editables de usuario
+SET activo=FALSE
+WHERE idcliente=@IdCliente;
+	-- 5.- Baja temporal a clase
+UPDATE clase
+SET activo=FALSE
+WHERE idclase=@IdClase;
+	-- 6.- Todos los editables de usuario
 UPDATE usuario
-SET telefono=@telefono, domicilio=@domicilio, username=@username, password=@password, condicionespecial=@condicionespecial,
-nombrecontacto=@nombrecontacto, telefonocontacto=@telefonocontacto
-WHERE idusuario=@idusuario;
-	-- 6.- Todos los editables de clienterenta
+SET telefono=@Telefono, domicilio=@Domicilio, username=@Username, password=@Password, condicionespecial=@CondicionEspecial,
+nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto
+WHERE idusuario=@IdUsuario;
+	-- 7.- Todos los editables de clienterenta
 UPDATE clienterenta
-SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto,
-telefonocontacto=@telefonocontacto
-WHERE clienterenta=@clienterenta;
+SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, nombrecontacto=@NombreContacto,
+telefonocontacto=@TelefonoContacto
+WHERE clienterenta=@ClienteRenta;
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
 DROP cliente
-WHERE idcliente=@idcliente;
+WHERE idcliente=@IdCliente;
 	-- 2.- Baja de CLASES A CLIENTE
 DROP clienteclase
-WHERE idcliente=@idcliente AND idclase=@idclase;
+WHERE idcliente=@IdCliente AND idclase=@IdClase;
 	-- 3.- Baja de CLASES A INSTRUCTORES
 DROP instructorclase
-WHERE idinstructor=@idinstructor AND idclase=@idclase;
+WHERE idinstructor=@IdInstructor AND idclase=@IdClase;
 	-- 4.- Eliminación CLASES
 DROP clase
-WHERE idclase=@idclase;
+WHERE idclase=@IdClase;
 	-- 5.- Eliminación TIPOCLIENTE
 DROP tipocliente
-WHERE idtipocliente=@idtipocliente;
+WHERE idtipocliente=@IdTipoCliente;
 	-- 6.- Eliminación INSTRUCTOR
 DROP instructor
-WHERE idinstructor=@idinstructor;
+WHERE idinstructor=@IdInstructor;
 	-- 7.- Eliminación USUARIO
 DROP usuario
-WHERE idusuario=@idusuario;
+WHERE idusuario=@IdUsuario;
 	-- 8.- Eliminación CLIENTERENTA
 DROP clienterenta
-WHERE idclienterenta=@idclienterenta;
+WHERE idclienterenta=@IdClienteRenta;
 	-- 9.- Eliminación RENTA
 DROP renta
-WHERE idrenta=@idrenta;
+WHERE idrenta=@IdRenta;
 	-- 10.- Eliminación Pagos
 DROP pagos
-WHERE idpagosgeneral=@idpagosgeneral;
+WHERE idpagosgeneral=@IdPagosGeneral;
 	-- 11.- Eliminación INGRESOS
 DROP ingresos
-WHERE idingresos=@idingresos;
+WHERE idingresos=@IdIngresos;
 
 -- Inserts
 	-- Cliente
-INSERT INTO cliente VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @Domicilio, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @montoultimopago, @activo, @asistencias, @fechavencimientopago, @idtipocliente, @deudacliente, @medioconocio, @locker);
+INSERT INTO cliente VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, @Domicilio, 
+			    @FechaNacimiento, @Telefono, @CondicionEspecial, @NombreContacto, 
+			    @TelefonoContacto, @Foto, @FechaUltimoAcceso, @MontoUltimoPago, 
+			    @Activo, @Asistencias, @FechaVencimientoPago, @IdTipoCliente, 
+			    @DeudaCliente, @MedioConocio, @Lcker);
 	-- Clase
-INSERT INTO clase VALUES (default, @nombreclase, @descripcion, @costohora, @horario, @estatus);
+INSERT INTO clase VALUES (default, @NombreClase, @Descripcion, @CostoHora, @Horario, @Activo);
 	-- ClienteClase (alta)
-INSERT INTO clienteclase VALUES (@idcliente, @idclase);
+INSERT INTO clienteclase VALUES (@IdCliente, @IdClase);
 	-- Instructor
-INSERT INTO instructor VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @fechaultimopago, @montoultimopago, @asistencias, @pagohora);
+INSERT INTO instructor VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,  @Domicilio, @FechaNacimiento,
+			       @Telefono, @CondicionEspecial, @NombreContacto, @TelefonoContacto, @Foto, 
+			       @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, @Asistencias, @PagoHora);
 	-- InstructorClase
-INSERT INTO instructorclase VALUES (@idinstructor, @idclase);
+INSERT INTO instructorclase VALUES (@IdInstructor, @IdClase);
 	-- Usuario
-INSERT INTO usuario VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @username, @password, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @fechaultimopago, @montoultimopago);
+INSERT INTO usuario VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, @Domicilio, @Username, @Password, 
+			    @FechaNacimiento, @Telefono, @CondicionEspecial, @NombreContacto, @TelefonoContacto, 
+			    @Foto, @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
 	-- ClienteRenta
-INSERT INTO clienterenta VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimopago, @montoultimopago, @deudacliente);
+INSERT INTO clienterenta VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, @Domicilio, @FechaNacimiento, 
+				 @Telefono, @CondicionEspecial, @NombreContacto, @TelefonoContacto, @Foto, 
+				 @FechaUltimoPago, @MontoUltimoPago, @DeudaCliente);
 	-- Renta
-INSERT INTO renta VALUES (default, @idclienterenta, @fecharenta, @horario);
+INSERT INTO renta VALUES (default, @IdClienteRenta, @FechaRenta, @Horario);
 	-- Pagos
-INSERT INTO pagos VALUES (default, @fecharegistro, @idusuario, @tipopago, @concepto, @numerorecibo, @monto);
+INSERT INTO pagos VALUES (default, @FechaRegistro, @IdUsuario, @TipoPago, @Concepto, @NumeroRecibo, @Monto);
 	-- Ingresos
-INSERT INTO ingresos VALUES (default, @fecharegistro, @idusuario, @tipopago, @concepto, @numerorecibo, @monto);
+INSERT INTO ingresos VALUES (default, @FechaRegistro, @IdUsuario, @TipoPago, @Concepto, @NumeroRecibo, @Monto);
