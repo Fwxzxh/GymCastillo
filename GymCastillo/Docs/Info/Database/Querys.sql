@@ -40,12 +40,24 @@ SET costohora=@costohora, horario=@horario
 WHERE idclase=@idclase;
 	-- 3.- Todos los editables de instructor
 UPDATE instructor
-SET pagohora=@pagohora, fechaultimopago=@fechaultimopago, montoultimopago=@montoultimopago
+SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto, 
+telefonocontacto=@telefonocontacto, pagohora=@pagohora, fechaultimopago=@fechaultimopago, montoultimopago=@montoultimopago
 WHERE idinstructor=@idinstructor;	
 	-- 4.- Inactividad de cliente
 UPDATE cliente
 SET status=FALSE 
 WHERE idcliente=@idcliente;
+	-- 5.- Todos los editables de cliente (modificar si/no locker preguntar)
+UPDATE usuario
+SET telefono=@telefono, domicilio=@domicilio, username=@username, password=@password, condicionespecial=@condicionespecial,
+nombrecontacto=@nombrecontacto, telefonocontacto=@telefonocontacto
+WHERE idusuario=@idusuario;
+	-- 5.- Todos los editables de cliente (modificar si/no locker preguntar)
+UPDATE clienterenta
+SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto,
+telefonocontacto=@telefonocontacto
+WHERE idcliente=@idcliente;
+
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
