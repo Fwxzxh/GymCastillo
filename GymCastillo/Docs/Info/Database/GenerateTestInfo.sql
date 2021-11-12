@@ -29,6 +29,14 @@ INSERT INTO clienteclase VALUES (1,2);
 INSERT INTO clienteclase VALUES (4,5);
 INSERT INTO clienteclase VALUES (9,1);
 INSERT INTO clienteclase VALUES (2,4);
+INSERT INTO clienteclase VALUES (1,1);
+INSERT INTO clienteclase VALUES (1,3);
+INSERT INTO clienteclase VALUES (1,4);
+INSERT INTO clienteclase VALUES (3,1);
+INSERT INTO clienteclase VALUES (3,5);
+INSERT INTO clienteclase VALUES (3,2);
+INSERT INTO clienteclase VALUES (5,4);
+INSERT INTO clienteclase VALUES (5,1);
 
 -- Instructores
 INSERT INTO instructor VALUES (default, 'Instructor1', 'ApellidoPI1', 'ApellidoMI1', 'Calle 1 Colonia B', CURDATE(), '2111111111', FALSE, 'AmigoI1' ,'1222222221', null, CURDATE(), CURDATE(), 350.0, '***', 100.0);
