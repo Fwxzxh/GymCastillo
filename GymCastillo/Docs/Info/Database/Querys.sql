@@ -61,37 +61,37 @@ WHERE clienterenta=@ClienteRenta;
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
-DROP cliente
+DELETE FROM cliente
 WHERE idcliente=@IdCliente;
 	-- 2.- Baja de CLASES A CLIENTE
-DROP clienteclase
+DELETE FROM clienteclase
 WHERE idcliente=@IdCliente AND idclase=@IdClase;
 	-- 3.- Baja de CLASES A INSTRUCTORES
-DROP instructorclase
+DELETE FROM instructorclase
 WHERE idinstructor=@IdInstructor AND idclase=@IdClase;
 	-- 4.- Eliminación CLASES
-DROP clase
+DELETE FROM clase
 WHERE idclase=@IdClase;
 	-- 5.- Eliminación TIPOCLIENTE
-DROP tipocliente
+DELETE FROM tipocliente
 WHERE idtipocliente=@IdTipoCliente;
 	-- 6.- Eliminación INSTRUCTOR
-DROP instructor
+DELETE FROM instructor
 WHERE idinstructor=@IdInstructor;
 	-- 7.- Eliminación USUARIO
-DROP usuario
+DELETE FROM usuario
 WHERE idusuario=@IdUsuario;
 	-- 8.- Eliminación CLIENTERENTA
-DROP clienterenta
+DELETE FROM clienterenta
 WHERE idclienterenta=@IdClienteRenta;
 	-- 9.- Eliminación RENTA
-DROP renta
+DELETE FROM renta
 WHERE idrenta=@IdRenta;
 	-- 10.- Eliminación Pagos
-DROP pagos
+DELETE FROM pagos
 WHERE idpagosgeneral=@IdPagosGeneral;
 	-- 11.- Eliminación INGRESOS
-DROP ingresos
+DELETE FROM ingresos
 WHERE idingresos=@IdIngresos;
 
 -- Inserts
