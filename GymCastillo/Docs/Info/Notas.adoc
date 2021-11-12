@@ -25,6 +25,7 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 * El campo de condición especial también aplica a instructores?
 * Preguntar si esta bien dejar el pago al instructor relativo a la clase que es
     (agregar el campo de pagoinstructor a la tabla/clase de Clase).
+* Conceptos de pago predefinidos (example: Servicios, instructores, otros (posibilidad de escribir))
 
 .Ui
 * En la lista de clientes listar los clientes con los datos básicos
