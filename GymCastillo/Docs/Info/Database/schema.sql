@@ -18,6 +18,7 @@ create table Cliente (
                          Nombre varchar(30) not null not null,
                          ApellidoPaterno varchar(30) not null,
                          ApellidoMaterno varchar(30) not null,
+                         Domicilio varchar(70) not null,
                          FechaNacimiento datetime not null,
                          Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                          CondicionEspecial bool not null,
@@ -63,6 +64,7 @@ create table Instructor (
                             Nombre varchar(30) not null not null,
                             ApellidoPaterno varchar(30) not null,
                             ApellidoMaterno varchar(30) not null,
+                            Domicilio varchar(70) not null,
                             FechaNacimiento datetime not null,
                             Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                             CondicionEspecial bool not null,
@@ -92,6 +94,7 @@ create table Usuario (
                          Nombre varchar(30) not null not null,
                          ApellidoPaterno varchar(30) not null,
                          ApellidoMaterno varchar(30) not null,
+                         Domicilio varchar(70) not null,
                          Username varchar(20) not null,
                          Password varchar(15) not null,
                          FechaNacimiento datetime not null,
@@ -112,6 +115,7 @@ create table ClienteRenta (
                               Nombre varchar(30) not null not null,
                               ApellidoPaterno varchar(30) not null,
                               ApellidoMaterno varchar(30) not null,
+                              Domicilio varchar(70) not null,
                               FechaNacimiento datetime not null,
                               Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                               CondicionEspecial bool not null,
@@ -160,6 +164,6 @@ create table Ingresos (
 
 -- Creamos el usuario admin
 insert into usuario
-    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Username, Password, FechaNacimiento, Telefono, CondicionEspecial, FechaUltimoAcceso)
+    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, CondicionEspecial, FechaUltimoAcceso)
 values
-    (1, 'admin', 'admin', 'admin', 'admin', 'admin', sysdate(), '0', false, sysdate());
+    (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', sysdate(), '0', false, sysdate());

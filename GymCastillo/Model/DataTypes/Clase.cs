@@ -46,7 +46,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         public string HorarioStr { get; set; }
 
-
         /// <summary>
         /// Toma el campo de HorarioStr y lo convierte en el campo Horario.
         /// </summary>

@@ -60,6 +60,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public DateTime FechaUltimoAcceso { get; set; }
 
         /// <summary>
+        /// Domicilio actual del usuario
+        /// </summary>
+        public string Domicio { get; set; }
+
+        /// <summary>
         /// Método que Actualiza el objeto en la base de datos.
         /// </summary>
         /// <returns>El número de col afectadas.</returns>

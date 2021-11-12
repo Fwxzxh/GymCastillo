@@ -83,7 +83,8 @@ namespace GymCastillo.Model.DataTypes {
                                                 CondicionEspecial=@CondicionEspecial,
                                                 NombreContacto=@NombreContacto, 
                                                 TelefonoContacto=@TelefonoContacto, 
-                                                IdTipoCliente=@IdTipoCliente, Activo=@Activo
+                                                IdTipoCliente=@IdTipoCliente, Activo=@Activo,
+                                                Domicilio=@domicilio
                                             where IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -96,6 +97,7 @@ namespace GymCastillo.Model.DataTypes {
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@Activo", Activo.ToString());
+                command.Parameters.AddWithValue("@Domicilio", Domicio);
 
                 var res = ExecSql.NonQuery(command, "Update Cliente").Result;
 
@@ -182,8 +184,8 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                // TODO: hacer la query.
-                const string altaQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+                // TODO: ___
+                const string altaQuery = @"";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());

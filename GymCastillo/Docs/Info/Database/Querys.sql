@@ -1,8 +1,8 @@
 ﻿-- Querys
 -- Consultas generales
-SELECT * FROM clientes;
-SELECT * FROM clases;
-SELECT * FROM clienteclases;
+SELECT * FROM cliente;
+SELECT * FROM clase;
+SELECT * FROM clienteclase;
 SELECT * FROM tipocliente;
 SELECT * FROM instructor;
 SELECT * FROM instructorclase;
@@ -45,7 +45,7 @@ telefonocontacto=@telefonocontacto, pagohora=@pagohora, fechaultimopago=@fechaul
 WHERE idinstructor=@idinstructor;	
 	-- 4.- Inactividad de cliente
 UPDATE cliente
-SET status=FALSE 
+SET Activo=FALSE
 WHERE idcliente=@idcliente;
 	-- 5.- Todos los editables de usuario
 UPDATE usuario
@@ -95,10 +95,10 @@ WHERE idingresos=@idingresos;
 
 -- Inserts
 	-- Cliente
-INSERT INTO cliente VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @montoultimopago, @activo, @asistencias, @fechavencimientopago, @idtipocliente, @deudacliente, @medioconocio, @locker);
+INSERT INTO cliente VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @Domicilio, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @montoultimopago, @activo, @asistencias, @fechavencimientopago, @idtipocliente, @deudacliente, @medioconocio, @locker);
 	-- Clase
 INSERT INTO clase VALUES (default, @nombreclase, @descripcion, @costohora, @horario, @estatus);
-	-- ClienteClase
+	-- ClienteClase (alta)
 INSERT INTO clienteclase VALUES (@idcliente, @idclase);
 	-- Instructor
 INSERT INTO instructor VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimoacceso, @fechaultimopago, @montoultimopago, @asistencias, @pagohora);
