@@ -98,8 +98,8 @@ INSERT INTO usuario VALUES (default, @nombre, @apellidopaterno, @apellidomaterno
 	-- ClienteRenta
 INSERT INTO clienterenta VALUES (default, @nombre, @apellidopaterno, @apellidomaterno, @fechanacimiento, @telefono, @condicionespecial, @nombrecontacto, @telefonocontacto, @foto, @fechaultimopago, @montoultimopago, @deudacliente);
 	-- Renta
-INSERT INTO renta VALUES (default, @idclienterenta);
+INSERT INTO renta VALUES (default, @idclienterenta, @fecharenta, @horario);
 	-- Pagos
-INSERT INTO pagos VALUES (default, @fecharegistro, @idusuario, @concepto, @numerorecibo, @monto);
+INSERT INTO pagos VALUES (default, @fecharegistro, @idusuario, @tipopago, @concepto, @numerorecibo, @monto);
 	-- Ingresos
-INSERT INTO ingresos VALUES (default, @fecharegistro, @idcliente, @concepto, @numerorecibo, @monto);
+INSERT INTO ingresos VALUES (default, @fecharegistro, @idusuario, @tipopago, @concepto, @numerorecibo, @monto);
