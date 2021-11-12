@@ -12,18 +12,28 @@ SELECT * FROM renta;
 SELECT * FROM pagos;
 SELECT * FROM ingresos;
 
+
 -- Consultas de información
 	-- Full Cliente
-SELECT  ci.idcliente, ci.nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento, ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
+SELECT  ci.idcliente, ci.nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento, 
+ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
 ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, ci.DeudaCliente,
 ci.IdTipoCliente, tc.NombreTipoCliente, 
-group_concat(ca.IdClase) IDClase, group_concat(ca.NombreClase) NomClase
-FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
-WHERE cc.IdCliente = ci.IdCliente
-AND cc.IdClase = ca.IdClase
-AND tc.IdTipoCliente = ci.IdTipoCliente
+group_concat(ca.NombreClase) NomClase
+FROM tipocliente tc
+INNER JOIN cliente ci ON ci.IdTipoCliente = tc.IdTipoCliente
+LEFT JOIN clienteclase cc ON cc.IdCliente = ci.IdCliente
+LEFT JOIN clase ca ON ca.IdClase = cc.IdClase
 group by ci.IdCliente;
-	-- Full Clase
+
+	-- Clases Activas
+SELECT c.idclase, c.NombreClase, c.Descripcion, c.CostoHora, c.Horario, c.Activo,
+		i.idinstructor, i.Nombre, i.ApellidoPaterno, i.ApellidoMaterno
+FROM clase c, instructorclase ic, instructor i
+WHERE c.IdClase = ic.IdClase
+AND ic.IdInstructor = i.IdInstructor
+AND Activo = 1;
+
 
 -- Updates
 	-- 1.- Todos los editables de cliente (modificar si/no locker preguntar)
@@ -37,8 +47,9 @@ SET costohora=@CostoHora, horario=@Horario
 WHERE idclase=@IdClase;
 	-- 3.- Todos los editables de instructor
 UPDATE instructor
-SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, nombrecontacto=@NombreContacto, 
-telefonocontacto=@TelefonoContacto, pagohora=@PagoHora, fechaultimopago=@FechaUltimoPago, montoultimopago=@MontoUltimoPago
+SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, 
+nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, pagohora=@PagoHora, 
+fechaultimopago=@FechaUltimoPago, montoultimopago=@MontoUltimoPago
 WHERE idinstructor=@IdInstructor;	
 	-- 4.- Inactividad de cliente
 UPDATE cliente
@@ -50,14 +61,15 @@ SET activo=FALSE
 WHERE idclase=@IdClase;
 	-- 6.- Todos los editables de usuario
 UPDATE usuario
-SET telefono=@Telefono, domicilio=@Domicilio, username=@Username, password=@Password, condicionespecial=@CondicionEspecial,
-nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto
+SET telefono=@Telefono, domicilio=@Domicilio, username=@Username, password=@Password, 
+condicionespecial=@CondicionEspecial, nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto
 WHERE idusuario=@IdUsuario;
 	-- 7.- Todos los editables de clienterenta
 UPDATE clienterenta
-SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, nombrecontacto=@NombreContacto,
-telefonocontacto=@TelefonoContacto
+SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, 
+nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto
 WHERE clienterenta=@ClienteRenta;
+
 
 -- Drops
 	-- 1.- Eliminación CLIENTE
@@ -93,6 +105,7 @@ WHERE idpagosgeneral=@IdPagosGeneral;
 	-- 11.- Eliminación INGRESOS
 DELETE FROM ingresos
 WHERE idingresos=@IdIngresos;
+
 
 -- Inserts
 	-- Cliente
