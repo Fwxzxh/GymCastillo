@@ -29,6 +29,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public string ApellidoMaterno { get; set; }
 
         /// <summary>
+        /// Domicilio actual del usuario
+        /// </summary>
+        public string Domicio { get; set; }
+
+        /// <summary>
         /// Fecha de nacimiento.
         /// </summary>
         public DateTime FechaNacimiento { get; set; }
@@ -59,10 +64,6 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// </summary>
         public DateTime FechaUltimoAcceso { get; set; }
 
-        /// <summary>
-        /// Domicilio actual del usuario
-        /// </summary>
-        public string Domicio { get; set; }
 
         /// <summary>
         /// Método que Actualiza el objeto en la base de datos.

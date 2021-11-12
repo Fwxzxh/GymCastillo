@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GymCastillo.Model.DataTypes.Abstract {
     /// <summary>
@@ -32,18 +33,18 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// Método que da de alta una clase al cliente o Instructor.
         /// </summary>
         /// <param name="clase">Clase a dar de Alta</param>
-        public abstract void AltaClase(Clase clase);
+        public abstract Task<int> AltaClase(Clase clase);
 
         /// <summary>
         /// Método que da de baja una clase al cliente o al instructor.
         /// </summary>
         /// <param name="clase">Clase a dar de baja.</param>
-        public abstract void BajaClase(Clase clase);
+        public abstract Task<int> BajaClase(Clase clase);
 
         /// <summary>
         /// Método que da de alta una nueva asitencia al cliente o instructor.
         /// </summary>
         /// <param name="fecha">Fecha a la cual poner la asistencia.</param>
-        public abstract void NuevaAsistencia(DateTime fecha);
+        public abstract Task<int> NuevaAsistencia(DateTime fecha);
     }
 }

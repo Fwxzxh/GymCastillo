@@ -26,16 +26,16 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
 
             const string sqlQuery = @"SELECT 
-                                            ci.IdCliente,ci.Nombre,ci.ApellidoPaterno,ci.ApellidoMaterno,ci.FechaNacimiento,
-                                            ci.Telefono,ci.CondicionEspecial,ci.NombreContacto,ci.TelefonoContacto,
-                                            ci.FechaUltimoAcceso,ci.MontoUltimoPago,ci.Activo,ci.Asistencias,
-                                            ci.FechaVencimientoPago,ci.DeudaCliente,ci.MedioConocio,ci.Locker,
+                                            ci.IdCliente, ci.Nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento,
+                                            ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
+                                            ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, 
+                                            ci.FechaVencimientoPago, ci.DeudaCliente, ci.MedioConocio, ci.Locker,
                                             ci.IdTipoCliente, tc.NombreTipoCliente,
                                             group_concat(ca.NombreClase) as NombreClase
-                                    FROM cliente ci, clase ca, clienteclase cc, tipocliente tc
-                                    WHERE cc.IdCliente = ci.IdCliente
-                                    AND cc.IdClase = ca.IdClase
-                                    AND tc.IdTipoCliente = ci.IdTipoCliente
+                                    FROM tipocliente tc
+                                    INNER JOIN cliente ci ON ci.IdTipoCliente = tc.IdTipoCliente
+                                    LEFT JOIN clienteclase cc ON cc.IdCliente = ci.IdCliente
+                                    LEFT JOIN clase ca ON ca.IdClase = cc.IdClase
                                     group by ci.IdCliente;";
 
             // Obtiene: IdCLiente, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNaciemiento

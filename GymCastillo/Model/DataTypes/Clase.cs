@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using log4net;
 
 namespace GymCastillo.Model.DataTypes {
     // Clase que contiene los campos y métodos de el objeto tipo Clase.
     public class Clase {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Id de la clase.
@@ -36,6 +38,11 @@ namespace GymCastillo.Model.DataTypes {
         public decimal CostoHora { get; set; }
 
         /// <summary>
+        /// Indica si la clase esta activa o no.
+        /// </summary>
+        public bool Activo { get; set; }
+
+        /// <summary>
         /// El horario de la clase.
         /// </summary>
         // TODO: Ver como va a quedar este pedo.
@@ -45,6 +52,14 @@ namespace GymCastillo.Model.DataTypes {
         /// El hoario de la clase codificado en un string.
         /// </summary>
         public string HorarioStr { get; set; }
+
+        /// <summary>
+        /// Obtiene todas las clases guardadas.
+        /// </summary>
+        /// <returns>Una lista con objetos tipo clase.</returns>
+        public static List<Clase> GetAllClases() {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Toma el campo de HorarioStr y lo convierte en el campo Horario.

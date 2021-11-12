@@ -184,27 +184,40 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                // TODO: ___
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO cliente
+                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, @Domicilio,
+                                                   @FechaNacimiento, @Telefono, @CondicionEspecial, @NombreContacto,
+                                                   @TelefonoContacto, @Foto, @FechaUltimoAcceso, @MontoUltimoPago,
+                                                   @Activo, @Asistencias, @FechaVencimientoPago, @IdTipoCliente,
+                                                   @DeudaCliente, @MedioConocido, @Locker);";
+                // Se actualizan:
+                // Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio,
+                // FechaNacimiento, Telefono, CondicionEspecial, NombreContacto,
+                // TelefonoContacto, Foto, FechaUltimoAcceso, MontoUltimoPago,
+                // Activo, Asitencias, FechaVencimientoPago, IdTipoCliente,
+                // DeudaCliente, MedioConocido, Locker
 
                 await using var command = new MySqlCommand(altaQuery, connection);
-                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+                command.Parameters.AddWithValue("@Domicilio", Domicio);
+
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
-                command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: Fotooooo
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+
+                command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
                 command.Parameters.AddWithValue("@Activo", true.ToString()); // True al dar de alta.
                 command.Parameters.AddWithValue("@Asistencias", ""); // Vacias porque es nuevo
                 command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
                 command.Parameters.AddWithValue("Locker", Locker);
@@ -234,15 +247,39 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que da de alta una clase al cliente que corresponde a la instancia actual.
         /// </summary>
         /// <param name="clase"></param>
-        public override void AltaClase(Clase clase) {
-            throw new NotImplementedException();
+        public override async Task<int> AltaClase(Clase clase) {
+            Log.Debug("Se ha iniciado el proceso de alta de clase.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+
+                const string altaClaseQuery = @"INSERT INTO clienteclase VALUES (@IdCliente, @IdClase);";
+
+                await using var command = new MySqlCommand(altaClaseQuery, connection);
+
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                command.Parameters.AddWithValue("@IdClase", clase.IdClase.ToString());
+
+                var res = ExecSql.NonQuery(command, "Alta Clase a Cliente").Result;
+
+                Log.Debug("Se ha dado de alta un cliente.");
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconcoido a la hora de dar de alta una clase a un cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>
         /// Método que da de baja una lcase al cliente que corresponde a la insancia actual.
         /// </summary>
         /// <param name="clase"></param>
-        public override void BajaClase(Clase clase) {
+        public override Task<int> BajaClase(Clase clase) {
             throw new NotImplementedException();
         }
 
@@ -251,7 +288,7 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <param name="fecha">La fecha de la asistencia</param>
         // TODO: ver que onda con las asistencias para ver si son al entrar al gym o por clase.
-        public override void NuevaAsistencia(DateTime fecha) {
+        public override Task<int> NuevaAsistencia(DateTime fecha) {
             throw new NotImplementedException();
         }
 

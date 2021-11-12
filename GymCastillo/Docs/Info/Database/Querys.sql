@@ -15,11 +15,12 @@ SELECT * FROM ingresos;
 
 -- Consultas de información
 	-- Full Cliente
-SELECT  ci.idcliente, ci.nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento, 
-ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
-ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, ci.DeudaCliente,
-ci.IdTipoCliente, tc.NombreTipoCliente, 
-group_concat(ca.NombreClase) NomClase
+SELECT  ci.IdCliente, ci.Nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento,
+        ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
+        ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias,
+        ci.FechaVencimientoPago, ci.DeudaCliente, ci.MedioConocio, ci.Locker,
+        ci.IdTipoCliente, tc.NombreTipoCliente,
+        group_concat(ca.NombreClase) as NombreClase
 FROM tipocliente tc
 INNER JOIN cliente ci ON ci.IdTipoCliente = tc.IdTipoCliente
 LEFT JOIN clienteclase cc ON cc.IdCliente = ci.IdCliente
@@ -113,7 +114,7 @@ INSERT INTO cliente VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno
 			    @FechaNacimiento, @Telefono, @CondicionEspecial, @NombreContacto, 
 			    @TelefonoContacto, @Foto, @FechaUltimoAcceso, @MontoUltimoPago, 
 			    @Activo, @Asistencias, @FechaVencimientoPago, @IdTipoCliente, 
-			    @DeudaCliente, @MedioConocio, @Lcker);
+			    @DeudaCliente, @MedioConocio, @Locker);
 	-- Clase
 INSERT INTO clase VALUES (default, @NombreClase, @Descripcion, @CostoHora, @Horario, @Activo);
 	-- ClienteClase (alta)

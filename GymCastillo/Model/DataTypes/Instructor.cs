@@ -63,7 +63,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que da de alta una clase a la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <param name="clase">La clase a dar de alta.</param>
-        public override void AltaClase(Clase clase) {
+        public override Task<int> AltaClase(Clase clase) {
             throw new NotImplementedException();
         }
 
@@ -71,7 +71,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que da de baja una clase a la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <param name="clase"></param>
-        public override void BajaClase(Clase clase) {
+        public override Task<int> BajaClase(Clase clase) {
             throw new NotImplementedException();
         }
 
@@ -79,7 +79,7 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que registra una nueva asitencia al instructor.
         /// </summary>
         /// <param name="fecha">La fecha a dar de alta.</param>
-        public override void NuevaAsistencia(DateTime fecha) {
+        public override Task<int> NuevaAsistencia(DateTime fecha) {
             throw new NotImplementedException();
         }
 
