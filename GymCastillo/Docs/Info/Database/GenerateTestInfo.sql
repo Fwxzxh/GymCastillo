@@ -62,21 +62,21 @@ INSERT INTO clienterenta VALUES (default, 'ClienteRenta2', 'ApellidoPCR2', 'Apel
 INSERT INTO clienterenta VALUES (default, 'ClienteRenta3', 'ApellidoPCR3', 'ApellidoMCR3', CURDATE(), '4111111113', FALSE, 'AmigoCR3' ,'4222222223', null, CURDATE(), 350.0, null);
 
 -- Renta
-INSERT INTO renta VALUES (default, 1);
-INSERT INTO renta VALUES (default, 2);
-INSERT INTO renta VALUES (default, 3);
-INSERT INTO renta VALUES (default, 3);
+INSERT INTO renta VALUES (default, 1, CURDATE(), '1;700:900');
+INSERT INTO renta VALUES (default, 2, CURDATE(), '3;900:1000');
+INSERT INTO renta VALUES (default, 3, CURDATE(), '2;1100:1300');
+INSERT INTO renta VALUES (default, 3, CURDATE(), '3;1500:1600');
 
 -- Pagos
-INSERT INTO pagos VALUES (default, CURDATE(), 1, '3, Instructor3, Trabajo', 'SA12121212', 350.0);
-INSERT INTO pagos VALUES (default, CURDATE(), 1, '1, Instructor1, Trabajo', 'SA12121213', 350.0);
-INSERT INTO pagos VALUES (default, CURDATE(), 1, '2, Instructor2, Trabajo', 'SA12121214', 350.0);
-INSERT INTO pagos VALUES (default, CURDATE(), 1, '5, Instructor5, Trabajo', 'SA12121215', 350.0);
-INSERT INTO pagos VALUES (default, CURDATE(), 1, '4, Instructor4, Trabajo', 'SA12121216', 350.0);
+INSERT INTO pagos VALUES (default, CURDATE(), 1, 'Instructores', '3, Instructor3, Trabajo', 'SA12121212', 350.0);
+INSERT INTO pagos VALUES (default, CURDATE(), 1, 'Instructores', '1, Instructor1, Trabajo', 'SA12121213', 350.0);
+INSERT INTO pagos VALUES (default, CURDATE(), 1, 'Servicios', 'Pago Luz', 'SA12121214', 1500.0);
+INSERT INTO pagos VALUES (default, CURDATE(), 2, 'Usuarios', '4, Usuario4, Trabajo', 'SA12121215', 400.0);
+INSERT INTO pagos VALUES (default, CURDATE(), 2, 'Otros', 'Comida', 'SA12121216', 100.0);
 
 -- Ingresos
-INSERT INTO ingresos VALUES (default, CURDATE(), 2, 'Mensualidad', 'BE32323231', 350.0);
-INSERT INTO ingresos VALUES (default, CURDATE(), 4, 'Mensualidad', 'BE32323232', 350.0);
-INSERT INTO ingresos VALUES (default, CURDATE(), 6, 'Mensualidad', 'BE32323233', 350.0);
-INSERT INTO ingresos VALUES (default, CURDATE(), 8, 'Mensualidad', 'BE32323234', 350.0);
-INSERT INTO ingresos VALUES (default, CURDATE(), 10, 'Mensualidad', 'BE32323235', 350.0);
+INSERT INTO ingresos VALUES (default, CURDATE(), 1, 'Cliente', 'Mensualidad', 'BE32323231', 350.0);
+INSERT INTO ingresos VALUES (default, CURDATE(), 1, 'Cliente', 'Mensualidad', 'BE32323232', 350.0);
+INSERT INTO ingresos VALUES (default, CURDATE(), 2, 'Cliente', 'Mensualidad', 'BE32323233', 350.0);
+INSERT INTO ingresos VALUES (default, CURDATE(), 2, 'ClienteRenta', 'Adeudo', 'BE32323234', 500.0);
+INSERT INTO ingresos VALUES (default, CURDATE(), 3, 'Otros', 'Pago daño a material', 'BE32323235', 850.0);
