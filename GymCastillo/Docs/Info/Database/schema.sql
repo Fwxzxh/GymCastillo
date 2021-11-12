@@ -127,6 +127,8 @@ create table Renta (
     -- Tabla que guarda los registros de las rentas de espacios.
                        IdRenta int AUTO_INCREMENT PRIMARY KEY,
                        IdClienteRenta int,
+                       FechaRenta datetime not null,
+                       Horario varchar(100) not null, -- (Espacio;HoraInicio:HoraFin)
                        FOREIGN KEY (IdClienteRenta) references ClienteRenta (IdClienteRenta)
 );
 
@@ -137,20 +139,23 @@ create table Pagos (
                        IdPagosGeneral int auto_increment primary key,
                        FechaRegistro datetime not null,
                        IdUsuario int,
-                       Concepto varchar(300) not null, -- IdInstructor y nombre.
+                       TipoPago varchar(30) not null, -- (Servicios, Instructores, Usuarios, Otros)
+                       Concepto varchar(300) not null, -- comida
                        NumeroRecibo varchar(30) not null,
-                       Monto decimal
-    -- foreign key (IdUsuario) references Usuario (IdUsuario)
+                       Monto decimal,
+                       foreign key (IdUsuario) references Usuario (IdUsuario)
 );
 
 create table Ingresos (
     -- Tabla que guarda los ingresos (los pagos de los Clientes)
                           IdIngresos int auto_increment primary key,
                           FechaRegistro datetime not null,
-                          IdCliente int,
+                          IdUsuario int,
+                          TipoIngreso varchar(30) not null, -- (Cliente, ClienteRenta, Otros)
                           Concepto varchar(300) not null,
                           NumeroRecibo varchar(30) not null,
-                          Monto decimal
+                          Monto decimal,
+                          foreign key (IdUsuario) references Usuario (IdUsuario)
 );
 
 -- Creamos el usuario admin
