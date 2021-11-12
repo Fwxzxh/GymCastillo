@@ -56,7 +56,7 @@ WHERE idusuario=@idusuario;
 UPDATE clienterenta
 SET telefono=@telefono, domicilio=@domicilio, condicionespecial=@condicionespecial, nombrecontacto=@nombrecontacto,
 telefonocontacto=@telefonocontacto
-WHERE idcliente=@idcliente;
+WHERE clienterenta=@clienterenta;
 
 
 -- Drops
