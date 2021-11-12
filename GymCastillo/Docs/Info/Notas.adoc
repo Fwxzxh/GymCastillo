@@ -10,6 +10,8 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 
 .Preguntas
 * Hay paquetes de 1 dia? de una semana? o se tiene que pagar el més completo.
+* Tipos de usuario membreía, membrecia con promoción, de clase, como funcionan?
+* Definir a los usuario en base al tipo de paquete mensual (x clases) que toman?
 * Debemos de dar de baja los usuarios después de x tiempo inactivos?
 * Preguntar que datos desean saber sobre las ventas además de
     (ventas, inventario y productos).
