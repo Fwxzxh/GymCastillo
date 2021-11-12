@@ -18,7 +18,7 @@ create table Cliente (
                          Nombre varchar(30) not null not null,
                          ApellidoPaterno varchar(30) not null,
                          ApellidoMaterno varchar(30) not null,
-                         Domicilio varchar(70) not null,
+                         Domicilio varchar(150) not null,
                          FechaNacimiento datetime not null,
                          Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                          CondicionEspecial bool not null,
@@ -64,7 +64,7 @@ create table Instructor (
                             Nombre varchar(30) not null not null,
                             ApellidoPaterno varchar(30) not null,
                             ApellidoMaterno varchar(30) not null,
-                            Domicilio varchar(70) not null,
+                            Domicilio varchar(150) not null,
                             FechaNacimiento datetime not null,
                             Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                             CondicionEspecial bool not null,
@@ -94,7 +94,7 @@ create table Usuario (
                          Nombre varchar(30) not null not null,
                          ApellidoPaterno varchar(30) not null,
                          ApellidoMaterno varchar(30) not null,
-                         Domicilio varchar(70) not null,
+                         Domicilio varchar(150) not null,
                          Username varchar(20) not null,
                          Password varchar(15) not null,
                          FechaNacimiento datetime not null,
@@ -115,7 +115,7 @@ create table ClienteRenta (
                               Nombre varchar(30) not null not null,
                               ApellidoPaterno varchar(30) not null,
                               ApellidoMaterno varchar(30) not null,
-                              Domicilio varchar(70) not null,
+                              Domicilio varchar(150) not null,
                               FechaNacimiento datetime not null,
                               Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
                               CondicionEspecial bool not null,
