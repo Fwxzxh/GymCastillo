@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace GymCastillo.Model.Init {
+namespace GymCastillo.ViewModel.Init {
     /// <summary>
     /// Helper que expone toda la información necesaria para el inicio del programa.
     /// </summary>

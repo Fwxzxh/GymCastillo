@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GymCastillo.Model.Helpers;
-using GymCastillo.Model.Init;
+using GymCastillo.ViewModel.Helpers;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.Database {
+namespace GymCastillo.ViewModel.Database {
     /// <summary>
     /// Clase que se encarga de ejecutar comandos SQL comúnes.
     /// </summary>

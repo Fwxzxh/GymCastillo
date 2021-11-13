@@ -1,10 +1,10 @@
 ﻿using System;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
-using GymCastillo.Model.Helpers;
+using GymCastillo.ViewModel.Helpers;
 using log4net;
 
-namespace GymCastillo.Model {
+namespace GymCastillo.ViewModel.Admin {
     /// <summary>
     /// Clase que se encarga de exponer todos las operaciones comúnes para objetos tipo <c>AbstClientInstructor</c>.
     /// </summary>

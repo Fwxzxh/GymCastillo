@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using GymCastillo.Model.Helpers;
+using GymCastillo.ViewModel.Helpers;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.Init {
+namespace GymCastillo.ViewModel.Init {
     /// <summary>
     /// Clase que se encarga del proseso de LogIn.
     /// </summary>

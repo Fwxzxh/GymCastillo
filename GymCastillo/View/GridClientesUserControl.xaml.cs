@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using GymCastillo.Model.Database;
-using GymCastillo.Model.Helpers;
+using GymCastillo.ViewModel.Database;
+using GymCastillo.ViewModel.Helpers;
 using log4net;
 
 namespace GymCastillo.View {
