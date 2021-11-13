@@ -28,7 +28,7 @@ namespace GymCastillo.Model {
 
                 // Verificamos los cambios.
                 if (res == 0) {
-                    // No se han hecho cambios a la bd
+                    // No se han hecho cambios a la bd.
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
             }

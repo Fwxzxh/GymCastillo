@@ -44,7 +44,8 @@ create table Clase (
     -- IdInstructor int, -- TODO: Cada clase la pueden dar 1 o más instructores. FK
                        NombreClase varchar(30),
                        Descripcion varchar(500),
-                       CostoHora decimal,
+                       CostoHora decimal, -- Costo para clientes que tienen el paquete de clase.
+                       -- TODO: agregar el pago a instructores
                        Horario varchar(2000),
                        Activo bool
 );
@@ -143,7 +144,7 @@ create table Pagos (
                        IdPagosGeneral int auto_increment primary key,
                        FechaRegistro datetime not null,
                        IdUsuario int,
-                       TipoPago varchar(30) not null, -- (Servicios, Instructores, Usuarios, Otros)
+                       TipoPago varchar(30) not null, -- (Servicios, nomina, Otros)
                        Concepto varchar(300) not null, -- comida
                        NumeroRecibo varchar(30) not null,
                        Monto decimal,

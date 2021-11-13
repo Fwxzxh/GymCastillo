@@ -12,6 +12,7 @@ SELECT * FROM renta;
 SELECT * FROM pagos;
 SELECT * FROM ingresos;
 
+-- 4037070112318268
 
 -- Consultas de información
 	-- Full Cliente
@@ -69,7 +70,7 @@ WHERE idusuario=@IdUsuario;
 UPDATE clienterenta
 SET telefono=@Telefono, domicilio=@Domicilio, condicionespecial=@CondicionEspecial, 
 nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto
-WHERE clienterenta=@ClienteRenta;
+WHERE IdClienteRenta=@IdClienteRenta;
 
 
 -- Drops
