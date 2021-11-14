@@ -156,7 +156,7 @@ create table Ingresos (
                           IdIngresos int auto_increment primary key,
                           FechaRegistro datetime not null,
                           IdUsuario int,
-                          TipoIngreso varchar(30) not null, -- (Cliente, ClienteRenta, Otros)
+                          TipoIngreso varchar(30) not null, -- (Separar cliente, clienterenta, otros (agregar idcliente, idclienterenta, otros(varchar)))
                           Concepto varchar(300) not null,
                           NumeroRecibo varchar(30) not null,
                           Monto decimal,
