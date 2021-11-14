@@ -59,3 +59,4 @@ https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 ** IdClases: List<int> (editable solo en alta y baja)
 ** Clases: List<Clases> (Automatico con IdClases)
 
+

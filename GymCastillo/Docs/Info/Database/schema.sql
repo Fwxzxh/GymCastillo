@@ -5,6 +5,7 @@ create database GymCastillo;
 use GymCastillo;
 
 
+
 create table TipoCliente (
     -- Tabla que guarda los registros de los tipos de Clientes, (de clase, con membresía, y membresía de promoción).
                              IdTipoCliente int auto_increment primary key,
@@ -161,6 +162,14 @@ create table Ingresos (
                           NumeroRecibo varchar(30) not null,
                           Monto decimal,
                           foreign key (IdUsuario) references Usuario (IdUsuario)
+);
+
+create table Locker (
+    -- Tabla que guarda la información de los lockers
+    IdLocker int auto_increment primary key,
+    Nombre varchar(10),
+    IdCliente int,
+    foreign key (IdCliente) references Cliente (IdCliente)
 );
 
 -- Creamos el usuario admin
