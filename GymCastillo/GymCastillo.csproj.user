@@ -4,10 +4,10 @@
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="LoginWindow.xaml.cs">
+    <Compile Update="View\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\GridClientesUserControl.xaml.cs">
+    <Compile Update="View\UsersView\GridClientesUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\GridInstructoresUserControl.xaml.cs">
@@ -28,12 +28,15 @@
     <Compile Update="View\UsersViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\UsersView\OverviewClientsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="LoginWindow.xaml">
+    <Page Update="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\GridClientesUserControl.xaml">
+    <Page Update="View\UsersView\GridClientesUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\GridInstructoresUserControl.xaml">
@@ -52,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\UsersViewUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UsersView\OverviewClientsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

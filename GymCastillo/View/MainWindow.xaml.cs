@@ -10,23 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo {
     /// <summary>
-    /// Interaction logic for NewClientsWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class NewClientsWindow : Window {
-        public NewClientsWindow() {
+    public partial class MainWindow : Window {
+        public MainWindow() {
             InitializeComponent();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e) {
-            this.Visibility = Visibility.Hidden;
         }
     }
 }
