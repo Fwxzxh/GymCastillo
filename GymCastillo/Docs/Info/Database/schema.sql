@@ -27,7 +27,6 @@ create table Cliente (
                          FechaUltimoAcceso datetime,
                          MontoUltimoPago decimal,
                          Activo bool,
-                         Asistencias varchar(200), -- TODO: ver como manejar asistencias.
                          FechaVencimientoPago datetime, -- Un mes más 5 días de tolerancia 
                          DeudaCliente decimal,
                          MedioConocio varchar(300), -- Redes sociales, amig@, otros
@@ -35,6 +34,7 @@ create table Cliente (
                          ClasesSemanaDisponibles int, -- Clases disponibles por semana en base a paquete
                          Descuento decimal, -- Este es arbitrario y solo si aplica
                          Nino bool, -- Por si se da de alta un niño
+			 Cargo decimal,
     -- IdClase int,
                          IdTipoCliente int,
 						 foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
