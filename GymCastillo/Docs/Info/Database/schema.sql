@@ -114,7 +114,6 @@ create table Cliente (
                          ClasesSemanaDisponibles int, -- Clases disponibles por semana en base a paquete
                          Descuento decimal, -- Este es arbitrario y solo si aplica
                          Nino bool, -- Por si se da de alta un niño
-			 Cargo decimal,
     -- IdClase int,
                          IdTipoCliente int,
 						 foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
