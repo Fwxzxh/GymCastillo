@@ -34,7 +34,6 @@ create table Instructor (
                             Domicilio varchar(150) not null,
                             FechaNacimiento datetime not null,
                             Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
-                            CondicionEspecial bool not null,
                             NombreContacto varchar(30),
                             TelefonoContacto varchar(10),
                             Foto blob,
