@@ -11,89 +11,11 @@ create table TipoCliente (
 						 Descripcion varchar(2000)
 );
 
-create table Cliente (
-    -- Tabla Que guarda los registros de los clientes del gym.
-                         IdCliente int AUTO_INCREMENT PRIMARY KEY,
-                         Nombre varchar(30) not null not null,
-                         ApellidoPaterno varchar(30) not null,
-                         ApellidoMaterno varchar(30) not null,
-                         Domicilio varchar(150) not null,
-                         FechaNacimiento datetime not null,
-                         Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
-                         CondicionEspecial bool not null,
-                         NombreContacto varchar(30),
-                         TelefonoContacto varchar(10),
-                         Foto blob,
-                         FechaUltimoAcceso datetime,
-                         MontoUltimoPago decimal,
-                         Activo bool,
-                         FechaVencimientoPago datetime, -- Un mes más 5 días de tolerancia 
-                         DeudaCliente decimal,
-                         MedioConocio varchar(300), -- Redes sociales, amig@, otros
-                         ClasesTotalesDisponibles int, -- Acumulables, por mes
-                         ClasesSemanaDisponibles int, -- Clases disponibles por semana en base a paquete
-                         Descuento decimal, -- Este es arbitrario y solo si aplica
-                         Nino bool, -- Por si se da de alta un niño
-			 Cargo decimal,
-    -- IdClase int,
-                         IdTipoCliente int,
-						 foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
-	-- IdLocker int
-                         IdLocker int, -- Solo si renta un locker
-						 foreign key (IdLocker) references Locker (IdLocker),
-	-- IdPaquete int
-						 IdPaquete int,
-                         foreign key (IdPaquete) references Paquete (IdPaquete)
-);
-
-create table Locker (
-    -- Tabla que guarda la información de los lockers
-						IdLocker int auto_increment primary key,
-						Nombre varchar(10),
-	-- IdCliente
-						IdCliente int,
-						foreign key (IdCliente) references Cliente (IdCliente)
-);
-
-create table Paquete (
-	-- Tabla que guarda los registros de los paquetes
-						 IdPaquete int auto_increment primary key,
-                         Gym bool not null, -- Si el paquete tendrá o no gym
-                         NombrePaquete varchar(100),
-                         NumClasesTotales int, -- Número de clases por mes
-                         NumClasesSemanales int, -- Número de clases por semana
-                         Costo decimal not null,
-	-- IdClase
-                         IdClase int,
-                         foreign key (IdClase) references Clase (IdClase)
-);
-
-create table Clase (
-    -- Tabla que guarda los registros de las clases.
-                       IdClase int auto_increment primary key,
-                       NombreClase varchar(50) not null,
-                       Descripcion varchar(500) not null,
-                       PagoInstructor decimal,
-                       CupoMaximo int not null, -- El cupo maximo de personas por hora
-                       Activo bool not null,
-	-- IdInstructor
-					   IdInstructor int not null,
-                       foreign key (IdInstructor) references Instructor (IdInstructor),
-	-- IdEspacio
-                       IdEspacio int,
-                       foreign key (IdEspacio) references Espacio (IdEspacio)
-);
-
-create table Horario (
-    -- Tabla que guarda los registros de los horarios.
-                       IdHorario int auto_increment primary key,
-                       Día varchar(50) not null,
-                       HoraInicio varchar(4) not null,
-                       HoraFin varchar(4) not null,
-                       CupoActual int, -- Cuantas personas hay en ese momento
-	-- IdClase
-					   IdClase int,
-                       foreign key (IdClase) references Clase (IdClase)
+create table TipoInstructor (
+    -- Tabla que guarda los registros de los tipos de Instructores (de clase, instructor, instructor personal, otros).
+                             IdTipoInstructor int auto_increment primary key,
+                             NombreTipoInstructor varchar(100),
+                             Descripcion varchar(2000)
 );
 
 create table Espacio (
@@ -130,11 +52,86 @@ create table Instructor (
                             foreign key (IdTipoInstructor) references TipoInstructor (IdTipoInstructor)
 );
 
-create table TipoInstructor (
-    -- Tabla que guarda los registros de los tipos de Instructores (de clase, instructor, instructor personal, otros).
-                             IdTipoInstructor int auto_increment primary key,
-                             NombreTipoInstructor varchar(100),
-                             Descripcion varchar(2000)
+create table Clase (
+    -- Tabla que guarda los registros de las clases.
+                       IdClase int auto_increment primary key,
+                       NombreClase varchar(50) not null,
+                       Descripcion varchar(500) not null,
+                       PagoInstructor decimal,
+                       CupoMaximo int not null, -- El cupo maximo de personas por hora
+                       Activo bool not null,
+	-- IdInstructor
+					   IdInstructor int not null,
+                       foreign key (IdInstructor) references Instructor (IdInstructor),
+	-- IdEspacio
+                       IdEspacio int,
+                       foreign key (IdEspacio) references Espacio (IdEspacio)
+);
+
+create table Horario (
+    -- Tabla que guarda los registros de los horarios.
+                       IdHorario int auto_increment primary key,
+                       Día varchar(50) not null,
+                       HoraInicio varchar(4) not null,
+                       HoraFin varchar(4) not null,
+                       CupoActual int, -- Cuantas personas hay en ese momento
+	-- IdClase
+					   IdClase int,
+                       foreign key (IdClase) references Clase (IdClase)
+);
+
+create table Paquete (
+	-- Tabla que guarda los registros de los paquetes
+						 IdPaquete int auto_increment primary key,
+                         Gym bool not null, -- Si el paquete tendrá o no gym
+                         NombrePaquete varchar(100),
+                         NumClasesTotales int, -- Número de clases por mes
+                         NumClasesSemanales int, -- Número de clases por semana
+                         Costo decimal not null,
+	-- IdClase
+                         IdClase int,
+                         foreign key (IdClase) references Clase (IdClase)
+);
+
+create table Cliente (
+    -- Tabla Que guarda los registros de los clientes del gym.
+                         IdCliente int AUTO_INCREMENT PRIMARY KEY,
+                         Nombre varchar(30) not null not null,
+                         ApellidoPaterno varchar(30) not null,
+                         ApellidoMaterno varchar(30) not null,
+                         Domicilio varchar(150) not null,
+                         FechaNacimiento datetime not null,
+                         Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
+                         CondicionEspecial bool not null,
+                         NombreContacto varchar(30),
+                         TelefonoContacto varchar(10),
+                         Foto blob,
+                         FechaUltimoAcceso datetime,
+                         MontoUltimoPago decimal,
+                         Activo bool,
+                         FechaVencimientoPago datetime, -- Un mes más 5 días de tolerancia 
+                         DeudaCliente decimal,
+                         MedioConocio varchar(300), -- Redes sociales, amig@, otros
+                         ClasesTotalesDisponibles int, -- Acumulables, por mes
+                         ClasesSemanaDisponibles int, -- Clases disponibles por semana en base a paquete
+                         Descuento decimal, -- Este es arbitrario y solo si aplica
+                         Nino bool, -- Por si se da de alta un niño
+			 Cargo decimal,
+    -- IdClase int,
+                         IdTipoCliente int,
+						 foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
+	-- IdPaquete int
+						 IdPaquete int,
+                         foreign key (IdPaquete) references Paquete (IdPaquete)
+);
+
+create table Locker (
+    -- Tabla que guarda la información de los lockers
+						IdLocker int auto_increment primary key,
+						Nombre varchar(10),
+	-- IdCliente
+						IdCliente int,
+						foreign key (IdCliente) references Cliente (IdCliente)
 );
 
 create table ClienteRenta (
@@ -209,8 +206,8 @@ create table Pagos (
                        Servicios bool, -- Si el pago será de servicios
                        Nomina bool, -- Si el pago será a nómina (Usuarios, Instructores)
 	-- IdUsuario
-                       IdUsuario int, -- Si fue nomina, aquí ingresar el id del usuario a quien se le va a pagar
-                       foreign key (IdUsuario) references Usuario (IdUsuario),
+                       IdUsuarioPagar int, -- Si fue nomina, aquí ingresar el id del usuario a quien se le va a pagar
+                       foreign key (IdUsuarioPagar) references Usuario (IdUsuario),
 	-- IdInstructor
                        IdInstructor int, -- Si fue nomina, aquí ingresar el id del instructor a quien se le va a pagar
                        foreign key (IdInstructor) references Instructor (IdInstructor),
@@ -229,14 +226,14 @@ create table Ingresos (
                           foreign key (IdUsuario) references Usuario (IdUsuario),
 	-- IdRenta
                           IdRenta int, -- Si el ingreso va a ser por una renta
-                          foreign key (IdRenta) references Rentas (IdRentas),
+                          foreign key (IdRenta) references Rentas (IdRenta),
 	-- IdCliente
                           IdCliente int, -- Si el ingreso va a ser por un Cliente
                           foreign key (IdCliente) references Cliente (IdCliente),
 	-- IdVenta
                           IdVenta int, -- Si el ingreso va a ser por una venta
-                          foreign key (IdVenta) references Venta (IdVenta),
-						  Otros bool, -- Si el ingreso proviene de otro
+                          foreign key (IdVenta) references Ventas (IdVenta),
+			  Otros bool, -- Si el ingreso proviene de otro
 						  Concepto varchar(300) not null,
 						  NumeroRecibo varchar(30) not null,
 						  Monto decimal
