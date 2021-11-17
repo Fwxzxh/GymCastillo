@@ -56,7 +56,6 @@ create table Clase (
                        IdClase int auto_increment primary key,
                        NombreClase varchar(50) not null,
                        Descripcion varchar(500) not null,
-                       PagoInstructor decimal,
                        CupoMaximo int not null, -- El cupo maximo de personas por hora
                        Activo bool not null,
 	-- IdInstructor
