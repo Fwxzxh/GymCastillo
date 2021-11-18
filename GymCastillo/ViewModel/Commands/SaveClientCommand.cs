@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GymCastillo.ViewModel.Commands {
-    public class NewClientCommand : ICommand {
+    public class SaveClientCommand : ICommand {
+        public OverviewClientsVM vm { get; set; }
 
-        private NewClientVM vm { get; set; }
-
-        public NewClientCommand( NewClientVM vM) {
-            vm = vM;
+        public SaveClientCommand(OverviewClientsVM clientsVM) {
+            vm = clientsVM;
         }
 
         public event EventHandler CanExecuteChanged {
@@ -25,7 +24,7 @@ namespace GymCastillo.ViewModel.Commands {
         }
 
         public void Execute(object parameter) {
-            vm.CrearCliente();
+            vm.UpdateClient();
         }
     }
 }

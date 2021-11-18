@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vm="clr-namespace:GymCastillo.ViewModel.UsersVM"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.ClientsVM"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -52,7 +52,8 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding ClientesLista}">
+                  ItemsSource="{Binding ClientesLista}"
+                  SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"
@@ -129,16 +130,17 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button ToolTip="Ver más">
-                                <materialDesign:PackIcon Kind="EyeAddOutline">
-                                   
-                                </materialDesign:PackIcon>
+                            <Button ToolTip="Ver más"
+                                    DataContext="{StaticResource vm}"
+                                    Command="{Binding overViewCommand}">
+                                <materialDesign:PackIcon Kind="EyeAddOutline"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <!--CommandParameter="{Binding ElementName=ClientesDataGrid, Path=SelectedItem}"-->
 
         <Button x:Name="BtnNuevo"
                 Content="Nuevo Cliente"

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.Interfaces;
+using GymCastillo.ViewModel.ClientsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +15,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.ClientsView {
     /// <summary>
-    /// Interaction logic for NewClientsWindow.xaml
+    /// Interaction logic for OverviewClientsWindow.xaml
     /// </summary>
-    public partial class NewClientsWindow : Window {
-        public NewClientsWindow() {
+    public partial class OverviewClientsWindow : Window, IClosable {
+        public OverviewClientsWindow(Cliente cliente) {
             InitializeComponent();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e) {
-            this.Visibility = Visibility.Hidden;
+            this.DataContext = new OverviewClientsVM(cliente);
         }
     }
 }

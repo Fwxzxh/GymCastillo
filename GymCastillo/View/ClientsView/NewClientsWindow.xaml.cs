@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymCastillo.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View.UsersView {
+namespace GymCastillo.View {
     /// <summary>
-    /// Interaction logic for OverviewClientsWindow.xaml
+    /// Interaction logic for NewClientsWindow.xaml
     /// </summary>
-    public partial class OverviewClientsWindow : Window {
-        public OverviewClientsWindow() {
+    public partial class NewClientsWindow : Window, IClosable {
+        public NewClientsWindow() {
             InitializeComponent();
         }
     }

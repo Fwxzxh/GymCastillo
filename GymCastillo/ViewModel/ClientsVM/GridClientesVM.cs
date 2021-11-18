@@ -10,24 +10,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using GymCastillo.ViewModel.Commands;
+using System.Windows;
+using GymCastillo.View.ClientsView;
 
-namespace GymCastillo.ViewModel.UsersVM {
+namespace GymCastillo.ViewModel.ClientsVM {
     public class GridClientesVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NewClientCommand clientCommand { get; set; }
 
-        private List<Cliente> clientes = GetFromDb.GetClientes().Result;
-
-        public List<Cliente> Clientes {
-            get { return clientes; }
-            set {
-                clientes = value;
-                OnPropertyChanged("Clientes");
+        private Cliente selectedClient;
+        public Cliente SelectedClient {
+            get { return selectedClient; }
+            set
+            {
+                selectedClient = value;
+                if (selectedClient != null) {
+                    OnPropertyChanged(nameof(SelectedClient));
+                }
             }
         }
+
+        public OverViewCommand overViewCommand { get; set; }
+
+        public NewClientWindowCommand clientCommand { get; set; }
+
+        private List<Cliente> clientes = GetFromDb.GetClientes().Result;
 
         public ObservableCollection<Cliente> ClientesLista { get; set; }
 
@@ -35,9 +44,10 @@ namespace GymCastillo.ViewModel.UsersVM {
 
         public string Query {
             get { return query; }
-            set {
+            set
+            {
                 query = value;
-                OnPropertyChanged("Query");
+                OnPropertyChanged(nameof(Query));
                 FilterList(query);
             }
         }
@@ -46,6 +56,7 @@ namespace GymCastillo.ViewModel.UsersVM {
             try {
                 ClientesLista = new ObservableCollection<Cliente>();
                 clientCommand = new();
+                overViewCommand = new(this);
 
                 foreach (var cliente in clientes) {
                     ClientesLista.Add(cliente);
@@ -60,6 +71,11 @@ namespace GymCastillo.ViewModel.UsersVM {
                     $"Ha ocurrido un error desconocido al iniciar la pantalla de GridClientes. Error: {e.Message}",
                     "Error Desconocido");
             }
+        }
+
+        public void OpenOverview() {
+            OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
+            window.Show();
         }
 
         private void FilterList(string query) {

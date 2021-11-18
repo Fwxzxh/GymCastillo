@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymCastillo"
+        xmlns:vm="clr-namespace:GymCastillo.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -15,7 +16,11 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize">
-    <Grid Margin="10">
+    <Window.Resources>
+        <vm:LoginVM x:Key="vm"/>
+        <vm:Converter x:Key="converter"/>
+    </Window.Resources>
+    <Grid Margin="10" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -24,10 +29,9 @@
         <StackPanel Margin="15"
                     VerticalAlignment="Center">
             <TextBox materialDesign:HintAssist.Hint="Usuario"
-                     x:Name="txtUsuario"
+                     Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
                      materialDesign:TextFieldAssist.HasClearButton="True"
-                     PreviewKeyDown="txtUsuario_PreviewKeyDown"
                      BorderBrush="Yellow"
                      Foreground="{DynamicResource MaterialDesignDarkForeground}"
                      Padding="5"
@@ -35,18 +39,25 @@
             <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
                          x:Name="txtPassword"
                          BorderBrush="Yellow"
-                         PreviewKeyDown="txtPassword_PreviewKeyDown"
                          materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          Foreground="{DynamicResource MaterialDesignDarkForeground}"
                          Padding="5"
                          Margin="10"/>
             <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
-                    Click="LoginBtnClick"
+                    Command="{Binding loginCommand}"
                     Content="Iniciar"
                     VerticalAlignment="Center"
                     Margin="10"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource converter}">
+                        <Binding Path="UserName"/>
+                        <Binding ElementName="txtPassword"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                
+            </Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1"

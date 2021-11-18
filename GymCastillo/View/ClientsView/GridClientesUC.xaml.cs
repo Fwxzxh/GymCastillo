@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.View.ClientsView;
 using GymCastillo.ViewModel.Database;
 using GymCastillo.ViewModel.Helpers;
 using log4net;
@@ -16,6 +17,11 @@ namespace GymCastillo.View {
 
         public GridClientesUserControl() {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            //prueba prueba = new();
+            //prueba.Show();
         }
     }
 }

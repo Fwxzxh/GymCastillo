@@ -7,7 +7,7 @@
     <Compile Update="View\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UsersView\GridClientesUC.xaml.cs">
+    <Compile Update="View\ClientsView\GridClientesUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\GridInstructoresUserControl.xaml.cs">
@@ -22,13 +22,13 @@
     <Compile Update="View\HomeViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\NewClientsWindow.xaml.cs">
+    <Compile Update="View\ClientsView\NewClientsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\UsersViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UsersView\OverviewClientsWindow.xaml.cs">
+    <Compile Update="View\ClientsView\OverviewClientsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -36,7 +36,7 @@
     <Page Update="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\UsersView\GridClientesUC.xaml">
+    <Page Update="View\ClientsView\GridClientesUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\GridInstructoresUserControl.xaml">
@@ -51,13 +51,13 @@
     <Page Update="View\HomeViewUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\NewClientsWindow.xaml">
+    <Page Update="View\ClientsView\NewClientsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\UsersViewUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\UsersView\OverviewClientsWindow.xaml">
+    <Page Update="View\ClientsView\OverviewClientsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

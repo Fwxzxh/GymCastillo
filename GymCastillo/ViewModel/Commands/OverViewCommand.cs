@@ -1,20 +1,20 @@
-﻿using GymCastillo.ViewModel.ClientsVM;
+﻿using GymCastillo.Model.DataTypes;
+using GymCastillo.ViewModel.ClientsVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GymCastillo.ViewModel.Commands {
-    public class NewClientCommand : ICommand {
+    public class OverViewCommand : ICommand {
 
-        private NewClientVM vm { get; set; }
-
-        public NewClientCommand( NewClientVM vM) {
-            vm = vM;
+        public GridClientesVM ClientesVM { get; set;}
+        public OverViewCommand(GridClientesVM clientesVM) {
+            ClientesVM = clientesVM;
         }
-
         public event EventHandler CanExecuteChanged {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
@@ -25,7 +25,7 @@ namespace GymCastillo.ViewModel.Commands {
         }
 
         public void Execute(object parameter) {
-            vm.CrearCliente();
+            ClientesVM.OpenOverview();  
         }
     }
 }
