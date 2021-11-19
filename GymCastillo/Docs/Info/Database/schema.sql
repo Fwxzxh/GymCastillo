@@ -235,6 +235,6 @@ create table Ingresos (
 
 -- Creamos el usuario admin
 insert into usuario
-    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, CondicionEspecial, FechaUltimoAcceso)
+    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, FechaUltimoAcceso)
 values
-    (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', sysdate(), '0', false, sysdate());
+    (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', sysdate(), '0', sysdate());

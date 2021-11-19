@@ -211,11 +211,6 @@ namespace GymCastillo.Model.DataTypes {
                 const string altaQuery = @"";
 
                 // Se actualizan:
-                // Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio,
-                // FechaNacimiento, Telefono, CondicionEspecial, NombreContacto,
-                // TelefonoContacto, Foto, FechaUltimoAcceso, MontoUltimoPago,
-                // Activo, Asitencias, FechaVencimientoPago, IdTipoCliente,
-                // DeudaCliente, MedioConocido, Locker
 
                 await using var command = new MySqlCommand(altaQuery, connection);
                 command.Parameters.AddWithValue("@Nombre", Nombre);
@@ -234,7 +229,6 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@Activo", true.ToString()); // True al dar de alta.
-                command.Parameters.AddWithValue("@Asistencias", ""); // Vacias porque es nuevo
                 command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
 
