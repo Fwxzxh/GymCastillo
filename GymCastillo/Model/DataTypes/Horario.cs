@@ -7,6 +7,21 @@ namespace GymCastillo.Model.DataTypes {
     public class Horario {
 
         /// <summary>
+        /// Id del horario
+        /// </summary>
+        public int IdHorario { get; set; }
+
+        /// <summary>
+        /// Id de la clase a la que pertenece.
+        /// </summary>
+        public int IdClase { get; set; }
+
+        /// <summary>
+        /// Dia en el que ocurre la clase.
+        /// </summary>
+        public Dias Dia { get; set; }
+
+        /// <summary>
         /// Hora de inicio de la clase.
         /// </summary>
         public TimeSpan HoraInicio { get; set; }
@@ -17,29 +32,21 @@ namespace GymCastillo.Model.DataTypes {
         public TimeSpan HoraFin { get; set; }
 
         /// <summary>
-        /// Id del espacio donde se hace la clase.
+        /// El Cupo actual de la clase.
         /// </summary>
-        public int IdEspacio { get; set; }
+        public int CupoActual { get; set; }
 
         /// <summary>
-        /// El nombre del espacio donde se hace la clase.
+        /// Método que actualiza la cantidad del cupo actual.
         /// </summary>
-        public string NombreEspacio { get; set; }
-
-        /// <summary>
-        /// Método que da el horario en un string
-        /// </summary>
-        /// <returns>Un string con el horario y el IdEspacio.</returns>
-        public string GetHorarioStr() {
+        public void NuevaAsistencia() {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Checa si el objeto horario dado choca con el de la instancia actual.
+        /// Método que resetea el cupo actual del horario actual.
         /// </summary>
-        /// <param name="horario"></param>
-        /// <returns><c>True</c> Si el horario esta disponible <c>False</c> si no.</returns>
-        public bool CheckHorario(Horario horario) {
+        public void ResetAsistencia() {
             throw new NotImplementedException();
         }
     }

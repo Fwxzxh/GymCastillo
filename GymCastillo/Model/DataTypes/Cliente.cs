@@ -208,12 +208,8 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string altaQuery = @"INSERT INTO cliente
-                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, @Domicilio,
-                                                   @FechaNacimiento, @Telefono, @CondicionEspecial, @NombreContacto,
-                                                   @TelefonoContacto, @Foto, @FechaUltimoAcceso, @MontoUltimoPago,
-                                                   @Activo, @Asistencias, @FechaVencimientoPago, @IdTipoCliente,
-                                                   @DeudaCliente, @MedioConocido, @Locker);";
+                const string altaQuery = @"";
+
                 // Se actualizan:
                 // Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio,
                 // FechaNacimiento, Telefono, CondicionEspecial, NombreContacto,
