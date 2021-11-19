@@ -1,5 +1,4 @@
 ﻿using GymCastillo.ViewModel.Commands;
-using GymCastillo.ViewModel.Helpers;
 using log4net;
 using MySqlConnector;
 using System;
@@ -11,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -52,7 +53,7 @@ namespace GymCastillo.ViewModel {
 
         public void LogIn(string userName, string password) {
             try {
-                if (Init.Init.LogIn(userName, password)) {
+                if (Init.LogIn(userName, password)) {
 
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");

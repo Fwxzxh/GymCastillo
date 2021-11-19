@@ -1,11 +1,11 @@
 ﻿using System;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
-using GymCastillo.ViewModel.Helpers;
-using GymCastillo.ViewModel.Validations;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Validations;
 using log4net;
 
-namespace GymCastillo.ViewModel.Admin {
+namespace GymCastillo.Model.Admin {
     /// <summary>
     /// Clase que se encarga de exponer todas las operaciones comunes entre objetos tipo <c>AbstUsuario</c>.
     /// </summary>

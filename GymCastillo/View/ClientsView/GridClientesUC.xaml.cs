@@ -5,8 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.View.ClientsView;
-using GymCastillo.ViewModel.Database;
-using GymCastillo.ViewModel.Helpers;
 using log4net;
 
 namespace GymCastillo.View {

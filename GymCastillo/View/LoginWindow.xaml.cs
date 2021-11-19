@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
 using GymCastillo.ViewModel;
-using GymCastillo.ViewModel.Helpers;
-using GymCastillo.ViewModel.Init;
 using log4net;
 using MySqlConnector;
 

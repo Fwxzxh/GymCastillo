@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes;
-using GymCastillo.ViewModel.Helpers;
-using GymCastillo.ViewModel.Init;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.ViewModel.Database {
+namespace GymCastillo.Model.Database {
     /// <summary>
     /// Clase que se encarga de obtener los datos necesarios de la base de datos.
     /// </summary>

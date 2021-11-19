@@ -1,6 +1,4 @@
 ﻿using GymCastillo.Model.DataTypes;
-using GymCastillo.ViewModel.Database;
-using GymCastillo.ViewModel.Helpers;
 using log4net;
 using System;
 using System.ComponentModel;
@@ -11,6 +9,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using GymCastillo.ViewModel.Commands;
 using System.Windows;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.Helpers;
 using GymCastillo.View.ClientsView;
 
 namespace GymCastillo.ViewModel.ClientsVM {

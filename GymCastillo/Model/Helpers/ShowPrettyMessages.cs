@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace GymCastillo.ViewModel.Helpers {
+namespace GymCastillo.Model.Helpers {
     /// <summary>
     /// Clase que se encarga de Mostrar mensajes de error bonitos.
     /// </summary>
