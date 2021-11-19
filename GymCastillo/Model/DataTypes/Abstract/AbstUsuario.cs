@@ -59,11 +59,6 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         //TODO: Ver como manejar las fotos.
         public BitmapImage Foto { get; set; }
 
-        /// <summary>
-        /// La fecha del último acceso al gym o sistema.
-        /// </summary>
-        public DateTime FechaUltimoAcceso { get; set; }
-
 
         /// <summary>
         /// Método que Actualiza el objeto en la base de datos.

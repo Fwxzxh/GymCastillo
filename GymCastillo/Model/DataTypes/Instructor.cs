@@ -9,23 +9,44 @@ namespace GymCastillo.Model.DataTypes {
     public class Instructor : AbstClientInstructor {
 
         /// <summary>
-        /// Si el Instructor tiene alguna condición especial.
+        /// La hora de entrada designada al instructor
         /// </summary>
-        // TODO: preguntar si esto también aplica a instructores.
-        public bool CondicionEspecial { get; set; }
+        public DateTime HoraEntrada { get; set; }
 
         /// <summary>
-        /// El pago por hora del instructor.
+        /// La hora de salida designada al instructor.
         /// </summary>
-        /// TODO: Mover este campo al campo de clase ya que cada instructor puede tener más de una clase y cobrar diferente por cada una.
-        public decimal Pagohora { get; set; }
+        public DateTime HoraSalida { get; set; }
 
         /// <summary>
-        /// Las asistencias del instructor.
+        /// La cantidad de dias a trabajar del instructor.
         /// </summary>
-        // TODO: preguntar como se manejan las asistencias para instructores, al entrar al gym o x clase.
-        // Igual comvendria guardar las asistenacias en la tabla de clases xd.
-        public string Asistencias { get; set; }
+        public int DiasATrabajar { get; set; }
+
+        /// <summary>
+        /// La cantidad actual de dias trabajados.
+        /// </summary>
+        public int DiasTrabajados { get; set; }
+
+        /// <summary>
+        /// El sueldo del Instructor.
+        /// </summary>
+        public decimal Sueldo { get; set; }
+
+        /// <summary>
+        /// La cantidad del sueldo a descontar por amonestaciones.
+        /// </summary>
+        public decimal SueldoDescontar { get; set; }
+
+        /// <summary>
+        /// El id del tipo de instructor.
+        /// </summary>
+        public int  TipoInstructor { get; set; }
+
+        /// <summary>
+        /// El nombre del tipo de instructor.
+        /// </summary>
+        public string NombreTipoInstructor { get; set; }
 
         /// <summary>
         /// Método que actualiza la instancia actual del instructor en la base de datos.
@@ -51,42 +72,19 @@ namespace GymCastillo.Model.DataTypes {
             throw new NotImplementedException();
         }
 
+        public override Task<int> NuevaAsistencia() {
+            throw new NotImplementedException();
+        }
+
+        public override void Pago(decimal cantidad) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Método que obtiene el horario del Instructor de la instancia actual en un string
         /// </summary>
         /// <returns>Un string con el horario del instructor.</returns>
         public override string GetHorarioStr() {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que da de alta una clase a la instancia actual del instructor en la base de datos.
-        /// </summary>
-        /// <param name="clase">La clase a dar de alta.</param>
-        public override Task<int> AltaClase(Clase clase) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que da de baja una clase a la instancia actual del instructor en la base de datos.
-        /// </summary>
-        /// <param name="clase"></param>
-        public override Task<int> BajaClase(Clase clase) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que registra una nueva asitencia al instructor.
-        /// </summary>
-        /// <param name="fecha">La fecha a dar de alta.</param>
-        public override Task<int> NuevaAsistencia(DateTime fecha) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que le paga a un Instructor de acuerdo a la clase.
-        /// </summary>
-        public void Pagar() {
             throw new NotImplementedException();
         }
     }

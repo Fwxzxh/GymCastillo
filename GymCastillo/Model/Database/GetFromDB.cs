@@ -69,16 +69,14 @@ namespace GymCastillo.Model.Database {
                         FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
                         Activo = !await reader.Result.IsDBNullAsync("Activo") && reader.Result.GetBoolean("Activo"),
-                        Asistencias = await reader.Result.IsDBNullAsync("Asistencias") ? "" : reader.Result.GetString("Asistencias"),
 
                         FechaVencimientoPago = reader.Result.GetDateTime("FechaVencimientoPago"),
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetDecimal("DeudaCliente"),
                         MedioConocio = await reader.Result.IsDBNullAsync("MedioConocio") ? "" : reader.Result.GetString("MedioConocio"),
-                        Locker = await reader.Result.IsDBNullAsync("Locker") ? "" : reader.Result.GetString("Locker"),
+                        Locker = await reader.Result.IsDBNullAsync("Locker") ? 0 : reader.Result.GetInt16("Locker"),
 
                         IdTipoCliente = await reader.Result.IsDBNullAsync("IdTipoCliente") ? 0 : reader.Result.GetInt32("IdTipoCliente"),
                         NombreTipoCliente = await reader.Result.IsDBNullAsync("NombreTipoCliente") ? "" : reader.Result.GetString("NombreTipoCliente"),
-                        ClasesString = await reader.Result.IsDBNullAsync("NombreClase") ? "" : reader.Result.GetString("NombreClase"),
                     };
 
                     listUsuario.Add(cliente);

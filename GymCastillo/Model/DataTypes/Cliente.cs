@@ -22,6 +22,56 @@ namespace GymCastillo.Model.DataTypes {
         public bool CondicionEspecial { get; set; }
 
         /// <summary>
+        /// Indica si el cliente esta activo.
+        /// </summary>
+        public bool Activo { get; set; }
+
+        /// <summary>
+        /// La fecha en la que se vence el pago del cliente.
+        /// </summary>
+        public DateTime FechaVencimientoPago { get; set; }
+
+        /// <summary>
+        /// La deuda actual del cliente.
+        /// </summary>
+        public decimal DeudaCliente { get; set; }
+
+        /// <summary>
+        /// Medio por el que el cliente conoció el gym.
+        /// </summary>
+        public string MedioConocio { get; set; }
+
+        /// <summary>
+        /// La cantidad total de clases disponibles del cliente
+        /// </summary>
+        public int ClasesTotalesDisponibles { get; set; }
+
+        /// <summary>
+        /// La cantidad de clases disponibles del cliente en la semana actual.
+        /// </summary>
+        public int ClasesSemanaDisponibles { get; set; }
+
+        /// <summary>
+        /// La cantidad del descuento aplicado al cliente.
+        /// </summary>
+        public decimal Descuento { get; set; }
+
+        /// <summary>
+        /// Indica si el usuario es un niño o no.
+        /// </summary>
+        public bool Niño { get; set; }
+
+        /// <summary>
+        /// El id del paquete asignado al cliente.
+        /// </summary>
+        public int IdPaquete { get; set; }
+
+        /// <summary>
+        /// Nombre del paquete del usuario.
+        /// </summary>
+        public string NombrePaquete { get; set; }
+
+        /// <summary>
         /// Id del tipo de cliente.
         /// </summary>
         public int IdTipoCliente { get; set; }
@@ -32,40 +82,14 @@ namespace GymCastillo.Model.DataTypes {
         public string NombreTipoCliente { get; set; }
 
         /// <summary>
-        /// La deuda actual del cliente.
+        /// El id del Locker
         /// </summary>
-        public decimal DeudaCliente { get; set; }
-
-        /// <summary>
-        /// Las últimas asistencias del cliente.
-        /// </summary>
-        // TODO: ver como manejar esto en la bd.
-        public string Asistencias { get; set; }
-
-        /// <summary>
-        /// La fecha en la que se vence el pago del cliente.
-        /// </summary>
-        public DateTime FechaVencimientoPago { get; set; }
-
-        /// <summary>
-        /// Monto del último pago del cliente.
-        /// </summary>
-        public decimal MontoUltimoPago { get; set; }
-
-        /// <summary>
-        /// Indica si el cliente esta activo.
-        /// </summary>
-        public bool Activo { get; set; }
-
-        /// <summary>
-        /// Medio por el que el cliente conoció el gym.
-        /// </summary>
-        public string MedioConocio { get; set; }
+        public int Locker { get; set; }
 
         /// <summary>
         /// Locker asignado a el cliente.
         /// </summary>
-        public string Locker { get; set; }
+        public string NombreLocker { get; set; }
 
         /// <summary>
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
@@ -220,7 +244,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("Locker", Locker);
+                command.Parameters.AddWithValue("Locker", Locker.ToString());
 
                 var res = ExecSql.NonQuery(command, "Alta Cliente").Result;
                 Log.Debug("Se ha dado de alta un cliente.");
@@ -235,68 +259,19 @@ namespace GymCastillo.Model.DataTypes {
             }
         }
 
+        public override Task<int> NuevaAsistencia() {
+            throw new NotImplementedException();
+        }
+
+        public override void Pago(decimal cantidad) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Método que obtiene el horario de la instancia del cliente y lo da en un string.
         /// </summary>
         /// <returns>El horario en un string.</returns>
         public override string GetHorarioStr() {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que da de alta una clase al cliente que corresponde a la instancia actual.
-        /// </summary>
-        /// <param name="clase"></param>
-        public override async Task<int> AltaClase(Clase clase) {
-            Log.Debug("Se ha iniciado el proceso de alta de clase.");
-
-            try {
-                await using var connection = new MySqlConnection(GetInitData.ConnString);
-                await connection.OpenAsync();
-
-                const string altaClaseQuery = @"INSERT INTO clienteclase VALUES (@IdCliente, @IdClase);";
-
-                await using var command = new MySqlCommand(altaClaseQuery, connection);
-
-                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
-                command.Parameters.AddWithValue("@IdClase", clase.IdClase.ToString());
-
-                var res = ExecSql.NonQuery(command, "Alta Clase a Cliente").Result;
-
-                Log.Debug("Se ha dado de alta un cliente.");
-                return res;
-            }
-            catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de dar de alta una clase a un cliente.");
-                Log.Error($"Error: {e.Message}");
-                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
-                    "Error desconocido");
-                return 0;
-            }
-        }
-
-        /// <summary>
-        /// Método que da de baja una lcase al cliente que corresponde a la insancia actual.
-        /// </summary>
-        /// <param name="clase"></param>
-        public override Task<int> BajaClase(Clase clase) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que guarda una nueva asistencia al cliente de la instancia actual.
-        /// </summary>
-        /// <param name="fecha">La fecha de la asistencia</param>
-        // TODO: ver que onda con las asistencias para ver si son al entrar al gym o por clase.
-        public override Task<int> NuevaAsistencia(DateTime fecha) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que cobra la cantidad correspondiente a el tipo de usuario
-        /// o una cantidad dada al cliente de la instancia actual.
-        /// </summary>
-        public void Cobrar() {
             throw new NotImplementedException();
         }
     }
