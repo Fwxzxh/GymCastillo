@@ -25,6 +25,7 @@ namespace GymCastillo.Model.Database {
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
 
+            // TODO: Hacer la query de verdad ahora si
             const string sqlQuery = @"";
 
             // Obtiene: IdCLiente, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNaciemiento
