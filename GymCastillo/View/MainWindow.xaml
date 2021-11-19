@@ -25,7 +25,7 @@
                     materialDesign:ColorZoneAssist.Mode="Standard"
                     SnapsToDevicePixels="True"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
-            <TabItem >
+            <TabItem Background="Transparent">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon

@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.ClientsView {
     /// <summary>
     /// Interaction logic for NewClientsWindow.xaml
     /// </summary>

@@ -69,7 +69,7 @@ create table Clase (
 create table Horario (
     -- Tabla que guarda los registros de los horarios.
     IdHorario int auto_increment primary key,
-    Día varchar(50) not null,
+    Dia varchar(50) not null,
     HoraInicio varchar(4) not null,
     HoraFin varchar(4) not null,
     CupoActual int, -- Cuantas personas hay en ese momento

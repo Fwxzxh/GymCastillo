@@ -36,8 +36,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public NewClientWindowCommand clientCommand { get; set; }
 
-        private List<Cliente> clientes = GetFromDb.GetClientes().Result;
-
+        private List<Cliente> clientes { get; set; }
+        
         public ObservableCollection<Cliente> ClientesLista { get; set; }
 
         private string query;
@@ -54,6 +54,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public GridClientesVM() {
             try {
+                clientes = GetFromDb.GetClientes().Result;
                 ClientesLista = new ObservableCollection<Cliente>();
                 clientCommand = new();
                 overViewCommand = new(this);
@@ -79,19 +80,23 @@ namespace GymCastillo.ViewModel.ClientsVM {
         }
 
         private void FilterList(string query) {
-            if (query == "") {
-                ClientesLista.Clear();
-                foreach (var cliente in clientes) {
-                    ClientesLista.Add(cliente);
+
+            if (clientes != null) {
+                if (query == "") {
+                    ClientesLista.Clear();
+                    foreach (var cliente in clientes) {
+                        ClientesLista.Add(cliente);
+                    }
+                }
+                else {
+                    ClientesLista.Clear();
+                    var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList();
+                    foreach (var cliente in filteredList) {
+                        ClientesLista.Add(cliente);
+                    }
                 }
             }
-            else {
-                ClientesLista.Clear();
-                var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList();
-                foreach (var cliente in filteredList) {
-                    ClientesLista.Add(cliente);
-                }
-            }
+            else return;
         }
 
         private void OnPropertyChanged(string propertyName) {

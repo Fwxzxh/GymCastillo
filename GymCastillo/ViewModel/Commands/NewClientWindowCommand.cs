@@ -1,4 +1,4 @@
-﻿using GymCastillo.View;
+﻿using GymCastillo.View.ClientsView;
 using System;
 using System.Collections.Generic;
 using System.Linq;

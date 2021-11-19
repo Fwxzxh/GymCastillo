@@ -18,7 +18,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public NewClientCommand newClientCommand { get; set; }
 
-        private Cliente newCliente;
+        private Cliente newCliente = new();
 
         public Cliente NewCliente {
             get { return newCliente; }
@@ -41,6 +41,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
 
         public NewClientVM() {
+            newCliente.FechaNacimiento = DateTime.Now;
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             newClientCommand = new(this);
         }
@@ -52,7 +53,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         }
 
         public void CrearCliente() {
-            MessageBox.Show(nombre);
+            MessageBox.Show(NewCliente.Nombre);
+            MessageBox.Show(NewCliente.ApellidoMaterno);
             //newCliente.Nombre
             //newCliente.ApellidoMaterno
             //aqui guardamos el nuevo cliente

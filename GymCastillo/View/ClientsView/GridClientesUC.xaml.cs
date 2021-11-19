@@ -7,19 +7,14 @@ using GymCastillo.Model.DataTypes;
 using GymCastillo.View.ClientsView;
 using log4net;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.ClientsView {
     /// <summary>
     /// Interaction logic for GridClientesUserControl.xaml
     /// </summary>
-    public partial class GridClientesUserControl : UserControl {
+    public partial class GridClientesUC : UserControl {
 
-        public GridClientesUserControl() {
+        public GridClientesUC() {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            //prueba prueba = new();
-            //prueba.Show();
         }
     }
 }
