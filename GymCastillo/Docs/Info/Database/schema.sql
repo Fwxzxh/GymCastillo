@@ -91,6 +91,7 @@ create table Paquete (
     foreign key (IdClase) references Clase (IdClase)
 );
 
+
 create table Cliente (
     -- Tabla Que guarda los registros de los clientes del gym.
     IdCliente int AUTO_INCREMENT PRIMARY KEY,
@@ -117,9 +118,7 @@ create table Cliente (
     IdTipoCliente int,
     foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
     IdPaquete int,
-    foreign key (IdPaquete) references Paquete (IdPaquete),
-    IdLocker int,
-    foreign key (IdLocker) references Locker (IdLocker)
+    foreign key (IdPaquete) references Paquete (IdPaquete)
 );
 
 create table Locker (

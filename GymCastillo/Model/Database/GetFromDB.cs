@@ -25,18 +25,7 @@ namespace GymCastillo.Model.Database {
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
 
-            const string sqlQuery = @"SELECT 
-                                            ci.IdCliente, ci.Nombre, ci.ApellidoPaterno, ci.ApellidoMaterno, ci.FechaNacimiento,
-                                            ci.Telefono, ci.CondicionEspecial, ci.NombreContacto, ci.TelefonoContacto,
-                                            ci.FechaUltimoAcceso, ci.MontoUltimoPago, ci.Activo, ci.Asistencias, 
-                                            ci.FechaVencimientoPago, ci.DeudaCliente, ci.MedioConocio, ci.Locker,
-                                            ci.IdTipoCliente, tc.NombreTipoCliente,
-                                            group_concat(ca.NombreClase) as NombreClase
-                                    FROM tipocliente tc
-                                    INNER JOIN cliente ci ON ci.IdTipoCliente = tc.IdTipoCliente
-                                    LEFT JOIN clienteclase cc ON cc.IdCliente = ci.IdCliente
-                                    LEFT JOIN clase ca ON ca.IdClase = cc.IdClase
-                                    group by ci.IdCliente;";
+            const string sqlQuery = @"";
 
             // Obtiene: IdCLiente, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNaciemiento
             // Telefono, CondicionEspecial, NombreContacto, TelefonoContacto
