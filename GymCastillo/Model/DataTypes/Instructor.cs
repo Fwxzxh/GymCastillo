@@ -99,22 +99,94 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que borra la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
-        public override Task<int> Delete() {
-            throw new NotImplementedException();
+        public override async Task<int> Delete() {
+            Log.Debug("Se ha iniciado el proce de delete en un Instructor.");
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+
+                const string deleteQuery = @"delete from instructor where IdInstructor=@IdInstructor";
+
+                await using var command = new MySqlCommand(deleteQuery, connection);
+                command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+
+                var res = ExecSql.NonQuery(command, "Delete Instructor").Result;
+                Log.Debug("Se ha eliminado un Instructor de la tabla.");
+                return res;
+            }
+            catch (Exception e) {
+                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del Instructor.");
+                    Log.Error($"Error: {e.Message}");
+                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                        "Error desconocido");
+                    return 0;
+            }
         }
 
         /// <summary>
         /// Método que da de alta la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columanas afectadas.</returns>
-        public override Task<int> Alta() {
-            throw new NotImplementedException();
+        public override async Task<int> Alta() {
+            Log.Debug("Se ha iniciado el proceso de dar de alta un Instructor.");
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+
+                const string altaQuery = @"";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+                command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+                command.Parameters.AddWithValue("@Domicilio", Domicio);
+
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Telefono", Telefono);
+                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+
+                command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DiasATrabajar", DiasATrabajar.ToString());
+                command.Parameters.AddWithValue("@DiasTrabajados", DiasTrabajados.ToString());
+
+                command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@SueldoADescontar", SueldoDescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
+
+                var res = ExecSql.NonQuery(command, "Alta Instructor").Result;
+                Log.Debug("Se ha dado de alta un cliente.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
+        /// <summary>
+        /// Método que se encarga de dar de alta una nueva asistencia a la instacia actual.
+        /// </summary>
+        /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
         public override Task<int> NuevaAsistencia() {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el pago del obtejo actual en la base de datos
+        /// </summary>
+        /// <param name="cantidad"></param>
         public override void Pago(decimal cantidad) {
             throw new NotImplementedException();
         }

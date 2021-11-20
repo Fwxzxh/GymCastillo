@@ -14,7 +14,7 @@ namespace GymCastillo.Model.DataTypes {
     /// Clase que contiene los campos y métodos del objeto Cliente
     /// </summary>
     public class Cliente : AbstClientInstructor {
-    private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Si el cliente tiene alguna condición especial.
@@ -84,7 +84,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// El id del Locker
         /// </summary>
-        public int Locker { get; set; }
+        public int IdLocker { get; set; }
 
         /// <summary>
         /// Locker asignado a el cliente.
@@ -114,6 +114,7 @@ namespace GymCastillo.Model.DataTypes {
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                command.Parameters.AddWithValue("@Domicilio", Domicio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
@@ -121,7 +122,10 @@ namespace GymCastillo.Model.DataTypes {
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@Activo", Activo.ToString());
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Nino", Niño.ToString());
+                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 
                 var res = ExecSql.NonQuery(command, "Update Cliente").Result;
 
@@ -202,7 +206,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns>El número de columnas afectadas de la bd.</returns>
         public override async Task<int> Alta() {
-            // se actualizan todos los datos principales (de contacto)
             Log.Debug("Se ha iniciado el proceso de dar de alta un cliente.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -210,9 +213,8 @@ namespace GymCastillo.Model.DataTypes {
 
                 const string altaQuery = @"";
 
-                // Se actualizan:
-
                 await using var command = new MySqlCommand(altaQuery, connection);
+
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
@@ -226,6 +228,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
                 command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@Activo", true.ToString()); // True al dar de alta.
@@ -234,10 +237,11 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("Locker", Locker.ToString());
+                command.Parameters.AddWithValue("Locker", IdLocker.ToString());
 
                 var res = ExecSql.NonQuery(command, "Alta Cliente").Result;
                 Log.Debug("Se ha dado de alta un cliente.");
+
                 return res;
             }
             catch (Exception e) {
@@ -249,10 +253,18 @@ namespace GymCastillo.Model.DataTypes {
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de dar de alta una nueva asistencia a la instacia actual.
+        /// </summary>
+        /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
         public override Task<int> NuevaAsistencia() {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el pago del obtejo actual en la base de datos
+        /// </summary>
+        /// <param name="cantidad"></param>
         public override void Pago(decimal cantidad) {
             throw new NotImplementedException();
         }

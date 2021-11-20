@@ -10,15 +10,10 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes {
     /// <summary>
-    /// Clase que se encarga de guardar los campos y métodos de objeto tipo Usuario
+    /// Clase que se encarga de guardar los campos y métodos del obtejo tipo ClienteRenta
     /// </summary>
-    public class Usuario : AbstUsuario {
+    public class ClienteRenta : AbstUsuario {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
-
-        /// <summary>
-        /// La fecha de ultimo acceso al programa del usuario.
-        /// </summary>
-        public DateTime FechaUltimoAcceso { get; set; }
 
         /// <summary>
         /// La fecha del ultimo pago al usuario.
@@ -28,26 +23,20 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// La cantidad del último Pago.
         /// </summary>
-        /// TODO: Pensar si mover FechaUltimoPago, Monto UltimoPago a otra tabla.
+        /// TODO: Probablemente esto y FechaUltimoPago no van aqui.
         public decimal MontoUltimoPago { get; set; }
 
         /// <summary>
-        /// El nombre de usuario de el usuario.
+        /// La deuda del cliente.
         /// </summary>
-        public string Username { get; set; }
+        public decimal DeudaCliente { get; set; }
 
         /// <summary>
-        /// La contraseña del usuario.
+        /// Método que actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
-        public string Password { get; set; }
-
-
-        /// <summary>
-        /// Método que Actualiza la instancia actual del objeto en la base de datos.
-        /// </summary>
-        /// <returns>El número de columnas afectadas por la operación.</returns>
+        /// <returns>El número de columnas afectadas en la operación.</returns>
         public override async Task<int> Update() {
-            Log.Debug("Se ha iniciado el proceso de update en un objeto tipo Usuario.");
+            Log.Debug("Se ha iniciado el proceso de update en un objeto tipo ClienteRenta.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -62,19 +51,13 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoPaterno);
 
                 command.Parameters.AddWithValue("@Domicilio", Domicio);
-                command.Parameters.AddWithValue("@Username", Username);
-                command.Parameters.AddWithValue("@Password", Password);
-
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 //command.Parameters.AddWithValue("@Foto", Foto);
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
                 var res = ExecSql.NonQuery(command, "Update Usuario").Result;
 
@@ -90,26 +73,26 @@ namespace GymCastillo.Model.DataTypes {
         }
 
         /// <summary>
-        /// Método que borra la instancia actual del objeto en la base de datos.
+        /// Método que se encarga de borrar la instancia actual del objeto en la base de datos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El número de columnas afectadas por la operación.</returns>
         public override async Task<int> Delete() {
-            Log.Debug("Se ha iniciado el proceso de Delete en usuario.");
+            Log.Debug("Se ha iniciado el proceso de Delete de un ClienteRenta.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string deleteQuery = @"delete from usuario where IdUsuario=@IdUsuario";
+                const string deleteQuery = @"delete from clienterenta where IdClienteRenta=@IdClienteRenta";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
-                command.Parameters.AddWithValue("@IdUsuario", Id.ToString());
+                command.Parameters.AddWithValue("@IdClienteRenta", Id.ToString());
 
-                var res = ExecSql.NonQuery(command, "Delete Usuario").Result;
-                Log.Debug("Se ha eliminado un Usuario de la tabla.");
+                var res = ExecSql.NonQuery(command, "Delete ClienteRente").Result;
+                Log.Debug("Se ha eliminado un Cliente Renta de la tabla.");
                 return res;
             }
             catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del Usuario.");
+                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del cliente renta.");
                     Log.Error($"Error: {e.Message}");
                     ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                         "Error desconocido");
@@ -121,8 +104,9 @@ namespace GymCastillo.Model.DataTypes {
         /// Método que da de alta la instancia actual del objeto en la base de datos.
         /// </summary>
         /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public override async Task<int> Alta() {
-            Log.Debug("Se ha iniciado el proceso de dar de alta un Usuario.");
+            Log.Debug("Se ha iniciado el proceso de dar de alta un ClienteRenta.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -142,15 +126,10 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
 
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
-                command.Parameters.AddWithValue("@Username", Username);
-                command.Parameters.AddWithValue("@Password", Password);
-
-                var res = ExecSql.NonQuery(command, "Alta Usuario").Result;
-                Log.Debug("Se ha dado de alta un Usuario.");
+                var res = ExecSql.NonQuery(command, "Alta ClienteRenta").Result;
+                Log.Debug("Se ha dado de alta un ClienteRenta.");
 
                 return res;
             }

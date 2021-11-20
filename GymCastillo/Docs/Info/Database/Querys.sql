@@ -32,13 +32,14 @@ LEFT JOIN locker l ON c.IdCliente = l.IdCliente;
 	-- Dar de alta
 INSERT INTO cliente 
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-	@FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial, 
-	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
-	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
-	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
-	@Descuento, @Nino, @IdTipoCliente, @IdPaquete);
-UPDATE cliente 
-	-- Editar valores (usuario)
+	    @FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial,
+	    @NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso,
+	    @MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente,
+	    @MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible,
+	    @Descuento, @Nino, @IdTipoCliente, @IdPaquete);
+
+-- Editar valores (usuario)
+UPDATE cliente
 SET domicilio=@Domicilio, telefono=@Telefono, condicionespecial=@CondicionEspecial,
 nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, foto=@Foto,
 activo=@Activo, medioconocio=@MedioConocio, descuento=@Descuento, nino=@Nino,
