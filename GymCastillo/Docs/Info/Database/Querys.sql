@@ -44,3 +44,23 @@ nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, foto=@Foto,
 activo=@Activo, medioconocio=@MedioConocio, descuento=@Descuento, nino=@Nino,
 idtipocliente=@IdTipoCliente, idpaquete=@IdPaquete;
 	-- Editar valores (automatico)
+
+-- Instructor
+	-- Consulta de todo lo de Instructor
+SELECT i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+i.ApellidoMaterno, i.Domicilio, i.FechaNacimiento,
+i.Telefono, i.NombreContacto, i.TelefonoContacto,
+i.Foto, i.FechaUltimoAcceso, i.FechaUltimoPago,
+i.MontoUltimoPago, i.HoraEntrada, i.HoraSalida,
+i.DiasATrabajar, i.DiasTrabajados, i.Sueldo,
+i.SueldoADescontar,
+ti.IdTipoInstructor, ti.NombreTipoInstructor,
+group_concat(c.IdClase) IDClase, group_concat(c.NombreClase) NombreClase
+FROM instructor i
+INNER JOIN tipoinstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
+LEFT JOIN clase c ON c.IdInstructor = i.IdInstructor
+GROUP BY i.IdInstructor;
+	-- Dar de alta
+
+	-- Editar valores (usuario)
+	-- Editar valores (automatico)
