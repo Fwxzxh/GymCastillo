@@ -99,11 +99,21 @@ UPDATE clienterenta
 SET domicilio=@Domicilio, telefono=@Telefono, 
 NombreContacto=@NombreContacto, telefonocontacto=@TelefonoContacto, 
 foto=@Foto,
-WHERE clienterenta=@IdClienteRenta;
+WHERE idclienterenta=@IdClienteRenta;
 	-- Editar valores (automatico)
 
 -- Usuarios
 	-- Consulta de todo lo de Usuarios
 	-- Dar de alta
+INSERT INTO usuario
+VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+	@Domicilio, @Username, @Password, @FechaNacimiento, 
+	@Telefono, @NombreContacto, @TelefonoContacto, @Foto, 
+	@FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago;
 	-- Editar valores (usuario)
+UPDATE usuario
+SET domicilio=@Domicilio, username=@Username, password=@Password,
+telefono=@Telefono, NombreContacto=@NombreContacto, 
+telefonocontacto=@TelefonoContacto, foto=@Foto,
+WHERE idusuario=@IdUsuario;
 	-- Editar valores (automatico)
