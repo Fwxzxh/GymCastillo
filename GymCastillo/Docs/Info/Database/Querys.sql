@@ -79,7 +79,15 @@ WHERE idinstructor=@IdInstructor;
 
 -- ClienteRenta
 	-- Consulta de todo lo de ClienteRenta
-
+SELECT cr.IdClienteRenta, cr.Nombre, cr.ApellidoPaterno,
+cr.ApellidoPaterno, cr.Domicilio, cr.FechaNacimiento,
+cr.Telefono, cr.NombreContacto, cr.TelefonoContacto,
+cr.Foto, cr.FechaUltimoPago, cr.MontoUltimoPago,
+cr.DeudaCliente,
+group_concat(r.IdRenta) IDRenta, group_concat(r.FechaRenta) FechaRenta, group_concat(r.Costo) Costo
+FROM clienterenta cr, rentas r
+WHERE cr.IdClienteRenta = r.IdClienteRenta
+GROUP BY IdClienteRenta;
 	-- Dar de alta
 INSERT INTO clienterenta
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
