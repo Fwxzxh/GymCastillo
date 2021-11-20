@@ -32,16 +32,59 @@ LEFT JOIN locker l ON c.IdCliente = l.IdCliente;
 	-- Dar de alta
 INSERT INTO cliente 
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-	    @FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial,
-	    @NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso,
-	    @MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente,
-	    @MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible,
-	    @Descuento, @Nino, @IdTipoCliente, @IdPaquete);
-
--- Editar valores (usuario)
+	@FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial, 
+	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
+	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
+	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
+	@Descuento, @Nino, @IdTipoCliente, @IdPaquete);
+	-- Editar valores (usuario)
 UPDATE cliente
 SET domicilio=@Domicilio, telefono=@Telefono, condicionespecial=@CondicionEspecial,
 nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, foto=@Foto,
 activo=@Activo, medioconocio=@MedioConocio, descuento=@Descuento, nino=@Nino,
-idtipocliente=@IdTipoCliente, idpaquete=@IdPaquete;
+idtipocliente=@IdTipoCliente, idpaquete=@IdPaquete
+WHERE idcliente=@IdCliente;
+	-- Editar valores (automatico)
+
+-- Instructor
+	-- Consulta de todo lo de Instructor
+SELECT i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+i.ApellidoMaterno, i.Domicilio, i.FechaNacimiento,
+i.Telefono, i.NombreContacto, i.TelefonoContacto,
+i.Foto, i.FechaUltimoAcceso, i.FechaUltimoPago,
+i.MontoUltimoPago, i.HoraEntrada, i.HoraSalida,
+i.DiasATrabajar, i.DiasTrabajados, i.Sueldo,
+i.SueldoADescontar,
+ti.IdTipoInstructor, ti.NombreTipoInstructor,
+group_concat(c.IdClase) IDClase, group_concat(c.NombreClase) NombreClase
+FROM instructor i
+INNER JOIN tipoinstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
+LEFT JOIN clase c ON c.IdInstructor = i.IdInstructor
+GROUP BY i.IdInstructor;
+	-- Dar de alta
+INSERT INTO instructor
+VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
+	@TelefonoContacto, @Foto, @FechaUltimoAcceso, @FechaUltimoPago,
+	@MontoUltimoPago, @HoraEntrada, @HoraSalida, @DiasATrabajar,
+	@DiasTrabajados, @Sueldo, @SueldoADescontar, @IdTipoInstructor);
+	-- Editar valores (usuario)
+UPDATE instructor
+SET domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
+telefonocontacto=@TelefonoContacto, foto=@Foto, horaentrada=@HoraEntrada,
+horasalida=@HoraSalida, sueldo=@Sueldo, sueldoadescontar=@SueldoADescontar,
+idtipoinstructor=@IdTipoInstructor
+WHERE idinstructor=@IdInstructor;
+	-- Editar valores (automatico)
+
+-- ClienteRenta
+	-- Consulta de todo lo de ClienteRenta
+	-- Dar de alta
+	-- Editar valores (usuario)
+	-- Editar valores (automatico)
+
+-- Usuarios
+	-- Consulta de todo lo de Usuarios
+	-- Dar de alta
+	-- Editar valores (usuario)
 	-- Editar valores (automatico)
