@@ -13,6 +13,22 @@ SELECT * FROM pagos;
 SELECT * FROM ingresos;
 
 -- Cliente
+	-- Consulta de todo lo de cliente
+SELECT c.IdCliente, c.Nombre, c.ApellidoMaterno, 
+c.ApellidoPaterno, c.Domicilio, c.FechaNacimiento, 
+c.Telefono, c.NombreContacto, c.TelefonoContacto, 
+c.Foto, c.CondicionEspecial, c.FechaUltimoAcceso,
+c.MontoUltimoPago, c.Activo, c.FechaVencimientoPago, 
+c.DeudaCliente, c.MedioConocio, c.MedioConocio, 
+c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles, 
+c.Descuento, c.Nino, 
+p.IdPaquete, p.NombrePaquete,
+tc.IdTipoCliente, tc.NombreTipoCliente,
+l.IdLocker, l.Nombre
+FROM cliente c
+INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
+INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
+LEFT JOIN locker l ON c.IdCliente = l.IdCliente;
 	-- Dar de alta
 INSERT INTO cliente 
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
