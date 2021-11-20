@@ -104,6 +104,13 @@ WHERE idclienterenta=@IdClienteRenta;
 
 -- Usuarios
 	-- Consulta de todo lo de Usuarios
+SELECT u.IdUsuario, u.Nombre, u.ApellidoPaterno,
+u.ApellidoMaterno, u.Domicilio, u.Username,
+u.Password, u.FechaNacimiento, u.Telefono,
+u.CondicionEspecial, u.NombreContacto, 
+u.TelefonoContacto, u.Foto, u.FechaUltimoAcceso, 
+u.FechaUltimoPago, u.MontoUltimoPago
+FROM usuario u;
 	-- Dar de alta
 INSERT INTO usuario
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
