@@ -37,8 +37,8 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
 	@Descuento, @Nino, @IdTipoCliente, @IdPaquete);
-UPDATE cliente 
 	-- Editar valores (usuario)
+UPDATE cliente 
 SET domicilio=@Domicilio, telefono=@Telefono, condicionespecial=@CondicionEspecial,
 nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, foto=@Foto,
 activo=@Activo, medioconocio=@MedioConocio, descuento=@Descuento, nino=@Nino,
