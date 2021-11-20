@@ -79,8 +79,19 @@ WHERE idinstructor=@IdInstructor;
 
 -- ClienteRenta
 	-- Consulta de todo lo de ClienteRenta
+
 	-- Dar de alta
+INSERT INTO clienterenta
+VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
+	@TelefonoContacto, @Foto, @FechaUltimoPago, @MontoUltimoPago, 
+	@DeudaCliente;
 	-- Editar valores (usuario)
+UPDATE clienterenta
+SET domicilio=@Domicilio, telefono=@Telefono, 
+NombreContacto=@NombreContacto, telefonocontacto=@TelefonoContacto, 
+foto=@Foto,
+WHERE clienterenta=@IdClienteRenta;
 	-- Editar valores (automatico)
 
 -- Usuarios
