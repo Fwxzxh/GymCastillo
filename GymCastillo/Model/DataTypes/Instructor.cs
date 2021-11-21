@@ -71,7 +71,7 @@ namespace GymCastillo.Model.DataTypes {
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
@@ -140,7 +140,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);

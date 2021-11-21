@@ -4,12 +4,10 @@ using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.Commands.ClientsCommands;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GymCastillo.Model.Admin;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
@@ -42,7 +40,6 @@ namespace GymCastillo.ViewModel.ClientsVM {
             }
         }
 
-
         public NewClientVM() {
             newCliente.FechaNacimiento = DateTime.Now;
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
@@ -52,6 +49,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
         public void CrearCliente() {
             Log.Debug("Nuevo usuario creado");
             MessageBox.Show(NewCliente.Nombre);
+            Task.Run(() => AdminUsuariosGeneral.Alta(NewCliente));
             MessageBox.Show(NewCliente.ApellidoMaterno);
         }
 

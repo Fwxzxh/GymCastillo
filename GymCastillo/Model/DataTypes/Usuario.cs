@@ -61,7 +61,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoMaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoPaterno);
 
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
 
@@ -134,7 +134,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);

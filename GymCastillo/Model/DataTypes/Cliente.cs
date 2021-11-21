@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
@@ -114,16 +115,16 @@ namespace GymCastillo.Model.DataTypes {
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-                command.Parameters.AddWithValue("@Activo", Activo.ToString());
+                command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
                 command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Nino", Niño.ToString());
+                command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 
@@ -208,44 +209,59 @@ namespace GymCastillo.Model.DataTypes {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un cliente.");
             try {
-                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conección.");
 
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO cliente 
+                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
+                                           	@Domicilio, @FechaNacimiento, @Telefono, @CondicionEspecial, 
+                                           	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
+                                           	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
+                                           	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponibles, 
+                                           	@Descuento, @Nino, @IdTipoCliente, @IdPaquete)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
 
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+                //command.Parameters.Add("@CondicionEspecial", MySqlDbType.Bool).Value = CondicionEspecial.ToString();
+
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
-
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Foto", null); // TODO: pendiente
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
-
-                command.Parameters.AddWithValue("@Activo", true.ToString()); // True al dar de alta.
-                command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-
+                command.Parameters.AddWithValue("@Activo", "1"); // True al dar de alta.
+                command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("Locker", IdLocker.ToString());
 
-                var res = ExecSql.NonQuery(command, "Alta Cliente").Result;
+                command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
+                command.Parameters.AddWithValue("@ClasesTotalesDisponibles", ClasesTotalesDisponibles.ToString());
+                command.Parameters.AddWithValue("@ClasesSemanaDisponibles", ClasesSemanaDisponibles.ToString());
+
+                command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
+                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
+
+                Log.Debug("Se ha generado la query.");
+
+
+                var res = await ExecSql.NonQuery(command, "Alta Cliente");
                 Log.Debug("Se ha dado de alta un cliente.");
 
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconcoido a la hora de dar de alta el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");

@@ -50,7 +50,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoMaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoPaterno);
 
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
@@ -103,8 +103,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Método que da de alta la instancia actual del objeto en la base de datos.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns>El número de columas afectadas en la operación.</returns>
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un ClienteRenta.");
             try {
@@ -118,7 +117,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicio);
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);

@@ -40,7 +40,7 @@ namespace GymCastillo.Model.Database {
                                       FROM cliente c
                                       INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
-                                      LEFT JOIN locker l ON c.IdCliente = l.IdCliente ASC";
+                                      LEFT JOIN locker l ON c.IdCliente = l.IdCliente";
 
             // Obtiene: IdCLiente, Nombre, ApellidoMaterno,
             // ApellidoPaterno, Domicilio, FechaNaciemiento
@@ -67,7 +67,7 @@ namespace GymCastillo.Model.Database {
                         ApellidoMaterno = await reader.Result.IsDBNullAsync("ApellidoMaterno") ? "" : reader.Result.GetString("ApellidoMaterno"),
 
                         ApellidoPaterno = await reader.Result.IsDBNullAsync("ApellidoPaterno") ? "" : reader.Result.GetString("ApellidoPaterno"),
-                        Domicio = await reader.Result.IsDBNullAsync("Domicilio") ? "" : reader.Result.GetString("Domicilio"),
+                        Domicilio = await reader.Result.IsDBNullAsync("Domicilio") ? "" : reader.Result.GetString("Domicilio"),
                         FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento").Date,
 
                         Telefono = await reader.Result.IsDBNullAsync("Telefono") ? "" : reader.Result.GetString("Telefono"),

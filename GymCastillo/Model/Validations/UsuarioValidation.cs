@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 
@@ -10,8 +11,8 @@ namespace GymCastillo.Model.Validations {
     public class UsuarioValidation : AbstractValidator<AbstUsuario> {
 
         public UsuarioValidation() {
-            RuleFor(usuario => usuario.Id)
-                .NotNull().NotEmpty();
+            ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
+            ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es-mx");
 
             RuleFor(usuario => usuario.Nombre)
                 .NotNull().NotEmpty().WithMessage("El nombre no puede estar vacío.")
@@ -28,7 +29,7 @@ namespace GymCastillo.Model.Validations {
                 .Length(3, 30).WithMessage("El apellido materno debe de tener entre 3 y 30 carácteres.")
                 .Must(IsLetter).WithMessage("El apellido materno solo debe de tener letras");
 
-            RuleFor(usuario => usuario.Domicio)
+            RuleFor(usuario => usuario.Domicilio)
                 .NotNull().NotEmpty().WithMessage("El domicilio no puede estar vacío.")
                 .Length(3, 150).WithMessage("El apellido materno debe de tener entre 3 y 150 carácteres.");
 

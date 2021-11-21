@@ -31,7 +31,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// <summary>
         /// Domicilio actual del usuario
         /// </summary>
-        public string Domicio { get; set; }
+        public string Domicilio { get; set; }
 
         /// <summary>
         /// Fecha de nacimiento.

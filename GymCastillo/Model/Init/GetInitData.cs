@@ -21,7 +21,7 @@ namespace GymCastillo.Model.Init {
             var user = ConfigurationManager.AppSettings.Get("DbUser");
             var pass = ConfigurationManager.AppSettings.Get("DBPass");
 
-            ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=gymcastillo; Convert Zero Datetime=True; Allow Zero Datetime=True";
+            ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=gymcastillo";
 
             return ConnString;
         }
