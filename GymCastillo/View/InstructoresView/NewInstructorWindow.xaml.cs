@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymCastillo.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +13,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.InstructoresView {
     /// <summary>
     /// Interaction logic for NewInstructorWindow.xaml
     /// </summary>
-    public partial class NewInstructorWindow : Window {
+    public partial class NewInstructorWindow : Window, IClosable {
         public NewInstructorWindow() {
             InitializeComponent();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e) {
-            Close();
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e) {
-            Close();
         }
     }
 }

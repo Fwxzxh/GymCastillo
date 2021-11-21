@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GymCastillo.ViewModel.Commands {
+namespace GymCastillo.ViewModel.Commands.ClientsCommands {
     public class SaveClientCommand : ICommand {
         public OverviewClientsVM vm { get; set; }
 

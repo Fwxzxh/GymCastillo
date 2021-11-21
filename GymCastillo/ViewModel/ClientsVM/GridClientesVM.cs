@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using GymCastillo.ViewModel.Commands;
+using GymCastillo.ViewModel.Commands.ClientsCommands;
 using System.Windows;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
@@ -19,6 +19,13 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private List<Cliente> clientes { get; set; }
+        
+        public ObservableCollection<Cliente> ClientesLista { get; set; }
+
+        public NewClientWindowCommand newClient { get; set; }
+
+        public OverViewClienteCommand overViewCommand { get; set; }
 
         private Cliente selectedClient;
         public Cliente SelectedClient {
@@ -31,14 +38,6 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 }
             }
         }
-
-        public OverViewCommand overViewCommand { get; set; }
-
-        public NewClientWindowCommand clientCommand { get; set; }
-
-        private List<Cliente> clientes { get; set; }
-        
-        public ObservableCollection<Cliente> ClientesLista { get; set; }
 
         private string query;
 
@@ -56,8 +55,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
             try {
                 clientes = GetFromDb.GetClientes().Result;
                 ClientesLista = new ObservableCollection<Cliente>();
-                clientCommand = new();
                 overViewCommand = new(this);
+                newClient = new(this);
 
                 foreach (var cliente in clientes) {
                     ClientesLista.Add(cliente);
@@ -76,7 +75,14 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public void OpenOverview() {
             OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
-            window.Show();
+            window.ShowDialog();
+            Log.Debug("Ventana de overview iniciada");
+        }
+
+        public void OpenNewClients() {
+            NewClientsWindow window = new();
+            window.ShowDialog();
+            Log.Debug("Ventanta de nuevo usuario iniciada");
         }
 
         private void FilterList(string query) {

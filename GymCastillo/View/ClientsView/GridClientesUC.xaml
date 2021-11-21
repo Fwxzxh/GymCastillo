@@ -40,7 +40,6 @@
 
         <DataGrid Grid.Row="1"
                   Margin="0 0 0 20"
-                  x:Name="ClientesDataGrid"
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
                   CanUserResizeRows="False"
@@ -152,6 +151,6 @@
                 Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                 Height="50"
                 ToolTip="Nuevo Cliente"
-                Command="{Binding clientCommand}"/>
+                Command="{Binding newClient}"/>
     </Grid>
 </UserControl>

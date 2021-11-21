@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GymCastillo.View"
+             xmlns:inst="clr-namespace:GymCastillo.View.InstructoresView"
              xmlns:clientes="clr-namespace:GymCastillo.View.ClientsView"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -41,7 +41,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <local:GridInstructoresUserControl/>
+                    <inst:GridInstructoresUC/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
@@ -51,9 +51,9 @@
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
-                <TabItem.Content>
+                <!--<TabItem.Content>
                     <local:GridInstructoresUserControl/>
-                </TabItem.Content>
+                </TabItem.Content>-->
             </TabItem>
         </TabControl>
     </Grid>

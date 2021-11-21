@@ -1,23 +1,23 @@
-﻿using GymCastillo.ViewModel.ClientsVM;
+﻿using GymCastillo.ViewModel.InstructoresVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
-namespace GymCastillo.ViewModel.Commands {
-    public class NewClientCommand : ICommand {
-
-        private NewClientVM vm { get; set; }
-
-        public NewClientCommand( NewClientVM vM) {
-            vm = vM;
-        }
+namespace GymCastillo.ViewModel.Commands.InstructorsCommands {
+    public class NewWindowInstructorCommand : ICommand {
+        private GridInstructoresVM window { get; set; }
 
         public event EventHandler CanExecuteChanged {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public NewWindowInstructorCommand(GridInstructoresVM vM) {
+            window = vM;
         }
 
         public bool CanExecute(object parameter) {
@@ -25,7 +25,7 @@ namespace GymCastillo.ViewModel.Commands {
         }
 
         public void Execute(object parameter) {
-            vm.CrearCliente();
+            window.OpenWindow();
         }
     }
 }

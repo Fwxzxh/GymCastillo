@@ -40,7 +40,7 @@ namespace GymCastillo.Model.Database {
                                       FROM cliente c
                                       INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
-                                      LEFT JOIN locker l ON c.IdCliente = l.IdCliente";
+                                      LEFT JOIN locker l ON c.IdCliente = l.IdCliente ASC";
 
             // Obtiene: IdCLiente, Nombre, ApellidoMaterno,
             // ApellidoPaterno, Domicilio, FechaNaciemiento

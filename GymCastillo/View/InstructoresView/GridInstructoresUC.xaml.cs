@@ -13,18 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.InstructoresView {
     /// <summary>
     /// Interaction logic for GridInstructoresUserControl.xaml
     /// </summary>
-    public partial class GridInstructoresUserControl : UserControl {
-        public GridInstructoresUserControl() {
+    public partial class GridInstructoresUC : UserControl {
+        public GridInstructoresUC() {
             InitializeComponent();
-        }
-
-        private void BtnNuevoInstructor_Click(object sender, RoutedEventArgs e) {
-            NewInstructorWindow newInstructor = new();
-            newInstructor.ShowDialog();
         }
     }
 }

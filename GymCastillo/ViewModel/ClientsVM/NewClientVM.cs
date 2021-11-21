@@ -1,7 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.Commands;
+using GymCastillo.ViewModel.Commands.ClientsCommands;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ using System.Windows;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
@@ -46,18 +49,16 @@ namespace GymCastillo.ViewModel.ClientsVM {
             newClientCommand = new(this);
         }
 
+        public void CrearCliente() {
+            Log.Debug("Nuevo usuario creado");
+            MessageBox.Show(NewCliente.Nombre);
+            MessageBox.Show(NewCliente.ApellidoMaterno);
+        }
+
         private void CloseWindow(IClosable window) {
             if (window != null) {
                 window.Close();
             }
-        }
-
-        public void CrearCliente() {
-            MessageBox.Show(NewCliente.Nombre);
-            MessageBox.Show(NewCliente.ApellidoMaterno);
-            //newCliente.Nombre
-            //newCliente.ApellidoMaterno
-            //aqui guardamos el nuevo cliente
         }
 
         private void OnPropertyChanged(string propertyName) {
