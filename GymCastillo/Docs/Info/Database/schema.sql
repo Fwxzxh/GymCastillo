@@ -69,7 +69,7 @@ create table Clase (
 create table Horario (
     -- Tabla que guarda los registros de los horarios.
     IdHorario int auto_increment primary key,
-    Dia varchar(50) not null,
+    Dia int not null,
     HoraInicio varchar(4) not null,
     HoraFin varchar(4) not null,
     CupoActual int, -- Cuantas personas hay en ese momento
@@ -158,8 +158,9 @@ create table Rentas (
     IdEspacio int,
     foreign key (IdEspacio) references Espacio (IdEspacio),
 	-- IdHorario
-    IdHorario int,
-    foreign key (IdHorario) references Horario (IdHorario),
+    Dia int not null,
+    HoraInicio varchar(4) not null,
+    HoraFin varchar(4) not null,
     Costo decimal
 );
 
