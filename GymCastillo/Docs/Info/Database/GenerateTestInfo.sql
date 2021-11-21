@@ -79,15 +79,15 @@ VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2);
 
 -- Horarios
 INSERT INTO horario
-VALUES (default, 'Lunes', '700', '800', null, 1);
+VALUES (default, 1, '700', '800', null, 1);
 INSERT INTO horario
-VALUES (default, 'Martes', '700', '800', null, 1);
+VALUES (default, 2, '700', '800', null, 1);
 INSERT INTO horario
-VALUES (default, 'Miercoles', '700', '800', null, 1);
+VALUES (default, 3, '700', '800', null, 1);
 INSERT INTO horario
-VALUES (default, 'Jueves', '700', '800', null, 1);
+VALUES (default, 4, '700', '800', null, 1);
 INSERT INTO horario
-VALUES (default, 'Viernes', '700', '800', null, 1);
+VALUES (default, 5, '700', '800', null, 1);
 
 -- Paquetes
 INSERT INTO paquete
