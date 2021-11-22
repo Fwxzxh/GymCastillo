@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
@@ -470,5 +472,49 @@ namespace GymCastillo.Model.Database {
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de obtener toda la información de los lockers.
+        /// </summary>
+        /// <param name="onlyOpen">Indica si se deben de dar solo los lockers disponibles.</param>
+        /// <returns>Una lista de objetos tipo Locker</returns>
+        public static async Task<List<Locker>> GetLockers(bool onlyOpen=false) {
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            var sqlQuery = !onlyOpen ?
+                @"select * from locker" :
+                @"select * from locker where IdCliente IS NOT NULL";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Executamos la query.");
+
+                var listLocker = new List<Locker>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var locker = new Locker() {
+                        IdLocker = await reader.Result.IsDBNullAsync("IdLocker") ? 0 : reader.Result.GetInt32("IdLocker"),
+                        Nombre = await reader.Result.IsDBNullAsync("Nombre") ? "" : reader.Result.GetString("Nombre"),
+                        IdCliente = await reader.Result.IsDBNullAsync("IdCliente") ? 0 : reader.Result.GetInt32("IdCliente"),
+                    };
+                    listLocker.Add(locker);
+                }
+                Log.Debug("Se han obtenido con éxito la información de los tipos de instructor.");
+
+                return listLocker;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los tipos de instructor.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconcido al obtener la información de los tipos de instructor. Error: {e.Message}",
+                    "Error desconcido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
     }
 }
