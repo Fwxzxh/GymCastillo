@@ -34,7 +34,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Clase que muestra un mensaje de pregunta y botones de Si y No.
+        /// Método que muestra un mensaje de pregunta y botones de Si y No.
         /// </summary>
         /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>
         /// <param name="title">El título de la ventana.</param>
@@ -42,6 +42,16 @@ namespace GymCastillo.Model.Helpers {
         public static bool QuestionYesNo(string message, string title) {
             var res = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
             return res == MessageBoxResult.Yes;
+        }
+
+        /// <summary>
+        /// Método que muestra un mensaje de exito y un boton de ok.
+        /// </summary>
+        /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>
+        /// <param name="title">El titulo de la ventana.</param>
+        /// <returns></returns>
+        public static void NiceMessageOk(string message, string title) {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.None);
         }
     }
 }

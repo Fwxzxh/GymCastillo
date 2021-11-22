@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
+using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations;
@@ -21,10 +22,11 @@ namespace GymCastillo.Model.Admin {
         public static async Task Update(AbstUsuario objeto) {
             try {
                 // Valida el objeto.
-                var validator = new UsuarioValidation();
+                var validator = new UsuarioGralValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                // var validatorCliente = new ClienteValidations();
-                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+
+                // validamos los campos concretos
+                await ValidateAgain(objeto);
 
                 // Hacemos Update.
                 var res = objeto.Update().Result;
@@ -35,7 +37,7 @@ namespace GymCastillo.Model.Admin {
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
                 else {
-                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
                 }
 
             }
@@ -57,10 +59,11 @@ namespace GymCastillo.Model.Admin {
         public static async Task Delete(AbstUsuario objeto) {
             try {
                 // validamos el objeto
-                var validator = new UsuarioValidation();
+                var validator = new UsuarioGralValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                // var validatorCliente = new ClienteValidations();
-                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+
+                // validamos los campos concretos
+                await ValidateAgain(objeto);
 
                 // Hacemos el delete.
                 var res = objeto.Delete().Result;
@@ -71,7 +74,7 @@ namespace GymCastillo.Model.Admin {
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
                 else {
-                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
                 }
             }
             catch (ValidationException msg) {
@@ -93,11 +96,13 @@ namespace GymCastillo.Model.Admin {
         public static async Task Alta(AbstUsuario objeto) {
             try {
                 Log.Debug("Se ha iniciado un proceso de alta generico.");
-                // validamos el objeto
-                var validator = new UsuarioValidation();
+
+                // validamos los campos generales
+                var validator = new UsuarioGralValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                // var validatorCliente = new ClienteValidations();
-                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+
+                // validamos los campos concretos
+                await ValidateAgain(objeto);
 
                 // Hacemos la alta.
                 var res = await objeto.Alta();
@@ -109,7 +114,7 @@ namespace GymCastillo.Model.Admin {
                     Log.Warn("No se han hecho cambios a la base de datos.");
                 }
                 else {
-                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
                 }
             }
             catch (ValidationException msg) {
@@ -120,6 +125,32 @@ namespace GymCastillo.Model.Admin {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de averiguar el tipo de objeto es y validar los campos especializados.
+        /// </summary>
+        private static async Task ValidateAgain(AbstUsuario objeto) {
+            var tipo = objeto.GetType().Name;
+
+            switch (tipo) {
+                case "Cliente":
+                    var clienteValidator = new ClienteValidations();
+                    await clienteValidator.ValidateAndThrowAsync((Cliente) objeto);
+                    break;
+
+                case "Instructor":
+                    break;
+
+                case "Usuario":
+                    break;
+
+                case "ClienteRenta":
+                    break;
+
+                default:
+                    throw new Exception("Error: no se pudo identificar al objeto.");
             }
         }
     }

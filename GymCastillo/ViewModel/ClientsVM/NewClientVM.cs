@@ -46,8 +46,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         }
 
         public void CrearCliente() {
-            // Log.Debug("Nuevo usuario creado");
-            // MessageBox.Show(NewCliente.Nombre);
+            Log.Debug("Nuevo usuario creado");
+            MessageBox.Show(NewCliente.Nombre);
             // var testClient = new ClienteRenta() {
             //     Id = 1,
             //     Nombre = "test",
@@ -59,14 +59,14 @@ namespace GymCastillo.ViewModel.ClientsVM {
             //     Telefono = "0123456789",
             //     NombreContacto = "contacto",
             //
-            //     TelefonoContacto = "9876543210",
+            //     TelefonoContacto = "9876210",
             //     Foto = null,
             //     FechaUltimoPago = DateTime.Now,
             //     MontoUltimoPago = 40,
             //
             //     DeudaCliente = 100
             // };
-            Task.Run(() => AdminUsuariosGeneral.Delete(NewCliente));
+            Task.Run(() => AdminUsuariosGeneral.Alta(NewCliente));
             MessageBox.Show(NewCliente.ApellidoMaterno);
         }
 

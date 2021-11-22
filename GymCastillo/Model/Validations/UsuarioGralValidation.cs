@@ -8,9 +8,9 @@ namespace GymCastillo.Model.Validations {
     /// Clase que se encarga de validar los campos editables de los objetos tipo Usuario. <br/>
     /// Siendo: Id, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, Telefono, NombreContacto, TelefonoContacto.
     /// </summary>
-    public class UsuarioValidation : AbstractValidator<AbstUsuario> {
+    public class UsuarioGralValidation : AbstractValidator<AbstUsuario> {
 
-        public UsuarioValidation() {
+        public UsuarioGralValidation() {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
             ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es-mx");
 
