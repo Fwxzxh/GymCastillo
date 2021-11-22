@@ -2,7 +2,7 @@
     /// <summary>
     /// Clase que contiene los campos del objeto Tipo el cual puede ser TipoCliente o TipoInstructor.
     /// </summary>
-    public class TipoCliente {
+    public class Tipo {
 
         /// <summary>
         /// Id del tipo de cliente.

@@ -20,12 +20,17 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Indica el nombre del paquete.
         /// </summary>
-        public string Nombre { get; set; }
+        public string NombrePaquete { get; set; }
 
         /// <summary>
         /// Indica el número de clases que incluye el paquete.
         /// </summary>
-        public int NumeroClases { get; set; }
+        public int NumClasesTotales { get; set; }
+
+        /// <summary>
+        /// Indica el número de clases que puede tomar el usuario en la semana.
+        /// </summary>
+        public int NumClasesSemanales { get; set; }
 
         /// <summary>
         /// Indica el costo mensual del paquete.
@@ -33,14 +38,14 @@ namespace GymCastillo.Model.DataTypes {
         public decimal Costo { get; set; }
 
         /// <summary>
-        /// Contiene el id la las clases que incluye el paquete.
+        /// Contiene el id la clases que incluye el paquete.
         /// </summary>
-        public string IdClase { get; set; }
+        public int IdClase { get; set; }
 
         /// <summary>
-        /// Contiene el nombre de las clases que incluye el paquete.
+        /// Contiene el nombre de las clase que incluye el paquete.
         /// </summary>
-        public string Clases { get; set; }
+        public string NombreClase { get; set; }
 
         /// <summary>
         /// Método que se encarga de hacer update a la clase actual.

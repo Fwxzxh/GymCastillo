@@ -32,6 +32,21 @@ namespace GymCastillo.Model.DataTypes {
         public decimal DeudaCliente { get; set; }
 
         /// <summary>
+        /// Lista separada por comas de los IdRenta del clienteRenta
+        /// </summary>
+        public string IdRenta { get; set; }
+
+        /// <summary>
+        /// Lista separada por comas de las fechas de las rentas del usuario.
+        /// </summary>
+        public string FechaRenta { get; set; }
+
+        /// <summary>
+        /// Lista separada por comas de lo que se ha pagado por las rentas del cliente.
+        /// </summary>
+        public string CostoRenta { get; set; }
+
+        /// <summary>
         /// Método que actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la operación.</returns>

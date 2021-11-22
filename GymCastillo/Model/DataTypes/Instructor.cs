@@ -43,7 +43,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// La cantidad del sueldo a descontar por amonestaciones.
         /// </summary>
-        public decimal SueldoDescontar { get; set; }
+        public decimal SueldoADescontar { get; set; }
 
         /// <summary>
         /// El id del tipo de instructor.
@@ -54,6 +54,16 @@ namespace GymCastillo.Model.DataTypes {
         /// El nombre del tipo de instructor.
         /// </summary>
         public string NombreTipoInstructor { get; set; }
+
+        /// <summary>
+        /// La lista de clases las cuales estan asignadas al instructor (separados por comas)
+        /// </summary>
+        public string IdClase { get; set; }
+
+        /// <summary>
+        /// La lista de los nombres de las clases asignadas al instructor (separados por comas)
+        /// </summary>
+        public string NombreClases { get; set; }
 
         /// <summary>
         /// Método que actualiza la instancia actual del instructor en la base de datos.
@@ -86,7 +96,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("Hmm"));// TODO checar tipos.
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@SueldoADescontar", SueldoDescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
@@ -172,13 +182,13 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
-                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("Hmm"));
-                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("Hmm"));
+                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("HHmm"));
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));
                 command.Parameters.AddWithValue("@DiasATrabajar", DiasATrabajar.ToString());
                 command.Parameters.AddWithValue("@DiasTrabajados", DiasTrabajados.ToString());
 
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@SueldoADescontar", SueldoDescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
                 Log.Debug("Se ha creado la query.");

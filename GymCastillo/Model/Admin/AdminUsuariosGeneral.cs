@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FluentValidation;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations;
@@ -25,8 +23,8 @@ namespace GymCastillo.Model.Admin {
                 // Valida el objeto.
                 var validator = new UsuarioValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                var validatorCliente = new ClienteValidations();
-                await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+                // var validatorCliente = new ClienteValidations();
+                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
 
                 // Hacemos Update.
                 var res = objeto.Update().Result;
@@ -57,8 +55,8 @@ namespace GymCastillo.Model.Admin {
                 // validamos el objeto
                 var validator = new UsuarioValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                var validatorCliente = new ClienteValidations();
-                await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+                // var validatorCliente = new ClienteValidations();
+                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
 
                 // Hacemos el delete.
                 var res = objeto.Delete().Result;
@@ -91,8 +89,8 @@ namespace GymCastillo.Model.Admin {
                 // validamos el objeto
                 var validator = new UsuarioValidation();
                 await validator.ValidateAndThrowAsync(objeto);
-                var validatorCliente = new ClienteValidations();
-                await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
+                // var validatorCliente = new ClienteValidations();
+                // await validatorCliente.ValidateAndThrowAsync((Cliente) objeto);
 
                 // Hacemos la alta.
                 var res = await objeto.Alta();
