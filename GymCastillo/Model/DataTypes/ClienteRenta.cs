@@ -41,25 +41,25 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string updateQuery = @"";
+                const string updateQuery = @"UPDATE clienterenta
+                                             SET Domicilio=@Domicilio, Telefono=@Telefono, 
+                                                 NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, 
+                                                 Foto=@Foto
+                                             WHERE IdClienteRenta=@IdClienteRenta;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                command.Parameters.AddWithValue("@IdUsuario", Id.ToString());
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@IdClienteRenta", Id.ToString());
 
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
+                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto);
+                command.Parameters.AddWithValue("@Foto", null);
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
-                var res = ExecSql.NonQuery(command, "Update Usuario").Result;
+                var res = await ExecSql.NonQuery(command, "Update Usuario");
 
                 return res;
             }
@@ -81,14 +81,17 @@ namespace GymCastillo.Model.DataTypes {
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
                 const string deleteQuery = @"delete from clienterenta where IdClienteRenta=@IdClienteRenta";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
                 command.Parameters.AddWithValue("@IdClienteRenta", Id.ToString());
+                Log.Debug("Se ha creado la query.");
 
-                var res = ExecSql.NonQuery(command, "Delete ClienteRente").Result;
+                var res = await ExecSql.NonQuery(command, "Delete ClienteRente");
                 Log.Debug("Se ha eliminado un Cliente Renta de la tabla.");
+
                 return res;
             }
             catch (Exception e) {
@@ -109,25 +112,34 @@ namespace GymCastillo.Model.DataTypes {
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO clienterenta
+                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+                                                   @Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
+                                                   @TelefonoContacto, @Foto, @FechaUltimoPago, @MontoUltimoPago,
+                                                   @DeudaCliente)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                Log.Debug("Se ha creado la query.");
 
-                var res = ExecSql.NonQuery(command, "Alta ClienteRenta").Result;
+                var res = await ExecSql.NonQuery(command, "Alta ClienteRenta");
                 Log.Debug("Se ha dado de alta un ClienteRenta.");
 
                 return res;

@@ -128,7 +128,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 
-                var res = ExecSql.NonQuery(command, "Update Cliente").Result;
+                var res = await ExecSql.NonQuery(command, "Update Cliente");
 
                 return res;
             }
@@ -160,7 +160,7 @@ namespace GymCastillo.Model.DataTypes {
                     await using var command = new MySqlCommand(deleteQuery, connection);
                     command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
-                    var res = ExecSql.NonQuery(command, "Delete Cliente").Result;
+                    var res = await ExecSql.NonQuery(command, "Delete Cliente");
                     Log.Debug("Se ha eliminado un cliente de la tabla.");
                     return res;
                 }
@@ -183,7 +183,7 @@ namespace GymCastillo.Model.DataTypes {
                     await using var command = new MySqlCommand(deleteQuery, connection);
                     command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
-                    var res = ExecSql.NonQuery(command, "Update Cliente").Result;
+                    var res = await ExecSql.NonQuery(command, "Update Cliente");
 
                     // Desactivamos la instancia actual
                     Activo = false;
@@ -209,9 +209,9 @@ namespace GymCastillo.Model.DataTypes {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un cliente.");
             try {
-                using var connection = new MySqlConnection(GetInitData.ConnString);
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
-                Log.Debug("Se ha creado la conección.");
+                Log.Debug("Se ha creado la conexión.");
 
                 const string altaQuery = @"INSERT INTO cliente 
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
@@ -231,7 +231,6 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
-                //command.Parameters.Add("@CondicionEspecial", MySqlDbType.Bool).Value = CondicionEspecial.ToString();
 
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
@@ -253,7 +252,6 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 
                 Log.Debug("Se ha generado la query.");
-
 
                 var res = await ExecSql.NonQuery(command, "Alta Cliente");
                 Log.Debug("Se ha dado de alta un cliente.");

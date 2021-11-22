@@ -64,9 +64,14 @@ namespace GymCastillo.Model.DataTypes {
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
-                // TODO: poner la query.
-                const string updateQuery = @"";
+                const string updateQuery = @"UPDATE instructor
+                                             SET domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
+                                             telefonocontacto=@TelefonoContacto, foto=@Foto, HoraEntrada=@HoraEntrada,
+                                             HoraSalida=@HoraSalida, Sueldo=@Sueldo, SueldoADescontar=@SueldoADescontar,
+                                             IdTipoInstructor=@IdTipoInstructor
+                                             WHERE idinstructor=@IdInstructor;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
@@ -74,15 +79,21 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto);
-                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.TimeOfDay.ToString());// TODO checar tipos.
-                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.TimeOfDay.ToString());// TODO checar tipos.
+                command.Parameters.AddWithValue("@Foto", null); // TODO: Ver que onda con la foto
+                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("Hmm"));
+
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("Hmm"));// TODO checar tipos.
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoDescontar.ToString(CultureInfo.InvariantCulture));
+
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
-                var res = ExecSql.NonQuery(command, "Update Instructor").Result;
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Update Instructor");
+                Log.Debug("Se ha actualizado un Instructor.");
 
                 return res;
             }
@@ -104,14 +115,17 @@ namespace GymCastillo.Model.DataTypes {
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
                 const string deleteQuery = @"delete from instructor where IdInstructor=@IdInstructor";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
                 command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+                Log.Debug("Se ha creado la query.");
 
-                var res = ExecSql.NonQuery(command, "Delete Instructor").Result;
+                var res = await ExecSql.NonQuery(command, "Delete Instructor");
                 Log.Debug("Se ha eliminado un Instructor de la tabla.");
+
                 return res;
             }
             catch (Exception e) {
@@ -132,28 +146,34 @@ namespace GymCastillo.Model.DataTypes {
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO instructor
+                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+                                           	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
+                                           	@TelefonoContacto, @Foto, @FechaUltimoAcceso, @FechaUltimoPago,
+                                           	@MontoUltimoPago, @HoraEntrada, @HoraSalida, @DiasATrabajar,
+                                           	@DiasTrabajados, @Sueldo, @SueldoADescontar, @IdTipoInstructor);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
-                command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
-                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("Hmm"));
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("Hmm"));
                 command.Parameters.AddWithValue("@DiasATrabajar", DiasATrabajar.ToString());
                 command.Parameters.AddWithValue("@DiasTrabajados", DiasTrabajados.ToString());
 
@@ -161,7 +181,9 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoDescontar.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
-                var res = ExecSql.NonQuery(command, "Alta Instructor").Result;
+                Log.Debug("Se ha creado la query.");
+
+                var res =await ExecSql.NonQuery(command, "Alta Instructor");
                 Log.Debug("Se ha dado de alta un cliente.");
 
                 return res;

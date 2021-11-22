@@ -91,36 +91,37 @@ GROUP BY IdClienteRenta;
 	-- Dar de alta
 INSERT INTO clienterenta
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
-	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
-	@TelefonoContacto, @Foto, @FechaUltimoPago, @MontoUltimoPago, 
-	@DeudaCliente;
+        @Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
+        @TelefonoContacto, @Foto, @FechaUltimoPago, @MontoUltimoPago,
+        @DeudaCliente);
 	-- Editar valores (usuario)
 UPDATE clienterenta
-SET domicilio=@Domicilio, telefono=@Telefono, 
-NombreContacto=@NombreContacto, telefonocontacto=@TelefonoContacto, 
-foto=@Foto,
-WHERE idclienterenta=@IdClienteRenta;
+SET Domicilio=@Domicilio, Telefono=@Telefono,
+    NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto,
+    Foto=@Foto
+WHERE IdClienteRenta=@IdClienteRenta;
 	-- Editar valores (automatico)
 
 -- Usuarios
 	-- Consulta de todo lo de Usuarios
-SELECT u.IdUsuario, u.Nombre, u.ApellidoPaterno,
-u.ApellidoMaterno, u.Domicilio, u.Username,
-u.Password, u.FechaNacimiento, u.Telefono,
-u.CondicionEspecial, u.NombreContacto, 
-u.TelefonoContacto, u.Foto, u.FechaUltimoAcceso, 
-u.FechaUltimoPago, u.MontoUltimoPago
+SELECT
+    u.IdUsuario, u.Nombre, u.ApellidoPaterno,
+    u.ApellidoMaterno, u.Domicilio, u.Username,
+    u.Password, u.FechaNacimiento, u.Telefono,
+    u.NombreContacto, u.TelefonoContacto,
+    u.Foto, u.FechaUltimoAcceso,
+    u.FechaUltimoPago, u.MontoUltimoPago
 FROM usuario u;
 	-- Dar de alta
 INSERT INTO usuario
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
-	@Domicilio, @Username, @Password, @FechaNacimiento, 
-	@Telefono, @NombreContacto, @TelefonoContacto, @Foto, 
-	@FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago;
+	    @Domicilio, @Username, @Password, @FechaNacimiento,
+	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
+	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
 	-- Editar valores (usuario)
 UPDATE usuario
 SET domicilio=@Domicilio, username=@Username, password=@Password,
-telefono=@Telefono, NombreContacto=@NombreContacto, 
-telefonocontacto=@TelefonoContacto, foto=@Foto,
-WHERE idusuario=@IdUsuario;
+    telefono=@Telefono, NombreContacto=@NombreContacto,
+    telefonocontacto=@TelefonoContacto, foto=@Foto
+WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automatico)

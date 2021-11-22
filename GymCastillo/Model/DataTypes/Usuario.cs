@@ -41,7 +41,6 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         public string Password { get; set; }
 
-
         /// <summary>
         /// Método que Actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
@@ -52,31 +51,27 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string updateQuery = @"";
+                const string updateQuery = @"UPDATE usuario
+                                             SET domicilio=@Domicilio, username=@Username, password=@Password,
+                                                 telefono=@Telefono, NombreContacto=@NombreContacto,
+                                                 telefonocontacto=@TelefonoContacto, foto=@Foto
+                                             WHERE IdUsuario=@IdUsuario";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdUsuario", Id.ToString());
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoPaterno);
 
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
 
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto);
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Foto", null); // TODO foto
 
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
-
-                var res = ExecSql.NonQuery(command, "Update Usuario").Result;
+                var res = await ExecSql.NonQuery(command, "Update Usuario");
 
                 return res;
             }
@@ -92,20 +87,23 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Método que borra la instancia actual del objeto en la base de datos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El número de columnas afectadas por la operación.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de Delete en usuario.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
                 const string deleteQuery = @"delete from usuario where IdUsuario=@IdUsuario";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
                 command.Parameters.AddWithValue("@IdUsuario", Id.ToString());
+                Log.Debug("Se ha creado la query.");
 
-                var res = ExecSql.NonQuery(command, "Delete Usuario").Result;
+                var res = await ExecSql.NonQuery(command, "Delete Usuario");
                 Log.Debug("Se ha eliminado un Usuario de la tabla.");
+
                 return res;
             }
             catch (Exception e) {
@@ -120,36 +118,42 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Método que da de alta la instancia actual del objeto en la base de datos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El número de columnas afectadas por la operación</returns>
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un Usuario.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO usuario
+                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+                                           	    @Domicilio, @Username, @Password, @FechaNacimiento,
+                                           	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
+                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
-                command.Parameters.AddWithValue("@Domicilio", Domicilio);
 
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Domicilio", Domicilio);
+                command.Parameters.AddWithValue("@Username", Username);
+                command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
+
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
 
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: pendiente
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                Log.Debug("Se ha creado la query.");
 
-                command.Parameters.AddWithValue("@Username", Username);
-                command.Parameters.AddWithValue("@Password", Password);
-
-                var res = ExecSql.NonQuery(command, "Alta Usuario").Result;
+                var res = await ExecSql.NonQuery(command, "Alta Usuario");
                 Log.Debug("Se ha dado de alta un Usuario.");
 
                 return res;
