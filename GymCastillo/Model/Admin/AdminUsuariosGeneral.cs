@@ -34,6 +34,10 @@ namespace GymCastillo.Model.Admin {
                     // No se han hecho cambios a la bd.
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
+                else {
+                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                }
+
             }
             catch (ValidationException msg) {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
@@ -65,6 +69,9 @@ namespace GymCastillo.Model.Admin {
                 if (res == 0) {
                     // No se han hecho cambios a la bd
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                }
+                else {
+                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
                 }
             }
             catch (ValidationException msg) {
@@ -100,6 +107,9 @@ namespace GymCastillo.Model.Admin {
                     // No se han hecho cambios a la bd
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                     Log.Warn("No se han hecho cambios a la base de datos.");
+                }
+                else {
+                    ShowPrettyMessages.InfoOk("Se ha actualizado la base de datos.", "Operación Exitosa");
                 }
             }
             catch (ValidationException msg) {

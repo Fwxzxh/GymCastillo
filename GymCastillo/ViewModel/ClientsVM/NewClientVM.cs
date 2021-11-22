@@ -23,8 +23,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public Cliente NewCliente {
             get { return newCliente; }
-            set
-            {
+            set {
                 newCliente = value;
                 OnPropertyChanged(nameof(NewCliente));
                 MessageBox.Show(newCliente.Nombre);
@@ -47,9 +46,27 @@ namespace GymCastillo.ViewModel.ClientsVM {
         }
 
         public void CrearCliente() {
-            Log.Debug("Nuevo usuario creado");
-            MessageBox.Show(NewCliente.Nombre);
-            Task.Run(() => AdminUsuariosGeneral.Alta(NewCliente));
+            // Log.Debug("Nuevo usuario creado");
+            // MessageBox.Show(NewCliente.Nombre);
+            // var testClient = new ClienteRenta() {
+            //     Id = 1,
+            //     Nombre = "test",
+            //     ApellidoPaterno = "testpppppp",
+            //     ApellidoMaterno = "testm",
+            //
+            //     Domicilio = "domomomomo",
+            //     FechaNacimiento = DateTime.Now,
+            //     Telefono = "0123456789",
+            //     NombreContacto = "contacto",
+            //
+            //     TelefonoContacto = "9876543210",
+            //     Foto = null,
+            //     FechaUltimoPago = DateTime.Now,
+            //     MontoUltimoPago = 40,
+            //
+            //     DeudaCliente = 100
+            // };
+            Task.Run(() => AdminUsuariosGeneral.Delete(NewCliente));
             MessageBox.Show(NewCliente.ApellidoMaterno);
         }
 

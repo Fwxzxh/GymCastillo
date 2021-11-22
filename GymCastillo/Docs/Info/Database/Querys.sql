@@ -40,11 +40,18 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@Descuento, @Nino, @IdTipoCliente, @IdPaquete);
 	-- Editar valores (usuario)
 UPDATE cliente
-SET domicilio=@Domicilio, telefono=@Telefono, condicionespecial=@CondicionEspecial,
-nombrecontacto=@NombreContacto, telefonocontacto=@TelefonoContacto, foto=@Foto,
-activo=@Activo, medioconocio=@MedioConocio, descuento=@Descuento, nino=@Nino,
-idtipocliente=@IdTipoCliente, idpaquete=@IdPaquete
-WHERE idcliente=@IdCliente;
+SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
+    NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
+    Activo=@Activo, MedioConocio=@MedioConocio, Descuento=@Descuento, Nino=@Nino,
+    IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete
+WHERE IdCliente=@IdCliente;
+
+UPDATE cliente
+SET domicilio='domT', telefono='0123456789', condicionespecial=true,
+    nombrecontacto='contactot', telefonocontacto='9876543210', foto=null,
+    activo=true, medioconocio='lol', descuento=1, nino=false,
+    idtipocliente=2, idpaquete=1
+WHERE idcliente=13;
 	-- Editar valores (automatico)
 
 -- Instructor

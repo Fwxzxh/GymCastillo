@@ -25,8 +25,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
         private Cliente selectedClient;
         public Cliente SelectedClient {
             get { return selectedClient; }
-            set
-            {
+            set {
                 selectedClient = value;
                 if (selectedClient != null) {
                     OnPropertyChanged(nameof(SelectedClient));
@@ -46,7 +45,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 window.Close();
             }
         }
-        
+
         /// <summary>
         /// Metodo para hacer update del cliente, solo llama al selected cliente y guardar, ya tiene todos los cambios
         /// </summary>

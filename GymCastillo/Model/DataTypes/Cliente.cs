@@ -103,28 +103,30 @@ namespace GymCastillo.Model.DataTypes {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string updateQuery = @"update cliente set 
-                                                Telefono=@Telefono,
-                                                CondicionEspecial=@CondicionEspecial,
-                                                NombreContacto=@NombreContacto, 
-                                                TelefonoContacto=@TelefonoContacto, 
-                                                IdTipoCliente=@IdTipoCliente, Activo=@Activo,
-                                                Domicilio=@domicilio
-                                            where IdCliente=@IdCliente";
+                const string updateQuery = @"UPDATE cliente
+                                             SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
+                                                 NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
+                                                 Activo=@Activo, MedioConocio=@MedioConocio, Descuento=@Descuento, Nino=@Nino,
+                                                 IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete
+                                             WHERE IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@CondicionEspecial", CondicionEspecial.ToString());
+                command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                //command.Parameters.AddWithValue("@Foto", Foto); TODO: Abr k pdo con esto
-                command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@Foto", Foto); // TODO: Abr k pdo con esto
+
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
+                command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
                 command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
+
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 

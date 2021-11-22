@@ -142,7 +142,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
 
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
