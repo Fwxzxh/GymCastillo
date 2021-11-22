@@ -17,19 +17,23 @@ namespace GymCastillo.Model.Validations {
                 .NotEmpty().WithMessage("El atributo fecha vencimiento pago no puede ser nulo.");
 
             RuleFor(usuario => usuario.DeudaCliente)
-                .NotEmpty().WithMessage("La deuda del cliente no puede estar vacia, debe ser al menos 0.");
+                .NotNull().WithMessage("La deuda del cliente no puede estar vacia.")
+                .GreaterThanOrEqualTo(0).WithMessage("La deuda debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.MedioConocio)
                 .NotNull().WithMessage("El medio conoció no puede ser null.");
 
             RuleFor(usuario => usuario.ClasesTotalesDisponibles)
-                .NotEmpty().WithMessage("El total de clases disponibles no puede estar vacio.");
+                .NotNull().WithMessage("El total de clases disponibles no puede estar vacio.")
+                .GreaterThanOrEqualTo(0).WithMessage("El total de clases disponibles debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.ClasesSemanaDisponibles)
-                .NotEmpty().WithMessage("El total de clases por semana disponibles no puede estar vacio.");
+                .NotNull().WithMessage("El total de clases por semana disponibles no puede estar vacio.")
+                .GreaterThanOrEqualTo(0).WithMessage("El total de clases por semana debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.Descuento)
-                .NotEmpty().WithMessage("El total de clases por semana disponibles no puede estar vacio, debe ser al menos 0");
+                .NotNull().WithMessage("El descuento no debe de estar vacío.")
+                .GreaterThanOrEqualTo(0).WithMessage("El descuento debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.Niño)
                 .NotEmpty().WithMessage("El atributo niño no puede ser null.");

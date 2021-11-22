@@ -141,12 +141,18 @@ namespace GymCastillo.Model.Admin {
                     break;
 
                 case "Instructor":
+                    var instructorValidator = new InstructorValidations();
+                    await instructorValidator.ValidateAndThrowAsync((Instructor) objeto);
                     break;
 
                 case "Usuario":
+                    var usuarioValidator = new UsuarioValidation();
+                    await usuarioValidator.ValidateAndThrowAsync((Usuario) objeto);
                     break;
 
                 case "ClienteRenta":
+                    var clienteRentaValidator = new ClienteRentaValidation();
+                    await clienteRentaValidator.ValidateAndThrowAsync((ClienteRenta) objeto);
                     break;
 
                 default:
