@@ -54,7 +54,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public GridClientesVM() {
             try {
-                clientes = GetFromDb.GetClientes().Result;
+                clientes = GetFromDb.GetClientes().GetAwaiter().GetResult();
                 ClientesLista = new ObservableCollection<Cliente>();
                 overViewCommand = new(this);
                 newClient = new(this);

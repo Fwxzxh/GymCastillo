@@ -200,13 +200,13 @@ create table Pagos (
     foreign key (IdUsuario) references Usuario (IdUsuario),
     Servicios bool, -- Si el pago será de servicios
     Nomina bool, -- Si el pago será a nómina (Usuarios, Instructores)
+    Otros bool, -- Si el pago será a otros (no específicos)
 	-- IdUsuario
-    IdUsuarioPagar int, -- Si fue nomina, aquí ingresar el id del usuario a quien se le va a pagar
+    IdUsuarioPagar int, -- Si fue nómina, aquí ingresar el id del usuario a quién se le va a pagar
     foreign key (IdUsuarioPagar) references Usuario (IdUsuario),
 	-- IdInstructor
-    IdInstructor int, -- Si fue nomina, aquí ingresar el id del instructor a quien se le va a pagar
+    IdInstructor int, -- Si fue nomina, aquí ingresar el id del instructor a quién se le va a pagar
     foreign key (IdInstructor) references Instructor (IdInstructor),
-    Otros bool, -- Si el pago será a otros (no especificos)
     Concepto varchar (2000) not null,
     NumeroRecibo varchar(30) not null,
     Monto decimal not null

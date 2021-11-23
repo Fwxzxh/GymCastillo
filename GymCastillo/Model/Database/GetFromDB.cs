@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
@@ -41,17 +39,17 @@ namespace GymCastillo.Model.Database {
                                             p.IdPaquete, p.NombrePaquete,
                                             tc.IdTipoCliente, tc.NombreTipoCliente,
                                             l.IdLocker, l.Nombre as NombreLocker
-                                      FROM cliente c
-                                      INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
-                                      INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
-                                      LEFT JOIN locker l ON c.IdCliente = l.IdCliente";
+                                      FROM Cliente c
+                                      INNER JOIN Paquete p ON c.IdPaquete = p.IdPaquete
+                                      INNER JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
+                                      LEFT JOIN Locker l ON c.IdCliente = l.IdCliente";
 
             var listCliente = new List<Cliente>();
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 while (await reader.Result.ReadAsync()) {
                     var cliente = new Cliente() {
@@ -104,8 +102,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los clientes.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los clientes. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -115,7 +113,7 @@ namespace GymCastillo.Model.Database {
         /// </summary>
         /// <returns>Una lista de objetos tipo Instructor</returns>
         public static async Task<List<Instructor>> GetInstructores() {
-            Log.Debug("Se ha empezado el proceso de obtener la inforamión de los Instructores.");
+            Log.Debug("Se ha empezado el proceso de obtener la información de los Instructores.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
@@ -139,7 +137,7 @@ namespace GymCastillo.Model.Database {
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listInstructores = new List<Instructor>();
 
@@ -188,8 +186,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los instructores.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los instructores. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los instructores. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -217,7 +215,7 @@ namespace GymCastillo.Model.Database {
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listUsuario = new List<Usuario>();
 
@@ -256,8 +254,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los usuarios.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los usuarios. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los usuarios. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -280,14 +278,14 @@ namespace GymCastillo.Model.Database {
                                           cr.Foto, cr.FechaUltimoPago, cr.MontoUltimoPago,
                                           cr.DeudaCliente,
                                           group_concat(r.IdRenta) as IdRenta, group_concat(r.FechaRenta) as FechaRenta, group_concat(r.Costo) as CostoRenta
-                                      FROM clienterenta cr, rentas r
+                                      FROM ClienteRenta cr, rentas r
                                       WHERE cr.IdClienteRenta = r.IdClienteRenta
                                       GROUP BY IdClienteRenta";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listClienteRenta = new List<ClienteRenta>();
 
@@ -327,8 +325,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los clientes renta.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los clientes renta. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes renta. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -354,7 +352,7 @@ namespace GymCastillo.Model.Database {
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listPaquetes = new List<Paquete>();
 
@@ -380,8 +378,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los paquetes.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los paquetes. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los paquetes. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -389,7 +387,7 @@ namespace GymCastillo.Model.Database {
         /// <summary>
         /// Método que obtiene toda la información sobre los tipos de cliente.
         /// </summary>
-        /// <returns>Unalista de objetos tipo Tipo</returns>
+        /// <returns>Una lista de objetos tipo Tipo</returns>
         public static async Task<List<Tipo>> GetTipoCliente() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los tipos de cliente.");
 
@@ -397,12 +395,12 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"select * from tipocliente";
+            const string sqlQuery = @"select * from TipoCliente";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listTipo = new List<Tipo>();
 
@@ -415,7 +413,7 @@ namespace GymCastillo.Model.Database {
                     listTipo.Add(tipo);
 
                 }
-                Log.Debug("Se han obtenido con éxtio la información de los tipos de cliente.");
+                Log.Debug("Se han obtenido con éxito la información de los tipos de cliente.");
 
                 return listTipo;
             }
@@ -423,8 +421,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los tipos de clientes.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los tipos de cliente. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los tipos de cliente. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -440,12 +438,12 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"select * from tipoinstructor";
+            const string sqlQuery = @"select * from TipoInstructor";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listTipo = new List<Tipo>();
 
@@ -458,7 +456,7 @@ namespace GymCastillo.Model.Database {
                     listTipo.Add(tipo);
 
                 }
-                Log.Debug("Se han obtenido con éxtio la información de los tipos de instructor.");
+                Log.Debug("Se han obtenido con éxito la información de los tipos de instructor.");
 
                 return listTipo;
             }
@@ -466,8 +464,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los tipos de instructor.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los tipos de instructor. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los tipos de instructor. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
@@ -490,7 +488,7 @@ namespace GymCastillo.Model.Database {
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
-                Log.Debug("Executamos la query.");
+                Log.Debug("Ejecutamos la query.");
 
                 var listLocker = new List<Locker>();
 
@@ -511,8 +509,8 @@ namespace GymCastillo.Model.Database {
                 Log.Error("Ha ocurrido un error al obtener la información de los tipos de instructor.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconcido al obtener la información de los tipos de instructor. Error: {e.Message}",
-                    "Error desconcido");
+                    $"Ha ocurrido un error desconocido al obtener la información de los tipos de instructor. Error: {e.Message}",
+                    "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }

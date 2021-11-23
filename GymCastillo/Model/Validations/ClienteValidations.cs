@@ -8,27 +8,27 @@ namespace GymCastillo.Model.Validations {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
 
             RuleFor(usuario => usuario.CondicionEspecial)
-                .NotEmpty().WithMessage("La condición especial no puede ser nulla.");
+                .NotNull().WithMessage("La condición especial no puede ser nula.");
 
             RuleFor(usuario => usuario.Activo)
-                .NotEmpty().WithMessage("El atributo activo no puede ser nulo.");
+                .NotNull().WithMessage("El atributo activo no puede ser nulo.");
 
             RuleFor(usuario => usuario.FechaVencimientoPago)
-                .NotEmpty().WithMessage("El atributo fecha vencimiento pago no puede ser nulo.");
+                .NotNull().WithMessage("El atributo fecha vencimiento pago no puede ser nulo.");
 
             RuleFor(usuario => usuario.DeudaCliente)
-                .NotNull().WithMessage("La deuda del cliente no puede estar vacia.")
+                .NotNull().WithMessage("La deuda del cliente no puede estar vacía.")
                 .GreaterThanOrEqualTo(0).WithMessage("La deuda debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.MedioConocio)
                 .NotNull().WithMessage("El medio conoció no puede ser null.");
 
             RuleFor(usuario => usuario.ClasesTotalesDisponibles)
-                .NotNull().WithMessage("El total de clases disponibles no puede estar vacio.")
+                .NotNull().WithMessage("El total de clases disponibles no puede estar vacío.")
                 .GreaterThanOrEqualTo(0).WithMessage("El total de clases disponibles debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.ClasesSemanaDisponibles)
-                .NotNull().WithMessage("El total de clases por semana disponibles no puede estar vacio.")
+                .NotNull().WithMessage("El total de clases por semana disponibles no puede estar vacío.")
                 .GreaterThanOrEqualTo(0).WithMessage("El total de clases por semana debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.Descuento)
@@ -36,7 +36,7 @@ namespace GymCastillo.Model.Validations {
                 .GreaterThanOrEqualTo(0).WithMessage("El descuento debe de ser mayor o igual a 0.");
 
             RuleFor(usuario => usuario.Niño)
-                .NotEmpty().WithMessage("El atributo niño no puede ser null.");
+                .NotNull().WithMessage("El atributo niño no puede ser null.");
 
             RuleFor(usuario => usuario.IdPaquete)
                 .NotEmpty().WithMessage("Se debe se seleccionar un Paquete.");
