@@ -485,7 +485,7 @@ namespace GymCastillo.Model.Database {
 
             var sqlQuery = !onlyOpen ?
                 @"select * from locker" :
-                @"select * from locker where IdCliente IS NOT NULL";
+                @"select * from locker where IdCliente IS NULL";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using GymCastillo.ViewModel.Commands.ClientsCommands;
 using System.Windows;
+using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
 using GymCastillo.View.ClientsView;
