@@ -8,12 +8,31 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using GymCastillo.Model.Admin;
+using System.Collections.Generic;
+using GymCastillo.Model.Database;
+using System.Collections.ObjectModel;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Paquete> paquetesList { get; set; }
+        public ObservableCollection<Tipo> usuarioList { get; set; }
+        public ObservableCollection<string> medioList { get; set; }
+
+        private ObservableCollection<Locker> lockerList;
+
+        public ObservableCollection<Locker> LockersList {
+            get { return lockerList; }
+            set
+            {
+                lockerList = value;
+                OnPropertyChanged(nameof(LockersList));
+            }
+        }
+
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
 
@@ -23,51 +42,60 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public Cliente NewCliente {
             get { return newCliente; }
-            set {
+            set
+            {
                 newCliente = value;
                 OnPropertyChanged(nameof(NewCliente));
-                MessageBox.Show(newCliente.Nombre);
             }
         }
 
-        private string nombre;
+        private bool lockerIsChecked;
 
-        public string Nombre {
-            get { return nombre; }
-            set { nombre = value;
-                OnPropertyChanged(nameof(Nombre));
+        public bool LockerIsChecked {
+            get { return lockerIsChecked; }
+            set
+            {
+                lockerIsChecked = value;
+                OnPropertyChanged(nameof(LockerIsChecked));
+                ReloadLockers(lockerIsChecked);
+            }
+        }
+    
+        private void ReloadLockers(bool lockerIsChecked) {
+            lockerList.Clear();
+            var locker = Task.Run(() => GetFromDb.GetLockers(lockerIsChecked)).Result;
+            foreach (var item in locker) {
+                lockerList.Add(item);
             }
         }
 
         public NewClientVM() {
-            newCliente.FechaNacimiento = DateTime.Now;
-            CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-            newClientCommand = new(this);
+            try {
+                paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
+                usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+                lockerList = new ObservableCollection<Locker>();
+                medioList = new ObservableCollection<string> {
+                    "Amigos",
+                    "Redes Sociales",
+                    "Publicidad",
+                    "Otros"
+                };
+
+                newCliente.FechaNacimiento = DateTime.Now;
+                CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
+                newClientCommand = new(this);
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+
         }
 
         public void CrearCliente() {
+            var cliente = newCliente;
+            MessageBox.Show(newCliente.CondicionEspecial.ToString());
             Log.Debug("Nuevo usuario creado");
-            MessageBox.Show(NewCliente.Nombre);
-            // var testClient = new ClienteRenta() {
-            //     Id = 1,
-            //     Nombre = "test",
-            //     ApellidoPaterno = "testpppppp",
-            //     ApellidoMaterno = "testm",
-            //
-            //     Domicilio = "domomomomo",
-            //     FechaNacimiento = DateTime.Now,
-            //     Telefono = "0123456789",
-            //     NombreContacto = "contacto",
-            //
-            //     TelefonoContacto = "9876210",
-            //     Foto = null,
-            //     FechaUltimoPago = DateTime.Now,
-            //     MontoUltimoPago = 40,
-            //
-            //     DeudaCliente = 100
-            // };
             Task.Run(() => AdminUsuariosGeneral.Alta(NewCliente));
-            MessageBox.Show(NewCliente.ApellidoMaterno);
         }
 
         private void CloseWindow(IClosable window) {

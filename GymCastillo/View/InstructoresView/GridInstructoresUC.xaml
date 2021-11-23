@@ -50,7 +50,7 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding Instructores}">
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Width="*"

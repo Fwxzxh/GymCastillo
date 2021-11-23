@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.Commands.ClientsCommands;
@@ -50,8 +51,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         /// Metodo para hacer update del cliente, solo llama al selected cliente y guardar, ya tiene todos los cambios
         /// </summary>
         public void UpdateClient() {
+            Task.Run(() => AdminUsuariosGeneral.Update(selectedClient));
             Log.Debug("Usuario modificado");
-            MessageBox.Show(selectedClient.Telefono);
         }
 
         private void OnPropertyChanged(string propertyName) {
