@@ -91,11 +91,11 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         }
 
-        public void CrearCliente() {
-            var cliente = newCliente;
-            MessageBox.Show(newCliente.CondicionEspecial.ToString());
+        public async void CrearCliente() {
             Log.Debug("Nuevo usuario creado");
-            Task.Run(() => AdminUsuariosGeneral.Alta(NewCliente));
+            await AdminUsuariosGeneral.Alta(NewCliente);
+            NewCliente = new Cliente();
+
         }
 
         private void CloseWindow(IClosable window) {

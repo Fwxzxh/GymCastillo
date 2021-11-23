@@ -144,7 +144,7 @@
                           x:Name="cbTipoUsuario"
                           FontSize="20"
                           Margin="20 0"
-                          ItemsSource="{Binding usuarioList}"
+                          ItemsSource="{Binding usuarioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="NombreTipo"
                           SelectedValuePath="IdTipo"
                           SelectedValue="{Binding NewCliente.IdTipoCliente}"
@@ -162,7 +162,7 @@
                           DisplayMemberPath="NombrePaquete"
                           SelectedValuePath="IdPaquete"
                           SelectedValue="{Binding NewCliente.IdPaquete}"
-                          ItemsSource="{Binding paquetesList}"
+                          ItemsSource="{Binding paquetesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Medio Conoció"
@@ -172,7 +172,7 @@
                           FontSize="20"
                           Margin="20 0"
                           SelectedValue="{Binding NewCliente.MedioConocio}"
-                          ItemsSource="{Binding medioList}"
+                          ItemsSource="{Binding medioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>
                 <TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
@@ -182,7 +182,7 @@
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding NewCliente.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Text="{Binding NewCliente.Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             </StackPanel>
@@ -196,7 +196,7 @@
                               Width="auto"
                               Margin="50 0 0 0"/>
                     <CheckBox Content="Locker"
-                              IsChecked="{Binding LockerIsChecked, Mode=TwoWay}"
+                              IsChecked="{Binding LockerIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"
                               VerticalAlignment="Center"
                               FontSize="20"

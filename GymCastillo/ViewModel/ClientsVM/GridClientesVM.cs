@@ -59,7 +59,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 overViewCommand = new(this);
                 newClient = new(this);
 
-                foreach (var cliente in clientes) {
+                foreach (var cliente in clientes.OrderBy(c => c.Nombre)) {
                     ClientesLista.Add(cliente);
                 }
 
@@ -83,7 +83,17 @@ namespace GymCastillo.ViewModel.ClientsVM {
         public void OpenNewClients() {
             NewClientsWindow window = new();
             window.ShowDialog();
+            RefreshGrid();
             Log.Debug("Ventanta de nuevo usuario iniciada");
+        }
+
+        private void RefreshGrid() {
+            ClientesLista.Clear();
+            var clientes = Task.Run( () => GetFromDb.GetClientes()).Result;
+            var orderby = clientes.OrderBy(c => c.Nombre);
+            foreach (var item in orderby) {
+                ClientesLista.Add(item);
+            }
         }
 
         private void FilterList(string query) {

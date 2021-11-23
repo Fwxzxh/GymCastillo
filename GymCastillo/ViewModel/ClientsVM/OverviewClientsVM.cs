@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.Commands.ClientsCommands;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,21 @@ namespace GymCastillo.ViewModel.ClientsVM {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
+
+        public ObservableCollection<Paquete> paquetesList { get; set; }
+        public ObservableCollection<Tipo> usuarioList { get; set; }
+        public ObservableCollection<string> medioList { get; set; }
+
+        private ObservableCollection<Locker> lockerList;
+
+        public ObservableCollection<Locker> LockersList {
+            get { return lockerList; }
+            set
+            {
+                lockerList = value;
+                OnPropertyChanged(nameof(LockersList));
+            }
+        }
 
         public SaveClientCommand saveClient { get; set; }
 
@@ -34,11 +51,41 @@ namespace GymCastillo.ViewModel.ClientsVM {
             }
         }
 
+        private bool lockerIsChecked;
+
+        public bool LockerIsChecked {
+            get { return lockerIsChecked; }
+            set
+            {
+                lockerIsChecked = value;
+                OnPropertyChanged(nameof(LockerIsChecked));
+                ReloadLockers(lockerIsChecked);
+            }
+        }
+
         public OverviewClientsVM(Cliente cliente) {
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             SelectedClient = cliente;
             saveClient = new(this);
 
+            paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
+            usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+            lockerList = new ObservableCollection<Locker>();
+            medioList = new ObservableCollection<string> {
+                    "Amigos",
+                    "Redes Sociales",
+                    "Publicidad",
+                    "Otros"
+                };
+
+        }
+
+        private void ReloadLockers(bool lockerIsChecked) {
+            lockerList.Clear();
+            var locker = Task.Run(() => GetFromDb.GetLockers(lockerIsChecked)).Result;
+            foreach (var item in locker) {
+                lockerList.Add(item);
+            }
         }
 
         private void CloseWindow(IClosable window) {
