@@ -1,4 +1,6 @@
 ﻿
+use gymcastillo;
+
 -- Tipos de cliente
 INSERT INTO tipocliente
 VALUES (default, 'Membresia', 'Clientes con solo Gym');

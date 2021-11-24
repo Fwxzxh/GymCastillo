@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
@@ -478,6 +479,7 @@ namespace GymCastillo.Model.Database {
         /// <param name="onlyOpen">Indica si se deben de dar solo los lockers disponibles.</param>
         /// <returns>Una lista de objetos tipo Locker</returns>
         public static async Task<List<Locker>> GetLockers(bool onlyOpen=false) {
+            Log.Debug("Se ha empezado el proceso de obtener la información de los Lockers.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
@@ -516,5 +518,63 @@ namespace GymCastillo.Model.Database {
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
+
+        /// <summary>
+        /// Método que obtiene todas las clases.
+        /// </summary>
+        /// <returns>Una lista que contiene objetos tipo Clase.</returns>
+        public static async Task<List<Clase>> GetClases() {
+            Log.Debug("Se ha empezado el proceso de obtener la información de los Lockers.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            // TODO: hacer la query de verdad.
+            const string sqlQuery = @"select
+                                          c.IdClase, c.NombreClase, c.Descripcion,
+                                          c.CupoMaximo, c.Activo,
+                                          i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+                                          e.IdEspacio, e.NombreEspacio
+                                      from clase c
+                                      left join instructor i on c.IdInstructor = i.IdInstructor
+                                      left join espacio e on e.IdEspacio = c.IdEspacio;";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listClases = new List<Clase>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var locker = new Clase() {
+                        IdClase = await reader.Result.IsDBNullAsync("IdClase") ? 0 : reader.Result.GetInt32("IdClase"),
+                        NombreClase = await reader.Result.IsDBNullAsync("NombreClase") ? "" : reader.Result.GetString("NombreClase"),
+                        Descripcion = await reader.Result.IsDBNullAsync("Descripcion") ? "" : reader.Result.GetString("Descripcion"),
+                        IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor") ? 0 : reader.Result.GetInt32("IdInstructor"),
+                        // Todo: concatenar Nombre y ApellidoPaterno.
+                        NombreInstructor = await reader.Result.IsDBNullAsync("Nombre") ? "" : reader.Result.GetString("Nombre"),
+                        CupoMaximo = await reader.Result.IsDBNullAsync("CupoMaximo") ? 0 : reader.Result.GetInt32("CupoMaximo"),
+                        IdEspacio = await reader.Result.IsDBNullAsync("IdEspacio") ? 0 : reader.Result.GetInt32("IdEspacio"),
+                        NombreEspacio = await reader.Result.IsDBNullAsync("NombreEspacio") ? "" : reader.Result.GetString("NombreEspacio"),
+                        Activo = !await reader.Result.IsDBNullAsync("Activo") && reader.Result.GetBoolean("Activo"),
+                    };
+                    listClases.Add(locker);
+                }
+                Log.Debug("Se han obtenido con éxito la información de las clases.");
+
+                return listClases;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los lockers..");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los tipos de instructor. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
     }
 }

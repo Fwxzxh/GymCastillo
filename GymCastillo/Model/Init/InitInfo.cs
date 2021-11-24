@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
@@ -59,6 +60,10 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static List<Locker> ListaLockers { get; set; }
 
+        /// <summary>
+        /// La lista de todas las clases.
+        /// </summary>
+        public static List<Clase> ListaClases { get; set; }
 
         /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
@@ -78,6 +83,7 @@ namespace GymCastillo.Model.Init {
                 var allLockersOpen = GetFromDb.GetLockers(true);
 
                 var allLockers = GetFromDb.GetLockers();
+                var allClases = GetFromDb.GetClases();
 
                 // Esperamos los resultados...
                 ListaClientes = await allClientes;
@@ -89,12 +95,13 @@ namespace GymCastillo.Model.Init {
                 ListaTipoInstructor = await allTipoInstructores;
                 ListaLockersOpen = await allLockersOpen;
                 ListaLockers = await allLockers;
+                ListaClases = await allClases;
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
-                    allLockersOpen).ConfigureAwait(false);
+                    allLockersOpen, allClases).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 return true;

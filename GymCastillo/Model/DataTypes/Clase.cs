@@ -15,7 +15,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Nombre de la Clase.
         /// </summary>
-        public string Nombre { get; set; }
+        public string NombreClase { get; set; }
 
         /// <summary>
         /// Descripción de la clase.

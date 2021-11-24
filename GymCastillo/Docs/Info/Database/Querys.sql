@@ -135,3 +135,15 @@ SET domicilio=@Domicilio, username=@Username, password=@Password,
     telefonocontacto=@TelefonoContacto, foto=@Foto
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automatico)
+
+
+-- Clases
+    -- Obtener todas las clases.
+select
+    c.IdClase, c.NombreClase, c.Descripcion,
+    c.CupoMaximo, c.Activo,
+    i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    e.IdEspacio, e.NombreEspacio
+from clase c
+left join instructor i on c.IdInstructor = i.IdInstructor
+left join espacio e on e.IdEspacio = c.IdEspacio;
