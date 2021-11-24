@@ -7,10 +7,10 @@ namespace GymCastillo.Model.Validations {
         public InstructorValidations() {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
 
-            RuleFor(instructor => instructor.HoraEntrada.ToString())
+            RuleFor(instructor => instructor.HoraEntrada)
                 .NotEmpty().WithMessage("La hora de entrada no puede estar vacía");
 
-            RuleFor(instructor => instructor.HoraSalida.ToString())
+            RuleFor(instructor => instructor.HoraSalida)
                 .NotEmpty().WithMessage("La hora de salida no puede estar vacía");
 
             RuleFor(instructor => instructor.DiasATrabajar)

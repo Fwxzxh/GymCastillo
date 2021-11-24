@@ -92,9 +92,9 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", null); // TODO: Ver que onda con la foto
-                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("Hmm"));
+                command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("HHmm"));
 
-                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("Hmm"));// TODO checar tipos.
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));// TODO checar tipos.
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
 
@@ -199,7 +199,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -208,7 +208,7 @@ namespace GymCastillo.Model.DataTypes {
         }
 
         /// <summary>
-        /// Método que se encarga de dar de alta una nueva asistencia a la instacia actual.
+        /// Método que se encarga de dar de alta una nueva asistencia a la instancia actual.
         /// </summary>
         /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
         public override Task<int> NuevaAsistencia() {
