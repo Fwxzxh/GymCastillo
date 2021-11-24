@@ -91,8 +91,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         private async void RefreshGrid() {
             ClientesLista.Clear();
             var clientesRe = await GetFromDb.GetClientes();
-            var orderby = clientesRe.OrderBy(c => c.Nombre);
-            foreach (var item in orderby) {
+            InitInfo.ListaClientes = clientesRe;
+            foreach (var item in clientesRe.OrderBy(c => c.Nombre)) {
                 ClientesLista.Add(item);
             }
         }
@@ -102,13 +102,13 @@ namespace GymCastillo.ViewModel.ClientsVM {
             if (clientes != null) {
                 if (query == "") {
                     ClientesLista.Clear();
-                    foreach (var cliente in clientes) {
+                    foreach (var cliente in clientes.OrderBy(c => c.Nombre)) {
                         ClientesLista.Add(cliente);
                     }
                 }
                 else {
                     ClientesLista.Clear();
-                    var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList();
+                    var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList().OrderBy(d => d.Nombre);
                     foreach (var cliente in filteredList) {
                         ClientesLista.Add(cliente);
                     }

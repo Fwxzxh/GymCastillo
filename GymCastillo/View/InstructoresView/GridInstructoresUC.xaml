@@ -24,7 +24,6 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0"
-                 x:Name="TxtSearch"
                  materialDesign:HintAssist.Hint="Buscar"
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
@@ -35,6 +34,7 @@
                  FontSize="20"
                  Margin="0 0 0 15"
                  HorizontalAlignment="Right"
+                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
         <DataGrid Grid.Row="1"
@@ -50,62 +50,87 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  >
+                  SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding ListaInstructores}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
+                                    Binding="{Binding Nombre}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Apellido Paterno"
+                                    Binding="{Binding ApellidoPaterno}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Apellido Materno"
+                                    Binding="{Binding ApellidoMaterno}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Teléfono"
+                                    Binding="{Binding Telefono}"
                                     Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button ToolTip="Ver más"
                                     DataContext="{StaticResource vm}"
-                                    Command="{Binding overViewCommand}">
+                                    Command="{Binding overviewInstructor}">
                                 <materialDesign:PackIcon Kind="EyeAddOutline"/>
                             </Button>
                         </DataTemplate>

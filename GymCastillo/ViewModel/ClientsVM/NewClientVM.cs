@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using GymCastillo.Model.Database;
 using System.Collections.ObjectModel;
 using GymCastillo.Model.Init;
+using System.Linq;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
@@ -58,13 +59,13 @@ namespace GymCastillo.ViewModel.ClientsVM {
             {
                 lockerIsChecked = value;
                 OnPropertyChanged(nameof(LockerIsChecked));
-                ReloadLockers(lockerIsChecked);
+                ReloadLockers();
             }
         }
 
-        private void ReloadLockers(bool lockerIsChecked) {
+        private void ReloadLockers() {
             lockerList.Clear();
-            var locker = GetFromDb.GetLockers(lockerIsChecked).Result;
+            var locker = InitInfo.ListaLockersOpen;
             foreach (var item in locker) {
                 lockerList.Add(item);
             }
@@ -72,8 +73,6 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public NewClientVM() {
             try {
-                // paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
-                // usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
                 paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
                 usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
                 lockerList = new ObservableCollection<Locker>();
@@ -87,6 +86,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 newCliente.FechaNacimiento = DateTime.Now;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 newClientCommand = new(this);
+                Log.Debug("Nuevo cliente ventana inicializada");
             }
             catch (Exception e) {
                 MessageBox.Show(e.Message);

@@ -8,12 +8,10 @@ namespace GymCastillo.Model.Validations {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
 
             RuleFor(instructor => instructor.HoraEntrada.ToString())
-                .NotEmpty().WithMessage("La hora de entrada no puede estar vacía")
-                .Length(4).WithMessage("La hora de entrada debe ser en formato militar, ej: 0700 para las 7:00 am.");
+                .NotEmpty().WithMessage("La hora de entrada no puede estar vacía");
 
             RuleFor(instructor => instructor.HoraSalida.ToString())
-                .NotEmpty().WithMessage("La hora de salida no puede estar vacía")
-                .Length(4).WithMessage("La hora de salida debe ser en formato militar, ej: 0700 para las 7:00 am.");
+                .NotEmpty().WithMessage("La hora de salida no puede estar vacía");
 
             RuleFor(instructor => instructor.DiasATrabajar)
                 .NotNull().WithMessage("Los dias a trabajar no pueden ser nulos.")
@@ -33,9 +31,6 @@ namespace GymCastillo.Model.Validations {
 
             RuleFor(instructor => instructor.IdTipoInstructor)
                 .NotEmpty().WithMessage("El id de instructor no debe estar vacío.");
-
-            RuleFor(instructor => instructor.IdClase)
-                .NotEmpty().WithMessage("El id de clase no debe estar vacío.");
         }
     }
 }

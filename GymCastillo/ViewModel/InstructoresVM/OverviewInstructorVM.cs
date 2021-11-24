@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
@@ -15,24 +15,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.InstructoresVM {
-    public class NewInstructorVM : INotifyPropertyChanged {
+    public class OverviewInstructorVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
-
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
-
-        public NewInstructorCommand instructorCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Tipo> TiposInstructor { get; set; }
 
-        private Instructor instructor = new() {
-            FechaNacimiento = DateTime.Now,
-            FechaUltimoAcceso = DateTime.Now,
-            FechaUltimoPago = DateTime.Now,
-            HoraEntrada = DateTime.Now,
-            HoraSalida = DateTime.Now
-        };
+        public UpdateInstructorCommand updateInstructor { get; set; }
+
+        private Instructor instructor;
+
         public Instructor Instructor {
             get { return instructor; }
             set
@@ -42,13 +36,12 @@ namespace GymCastillo.ViewModel.InstructoresVM {
             }
         }
 
-        public NewInstructorVM() {
+        public OverviewInstructorVM(Instructor instructor) {
             try {
-                Log.Debug("Nuevo instructor ventana inicializada");
+                this.instructor = instructor;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
+                updateInstructor = new(this);
                 TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ListaTipoInstructor);
-                instructorCommand = new(this);
-
             }
             catch (Exception e) {
                 Log.Error(e.Message);
@@ -57,16 +50,9 @@ namespace GymCastillo.ViewModel.InstructoresVM {
 
         }
 
-        public async void CrearInstructor() {
-            Log.Debug("Nuevo instructor creado");
-            await AdminUsuariosGeneral.Alta(Instructor);
-            Instructor = new() {
-                FechaNacimiento = DateTime.Now,
-                FechaUltimoAcceso = DateTime.Now,
-                FechaUltimoPago = DateTime.Now,
-                HoraEntrada = DateTime.Now,
-                HoraSalida = DateTime.Now
-            };
+        public void UpdateInstructor() {
+            Task.Run(()=>AdminUsuariosGeneral.Update(Instructor));
+            Log.Debug("Instructor actualizado.");
         }
 
         private void CloseWindow(IClosable window) {

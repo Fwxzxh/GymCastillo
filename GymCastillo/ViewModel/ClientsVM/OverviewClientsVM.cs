@@ -44,7 +44,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         private Cliente selectedClient;
         public Cliente SelectedClient {
             get { return selectedClient; }
-            set {
+            set
+            {
                 selectedClient = value;
                 if (selectedClient != null) {
                     OnPropertyChanged(nameof(SelectedClient));
@@ -64,10 +65,36 @@ namespace GymCastillo.ViewModel.ClientsVM {
             }
         }
 
+        private decimal descuento;
+
+        public decimal Descuento {
+            get { return descuento; }
+            set
+            {
+                descuento = value;
+                OnPropertyChanged(nameof(Descuento));
+                UpdatePago(descuento);
+            }
+        }
+
+        private decimal pago;
+
+        public decimal Pago {
+            get { return pago; }
+            set
+            {
+                pago = value;
+                OnPropertyChanged(nameof(Pago));
+            }
+        }
+
+
+
         public OverviewClientsVM(Cliente cliente) {
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             SelectedClient = cliente;
             saveClient = new(this);
+
 
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
@@ -78,14 +105,36 @@ namespace GymCastillo.ViewModel.ClientsVM {
                     "Publicidad",
                     "Otros"
                 };
+            LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
 
+            descuento = selectedClient.Descuento;
+            pago = selectedClient.DeudaCliente;
         }
 
+        //TODO: filtrar por lokers desocupados + actual locker del cliente
         private void ReloadLockers() {
-            lockerList.Clear();
-            var locker = InitInfo.ListaLockersOpen;
+            LockersList.Clear();
+            var locker = InitInfo.ListaLockers;
             foreach (var item in locker) {
-                lockerList.Add(item);
+                LockersList.Add(item);
+            }
+
+            if (lockerIsChecked) {
+                Pago += 50;
+            }
+            else {
+                //SelectedClient.IdLocker = ;
+                Pago = selectedClient.DeudaCliente;
+            }
+        }
+        //TODO: implementar bien la lógica del costo del locker
+        private void UpdatePago(decimal deuda) {
+
+            if (deuda.Equals(0m)) {
+                Pago = selectedClient.DeudaCliente;
+            }
+            else {
+                Pago = Math.Max(0, Pago - deuda);
             }
         }
 
@@ -99,7 +148,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
         /// Metodo para hacer update del cliente, solo llama al selected cliente y guardar, ya tiene todos los cambios
         /// </summary>
         public void UpdateClient() {
-            Task.Run(() => AdminUsuariosGeneral.Update(selectedClient));
+            Task.Run(() => AdminUsuariosGeneral.Update(SelectedClient));
             Log.Debug("Usuario modificado");
         }
 

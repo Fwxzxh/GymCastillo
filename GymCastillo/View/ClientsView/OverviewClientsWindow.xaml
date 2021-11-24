@@ -175,7 +175,7 @@
                          VerticalContentAlignment="Center"
                          Width="250"
                          FontSize="20"
-                         Text="{Binding SelectedClient.Descuento, StringFormat=C}"
+                         Text="{Binding Descuento, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="20 0"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
@@ -203,7 +203,7 @@
                           materialDesign:ValidationAssist.UsePopup="False"
                           materialDesign:ValidationAssist.OnlyShowOnFocus="True"
                           materialDesign:TextFieldAssist.HasClearButton="True"
-                          IsEnabled="{Binding LockerIsChecked}"
+                          IsEnabled="{Binding LockerIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           FontSize="20"
                           Margin="20 0"
                           Width="250"
@@ -218,7 +218,7 @@
                          IsReadOnly="True"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding SelectedClient.DeudaCliente, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Pago, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Width="250"/>
             </StackPanel>
         </Grid>

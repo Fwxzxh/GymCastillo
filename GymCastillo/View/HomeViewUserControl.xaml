@@ -12,9 +12,9 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="720" d:DesignWidth="1200">
-    <Grid Margin="100">
-        <StackPanel>
-            <Image Source="\Docs\Assets\CastilloF2C.png" Height="500" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    <Grid Margin="100" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Source="\Docs\Assets\CastilloF2C.png" Height="600" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>  
     </Grid>
 </UserControl>
