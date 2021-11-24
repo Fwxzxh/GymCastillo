@@ -130,7 +130,7 @@ namespace GymCastillo.Model.Database {
                                           ti.IdTipoInstructor, ti.NombreTipoInstructor,
                                           group_concat(c.IdClase) as IdClase, group_concat(c.NombreClase) as NombreClase
                                       FROM instructor i
-                                      INNER JOIN tipoinstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
+                                      INNER JOIN TipoInstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
                                       LEFT JOIN clase c ON c.IdInstructor = i.IdInstructor
                                       GROUP BY i.IdInstructor";
 
@@ -160,8 +160,8 @@ namespace GymCastillo.Model.Database {
                         FechaUltimoPago = reader.Result.GetDateTime("FechaUltimoPago"),
 
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetDecimal("MontoUltimoPago"),
-                        HoraEntrada = DateTime.ParseExact(reader.Result.GetString("HoraEntrada"), "HHmm", CultureInfo.InvariantCulture), // TODO checar si esto da problemas.
-                        HoraSalida = DateTime.ParseExact(reader.Result.GetString("HoraSalida"), "HHmm", CultureInfo.InvariantCulture), // TODO checar si esto da problemas.
+                        HoraEntrada = DateTime.ParseExact(reader.Result.GetString("HoraEntrada"), "HHmm", CultureInfo.InvariantCulture),
+                        HoraSalida = DateTime.ParseExact(reader.Result.GetString("HoraSalida"), "HHmm", CultureInfo.InvariantCulture),
 
                         DiasATrabajar = await reader.Result.IsDBNullAsync("DiasATrabajar") ? 0 : reader.Result.GetInt32("DiasATrabajar"),
                         DiasTrabajados = await reader.Result.IsDBNullAsync("DiasTrabajados") ? 0 : reader.Result.GetInt32("DiasTrabajados"),
@@ -169,8 +169,8 @@ namespace GymCastillo.Model.Database {
 
                         SueldoADescontar = await reader.Result.IsDBNullAsync("SueldoADescontar") ? 0 : reader.Result.GetDecimal("SueldoADescontar"),
 
-                        IdTipoInstructor = await reader.Result.IsDBNullAsync("idTipoinstructor") ? 0 : reader.Result.GetInt32("IdTipoInstructor"),
-                        NombreTipoInstructor = await reader.Result.IsDBNullAsync("NombeTipoInstructor") ? "" : reader.Result.GetString("NombreTipoInstructor"),
+                        IdTipoInstructor = await reader.Result.IsDBNullAsync("IdTipoInstructor") ? 0 : reader.Result.GetInt32("IdTipoInstructor"),
+                        NombreTipoInstructor = await reader.Result.IsDBNullAsync("NombreTipoInstructor") ? "" : reader.Result.GetString("NombreTipoInstructor"),
 
                         IdClase = await reader.Result.IsDBNullAsync("IdClase") ? "" : reader.Result.GetString("IdClase"),
                         NombreClases = await reader.Result.IsDBNullAsync("NombreClase") ? "" : reader.Result.GetString("NombreClase"),
@@ -230,16 +230,17 @@ namespace GymCastillo.Model.Database {
                         Username = await reader.Result.IsDBNullAsync("Username") ? "" : reader.Result.GetString("Username"),
 
                         Password = await reader.Result.IsDBNullAsync("Password") ? "" : reader.Result.GetString("Password"),
-                        FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento"),
+                        FechaNacimiento = await reader.Result.IsDBNullAsync("FechaNacimiento")? DateTime.Parse("00:00") : reader.Result.GetDateTime("FechaNacimiento"),
                         Telefono = await reader.Result.IsDBNullAsync("Telefono") ? "" : reader.Result.GetString("Telefono"),
 
                         NombreContacto = await reader.Result.IsDBNullAsync("NombreContacto") ? "" : reader.Result.GetString("NombreContacto"),
                         TelefonoContacto = await reader.Result.IsDBNullAsync("TelefonoContacto") ? "" : reader.Result.GetString("TelefonoContacto"),
 
                         //Foto = reader.Result.get("Foto"), // Ver que onda con la foto.
-                        FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
+                        // TODO: ver que onda con los datos iniciales de FechaUltimoAcceso y Fecha ultimoPago.
+                        FechaUltimoAcceso = await reader.Result.IsDBNullAsync("FechaUltimoAcceso")? DateTime.Parse("00:00") : reader.Result.GetDateTime("FechaUltimoAcceso"),
 
-                        FechaUltimoPago = reader.Result.GetDateTime("FechaUltimoPago"),
+                        FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")? DateTime.Parse("00:00") : reader.Result.GetDateTime("FechaUltimoPago"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago") ? 0 : reader.Result.GetInt32("MontoUltimoPago"),
                     };
 

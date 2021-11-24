@@ -11,6 +11,7 @@ using GymCastillo.Model.Admin;
 using System.Collections.Generic;
 using GymCastillo.Model.Database;
 using System.Collections.ObjectModel;
+using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
@@ -60,10 +61,10 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 ReloadLockers(lockerIsChecked);
             }
         }
-    
+
         private void ReloadLockers(bool lockerIsChecked) {
             lockerList.Clear();
-            var locker = Task.Run(() => GetFromDb.GetLockers(lockerIsChecked)).Result;
+            var locker = GetFromDb.GetLockers(lockerIsChecked).Result;
             foreach (var item in locker) {
                 lockerList.Add(item);
             }
@@ -71,8 +72,10 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public NewClientVM() {
             try {
-                paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
-                usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+                // paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
+                // usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+                paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
+                usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
                 lockerList = new ObservableCollection<Locker>();
                 medioList = new ObservableCollection<string> {
                     "Amigos",

@@ -4,7 +4,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
     /// <summary>
     /// Clase que se encarga de Guardar los campos comunes de los objetos tipo Ingresos y Pagos
     /// </summary>
-    public class AbstractMovimientos {
+    public abstract class AbstractMovimientos {
 
         /// <summary>
         /// Id del movimiento puede ser, IdPago o IdIngreso.
@@ -45,5 +45,10 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// Indica el monto del movimiento.
         /// </summary>
         public decimal Monto { get; set; }
+
+        /// <summary>
+        /// Método que da de alta un nuevo movimiento.
+        /// </summary>
+        public abstract void Alta();
     }
 }

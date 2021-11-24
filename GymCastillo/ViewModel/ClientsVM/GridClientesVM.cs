@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using GymCastillo.View.ClientsView;
 
 namespace GymCastillo.ViewModel.ClientsVM {
@@ -54,7 +55,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         public GridClientesVM() {
             try {
-                clientes = GetFromDb.GetClientes().GetAwaiter().GetResult();
+                clientes = InitInfo.ListaClientes;
                 ClientesLista = new ObservableCollection<Cliente>();
                 overViewCommand = new(this);
                 newClient = new(this);
@@ -84,13 +85,14 @@ namespace GymCastillo.ViewModel.ClientsVM {
             NewClientsWindow window = new();
             window.ShowDialog();
             RefreshGrid();
-            Log.Debug("Ventanta de nuevo usuario iniciada");
+            Log.Debug("Ventana de nuevo usuario iniciada");
         }
 
-        private void RefreshGrid() {
+        private async void RefreshGrid() {
             ClientesLista.Clear();
-            var clientes = Task.Run( () => GetFromDb.GetClientes()).Result;
-            var orderby = clientes.OrderBy(c => c.Nombre);
+            // var clientesRe = Task.Run( () => GetFromDb.GetClientes()).Result;
+            var clientesRe = await GetFromDb.GetClientes();
+            var orderby = clientesRe.OrderBy(c => c.Nombre);
             foreach (var item in orderby) {
                 ClientesLista.Add(item);
             }

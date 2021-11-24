@@ -3,6 +3,24 @@ J.D Castro <jdemeca01@gmail.com>; Bryan Gonzalez <jhon@doe.com>
 v0.1
 
 
+== Prerrequisitos para operar el programa
+Para que el programa pueda funcionar de manera correcta es necesario que se tengan los siguientes requisitos.
+
+.Programas
+- .Net Desktop Runtime 5.0 o superior https://dotnet.microsoft.com/download/dotnet/5.0[link].
+- MySql Server Community Edition 8.0 o superior https://dev.mysql.com/downloads/mysql/[link].
+
+.Configuraciones
+. Tener a disponible el archivo llamado `schema.sql` para generar la base de datos y el usuario admin.
+. Abrir la aplicación `MySql 8.0 command line client` e introducir la contraseña con la que se configuró MySql.
+. Escribir el comando `source ` y arrastrar a la ventana el archivo `schema.sql`.
+
+== Administración General
+
+== Posibles problemas
+
+== FaQ
+
 
 
 

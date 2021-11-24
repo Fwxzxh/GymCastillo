@@ -16,22 +16,22 @@ namespace GymCastillo.Model.Validations {
 
             RuleFor(usuario => usuario.Nombre)
                 .NotNull().NotEmpty().WithMessage("El nombre no puede estar vacío.")
-                .Length(3, 30).WithMessage("El nombre debe de tener entre 3 y 30 carácteres.")
+                .Length(3, 30).WithMessage("El nombre debe de tener entre 3 y 30 caracteres.")
                 .Must(IsLetter).WithMessage("El nombre solo debe de tener letras");
 
             RuleFor(usuario => usuario.ApellidoPaterno)
                 .NotNull().NotEmpty().WithMessage("El apellido paterno puede estar vacío.")
-                .Length(3, 30).WithMessage("El apellido paterno debe de tener entre 3 y 30 carácteres.")
+                .Length(3, 30).WithMessage("El apellido paterno debe de tener entre 3 y 30 caracteres.")
                 .Must(IsLetter).WithMessage("El apellido paterno solo debe de tener letras");
 
             RuleFor(usuario => usuario.ApellidoMaterno)
                 .NotNull().NotEmpty().WithMessage("El apellido materno puede estar vacío.")
-                .Length(3, 30).WithMessage("El apellido materno debe de tener entre 3 y 30 carácteres.")
+                .Length(3, 30).WithMessage("El apellido materno debe de tener entre 3 y 30 caracteres.")
                 .Must(IsLetter).WithMessage("El apellido materno solo debe de tener letras");
 
             RuleFor(usuario => usuario.Domicilio)
                 .NotNull().NotEmpty().WithMessage("El domicilio no puede estar vacío.")
-                .Length(3, 150).WithMessage("El apellido materno debe de tener entre 3 y 150 carácteres.");
+                .Length(3, 150).WithMessage("El apellido materno debe de tener entre 3 y 150 caracteres.");
 
             RuleFor(usuario => usuario.Telefono)
                 .NotNull().NotEmpty().WithMessage("El número de teléfono no puede estar vacío.")
@@ -40,7 +40,7 @@ namespace GymCastillo.Model.Validations {
 
             RuleFor(usuario => usuario.NombreContacto)
                 .NotNull().NotEmpty().WithMessage("El nombre de contacto no puede estar vacío.")
-                .Length(3, 30).WithMessage("El nombre de contacto debe de tener entre 3 y 30 carácteres.")
+                .Length(3, 30).WithMessage("El nombre de contacto debe de tener entre 3 y 30 caracteres.")
                 .Must(IsLetter).WithMessage("El nombre de contacto solo debe de tener letras");
 
             RuleFor(usuario => usuario.TelefonoContacto)

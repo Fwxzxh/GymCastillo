@@ -57,9 +57,12 @@ namespace GymCastillo.ViewModel {
 
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");
-                    MainWindow main = new();
-                    main.Show();
-                    Application.Current.MainWindow.Close();
+                    var done = Task.Run(() => InitInfo.GetAllInfo());
+                    if (done.GetAwaiter().GetResult()) {
+                        MainWindow main = new();
+                        main.Show();
+                        Application.Current.MainWindow.Close();
+                    }
                 }
                 else {
                     Log.Info("LogIn fallido, credenciales erroneas.");
@@ -69,7 +72,7 @@ namespace GymCastillo.ViewModel {
                 }
             }
             catch (MySqlException e) {
-                Log.Error("El string de connexión probablemente sea erroneo.");
+                Log.Error("El string de conexión probablemente sea erroneo.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.WarningOk(
                     "Error: verifica tus credenciales de base de datos, probablemente sean erroneas.",

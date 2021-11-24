@@ -135,7 +135,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -148,7 +148,7 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
         public override async Task<int> Delete() {
-            // checamos si esta activo y si si hacemos querry para cambiar el status de activo y cambiamos el status de activo en la instancia.
+            // checamos si esta activo y si si hacemos query para cambiar el status de activo y cambiamos el status de activo en la instancia.
             // si ya esta inactivo hacemos la query para borrarlo.
             Log.Debug("Se ha iniciado el proceso de Delete en cliente.");
             if (Activo == false) {
@@ -167,7 +167,7 @@ namespace GymCastillo.Model.DataTypes {
                     return res;
                 }
                 catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del cliente.");
+                    Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete del cliente.");
                     Log.Error($"Error: {e.Message}");
                     ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                         "Error desconocido");
@@ -195,7 +195,7 @@ namespace GymCastillo.Model.DataTypes {
                     return res;
                 }
                 catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                    Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
                     Log.Error($"Error: {e.Message}");
                     ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                         "Error desconocido");
@@ -215,6 +215,7 @@ namespace GymCastillo.Model.DataTypes {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
+                // TODO: ver como manejar el insert simultaneo de locker.
                 const string altaQuery = @"INSERT INTO cliente 
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
                                            	@Domicilio, @FechaNacimiento, @Telefono, @CondicionEspecial, 
@@ -240,7 +241,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@Activo", "1"); // True al dar de alta.
+                command.Parameters.AddWithValue("@Activo", "1"); // Siempre True al dar de alta.
                 command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
@@ -261,7 +262,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de dar de alta el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -270,7 +271,7 @@ namespace GymCastillo.Model.DataTypes {
         }
 
         /// <summary>
-        /// Método que se encarga de dar de alta una nueva asistencia a la instacia actual.
+        /// Método que se encarga de dar de alta una nueva asistencia a la instancia actual.
         /// </summary>
         /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
         public override Task<int> NuevaAsistencia() {
@@ -278,7 +279,7 @@ namespace GymCastillo.Model.DataTypes {
         }
 
         /// <summary>
-        /// Método que se encarga de actualizar el pago del obtejo actual en la base de datos
+        /// Método que se encarga de actualizar el pago del objeto actual en la base de datos
         /// </summary>
         /// <param name="cantidad"></param>
         public override void Pago(decimal cantidad) {

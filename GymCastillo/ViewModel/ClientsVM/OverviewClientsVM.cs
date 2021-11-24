@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class OverviewClientsVM : INotifyPropertyChanged {
@@ -68,8 +69,10 @@ namespace GymCastillo.ViewModel.ClientsVM {
             SelectedClient = cliente;
             saveClient = new(this);
 
-            paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
-            usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+            // paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
+            // usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
+            paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
+            usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
             lockerList = new ObservableCollection<Locker>();
             medioList = new ObservableCollection<string> {
                     "Amigos",

@@ -76,7 +76,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -107,7 +107,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del Usuario.");
+                    Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete del Usuario.");
                     Log.Error($"Error: {e.Message}");
                     ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                         "Error desconocido");
@@ -159,7 +159,7 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
