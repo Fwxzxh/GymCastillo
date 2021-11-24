@@ -149,22 +149,22 @@ VALUES (default, 'Persona10', 'ApellidoP10', 'ApellidoM10', 'Calle 11 Colonia A'
 
 -- Lockers
 INSERT INTO locker
-VALUES (default, 'A1', null);
+VALUES (default, 'A1', FALSE);
 INSERT INTO locker
-VALUES (default, 'A2', null);
+VALUES (default, 'A2', FALSE);
 INSERT INTO locker
-VALUES (default, 'A3', null);
+VALUES (default, 'A3', FALSE);
 INSERT INTO locker
-VALUES (default, 'A4', null);
+VALUES (default, 'A4', FALSE);
 INSERT INTO locker
-VALUES (default, 'A5', null);
+VALUES (default, 'A5', FALSE);
 INSERT INTO locker
-VALUES (default, 'B1', null);
+VALUES (default, 'B1', FALSE);
 INSERT INTO locker
-VALUES (default, 'B2', null);
+VALUES (default, 'B2', FALSE);
 INSERT INTO locker
-VALUES (default, 'B3', null);
+VALUES (default, 'B3', FALSE);
 INSERT INTO locker
-VALUES (default, 'B4', null);
+VALUES (default, 'B4', FALSE);
 INSERT INTO locker
-VALUES (default, 'B5', null);
+VALUES (default, 'B5', FALSE);
