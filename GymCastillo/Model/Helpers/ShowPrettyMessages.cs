@@ -7,7 +7,7 @@ namespace GymCastillo.Model.Helpers {
     public static class ShowPrettyMessages {
 
         /// <summary>
-        /// Método que muestra un mensaje de error con un boton de OK
+        /// Método que muestra un mensaje de error con un botón de OK
         /// </summary>
         /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>
         /// <param name="title">El título de la ventana.</param>
@@ -16,7 +16,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Método que muestra un mensaje de warning con un boton de OK.
+        /// Método que muestra un mensaje de warning con un botón de OK.
         /// </summary>
         /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>
         /// <param name="title">El título de la ventana.</param>
@@ -25,7 +25,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Método que muestra un mensaje de información con un boton de Ok.
+        /// Método que muestra un mensaje de información con un botón de Ok.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="title"></param>
@@ -45,7 +45,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Método que muestra un mensaje de exito y un boton de ok.
+        /// Método que muestra un mensaje de excito y un botón de ok.
         /// </summary>
         /// <param name="message">El mensaje a mostrar en el cuadro de texto.</param>
         /// <param name="title">El titulo de la ventana.</param>

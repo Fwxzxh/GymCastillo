@@ -91,6 +91,13 @@ create table Paquete (
     foreign key (IdClase) references Clase (IdClase)
 );
 
+create table Locker (
+    -- Tabla que guarda la información de los lockers
+                        IdLocker int auto_increment primary key,
+                        Nombre varchar(10),
+    -- Para saber si dicho locker esta ocupado
+                        Ocupado bool
+);
 
 create table Cliente (
     -- Tabla Que guarda los registros de los clientes del gym.
@@ -124,13 +131,6 @@ create table Cliente (
     foreign key (IdLocker) references Locker (IdLocker)
 );
 
-create table Locker (
-    -- Tabla que guarda la información de los lockers
-    IdLocker int auto_increment primary key,
-    Nombre varchar(10),
-    -- Para saber si dicho locker esta ocupado
-    Ocupado bool
-);
 
 create table ClienteRenta (
     -- Tabla que guarda los registros de los clientes de renta de espacios en el gym.

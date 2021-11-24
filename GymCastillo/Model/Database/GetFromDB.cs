@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace GymCastillo.Model.Database {
                                       FROM Cliente c
                                       INNER JOIN Paquete p ON c.IdPaquete = p.IdPaquete
                                       INNER JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
-                                      LEFT JOIN Locker l ON c.IdCliente = l.IdCliente";
+                                      LEFT JOIN Locker l ON c.IdLocker = l.IdLocker";
 
             var listCliente = new List<Cliente>();
 
@@ -484,7 +485,7 @@ namespace GymCastillo.Model.Database {
 
             var sqlQuery = !onlyOpen ?
                 @"select * from locker" :
-                @"select * from locker where IdCliente IS NULL";
+                @"select * from locker where Ocupado=false";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -497,17 +498,17 @@ namespace GymCastillo.Model.Database {
                     var locker = new Locker() {
                         IdLocker = await reader.Result.IsDBNullAsync("IdLocker") ? 0 : reader.Result.GetInt32("IdLocker"),
                         Nombre = await reader.Result.IsDBNullAsync("Nombre") ? "" : reader.Result.GetString("Nombre"),
-                        IdCliente = await reader.Result.IsDBNullAsync("IdCliente") ? 0 : reader.Result.GetInt32("IdCliente"),
+                        Ocupado = !await reader.Result.IsDBNullAsync("Ocupado") && reader.Result.GetBoolean("Ocupado"),
                     };
                     listLocker.Add(locker);
                 }
-                Log.Debug("Se han obtenido con éxito la información de los tipos de instructor.");
+                Log.Debug("Se han obtenido con éxito la información de los lockers.");
 
                 return listLocker;
 
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error al obtener la información de los tipos de instructor.");
+                Log.Error("Ha ocurrido un error al obtener la información de los lockers..");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los tipos de instructor. Error: {e.Message}",

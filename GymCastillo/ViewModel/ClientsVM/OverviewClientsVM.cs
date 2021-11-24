@@ -60,7 +60,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
             {
                 lockerIsChecked = value;
                 OnPropertyChanged(nameof(LockerIsChecked));
-                ReloadLockers(lockerIsChecked);
+                ReloadLockers();
             }
         }
 
@@ -69,8 +69,6 @@ namespace GymCastillo.ViewModel.ClientsVM {
             SelectedClient = cliente;
             saveClient = new(this);
 
-            // paquetesList = new ObservableCollection<Paquete>(Task.Run(() => GetFromDb.GetPaquetes()).Result);
-            // usuarioList = new ObservableCollection<Tipo>(Task.Run(() => GetFromDb.GetTipoCliente()).Result);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
             lockerList = new ObservableCollection<Locker>();
@@ -83,9 +81,9 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         }
 
-        private void ReloadLockers(bool lockerIsChecked) {
+        private void ReloadLockers() {
             lockerList.Clear();
-            var locker = Task.Run(() => GetFromDb.GetLockers(lockerIsChecked)).Result;
+            var locker = InitInfo.ListaLockersOpen;
             foreach (var item in locker) {
                 lockerList.Add(item);
             }

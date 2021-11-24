@@ -105,48 +105,6 @@ VALUES (default, TRUE, 'Paquete 5 con gym', 8, 2, 1050, 1);
 INSERT INTO paquete
 VALUES (default, TRUE, 'Paquete 6 con gym', 12, 3, 1400, 1);
 
--- Clientes
-INSERT INTO cliente 
-VALUES (default, 'Persona1', 'ApellidoP1', 'ApellidoM1', 'Calle 1 Colonia A', CURDATE()
-, '1111111111', FALSE, 'Amigo1' ,'2222222221', null, CURDATE(), 350.0, TRUE, CURDATE()
-, null, 'Redes sociales', null, null, null, FALSE, 1, 1);
-INSERT INTO cliente 
-VALUES (default, 'Persona2', 'ApellidoP2', 'ApellidoM2', 'Calle 2 Colonia A', CURDATE()
-, '1111111112', FALSE, 'Amigo2' ,'2222222222', null, CURDATE(), 350.0, TRUE, CURDATE()
-, null, 'Otro', null, null, null, FALSE, 1, 1);
-INSERT INTO cliente 
-VALUES (default, 'Persona3', 'ApellidoP3', 'ApellidoM3', 'Calle 3 Colonia A', CURDATE()
-, '1111111113', FALSE, 'Amigo3' ,'2222222223', null, CURDATE(), 350.0, TRUE, CURDATE()
-, null, 'Amig@', null, null, null, FALSE, 1, 1);
-INSERT INTO cliente 
-VALUES (default, 'Persona4', 'ApellidoP4', 'ApellidoM4', 'Calle 4 Colonia A', CURDATE()
-, '1111111114', FALSE, 'Amigo4' ,'2222222224', null, CURDATE(), 350.0, TRUE, CURDATE()
-, null, 'Amig@', 4, 1, null, FALSE, 3, 2);
-INSERT INTO cliente 
-VALUES (default, 'Persona5', 'ApellidoP5', 'ApellidoM5', 'Calle 5 Colonia A', CURDATE()
-, '1111111115', FALSE, 'Amigo5' ,'2222222225', null, CURDATE(), 700.0, TRUE, CURDATE()
-, null, 'Redes sociales', 8, 2, null, FALSE, 3, 3);
-INSERT INTO cliente 
-VALUES (default, 'Persona6', 'ApellidoP6', 'ApellidoM6', 'Calle 6 Colonia A', CURDATE()
-, '1111111116', FALSE, 'Amigo6' ,'2222222226', null, CURDATE(), 1050.0, TRUE, CURDATE()
-, null, 'Otro', 12, 3, null, FALSE, 3, 4);
-INSERT INTO cliente 
-VALUES (default, 'Persona7', 'ApellidoP7', 'ApellidoM7', 'Calle 7 Colonia A', CURDATE()
-, '1111111117', FALSE, 'Amigo7' ,'2222222227', null, CURDATE(), 700.0, TRUE, CURDATE()
-, null, 'Otro', 4, 1, null, FALSE, 3, 5);
-INSERT INTO cliente 
-VALUES (default, 'Persona8', 'ApellidoP8', 'ApellidoM8', 'Calle 8 Colonia A', CURDATE()
-, '1111111118', TRUE, 'Amigo8' ,'2222222238', null, CURDATE(), 1050.0, TRUE, CURDATE()
-, null, 'Redes sociales', 8, 2, null, FALSE, 3, 6);
-INSERT INTO cliente 
-VALUES (default, 'Persona9', 'ApellidoP9', 'ApellidoM9', 'Calle 9 Colonia A', CURDATE()
-, '1111111119', FALSE, 'Amigo9' ,'2222222229', null, CURDATE(), 1400.0, TRUE, CURDATE()
-, null, 'Amig@', 12, 3, null, FALSE, 3, 7);
-INSERT INTO cliente 
-VALUES (default, 'Persona10', 'ApellidoP10', 'ApellidoM10', 'Calle 11 Colonia A', CURDATE()
-, '1111111110', FALSE, 'Amigo10' ,'2222222210', null, CURDATE(), 1050.0, TRUE,  CURDATE()
-, null, 'Redes sociales', 12, 3, null, FALSE, 3, 4);
-
 -- Lockers
 INSERT INTO locker
 VALUES (default, 'A1', null);
@@ -168,3 +126,45 @@ INSERT INTO locker
 VALUES (default, 'B4', null);
 INSERT INTO locker
 VALUES (default, 'B5', null);
+
+-- Clientes
+INSERT INTO cliente
+VALUES (default, 'Persona1', 'ApellidoP1', 'ApellidoM1', 'Calle 1 Colonia A', CURDATE()
+       , '1111111111', FALSE, 'Amigo1' ,'2222222221', null, CURDATE(), 350.0, TRUE, CURDATE()
+       , null, 'Redes sociales', null, null, null, FALSE, 1, 1, null);
+INSERT INTO cliente
+VALUES (default, 'Persona2', 'ApellidoP2', 'ApellidoM2', 'Calle 2 Colonia A', CURDATE()
+       , '1111111112', FALSE, 'Amigo2' ,'2222222222', null, CURDATE(), 350.0, TRUE, CURDATE()
+       , null, 'Otro', null, null, null, FALSE, 1, 1, null);
+INSERT INTO cliente
+VALUES (default, 'Persona3', 'ApellidoP3', 'ApellidoM3', 'Calle 3 Colonia A', CURDATE()
+       , '1111111113', FALSE, 'Amigo3' ,'2222222223', null, CURDATE(), 350.0, TRUE, CURDATE()
+       , null, 'Amig@', null, null, null, FALSE, 1, 1, 1);
+INSERT INTO cliente
+VALUES (default, 'Persona4', 'ApellidoP4', 'ApellidoM4', 'Calle 4 Colonia A', CURDATE()
+       , '1111111114', FALSE, 'Amigo4' ,'2222222224', null, CURDATE(), 350.0, TRUE, CURDATE()
+       , null, 'Amig@', 4, 1, null, FALSE, 3, 2, 2);
+INSERT INTO cliente
+VALUES (default, 'Persona5', 'ApellidoP5', 'ApellidoM5', 'Calle 5 Colonia A', CURDATE()
+       , '1111111115', FALSE, 'Amigo5' ,'2222222225', null, CURDATE(), 700.0, TRUE, CURDATE()
+       , null, 'Redes sociales', 8, 2, null, FALSE, 3, 3, 6);
+INSERT INTO cliente
+VALUES (default, 'Persona6', 'ApellidoP6', 'ApellidoM6', 'Calle 6 Colonia A', CURDATE()
+       , '1111111116', FALSE, 'Amigo6' ,'2222222226', null, CURDATE(), 1050.0, TRUE, CURDATE()
+       , null, 'Otro', 12, 3, null, FALSE, 3, 4, null);
+INSERT INTO cliente
+VALUES (default, 'Persona7', 'ApellidoP7', 'ApellidoM7', 'Calle 7 Colonia A', CURDATE()
+       , '1111111117', FALSE, 'Amigo7' ,'2222222227', null, CURDATE(), 700.0, TRUE, CURDATE()
+       , null, 'Otro', 4, 1, null, FALSE, 3, 5, null);
+INSERT INTO cliente
+VALUES (default, 'Persona8', 'ApellidoP8', 'ApellidoM8', 'Calle 8 Colonia A', CURDATE()
+       , '1111111118', TRUE, 'Amigo8' ,'2222222238', null, CURDATE(), 1050.0, TRUE, CURDATE()
+       , null, 'Redes sociales', 8, 2, null, FALSE, 3, 6, null);
+INSERT INTO cliente
+VALUES (default, 'Persona9', 'ApellidoP9', 'ApellidoM9', 'Calle 9 Colonia A', CURDATE()
+       , '1111111119', FALSE, 'Amigo9' ,'2222222229', null, CURDATE(), 1400.0, TRUE, CURDATE()
+       , null, 'Amig@', 12, 3, null, FALSE, 3, 7, null);
+INSERT INTO cliente
+VALUES (default, 'Persona10', 'ApellidoP10', 'ApellidoM10', 'Calle 11 Colonia A', CURDATE()
+       , '1111111110', FALSE, 'Amigo10' ,'2222222210', null, CURDATE(), 1050.0, TRUE,  CURDATE()
+       , null, 'Redes sociales', 12, 3, null, FALSE, 3, 4, null);

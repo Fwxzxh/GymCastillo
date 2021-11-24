@@ -107,7 +107,7 @@ namespace GymCastillo.Model.DataTypes {
                                              SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
                                                  NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
                                                  Activo=@Activo, MedioConocio=@MedioConocio, Descuento=@Descuento, Nino=@Nino,
-                                                 IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete
+                                                 IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete, IdLocker=@IdLocker
                                              WHERE IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -129,6 +129,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
+                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
 
                 var res = await ExecSql.NonQuery(command, "Update Cliente");
 
@@ -222,7 +223,7 @@ namespace GymCastillo.Model.DataTypes {
                                            	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
                                            	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
                                            	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponibles, 
-                                           	@Descuento, @Nino, @IdTipoCliente, @IdPaquete)";
+                                           	@Descuento, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -253,6 +254,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
+                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
 
                 Log.Debug("Se ha generado la query.");
 

@@ -90,7 +90,6 @@ namespace GymCastillo.ViewModel.ClientsVM {
 
         private async void RefreshGrid() {
             ClientesLista.Clear();
-            // var clientesRe = Task.Run( () => GetFromDb.GetClientes()).Result;
             var clientesRe = await GetFromDb.GetClientes();
             var orderby = clientesRe.OrderBy(c => c.Nombre);
             foreach (var item in orderby) {

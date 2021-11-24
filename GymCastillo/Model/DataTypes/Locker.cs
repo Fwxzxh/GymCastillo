@@ -17,6 +17,6 @@
         /// <summary>
         /// Id del cliente dueño de ese locker.
         /// </summary>
-        public int  IdCliente { get; set; }
+        public bool Ocupado { get; set; }
     }
 }
