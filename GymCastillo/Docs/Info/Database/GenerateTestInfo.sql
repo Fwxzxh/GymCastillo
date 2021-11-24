@@ -32,43 +32,43 @@ VALUES (default, 'Otros', 'Otro tipo de instructor');
 -- Instructores
 INSERT INTO instructor 
 VALUES (default, 'Instructor1', 'ApellidoPI1', 'ApellidoMI1', 'Calle 1 Colonia B', CURDATE()
-, '2111111111', 'AmigoI1' ,'1222222221', null, CURDATE(), CURDATE(), 1500.0, '700', '1400', 5
+, '2111111111', 'AmigoI1' ,'1222222221', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
 VALUES (default, 'Instructor2', 'ApellidoPI2', 'ApellidoMI2', 'Calle 2 Colonia B', CURDATE()
-, '2111111112', 'AmigoI2' ,'1222222222', null, CURDATE(), CURDATE(), 500.0, '700', '1400', 5
+, '2111111112', 'AmigoI2' ,'1222222222', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
 VALUES (default, 'Instructor3', 'ApellidoPI3', 'ApellidoMI3', 'Calle 3 Colonia B', CURDATE()
-, '2111111113', 'AmigoI3' ,'1222222223', null, CURDATE(), CURDATE(), 1500.0, '700', '1400', 5
+, '2111111113', 'AmigoI3' ,'1222222223', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
 VALUES (default, 'Instructor4', 'ApellidoPI4', 'ApellidoMI4', 'Calle 4 Colonia B', CURDATE()
-, '2111111114', 'AmigoI4' ,'1222222224', null, CURDATE(), CURDATE(), 1500.0, '700', '1400', 5
+, '2111111114', 'AmigoI4' ,'1222222224', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
 VALUES (default, 'Instructor5', 'ApellidoPI5', 'ApellidoMI5', 'Calle 5 Colonia B', CURDATE()
-, '2111111115', 'AmigoI5' ,'1222222225', null, CURDATE(), CURDATE(), 500.0, '700', '1400', 5
+, '2111111115', 'AmigoI5' ,'1222222225', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
 VALUES (default, 'Instructor6', 'ApellidoPI6', 'ApellidoMI6', 'Calle 6 Colonia B', CURDATE()
-, '2111111116', 'AmigoI6' ,'1222222226', null, CURDATE(), CURDATE(), 500.0, '700', '1400', 5
+, '2111111116', 'AmigoI6' ,'1222222226', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
 VALUES (default, 'Instructor7', 'ApellidoPI7', 'ApellidoMI7', 'Calle 7 Colonia B', CURDATE()
-, '2111111117', 'AmigoI7' ,'1222222227', null, CURDATE(), CURDATE(), 500.0, '700', '1400', 5
+, '2111111117', 'AmigoI7' ,'1222222227', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
 VALUES (default, 'Instructor8', 'ApellidoPI8', 'ApellidoMI8', 'Calle 8 Colonia B', CURDATE()
-, '2111111118', 'AmigoI8' ,'1222222238', null, CURDATE(), CURDATE(), 500.0, '700', '1400', 5
+, '2111111118', 'AmigoI8' ,'1222222238', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
 VALUES (default, 'Instructor9', 'ApellidoPI9', 'ApellidoMI9', 'Calle 9 Colonia B', CURDATE()
-, '2111111119', 'AmigoI9' ,'1222222229', null, CURDATE(), CURDATE(),1500.0, '700', '1400', 5
+, '2111111119', 'AmigoI9' ,'1222222229', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
 VALUES (default, 'Instructor10', 'ApellidoPI10', 'ApellidoMI10', 'Calle 10 Colonia B', CURDATE()
-, '2111111110', 'AmigoI10' ,'1222222210', null, CURDATE(), CURDATE(),1500.0, '700', '1400', 5
+, '2111111110', 'AmigoI10' ,'1222222210', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 
 -- Clases
@@ -79,15 +79,15 @@ VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2);
 
 -- Horarios
 INSERT INTO horario
-VALUES (default, 1, '700', '800', null, 1);
+VALUES (default, 1, '0700', '0800', null, 1);
 INSERT INTO horario
-VALUES (default, 2, '700', '800', null, 1);
+VALUES (default, 2, '0700', '0800', null, 1);
 INSERT INTO horario
-VALUES (default, 3, '700', '800', null, 1);
+VALUES (default, 3, '0700', '0800', null, 1);
 INSERT INTO horario
-VALUES (default, 4, '700', '800', null, 1);
+VALUES (default, 4, '0700', '0800', null, 1);
 INSERT INTO horario
-VALUES (default, 5, '700', '800', null, 1);
+VALUES (default, 5, '0700', '0800', null, 1);
 
 -- Paquetes
 INSERT INTO paquete
