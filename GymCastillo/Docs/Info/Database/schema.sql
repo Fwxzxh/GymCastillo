@@ -118,16 +118,18 @@ create table Cliente (
     IdTipoCliente int,
     foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
     IdPaquete int,
-    foreign key (IdPaquete) references Paquete (IdPaquete)
+    foreign key (IdPaquete) references Paquete (IdPaquete),
+	-- Solución ante el problema de crear clientes y al mismo tiempo asignar locker
+    IdLocker int,
+    foreign key (IdLocker) references Locker (IdLocker)
 );
 
 create table Locker (
     -- Tabla que guarda la información de los lockers
     IdLocker int auto_increment primary key,
     Nombre varchar(10),
-    -- IdCliente
-    IdCliente int,
-    foreign key (IdCliente) references Cliente (IdCliente)
+    -- Para saber si dicho locker esta ocupado
+    Ocupado bool
 );
 
 create table ClienteRenta (
