@@ -1,11 +1,19 @@
 ﻿using System;
-using System.Windows.Documents;
+using System.Globalization;
+using System.Threading.Tasks;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
+using GymCastillo.Model.Interfaces;
+using log4net;
+using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes {
     /// <summary>
     /// Clase que contiene los campos y métodos del objeto tipo Paquete.
     /// </summary>
-    public class Paquete {
+    public class Paquete : IOtrosTipos{
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Id del paquete.
@@ -47,32 +55,119 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         public string NombreClase { get; set; }
 
-        /// <summary>
-        /// Método que se encarga de hacer update a la clase actual.
-        /// </summary>
-        public void Update() {
-            throw new NotImplementedException();
+        public async Task<int> Update() {
+            Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                // TODO: hacer query.
+                const string updateQuery = @"UPDATE paquete
+                                             SET Gym=@Gym, NombrePaquete=@NombrePaquete,
+                                                 NumClasesTotales=@NumClasesTotales, 
+                                                 NumClasesSemanales=@NumClasesSemanales,
+                                                 Costo=@Costo, IdClase=@IdClase
+                                             WHERE IdPaquete=@IdPaquete;";
+
+                await using var command = new MySqlCommand(updateQuery, connection);
+
+                command.Parameters.AddWithValue("@Gym", Convert.ToInt32(Gym).ToString());
+                command.Parameters.AddWithValue("@NombrePaquete", NombrePaquete);
+
+                command.Parameters.AddWithValue("@NumeroClasesTotales", NumClasesTotales.ToString());
+                command.Parameters.AddWithValue("@NumeroClasesSemanales", NumClasesSemanales.ToString());
+
+                command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
+
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Update Paquete");
+                Log.Debug("Se ha actualizado un Paquete.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el update de un paquete.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
-        /// <summary>
-        /// Método que da de alta en la base de datos esta instancia de clase.
-        /// </summary>
-        public void Alta() {
-            throw new NotImplementedException();
+        public async Task<int> Alta() {
+            Log.Debug("Se ha iniciado el proceso de alta ");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                // TODO: hacer query.
+                const string altaQuery = @"INSERT INTO paquete
+                                           VALUES 
+                                               (default, @Gym, @NombrePaquete,
+                                               @NumClasesTotales, @NumClasesSemanales,
+                                               @Costo, @IdClase);";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+
+                command.Parameters.AddWithValue("@Gym", Convert.ToInt32(Gym).ToString());
+                command.Parameters.AddWithValue("@NombrePaquete", NombrePaquete);
+
+                command.Parameters.AddWithValue("@NumClasesTotales", NumClasesTotales.ToString());
+                command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
+
+                command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
+
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Alta Paquete");
+                Log.Debug("Se ha dado de alta un paquete.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta un paquete.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
-        /// <summary>
-        /// Método que se encarga de desactivar la instancia de la clase en la base de datos.
-        /// </summary>
-        public void Delete() {
-            throw new NotImplementedException();
-        }
+        public async Task<int> Delete() {
+            Log.Debug("Se ha iniciado el proceso de delete en una clase.");
 
-        /// <summary>
-        /// Método que se encarga de validar los datos de la instancia de la clase.
-        /// </summary>
-        public void Validate() {
-            throw new NotImplementedException();
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string deleteQuery = @"delete from paquete where IdPaquete=@IdPaquete";
+
+                await using var command = new MySqlCommand(deleteQuery, connection);
+
+                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
+
+                Log.Debug("Se ha creado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Delete Paquete");
+                Log.Debug("Se ha eliminado un un paquete de la tabla.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete de la clase.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

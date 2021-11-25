@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
+using GymCastillo.Model.Init;
+using GymCastillo.Model.Interfaces;
+using log4net;
+using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes {
     /// <summary>
     /// Clase que tiene los campos y métodos de los objetos tipo Horario.
     /// </summary>
-    public class Horario {
+    public class Horario : IOtrosTipos {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Id del horario
@@ -35,6 +41,42 @@ namespace GymCastillo.Model.DataTypes {
         /// El Cupo actual de la clase.
         /// </summary>
         public int CupoActual { get; set; }
+
+        public async Task<int> Update() {
+            Log.Debug("Se ha iniciado el proceso de update de un horario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string updateQuery = @"UPDATE horario
+                                             SET Dia=@Dia, HoraInicio=@HoraInicio,
+                                                 HoraFin=@HoraFin, IdClase=@IdClase
+                                             WHERE IdHorario=@IdHorario";
+
+                await using var command = new MySqlCommand(updateQuery, connection);
+
+                // command.Parameters.AddWithValue("@Dia", .ToString());
+                // command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString());
+
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+
+                throw;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Delete() {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Alta() {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Método que actualiza la cantidad del cupo actual.

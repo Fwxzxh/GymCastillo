@@ -2,6 +2,7 @@
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
@@ -99,6 +100,7 @@ namespace GymCastillo.Model.DataTypes {
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Cliente.");
 
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -129,7 +131,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
+                command.Parameters.AddWithValue("@IdLocker", IdLocker == 0 ? null : IdLocker.ToString()); // SI idLocker es 0, no hay locker.
 
                 var res = await ExecSql.NonQuery(command, "Update Cliente");
 
@@ -254,7 +256,7 @@ namespace GymCastillo.Model.DataTypes {
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
                 command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
+                command.Parameters.AddWithValue("@IdLocker", IdLocker == 0 ? null : IdLocker.ToString()); // SI idLocker es 0, no hay locker.
 
                 Log.Debug("Se ha generado la query.");
 
