@@ -204,3 +204,23 @@ numclasestotales=@NumClasesTotales,
 numclasessemanales=@NumClasesSemanales,
 costo=@Costo, idclase=@IdClase
 WHERE idpaquete=@IdPaquete;
+
+
+-- Horarios
+-- Consulta todo horario
+SELECT h.idhorario, h.dia, h.horainicio,
+h.horafin, h.cupoactual,
+c.idclase, c.nombreclase
+FROM horario h
+LEFT JOIN clase c ON c.idclase=h.idclase;
+
+-- Alta horarios
+INSERT INTO horario
+VALUES (default, @Dia, @HoraInicio,
+@HoraFin, @CupoActual, @IdClase);
+
+-- Actualización horarios
+UPDATE horario
+SET dia=@Dia, horainicio=@HoraInicio,
+horafin=@HoraFin, idclase=@IdClase
+WHERE idhorario=@IdHorario;
