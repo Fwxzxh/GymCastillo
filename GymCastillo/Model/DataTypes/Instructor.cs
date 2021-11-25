@@ -152,7 +152,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Método que da de alta la instancia actual del instructor en la base de datos.
         /// </summary>
-        /// <returns>La cantidad de columanas afectadas.</returns>
+        /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un Instructor.");
             try {

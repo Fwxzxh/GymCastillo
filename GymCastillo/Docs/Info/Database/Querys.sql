@@ -223,8 +223,9 @@ LEFT JOIN clase c ON c.idclase=h.idclase;
 
 -- Alta horarios
 INSERT INTO horario
-VALUES (default, @Dia, @HoraInicio,
-@HoraFin, @CupoActual, @IdClase);
+VALUES
+    (default, @Dia, @HoraInicio,
+    @HoraFin, @CupoActual, @IdClase);
 
 -- Actualización horarios
 UPDATE horario

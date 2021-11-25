@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using log4net;
@@ -57,25 +59,93 @@ namespace GymCastillo.Model.DataTypes {
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                // command.Parameters.AddWithValue("@Dia", .ToString());
-                // command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString());
+                command.Parameters.AddWithValue("@Dia", (int)Dia); // TODO: probar esto.
+                command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
+                command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
+                Log.Debug("Se ha creado la query.");
+
+                var res =await ExecSql.NonQuery(command, "Alta Horario");
+                Log.Debug("Se ha dado de alta un horario.");
+
+                return res;
             }
             catch (Exception e) {
-                Console.WriteLine(e);
-
-                throw;
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar el horario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
             }
-
-            throw new NotImplementedException();
         }
 
-        public Task<int> Delete() {
-            throw new NotImplementedException();
+        public async Task<int> Delete() {
+            Log.Debug("Se ha iniciado el proceso de delete de un horario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string deleteQuery = @"delete from horario where IdHorario=@IdHorario";
+
+                await using var command = new MySqlCommand(deleteQuery, connection);
+
+                command.Parameters.AddWithValue("@IdInstructor", IdHorario.ToString());
+
+                Log.Debug("Se ha creado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Delete Horario");
+                Log.Debug("Se ha eliminado un horario de la tabla.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete del horario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
-        public Task<int> Alta() {
-            throw new NotImplementedException();
+        public async Task<int> Alta() {
+            Log.Debug("Se ha iniciado el proceso de dar de alta un horario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string altaQuery = @"INSERT INTO horario
+                                           VALUES 
+                                               (default, @Dia, @HoraInicio,
+                                               @HoraFin, @CupoActual, @IdClase);";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+
+                command.Parameters.AddWithValue("@Dia", (int)Dia);
+                command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
+                command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
+
+                command.Parameters.AddWithValue("@CupoActual", CupoActual.ToString());
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
+
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Alta Horario");
+                Log.Debug("Se ha dado de alta un horario.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta un horario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>
