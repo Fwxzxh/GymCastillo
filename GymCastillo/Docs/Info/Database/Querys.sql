@@ -147,3 +147,60 @@ select
 from clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio;
+
+
+-- Clases
+-- Consulta todo clase con horario:
+SELECT c.IdClase, c.NombreClase, c.Descripcion,
+c.CupoMaximo, c.Activo,
+i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+e.IdEspacio, e.NombreEspacio,
+group_concat(h.Día) Dia, group_concat(h.HoraInicio) HoraDeInicio, group_concat(h.HoraFin) HoraDeTermino
+FROM clase c
+LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
+LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
+LEFT JOIN horario h ON h.IdClase = c.IdClase
+group by c.IdClase;
+
+-- Consulta todo clase sin horario:
+SELECT c.IdClase, c.NombreClase, c.Descripcion,
+c.CupoMaximo, c.Activo,
+i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+e.IdEspacio, e.NombreEspacio
+FROM clase c
+LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
+LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio;
+
+-- Alta de clases
+INSERT INTO clase
+VALUES (default, @NombreClase, @Descripcion, 
+@CupoMaximo, @Activo, @IdInstructor, @IdEspacio);
+
+-- Actulización de clases
+UPDATE clase
+SET cupomaximo=@CupoMaximo, activo=@Activo,
+idinstructor=@IdInstructor, idespacio=@IdEspacio
+WHERE idclase=@IdClase;
+
+
+-- Paquetes
+-- Consulta todo paquete
+SELECT p.IdPaquete, p.Gym, p.NombrePaquete,
+p.NumClasesTotales, p.NumClasesSemanales, p.Costo,
+c.IdClase, c.NombreClase
+FROM paquete p
+LEFT JOIN clase c ON c.IdClase = p.IdClase;
+
+-- Alta Paquetes
+INSERT INTO paquete
+VALUES (default, @Gym, @NombrePaquete,
+@NumClasesTotales, @NumClasesSemanales,
+@Costo, @IdClase);
+
+-- Actulización paquetes
+UPDATE paquete
+SET gym=@Gym, nombrepaquete=@NombrePaquete,
+numclasestotales=@NumClasesTotales, 
+numclasessemanales=@NumClasesSemanales,
+costo=@Costo, idclase=@IdClase
+WHERE idpaquete=@IdPaquete;
