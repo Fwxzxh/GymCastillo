@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymCastillo.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View {
+namespace GymCastillo.View.UsuariosView {
     /// <summary>
-    /// Interaction logic for GridUsuariosUserControl.xaml
+    /// Interaction logic for NewUserWindow.xaml
     /// </summary>
-    public partial class GridUsuariosUserControl : UserControl {
-        public GridUsuariosUserControl() {
+    public partial class NewUserWindow : Window, IClosable {
+        public NewUserWindow() {
             InitializeComponent();
-        }
-
-        private void BtnNuevoUsuario_Click(object sender, RoutedEventArgs e) {
-
         }
     }
 }

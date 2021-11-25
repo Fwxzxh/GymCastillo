@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:inst="clr-namespace:GymCastillo.View.InstructoresView"
              xmlns:clientes="clr-namespace:GymCastillo.View.ClientsView"
+             xmlns:usuarios="clr-namespace:GymCastillo.View.UsuariosView"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -51,8 +52,20 @@
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <usuarios:GridUsuariosUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="160">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Clientes Renta"
+                                   Width="200"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <!--<TabItem.Content>
-                    <local:GridInstructoresUserControl/>
+                    <usuarios:GridUsuariosUC/>
                 </TabItem.Content>-->
             </TabItem>
         </TabControl>

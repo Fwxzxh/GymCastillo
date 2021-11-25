@@ -16,9 +16,6 @@
     <Compile Update="View\InstructoresView\GridInstructoresUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\GridUsuariosUserControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\HomeViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +26,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ClientsView\OverviewClientsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\UsuariosView\GridUsuariosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\UsuariosView\NewUserWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\UsuariosView\OverviewUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -45,9 +51,6 @@
     <Page Update="View\InstructoresView\GridInstructoresUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\GridUsuariosUserControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\HomeViewUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -58,6 +61,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ClientsView\OverviewClientsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UsuariosView\GridUsuariosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UsuariosView\NewUserWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UsuariosView\OverviewUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
