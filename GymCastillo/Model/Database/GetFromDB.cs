@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
