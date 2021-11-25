@@ -172,3 +172,13 @@ VALUES (default, 'Persona10', 'ApellidoP10', 'ApellidoM10', 'Calle 11 Colonia A'
 , '1111111110', FALSE, 'Amigo10' ,'2222222210', null, CURDATE(), 1050.0, TRUE,  CURDATE()
 , null, 'Redes sociales', 12, 3, null, FALSE, 3, 4, null);
 
+INSERT INTO clienterenta
+VALUES (default, 'Memo', 'Memo', 'Memo', 'Calle memo', CURDATE(), '1212121212', 'Elihihu', '1515151515', null, CURDATE(), 100.0, 200.0);
+INSERT INTO clienterenta
+VALUES (default, 'Elihihu', 'Memo', 'Memo', 'Calle memo1', CURDATE(), '1212121211', 'Elihihu', '1515151511', null, CURDATE(), 100.0, 200.0);
+INSERT INTO clienterenta
+VALUES (default, 'Eliudt', 'Memo', 'Memo', 'Calle memo2', CURDATE(), '1212121212', 'Elihihu', '1515151512', null, CURDATE(), 100.0, 200.0);
+INSERT INTO clienterenta
+VALUES (default, 'Eliu', 'Memo', 'Memo', 'Calle memo3', CURDATE(), '1212121213', 'Elihihu', '1515151513', null, CURDATE(), 100.0, 200.0);
+INSERT INTO clienterenta
+VALUES (default, 'Elihuhu', 'Memo', 'Memo', 'Calle memo4', CURDATE(), '1212121214', 'Elihihu', '1515151514', null, CURDATE(), 100.0, 200.0);
