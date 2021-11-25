@@ -177,7 +177,7 @@ VALUES (default, 'Memo', 'Memo', 'Memo', 'Calle memo', CURDATE(), '1212121212', 
 INSERT INTO clienterenta
 VALUES (default, 'Elihihu', 'Memo', 'Memo', 'Calle memo1', CURDATE(), '1212121211', 'Elihihu', '1515151511', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Eliudt', 'Memo', 'Memo', 'Calle memo2', CURDATE(), '1212121212', 'Elihihu', '1515151512', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Eliudt', 'Memo', 'Memo', 'Calle memo2', CURDATE(), '1212121215', 'Elihihu', '1515151512', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
 VALUES (default, 'Eliu', 'Memo', 'Memo', 'Calle memo3', CURDATE(), '1212121213', 'Elihihu', '1515151513', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
