@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="GymCastillo.View.ClientsView.GridClientesUC"
+﻿<UserControl x:Class="GymCastillo.View.ClientsRentaView.GridClientesRUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vm="clr-namespace:GymCastillo.ViewModel.ClientsVM"
-             mc:Ignorable="d"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.ClientsRentaVM"
+             xmlns:local="clr-namespace:GymCastillo.View.ClientsRentaView"
+             mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
@@ -15,7 +16,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <vm:GridClientesVM x:Key="vm"/>
+        <vm:GridRentaVM x:Key="vm"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -129,37 +130,9 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <!--<Button ToolTip="Ver más"
-                                    DataContext="{StaticResource vm}"
-                                    Command="{Binding overViewCommand}">
+                            <Button ToolTip="Ver más">
                                 <materialDesign:PackIcon Kind="EyeAddOutline"/>
                             </Button>
-                            <Button ToolTip="Eliminar"
-                                    Background="Transparent"
-                                    BorderBrush="Red"
-                                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                                    DataContext="{StaticResource vm}"
-                                    Margin="0"
-                                    Command="{Binding deleteClient}">
-                                <materialDesign:PackIcon Kind="TrashCanOutline"/>
-                            </Button>-->
-                            <StackPanel Orientation="Horizontal" Margin="-10 0">
-                                <Button ToolTip="Ver más"
-                                        Margin="5 0"
-                                    DataContext="{StaticResource vm}"
-                                    Command="{Binding overViewCommand}">
-                                <materialDesign:PackIcon Kind="EyeAddOutline"/>
-                            </Button>
-                            <Button ToolTip="Eliminar"
-                                    Background="Transparent"
-                                    BorderBrush="Red"
-                                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                                    DataContext="{StaticResource vm}"
-                                    Margin="5 0"
-                                    Command="{Binding deleteClient}">
-                                <materialDesign:PackIcon Kind="TrashCanOutline"/>
-                            </Button>
-                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -176,7 +149,6 @@
                 VerticalContentAlignment="Center"
                 Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                 Height="50"
-                ToolTip="Nuevo Cliente"
-                Command="{Binding newClient}"/>
+                ToolTip="Nuevo Cliente"/>
     </Grid>
 </UserControl>

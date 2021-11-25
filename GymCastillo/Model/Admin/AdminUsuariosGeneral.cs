@@ -59,14 +59,14 @@ namespace GymCastillo.Model.Admin {
         public static async Task Delete(AbstUsuario objeto) {
             try {
                 // validamos el objeto
-                var validator = new UsuarioGralValidation();
-                await validator.ValidateAndThrowAsync(objeto);
+                //var validator = new UsuarioGralValidation();
+                //await validator.ValidateAndThrowAsync(objeto);
 
-                // validamos los campos concretos
-                await ValidateAgain(objeto);
+                //// validamos los campos concretos
+                //await ValidateAgain(objeto);
 
                 // Hacemos el delete.
-                var res = objeto.Delete().Result;
+                var res = await objeto.Delete();
 
                 // Verificamos los cambios.
                 if (res == 0) {

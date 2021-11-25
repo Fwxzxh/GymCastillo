@@ -14,6 +14,7 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.View.ClientsView;
+using GymCastillo.Model.Admin;
 
 namespace GymCastillo.ViewModel.ClientsVM {
     public class GridClientesVM : INotifyPropertyChanged {
@@ -26,6 +27,8 @@ namespace GymCastillo.ViewModel.ClientsVM {
         public ObservableCollection<Cliente> ClientesLista { get; set; }
 
         public NewClientWindowCommand newClient { get; set; }
+
+        public DeleteClientCommand deleteClient { get; set; }
 
         public OverViewClienteCommand overViewCommand { get; set; }
 
@@ -59,6 +62,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 ClientesLista = new ObservableCollection<Cliente>();
                 overViewCommand = new(this);
                 newClient = new(this);
+                deleteClient = new(this);
 
                 foreach (var cliente in clientes.OrderBy(c => c.Nombre)) {
                     ClientesLista.Add(cliente);
@@ -88,11 +92,19 @@ namespace GymCastillo.ViewModel.ClientsVM {
             Log.Debug("Ventana de nuevo usuario iniciada");
         }
 
+        public async void DeleteClient() {
+            if (ShowPrettyMessages.QuestionYesNo("¿Desea borrar el cliente?", "Confirmación")) {
+                await AdminUsuariosGeneral.Delete(SelectedClient);
+                RefreshGrid();
+            }
+            else return;
+        }
+
         private async void RefreshGrid() {
             ClientesLista.Clear();
             var clientesRe = await GetFromDb.GetClientes();
             InitInfo.ListaClientes = clientesRe;
-            foreach (var item in clientesRe.OrderBy(c => c.Nombre)) {
+            foreach (var item in clientesRe.OrderBy(c => c.Nombre).Where(l => l.Activo != false)) {
                 ClientesLista.Add(item);
             }
         }

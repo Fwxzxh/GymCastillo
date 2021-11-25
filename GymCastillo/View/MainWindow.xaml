@@ -53,11 +53,22 @@
                     <home:UsersViewUserControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem ToolTip="Clases">  
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
-                            Kind="Settings"
+                            Kind="Calendar"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem ToolTip="Pagos">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" ToolTip="Pagos">
+                        <materialDesign:PackIcon
+                            Kind="AttachMoney"
                             Width="30"
                             Height="30"
                             HorizontalAlignment="Center"/>
@@ -68,7 +79,7 @@
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
-                            Kind="Calendar"
+                            Kind="Settings"
                             Width="30"
                             Height="30"
                             HorizontalAlignment="Center"/>
