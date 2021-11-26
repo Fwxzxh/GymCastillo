@@ -14,7 +14,7 @@
              d:DesignHeight="720" d:DesignWidth="1200">
     <Grid Margin="100" VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Source="\Docs\Assets\CastilloF2C.png" Height="600" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Source="\Docs\Assets\CastilloF2.png" Height="600" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>  
     </Grid>
 </UserControl>
