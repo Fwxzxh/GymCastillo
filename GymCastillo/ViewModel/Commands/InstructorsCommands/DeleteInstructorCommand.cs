@@ -1,4 +1,4 @@
-﻿using GymCastillo.ViewModel.UsersVM;
+﻿using GymCastillo.ViewModel.InstructoresVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GymCastillo.ViewModel.Commands.UsersCommands {
-    public class UpdateUserCommand : ICommand {
-        private OverviewUsuariosVM vm { get; set; }
+namespace GymCastillo.ViewModel.Commands.InstructorsCommands {
+    public class DeleteInstructorCommand : ICommand {
+        private GridInstructoresVM vm { get; set; }
 
-        public UpdateUserCommand(OverviewUsuariosVM vm) {
+        public DeleteInstructorCommand(GridInstructoresVM vm) {
             this.vm = vm;
         }
 
@@ -24,7 +24,7 @@ namespace GymCastillo.ViewModel.Commands.UsersCommands {
         }
 
         public void Execute(object parameter) {
-            vm.UpdateUser();
+            vm.DeleteInstructor();
         }
     }
 }

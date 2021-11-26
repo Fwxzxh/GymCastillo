@@ -64,7 +64,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
                 newClient = new(this);
                 deleteClient = new(this);
 
-                foreach (var cliente in clientes.OrderBy(c => c.Nombre)) {
+                foreach (var cliente in clientes.OrderBy(c => c.Nombre).Where(c => c.Activo == true)) {
                     ClientesLista.Add(cliente);
                 }
 
@@ -86,10 +86,10 @@ namespace GymCastillo.ViewModel.ClientsVM {
         }
 
         public void OpenNewClients() {
+            Log.Debug("Ventana de nuevo usuario iniciada");
             NewClientsWindow window = new();
             window.ShowDialog();
             RefreshGrid();
-            Log.Debug("Ventana de nuevo usuario iniciada");
         }
 
         public async void DeleteClient() {
@@ -104,13 +104,13 @@ namespace GymCastillo.ViewModel.ClientsVM {
             ClientesLista.Clear();
             var clientesRe = await GetFromDb.GetClientes();
             InitInfo.ListaClientes = clientesRe;
-            foreach (var item in clientesRe.OrderBy(c => c.Nombre).Where(l => l.Activo != false)) {
+            foreach (var item in clientesRe.OrderBy(c => c.Nombre).Where(l => l.Activo == true)) {
                 ClientesLista.Add(item);
             }
         }
 
-        private void FilterList(string query) {
-
+        private async void FilterList(string query) {
+            clientes = await GetFromDb.GetClientes();
             if (clientes != null) {
                 if (query == "") {
                     ClientesLista.Clear();

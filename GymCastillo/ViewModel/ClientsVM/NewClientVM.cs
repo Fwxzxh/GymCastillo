@@ -51,7 +51,7 @@ namespace GymCastillo.ViewModel.ClientsVM {
             }
         }
 
-        private bool lockerIsChecked;
+        private bool lockerIsChecked = false;
 
         public bool LockerIsChecked {
             get { return lockerIsChecked; }

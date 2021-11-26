@@ -29,7 +29,7 @@ namespace GymCastillo.Model.Admin {
                 await ValidateAgain(objeto);
 
                 // Hacemos Update.
-                var res = objeto.Update().Result;
+                var res = await objeto.Update();
 
                 // Verificamos los cambios.
                 if (res == 0) {

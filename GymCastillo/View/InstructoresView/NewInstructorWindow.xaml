@@ -143,7 +143,6 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          Width="250"
-                         MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
                          Text="{Binding Instructor.Sueldo, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

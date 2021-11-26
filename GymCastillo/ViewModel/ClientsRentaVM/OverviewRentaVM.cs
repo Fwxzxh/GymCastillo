@@ -2,7 +2,7 @@
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.Commands.UsersCommands;
+using GymCastillo.ViewModel.Commands.ClientesRentaCommands;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -11,35 +11,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymCastillo.ViewModel.UsersVM {
-    public class OverviewUsuariosVM : INotifyPropertyChanged {
+namespace GymCastillo.ViewModel.ClientsRentaVM {
+    public class OverviewRentaVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
 
-        public UpdateUserCommand updateUser { get; set; }
+        public UpdateClienteCommand updateCliente { get; set; }
 
 
-        private Usuario usuario;
+        private ClienteRenta cliente;
 
-        public Usuario Usuario {
-            get { return usuario; }
+        public ClienteRenta Cliente {
+            get { return cliente; }
             set
             {
-                usuario = value;
-                OnPropertyChanged(nameof(Usuario));
+                cliente = value;
+                OnPropertyChanged(nameof(Cliente));
             }
         }
 
-        public OverviewUsuariosVM(Usuario usuario) {
+        public OverviewRentaVM(ClienteRenta cliente) {
             try {
+                this.cliente = cliente;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-                updateUser = new(this);
-                this.usuario = usuario;
-            }
-            catch (Exception e) {
+                updateCliente = new(this);
 
-                Log.Error(e.Message);
+            }
+            catch (Exception) {
+
+                throw;
             }
         }
 
@@ -49,12 +52,10 @@ namespace GymCastillo.ViewModel.UsersVM {
             }
         }
 
-        public async void UpdateUser() {
-            await AdminUsuariosGeneral.Update(Usuario);
-            Log.Debug("Usuario actualizado");
+        public async void UpdateCR() {
+            await AdminUsuariosGeneral.Update(Cliente);
+            Log.Debug("Cliente Renta actualilzado");
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

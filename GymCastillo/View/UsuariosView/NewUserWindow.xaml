@@ -113,6 +113,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         MaxLength="10"
                          Width="250"
                          FontSize="20"
                          Margin="10 0"
@@ -127,16 +128,17 @@
                          Width="375"
                          FontSize="20"
                          Margin="30 0"
-                         Text="{Binding Usuario.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Usuario.NombreContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         MaxLength="10"
                          VerticalContentAlignment="Center"
                          Width="375"
                          FontSize="20"
                          Margin="30 0"
-                         Text="{Binding Usuario.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Usuario.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="4">
@@ -182,6 +184,7 @@
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Guardar"
                         Margin="20"
+                        Command="{Binding newUser}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"

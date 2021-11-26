@@ -1,4 +1,4 @@
-﻿using GymCastillo.ViewModel.UsersVM;
+﻿using GymCastillo.ViewModel.ClientsRentaVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GymCastillo.ViewModel.Commands.UsersCommands {
-    public class UpdateUserCommand : ICommand {
-        private OverviewUsuariosVM vm { get; set; }
+namespace GymCastillo.ViewModel.Commands.ClientesRentaCommands {
+    public class OverviewCRCommand : ICommand {
+        private GridRentaVM vM { get; set; }
 
-        public UpdateUserCommand(OverviewUsuariosVM vm) {
-            this.vm = vm;
+        public OverviewCRCommand(GridRentaVM vM) {
+            this.vM=vM;
         }
 
         public event EventHandler CanExecuteChanged {
@@ -24,7 +24,7 @@ namespace GymCastillo.ViewModel.Commands.UsersCommands {
         }
 
         public void Execute(object parameter) {
-            vm.UpdateUser();
+            vM.OpenOverviewCR();
         }
     }
 }

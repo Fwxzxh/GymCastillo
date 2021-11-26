@@ -128,11 +128,23 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button ToolTip="Ver más"
+                            <StackPanel Orientation="Horizontal" Margin="-10 0">
+                                <Button ToolTip="Ver más"
+                                        Margin="5 0"
                                     DataContext="{StaticResource vm}"
                                     Command="{Binding overviewInstructor}">
-                                <materialDesign:PackIcon Kind="EyeAddOutline"/>
-                            </Button>
+                                    <materialDesign:PackIcon Kind="EyeAddOutline"/>
+                                </Button>
+                                <Button ToolTip="Eliminar"
+                                    Background="Transparent"
+                                    BorderBrush="Red"
+                                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                                    DataContext="{StaticResource vm}"
+                                    Margin="5 0"
+                                    Command="{Binding delete}">
+                                    <materialDesign:PackIcon Kind="TrashCanOutline"/>
+                                </Button>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

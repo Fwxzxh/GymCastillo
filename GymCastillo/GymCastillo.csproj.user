@@ -7,6 +7,12 @@
     <Compile Update="View\ClientsRentaView\GridClientesRUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ClientsRentaView\NewCRWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClientsRentaView\OverviewCRWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ConfigView\SettingUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\ClientsRentaView\GridClientesRUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClientsRentaView\NewCRWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClientsRentaView\OverviewCRWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ConfigView\SettingUC.xaml">

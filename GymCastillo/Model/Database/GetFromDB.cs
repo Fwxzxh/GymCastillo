@@ -272,16 +272,7 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"SELECT
-                                          cr.IdClienteRenta, cr.Nombre, cr.ApellidoPaterno,
-                                          cr.ApellidoPaterno, cr.Domicilio, cr.FechaNacimiento,
-                                          cr.Telefono, cr.NombreContacto, cr.TelefonoContacto,
-                                          cr.Foto, cr.FechaUltimoPago, cr.MontoUltimoPago,
-                                          cr.DeudaCliente,
-                                          group_concat(r.IdRenta) as IdRenta, group_concat(r.FechaRenta) as FechaRenta, group_concat(r.Costo) as CostoRenta
-                                      FROM ClienteRenta cr, rentas r
-                                      WHERE cr.IdClienteRenta = r.IdClienteRenta
-                                      GROUP BY IdClienteRenta";
+            const string sqlQuery = @"SELECT * FROM ClienteRenta";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -310,9 +301,9 @@ namespace GymCastillo.Model.Database {
 
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetInt32("DeudaCliente"),
 
-                        IdRenta = await reader.Result.IsDBNullAsync("IdRenta") ? "" : reader.Result.GetString("IdRenta"),
-                        FechaRenta = await reader.Result.IsDBNullAsync("FechaRenta") ? "" : reader.Result.GetString("FechaRenta"),
-                        CostoRenta = await reader.Result.IsDBNullAsync("CostoRenta") ? "" : reader.Result.GetString("CostoRenta"),
+                        //IdRenta = await reader.Result.IsDBNullAsync("IdRenta") ? "" : reader.Result.GetString("IdRenta"),
+                        //FechaRenta = await reader.Result.IsDBNullAsync("FechaRenta") ? "" : reader.Result.GetString("FechaRenta"),
+                        //CostoRenta = await reader.Result.IsDBNullAsync("CostoRenta") ? "" : reader.Result.GetString("CostoRenta"),
                     };
 
                     listClienteRenta.Add(clienteRenta);

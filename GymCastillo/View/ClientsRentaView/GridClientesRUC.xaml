@@ -52,8 +52,8 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding ClientesLista}"
-                  SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  SelectedItem="{Binding SelectedCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding ListaClientes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"
@@ -130,9 +130,23 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button ToolTip="Ver más">
-                                <materialDesign:PackIcon Kind="EyeAddOutline"/>
-                            </Button>
+                            <StackPanel Orientation="Horizontal" Margin="-10 0">
+                                <Button ToolTip="Ver más"
+                                        Margin="5 0"
+                                    DataContext="{StaticResource vm}"
+                                    Command="{Binding overview}">
+                                    <materialDesign:PackIcon Kind="EyeAddOutline"/>
+                                </Button>
+                                <Button ToolTip="Eliminar"
+                                    Background="Transparent"
+                                    BorderBrush="Red"
+                                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                                    DataContext="{StaticResource vm}"
+                                    Margin="5 0"
+                                    Command="{Binding delete}">
+                                    <materialDesign:PackIcon Kind="TrashCanOutline"/>
+                                </Button>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -140,8 +154,7 @@
         </DataGrid>
         <!--CommandParameter="{Binding ElementName=ClientesDataGrid, Path=SelectedItem}"-->
 
-        <Button x:Name="BtnNuevo"
-                Content="Nuevo Cliente"
+        <Button Content="Nuevo Cliente"
                 HorizontalAlignment="Right"
                 FontSize="25"
                 Grid.Row="2"
@@ -149,6 +162,7 @@
                 VerticalContentAlignment="Center"
                 Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                 Height="50"
+                Command="{Binding newCRCommand}"
                 ToolTip="Nuevo Cliente"/>
     </Grid>
 </UserControl>

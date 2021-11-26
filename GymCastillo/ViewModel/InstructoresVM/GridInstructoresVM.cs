@@ -1,8 +1,8 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.Model.Interfaces;
 using GymCastillo.View.InstructoresView;
 using GymCastillo.ViewModel.Commands.InstructorsCommands;
 using log4net;
@@ -11,8 +11,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GymCastillo.ViewModel.InstructoresVM {
@@ -27,6 +25,8 @@ namespace GymCastillo.ViewModel.InstructoresVM {
         public NewWindowInstructorCommand newWindow { get; set; }
 
         public OverviewInstructorCommand overviewInstructor { get; set; }
+
+        public DeleteInstructorCommand delete { get; set; }
 
         private List<Instructor> instructores { get; set; }
 
@@ -58,7 +58,7 @@ namespace GymCastillo.ViewModel.InstructoresVM {
                 newWindow = new(this);
                 overviewInstructor = new(this);
                 instructores = InitInfo.ListaInstructor;
-                //instructores = GetFromDb.GetInstructores().GetAwaiter().GetResult();
+                delete = new(this);
                 ListaInstructores = new ObservableCollection<Instructor>();
                 foreach (var item in instructores.OrderBy(i => i.Nombre)) {
                     ListaInstructores.Add(item);
@@ -73,7 +73,8 @@ namespace GymCastillo.ViewModel.InstructoresVM {
 
 
         }
-        private void FilterList(string query) {
+        private async void FilterList(string query) {
+            instructores = await GetFromDb.GetInstructores();
             if (instructores != null) {
                 if (query == "") {
                     ListaInstructores.Clear();
@@ -110,6 +111,14 @@ namespace GymCastillo.ViewModel.InstructoresVM {
             foreach (var item in instructors.OrderBy(i => i.Nombre)) {
                 ListaInstructores.Add(item);
             }
+        }
+
+        public async void DeleteInstructor() {
+            if (ShowPrettyMessages.QuestionYesNo("¿Desea borrar al instructor?", "Confirmación")) {
+                await AdminUsuariosGeneral.Delete(SelectedInstructor);
+                RefreshGrid();
+            }
+            else return;
         }
 
         private void OnPropertyChanged(string propertyName) {
