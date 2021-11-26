@@ -71,6 +71,7 @@ namespace GymCastillo.Model.DataTypes {
         /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Instructor.");
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -121,7 +122,8 @@ namespace GymCastillo.Model.DataTypes {
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Delete() {
-            Log.Debug("Se ha iniciado el proce de delete en un Instructor.");
+            Log.Debug("Se ha iniciado el proceso de delete en un Instructor.");
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -139,18 +141,18 @@ namespace GymCastillo.Model.DataTypes {
                 return res;
             }
             catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconcoido a la hora de hacer el delete del Instructor.");
-                    Log.Error($"Error: {e.Message}");
-                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
-                        "Error desconocido");
-                    return 0;
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete del Instructor.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
             }
         }
 
         /// <summary>
         /// Método que da de alta la instancia actual del instructor en la base de datos.
         /// </summary>
-        /// <returns>La cantidad de columanas afectadas.</returns>
+        /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un Instructor.");
             try {

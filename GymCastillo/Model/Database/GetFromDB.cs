@@ -272,7 +272,7 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"SELECT * FROM ClienteRenta";
+            const string sqlQuery = @"select * from ClienteRenta";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -301,9 +301,9 @@ namespace GymCastillo.Model.Database {
 
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente") ? 0 : reader.Result.GetInt32("DeudaCliente"),
 
-                        //IdRenta = await reader.Result.IsDBNullAsync("IdRenta") ? "" : reader.Result.GetString("IdRenta"),
-                        //FechaRenta = await reader.Result.IsDBNullAsync("FechaRenta") ? "" : reader.Result.GetString("FechaRenta"),
-                        //CostoRenta = await reader.Result.IsDBNullAsync("CostoRenta") ? "" : reader.Result.GetString("CostoRenta"),
+                        // IdRenta = await reader.Result.IsDBNullAsync("IdRenta") ? "" : reader.Result.GetString("IdRenta"),
+                        // FechaRenta = await reader.Result.IsDBNullAsync("FechaRenta") ? "" : reader.Result.GetString("FechaRenta"),
+                        // CostoRenta = await reader.Result.IsDBNullAsync("CostoRenta") ? "" : reader.Result.GetString("CostoRenta"),
                     };
 
                     listClienteRenta.Add(clienteRenta);

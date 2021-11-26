@@ -81,7 +81,7 @@ namespace GymCastillo.Model.Admin {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrio un error desconocido a la hora de hacer el proceso de borrado.");
+                Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de borrado.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -95,7 +95,7 @@ namespace GymCastillo.Model.Admin {
         /// <param name="objeto">El objeto a dar de alta.</param>
         public static async Task Alta(AbstUsuario objeto) {
             try {
-                Log.Debug("Se ha iniciado un proceso de alta generico.");
+                Log.Debug("Se ha iniciado un proceso de alta genérico.");
 
                 // validamos los campos generales
                 var validator = new UsuarioGralValidation();
@@ -121,7 +121,7 @@ namespace GymCastillo.Model.Admin {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrio un error desconocido a la hora de hacer el proceso de Alta.");
+                Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de Alta.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
