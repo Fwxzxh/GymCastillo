@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:inst="clr-namespace:GymCastillo.View.InstructoresView"
-             xmlns:clientes="clr-namespace:GymCastillo.View.ClientsView"
-             xmlns:usuarios="clr-namespace:GymCastillo.View.UsuariosView"
-             xmlns:cr="clr-namespace:GymCastillo.View.ClientsRentaView"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:clientsRentaView="clr-namespace:GymCastillo.View.AdminScreensView.ClientsRentaView"
+             xmlns:clientsView="clr-namespace:GymCastillo.View.AdminScreensView.ClientsView"
+             xmlns:instructoresView="clr-namespace:GymCastillo.View.AdminScreensView.InstructoresView"
+             xmlns:usuariosView="clr-namespace:GymCastillo.View.AdminScreensView.UsuariosView"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
@@ -32,7 +32,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <clientes:GridClientesUC/>
+                    <clientsView:GridClientesUC/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
@@ -43,7 +43,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <inst:GridInstructoresUC/>
+                    <instructoresView:GridInstructoresUC/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
@@ -54,7 +54,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <usuarios:GridUsuariosUC/>
+                    <usuariosView:GridUsuariosUC/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="160">
@@ -66,7 +66,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <cr:GridClientesRUC/>
+                    <clientsRentaView:GridClientesRUC/>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

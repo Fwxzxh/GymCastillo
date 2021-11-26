@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -53,8 +54,9 @@ namespace GymCastillo.Model.Validations {
             return number.All(char.IsNumber);
         }
 
-        private static bool IsLetter(string number) {
-            return number.All(char.IsLetter);
+        private static bool IsLetter(string letter) {
+            var replace = letter.Replace(" ", "");
+            return replace.All(Char.IsLetter);
         }
     }
 }

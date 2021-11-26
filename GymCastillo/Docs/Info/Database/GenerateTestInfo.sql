@@ -175,7 +175,7 @@ VALUES (default, 'Ruben', 'García', 'Ordaz', 'Calle Eucalipto #54 Colonia Arbol
 INSERT INTO clienterenta
 VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', CURDATE(), 'Antonio Sanchez Salas', 'Elihihu', '5511917682', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', CURDATE(), '5511591258', 'Elihihu', '5511917682', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
 VALUES (default, 'Lionel Andres', 'Messi', 'Dominguez', 'Calle Julian Zuniga #7 Colonia Presidentes', CURDATE(), '5517594921', 'Jessica Cortes Vazquez', '5514685493', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
