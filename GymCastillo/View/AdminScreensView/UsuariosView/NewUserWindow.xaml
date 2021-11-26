@@ -1,0 +1,199 @@
+﻿<Window x:Class="GymCastillo.View.AdminScreensView.UsuariosView.NewUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Name="newUsuario"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:usersVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.UsersVM"
+        TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        BorderThickness="2"
+        BorderBrush="Yellow"
+        d:DesignHeight="700" d:DesignWidth="1200">
+    <Window.Resources>
+        <usersVm:NewUsuarioVM x:Key="vm"/>
+    </Window.Resources>
+    <Grid Margin="10" DataContext="{StaticResource vm}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                <TextBox materialDesign:HintAssist.Hint="Nombre"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Usuario.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Apellido Paterno"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Usuario.ApellidoPaterno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Apellido Materno"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Usuario.ApellidoMaterno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="1">
+                <TextBox materialDesign:HintAssist.Hint="Dirección"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Center"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     VerticalContentAlignment="Center"
+                     Width="540"
+                     FontSize="20"
+                     Margin="20 0"
+                     Text="{Binding Usuario.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <DatePicker materialDesign:HintAssist.Hint="Fecha Nacimiento"
+                            materialDesign:HintAssist.FloatingScale="0.6"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            Width="250"
+                            IsTodayHighlighted="True"
+                            FontSize="19"
+                            Margin="20 0"
+                            SelectedDate="{Binding Usuario.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="2">
+                <TextBox materialDesign:HintAssist.Hint="Username"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Usuario.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Contraseña"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Usuario.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Teléfono"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         MaxLength="10"
+                         Width="250"
+                         FontSize="20"
+                         Margin="10 0"
+                         Text="{Binding Usuario.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
+                <TextBox materialDesign:HintAssist.Hint="Nombre Contacto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="375"
+                         FontSize="20"
+                         Margin="30 0"
+                         Text="{Binding Usuario.NombreContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         MaxLength="10"
+                         VerticalContentAlignment="Center"
+                         Width="375"
+                         FontSize="20"
+                         Margin="30 0"
+                         Text="{Binding Usuario.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="4">
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                            materialDesign:HintAssist.Hint="Último Acceso"
+                            materialDesign:HintAssist.FloatingScale="0.6"
+                            FontSize="20"
+                            Margin="30 0"
+                            IsEnabled="False"
+                            SelectedDate="{Binding Usuario.FechaUltimoAcceso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                            materialDesign:HintAssist.Hint="Último Pago"
+                            materialDesign:HintAssist.FloatingScale="0.6"
+                            FontSize="20"
+                            Margin="30 0"
+                            IsEnabled="False"
+                            SelectedDate="{Binding Usuario.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Monto Último Pago"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         IsReadOnly="True"
+                         Margin="10 0"
+                         FontSize="20"
+                         Text="{Binding Usuario.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+            </StackPanel>-->
+        </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="65 0">
+                <materialDesign:PackIcon Kind="CameraPlusOutline"
+                                         Width="30"
+                                         Height="30"/>
+            </Button>
+            
+            <!--change for image-->
+            <Rectangle Width="200"
+                       Height="200"
+                       Fill="Transparent"
+                       Stroke="AntiqueWhite"
+                       Margin="20"/>
+
+            <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Guardar"
+                        Margin="20"
+                        Command="{Binding newUser}"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Cancelar"
+                        Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=newUsuario}"
+                        Margin="20"
+                        FontSize="20"/>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

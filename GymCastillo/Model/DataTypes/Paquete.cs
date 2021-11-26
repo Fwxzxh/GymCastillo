@@ -69,7 +69,7 @@ namespace GymCastillo.Model.DataTypes {
                                                  NumClasesTotales=@NumClasesTotales, 
                                                  NumClasesSemanales=@NumClasesSemanales,
                                                  Costo=@Costo, IdClase=@IdClase
-                                             WHERE IdPaquete=@IdPaquete;";
+                                             WHERE IdPaquete=@IdPaquete";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 

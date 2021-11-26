@@ -37,4 +37,86 @@
       </Resource>
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="View\AdminScreensView\ClientsRentaView\GridClientesRUC.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ClientsRentaView\NewCRWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ClientsRentaView\OverviewCRWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ClientsView\GridClientesUC.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ClientsView\NewClientsWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\ConfigView\SettingUC.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\InstructoresView\OverviewInstructorWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\UsuariosView\NewUserWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\UsuariosView\GridUsuariosUC.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\AdminScreensView\UsuariosView\OverviewUserWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\AdminScreensView\ClientsRentaView\GridClientesRUC.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ClientsRentaView\NewCRWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ClientsRentaView\OverviewCRWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ClientsView\GridClientesUC.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ClientsView\NewClientsWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\ConfigView\SettingUC.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\InstructoresView\OverviewInstructorWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\UsuariosView\NewUserWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\UsuariosView\GridUsuariosUC.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\AdminScreensView\UsuariosView\OverviewUserWindow.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="View\UsuariosView" />
+    </ItemGroup>
+
 </Project>

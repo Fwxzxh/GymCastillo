@@ -33,44 +33,44 @@ VALUES (default, 'Otros', 'Otro tipo de instructor');
 
 -- Instructores
 INSERT INTO instructor 
-VALUES (default, 'Instructor1', 'ApellidoPI1', 'ApellidoMI1', 'Calle 1 Colonia B', CURDATE()
-, '2111111111', 'AmigoI1' ,'1222222221', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
+VALUES (default, 'Juan Pablo', 'Alegría', 'Escobedo', 'Calle Francisco Villa #49B Colonia España', CURDATE()
+, '4420424629', 'Cassandra Carrillo Ledezma' ,'4428320490', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
-VALUES (default, 'Instructor2', 'ApellidoPI2', 'ApellidoMI2', 'Calle 2 Colonia B', CURDATE()
-, '2111111112', 'AmigoI2' ,'1222222222', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
+VALUES (default, 'Miguel', 'Gonzalez', 'Gutierrez', 'Calle Las Palmas #5 Colonia Inglaterra', CURDATE()
+, '4424607855', 'Jorge David Cabrera Lopez' ,'4423706021', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
-VALUES (default, 'Instructor3', 'ApellidoPI3', 'ApellidoMI3', 'Calle 3 Colonia B', CURDATE()
-, '2111111113', 'AmigoI3' ,'1222222223', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
+VALUES (default, 'Jose Luis', 'Ruiz', 'Espino', 'Calle Centauro #23 Colonia La Condesa', CURDATE()
+, '4425724914', 'Brian Gonzalez Gonzalez' ,'4427241624', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
-VALUES (default, 'Instructor4', 'ApellidoPI4', 'ApellidoMI4', 'Calle 4 Colonia B', CURDATE()
-, '2111111114', 'AmigoI4' ,'1222222224', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
+VALUES (default, 'Javier', 'Ibarra', 'Moroña', 'Calle Domigo #123B Colonia Iglesia', CURDATE()
+, '4424602987', 'Hector Rodriguez Rodriguez' ,'4425235314', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
-VALUES (default, 'Instructor5', 'ApellidoPI5', 'ApellidoMI5', 'Calle 5 Colonia B', CURDATE()
-, '2111111115', 'AmigoI5' ,'1222222225', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
+VALUES (default, 'Manuel', 'Mejía', 'Rodriguez', 'Calle Miguel Barbosa #3 Colonia Lindavista', CURDATE()
+, '4422645931', 'Juventino Perez Hernandez' ,'4426501910', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
-VALUES (default, 'Instructor6', 'ApellidoPI6', 'ApellidoMI6', 'Calle 6 Colonia B', CURDATE()
-, '2111111116', 'AmigoI6' ,'1222222226', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
+VALUES (default, 'Juventino', 'Perez', 'Hernandez', 'Calle Andres Navy #12 Colonia Los Angeles', CURDATE()
+, '4424546787', 'Manuel Mejía Rodriguez' ,'4420521042', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
-VALUES (default, 'Instructor7', 'ApellidoPI7', 'ApellidoMI7', 'Calle 7 Colonia B', CURDATE()
-, '2111111117', 'AmigoI7' ,'1222222227', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
+VALUES (default, 'Hector', 'Rodriguez', 'Rodriguez', 'Calle Mirador #98 Colonia Sao Paulo', CURDATE()
+, '4421545217', 'Javier Ibarra Moroña' ,'4429200416', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
-VALUES (default, 'Instructor8', 'ApellidoPI8', 'ApellidoMI8', 'Calle 8 Colonia B', CURDATE()
-, '2111111118', 'AmigoI8' ,'1222222238', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
+VALUES (default, 'Brian', 'Gonzalez', 'Gonzalez', 'Calle Poniente #1 Colonia Niños heroes', CURDATE()
+, '4426871468', 'Jose Luis Ruiz Espino' ,'4424679408', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
 , null, 500.0, null, 2);
 INSERT INTO instructor 
-VALUES (default, 'Instructor9', 'ApellidoPI9', 'ApellidoMI9', 'Calle 9 Colonia B', CURDATE()
-, '2111111119', 'AmigoI9' ,'1222222229', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
+VALUES (default, 'Jorge David', 'Cabrera', 'Lopez', 'Calle San Javier #35 Colonia Lagunas', CURDATE()
+, '4429993970', 'Miguel Gonzalez Gutierrez' ,'4420326526', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 INSERT INTO instructor 
-VALUES (default, 'Instructor10', 'ApellidoPI10', 'ApellidoMI10', 'Calle 10 Colonia B', CURDATE()
-, '2111111110', 'AmigoI10' ,'1222222210', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
+VALUES (default, 'Cassandra', 'Carrillo', 'Ledezma', 'Calle Mi Corazon #25 Colonia Encanto', CURDATE()
+, '4420608128', 'Juan Pablo Alegría Escobedo' ,'4426273881', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
 , null, 1500.0, null, 1);
 
 -- Clases
@@ -132,53 +132,53 @@ VALUES (default, 'B5', FALSE);
 
 -- Clientes
 INSERT INTO cliente
-VALUES (default, 'Persona1', 'ApellidoP1', 'ApellidoM1', 'Calle 1 Colonia A', CURDATE()
-       , '1111111111', FALSE, 'Amigo1' ,'2222222221', null, CURDATE(), 350.0, TRUE, CURDATE()
+VALUES (default, 'Daniel', 'Gonzalez', 'Martinez', 'Calle Las Campanas #23 Colonia Centro', CURDATE()
+       , '4426861255', FALSE, 'Miriam Robledo Gonzalez' ,'4420142743', null, CURDATE(), 350.0, TRUE, CURDATE()
        , null, 'Redes sociales', null, null, null, FALSE, 1, 1, null);
 INSERT INTO cliente
-VALUES (default, 'Persona2', 'ApellidoP2', 'ApellidoM2', 'Calle 2 Colonia A', CURDATE()
-       , '1111111112', FALSE, 'Amigo2' ,'2222222222', null, CURDATE(), 350.0, TRUE, CURDATE()
+VALUES (default, 'Enrique', 'Padilla', 'Martinez', 'Calle Juan Escutia #230 Colonia San Pablo', CURDATE()
+       , '4426483144', FALSE, 'Lucero Guevara Hernandez' ,'4428052331', null, CURDATE(), 350.0, TRUE, CURDATE()
        , null, 'Otro', null, null, null, FALSE, 1, 1, null);
 INSERT INTO cliente
-VALUES (default, 'Persona3', 'ApellidoP3', 'ApellidoM3', 'Calle 3 Colonia A', CURDATE()
-       , '1111111113', FALSE, 'Amigo3' ,'2222222223', null, CURDATE(), 350.0, TRUE, CURDATE()
+VALUES (default, 'Julieta', 'Izquierdo', 'Perez', 'Calle Molino del Rey #123 Colonia Menchaca', CURDATE()
+       , '4423209770', FALSE, 'Adriana Guevara García' ,'4421621366', null, CURDATE(), 350.0, TRUE, CURDATE()
        , null, 'Amig@', null, null, null, FALSE, 1, 1, 1);
 INSERT INTO cliente
-VALUES (default, 'Persona4', 'ApellidoP4', 'ApellidoM4', 'Calle 4 Colonia A', CURDATE()
-       , '1111111114', FALSE, 'Amigo4' ,'2222222224', null, CURDATE(), 350.0, TRUE, CURDATE()
+VALUES (default, 'Daniela', 'Paredes', 'Castro', 'Calle Francisco Marquez #43B Colonia Menchaca ll', CURDATE()
+       , '4421256969', FALSE, 'Andres Lima Rangel' ,'4428248718', null, CURDATE(), 350.0, TRUE, CURDATE()
        , null, 'Amig@', 4, 1, null, FALSE, 3, 2, 2);
 INSERT INTO cliente
-VALUES (default, 'Persona5', 'ApellidoP5', 'ApellidoM5', 'Calle 5 Colonia A', CURDATE()
-       , '1111111115', FALSE, 'Amigo5' ,'2222222225', null, CURDATE(), 700.0, TRUE, CURDATE()
+VALUES (default, 'Paola', 'Salinas', 'Hernandez', 'Calle Salvador Uribe #1 Colonia Menchaca lll', CURDATE()
+       , '4428510144', FALSE, 'Ruben García Ordaz' ,'4425261623', null, CURDATE(), 700.0, TRUE, CURDATE()
        , null, 'Redes sociales', 8, 2, null, FALSE, 3, 3, 6);
 INSERT INTO cliente
-VALUES (default, 'Persona6', 'ApellidoP6', 'ApellidoM6', 'Calle 6 Colonia A', CURDATE()
-       , '1111111116', FALSE, 'Amigo6' ,'2222222226', null, CURDATE(), 1050.0, TRUE, CURDATE()
+VALUES (default, 'Miriam', 'Robledo', 'Gonzalez', 'Calle Laurel #12 Colonia Arboledas', CURDATE()
+       , '4428169031', FALSE, 'Daniel Gonzalez Martinez' ,'4422934869', null, CURDATE(), 1050.0, TRUE, CURDATE()
        , null, 'Otro', 12, 3, null, FALSE, 3, 4, null);
 INSERT INTO cliente
-VALUES (default, 'Persona7', 'ApellidoP7', 'ApellidoM7', 'Calle 7 Colonia A', CURDATE()
-       , '1111111117', FALSE, 'Amigo7' ,'2222222227', null, CURDATE(), 700.0, TRUE, CURDATE()
+VALUES (default, 'Lucero', 'Guevara', 'Hernandez', 'Calle Encino #65 Colonia Arboledas', CURDATE()
+       , '4420812321', FALSE, 'Enrique Padilla Martinez' ,'4428077153', null, CURDATE(), 700.0, TRUE, CURDATE()
        , null, 'Otro', 4, 1, null, FALSE, 3, 5, null);
 INSERT INTO cliente
-VALUES (default, 'Persona8', 'ApellidoP8', 'ApellidoM8', 'Calle 8 Colonia A', CURDATE()
-       , '1111111118', TRUE, 'Amigo8' ,'2222222238', null, CURDATE(), 1050.0, TRUE, CURDATE()
+VALUES (default, 'Adriana', 'Guevara', 'García', 'Calle Fresno #78 Colonia Arboledas', CURDATE()
+       , '4427136487', TRUE, 'Julieta Izquierdo Perez' ,'4428733623', null, CURDATE(), 1050.0, TRUE, CURDATE()
        , null, 'Redes sociales', 8, 2, null, FALSE, 3, 6, null);
 INSERT INTO cliente
-VALUES (default, 'Persona9', 'ApellidoP9', 'ApellidoM9', 'Calle 9 Colonia A', CURDATE()
-       , '1111111119', FALSE, 'Amigo9' ,'2222222229', null, CURDATE(), 1400.0, TRUE, CURDATE()
+VALUES (default, 'Andres', 'Lima', 'Rangel', 'Calle Acacia #99 Colonia Arboledas', CURDATE()
+       , '4425191796', FALSE, 'Daniela Paredes Castro' ,'4426784592', null, CURDATE(), 1400.0, TRUE, CURDATE()
        , null, 'Amig@', 12, 3, null, FALSE, 3, 7, null);
 INSERT INTO cliente
-VALUES (default, 'Persona10', 'ApellidoP10', 'ApellidoM10', 'Calle 11 Colonia A', CURDATE()
-, '1111111110', FALSE, 'Amigo10' ,'2222222210', null, CURDATE(), 1050.0, TRUE,  CURDATE()
+VALUES (default, 'Ruben', 'García', 'Ordaz', 'Calle Eucalipto #54 Colonia Arboledas', CURDATE()
+, '4423623553', FALSE, 'Paola Salinas Hernandez' ,'4425122504', null, CURDATE(), 1050.0, TRUE,  CURDATE()
 , null, 'Redes sociales', 12, 3, null, FALSE, 3, 4, null);
 
 INSERT INTO clienterenta
-VALUES (default, 'Memo', 'Memo', 'Memo', 'Calle memo', CURDATE(), '1212121212', 'Elihihu', '1515151515', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Elihihu', 'Memo', 'Memo', 'Calle memo1', CURDATE(), '1212121211', 'Elihihu', '1515151511', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', CURDATE(), '5511591258', 'Elihihu', '5511917682', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Eliudt', 'Memo', 'Memo', 'Calle memo2', CURDATE(), '1212121215', 'Elihihu', '1515151512', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Lionel Andres', 'Messi', 'Dominguez', 'Calle Julian Zuniga #7 Colonia Presidentes', CURDATE(), '5517594921', 'Jessica Cortes Vazquez', '5514685493', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Eliu', 'Memo', 'Memo', 'Calle memo3', CURDATE(), '1212121213', 'Elihihu', '1515151513', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
-VALUES (default, 'Elihuhu', 'Memo', 'Memo', 'Calle memo4', CURDATE(), '1212121214', 'Elihihu', '1515151514', null, CURDATE(), 100.0, 200.0);
+VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0, 200.0);

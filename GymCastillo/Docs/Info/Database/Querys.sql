@@ -155,11 +155,14 @@ left join espacio e on e.IdEspacio = c.IdEspacio;
 
 -- Clases
 -- Consulta todo clase con horario:
-SELECT c.IdClase, c.NombreClase, c.Descripcion,
-c.CupoMaximo, c.Activo,
-i.IdInstructor, i.Nombre, i.ApellidoPaterno,
-e.IdEspacio, e.NombreEspacio,
-group_concat(h.Día) Dia, group_concat(h.HoraInicio) HoraDeInicio, group_concat(h.HoraFin) HoraDeTermino
+SELECT
+    c.IdClase, c.NombreClase, c.Descripcion,
+    c.CupoMaximo, c.Activo,
+    i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    e.IdEspacio, e.NombreEspacio,
+    group_concat(h.Día) Dia,
+    group_concat(h.HoraInicio) HoraDeInicio,
+    group_concat(h.HoraFin) HoraDeTermino
 FROM clase c
 LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
 LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
