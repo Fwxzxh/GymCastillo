@@ -5,7 +5,7 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.Init {
     /// <summary>
-    /// Clase que se encarga del proseso de LogIn.
+    /// Clase que se encarga del proceso de LogIn.
     /// </summary>
     public static class Init {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
