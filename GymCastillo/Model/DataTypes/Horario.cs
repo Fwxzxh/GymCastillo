@@ -59,7 +59,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                command.Parameters.AddWithValue("@Dia", Dia.ToString()); // TODO: probar esto.
+                command.Parameters.AddWithValue("@Dia", Dia.ToString());
                 command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
                 command.Parameters.AddWithValue("@IdClase", IdClase.ToString());

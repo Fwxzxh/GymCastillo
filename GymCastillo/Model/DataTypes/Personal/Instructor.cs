@@ -95,7 +95,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Foto", null); // TODO: Ver que onda con la foto
                 command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("HHmm"));
 
-                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));// TODO checar tipos.
+                command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
 

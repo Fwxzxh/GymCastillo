@@ -216,7 +216,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                // TODO: ver como manejar el insert simultaneo de locker.
                 const string altaQuery = @"INSERT INTO cliente 
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
                                            	@Domicilio, @FechaNacimiento, @Telefono, @CondicionEspecial, 

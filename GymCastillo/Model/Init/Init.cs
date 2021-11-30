@@ -36,7 +36,7 @@ namespace GymCastillo.Model.Init {
             login.Parameters.AddWithValue("@pass", password);
 
             try {
-                var cmd = login.ExecuteReader(); // TODO: prob cambiar a async
+                var cmd = login.ExecuteReader();
                 Log.Debug("Se ha realizado la query de LogIn con éxito.");
 
                 if (cmd.HasRows) {

@@ -660,7 +660,6 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            // TODO: hacer la query de verdad.
             const string sqlQuery = @"select
                                           c.IdClase, c.NombreClase, c.Descripcion,
                                           c.CupoMaximo, c.Activo,

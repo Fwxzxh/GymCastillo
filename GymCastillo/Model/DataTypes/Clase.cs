@@ -65,7 +65,6 @@ namespace GymCastillo.Model.DataTypes {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                // TODO: hacer query.
                 const string updateQuery = @"UPDATE clase
                                              SET cupomaximo=@CupoMaximo, activo=@Activo,
                                                  idinstructor=@IdInstructor, idespacio=@IdEspacio
@@ -134,7 +133,6 @@ namespace GymCastillo.Model.DataTypes {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                // TODO: hacer query.
                 const string altaQuery = @"INSERT INTO clase
                                            VALUES 
                                                (default, @NombreClase, @Descripcion, 
