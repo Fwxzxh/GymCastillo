@@ -182,3 +182,75 @@ INSERT INTO clienterenta
 VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0, 200.0);
 INSERT INTO clienterenta
 VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0, 200.0);
+
+-- rentas
+INSERT INTO rentas
+VALUES (DEFAULT, CURDATE(), 1, 3, 1, 400.0);
+INSERT INTO rentas
+VALUES (DEFAULT, CURDATE(), 1, 1, 1, 700.0);
+INSERT INTO rentas
+VALUES (DEFAULT, CURDATE(), 2, 1, 1, 700.0);
+
+-- ventas
+INSERT INTO ventas
+VALUES (default, CURDATE(), 'Venta 1', 100.0);
+INSERT INTO ventas
+VALUES (default, CURDATE(), 'Venta 2', 200.0);
+INSERT INTO ventas
+VALUES (default, CURDATE(), 'Venta 3', 300.0);
+INSERT INTO ventas
+VALUES (default, CURDATE(), 'Venta 4', 250.0);
+INSERT INTO ventas
+VALUES (default, CURDATE(), 'Venta 5', 150.0);
+
+-- pagos
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Comida pal staff', 'ABCDEFGHIJ1234567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago agua', 'ABCDEFGHIJ2234567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, NULL, 1, 'Pago a Instructor', 'ABCDEFGHIJ2224567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Jueguete pal staff', 'ABCDEFGHIJ3234567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago luz', 'ABCDEFGHIJ3324567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 1, NULL, 'Pago a Usuario', 'ABCDEFGHIJ3334567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Saldo pal staff', 'ABCDEFGHIJ4234567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago gas', 'ABCDEFGHIJ4424567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, NULL, 2, 'Pago a Instructor', 'ABCDEFGHIJ4444567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Cervezas pal staff', 'ABCDEFGHIJ5234567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago uranio', 'ABCDEFGHIJ5524567890', 100.0);
+INSERT INTO pagos
+VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 2, NULL, 'Pago a Usuario', 'ABCDEFGHIJ5554567890', 100.0);
+
+-- ingresos
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, 1, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ1234567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, 1, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ2234567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, 1, FALSE, 'Venta', 'ABCDEFGHIJ2224567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición juguete staff', 'ABCDEFGHIJ3234567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, 2, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ3324567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, 2, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ3334567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, 2, FALSE, 'Venta', 'ABCDEFGHIJ4234567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición Maquina Gym ', 'ABCDEFGHIJ4424567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, 3, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ4444567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ5234567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 'ABCDEFGHIJ5524567890', 100.0);
+INSERT INTO ingresos
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 'ABCDEFGHIJ5554567890', 100.0);
