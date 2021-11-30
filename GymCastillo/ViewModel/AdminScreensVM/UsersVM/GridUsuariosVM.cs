@@ -116,7 +116,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
                 }
                 else {
                     ListaUsuarios.Clear();
-                    var filteredList = usuarios.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList();
+                    var filteredList = usuarios.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList().OrderBy(c => c.Nombre);
                     foreach (var cliente in filteredList) {
                         ListaUsuarios.Add(cliente);
                     }

@@ -218,7 +218,7 @@
                           SelectedValue="{Binding NewCliente.IdLocker}"
                           ItemsSource="{Binding LockersList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>
-                <TextBox materialDesign:HintAssist.Hint="Descuento"
+                <TextBox materialDesign:HintAssist.Hint="Total a Pagar"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"

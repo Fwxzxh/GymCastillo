@@ -18,6 +18,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
 
         public UpdateClienteCommand updateCliente { get; set; }
 
+        public ClienteRenta clienteHold { get; set; }
 
         private ClienteRenta cliente;
 
@@ -33,6 +34,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
         public OverviewRentaVM(ClienteRenta cliente) {
             try {
                 this.cliente = cliente;
+                clienteHold = cliente;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 updateCliente = new(this);
 
@@ -44,9 +46,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
         }
 
         private void CloseWindow(IClosable window) {
+
             if (window != null) {
                 window.Close();
-            }
+             }
         }
 
         public async void UpdateCR() {

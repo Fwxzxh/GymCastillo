@@ -79,6 +79,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         public void OpenOverview() {
             OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
             window.ShowDialog();
+            RefreshGrid();
             Log.Debug("Ventana de overview iniciada");
         }
 
@@ -117,7 +118,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
                 }
                 else {
                     ClientesLista.Clear();
-                    var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList().OrderBy(d => d.Nombre);
+                    var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList().OrderBy(d => d.Nombre);
                     foreach (var cliente in filteredList) {
                         ClientesLista.Add(cliente);
                     }

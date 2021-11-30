@@ -69,8 +69,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
         public void OpenOverviewCR() {
             OverviewCRWindow overviewCR = new(selectedCliente);
             overviewCR.ShowDialog();
-            RefreshGrid(); 
-
+            RefreshGrid();
         }
 
         public void OpenNewCR() {
@@ -107,7 +106,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
                 }
                 else {
                     ListaClientes.Clear();
-                    var filteredList = clienteRenta.Where(c => c.Nombre.ToLower().Contains(query.ToLower())).ToList();
+                    var filteredList = clienteRenta.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList().OrderBy(c => c.Nombre);
                     foreach (var cliente in filteredList) {
                         ListaClientes.Add(cliente);
                     }
