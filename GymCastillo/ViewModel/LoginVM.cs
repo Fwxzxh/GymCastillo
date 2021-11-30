@@ -11,6 +11,8 @@ using System.Windows;
 using System.Windows.Data;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using log4net.Config;
+using log4net.Repository;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -51,6 +53,7 @@ namespace GymCastillo.ViewModel {
         }
 
         public void LogIn(string userName, string password) {
+
             try {
                 if (Init.LogIn(userName, password)) {
 

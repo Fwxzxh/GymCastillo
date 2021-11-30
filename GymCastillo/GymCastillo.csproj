@@ -8,8 +8,6 @@
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     </PropertyGroup>
 
     <ItemGroup>

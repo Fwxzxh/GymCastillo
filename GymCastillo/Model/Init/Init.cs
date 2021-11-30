@@ -22,6 +22,9 @@ namespace GymCastillo.Model.Init {
         /// <param name="password">string con la contraseña del usuario.</param>
         /// <returns><c>True</c> si el logIn fue exitoso, si no <c>False</c></returns>
         public static bool LogIn(string username, string password) {
+
+            log4net.Config.XmlConfigurator.Configure();
+
             Log.Debug("Se ha empezado el proceso de LogIn");
             var connObj = new MySqlConnection(GetInitData.GetConnString());
             connObj.Open();
