@@ -4,7 +4,13 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
-		<ApplicationIcon>Docs\Assets\Castillo.ico</ApplicationIcon>
+        <ApplicationIcon>Docs\Assets\Castillo.ico</ApplicationIcon>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     </PropertyGroup>
 
     <ItemGroup>
