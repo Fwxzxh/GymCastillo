@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="GymCastillo.View.UsersViewUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:clientsRentaView="clr-namespace:GymCastillo.View.AdminScreensView.ClientsRentaView"
+             xmlns:clientsView="clr-namespace:GymCastillo.View.AdminScreensView.ClientsView"
+             xmlns:instructoresView="clr-namespace:GymCastillo.View.AdminScreensView.InstructoresView"
+             xmlns:usuariosView="clr-namespace:GymCastillo.View.AdminScreensView.UsuariosView"
+             TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+             Background="{DynamicResource MaterialDesignDarkBackground}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    TabStripPlacement="Top"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    materialDesign:ColorZoneAssist.Mode="Standard"
+                    SnapsToDevicePixels="True"
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="False">
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Clientes"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <clientsView:GridClientesUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Instructores"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <instructoresView:GridInstructoresUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Usuarios"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <usuariosView:GridUsuariosUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="160">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Clientes Renta"
+                                   Width="200"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <clientsRentaView:GridClientesRUC/>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

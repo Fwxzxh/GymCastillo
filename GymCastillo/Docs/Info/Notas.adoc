@@ -5,10 +5,58 @@ Notas de desarrollo importantes
 https://programmerclick.com/article/4516146978/[Syntaxis para esta wea]
 
 .TODOs
-- [ ] Terminar diagramas.
-- [ ] Terminar Esquema de base de datos.
-- [ ] Generar esquema de base de datos.
-- [ ] Pensar en como hacer los settings (prob con sqlite) https://zetcode.com/csharp/sqlite/[como hacerlo].
-- [ ] Pensar en como estructurar el modulo de Ventas Gral.
-- [ ] Preguntar si debemos de dar de baja usuarios o borrarlos con respecto al tiempo inactivos.
+- [ ] Agregar el campo de Instructor respaldo a Clase en código/diagrama y BD.
+- [ ] Pensar en como manejar las fotos.
+
+.Preguntas
+* Hay paquetes de 1 dia? de una semana? o se tiene que pagar el més completo. (dia, semana, mes)
+* Tipos de usuario membreía, membrecia con promoción, de clase, como funcionan?
+    (la membresia es un més de gym, membresia con promocion tiene un descuento arbitrario,
+    se pagan por # de clases, debe de haber un campo de deuda porque pueden pagar todo o solo una parte.)
+* Definir a los usuario en base al tipo de paquete mensual (x clases) que toman?
+* Debemos de dar de baja los cliente después de x tiempo inactivos?
+    (solo si no tienen adeudos o clases pendientes, )
+* Preguntar que datos desean saber sobre las ventas además de
+    (ventas, inventario y productos).
+* Toman lista en clada clase? o solo al entrar al gym? (en Clientes)
+    (Al entrar al gym, se va a manerjar una lista de asistencia para clientes e Instructores.)
+* Hay entrada al gym si tiene un # de clases pendientes. (si)
+* A los instructores se les paga un sueldo fijo o por clase y se les decuenta
+    una parte por faltas a la clase. (Tipos de instructores: Con plaza, instructor, instructorPersonalizado, otro) (instructores pueden entrar y salir siempre.)
+* Como funcionan los paquetes? son 20 clases diferentes al més?
+    o 20 sesiones de una o más clases? (20 seciones de una o más clases.)
+* El campo de condición especial también aplica a instructores? (no)
+* Preguntar si esta bien dejar el pago al instructor relativo a la clase que es
+    (agregar el campo de pagoinstructor a la tabla/clase de Clase). (yes)
+* Conceptos de pago predefinidos (example: Servicios, nomina, otros (posibilidad de escribir)
+* Locker lleva un costo extra y se asignan.
+
+.Ui
+* En la lista de clientes listar los clientes con los datos básicos
+    (para búsqueda y consulta), si se quiere saber más sobre alguno mostras un botón de más
+    y alli si hacer la querry que trae todos los datos del usuario.
+
+.Información a obtener con las querys x pantalla
+* AdmClientes
+** Id
+** Nombre
+** ApellidoPaterno
+** ApellidoMaterno
+** FechaNacimiento
+** Telefono (editable)
+** CondiciónEspecial (editable)
+** NombreContacto (editable)
+** TelefonoContacto (editable)
+** Foto (editable)
+** FechaUltimoAcceso (Automatico)
+** IdTipoCliente (editable)
+** NombreTipoCliente (automatico con IdTipoCliente)
+** DeudaCliente (editable en otra pantalla)
+** Activo (editable)
+** Asistencias (Automatico)
+
+* AdmClasesCliente
+** IdClases: List<int> (editable solo en alta y baja)
+** Clases: List<Clases> (Automatico con IdClases)
+
 
