@@ -4,7 +4,7 @@ using System.Linq;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 
-namespace GymCastillo.Model.Validations {
+namespace GymCastillo.Model.Validations.Personal {
     /// <summary>
     /// Clase que se encarga de validar los campos editables de los objetos tipo Usuario. <br/>
     /// Siendo: Id, Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, Telefono, NombreContacto, TelefonoContacto.

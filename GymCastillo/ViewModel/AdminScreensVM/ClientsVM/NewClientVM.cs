@@ -5,6 +5,7 @@ using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensCommands.ClientsCommands;

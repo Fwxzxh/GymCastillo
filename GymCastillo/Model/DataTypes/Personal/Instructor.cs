@@ -8,7 +8,7 @@ using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Personal {
     /// <summary>
     /// Clase que contiene los campos y métodos del objeto Instructor
     /// </summary>

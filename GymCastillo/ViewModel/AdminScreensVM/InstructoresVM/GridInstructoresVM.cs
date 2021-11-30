@@ -7,6 +7,7 @@ using System.Windows;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.View.AdminScreensView.InstructoresView;

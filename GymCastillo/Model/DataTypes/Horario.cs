@@ -27,17 +27,17 @@ namespace GymCastillo.Model.DataTypes {
         /// <summary>
         /// Dia en el que ocurre la clase.
         /// </summary>
-        public Dias Dia { get; set; }
+        public int Dia { get; set; }
 
         /// <summary>
         /// Hora de inicio de la clase.
         /// </summary>
-        public TimeSpan HoraInicio { get; set; }
+        public DateTime HoraInicio { get; set; }
 
         /// <summary>
         /// Hora final de la clase.
         /// </summary>
-        public TimeSpan HoraFin { get; set; }
+        public DateTime HoraFin { get; set; }
 
         /// <summary>
         /// El Cupo actual de la clase.
@@ -59,7 +59,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                command.Parameters.AddWithValue("@Dia", (int)Dia); // TODO: probar esto.
+                command.Parameters.AddWithValue("@Dia", Dia.ToString()); // TODO: probar esto.
                 command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
                 command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
@@ -125,7 +125,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
-                command.Parameters.AddWithValue("@Dia", (int)Dia);
+                command.Parameters.AddWithValue("@Dia", Dia.ToString());
                 command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
 

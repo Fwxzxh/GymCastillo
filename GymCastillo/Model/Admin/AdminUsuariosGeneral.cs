@@ -3,11 +3,14 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations;
+using GymCastillo.Model.Validations.Personal;
 using log4net;
 
 namespace GymCastillo.Model.Admin {
+
     /// <summary>
     /// Clase que se encarga de exponer todas las operaciones comunes entre objetos tipo <c>AbstUsuario</c>.
     /// </summary>
@@ -42,10 +45,10 @@ namespace GymCastillo.Model.Admin {
 
             }
             catch (ValidationException msg) {
-                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
+                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrio un error desconocido a la hora de hacer el Update.");
+                Log.Error("Ha ocurrió un error desconocido a la hora de hacer el Update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -58,12 +61,7 @@ namespace GymCastillo.Model.Admin {
         /// <param name="objeto">El objeto a borrar</param>
         public static async Task Delete(AbstUsuario objeto) {
             try {
-                // validamos el objeto
-                //var validator = new UsuarioGralValidation();
-                //await validator.ValidateAndThrowAsync(objeto);
-
-                //// validamos los campos concretos
-                //await ValidateAgain(objeto);
+                // No es necesario validar el objeto.
 
                 // Hacemos el delete.
                 var res = await objeto.Delete();
@@ -78,7 +76,7 @@ namespace GymCastillo.Model.Admin {
                 }
             }
             catch (ValidationException msg) {
-                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
+                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de borrado.");
@@ -118,7 +116,7 @@ namespace GymCastillo.Model.Admin {
                 }
             }
             catch (ValidationException msg) {
-                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erroneos");
+                ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de Alta.");

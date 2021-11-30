@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 
-namespace GymCastillo.Model.Validations {
+namespace GymCastillo.Model.Validations.Personal {
     public class ClienteValidations : AbstractValidator<Cliente> {
 
         public ClienteValidations() {

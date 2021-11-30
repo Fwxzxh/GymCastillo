@@ -3,6 +3,7 @@ using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensCommands.UsersCommands;
 using log4net;

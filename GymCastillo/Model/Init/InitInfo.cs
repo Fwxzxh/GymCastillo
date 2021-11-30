@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using log4net;
 
@@ -66,10 +67,16 @@ namespace GymCastillo.Model.Init {
         public static List<Clase> ListaClases { get; set; }
 
         /// <summary>
+        /// La lista que contiene TODOS los horarios.
+        /// </summary>
+        public static List<Horario> ListHorarios { get; set; }
+
+        /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
         public static async Task<bool> GetAllInfo() {
             Log.Info("Se ha empezado el proceso de obtener la información de la base de datos.");
+
             try {
                 // Lanzamos las tareas.
                 var allClientes = GetFromDb.GetClientes();
@@ -84,24 +91,28 @@ namespace GymCastillo.Model.Init {
 
                 var allLockers = GetFromDb.GetLockers();
                 var allClases = GetFromDb.GetClases();
+                var allHorarios = GetFromDb.GetHorarios();
 
                 // Esperamos los resultados...
                 ListaClientes = await allClientes;
                 ListaInstructor = await allInstructores;
                 ListaUsuarios = await allUsuarios;
                 ListaClientesRenta = await allClientesRenta;
+
                 ListaDePaquetes = await allPaquetes;
                 ListaTipoCliente = await allTipoClientes;
                 ListaTipoInstructor = await allTipoInstructores;
                 ListaLockersOpen = await allLockersOpen;
+
                 ListaLockers = await allLockers;
                 ListaClases = await allClases;
+                ListHorarios = await allHorarios;
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
-                    allLockersOpen, allClases).ConfigureAwait(false);
+                    allLockersOpen, allClases, allHorarios).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 return true;

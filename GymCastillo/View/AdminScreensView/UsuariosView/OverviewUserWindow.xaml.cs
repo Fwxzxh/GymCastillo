@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensVM.UsersVM;
 
