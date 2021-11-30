@@ -8,6 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="View\UsuariosView\**" />
+      <EmbeddedResource Remove="View\UsuariosView\**" />
+      <None Remove="View\UsuariosView\**" />
+      <Page Remove="View\UsuariosView\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="Docs\Assets\Castillo.ico" />
       <None Remove="Docs\Assets\Castillo.png" />
       <None Remove="Docs\Assets\CastilloF1.png" />
@@ -113,10 +120,6 @@
       <Compile Update="View\AdminScreensView\UsuariosView\OverviewUserWindow.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="View\UsuariosView" />
     </ItemGroup>
 
 </Project>
