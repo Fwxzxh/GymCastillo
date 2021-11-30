@@ -235,3 +235,49 @@ UPDATE horario
 SET dia=@Dia, horainicio=@HoraInicio,
     horafin=@HoraFin, idclase=@IdClase
 WHERE idhorario=@IdHorario;
+
+-- Pagos
+	-- Consulta Pagos
+SELECT p.IdPagosGeneral, p.FechaRegistro,
+p.IdUsuario, u.Nombre, u.ApellidoPaterno,
+p.Servicios, p.Nomina, p.IdUsuarioPagar,
+up.Nombre, up.ApellidoPaterno,
+p.IdInstructor, i.Nombre, i.ApellidoPaterno,
+p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
+FROM pagos p
+INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
+LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
+LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor;
+	-- Alta pagos
+INSERT INTO pagos
+VALUES (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
+@Servicios, @Nomina, @Otros, @IdUsuarioPagar,
+@IdInstructor, @Concepto, @NumeroRecibo, @Monto);
+	-- Actualizar pagos
+UPDATE pagos
+SET 
+WHERE idpagosgeneral=@IdPagosGeneral;
+
+
+-- Ingresos
+	-- Consulta Ingresos
+SELECT i.IdIngresos, i.FechaRegistro,
+i.IdUsuario, u.Nombre, u.ApellidoPaterno,
+i.IdRenta, r.FechaRenta, i.IdCliente, 
+c.Nombre, c.ApellidoPaterno, i.IdVenta, 
+v.Concepto, i.Otros, i.Concepto,
+i.NumeroRecibo, i.Monto
+FROM ingresos i
+INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
+LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
+LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
+LEFT JOIN ventas v ON i.IdVenta = v.IdVenta;
+	-- Alta ingresos
+INSERT INTO ingresos
+VALUES (@IdIngresos, @FechaRegistro,@IdUsuario,
+@IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
+@NumeroRecibo, @Monto);
+	-- Actualizar ingresos
+UPDATE ingresos
+SET 
+WHERE idingresos = @IdIngresos;
