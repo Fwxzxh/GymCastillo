@@ -185,11 +185,11 @@ VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Co
 
 -- rentas
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 1, 3, 1, 400.0);
+VALUES (DEFAULT, CURDATE(), 1, 3, 1, '0700', '0800', 400.0);
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 1, 1, 1, 700.0);
+VALUES (DEFAULT, CURDATE(), 1, 1, 1, '0800', '0900', 700.0);
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 2, 1, 1, 700.0);
+VALUES (DEFAULT, CURDATE(), 2, 1, 1, '1000', '1100', 700.0);
 
 -- ventas
 INSERT INTO ventas
@@ -227,7 +227,7 @@ VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Cervezas pal sta
 INSERT INTO pagos
 VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago uranio', 'ABCDEFGHIJ5524567890', 100.0);
 INSERT INTO pagos
-VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 2, NULL, 'Pago a Usuario', 'ABCDEFGHIJ5554567890', 100.0);
+VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 1, NULL, 'Pago a Usuario', 'ABCDEFGHIJ5554567890', 100.0);
 
 -- ingresos
 INSERT INTO ingresos
