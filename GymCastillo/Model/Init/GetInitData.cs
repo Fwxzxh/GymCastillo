@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
-using System.Windows;
 using GymCastillo.Model.Helpers;
 using log4net;
 
@@ -64,7 +62,8 @@ namespace GymCastillo.Model.Init {
                     Log.Warn("Se ha creado un nuevo ini ya que no se encontró uno.");
                     ShowPrettyMessages.WarningOk(
                         "Se ha creado un nuevo archivo de configuración con los valores por default, " +
-                        "para ajustarlo a los valores anteriores debes ir a la sección de configuración y editarlos",
+                        "para ajustarlo a los valores anteriores debes ir a la sección de configuración y editarlos, " +
+                        @"El nuevo archivo de configuración se ha creado en C:\GymCastillo\config.ini",
                         "Se ha creado un archivo de configuración nuevo");
                 }
                 else {

@@ -18,7 +18,7 @@
         /// <summary>
         /// El costo a aplicar para cobrar el locker.
         /// </summary>
-        public string CostoLocker { get; set; }
+        public string PrecioLocker { get; set; }
 
         /// <summary>
         /// El monto a descontar por el retardo en la entrada de un instructor.
