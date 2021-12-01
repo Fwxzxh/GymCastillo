@@ -11,9 +11,9 @@ namespace GymCastillo.Model.Init {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// String que contiene el username del usuario logueado.
+        /// String que contiene el username del usuario que inicio seción.
         /// </summary>
-        public static string LogedUsername { get; set; }
+        public static string LoggedUsername { get; set; }
 
         /// <summary>
         /// Método que se encarga del proceso de logIn.
@@ -22,8 +22,6 @@ namespace GymCastillo.Model.Init {
         /// <param name="password">string con la contraseña del usuario.</param>
         /// <returns><c>True</c> si el logIn fue exitoso, si no <c>False</c></returns>
         public static bool LogIn(string username, string password) {
-
-            log4net.Config.XmlConfigurator.Configure();
 
             Log.Debug("Se ha empezado el proceso de LogIn");
             var connObj = new MySqlConnection(GetInitData.GetConnString());
@@ -44,7 +42,7 @@ namespace GymCastillo.Model.Init {
 
                 if (cmd.HasRows) {
                     Log.Debug("LogIn Exitoso");
-                    LogedUsername = username;
+                    LoggedUsername = username;
                     return true;
                 }
                 else {
@@ -62,6 +60,7 @@ namespace GymCastillo.Model.Init {
                 connObj.Close();
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de hacer Update de la ultima conección del usuario conectado.
