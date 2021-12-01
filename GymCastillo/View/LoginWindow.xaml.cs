@@ -5,6 +5,7 @@ using log4net;
 using MySqlConnector;
 
 namespace GymCastillo {
+
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>

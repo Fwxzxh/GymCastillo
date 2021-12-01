@@ -26,6 +26,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <!--<Content Include=".github\workflows\deployApp.yml" />-->
+      <Content Include="App.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+  
+    <ItemGroup>
       <PackageReference Include="FluentValidation" Version="10.3.4" />
       <PackageReference Include="log4net" Version="2.0.13" />
       <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
