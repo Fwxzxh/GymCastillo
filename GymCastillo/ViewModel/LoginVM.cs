@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net.Config;
@@ -65,9 +66,20 @@ namespace GymCastillo.ViewModel {
                         main.Show();
                         Application.Current.MainWindow.Close();
 
-                        // var test = HorarioHelper.GetHorariosFront(1);.
+                        // var test = HorarioHelper.GetHorariosFront(1);
                         // MessageBox.Show(
                         //     $"{test.HorasLunes.Count} {test.HorasJueves.Count} {test.HorasDomingo.Count} ");
+                        //
+                        // var newSabado = new Horario() {
+                        //     IdHorario = 0,
+                        //     Dia = 6,
+                        //     HoraInicio = DateTime.ParseExact("0700", "HHmm", CultureInfo.InvariantCulture),
+                        //     HoraFin = DateTime.ParseExact("0800", "HHmm", CultureInfo.InvariantCulture),
+                        //     CupoActual = 0,
+                        //     IdClase = 1
+                        // };
+                        // test.HorasSábado.Add(newSabado);
+                        // HorarioHelper.SaveHorarios(test);
                     }
                 }
                 else {
