@@ -66,8 +66,8 @@ namespace GymCastillo.Model.DataTypes {
 
                 Log.Debug("Se ha creado la query.");
 
-                var res =await ExecSql.NonQuery(command, "Alta Horario");
-                Log.Debug("Se ha dado de alta un horario.");
+                var res =await ExecSql.NonQuery(command, "Update Horario");
+                Log.Debug("Se ha editado un horario.");
 
                 return res;
             }
@@ -82,6 +82,7 @@ namespace GymCastillo.Model.DataTypes {
 
         public async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete de un horario.");
+            // TODO: Hacer FK check
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -92,7 +93,7 @@ namespace GymCastillo.Model.DataTypes {
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
 
-                command.Parameters.AddWithValue("@IdInstructor", IdHorario.ToString());
+                command.Parameters.AddWithValue("@IdHorario", IdHorario.ToString());
 
                 Log.Debug("Se ha creado la query.");
 
