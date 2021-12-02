@@ -132,4 +132,9 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ViewModel\SettingsScreensVM\SettingsVM\" />
+      <Folder Include="ViewModel\SettingsScreensVM\PaquetesVM\" />
+    </ItemGroup>
+
 </Project>

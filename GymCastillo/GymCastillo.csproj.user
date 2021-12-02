@@ -10,6 +10,18 @@
     <Compile Update="View\HomeViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\SettingsScreensView\ClasesView\ClasesSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\PaquetesView\PaquetesSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\SettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\UsersViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +31,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\HomeViewUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\ClasesView\ClasesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\PaquetesView\PaquetesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\SettingsControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\UsersViewUserControl.xaml">

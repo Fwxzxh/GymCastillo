@@ -70,9 +70,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
 
 
             }
-            catch (Exception) {
-
-                throw;
+            catch (Exception e) {
+                Log.Error(e.Message);
+                ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
         }
 
@@ -108,7 +108,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         private async void FilterList(string query) {
             usuarios = await GetFromDb.GetUsuarios(); 
             if (usuarios != null) {
-                if (query == "") {
+                if (string.IsNullOrWhiteSpace(query)) {
                     ListaUsuarios.Clear();
                     foreach (var cliente in usuarios.OrderBy(i => i.Nombre)) {
                         ListaUsuarios.Add(cliente);

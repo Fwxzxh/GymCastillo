@@ -63,7 +63,7 @@ namespace GymCastillo.Model.Init {
                     ShowPrettyMessages.WarningOk(
                         "Se ha creado un nuevo archivo de configuración con los valores por default, " +
                         "para ajustarlo a los valores anteriores debes ir a la sección de configuración y editarlos, " +
-                        @"El nuevo archivo de configuración se ha creado en C:\GymCastillo\config.ini",
+                        $@"El nuevo archivo de configuración se ha creado en {IniPath}",
                         "Se ha creado un archivo de configuración nuevo");
                 }
                 else {
@@ -89,12 +89,15 @@ namespace GymCastillo.Model.Init {
         private static void CreateIni() {
             try {
                 Log.Warn("Se ha iniciado el proceso para crear un nuevo ini desde 0.");
+
                 var ini = new IniFile(IniPath);
 
                 ini.Write("DbUser", "root", "Config");
                 ini.Write("DbPass", "root", "Config");
                 ini.Write("PrecioLocker", "50", "Settings");
                 ini.Write("DescuentoRetardo", "50", "Settings");
+                File.SetAttributes(IniPath, FileAttributes.Hidden);
+
 
             }
             catch (Exception e) {

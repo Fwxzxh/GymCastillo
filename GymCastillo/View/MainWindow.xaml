@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:home="clr-namespace:GymCastillo.View"
+        xmlns:settings="clr-namespace:GymCastillo.View.SettingsScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -85,6 +86,9 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <settings:SettingsControl/>
+                </TabItem.Content>
             </TabItem>
         </TabControl>
     </Grid>

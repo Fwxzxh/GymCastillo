@@ -201,6 +201,7 @@
                           materialDesign:ValidationAssist.Suppress="True"
                           materialDesign:ValidationAssist.UsePopup="False"
                           materialDesign:ValidationAssist.OnlyShowOnFocus="True"
+                          materialDesign:ComboBoxAssist.ShowSelectedItem="False"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           IsEnabled="{Binding LockerIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           FontSize="20"

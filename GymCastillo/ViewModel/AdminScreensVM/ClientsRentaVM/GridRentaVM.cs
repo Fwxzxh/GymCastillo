@@ -98,7 +98,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
         private async void FilterList(string query) {
             clienteRenta = await GetFromDb.GetClientesRenta();
             if (clienteRenta != null) {
-                if (query == "") {
+                if (string.IsNullOrWhiteSpace(query)) {
                     ListaClientes.Clear();
                     foreach (var cliente in clienteRenta.OrderBy(i => i.Nombre)) {
                         ListaClientes.Add(cliente);

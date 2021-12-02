@@ -77,7 +77,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
         private async void FilterList(string query) {
             instructores = await GetFromDb.GetInstructores();
             if (instructores != null) {
-                if (query == "") {
+                if (string.IsNullOrWhiteSpace(query)) {
                     ListaInstructores.Clear();
                     foreach (var cliente in instructores.OrderBy(i => i.Nombre)) {
                         ListaInstructores.Add(cliente);
