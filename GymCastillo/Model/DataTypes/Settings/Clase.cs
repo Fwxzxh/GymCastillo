@@ -7,7 +7,7 @@ using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Settings {
     // Clase que contiene los campos y métodos de el objeto tipo Clase.
     public class Clase : IOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);

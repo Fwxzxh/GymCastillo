@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentValidation;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Validations.Config;

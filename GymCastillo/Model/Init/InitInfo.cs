@@ -5,7 +5,9 @@ using System.Windows;
 using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using log4net;
 

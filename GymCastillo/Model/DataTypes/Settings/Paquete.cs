@@ -8,7 +8,7 @@ using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
     /// Clase que contiene los campos y métodos del objeto tipo Paquete.
     /// </summary>

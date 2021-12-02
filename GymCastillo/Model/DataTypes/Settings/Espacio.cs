@@ -7,7 +7,7 @@ using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
     /// Clase que contiene todos los métodos y campos del tipo de datos Espacio.
     /// </summary>

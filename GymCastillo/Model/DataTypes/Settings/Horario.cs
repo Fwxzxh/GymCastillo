@@ -7,7 +7,7 @@ using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
     /// Clase que tiene los campos y métodos de los objetos tipo Horario.
     /// </summary>

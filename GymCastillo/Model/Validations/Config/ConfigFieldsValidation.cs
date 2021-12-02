@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Otros;
 
 namespace GymCastillo.Model.Validations.Config {
     public class ConfigFieldsValidation : AbstractValidator<ConfigFields> {
