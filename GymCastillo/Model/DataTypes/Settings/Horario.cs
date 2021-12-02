@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
@@ -11,7 +12,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
     /// Clase que tiene los campos y métodos de los objetos tipo Horario.
     /// </summary>
-    public class Horario : IOtrosTipos {
+    public class Horario : AbstOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -44,8 +45,13 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public int CupoActual { get; set; }
 
-        public async Task<int> Update() {
+        public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un horario.");
+
+            if (IdHorario == 0) {
+                var res = await Alta();
+                return res;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -80,7 +86,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
-        public async Task<int> Delete() {
+        public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete de un horario.");
             // TODO: Hacer FK check
 
@@ -111,7 +117,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
-        public async Task<int> Alta() {
+        public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un horario.");
 
             try {

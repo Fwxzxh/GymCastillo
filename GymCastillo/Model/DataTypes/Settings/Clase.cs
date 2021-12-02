@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
@@ -9,7 +10,7 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes.Settings {
     // Clase que contiene los campos y métodos de el objeto tipo Clase.
-    public class Clase : IOtrosTipos {
+    public class Clase : AbstOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public bool Activo { get; set; }
 
-        public async Task<int> Update() {
+        public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
 
             try {
@@ -95,7 +96,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         }
 
 
-        public async Task<int> Delete() {
+        public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en una clase.");
 
             try {
@@ -125,7 +126,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
-        public async Task<int> Alta() {
+        public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
 
             try {

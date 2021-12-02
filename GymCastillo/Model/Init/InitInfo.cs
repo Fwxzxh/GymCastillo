@@ -124,6 +124,7 @@ namespace GymCastillo.Model.Init {
                     allLockersOpen, allClases, allHorarios, allEspacios).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
+
                 return true;
             }
             catch (Exception e) {

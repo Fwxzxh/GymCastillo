@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace GymCastillo.Model.DataTypes.Abstract {
     /// <summary>
-    /// Clase abtracta que contiene los campos y métodos comúnes entre clientes e instructores.
+    /// Clase abstracta que contiene los campos y métodos comúnes entre clientes e instructores.
     /// </summary>
     public abstract class AbstClientInstructor : AbstUsuario {
 
