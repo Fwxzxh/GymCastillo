@@ -90,6 +90,14 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <returns>El número de columnas afectadas por la operación.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de Delete en usuario.");
+
+            if (Id == 1) {
+                ShowPrettyMessages.ErrorOk(
+                    "No puedes borrar el usuario admin, ya que podrías no poder entrar al programa después.",
+                    "Error al borrar usuario admin.");
+                return 0;
+            }
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
