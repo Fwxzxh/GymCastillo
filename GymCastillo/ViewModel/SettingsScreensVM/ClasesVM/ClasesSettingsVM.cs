@@ -106,14 +106,13 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
             Clase = null;
             Clase = new();
             ListaClases.Clear();
+            var clases = await GetFromDb.GetClases();
             if (activa) {
-                var clases = await GetFromDb.GetClases();
                 foreach (var item in clases.Where(c => c.Activo == true)) {
                     ListaClases.Add(item);
                 }
             }
             else {
-                var clases = await GetFromDb.GetClases();
                 foreach (var item in clases) {
                     ListaClases.Add(item);
                 }
