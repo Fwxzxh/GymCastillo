@@ -68,8 +68,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
                 Log.Debug("Inicializada la pantalla de instructores con éxito.");
             }
             catch (Exception e) {
-
-                MessageBox.Show(e.Message);
+                Log.Error(e.Message);
+                //MessageBox.Show(e.Message);
             }
 
 

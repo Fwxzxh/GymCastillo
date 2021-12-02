@@ -67,12 +67,11 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
                 delete = new(this);
                 newUserWindow = new(this);
                 overview = new(this);
-
-
             }
             catch (Exception e) {
                 Log.Error(e.Message);
-                ShowPrettyMessages.ErrorOk(e.Message, "Error");
+                //ShowPrettyMessages.ErrorOk(e.Message, "Error");
+                throw;
             }
         }
 

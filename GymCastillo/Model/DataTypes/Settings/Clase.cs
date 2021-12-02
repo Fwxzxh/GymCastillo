@@ -72,7 +72,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                                              WHERE idclase=@IdClase;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
-
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
 
@@ -140,6 +140,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                                                @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
                 command.Parameters.AddWithValue("@NombreClase", NombreClase);
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);

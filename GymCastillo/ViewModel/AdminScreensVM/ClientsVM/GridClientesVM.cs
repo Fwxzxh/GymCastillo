@@ -70,9 +70,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al iniciar la pantalla de GridClientes.");
                 Log.Error($"Error: {e.Message}");
-                ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconocido al iniciar la pantalla de GridClientes. Error: {e.Message}",
-                    "Error Desconocido");
+                //ShowPrettyMessages.ErrorOk(
+                //    $"Ha ocurrido un error desconocido al iniciar la pantalla de GridClientes. Error: {e.Message}",
+                //    "Error Desconocido");
             }
         }
 

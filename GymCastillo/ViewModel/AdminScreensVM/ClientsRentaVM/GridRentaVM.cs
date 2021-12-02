@@ -60,9 +60,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
                 delete = new(this);
                 Log.Debug("Inicializada viewmodel grid rentas");
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Log.Error(e.Message);
 
-                throw;
             }
         }
 
