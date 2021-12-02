@@ -46,6 +46,7 @@ create table Instructor (
     DiasTrabajados int, -- Cuantos días trabajó esa semana/quincena/mes
     Sueldo decimal not null,
     SueldoADescontar decimal, -- Opcional y calculable en backend
+    MetodoFechaPago int, -- Serían 3: 1-Semanal, 2-Quincenal, 3-Mes 
     -- IdTipoInstructor
     IdTipoInstructor int,
     foreign key (IdTipoInstructor) references TipoInstructor (IdTipoInstructor)

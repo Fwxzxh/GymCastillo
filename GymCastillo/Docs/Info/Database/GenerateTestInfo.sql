@@ -35,43 +35,43 @@ VALUES (default, 'Otros', 'Otro tipo de instructor');
 INSERT INTO instructor 
 VALUES (default, 'Juan Pablo', 'Alegría', 'Escobedo', 'Calle Francisco Villa #49B Colonia España', CURDATE()
 , '4420424629', 'Cassandra Carrillo Ledezma' ,'4428320490', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
-, null, 1500.0, null, 1);
+, null, 1500.0, null, 1, 1);
 INSERT INTO instructor 
 VALUES (default, 'Miguel', 'Gonzalez', 'Gutierrez', 'Calle Las Palmas #5 Colonia Inglaterra', CURDATE()
 , '4424607855', 'Jorge David Cabrera Lopez' ,'4423706021', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
-, null, 500.0, null, 2);
+, null, 500.0, null, 1, 2);
 INSERT INTO instructor 
 VALUES (default, 'Jose Luis', 'Ruiz', 'Espino', 'Calle Centauro #23 Colonia La Condesa', CURDATE()
 , '4425724914', 'Brian Gonzalez Gonzalez' ,'4427241624', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
-, null, 1500.0, null, 1);
+, null, 1500.0, null, 1, 1);
 INSERT INTO instructor 
 VALUES (default, 'Javier', 'Ibarra', 'Moroña', 'Calle Domigo #123B Colonia Iglesia', CURDATE()
 , '4424602987', 'Hector Rodriguez Rodriguez' ,'4425235314', null, CURDATE(), CURDATE(), 1500.0, '0700', '1400', 5
-, null, 1500.0, null, 1);
+, null, 1500.0, null, 2, 1);
 INSERT INTO instructor 
 VALUES (default, 'Manuel', 'Mejía', 'Rodriguez', 'Calle Miguel Barbosa #3 Colonia Lindavista', CURDATE()
 , '4422645931', 'Juventino Perez Hernandez' ,'4426501910', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
-, null, 500.0, null, 2);
+, null, 500.0, null, 2, 2);
 INSERT INTO instructor 
 VALUES (default, 'Juventino', 'Perez', 'Hernandez', 'Calle Andres Navy #12 Colonia Los Angeles', CURDATE()
 , '4424546787', 'Manuel Mejía Rodriguez' ,'4420521042', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
-, null, 500.0, null, 2);
+, null, 500.0, null, 2, 2);
 INSERT INTO instructor 
 VALUES (default, 'Hector', 'Rodriguez', 'Rodriguez', 'Calle Mirador #98 Colonia Sao Paulo', CURDATE()
 , '4421545217', 'Javier Ibarra Moroña' ,'4429200416', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
-, null, 500.0, null, 2);
+, null, 500.0, null, 3, 2);
 INSERT INTO instructor 
 VALUES (default, 'Brian', 'Gonzalez', 'Gonzalez', 'Calle Poniente #1 Colonia Niños heroes', CURDATE()
 , '4426871468', 'Jose Luis Ruiz Espino' ,'4424679408', null, CURDATE(), CURDATE(), 500.0, '0700', '1400', 5
-, null, 500.0, null, 2);
+, null, 500.0, null, 3, 2);
 INSERT INTO instructor 
 VALUES (default, 'Jorge David', 'Cabrera', 'Lopez', 'Calle San Javier #35 Colonia Lagunas', CURDATE()
 , '4429993970', 'Miguel Gonzalez Gutierrez' ,'4420326526', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
-, null, 1500.0, null, 1);
+, null, 1500.0, null, 3, 1);
 INSERT INTO instructor 
 VALUES (default, 'Cassandra', 'Carrillo', 'Ledezma', 'Calle Mi Corazon #25 Colonia Encanto', CURDATE()
 , '4420608128', 'Juan Pablo Alegría Escobedo' ,'4426273881', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
-, null, 1500.0, null, 1);
+, null, 1500.0, null, 3, 1);
 
 -- Clases
 INSERT INTO clase

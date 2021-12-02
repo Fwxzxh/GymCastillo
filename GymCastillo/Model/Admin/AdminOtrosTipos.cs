@@ -17,7 +17,8 @@ namespace GymCastillo.Model.Admin {
         /// Método que se encarga de actualizar y validar los datos del objeto dado tipo <c>AbstOtrosTipos</c>
         /// </summary>
         /// <param name="objeto"></param>
-        public static async Task Update(AbstOtrosTipos objeto) {
+        /// <param name="silent">Si se le da true, no va a mostrar mensajes de confirmación.</param>
+        public static async Task Update(AbstOtrosTipos objeto, bool silent=false) {
             try {
                 // validamos
                 // TODO: hacer validaciones.
@@ -31,7 +32,9 @@ namespace GymCastillo.Model.Admin {
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
                 else {
-                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    if (!silent) {
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    }
                 }
             }
             catch (ValidationException msg) {
@@ -49,7 +52,8 @@ namespace GymCastillo.Model.Admin {
         /// Método que se encarga de borrar los datos del objeto dado tipo <c>AbstOtrosTipos</c> en la base de datos.
         /// </summary>
         /// <param name="objeto">El objeto a borrar.</param>
-        public static async Task Delete(AbstOtrosTipos objeto) {
+        /// <param name="silent">Si se le da true, no va a mostrar mensajes de confirmación.</param>
+        public static async Task Delete(AbstOtrosTipos objeto, bool silent=false) {
             try {
                 // No es necesario validar el objeto.
 
@@ -62,7 +66,9 @@ namespace GymCastillo.Model.Admin {
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                 }
                 else {
-                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    if (!silent) {
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    }
                 }
             }
             catch (ValidationException msg) {
@@ -81,7 +87,8 @@ namespace GymCastillo.Model.Admin {
         /// en la base de datos.
         /// </summary>
         /// <param name="objeto">El objeto a validar</param>
-        public static async Task Alta(AbstOtrosTipos objeto) {
+        /// <param name="silent">Si se le da true, no va a mostrar mensajes de confirmación.</param>
+        public static async Task Alta(AbstOtrosTipos objeto, bool silent=false) {
             try {
                 Log.Debug("Se ha iniciado un proceso de alta genérico.");
 
@@ -99,7 +106,9 @@ namespace GymCastillo.Model.Admin {
                     Log.Warn("No se han hecho cambios a la base de datos.");
                 }
                 else {
-                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    if (!silent) {
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    }
                 }
             }
             catch (ValidationException msg) {

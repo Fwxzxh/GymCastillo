@@ -147,27 +147,34 @@ namespace GymCastillo.Model.Helpers {
                 horariosNuevos.AddRange(frontHorario.HorasSábado);
                 horariosNuevos.AddRange(frontHorario.HorasDomingo);
 
-                foreach (var horario in horariosNuevos) {
-                    if (horario.IdHorario == 0) { // Nuevo horario
-                        // hacemos alta.
-                        Task.Run(() => AdminOtrosTipos.Alta(horario));
-                    }
-                    else {
-                        // update
-                        Task.Run(() => AdminOtrosTipos.Update(horario));
+                for (var index = 0; index < horariosNuevos.Count; index++) {
+                    var horario = horariosNuevos[index];
+
+                    switch (horario.IdHorario) {
+                        case 0:
+                            // Nuevo horario, hacemos alta.
+                            Task.Run(() => AdminOtrosTipos.Alta(horario, true));
+                            break;
+                        case -1:
+                            // eliminamos
+                            Task.Run(() => AdminOtrosTipos.Delete(horario, true));
+                            break;
+                        default:
+                            // Update
+                            Task.Run(() => AdminOtrosTipos.Update(horario, true));
+                            break;
                     }
                 }
 
-                // Verificamos que no se haya eliminado alguno.
-                if (horariosFiltrados.Count != horariosNuevos.Count) {
-                    // se elimino un horario
-
-                }
-
+                Log.Debug("Se han guardado los horarios exitosamente.");
             }
             catch (Exception e) {
-                Console.WriteLine(e);
-                throw;
+                Log.Error("Ha ocurrido un error al guardar los horarios.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    "Ha ocurrido un error desconocido al guardar los horarios. " +
+                    $" {e.Message}",
+                    "Error desconocido.");
             }
         }
     }

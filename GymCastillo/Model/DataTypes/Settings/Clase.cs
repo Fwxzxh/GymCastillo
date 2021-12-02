@@ -68,8 +68,9 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 const string updateQuery = @"UPDATE clase
                                              SET cupomaximo=@CupoMaximo, activo=@Activo,
-                                                 idinstructor=@IdInstructor, idespacio=@IdEspacio
-                                             WHERE idclase=@IdClase;";
+                                                 idinstructor=@IdInstructor, idespacio=@IdEspacio,
+                                                 Descripcion=@Descripcion
+                                             WHERE IdClase=@IdClase;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
                 command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
@@ -78,6 +79,9 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
+
+                command.Parameters.AddWithValue("@Descripcion", Descripcion);
+
 
                 Log.Debug("Se ha generado la query.");
 
@@ -144,6 +148,8 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 command.Parameters.AddWithValue("@NombreClase", NombreClase);
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
+
+                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", "1");

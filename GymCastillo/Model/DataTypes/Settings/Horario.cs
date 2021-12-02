@@ -4,7 +4,6 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
@@ -48,6 +47,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un horario.");
 
+            // Verificamos si no es una alta disfrazada de update.
             if (IdHorario == 0) {
                 var res = await Alta();
                 return res;
@@ -65,6 +65,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
+                command.Parameters.AddWithValue("@IdHorario", IdHorario.ToString());
                 command.Parameters.AddWithValue("@Dia", Dia.ToString());
                 command.Parameters.AddWithValue("@HoraInicio", HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin", HoraFin.ToString("HHmm"));
