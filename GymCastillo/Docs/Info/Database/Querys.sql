@@ -62,7 +62,7 @@ SELECT
     i.Foto, i.FechaUltimoAcceso, i.FechaUltimoPago,
     i.MontoUltimoPago, i.HoraEntrada, i.HoraSalida,
     i.DiasATrabajar, i.DiasTrabajados, i.Sueldo,
-    i.SueldoADescontar,
+    i.SueldoADescontar, i.MetodoFechaPago,
     ti.IdTipoInstructor, ti.NombreTipoInstructor,
     group_concat(c.IdClase) as IdClase, group_concat(c.NombreClase) as NombreClase
 FROM instructor i
@@ -75,13 +75,14 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
 	@TelefonoContacto, @Foto, @FechaUltimoAcceso, @FechaUltimoPago,
 	@MontoUltimoPago, @HoraEntrada, @HoraSalida, @DiasATrabajar,
-	@DiasTrabajados, @Sueldo, @SueldoADescontar, @IdTipoInstructor);
+	@DiasTrabajados, @Sueldo, @SueldoADescontar, @MetodoFechaPago,
+	@IdTipoInstructor);
 	-- Editar valores (usuario)
 UPDATE instructor
 SET domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
 telefonocontacto=@TelefonoContacto, foto=@Foto, horaentrada=@HoraEntrada,
 horasalida=@HoraSalida, sueldo=@Sueldo, sueldoadescontar=@SueldoADescontar,
-idtipoinstructor=@IdTipoInstructor
+metodofechapago=@MetodoFechaPago, idtipoinstructor=@IdTipoInstructor
 WHERE idinstructor=@IdInstructor;
 	-- Editar valores (automatico)
 
