@@ -46,7 +46,7 @@ namespace GymCastillo.Model.Init {
                     return true;
                 }
                 else {
-                    Log.Debug("LogIn Fallido, credenciales erroneas");
+                    Log.Debug("LogIn Fallido, credenciales erróneas");
                     return false;
                 }
             }
@@ -63,10 +63,10 @@ namespace GymCastillo.Model.Init {
 
 
         /// <summary>
-        /// Método que se encarga de hacer Update de la ultima conección del usuario conectado.
+        /// Método que se encarga de hacer Update de la ultima conexión del usuario conectado.
         /// </summary>
         // TODO:
-        private static void UpdateLastConection() {
+        private static void UpdateLastConnection() {
 
         }
     }

@@ -27,7 +27,6 @@ namespace GymCastillo.Model.Init {
             Log.Info("Se ha empezado el proceso de obtener el string de conexión.");
 
             try {
-
                 SetUpIni();
 
                 var ini = new IniFile(IniPath);
@@ -43,7 +42,8 @@ namespace GymCastillo.Model.Init {
                 Log.Error("Ha ocurrido un error al leer la información de conexión del archivo de configuración.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconocido al obtener la información de conexión del archivo de configuración. Error: {e.Message}",
+                    $"Ha ocurrido un error desconocido al obtener la información de conexión del archivo de " +
+                    $"configuración. Error: {e.Message}",
                     "Error desconocido");
                 throw; // --> Nos llevamos el error al siguiente nivel.
             }

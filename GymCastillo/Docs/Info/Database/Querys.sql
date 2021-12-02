@@ -1,5 +1,4 @@
-﻿-- Querys
--- Consultas generales
+﻿-- Queries -- Consultas generales
 SELECT * FROM cliente;
 SELECT * FROM clase;
 SELECT * FROM tipoinstructor;
@@ -13,7 +12,7 @@ SELECT * FROM pagos;
 SELECT * FROM ingresos;
 
 -- Cliente
-	-- Consulta de todo lo de cliente
+	-- Consulta de lo de cliente
 SELECT
     c.IdCliente, c.Nombre, c.ApellidoMaterno,
     c.ApellidoPaterno, c.Domicilio, c.FechaNacimiento,
@@ -55,7 +54,7 @@ WHERE idcliente=13;
 	-- Editar valores (automatico)
 
 -- Instructor
-	-- Consulta de todo lo de Instructor
+	-- Consulta de lo de Instructor
 SELECT
     i.IdInstructor, i.Nombre, i.ApellidoPaterno,
     i.ApellidoMaterno, i.Domicilio, i.FechaNacimiento,
@@ -87,7 +86,7 @@ WHERE idinstructor=@IdInstructor;
 	-- Editar valores (automatico)
 
 -- ClienteRenta
-	-- Consulta de todo lo de ClienteRenta
+	-- Consulta de lo de ClienteRenta
 SELECT
     cr.IdClienteRenta, cr.Nombre, cr.ApellidoPaterno,
     cr.ApellidoPaterno, cr.Domicilio, cr.FechaNacimiento,
@@ -114,10 +113,10 @@ SET Domicilio=@Domicilio, Telefono=@Telefono,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto,
     Foto=@Foto
 WHERE IdClienteRenta=@IdClienteRenta;
-	-- Editar valores (automatico)
+	-- Editar valores (automático)
 
 -- Usuarios
-	-- Consulta de todo lo de Usuarios
+	-- Consulta de lo de Usuarios
 SELECT
     u.IdUsuario, u.Nombre, u.ApellidoPaterno,
     u.ApellidoMaterno, u.Domicilio, u.Username,
@@ -154,13 +153,13 @@ left join espacio e on e.IdEspacio = c.IdEspacio;
 
 
 -- Clases
--- Consulta todo clase con horario:
+-- Consulta clase con horario:
 SELECT
     c.IdClase, c.NombreClase, c.Descripcion,
     c.CupoMaximo, c.Activo,
     i.IdInstructor, i.Nombre, i.ApellidoPaterno,
     e.IdEspacio, e.NombreEspacio,
-    group_concat(h.Día) Dia,
+    group_concat(h.Dia) as Dia,
     group_concat(h.HoraInicio) HoraDeInicio,
     group_concat(h.HoraFin) HoraDeTermino
 FROM clase c
@@ -169,7 +168,7 @@ LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
 LEFT JOIN horario h ON h.IdClase = c.IdClase
 group by c.IdClase;
 
--- Consulta todo clase sin horario:
+-- Consulta clase sin horario:
 SELECT
     c.IdClase, c.NombreClase, c.Descripcion,
     c.CupoMaximo, c.Activo,
@@ -185,7 +184,7 @@ VALUES
     (default, @NombreClase, @Descripcion,
     @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);
 
--- Actulización de clases
+-- Actualización de clases
 UPDATE clase
 SET cupomaximo=@CupoMaximo, activo=@Activo,
     idinstructor=@IdInstructor, idespacio=@IdEspacio
@@ -193,7 +192,7 @@ WHERE idclase=@IdClase;
 
 
 -- Paquetes
--- Consulta todo paquete
+-- Consulta paquete
 SELECT p.IdPaquete, p.Gym, p.NombrePaquete,
 p.NumClasesTotales, p.NumClasesSemanales, p.Costo,
 c.IdClase, c.NombreClase
@@ -207,7 +206,7 @@ VALUES
     @NumClasesTotales, @NumClasesSemanales,
     @Costo, @IdClase);
 
--- Actulización paquetes
+-- Actualización paquetes
 UPDATE paquete
 SET gym=@Gym, nombrepaquete=@NombrePaquete,
     numclasestotales=@NumClasesTotales,
@@ -217,7 +216,7 @@ WHERE idpaquete=@IdPaquete;
 
 
 -- Horarios
--- Consulta todo horario
+-- Consulta horario
 SELECT h.idhorario, h.dia, h.horainicio,
 h.horafin, h.cupoactual,
 c.idclase, c.nombreclase
@@ -253,10 +252,6 @@ INSERT INTO pagos
 VALUES (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
 @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
 @IdInstructor, @Concepto, @NumeroRecibo, @Monto);
-	-- Actualizar pagos
-UPDATE pagos
-SET 
-WHERE idpagosgeneral=@IdPagosGeneral;
 
 
 -- Ingresos
@@ -277,7 +272,3 @@ INSERT INTO ingresos
 VALUES (@IdIngresos, @FechaRegistro,@IdUsuario,
 @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
 @NumeroRecibo, @Monto);
-	-- Actualizar ingresos
-UPDATE ingresos
-SET 
-WHERE idingresos = @IdIngresos;
