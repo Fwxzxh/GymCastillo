@@ -723,7 +723,7 @@ namespace GymCastillo.Model.Database {
         /// <summary>
         /// Método que obtiene todos los horarios.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Una lista con objetos tipo <c>Horario</c></returns>
         public static async Task<List<Horario>> GetHorarios() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Horarios.");
 
@@ -743,7 +743,9 @@ namespace GymCastillo.Model.Database {
                 while (await reader.Result.ReadAsync()) {
                     var horario = new Horario() {
                         IdHorario = reader.Result.GetInt32("IdHorario"),
-                        Dia = await reader.Result.IsDBNullAsync("Dia") ? 0 : reader.Result.GetInt32("Dia"),
+                        Dia = await reader.Result.IsDBNullAsync("Dia")
+                            ? 0
+                            : reader.Result.GetInt32("Dia"),
 
                         HoraInicio = DateTime.ParseExact(reader.Result.GetString("HoraInicio"), "HHmm",
                             CultureInfo.InvariantCulture),
@@ -768,6 +770,54 @@ namespace GymCastillo.Model.Database {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los Horarios. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se obtiene todos los espacios.
+        /// </summary>
+        /// <returns>Una lista con objetos tipo <c>Espacio</c></returns>
+        public static async Task<List<Espacio>> GetEspacios() {
+            Log.Debug("Se ha empezado el proceso de obtener la información de los espacios.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from espacio";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listEspacios = new List<Espacio>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var espacio = new Espacio() {
+                        IdEspacio = reader.Result.GetInt32("IdEspacio"),
+                        NombreEspacio = await reader.Result.IsDBNullAsync("NombreEspacio")
+                            ? ""
+                            : reader.Result.GetString("NombreEspacio"),
+
+                        Descripción = await reader.Result.IsDBNullAsync("Descripcion")
+                            ? ""
+                            : reader.Result.GetString("Descripcion"),
+                    };
+                    listEspacios.Add(espacio);
+                }
+                Log.Debug("Se han obtenido con éxito la información de los espacios.");
+
+                return listEspacios;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los Espacios.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los Espacios. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }

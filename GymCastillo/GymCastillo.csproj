@@ -27,7 +27,7 @@
 
     <ItemGroup>
       <!--<Content Include=".github\workflows\deployApp.yml" />-->
-      <Content Include="App.config">
+      <Content Include="Logger.config">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
