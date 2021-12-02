@@ -1,4 +1,4 @@
-﻿namespace GymCastillo.Model.DataTypes {
+﻿namespace GymCastillo.Model.DataTypes.Otros {
     /// <summary>
     /// Clase que contiene las propiedades del Tipo Locker
     /// </summary>

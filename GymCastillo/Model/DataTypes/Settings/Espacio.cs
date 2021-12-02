@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
     /// Clase que contiene todos los métodos y campos del tipo de datos Espacio.
     /// </summary>
-    public class Espacio : IOtrosTipos{
+    public class Espacio : AbstOtrosTipos{
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace GymCastillo.Model.DataTypes {
         public string Descripción { get; set; }
 
 
-        public async Task<int> Update() {
+        public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un espacio.");
 
             try {
@@ -65,7 +65,7 @@ namespace GymCastillo.Model.DataTypes {
             }
         }
 
-        public async Task<int> Delete() {
+        public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete de un espacio.");
             //TODO: hacer FK check
 
@@ -96,7 +96,7 @@ namespace GymCastillo.Model.DataTypes {
             }
         }
 
-        public async Task<int> Alta() {
+        public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de alta de un espacio.");
 
             try {

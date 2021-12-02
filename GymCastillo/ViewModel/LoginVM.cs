@@ -64,6 +64,10 @@ namespace GymCastillo.ViewModel {
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();
+
+                        // var test = HorarioHelper.GetHorariosFront(1);.
+                        // MessageBox.Show(
+                        //     $"{test.HorasLunes.Count} {test.HorasJueves.Count} {test.HorasDomingo.Count} ");
                     }
                 }
                 else {

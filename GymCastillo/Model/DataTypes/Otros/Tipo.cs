@@ -1,4 +1,4 @@
-﻿namespace GymCastillo.Model.DataTypes {
+﻿namespace GymCastillo.Model.DataTypes.Otros {
     /// <summary>
     /// Clase que contiene los campos del objeto Tipo el cual puede ser TipoCliente o TipoInstructor.
     /// </summary>

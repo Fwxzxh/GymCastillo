@@ -1,6 +1,7 @@
 ﻿using System;
 using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using log4net;
 
 namespace GymCastillo.Model.Admin {

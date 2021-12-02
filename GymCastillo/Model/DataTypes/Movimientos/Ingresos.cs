@@ -1,6 +1,6 @@
 ﻿using GymCastillo.Model.DataTypes.Abstract;
 
-namespace GymCastillo.Model.DataTypes {
+namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
     /// Clase que contiene todos los campos y métodos de la clase Ingresos.
     /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace GymCastillo.Model.DataTypes {
+﻿namespace GymCastillo.Model.DataTypes.Otros {
     public enum Dias {
         Lunes,
         Martes,
