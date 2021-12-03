@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
-using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using log4net;
-using MySqlConnector;
 
 namespace GymCastillo.Model.Helpers {
     /// <summary>
@@ -72,15 +70,6 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de clasificar los horarios");
 
             try {
-                // var horarioFront = new FrontHorario() {
-                //     HorasLunes = new List<Horario>(),
-                //     HorasMartes = new List<Horario>(),
-                //     HorasMiércoles = new List<Horario>(),
-                //     HorasJueves = new List<Horario>(),
-                //     HorasViernes = new List<Horario>(),
-                //     HorasSábado = new List<Horario>(),
-                //     HorasDomingo = new List<Horario>()
-                // };
                 var horarioFront = new FrontHorario();
 
                 for (var index = 0; index < horariosFiltrados.Count; index++) {
