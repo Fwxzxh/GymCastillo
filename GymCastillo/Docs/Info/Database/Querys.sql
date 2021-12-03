@@ -21,7 +21,7 @@ SELECT
     c.MontoUltimoPago, c.Activo, c.FechaVencimientoPago,
     c.DeudaCliente, c.MedioConocio, c.MedioConocio,
     c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles,
-    c.Descuento, c.Nino,
+    c.DuracionPaquete, c.Nino,
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
     l.IdLocker, l.Nombre as NombreLocker
@@ -36,12 +36,12 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
 	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
-	@Descuento, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
+	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
 	-- Editar valores (usuario)
 UPDATE cliente
 SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
-    Activo=@Activo, MedioConocio=@MedioConocio, Descuento=@Descuento, Nino=@Nino,
+    Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
     IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete, IdLocker=@IdLocker
 WHERE IdCliente=@IdCliente;
 
@@ -236,20 +236,20 @@ SET dia=@Dia, horainicio=@HoraInicio,
     horafin=@HoraFin, idclase=@IdClase
 WHERE idhorario=@IdHorario;
 
--- Pagos
-	-- Consulta Pagos
+-- Egresos
+	-- Consulta Egresos
 SELECT p.IdPagosGeneral, p.FechaRegistro,
 p.IdUsuario, u.Nombre, u.ApellidoPaterno,
 p.Servicios, p.Nomina, p.IdUsuarioPagar,
 up.Nombre, up.ApellidoPaterno,
 p.IdInstructor, i.Nombre, i.ApellidoPaterno,
 p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
-FROM pagos p
+FROM egresos p
 INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
 LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
 LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor;
 	-- Alta pagos
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
 @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
 @IdInstructor, @Concepto, @NumeroRecibo, @Monto);
@@ -262,14 +262,18 @@ i.IdUsuario, u.Nombre, u.ApellidoPaterno,
 i.IdRenta, r.FechaRenta, i.IdCliente, 
 c.Nombre, c.ApellidoPaterno, i.IdVenta, 
 v.Concepto, i.Otros, i.Concepto,
+i.IdPaquete, p.NombrePaquete,
+i.IdLocker, l.Nombre
 i.NumeroRecibo, i.Monto
 FROM ingresos i
 INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
 LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
 LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
-LEFT JOIN ventas v ON i.IdVenta = v.IdVenta;
+LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
+LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
+LEFT JOIN locker l ON i.IdLocker = l.IdLocker;
 	-- Alta ingresos
 INSERT INTO ingresos
 VALUES (@IdIngresos, @FechaRegistro,@IdUsuario,
 @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
-@NumeroRecibo, @Monto);
+@IdPaquete, @IdLocker, @NumeroRecibo, @Monto);
