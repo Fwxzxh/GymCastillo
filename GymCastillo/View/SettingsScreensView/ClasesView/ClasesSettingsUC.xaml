@@ -140,8 +140,16 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="-10 0">
+                                <Button ToolTip="Editar Clase"
+                                        Margin="5 0"
+                                        Background="Transparent"
+                                        Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                                        DataContext="{StaticResource vm}">
+                                    <materialDesign:PackIcon Kind="EditOutline"/>
+                                </Button>
                                 <Button ToolTip="Agregar Horarios"
                                         Margin="5 0"
+                                        Command="{Binding OpenHorarios}"
                                     DataContext="{StaticResource vm}">
                                     <materialDesign:PackIcon Kind="ClockPlusOutline"/>
                                 </Button>

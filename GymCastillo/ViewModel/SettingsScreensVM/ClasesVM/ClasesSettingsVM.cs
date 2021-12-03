@@ -5,6 +5,7 @@ using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.View.SettingsScreensView.ClasesView;
 using log4net;
 using System;
 using System.Collections.ObjectModel;
@@ -26,6 +27,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
         public ObservableCollection<Espacio> ListaEspacios { get; set; }
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
+
+        public RelayCommand OpenHorarios { get;  private set; }
         public RelayCommand<bool> SaveCommand { get; private set; }
 
         private Clase clase = new();
@@ -77,11 +80,17 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
                 CancelCommand = new RelayCommand(CancelUpdate);
                 DeleteCommand = new RelayCommand(DeleteClass);
                 SaveCommand = new RelayCommand<bool>(SaveClass);
+                OpenHorarios = new RelayCommand(OpenHorariosW);
             }
             catch (Exception e) {
                 Log.Error(e.Message);
                 //ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
+        }
+
+        private void OpenHorariosW() {
+            HorariosSettingsWindow horarios = new();
+            horarios.Show();
         }
 
         private async void SaveClass(bool guardar) {
