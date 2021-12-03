@@ -32,6 +32,11 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public string NombrePaquete { get; set; }
 
         /// <summary>
+        /// La descripción del paquete.
+        /// </summary>
+        public string Descripcion { get; set; }
+
+        /// <summary>
         /// Indica el número de clases que incluye el paquete.
         /// </summary>
         public int NumClasesTotales { get; set; }
@@ -66,6 +71,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 const string updateQuery = @"UPDATE paquete
                                              SET Gym=@Gym, NombrePaquete=@NombrePaquete,
+                                                 Descripcion=@Descripcion,
                                                  NumClasesTotales=@NumClasesTotales, 
                                                  NumClasesSemanales=@NumClasesSemanales,
                                                  Costo=@Costo, IdClase=@IdClase
@@ -76,6 +82,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@Gym", Convert.ToInt32(Gym).ToString());
                 command.Parameters.AddWithValue("@NombrePaquete", NombrePaquete);
 
+                command.Parameters.AddWithValue("@Descripcion", Descripcion);
                 command.Parameters.AddWithValue("@NumeroClasesTotales", NumClasesTotales.ToString());
                 command.Parameters.AddWithValue("@NumeroClasesSemanales", NumClasesSemanales.ToString());
 
@@ -108,15 +115,17 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 const string altaQuery = @"INSERT INTO paquete
                                            VALUES 
-                                               (default, @Gym, @NombrePaquete,
-                                               @NumClasesTotales, @NumClasesSemanales,
-                                               @Costo, @IdClase);";
+                                               (default, @Gym, @NombrePaquete, 
+                                                @Descripcion,
+                                                @NumClasesTotales, @NumClasesSemanales,
+                                                @Costo, @IdClase);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@Gym", Convert.ToInt32(Gym).ToString());
                 command.Parameters.AddWithValue("@NombrePaquete", NombrePaquete);
 
+                command.Parameters.AddWithValue("@Descripcion", Descripcion);
                 command.Parameters.AddWithValue("@NumClasesTotales", NumClasesTotales.ToString());
                 command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
 

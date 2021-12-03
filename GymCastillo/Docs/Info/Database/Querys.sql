@@ -8,7 +8,7 @@ SELECT * FROM rentas;
 SELECT * FROM usuario;
 SELECT * FROM clienterenta;
 SELECT * FROM locker;
-SELECT * FROM pagos;
+SELECT * FROM egresos;
 SELECT * FROM ingresos;
 
 -- Cliente
@@ -29,6 +29,7 @@ FROM cliente c
 INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
 INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
 LEFT JOIN locker l ON c.IdLocker = l.IdLocker;
+
 	-- Dar de alta
 INSERT INTO cliente 
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
@@ -38,19 +39,20 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
 	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
 	-- Editar valores (usuario)
+
 UPDATE cliente
 SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-    IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete, IdLocker=@IdLocker
+    IdTipoCliente=@IdTipoCliente
 WHERE IdCliente=@IdCliente;
 
-UPDATE cliente
-SET domicilio='domT', telefono='0123456789', condicionespecial=true,
-    nombrecontacto='contactot', telefonocontacto='9876543210', foto=null,
-    activo=true, medioconocio='lol', descuento=1, nino=false,
-    idtipocliente=2, idpaquete=1
-WHERE idcliente=13;
+# UPDATE cliente
+# SET domicilio='domT', telefono='0123456789', condicionespecial=true,
+#     nombrecontacto='contactot', telefonocontacto='9876543210', foto=null,
+#     activo=true, medioconocio='lol', descuento=1, nino=false,
+#     idtipocliente=2, idpaquete=1
+# WHERE idcliente=13;
 	-- Editar valores (automatico)
 
 -- Instructor
@@ -194,10 +196,11 @@ WHERE idclase=@IdClase;
 
 -- Paquetes
 -- Consulta paquete
-SELECT p.IdPaquete, p.Gym, p.NombrePaquete,
-p.Descripcion, p.NumClasesTotales, 
-p.NumClasesSemanales, p.Costo,
-c.IdClase, c.NombreClase
+SELECT
+    p.IdPaquete, p.Gym, p.NombrePaquete,
+    p.Descripcion, p.NumClasesTotales,
+    p.NumClasesSemanales, p.Costo,
+    c.IdClase, c.NombreClase
 FROM paquete p
 LEFT JOIN clase c ON c.IdClase = p.IdClase;
 
@@ -259,14 +262,15 @@ VALUES (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
 
 -- Ingresos
 	-- Consulta Ingresos
-SELECT i.IdIngresos, i.FechaRegistro,
-i.IdUsuario, u.Nombre, u.ApellidoPaterno,
-i.IdRenta, r.FechaRenta, i.IdCliente, 
-c.Nombre, c.ApellidoPaterno, i.IdVenta, 
-v.Concepto, i.Otros, i.Concepto,
-i.IdPaquete, p.NombrePaquete,
-i.IdLocker, l.Nombre
-i.NumeroRecibo, i.Monto
+SELECT
+    i.IdIngresos, i.FechaRegistro,
+    i.IdUsuario, u.Nombre, u.ApellidoPaterno,
+    i.IdRenta, r.FechaRenta, i.IdCliente,
+    c.Nombre, c.ApellidoPaterno, i.IdVenta,
+    v.Concepto, i.Otros, i.Concepto,
+    i.IdPaquete, p.NombrePaquete,
+    i.IdLocker, l.Nombre
+    i.NumeroRecibo, i.Monto
 FROM ingresos i
 INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
 LEFT JOIN rentas r ON i.IdRenta = r.IdRenta

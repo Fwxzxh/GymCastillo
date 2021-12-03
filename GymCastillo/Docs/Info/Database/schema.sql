@@ -237,7 +237,7 @@ create table Ingresos (
     IdPaquete int, -- Para saber cuanto va a pagar el cliente
     foreign key (IdPaquete) references Paquete (IdPaquete),
     IdLocker int, -- Para saber si le cobramos el adicional a locker (Sigue siendo opcional)
-    foreign key (IdLocker) references Loker (IdLocker),
+    foreign key (IdLocker) references Locker (IdLocker),
     NumeroRecibo varchar(30) not null,
     Monto decimal
 );

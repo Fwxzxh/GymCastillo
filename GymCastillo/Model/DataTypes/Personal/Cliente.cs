@@ -54,7 +54,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <summary>
         /// La cantidad del descuento aplicado al cliente.
         /// </summary>
-        public decimal Descuento { get; set; }
+        public int DuraciónPaquete { get; set; }
 
         /// <summary>
         /// Indica si el usuario es un niño o no.
@@ -98,7 +98,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Cliente.");
 
-
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -106,8 +105,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 const string updateQuery = @"UPDATE cliente
                                              SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
                                                  NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
-                                                 Activo=@Activo, MedioConocio=@MedioConocio, Descuento=@Descuento, Nino=@Nino,
-                                                 IdTipoCliente=@IdTipoCliente, IdPaquete=@IdPaquete, IdLocker=@IdLocker
+                                                 Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
+                                                 IdTipoCliente=@IdTipoCliente
                                              WHERE IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -124,12 +123,10 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
 
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker == 0 ? null : IdLocker.ToString()); // SI idLocker es 0, no hay locker.
 
                 var res = await ExecSql.NonQuery(command, "Update Cliente");
 
@@ -222,7 +219,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
                                            	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
                                            	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponibles, 
-                                           	@Descuento, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker)";
+                                           	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -249,11 +246,12 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@ClasesTotalesDisponibles", ClasesTotalesDisponibles.ToString());
                 command.Parameters.AddWithValue("@ClasesSemanaDisponibles", ClasesSemanaDisponibles.ToString());
 
-                command.Parameters.AddWithValue("@Descuento", Descuento.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker == 0 ? null : IdLocker.ToString()); // SI idLocker es 0, no hay locker.
+                // IdPaqute e IdLocker en null.
+                command.Parameters.AddWithValue("@IdPaquete", null);
+                command.Parameters.AddWithValue("@IdLocker", null);
 
                 Log.Debug("Se ha generado la query.");
 

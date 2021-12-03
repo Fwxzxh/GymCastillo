@@ -105,7 +105,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
                 };
             LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
 
-            descuento = selectedClient.Descuento;
+            //descuento = selectedClient.Descuento;
             pago = selectedClient.DeudaCliente;
         }
 

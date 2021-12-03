@@ -39,7 +39,7 @@ namespace GymCastillo.Model.Database {
                                             c.MontoUltimoPago, c.Activo, c.FechaVencimientoPago, 
                                             c.DeudaCliente, c.MedioConocio,
                                             c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles, 
-                                            c.Descuento, c.Nino, 
+                                            c.DuracionPaquete, c.Nino, 
                                             p.IdPaquete, p.NombrePaquete,
                                             tc.IdTipoCliente, tc.NombreTipoCliente,
                                             l.IdLocker, l.Nombre as NombreLocker
@@ -109,9 +109,9 @@ namespace GymCastillo.Model.Database {
                             ? 0
                             : reader.Result.GetInt16("ClasesSemanaDisponibles"),
 
-                        Descuento = await reader.Result.IsDBNullAsync("Descuento")
+                        DuraciónPaquete = await reader.Result.IsDBNullAsync("DuracionPaquete")
                             ? 0
-                            : reader.Result.GetDecimal("Descuento"),
+                            : reader.Result.GetInt32("DuracionPaquete"),
                         Niño = reader.Result.GetBoolean("nino"),
 
                         IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
@@ -454,6 +454,7 @@ namespace GymCastillo.Model.Database {
 
             const string sqlQuery = @"select
                                           p.IdPaquete, p.Gym, p.NombrePaquete,
+                                          p.Descripcion,
                                           p.NumClasesTotales, p.NumClasesSemanales,
                                           p.Costo, p.IdClase, c.NombreClase
                                       from paquete p
@@ -473,6 +474,10 @@ namespace GymCastillo.Model.Database {
                         NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
                             ? ""
                             : reader.Result.GetString("NombrePaquete"),
+
+                        Descripcion = await reader.Result.IsDBNullAsync("Descripcion")
+                            ? ""
+                            : reader.Result.GetString("Descripcion"),
 
                         NumClasesTotales = await reader.Result.IsDBNullAsync("NumClasesTotales")
                             ? 0

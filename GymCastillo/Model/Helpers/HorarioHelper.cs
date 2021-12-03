@@ -71,15 +71,16 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de clasificar los horarios");
 
             try {
-                var horarioFront = new FrontHorario() {
-                    HorasLunes = new List<Horario>(),
-                    HorasMartes = new List<Horario>(),
-                    HorasMiércoles = new List<Horario>(),
-                    HorasJueves = new List<Horario>(),
-                    HorasViernes = new List<Horario>(),
-                    HorasSábado = new List<Horario>(),
-                    HorasDomingo = new List<Horario>()
-                };
+                // var horarioFront = new FrontHorario() {
+                //     HorasLunes = new List<Horario>(),
+                //     HorasMartes = new List<Horario>(),
+                //     HorasMiércoles = new List<Horario>(),
+                //     HorasJueves = new List<Horario>(),
+                //     HorasViernes = new List<Horario>(),
+                //     HorasSábado = new List<Horario>(),
+                //     HorasDomingo = new List<Horario>()
+                // };
+                var horarioFront = new FrontHorario();
 
                 for (var index = 0; index < horariosFiltrados.Count; index++) {
                     var horario = horariosFiltrados[index];
@@ -134,7 +135,7 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de guardar los datos.");
 
             try {
-                var horariosFiltrados = GetHorarios(frontHorario.IdClase);
+                //var horariosFiltrados = GetHorarios(frontHorario.IdClase);
 
                 var horariosNuevos = new List<Horario>();
 

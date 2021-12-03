@@ -253,4 +253,4 @@ VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 1, null, 'ABCDEF
 INSERT INTO ingresos
 VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ5524567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 1, 4, 'Reposición comida staff', 'ABCDEFGHIJ5554567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 1, 4,'ABCDEFGHIJ5554567890', 100.0);
