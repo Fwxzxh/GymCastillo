@@ -93,19 +93,19 @@ VALUES (default, 5, '0700', '0800', null, 1);
 
 -- Paquetes
 INSERT INTO paquete
-VALUES (default, TRUE, 'Gym', null, null, 350.0, null);
+VALUES (default, TRUE, 'Gym', 'Descripción del paquete 1', null, null, 350.0, null);
 INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 1 sin gym', 4, 1, 350, 1);
+VALUES (default, FALSE, 'Paquete 1 sin gym', 'Descripción del paquete 2',  4, 1, 350, 1);
 INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 2 sin gym', 8, 2, 700, 1);
+VALUES (default, FALSE, 'Paquete 2 sin gym', 'Descripción del paquete 3',  8, 2, 700, 1);
 INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 3 sin gym', 12, 3, 1050, 1);
+VALUES (default, FALSE, 'Paquete 3 sin gym', 'Descripción del paquete 4', 12, 3, 1050, 1);
 INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 4 con gym', 4, 1, 700, 1);
+VALUES (default, TRUE, 'Paquete 4 con gym', 'Descripción del paquete 5', 4, 1, 700, 1);
 INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 5 con gym', 8, 2, 1050, 1);
+VALUES (default, TRUE, 'Paquete 5 con gym', 'Descripción del paquete 6', 8, 2, 1050, 1);
 INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 6 con gym', 12, 3, 1400, 1);
+VALUES (default, TRUE, 'Paquete 6 con gym', 'Descripción del paquete 7', 12, 3, 1400, 1);
 
 -- Lockers
 INSERT INTO locker
@@ -134,43 +134,43 @@ VALUES (default, 'B5', FALSE);
 INSERT INTO cliente
 VALUES (default, 'Daniel', 'Gonzalez', 'Martinez', 'Calle Las Campanas #23 Colonia Centro', CURDATE()
        , '4426861255', FALSE, 'Miriam Robledo Gonzalez' ,'4420142743', null, CURDATE(), 350.0, TRUE, CURDATE()
-       , null, 'Redes sociales', null, null, null, FALSE, 1, 1, null);
+       , null, 'Redes sociales', null, null, 0, FALSE, 1, 1, null);
 INSERT INTO cliente
 VALUES (default, 'Enrique', 'Padilla', 'Martinez', 'Calle Juan Escutia #230 Colonia San Pablo', CURDATE()
        , '4426483144', FALSE, 'Lucero Guevara Hernandez' ,'4428052331', null, CURDATE(), 350.0, TRUE, CURDATE()
-       , null, 'Otro', null, null, null, FALSE, 1, 1, null);
+       , null, 'Otro', null, null, 0, FALSE, 1, 1, null);
 INSERT INTO cliente
 VALUES (default, 'Julieta', 'Izquierdo', 'Perez', 'Calle Molino del Rey #123 Colonia Menchaca', CURDATE()
        , '4423209770', FALSE, 'Adriana Guevara García' ,'4421621366', null, CURDATE(), 350.0, TRUE, CURDATE()
-       , null, 'Amig@', null, null, null, FALSE, 1, 1, 1);
+       , null, 'Amig@', null, null, 0, FALSE, 1, 1, 1);
 INSERT INTO cliente
 VALUES (default, 'Daniela', 'Paredes', 'Castro', 'Calle Francisco Marquez #43B Colonia Menchaca ll', CURDATE()
        , '4421256969', FALSE, 'Andres Lima Rangel' ,'4428248718', null, CURDATE(), 350.0, TRUE, CURDATE()
-       , null, 'Amig@', 4, 1, null, FALSE, 3, 2, 2);
+       , null, 'Amig@', 4, 1, 3, FALSE, 3, 2, 2);
 INSERT INTO cliente
 VALUES (default, 'Paola', 'Salinas', 'Hernandez', 'Calle Salvador Uribe #1 Colonia Menchaca lll', CURDATE()
        , '4428510144', FALSE, 'Ruben García Ordaz' ,'4425261623', null, CURDATE(), 700.0, TRUE, CURDATE()
-       , null, 'Redes sociales', 8, 2, null, FALSE, 3, 3, 6);
+       , null, 'Redes sociales', 8, 2, 0, FALSE, 3, 3, 6);
 INSERT INTO cliente
 VALUES (default, 'Miriam', 'Robledo', 'Gonzalez', 'Calle Laurel #12 Colonia Arboledas', CURDATE()
        , '4428169031', FALSE, 'Daniel Gonzalez Martinez' ,'4422934869', null, CURDATE(), 1050.0, TRUE, CURDATE()
-       , null, 'Otro', 12, 3, null, FALSE, 3, 4, null);
+       , null, 'Otro', 12, 3, 2, FALSE, 3, 4, null);
 INSERT INTO cliente
 VALUES (default, 'Lucero', 'Guevara', 'Hernandez', 'Calle Encino #65 Colonia Arboledas', CURDATE()
        , '4420812321', FALSE, 'Enrique Padilla Martinez' ,'4428077153', null, CURDATE(), 700.0, TRUE, CURDATE()
-       , null, 'Otro', 4, 1, null, FALSE, 3, 5, null);
+       , null, 'Otro', 4, 1, 0, FALSE, 3, 5, null);
 INSERT INTO cliente
 VALUES (default, 'Adriana', 'Guevara', 'García', 'Calle Fresno #78 Colonia Arboledas', CURDATE()
        , '4427136487', TRUE, 'Julieta Izquierdo Perez' ,'4428733623', null, CURDATE(), 1050.0, TRUE, CURDATE()
-       , null, 'Redes sociales', 8, 2, null, FALSE, 3, 6, null);
+       , null, 'Redes sociales', 8, 2, 1, FALSE, 3, 6, null);
 INSERT INTO cliente
 VALUES (default, 'Andres', 'Lima', 'Rangel', 'Calle Acacia #99 Colonia Arboledas', CURDATE()
        , '4425191796', FALSE, 'Daniela Paredes Castro' ,'4426784592', null, CURDATE(), 1400.0, TRUE, CURDATE()
-       , null, 'Amig@', 12, 3, null, FALSE, 3, 7, null);
+       , null, 'Amig@', 12, 3, 0, FALSE, 3, 7, null);
 INSERT INTO cliente
 VALUES (default, 'Ruben', 'García', 'Ordaz', 'Calle Eucalipto #54 Colonia Arboledas', CURDATE()
 , '4423623553', FALSE, 'Paola Salinas Hernandez' ,'4425122504', null, CURDATE(), 1050.0, TRUE,  CURDATE()
-, null, 'Redes sociales', 12, 3, null, FALSE, 3, 4, null);
+, null, 'Redes sociales', 12, 3, 2, FALSE, 3, 4, null);
 
 INSERT INTO clienterenta
 VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0, 200.0);
@@ -204,53 +204,53 @@ INSERT INTO ventas
 VALUES (default, CURDATE(), 'Venta 5', 150.0);
 
 -- pagos
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Comida pal staff', 'ABCDEFGHIJ1234567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago agua', 'ABCDEFGHIJ2234567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, NULL, 1, 'Pago a Instructor', 'ABCDEFGHIJ2224567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Jueguete pal staff', 'ABCDEFGHIJ3234567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago luz', 'ABCDEFGHIJ3324567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 1, NULL, 'Pago a Usuario', 'ABCDEFGHIJ3334567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Saldo pal staff', 'ABCDEFGHIJ4234567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago gas', 'ABCDEFGHIJ4424567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, NULL, 2, 'Pago a Instructor', 'ABCDEFGHIJ4444567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, 'Cervezas pal staff', 'ABCDEFGHIJ5234567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, TRUE, FALSE, FALSE, NULL, NULL, 'Pago uranio', 'ABCDEFGHIJ5524567890', 100.0);
-INSERT INTO pagos
+INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, TRUE, FALSE, 1, NULL, 'Pago a Usuario', 'ABCDEFGHIJ5554567890', 100.0);
 
 -- ingresos
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, 1, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ1234567890', 100.0);
+VALUES (default, CURDATE(), 1, 1, NULL, NULL, FALSE, 'Renta', 1, null, 'ABCDEFGHIJ1234567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, 1, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ2234567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, 1, NULL, FALSE, 'Cliente', 1, null, 'ABCDEFGHIJ2234567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 1, FALSE, 'Venta', 'ABCDEFGHIJ2224567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, 1, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ2224567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición juguete staff', 'ABCDEFGHIJ3234567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición juguete staff', 1, null, 'ABCDEFGHIJ3234567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, 2, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ3324567890', 100.0);
+VALUES (default, CURDATE(), 1, 2, NULL, NULL, FALSE, 'Renta', 1, 1, 'ABCDEFGHIJ3324567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, 2, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ3334567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, 2, NULL, FALSE, 'Cliente', 1, 2, 'ABCDEFGHIJ3334567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 2, FALSE, 'Venta', 'ABCDEFGHIJ4234567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, 2, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ4234567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición Maquina Gym ', 'ABCDEFGHIJ4424567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición Maquina Gym ', 1, 6, 'ABCDEFGHIJ4424567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, 3, NULL, NULL, FALSE, 'Renta', 'ABCDEFGHIJ4444567890', 100.0);
+VALUES (default, CURDATE(), 1, 3, NULL, NULL, FALSE, 'Renta', 1, null, 'ABCDEFGHIJ4444567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 'ABCDEFGHIJ5234567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 1, null, 'ABCDEFGHIJ5234567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 'ABCDEFGHIJ5524567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ5524567890', 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 'ABCDEFGHIJ5554567890', 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 1, 4, 'Reposición comida staff', 'ABCDEFGHIJ5554567890', 100.0);
