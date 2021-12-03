@@ -73,9 +73,6 @@
       <Page Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml">
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="View\AdminScreensView\ConfigView\SettingUC.xaml">
-        <SubType>Designer</SubType>
-      </Page>
       <Page Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml">
         <SubType>Designer</SubType>
       </Page>
@@ -110,9 +107,6 @@
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml.cs">
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="View\AdminScreensView\ConfigView\SettingUC.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml.cs">

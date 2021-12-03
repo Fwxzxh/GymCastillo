@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:home="clr-namespace:GymCastillo.View"
         xmlns:settings="clr-namespace:GymCastillo.View.SettingsScreensView"
+        xmlns:pagos="clr-namespace:GymCastillo.View.PagosScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -75,6 +76,9 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <pagos:PagosUC/>
+                </TabItem.Content>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
