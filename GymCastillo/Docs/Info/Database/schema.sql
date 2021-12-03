@@ -84,6 +84,7 @@ create table Paquete (
     IdPaquete int auto_increment primary key,
     Gym bool not null, -- Si el paquete tendrá o no gym
     NombrePaquete varchar(100),
+    Descripcion varchar(300),
     NumClasesTotales int, -- Número de clases por mes
     NumClasesSemanales int, -- Número de clases por semana
     Costo decimal not null,
