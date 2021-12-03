@@ -22,6 +22,7 @@
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -544,6 +545,12 @@
                     Margin="10 0"/>
         </StackPanel>
 
-
+        <Button Style="{StaticResource MaterialDesignPaperButton}"
+                Content="Cerrar"
+                Grid.Row="3"
+                VerticalAlignment="Bottom"
+                Grid.Column="6"
+                HorizontalAlignment="Right"
+                Margin="10 0"/>
     </Grid>
 </Window>
