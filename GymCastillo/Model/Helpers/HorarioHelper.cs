@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using log4net;
+using MySqlConnector;
 
 namespace GymCastillo.Model.Helpers {
     /// <summary>
@@ -21,7 +23,6 @@ namespace GymCastillo.Model.Helpers {
         public static FrontHorario GetHorariosFront(int idClase) {
             Log.Debug("Se ha iniciado el proceso de obtener los horarios para el front.");
             try {
-
                 var horariosFiltrados = GetHorarios(idClase);
 
                 var horarioFront =  ClassifyHorario(horariosFiltrados);
@@ -135,7 +136,6 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de guardar los datos.");
 
             try {
-                //var horariosFiltrados = GetHorarios(frontHorario.IdClase);
 
                 var horariosNuevos = new List<Horario>();
 
@@ -151,23 +151,20 @@ namespace GymCastillo.Model.Helpers {
                 for (var index = 0; index < horariosNuevos.Count; index++) {
                     var horario = horariosNuevos[index];
 
-                    switch (horario.IdHorario) {
-                        case 0:
-                            // Nuevo horario, hacemos alta.
-                            Task.Run(() => AdminOtrosTipos.Alta(horario, true));
-                            break;
-                        case -1:
-                            // eliminamos
-                            Task.Run(() => AdminOtrosTipos.Delete(horario, true));
-                            break;
-                        default:
-                            // Update
-                            Task.Run(() => AdminOtrosTipos.Update(horario, true));
-                            break;
+                    if (horario.IdHorario == 0) {
+                        // Nuevo horario
+                        Task.Run(() => AdminOtrosTipos.Alta(horario, true));
+                    }
+                    else {
+                        // Update.
+                        Task.Run(() => AdminOtrosTipos.Update(horario, true));
                     }
                 }
 
                 Log.Debug("Se han guardado los horarios exitosamente.");
+                ShowPrettyMessages.InfoOk(
+                    "Se han actualizado los horarios con éxtio.",
+                    "Operación exitosa.");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al guardar los horarios.");

@@ -65,21 +65,6 @@ namespace GymCastillo.ViewModel {
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();
-
-                        // var test = HorarioHelper.GetHorariosFront(1);
-                        // MessageBox.Show(
-                        //     $"{test.HorasLunes.Count} {test.HorasJueves.Count} {test.HorasDomingo.Count} ");
-                        //
-                        // var newSabado = new Horario() {
-                        //     IdHorario = 0,
-                        //     Dia = 6,
-                        //     HoraInicio = DateTime.ParseExact("0700", "HHmm", CultureInfo.InvariantCulture),
-                        //     HoraFin = DateTime.ParseExact("0800", "HHmm", CultureInfo.InvariantCulture),
-                        //     CupoActual = 0,
-                        //     IdClase = 1
-                        // };
-                        // test.HorasSábado.Add(newSabado);
-                        // HorarioHelper.SaveHorarios(test);
                     }
                 }
                 else {

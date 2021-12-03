@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Documents;
+using GymCastillo.Model.Admin;
 using GymCastillo.Model.Helpers;
 
 namespace GymCastillo.Model.DataTypes.Settings {
@@ -66,6 +68,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// Método que agrega horarios al objeto actual.
         /// </summary>
         public void AddHorario(Horario horario, int dia) {
+            horario.IdHorario = 0;
             switch (dia) {
                 case 1:
                     HorasLunes.Add(horario);
@@ -93,6 +96,50 @@ namespace GymCastillo.Model.DataTypes.Settings {
                         "ha ocurrido un error al agregar el horario, dia incongruente, contacte al administrador.",
                         "Error");
                         break;
+            }
+        }
+
+        /// <summary>
+        /// Método que borra un horario de la lista.
+        /// </summary>
+        public async void DeleteHorario(Horario horario, int dia) {
+            if (horario.IdHorario == 0) {
+                // Solo eliminamos de la lista, no esta en bd.
+                switch (dia) {
+                    case 1:
+                        HorasLunes.Remove(horario);
+                        break;
+                    case 2:
+                        HorasMartes.Remove(horario);
+                        break;
+                    case 3:
+                        HorasMiércoles.Remove(horario);
+                        break;
+                    case 4:
+                        HorasJueves.Remove(horario);
+                        break;
+                    case 5:
+                        HorasViernes.Remove(horario);
+                        break;
+                    case 6:
+                        HorasSábado.Remove(horario);
+                        break;
+                    case 7:
+                        HorasDomingo.Remove(horario);
+                        break;
+                    default:
+                        ShowPrettyMessages.ErrorOk(
+                            "ha ocurrido un error al agregar el horario, dia incongruente, contacte al administrador.",
+                            "Error");
+                        break;
+                }
+            }
+            else {
+                // Esta dado de alta, eliminamos
+                await AdminOtrosTipos.Delete(horario, true);
+                // ponemos id horario en 0 para mandarlo recursivamente y eliminarlo de la lista.
+                horario.IdHorario = 0;
+                DeleteHorario(horario, horario.Dia);
             }
         }
     }
