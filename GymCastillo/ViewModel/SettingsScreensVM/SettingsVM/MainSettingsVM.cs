@@ -1,4 +1,7 @@
-﻿using GymCastillo.Model.DataTypes.Settings;
+﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using log4net;
 using System;
@@ -18,25 +21,47 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.SettingsVM {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ObservableCollection<Espacio> ListaEspacios { get; set; }
+        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
+
         private Espacio espacio = new();
 
         public Espacio Espacio {
             get { return espacio; }
             set { espacio = value;
-                OnPropertyChanged(nameof(espacio));
+                OnPropertyChanged(nameof(Espacio));
             }
         }
 
         public MainSettingsVM() {
             try {
                 Log.Debug("Iniciada ventana de settings");
-                ListaEspacios = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
+                SaveCommand = new RelayCommand(SaveEspacio);
+                CancelCommand = new RelayCommand(Cancelar);
             }
             catch (Exception e) {
                 Log.Error($"Error ventana de settings {e.Message}");
             }
             
+        }
+
+        private void Cancelar() {
+            Espacio = new();
+        }
+
+        private async void SaveEspacio() {
+            Log.Debug("Nuevo Espacio Guardado");
+            await AdminOtrosTipos.Alta(Espacio);
+            Refresh();
+        }
+
+        private async void Refresh() {
+            Espacio = new();
+            InitTest.ObCoEspacio.Clear();
+            var espacios = await GetFromDb.GetEspacios();
+            foreach (var item in espacios) {
+                InitTest.ObCoEspacio.Add(item);
+            }
         }
     }
 }

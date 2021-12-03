@@ -45,7 +45,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
+                //command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
                 command.Parameters.AddWithValue("@NombreEspacio", NombreEspacio);
                 command.Parameters.AddWithValue("@Descripcion", Descripción);
 

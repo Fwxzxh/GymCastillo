@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GymCastillo.View.SettingsScreensView.ConfigView"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.SettingsVM"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -12,7 +13,12 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <Grid Margin="20">
+    <UserControl.Resources>
+        <vm:MainSettingsVM x:Key="vm"/>
+        <oc:InitTest x:Key="oc"/>
+    </UserControl.Resources>
+    
+    <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -39,23 +45,24 @@
                  VerticalContentAlignment="Center"
                  HorizontalAlignment="Right"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <DataGrid Grid.Row="1"
-                  Margin="0 0 0 20"
-                  CanUserAddRows="True"
-                  CanUserReorderColumns="False"
-                  CanUserResizeRows="False"
-                  CanUserResizeColumns="False"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  IsReadOnly="True"
-                  AutoGenerateColumns="False"
-                  FontSize="20"
-                  HeadersVisibility="All"
-                  HorizontalContentAlignment="Center"
-                  HorizontalAlignment="Stretch"
-                  SelectedItem="{Binding Paquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid Grid.Row="1" 
+                          Margin="0 0 0 20"
+                          CanUserAddRows="True"
+                          CanUserReorderColumns="False"
+                          CanUserResizeRows="False"
+                          CanUserResizeColumns="False"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          IsReadOnly="True"
+                          AutoGenerateColumns="False"
+                          FontSize="20"
+                          HeadersVisibility="All"
+                          HorizontalContentAlignment="Center"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoEspacio}, UpdateSourceTrigger=Default}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Espacios"
+                                            Binding="{Binding NombreEspacio}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -83,14 +90,14 @@
                          FontSize="20"
                          Width="250"
                          Margin="20 10"
-                         Text="{Binding Paquete.NumClasesSemanales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Espacio.NombreEspacio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Descripción"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          FontSize="20"
                          Width="250"
                          Margin="20 10"
-                         Text="{Binding Paquete.NumClasesTotales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Espacio.Descripción, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Grid.Row="3"
@@ -109,6 +116,9 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1">
+            <Label Content="Configuraciones generales."
+                   HorizontalAlignment="Center"
+                   FontSize="20"/>
             <TextBox materialDesign:HintAssist.Hint="Precio Lockers"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          FontSize="20"
