@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.ClasesVM"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -15,6 +16,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <vm:ClasesSettingsVM x:Key="vm"/>
+        <oc:InitTest x:Key="oc"/>
         <converter:Converter x:Key="converter"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
@@ -42,9 +44,10 @@
                  VerticalAlignment="Center"
                  VerticalContentAlignment="Center"
                  HorizontalAlignment="Right"
+                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
         <DataGrid Grid.Row="1"
-                  x:Name="grid"
+                  Name="grid"
                   Margin="0 0 0 20"
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
@@ -56,7 +59,7 @@
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
-                  ItemsSource="{Binding ListaClases, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClases}, UpdateSourceTrigger=Default}"
                   SelectedItem="{Binding Clase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch">
@@ -174,7 +177,7 @@
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           FontSize="20"
-                          ItemsSource="{Binding ListaInstructores}"
+                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}}"
                           DisplayMemberPath="Nombre"
                           SelectedValue="{Binding Clase.IdInstructor}"
                           SelectedItem="{Binding Clase.NombreInstructor, UpdateSourceTrigger=Explicit}"

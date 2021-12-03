@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
@@ -53,6 +54,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
 
         public GridRentaVM() {
             try {
+                //var collectionView = CollectionViewSource.GetDefaultView(InitTest.ObCoClienteRenta);
+
                 ListaClientes = new ObservableCollection<ClienteRenta>(InitInfo.ListaClientesRenta);
                 clienteRenta = InitInfo.ListaClientesRenta;
                 newCRCommand = new(this);

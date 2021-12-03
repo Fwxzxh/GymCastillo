@@ -10,6 +10,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 
 namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
     public class ClasesSettingsVM : INotifyPropertyChanged {
@@ -21,6 +22,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
         }
         public ObservableCollection<Clase> ListaClases { get; set; }
         public ObservableCollection<Instructor> ListaInstructores { get; set; }
+        //public InitTest lista { get; set; }
         public ObservableCollection<Espacio> ListaEspacios { get; set; }
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
@@ -48,12 +50,29 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
             }
         }
 
+        private string query;
+
+        public string Query {
+            get { return query; }
+            set { query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitTest.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.OrdinalIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitTest.ObCoClases);
+        }
 
         public ClasesSettingsVM() {
             try {
                 Log.Debug("Iniciando settings de clases.");
-                ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
-                ListaInstructores = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
+                //ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
+                //ListaInstructores = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
+                //ListaInstructores = lista.ObCoInstructor;
                 ListaEspacios = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
                 CancelCommand = new RelayCommand(CancelUpdate);
                 DeleteCommand = new RelayCommand(DeleteClass);
@@ -76,6 +95,12 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
                 if (guardar) {
                     Log.Debug($"Alta de la clase {Clase.NombreClase} ");
                     await AdminOtrosTipos.Alta(Clase);
+                    var clases = await GetFromDb.GetClases();
+                    InitTest.ObCoClases.Clear();
+                    foreach (var item in clases) {
+                        InitTest.ObCoClases.Add(item);
+                    }
+
                 }
                 else {
                     Log.Debug($"Update de la clase {Clase.NombreClase}");
@@ -103,20 +128,26 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
         }
 
         private async void RefreshGrid(bool activa) {
+            //PaquetesVM.PaquetesSettingsVM paquetes = new();
             Clase = null;
             Clase = new();
-            ListaClases.Clear();
             var clases = await GetFromDb.GetClases();
+            InitTest.ObCoClases.Clear();
+            //.Clear();
+            //var clases = await GetFromDb.GetClases();
+            //InitTest.ObCoClases = new ObservableCollection<Clase>(clases);
+            //InitInfo.ListaClases = clases;
             if (activa) {
                 foreach (var item in clases.Where(c => c.Activo == true)) {
-                    ListaClases.Add(item);
+                    InitTest.ObCoClases.Add(item);
                 }
             }
             else {
                 foreach (var item in clases) {
-                    ListaClases.Add(item);
+                    InitTest.ObCoClases.Add(item);
                 }
             }
+            //paquetes.RefreshGrid();
 
         }
     }

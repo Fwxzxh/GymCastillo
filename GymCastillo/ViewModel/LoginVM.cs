@@ -62,6 +62,7 @@ namespace GymCastillo.ViewModel {
                     Log.Info("LogIn exitoso.");
                     var done = Task.Run(() => InitInfo.GetAllInfo());
                     if (done.GetAwaiter().GetResult()) {
+                        var tests = new InitTest();
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

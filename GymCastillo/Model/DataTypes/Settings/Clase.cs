@@ -144,7 +144,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                                                @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
-                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
                 command.Parameters.AddWithValue("@NombreClase", NombreClase);
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);

@@ -27,7 +27,18 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
         public RelayCommand DeleteCommand { get; set; }
 
         public ObservableCollection<Paquete> ListaPaquetes { get; set; }
-        public List<Clase> ListaClases { get; set; }
+
+        private ObservableCollection<Clase> clases;
+
+        public ObservableCollection<Clase> ListaClases {
+            get { return clases; }
+            set
+            {
+                clases = value;
+                OnPropertyChanged(nameof(ListaClases));
+            }
+        }
+
         private Paquete paquete = new();
 
         public Paquete Paquete {
@@ -40,12 +51,19 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
         }
 
         public PaquetesSettingsVM() {
-            Log.Debug("Ventana de configuración de paquetes iniciada");
-            ListaPaquetes = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
-            ListaClases = new List<Clase>(InitInfo.ListaClases);
-            SaveCommand = new RelayCommand(SavePaquete);
-            CancelCommand = new RelayCommand(CancelarPaquete);
-            DeleteCommand = new RelayCommand(DeletePaquete);
+            try {
+                Log.Debug("Ventana de configuración de paquetes iniciada");
+                ListaPaquetes = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
+                ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
+                SaveCommand = new RelayCommand(SavePaquete);
+                CancelCommand = new RelayCommand(CancelarPaquete);
+                DeleteCommand = new RelayCommand(DeletePaquete);
+            }
+            catch (Exception e) {
+                Log.Error("Error en el vm de paquetes");
+                Log.Error(e.Message);
+                //ShowPrettyMessages.ErrorOk($"Error en la ventana de paquetes {e.Message}", "Error");
+            }
         }
 
         private async void DeletePaquete() {
@@ -67,12 +85,19 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
             RefreshGrid();
         }
 
-        private async void RefreshGrid() {
+        public async void RefreshGrid() {
             ListaPaquetes.Clear();
+            ListaClases.Clear();
+            //ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases.Where(c => c.Activo == true));
             var paquetes = await GetFromDb.GetPaquetes();
+            var clases = await GetFromDb.GetClases();
             foreach (var item in paquetes) {
                 ListaPaquetes.Add(item);
             }
+
+            //foreach (var item in clases.Where(c => c.Activo == true)) {
+            //    ListaClases.Add(item);
+            //}
         }
     }
 }

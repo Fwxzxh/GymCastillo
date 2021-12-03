@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -17,6 +18,7 @@
         <vm:PaquetesSettingsVM x:Key="vm"/>
         <converter:BoolToYesOrNort x:Key="toYes"/>
         <converter:Converter x:Key="converter"/>
+        <oc:InitTest x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -51,7 +53,7 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding ListaPaquetes}"
+                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoPaquete}, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding Paquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Paquete"
@@ -179,7 +181,7 @@
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           FontSize="20"
-                          ItemsSource="{Binding ListaClases}"
+                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClases}, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="NombreClase"
                           SelectedValue="{Binding Paquete.IdClase}"
                           SelectedItem="{Binding Paquete.NombreClase, UpdateSourceTrigger=Explicit}"

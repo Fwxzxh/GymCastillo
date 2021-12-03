@@ -7,67 +7,67 @@ namespace GymCastillo.Model.Init {
     /// <summary>
     /// fdaff
     /// </summary>
-    public class InitTest {
+    public  class InitTest {
 
         /// <summary>
         /// La ObservableCollection de todos los clientes.
         /// </summary>
-        public ObservableCollection<Cliente> ObCoClientes { get; set; }
+        public static ObservableCollection<Cliente> ObCoClientes { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los instructores.
         /// </summary>
-        public ObservableCollection<Instructor> ObCoInstructor { get; set; }
+        public static ObservableCollection<Instructor> ObCoInstructor { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los usuarios.
         /// </summary>
-        public ObservableCollection<Usuario> ObCoUsuario { get; set; }
+        public static ObservableCollection<Usuario> ObCoUsuario { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los clientes de renta.
         /// </summary>
-        public ObservableCollection<ClienteRenta> ObCoClienteRenta { get; set; }
+        public static ObservableCollection<ClienteRenta> ObCoClienteRenta { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los paquetes.
         /// </summary>
-        public ObservableCollection<Paquete> ObCoPaquete { get; set; }
+        public static ObservableCollection<Paquete> ObCoPaquete { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los tipos de clientes.
         /// </summary>
-        public ObservableCollection<Tipo> ObCoTipoCliente { get; set; }
+        public static ObservableCollection<Tipo> ObCoTipoCliente { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los tipos de instructores.
         /// </summary>
-        public ObservableCollection<Tipo> ObCoTipoInstructor { get; set; }
+        public static ObservableCollection<Tipo> ObCoTipoInstructor { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los lockers Disponibles.
         /// </summary>
-        public ObservableCollection<Locker> ObCoLockerDisponibles { get; set; }
+        public static ObservableCollection<Locker> ObCoLockerDisponibles { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todos los lockers.
         /// </summary>
-        public ObservableCollection<Locker> ObCoLocker { get; set; }
+        public static ObservableCollection<Locker> ObCoLocker { get; set; }
 
         /// <summary>
         /// La ObservableCollection de todas las clases.
         /// </summary>
-        public ObservableCollection<Clase> ObCoClases { get; set; }
+        public static ObservableCollection<Clase> ObCoClases { get; set; }
 
         /// <summary>
         /// La ObservableCollection que contiene TODOS los horarios.
         /// </summary>
-        public ObservableCollection<Horario> ObCoHorario { get; set; }
+        public static ObservableCollection<Horario> ObCoHorario { get; set; }
 
         /// <summary>
         /// La ObservableCollection que contiene todos los espacios.
         /// </summary>
-        public ObservableCollection<Espacio> ObCoEspacio { get; set; }
+        public static ObservableCollection<Espacio> ObCoEspacio { get; set; }
 
 
         /// <summary>
