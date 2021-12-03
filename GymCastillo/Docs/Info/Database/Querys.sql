@@ -195,7 +195,8 @@ WHERE idclase=@IdClase;
 -- Paquetes
 -- Consulta paquete
 SELECT p.IdPaquete, p.Gym, p.NombrePaquete,
-p.NumClasesTotales, p.NumClasesSemanales, p.Costo,
+p.Descripcion, p.NumClasesTotales, 
+p.NumClasesSemanales, p.Costo,
 c.IdClase, c.NombreClase
 FROM paquete p
 LEFT JOIN clase c ON c.IdClase = p.IdClase;
@@ -204,12 +205,13 @@ LEFT JOIN clase c ON c.IdClase = p.IdClase;
 INSERT INTO paquete
 VALUES
     (default, @Gym, @NombrePaquete,
-    @NumClasesTotales, @NumClasesSemanales,
-    @Costo, @IdClase);
+    @Descripcion, @NumClasesTotales, 
+    @NumClasesSemanales, @Costo, @IdClase);
 
 -- Actualización paquetes
 UPDATE paquete
 SET gym=@Gym, nombrepaquete=@NombrePaquete,
+    descripcion=@Descripcion,
     numclasestotales=@NumClasesTotales,
     numclasessemanales=@NumClasesSemanales,
     costo=@Costo, idclase=@IdClase
