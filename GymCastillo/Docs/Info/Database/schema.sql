@@ -121,7 +121,7 @@ create table Cliente (
     MedioConocio varchar(300), -- Redes sociales, amig@, otros
     ClasesTotalesDisponibles int, -- Acumulables, por mes
     ClasesSemanaDisponibles int, -- Clases disponibles por semana en base a paquete
-    Descuento decimal, -- Este es arbitrario y solo si aplica
+    DuracionPaquete int, -- Cada que pague se restará (Solo aplica para paquetes con promo)
     Nino bool, -- Por si se da de alta un niño
     IdTipoCliente int,
     foreign key (IdTipoCliente) references TipoCliente (IdTipoCliente),
@@ -194,7 +194,7 @@ create table Ventas (
     Costo decimal not null
 );
 
-create table Pagos (
+create table Egresos (
     -- Tabla que guarda los Pagos generales
     IdPagosGeneral int auto_increment primary key,
     FechaRegistro datetime not null,
@@ -233,6 +233,10 @@ create table Ingresos (
     foreign key (IdVenta) references Ventas (IdVenta),
     Otros bool, -- Si el ingreso proviene de otro
     Concepto varchar(300) not null,
+    IdPaquete int, -- Para saber cuanto va a pagar el cliente
+    foreign key (IdPaquete) references Paquete (IdPaquete),
+    IdLocker int, -- Para saber si le cobramos el adicional a locker (Sigue siendo opcional)
+    foreign key (IdLocker) references Loker (IdLocker),
     NumeroRecibo varchar(30) not null,
     Monto decimal
 );
