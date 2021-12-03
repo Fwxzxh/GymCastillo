@@ -117,6 +117,7 @@ create table Cliente (
     FechaUltimoAcceso datetime,
     MontoUltimoPago decimal,
     Activo bool,
+    FechaUltimoPago datetime,
     FechaVencimientoPago datetime, -- Un mes más 5 días de tolerancia
     DeudaCliente decimal,
     MedioConocio varchar(300), -- Redes sociales, amig@, otros
