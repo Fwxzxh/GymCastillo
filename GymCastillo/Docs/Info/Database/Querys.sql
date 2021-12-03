@@ -36,7 +36,8 @@ INSERT INTO cliente
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
 	@FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial, 
 	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
-	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
+	@MontoUltimoPago, @Activo, @FechaUltimoPago,
+    @FechaVencimientoPago, @DeudaCliente,
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
 	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
 	-- Editar valores (usuario)
@@ -281,6 +282,7 @@ LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
 LEFT JOIN locker l ON i.IdLocker = l.IdLocker;
 	-- Alta ingresos
 INSERT INTO ingresos
-VALUES (@IdIngresos, @FechaRegistro,@IdUsuario,
-@IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
-@IdPaquete, @IdLocker, @NumeroRecibo, @Monto);
+VALUES
+    (@IdIngresos, @FechaRegistro, @IdUsuario,
+    @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
+    @IdPaquete, @IdLocker, @NumeroRecibo, @Monto);

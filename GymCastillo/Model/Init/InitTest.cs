@@ -4,10 +4,11 @@ using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
 
 namespace GymCastillo.Model.Init {
+
     /// <summary>
-    /// fdaff
+    /// clase que inicializa y guarda en campos estáticos las listas de la base de datos.
     /// </summary>
-    public  class InitTest {
+    public class InitTest {
 
         /// <summary>
         /// La ObservableCollection de todos los clientes.
@@ -68,7 +69,6 @@ namespace GymCastillo.Model.Init {
         /// La ObservableCollection que contiene todos los espacios.
         /// </summary>
         public static ObservableCollection<Espacio> ObCoEspacio { get; set; }
-
 
         /// <summary>
         /// Constructor de InitTest,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -66,6 +67,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public string NombreClases { get; set; }
 
         /// <summary>
+        /// Indica cuanto dura su paquete Serían 3: 1-Semanal, 2-Quincenal, 3-Mes
+        /// </summary>
+        public int MétodoFechaPago { get; set; }
+
+        /// <summary>
         /// Método que actualiza la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
@@ -109,7 +115,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -123,6 +129,21 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en un Instructor.");
+
+            // Fk key constraint check.
+            if (InitInfo.ListaClases.Any(x => x.IdInstructor == Id)) {
+                // Este instructor esta dado asignado en alguna clase
+                ShowPrettyMessages.InfoOk(
+                    "Hay clases asignadas a este instructor, asi que no puedes eliminar al instructor, cambia esas clases a otro instructor para eliminarlo.",
+                    "Fk key check.");
+                return 0;
+            }
+
+            // TODO: ver k pedo con la fk de egresos.
+            // if (InitInfo.Lis) {
+            //
+            // }
+
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -165,7 +186,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
                                            	@TelefonoContacto, @Foto, @FechaUltimoAcceso, @FechaUltimoPago,
                                            	@MontoUltimoPago, @HoraEntrada, @HoraSalida, @DiasATrabajar,
-                                           	@DiasTrabajados, @Sueldo, @SueldoADescontar, @IdTipoInstructor);";
+                                           	@DiasTrabajados, @Sueldo, @SueldoADescontar, @MetodoFechaPago,
+                                            @IdTipoInstructor);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -191,7 +213,10 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MetodoFechaPago", MétodoFechaPago.ToString());
+
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
+
 
                 Log.Debug("Se ha creado la query.");
 

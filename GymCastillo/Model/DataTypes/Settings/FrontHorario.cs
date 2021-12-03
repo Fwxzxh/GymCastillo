@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using GymCastillo.Model.Admin;
@@ -18,50 +19,50 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// <summary>
         /// las Horas del lunes.
         /// </summary>
-        public List<Horario> HorasLunes { get; set; }
+        public ObservableCollection<Horario> HorasLunes { get; set; }
 
         /// <summary>
         /// Las horas del Martes.
         /// </summary>
-        public List<Horario> HorasMartes { get; set; }
+        public ObservableCollection<Horario> HorasMartes { get; set; }
 
         /// <summary>
         /// Las horas del Miércoles.
         /// </summary>
-        public List<Horario> HorasMiércoles { get; set; }
+        public ObservableCollection<Horario> HorasMiércoles { get; set; }
 
         /// <summary>
         /// Las horas del Jueves.
         /// </summary>
-        public List<Horario> HorasJueves { get; set; }
+        public ObservableCollection<Horario> HorasJueves { get; set; }
 
         /// <summary>
         /// Las horas del Viernes.
         /// </summary>
-        public List<Horario> HorasViernes { get; set; }
+        public ObservableCollection<Horario> HorasViernes { get; set; }
 
         /// <summary>
         /// Las horas del Sábado
         /// </summary>
-        public List<Horario> HorasSábado { get; set; }
+        public ObservableCollection<Horario> HorasSábado { get; set; }
 
         /// <summary>
         /// Las horas del Domingo.
         /// </summary>
-        public List<Horario> HorasDomingo { get; set; }
+        public ObservableCollection<Horario> HorasDomingo { get; set; }
 
         /// <summary>
         /// Constructor de la clase Front Horario
         /// </summary>
         public FrontHorario() {
             // Inicializamos las listas.
-            HorasLunes = new List<Horario>();
-            HorasMartes = new List<Horario>();
-            HorasMiércoles = new List<Horario>();
-            HorasJueves = new List<Horario>();
-            HorasViernes = new List<Horario>();
-            HorasSábado = new List<Horario>();
-            HorasDomingo = new List<Horario>();
+            HorasLunes = new ObservableCollection<Horario>();
+            HorasMartes = new ObservableCollection<Horario>();
+            HorasMiércoles = new ObservableCollection<Horario>();
+            HorasJueves = new ObservableCollection<Horario>();
+            HorasViernes = new ObservableCollection<Horario>();
+            HorasSábado = new ObservableCollection<Horario>();
+            HorasDomingo = new ObservableCollection<Horario>();
         }
 
         /// <summary>

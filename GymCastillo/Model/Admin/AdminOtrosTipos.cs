@@ -2,16 +2,17 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Validations.Config;
 using log4net;
 
 namespace GymCastillo.Model.Admin {
     /// <summary>
     /// CLase que se encarga de exponer todas las operaciones comunes entre objetos tipo <c>AbstOtrosTipos</c>.
     /// </summary>
-    public class AdminOtrosTipos {
+    public static class AdminOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
-
 
         /// <summary>
         /// Método que se encarga de actualizar y validar los datos del objeto dado tipo <c>AbstOtrosTipos</c>
@@ -22,6 +23,7 @@ namespace GymCastillo.Model.Admin {
             try {
                 // validamos
                 // TODO: hacer validaciones.
+                await ValidateAgain(objeto);
 
                 // Hacemos update
                 var res = await objeto.Update();
@@ -93,8 +95,7 @@ namespace GymCastillo.Model.Admin {
                 Log.Debug("Se ha iniciado un proceso de alta genérico.");
 
                 // validamos los campos concretos
-                // TODO: hacer validaciones.
-                //await ValidateAgain(objeto);
+                await ValidateAgain(objeto);
 
                 // Hacemos la alta.
                 var res = await objeto.Alta();
@@ -119,6 +120,38 @@ namespace GymCastillo.Model.Admin {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de averiguar el tipo de objeto es y validar los campos especializados.
+        /// </summary>
+        private static async Task ValidateAgain(AbstOtrosTipos objeto) {
+            var tipo = objeto.GetType().Name;
+
+            switch (tipo) {
+                case "Clase":
+                    var clienteValidator = new ClaseValidation();
+                    await clienteValidator.ValidateAndThrowAsync((Clase) objeto);
+                    break;
+
+                case "Espacio":
+                    var instructorValidator = new EspacioValidation();
+                    await instructorValidator.ValidateAndThrowAsync((Espacio) objeto);
+                    break;
+
+                case "Horario":
+                    var usuarioValidator = new HorarioValidation();
+                    await usuarioValidator.ValidateAndThrowAsync((Horario) objeto);
+                    break;
+
+                case "Paquete":
+                    var clienteRentaValidator = new PaqueteValidation();
+                    await clienteRentaValidator.ValidateAndThrowAsync((Paquete) objeto);
+                    break;
+
+                default:
+                    throw new Exception("Error: no se pudo identificar al objeto.");
             }
         }
     }

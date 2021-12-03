@@ -93,6 +93,15 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <returns>El número de columnas afectadas por la operación.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de Delete de un ClienteRenta.");
+
+            // checks
+            if (DeudaCliente > 0) {
+                ShowPrettyMessages.InfoOk(
+                    $"No se puede eliminar este cliente ya que tiene una deuda activa de: $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    "Cliente con deuda");
+                return 0;
+            }
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
