@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
@@ -151,6 +152,24 @@ namespace GymCastillo.Model.DataTypes.Personal {
             Log.Debug("Se ha iniciado el proceso de Delete en cliente.");
             if (Activo == false) {
                 // eliminamos
+
+                // Checamos que podamos eliminarlo
+                if (DeudaCliente > 0) {
+                    ShowPrettyMessages.InfoOk(
+                        $"No es posible eliminar este cliente ya que tiene una deuda actual de $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                        "Cliente con deuda");
+                    return 0;
+                }
+
+                if (ClasesTotalesDisponibles > 0) {
+                    ShowPrettyMessages.InfoOk(
+                        $"No es posible eliminar este cliente ya que tiene {ClasesTotalesDisponibles.ToString()} clases disponibles.",
+                        "Cliente con clases disponibles.");
+                    return 0;
+                }
+
+                // TODO: check FK de cliente en ingresos.
+
                 try {
                     await using var connection = new MySqlConnection(GetInitData.ConnString);
                     await connection.OpenAsync();
@@ -217,7 +236,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
                                            	@Domicilio, @FechaNacimiento, @Telefono, @CondicionEspecial, 
                                            	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
-                                           	@MontoUltimoPago, @Activo, @FechaVencimientoPago, @DeudaCliente, 
+                                           	@MontoUltimoPago, @Activo, @FechaUltimoPago,
+                                            @FechaVencimientoPago, @DeudaCliente, 
                                            	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponibles, 
                                            	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker)";
 
@@ -239,6 +259,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Activo", "1"); // Siempre True al dar de alta.
+                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+
                 command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
@@ -249,6 +271,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+
                 // IdPaqute e IdLocker en null.
                 command.Parameters.AddWithValue("@IdPaquete", null);
                 command.Parameters.AddWithValue("@IdLocker", null);

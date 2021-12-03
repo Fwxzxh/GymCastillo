@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
@@ -170,7 +168,7 @@ namespace GymCastillo.Model.Database {
                                           i.Foto, i.FechaUltimoAcceso, i.FechaUltimoPago,
                                           i.MontoUltimoPago, i.HoraEntrada, i.HoraSalida,
                                           i.DiasATrabajar, i.DiasTrabajados, i.Sueldo,
-                                          i.SueldoADescontar,
+                                          i.SueldoADescontar, i.MetodoFechaPago,
                                           ti.IdTipoInstructor, ti.NombreTipoInstructor,
                                           group_concat(c.IdClase) as IdClase, group_concat(c.NombreClase) as NombreClase
                                       FROM instructor i
@@ -238,6 +236,10 @@ namespace GymCastillo.Model.Database {
                         SueldoADescontar = await reader.Result.IsDBNullAsync("SueldoADescontar")
                             ? 0
                             : reader.Result.GetDecimal("SueldoADescontar"),
+
+                        MétodoFechaPago = await reader.Result.IsDBNullAsync("MetodoFechaPago")
+                            ? 0
+                            : reader.Result.GetInt32("MetodoFechaPago"),
 
                         IdTipoInstructor = await reader.Result.IsDBNullAsync("IdTipoInstructor")
                             ? 0
