@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace GymCastillo.Model.DataTypes.Abstract {
     /// <summary>
@@ -49,6 +50,6 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// <summary>
         /// Método que da de alta un nuevo movimiento.
         /// </summary>
-        public abstract void Alta();
+        public abstract Task<int> Alta();
     }
 }

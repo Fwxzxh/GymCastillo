@@ -16,6 +16,9 @@
     <Compile Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\PagosScreensView\IngresosViews\prueba.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\PagosScreensView\PagosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PagosScreensView\IngresosViews\prueba.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PagosScreensView\PagosUC.xaml">

@@ -15,6 +15,12 @@
       <EmbeddedResource Remove="View\UsuariosView\**" />
       <None Remove="View\UsuariosView\**" />
       <Page Remove="View\UsuariosView\**" />
+      <Page Update="View\PersonalScreenView\UsersViewUserControl.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Compile Update="View\PersonalScreenView\UsersViewUserControl.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -124,6 +130,10 @@
       <Compile Update="View\AdminScreensView\UsuariosView\OverviewUserWindow.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="View\PersonalScreenView\UsuariosView" />
     </ItemGroup>
 
 </Project>

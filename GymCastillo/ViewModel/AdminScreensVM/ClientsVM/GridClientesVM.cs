@@ -9,7 +9,7 @@ using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.View.AdminScreensView.ClientsView;
+using GymCastillo.View.PersonalScreenView.ClientsView;
 using GymCastillo.ViewModel.AdminScreensCommands.ClientsCommands;
 using log4net;
 

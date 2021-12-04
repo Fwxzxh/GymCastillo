@@ -11,79 +11,72 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
-    /// Clase que contiene todos los campos y métodos de la clase Ingresos.
+    /// Clase que contiene los campos y métodos de la clase pagos.
     /// </summary>
-    public class Ingresos : AbstractMovimientos, IOnlyAlta {
+    public class Egresos : AbstractMovimientos, IOnlyAlta {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// El id de la renta si el ingreso es por una renta.
+        /// Indica si el movimiento es por un servicio.
         /// </summary>
-        public int IdRenta { get; set; }
+        public bool Servicios { get; set; }
 
         /// <summary>
-        /// El id de la venta si el ingreso es por una venta
+        /// Indica si el movimiento es por una paga de nómina.
         /// </summary>
-        public int IdVenta { get; set; }
+        public bool Nomina { get; set; }
 
         /// <summary>
-        /// El id del cliente si el ingreso es por un cliente.
+        /// Id del usuario al cual se le paga si es una nómina.
         /// </summary>
-        public int IdCliente { get; set; }
+        public int IdUsuarioPagar { get; set; }
 
         /// <summary>
-        /// El id del paquete que se va a comprar
+        /// Id del instructor
         /// </summary>
-        public int IdPaquete { get; set; }
+        public int IdInstructor { get; set; }
 
         /// <summary>
-        /// El id del locker que se planea comprar.
-        /// </summary>
-        public int IdLocker { get; set; }
-
-        /// <summary>
-        /// Da de alta la instancia actual del ingreso en la base de datos.
+        /// Método que da de alta un Pago.
         /// </summary>
         public override async Task<int> Alta() {
-            Log.Debug("Se ha iniciado el proceso de dar de alta un ingreso.");
+            Log.Debug("Se ha iniciado el proceso de dar de alta un egreso.");
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"INSERT INTO ingresos
+                const string altaQuery = @"INSERT INTO egresos
                                            VALUES
                                                (default, @FechaRegistro, @IdUsuario,
-                                               @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
-                                               @IdPaquete, @IdLocker, @NumeroRecibo, @Monto);";
+                                               @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
+                                               @IdInstructor, @Concepto, @NumeroRecibo, @Monto);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@FechaRegistro", FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@IdUsuario", "1");// TODO: obtener el id en el logIn.
 
-                command.Parameters.AddWithValue("@IdRenta", IdRenta.ToString());
-                command.Parameters.AddWithValue("@IdCliente", IdCliente.ToString());
-                command.Parameters.AddWithValue("@IdVenta", IdVenta.ToString());
+                command.Parameters.AddWithValue("@Servicios", Servicios.ToString());
+                command.Parameters.AddWithValue("@Nomina", Convert.ToInt32(Nomina).ToString());
                 command.Parameters.AddWithValue("@Otros", Convert.ToInt32(Otros).ToString());
+                command.Parameters.AddWithValue("@IdUsuarioPagar", IdUsuarioPagar.ToString());
+
+                command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@Concepto", Concepto);
-
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
-
                 command.Parameters.AddWithValue("@NumeroRecibo", NumeroRecibo);
                 command.Parameters.AddWithValue("@Monto", Monto.ToString(CultureInfo.InvariantCulture));
 
                 Log.Debug("Se ha generado la query.");
 
-                var res = await ExecSql.NonQuery(command, "Nuevo Ingreso");
+                var res = await ExecSql.NonQuery(command, "Nuevo Egreso");
                 Log.Debug("Se ha dado de alta un Ingreso.");
 
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta un ingreso.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta un Egreso.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GymCastillo.View.AdminScreensView.InstructoresView {
+namespace GymCastillo.View.PersonalScreenView.InstructoresView {
     /// <summary>
     /// Interaction logic for GridInstructoresUserControl.xaml
     /// </summary>

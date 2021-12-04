@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="GymCastillo.View.AdminScreensView.ClientsRentaView.GridClientesRUC"
+﻿<UserControl x:Class="GymCastillo.View.PersonalScreenView.ClientsView.GridClientesUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:clientsRentaVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM"
+             xmlns:clientsVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClientsVM"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              BorderThickness="0"
@@ -15,7 +15,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <clientsRentaVm:GridRentaVM x:Key="vm"/>
+        <clientsVm:GridClientesVM x:Key="vm"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -51,8 +51,8 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  SelectedItem="{Binding SelectedCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding ListaClientes}">
+                  ItemsSource="{Binding ClientesLista}"
+                  SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"
@@ -133,18 +133,18 @@
                                 <Button ToolTip="Ver más"
                                         Margin="5 0"
                                     DataContext="{StaticResource vm}"
-                                    Command="{Binding overview}">
-                                    <materialDesign:PackIcon Kind="EyeAddOutline"/>
-                                </Button>
-                                <Button ToolTip="Eliminar"
+                                    Command="{Binding overViewCommand}">
+                                <materialDesign:PackIcon Kind="EyeAddOutline"/>
+                            </Button>
+                            <Button ToolTip="Eliminar"
                                     Background="Transparent"
                                     BorderBrush="Red"
                                     Foreground="{DynamicResource MaterialDesignDarkForeground}"
                                     DataContext="{StaticResource vm}"
                                     Margin="5 0"
-                                    Command="{Binding delete}">
-                                    <materialDesign:PackIcon Kind="TrashCanOutline"/>
-                                </Button>
+                                    Command="{Binding deleteClient}">
+                                <materialDesign:PackIcon Kind="TrashCanOutline"/>
+                            </Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -153,7 +153,8 @@
         </DataGrid>
         <!--CommandParameter="{Binding ElementName=ClientesDataGrid, Path=SelectedItem}"-->
 
-        <Button Content="Nuevo Cliente"
+        <Button x:Name="BtnNuevo"
+                Content="Nuevo Cliente"
                 HorizontalAlignment="Right"
                 FontSize="25"
                 Grid.Row="2"
@@ -161,7 +162,7 @@
                 VerticalContentAlignment="Center"
                 Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                 Height="50"
-                Command="{Binding newCRCommand}"
-                ToolTip="Nuevo Cliente"/>
+                ToolTip="Nuevo Cliente"
+                Command="{Binding newClient}"/>
     </Grid>
 </UserControl>

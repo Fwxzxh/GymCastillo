@@ -245,21 +245,23 @@ WHERE idhorario=@IdHorario;
 
 -- Egresos
 	-- Consulta Egresos
-SELECT p.IdPagosGeneral, p.FechaRegistro,
-p.IdUsuario, u.Nombre, u.ApellidoPaterno,
-p.Servicios, p.Nomina, p.IdUsuarioPagar,
-up.Nombre, up.ApellidoPaterno,
-p.IdInstructor, i.Nombre, i.ApellidoPaterno,
-p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
+SELECT
+    p.IdPagosGeneral, p.FechaRegistro,
+    p.IdUsuario, u.Nombre, u.ApellidoPaterno,
+    p.Servicios, p.Nomina, p.IdUsuarioPagar,
+    up.Nombre, up.ApellidoPaterno,
+    p.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
 FROM egresos p
 INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
 LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
 LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor;
 	-- Alta pagos
 INSERT INTO egresos
-VALUES (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
-@Servicios, @Nomina, @Otros, @IdUsuarioPagar,
-@IdInstructor, @Concepto, @NumeroRecibo, @Monto);
+VALUES
+    (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
+    @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
+    @IdInstructor, @Concepto, @NumeroRecibo, @Monto);
 
 
 -- Ingresos

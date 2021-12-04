@@ -13,7 +13,7 @@ namespace GymCastillo.Model.Init {
         /// <summary>
         /// String que contiene el username del usuario que inicio seción.
         /// </summary>
-        public static string LoggedUsername { get; set; }
+        public static string LoggedId { get; set; }
 
         /// <summary>
         /// Método que se encarga del proceso de logIn.
@@ -29,7 +29,7 @@ namespace GymCastillo.Model.Init {
 
             var login = new MySqlCommand {
                 Connection = connObj,
-                CommandText = @"select Nombre
+                CommandText = @"select IdUsuario
                                 from usuario 
                                 where Username=@user and Password=@pass"
             };
@@ -42,7 +42,8 @@ namespace GymCastillo.Model.Init {
 
                 if (cmd.HasRows) {
                     Log.Debug("LogIn Exitoso");
-                    LoggedUsername = username;
+                    // TODO: obtener el id del que se loggueo
+                    //LoggedId = username;
                     return true;
                 }
                 else {

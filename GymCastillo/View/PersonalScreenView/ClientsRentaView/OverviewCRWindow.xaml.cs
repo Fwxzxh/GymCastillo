@@ -1,10 +1,9 @@
 ﻿using System.Windows;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM;
 
-namespace GymCastillo.View.AdminScreensView.ClientsRentaView {
+namespace GymCastillo.View.PersonalScreenView.ClientsRentaView {
     /// <summary>
     /// Interaction logic for OverviewCRWindow.xaml
     /// </summary>

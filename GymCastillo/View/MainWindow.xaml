@@ -8,6 +8,7 @@
         xmlns:pagos="clr-namespace:GymCastillo.View.PagosScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:personalScreenView="clr-namespace:GymCastillo.View.PersonalScreenView"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         TextElement.FontWeight="Medium"
@@ -52,7 +53,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <home:UsersViewUserControl/>
+                    <personalScreenView:UsersViewUserControl/>
                 </TabItem.Content>
             </TabItem>
             <TabItem ToolTip="Clases">  

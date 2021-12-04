@@ -1,10 +1,9 @@
 ﻿using System.Windows;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensVM.InstructoresVM;
 
-namespace GymCastillo.View.AdminScreensView.InstructoresView {
+namespace GymCastillo.View.PersonalScreenView.InstructoresView {
     /// <summary>
     /// Interaction logic for OverviewInstructorWindow.xaml
     /// </summary>

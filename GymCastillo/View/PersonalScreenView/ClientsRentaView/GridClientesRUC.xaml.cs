@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GymCastillo.View.AdminScreensView.ClientsRentaView {
+namespace GymCastillo.View.PersonalScreenView.ClientsRentaView {
     /// <summary>
     /// Interaction logic for GridClientesRUC.xaml
     /// </summary>

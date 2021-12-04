@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using GymCastillo.Model.Interfaces;
 
-namespace GymCastillo.View.AdminScreensView.InstructoresView {
+namespace GymCastillo.View.PersonalScreenView.InstructoresView {
     /// <summary>
     /// Interaction logic for NewInstructorWindow.xaml
     /// </summary>
