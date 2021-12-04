@@ -74,8 +74,6 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
         }
 
         private void CancelarPaquete() {
-            Paquete = null;
-            Paquete = new();
             RefreshGrid();
         }
 
@@ -83,6 +81,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
             Log.Debug("Se ha presionado el botón para guardar un paquete");
             await AdminOtrosTipos.Alta(Paquete);
             RefreshGrid();
+
         }
 
         private async void RefreshGrid() {
@@ -93,6 +92,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
             foreach (var item in paquetes) {
                 InitTest.ObCoPaquete.Add(item);
             }
+            Paquete = null;
+            Paquete = new();
         }
     }
 }

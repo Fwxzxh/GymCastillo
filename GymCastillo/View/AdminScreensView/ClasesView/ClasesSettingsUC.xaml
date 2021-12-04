@@ -149,6 +149,7 @@
                                 </Button>
                                 <Button ToolTip="Agregar Horarios"
                                         Margin="5 0"
+                                        Visibility="Collapsed"
                                         Command="{Binding OpenHorarios}"
                                     DataContext="{StaticResource vm}">
                                     <materialDesign:PackIcon Kind="ClockPlusOutline"/>

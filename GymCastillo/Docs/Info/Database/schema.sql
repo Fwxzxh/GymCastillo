@@ -248,3 +248,21 @@ insert into usuario
     (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, FechaUltimoAcceso)
 values
     (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', sysdate(), '0', sysdate());
+
+    -- Tipos de cliente
+INSERT INTO tipocliente
+VALUES (default, 'Membresia', 'Clientes con solo Gym');
+INSERT INTO tipocliente
+VALUES (default, 'Membresia con promocion', 'Clientes con descuento');
+INSERT INTO tipocliente
+VALUES (default, 'De clase', 'Clientes con solo Clases');
+
+-- Tipos de instructores
+INSERT INTO tipoinstructor
+VALUES (default, 'De clase', 'Instructores solo de clase');
+INSERT INTO tipoinstructor
+VALUES (default, 'Instructor', 'Instructor de gym');
+INSERT INTO tipoinstructor
+VALUES (default, 'Instructor personal', 'Instructor para un cliente');
+INSERT INTO tipoinstructor
+VALUES (default, 'Otros', 'Otro tipo de instructor');
