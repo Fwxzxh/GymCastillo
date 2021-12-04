@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymCastillo.View.PagosScreensView.EgresosViews"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -12,7 +13,192 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <Grid>
-        <Label Content="Hola egresos" FontSize="30"/>
+    <UserControl.Resources>
+        <oc:InitTest x:Key="oc"/>
+    </UserControl.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Tipo"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                  Margin="10"
+                          HorizontalAlignment="Left"
+                          Width="250">
+            <ComboBoxItem Content="Nomina Usuarios"
+                          x:Name="usuarios"/>
+            <ComboBoxItem Content="Nomina Instructores"
+                          x:Name="instructor"/>
+            <ComboBoxItem Content="Servicios"
+                          x:Name="servicios"/>
+            <ComboBoxItem Content="Otros"
+                          x:Name="otros"/>
+        </ComboBox>
+<!--Instructores-->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=instructor, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:HintAssist.Hint="Instructores"
+                      materialDesign:HintAssist.FloatingScale="0.6"
+                      materialDesign:TextFieldAssist.HasClearButton="True"
+                      FontSize="20"
+                      Margin="10"
+                      Width="350"
+                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}}"
+                      SelectedValue="{Binding Clase.IdEspacio}"
+                      SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
+                      SelectedValuePath="IdEspacio">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Nombre"/>
+                                    <Binding Path="ApellidoPaterno"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=instructor, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                     materialDesign:HintAssist.FloatingScale="0.6"                 
+                     Grid.Row="1"
+                     Width="150"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <TextBox materialDesign:HintAssist.Hint="Concepto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="420"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=instructor, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="Monto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="150"
+                     IsEnabled="False"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        <!--usuarios-->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=usuarios, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:HintAssist.Hint="Usuarios"
+                      materialDesign:HintAssist.FloatingScale="0.6"
+                      materialDesign:TextFieldAssist.HasClearButton="True"
+                      FontSize="20"
+                      Margin="10"
+                      Width="350"
+                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoUsuario}}"
+                      SelectedValue="{Binding Clase.IdEspacio}"
+                      SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
+                      SelectedValuePath="IdEspacio">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Nombre"/>
+                                    <Binding Path="ApellidoPaterno"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=usuarios, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                     materialDesign:HintAssist.FloatingScale="0.6"                 
+                     Grid.Row="1"
+                     Width="150"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <TextBox materialDesign:HintAssist.Hint="Concepto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="420"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=usuarios, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="Monto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="150"
+                     IsEnabled="False"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        
+        <!--Servicios-->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=servicios, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="Concepto Servicio"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="320"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox materialDesign:HintAssist.Hint="Monto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="320"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        <!--Servicios-->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Visibility="{Binding ElementName=otros, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox materialDesign:HintAssist.Hint="Concepto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="320"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox materialDesign:HintAssist.Hint="Monto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="320"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

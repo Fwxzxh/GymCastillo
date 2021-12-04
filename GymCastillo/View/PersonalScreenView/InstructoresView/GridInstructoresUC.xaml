@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:instructoresVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.InstructoresVM"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              BorderThickness="0"
@@ -16,6 +17,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <instructoresVm:GridInstructoresVM x:Key="vm"/>
+        <oc:InitTest x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -51,7 +53,7 @@
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
                   SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding ListaInstructores}">
+                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"

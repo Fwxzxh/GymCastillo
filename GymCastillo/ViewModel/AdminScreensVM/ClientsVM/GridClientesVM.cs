@@ -61,10 +61,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
                 newClient = new(this);
                 deleteClient = new(this);
 
-                foreach (var cliente in clientes.OrderBy(c => c.Nombre).Where(c => c.Activo == true)) {
-                    ClientesLista.Add(cliente);
-                }
-
                 Log.Debug("Se ha inicializado y se han obtenido los datos de la pantalla de GridClientes.");
             }
             catch (Exception e) {
@@ -99,11 +95,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         }
 
         private async void RefreshGrid() {
-            ClientesLista.Clear();
+            InitTest.ObCoClientes.Clear();
             var clientesRe = await GetFromDb.GetClientes();
-            InitInfo.ListaClientes = clientesRe;
-            foreach (var item in clientesRe.OrderBy(c => c.Nombre).Where(l => l.Activo == true)) {
-                ClientesLista.Add(item);
+            foreach (var item in clientesRe) {
+                InitTest.ObCoClientes.Add(item);
             }
         }
 

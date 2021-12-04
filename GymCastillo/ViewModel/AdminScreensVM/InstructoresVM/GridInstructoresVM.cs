@@ -109,9 +109,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
         private async void RefreshGrid() {
             ListaInstructores.Clear();
             var instructors = await GetFromDb.GetInstructores();
-            InitInfo.ListaInstructor = instructors;
+            InitTest.ObCoInstructor.Clear();
             foreach (var item in instructors.OrderBy(i => i.Nombre)) {
-                ListaInstructores.Add(item);
+                InitTest.ObCoInstructor.Add(item);
             }
         }
 

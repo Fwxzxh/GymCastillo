@@ -10,6 +10,9 @@
     <Compile Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\LoginWindow.xaml">

@@ -17,14 +17,13 @@
         <vm:MainSettingsVM x:Key="vm"/>
         <oc:InitTest x:Key="oc"/>
     </UserControl.Resources>
-    <Grid Margin="20">
+    <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel>
             <TextBox Grid.Row="0"
                  materialDesign:HintAssist.Hint="Buscar"
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
@@ -74,7 +73,6 @@
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
         <StackPanel Grid.Row="2"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">

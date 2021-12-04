@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:clientsRentaVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              BorderThickness="0"
@@ -16,6 +17,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <clientsRentaVm:GridRentaVM x:Key="vm"/>
+        <oc:InitTest x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -52,7 +54,7 @@
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
                   SelectedItem="{Binding SelectedCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding ListaClientes}">
+                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClienteRenta}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"

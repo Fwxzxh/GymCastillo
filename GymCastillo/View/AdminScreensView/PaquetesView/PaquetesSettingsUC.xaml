@@ -199,18 +199,32 @@
                          Margin="20 0"
                          Text="{Binding Paquete.NumClasesTotales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Costo"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         FontSize="20"
-                         Margin="20 0"
-                         Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+               
                 <CheckBox Content="Gym"
                           VerticalContentAlignment="Center"
                           VerticalAlignment="Center"
                           FontSize="20"
                           IsChecked="{Binding Paquete.Gym, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Margin="45 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                <TextBox materialDesign:HintAssist.Hint="Descripción"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="795"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Paquete.Descripcion, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Costo"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50 0">
                 <Button Style="{StaticResource MaterialDesignPaperButton}"

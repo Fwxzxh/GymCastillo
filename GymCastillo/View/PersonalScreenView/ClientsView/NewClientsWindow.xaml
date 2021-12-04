@@ -36,7 +36,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <!--<RowDefinition/>-->
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" >
@@ -152,7 +152,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                <!--<ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Paquete"
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
@@ -163,7 +163,7 @@
                           SelectedValuePath="IdPaquete"
                           SelectedValue="{Binding NewCliente.IdPaquete}"
                           ItemsSource="{Binding paquetesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Width="250"/>
+                          Width="250"/>-->
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Medio Conoció"
                           materialDesign:HintAssist.FloatingScale="0.6"
@@ -174,7 +174,13 @@
                           SelectedValue="{Binding NewCliente.MedioConocio}"
                           ItemsSource="{Binding medioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>
-                <TextBox materialDesign:HintAssist.Hint="Descuento"
+                <CheckBox Content="Niño"
+                              VerticalContentAlignment="Center"
+                              VerticalAlignment="Center"
+                              FontSize="20"
+                              Width="auto"
+                              Margin="50 0 0 0"/>
+                <!--<TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
@@ -183,18 +189,18 @@
                          FontSize="20"
                          Margin="20 0"
                          Text="{Binding NewCliente.Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
 
             </StackPanel>
 
-            <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+            <!--<StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
-                    <CheckBox Content="Niño"
+                    --><!--<CheckBox Content="Niño"
                               VerticalContentAlignment="Center"
                               VerticalAlignment="Center"
                               FontSize="20"
                               Width="auto"
-                              Margin="50 0 0 0"/>
+                              Margin="50 0 0 0"/>--><!--
                     <CheckBox Content="Locker"
                               IsChecked="{Binding LockerIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"
@@ -227,7 +233,7 @@
                          Margin="20 0"
                          Text="{Binding NewCliente.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">

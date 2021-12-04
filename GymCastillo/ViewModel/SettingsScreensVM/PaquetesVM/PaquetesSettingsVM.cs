@@ -85,19 +85,14 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
             RefreshGrid();
         }
 
-        public async void RefreshGrid() {
+        private async void RefreshGrid() {
             ListaPaquetes.Clear();
             ListaClases.Clear();
-            //ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases.Where(c => c.Activo == true));
+            InitTest.ObCoPaquete.Clear();
             var paquetes = await GetFromDb.GetPaquetes();
-            var clases = await GetFromDb.GetClases();
             foreach (var item in paquetes) {
-                ListaPaquetes.Add(item);
+                InitTest.ObCoPaquete.Add(item);
             }
-
-            //foreach (var item in clases.Where(c => c.Activo == true)) {
-            //    ListaClases.Add(item);
-            //}
         }
     }
 }
