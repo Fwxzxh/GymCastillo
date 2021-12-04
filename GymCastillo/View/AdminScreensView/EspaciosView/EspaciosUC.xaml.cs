@@ -10,14 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View.SettingsScreensView.ClasesView {
+namespace GymCastillo.View.AdminScreensView.EspaciosView {
     /// <summary>
-    /// Interaction logic for HorariosSettingsWindow.xaml
+    /// Interaction logic for EspaciosUC.xaml
     /// </summary>
-    public partial class HorariosSettingsWindow : Window {
-        public HorariosSettingsWindow() {
+    public partial class EspaciosUC : UserControl {
+        public EspaciosUC() {
             InitializeComponent();
         }
     }

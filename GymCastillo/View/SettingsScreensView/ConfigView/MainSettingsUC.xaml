@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.SettingsVM"
-             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -13,111 +11,13 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <UserControl.Resources>
-        <vm:MainSettingsVM x:Key="vm"/>
-        <oc:InitTest x:Key="oc"/>
-    </UserControl.Resources>
     
-    <Grid Margin="20" DataContext="{StaticResource vm}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="20">
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <StackPanel>
-                <TextBox Grid.Row="0"
-                 materialDesign:HintAssist.Hint="Buscar"
-                 materialDesign:TextFieldAssist.LeadingIcon="Search"
-                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                 materialDesign:TextFieldAssist.LeadingIconSize="20"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
-                 materialDesign:HintAssist.IsFloating="False"
-                 Width="400"
-                 FontSize="20"
-                 VerticalAlignment="Center"
-                 VerticalContentAlignment="Center"
-                 HorizontalAlignment="Right"
-                 Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <DataGrid Grid.Row="1" 
-                          Margin="0 0 0 20"
-                          CanUserAddRows="True"
-                          CanUserReorderColumns="False"
-                          CanUserResizeRows="False"
-                          CanUserResizeColumns="False"
-                          SelectionMode="Single"
-                          SelectionUnit="FullRow"
-                          IsReadOnly="True"
-                          AutoGenerateColumns="False"
-                          FontSize="20"
-                          HeadersVisibility="All"
-                          HorizontalContentAlignment="Center"
-                          HorizontalAlignment="Stretch"
-                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoEspacio}, UpdateSourceTrigger=Default}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Espacios"
-                                            Binding="{Binding NombreEspacio}"
-                                    Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader"
-                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="TextBlock.FontSize" Value="25"/>
-                                    <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
-                                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-            <StackPanel Grid.Row="2"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                <TextBox materialDesign:HintAssist.Hint="Nuevo Espacio"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         FontSize="20"
-                         Width="250"
-                         Margin="20 10"
-                         Text="{Binding Espacio.NombreEspacio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Descripción"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         FontSize="20"
-                         Width="250"
-                         Margin="20 10"
-                         Text="{Binding Espacio.Descripción, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Guardar"
-                        Command="{Binding SaveCommand}"
-                        Margin="20 0"
-                        FontSize="20"/>
-                <Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Cancelar"
-                        Command="{Binding CancelCommand}"
-                        Margin="20 0"
-                        FontSize="20"/>
-            </StackPanel>
-        </Grid>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1"
+                    HorizontalAlignment="Left">
             <Label Content="Configuraciones generales."
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    FontSize="20"/>
             <TextBox materialDesign:HintAssist.Hint="Precio Lockers"
                          materialDesign:HintAssist.FloatingScale="0.6"

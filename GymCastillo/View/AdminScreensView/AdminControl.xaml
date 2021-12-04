@@ -1,13 +1,14 @@
-﻿<UserControl x:Class="GymCastillo.View.PersonalScreenView.UsersViewUserControl"
+﻿<UserControl x:Class="GymCastillo.View.AdminScreensView.AdminControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"
+             xmlns:clases="clr-namespace:GymCastillo.View.AdminScreensView.ClasesView"
+             xmlns:paquetes="clr-namespace:GymCastillo.View.AdminScreensView.PaquetesView"
+             xmlns:usuario="clr-namespace:GymCastillo.View.AdminScreensView.UsuariosView"
+             xmlns:espacios="clr-namespace:GymCastillo.View.AdminScreensView.EspaciosView"
+             mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:clientsView="clr-namespace:GymCastillo.View.PersonalScreenView.ClientsView"
-             xmlns:instructoresView="clr-namespace:GymCastillo.View.PersonalScreenView.InstructoresView"
-             xmlns:clientsRentaView="clr-namespace:GymCastillo.View.PersonalScreenView.ClientsRentaView"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
@@ -26,26 +27,37 @@
             <TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Clientes"
+                        <TextBlock Text="Espacios"
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <clientsView:GridClientesUC/>
+                    <espacios:EspaciosUC/>
                 </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Instructores"
+                        <TextBlock Text="Clases"
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <instructoresView:GridInstructoresUC/>
+                    <clases:ClasesSettingsUC/>
                 </TabItem.Content>
             </TabItem>
-            <!--<TabItem Width="150">
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Paquetes   "
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <paquetes:PaquetesSettingsUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Usuarios"
@@ -53,21 +65,9 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <usuariosView1:GridUsuariosUC/>
-                </TabItem.Content>
-            </TabItem>-->
-            <TabItem Width="160">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Clientes Renta"
-                                   Width="200"
-                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <clientsRentaView:GridClientesRUC/>
+                    <usuario:GridUsuariosUC/>
                 </TabItem.Content>
             </TabItem>
-        </TabControl>
+        </TabControl>  
     </Grid>
 </UserControl>

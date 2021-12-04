@@ -11,9 +11,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="View\PersonalScreenView\UsuariosView\**" />
       <Compile Remove="View\UsuariosView\**" />
+      <EmbeddedResource Remove="View\PersonalScreenView\UsuariosView\**" />
       <EmbeddedResource Remove="View\UsuariosView\**" />
+      <None Remove="View\PersonalScreenView\UsuariosView\**" />
       <None Remove="View\UsuariosView\**" />
+      <Page Remove="View\PersonalScreenView\UsuariosView\**" />
       <Page Remove="View\UsuariosView\**" />
       <Page Update="View\PersonalScreenView\UsersViewUserControl.xaml">
         <SubType>Designer</SubType>
@@ -130,10 +134,6 @@
       <Compile Update="View\AdminScreensView\UsuariosView\OverviewUserWindow.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="View\PersonalScreenView\UsuariosView" />
     </ItemGroup>
 
 </Project>

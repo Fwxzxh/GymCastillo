@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View.SettingsScreensView.ClasesView {
+namespace GymCastillo.View.AdminScreensView.ClasesView {
     /// <summary>
     /// Interaction logic for ClasesSettingsUC.xaml
     /// </summary>

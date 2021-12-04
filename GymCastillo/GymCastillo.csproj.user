@@ -4,6 +4,12 @@
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="View\AdminScreensView\AdminControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,32 +22,32 @@
     <Compile Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\PagosScreensView\IngresosViews\prueba.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\PagosScreensView\PagosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\SettingsScreensView\ClasesView\ClasesSettingsUC.xaml.cs">
+    <Compile Update="View\AdminScreensView\ClasesView\ClasesSettingsUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\SettingsScreensView\ClasesView\HorariosSettingsWindow.xaml.cs">
+    <Compile Update="View\AdminScreensView\ClasesView\HorariosSettingsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\SettingsScreensView\PaquetesView\PaquetesSettingsUC.xaml.cs">
+    <Compile Update="View\AdminScreensView\PaquetesView\PaquetesSettingsUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\SettingsScreensView\SettingsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UsersViewUserControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\AdminScreensView\AdminControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -54,28 +60,22 @@
     <Page Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\PagosScreensView\IngresosViews\prueba.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\PagosScreensView\PagosUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\SettingsScreensView\ClasesView\ClasesSettingsUC.xaml">
+    <Page Update="View\AdminScreensView\ClasesView\ClasesSettingsUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\SettingsScreensView\ClasesView\HorariosSettingsWindow.xaml">
+    <Page Update="View\AdminScreensView\ClasesView\HorariosSettingsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\SettingsScreensView\PaquetesView\PaquetesSettingsUC.xaml">
+    <Page Update="View\AdminScreensView\PaquetesView\PaquetesSettingsUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SettingsScreensView\SettingsControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\UsersViewUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

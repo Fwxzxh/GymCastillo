@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:main="clr-namespace:GymCastillo.View.SettingsScreensView.ConfigView"
-             xmlns:clases="clr-namespace:GymCastillo.View.SettingsScreensView.ClasesView"
-             xmlns:paquetes="clr-namespace:GymCastillo.View.SettingsScreensView.PaquetesView"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -35,28 +33,7 @@
                     <main:MainSettingsUC/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem Width="150">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Clases"
-                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <clases:ClasesSettingsUC/>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem Width="170">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Paquetes   "
-                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <paquetes:PaquetesSettingsUC/>
-                </TabItem.Content>
-            </TabItem>
+
         </TabControl>       
     </Grid>
 </UserControl>

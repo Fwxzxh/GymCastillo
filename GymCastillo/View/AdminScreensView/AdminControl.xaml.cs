@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymCastillo.View.SettingsScreensView.PaquetesView {
+namespace GymCastillo.View.AdminScreensView {
     /// <summary>
-    /// Interaction logic for PaquetesSettingsUC.xaml
+    /// Interaction logic for AdminControl.xaml
     /// </summary>
-    public partial class PaquetesSettingsUC : UserControl {
-        public PaquetesSettingsUC() {
+    public partial class AdminControl : UserControl {
+        public AdminControl() {
             InitializeComponent();
         }
     }

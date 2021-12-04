@@ -5,7 +5,7 @@ using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.View.SettingsScreensView.ClasesView;
+using GymCastillo.View.AdminScreensView.ClasesView;
 using log4net;
 using System;
 using System.Collections.ObjectModel;

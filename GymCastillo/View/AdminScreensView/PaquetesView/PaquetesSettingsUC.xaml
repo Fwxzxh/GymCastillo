@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="GymCastillo.View.SettingsScreensView.ClasesView.ClasesSettingsUC"
+﻿<UserControl x:Class="GymCastillo.View.AdminScreensView.PaquetesView.PaquetesSettingsUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.ClasesVM"
-             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM"
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
+             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -15,23 +15,17 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <vm:ClasesSettingsVM x:Key="vm"/>
-        <oc:InitTest x:Key="oc"/>
+        <vm:PaquetesSettingsVM x:Key="vm"/>
+        <converter:BoolToYesOrNort x:Key="toYes"/>
         <converter:Converter x:Key="converter"/>
+        <oc:InitTest x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <CheckBox Content="Clases Activas"
-                  VerticalContentAlignment="Center"
-                  VerticalAlignment="Center"
-                  FontSize="20"
-                  Width="200"
-                  IsChecked="{Binding ClaseActiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Margin="45 0"/>
         <TextBox Grid.Row="0"
                  materialDesign:HintAssist.Hint="Buscar"
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
@@ -44,10 +38,8 @@
                  VerticalAlignment="Center"
                  VerticalContentAlignment="Center"
                  HorizontalAlignment="Right"
-                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
         <DataGrid Grid.Row="1"
-                  Name="grid"
                   Margin="0 0 0 20"
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
@@ -59,13 +51,13 @@
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
-                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClases}, UpdateSourceTrigger=Default}"
-                  SelectedItem="{Binding Clase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalContentAlignment="Center"
-                  HorizontalAlignment="Stretch">
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoPaquete}, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Paquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Clase"
-                                    Binding="{Binding NombreClase}"
+                <DataGridTextColumn Header="Paquete"
+                                    Binding="{Binding NombrePaquete}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -82,8 +74,8 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Instructor"
-                                    Binding="{Binding NombreInstructor}"
+                <DataGridTextColumn Header="Clases Semanales"
+                                    Binding="{Binding NumClasesSemanales}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -100,8 +92,8 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Espacio"
-                                    Binding="{Binding NombreEspacio}"
+                <DataGridTextColumn Header="Clases Totales"
+                                    Binding="{Binding NumClasesTotales}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -118,8 +110,27 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Cupo Máximo"
-                                    Binding="{Binding CupoMaximo}"
+
+                <DataGridTextColumn Header="Gym"
+                                    Binding="{Binding Gym, Converter={StaticResource toYes}}"
+                                    Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Costo"
+                                    Binding="{Binding Costo, StringFormat=C}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -140,19 +151,6 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="-10 0">
-                                <Button ToolTip="Editar Clase"
-                                        Margin="5 0"
-                                        Background="Transparent"
-                                        Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                                        DataContext="{StaticResource vm}">
-                                    <materialDesign:PackIcon Kind="EditOutline"/>
-                                </Button>
-                                <Button ToolTip="Agregar Horarios"
-                                        Margin="5 0"
-                                        Command="{Binding OpenHorarios}"
-                                    DataContext="{StaticResource vm}">
-                                    <materialDesign:PackIcon Kind="ClockPlusOutline"/>
-                                </Button>
                                 <Button ToolTip="Eliminar"
                                     Background="Transparent"
                                     BorderBrush="Red"
@@ -168,81 +166,61 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2"
-                    Margin="0 10 0 0">
-
+        <StackPanel Grid.Row="2">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <TextBox materialDesign:HintAssist.Hint="Nombre Clase"
+                <TextBox materialDesign:HintAssist.Hint="Nombre Paquete"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          VerticalContentAlignment="Center"
-                         Width="250"
-                         IsEnabled="{Binding SelectedItem, ElementName=grid, Converter={StaticResource converter}}"
+                         Width="260"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding Clase.NombreClase, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                         Text="{Binding Paquete.NombrePaquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          materialDesign:HintAssist.Hint="Instructor"
+                          materialDesign:HintAssist.Hint="Clase"
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           FontSize="20"
-                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}}"
-                          DisplayMemberPath="Nombre"
-                          SelectedValue="{Binding Clase.IdInstructor}"
-                          SelectedItem="{Binding Clase.NombreInstructor, UpdateSourceTrigger=Explicit}"
-                          SelectedValuePath="Id"
-                          Margin="20 0"
-                          Width="250"/>
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          materialDesign:HintAssist.Hint="Espacio"
-                          materialDesign:HintAssist.FloatingScale="0.6"
-                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          FontSize="20"
-                          Margin="20 0"
-                          Width="250"
-                          ItemsSource="{Binding ListaEspacios}"
-                          SelectedValue="{Binding Clase.IdEspacio}"
-                          SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
-                          SelectedValuePath="IdEspacio"
-                          DisplayMemberPath="NombreEspacio"/>
-                <TextBox materialDesign:HintAssist.Hint="Cupo Máximo"
+                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClases}, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="NombreClase"
+                          SelectedValue="{Binding Paquete.IdClase}"
+                          SelectedItem="{Binding Paquete.NombreClase, UpdateSourceTrigger=Explicit}"
+                          SelectedValuePath="IdClase"
+                          Margin="20 0"/>
+                <TextBox materialDesign:HintAssist.Hint="# Semanales"
                          materialDesign:HintAssist.FloatingScale="0.6"
-                         Width="250"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding Clase.CupoMaximo, Mode=TwoWay, UpdateSourceTrigger=Default}"
+                         Text="{Binding Paquete.NumClasesSemanales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="1">
-                <TextBox materialDesign:HintAssist.Hint="Descripción"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"
+                <TextBox materialDesign:HintAssist.Hint="# Totales"
                          materialDesign:HintAssist.FloatingScale="0.6"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         VerticalContentAlignment="Center"
-                         Width="830"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding Clase.Descripcion, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                         Text="{Binding Paquete.NumClasesTotales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <CheckBox Content="Clase Activa"
+                <TextBox materialDesign:HintAssist.Hint="Costo"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <CheckBox Content="Gym"
                           VerticalContentAlignment="Center"
                           VerticalAlignment="Center"
                           FontSize="20"
-                          Width="200"
-                          IsChecked="{Binding Clase.Activo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                          IsChecked="{Binding Paquete.Gym, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Margin="45 0"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50 0">
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Guardar"
+                        Command="{Binding SaveCommand}"
                         Margin="20"
-                        Command="{Binding SaveCommand, Mode=OneWay}"
-                        CommandParameter="{Binding SelectedItem, ElementName=grid, Converter={StaticResource converter}}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"
-                        Command="{Binding CancelCommand, Mode=OneWay}"
+                        Command="{Binding CancelCommand}"
                         Margin="20"
                         FontSize="20"/>
             </StackPanel>

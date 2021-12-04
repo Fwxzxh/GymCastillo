@@ -6,6 +6,7 @@
         xmlns:home="clr-namespace:GymCastillo.View"
         xmlns:settings="clr-namespace:GymCastillo.View.SettingsScreensView"
         xmlns:pagos="clr-namespace:GymCastillo.View.PagosScreensView"
+        xmlns:admin="clr-namespace:GymCastillo.View.AdminScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:personalScreenView="clr-namespace:GymCastillo.View.PersonalScreenView"
@@ -42,7 +43,21 @@
                     <home:HomeViewUserControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem ToolTip="Asistencias">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <materialDesign:PackIcon
+                            Kind="Check"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <!--<TabItem.Content>
+                    <home:HomeViewUserControl/>
+                </TabItem.Content>-->
+            </TabItem>
+            <TabItem ToolTip="Personal">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
@@ -81,7 +96,21 @@
                     <pagos:PagosUC/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem ToolTip="Administración">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <materialDesign:PackIcon
+                            Kind="PlaylistEdit"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <admin:AdminControl/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip="Configuración">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
