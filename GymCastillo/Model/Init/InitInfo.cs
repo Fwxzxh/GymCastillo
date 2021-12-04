@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Documents;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes;
+using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
@@ -79,6 +80,11 @@ namespace GymCastillo.Model.Init {
         public static List<Espacio> ListEspacios { get; set; }
 
         /// <summary>
+        /// La lista que contiene todos los ingresos.
+        /// </summary>
+        public static List<Ingresos> ListIngresos { get; set; }
+
+        /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
         public static async Task<bool> GetAllInfo() {
@@ -101,6 +107,8 @@ namespace GymCastillo.Model.Init {
                 var allHorarios = GetFromDb.GetHorarios();
                 var allEspacios = GetFromDb.GetEspacios();
 
+                var allIngresos = GetFromDb.GetIngresos();
+
                 // Esperamos los resultados...
                 ListaClientes = await allClientes;
                 ListaInstructor = await allInstructores;
@@ -117,13 +125,15 @@ namespace GymCastillo.Model.Init {
                 ListHorarios = await allHorarios;
                 ListEspacios = await allEspacios;
 
+                ListIngresos = await allIngresos;
+
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
-                    allLockersOpen, allClases, allHorarios, allEspacios).ConfigureAwait(false);
+                    allLockersOpen, allClases, allHorarios, allEspacios,
+                    allIngresos).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
-
 
                 return true;
             }

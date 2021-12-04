@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
@@ -71,6 +72,11 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<Espacio> ObCoEspacio { get; set; }
 
         /// <summary>
+        /// La ObservableCollection de todos los ingresos.
+        /// </summary>
+        public static ObservableCollection<Ingresos> ObCoIngresos { get; set; }
+
+        /// <summary>
         /// Constructor de InitTest,
         /// </summary>
         public InitTest() {
@@ -87,7 +93,9 @@ namespace GymCastillo.Model.Init {
             ObCoLocker = new ObservableCollection<Locker>(InitInfo.ListaLockers);
             ObCoClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
             ObCoHorario = new ObservableCollection<Horario>(InitInfo.ListHorarios);
+
             ObCoEspacio = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
+            ObCoIngresos = new ObservableCollection<Ingresos>(InitInfo.ListIngresos);
         }
     }
 }

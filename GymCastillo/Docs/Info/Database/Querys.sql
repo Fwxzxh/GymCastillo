@@ -273,7 +273,7 @@ SELECT
     c.Nombre, c.ApellidoPaterno, i.IdVenta,
     v.Concepto, i.Otros, i.Concepto,
     i.IdPaquete, p.NombrePaquete,
-    i.IdLocker, l.Nombre
+    i.IdLocker, l.Nombre,
     i.NumeroRecibo, i.Monto
 FROM ingresos i
 INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario

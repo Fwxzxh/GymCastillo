@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
@@ -827,6 +829,108 @@ namespace GymCastillo.Model.Database {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los Espacios. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<Ingresos>> GetIngresos() {
+            Log.Debug("Se ha empezado el proceso de obtener todos los ingresos.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"SELECT
+                                          i.IdIngresos, i.FechaRegistro,
+                                          i.IdUsuario, u.Nombre, u.ApellidoPaterno,
+                                          i.IdRenta, r.FechaRenta, i.IdCliente,
+                                          c.Nombre, c.ApellidoPaterno, i.IdVenta,
+                                          v.Concepto, i.Otros, i.Concepto,
+                                          i.IdPaquete, p.NombrePaquete,
+                                          i.IdLocker, l.Nombre,
+                                          i.NumeroRecibo, i.Monto
+                                      FROM ingresos i
+                                      INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
+                                      LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
+                                      LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
+                                      LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
+                                      LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
+                                      LEFT JOIN locker l ON i.IdLocker = l.IdLocker;";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listIngrsos = new List<Ingresos>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var ingreso = new Ingresos() {
+                        IdMovimiento = reader.Result.GetInt32("IdIngresos"),
+                        FechaRegistro = reader.Result.GetDateTime("FechaRegistro"),
+
+                        IdUsuario = await reader.Result.IsDBNullAsync("IdUsuario")
+                            ? 0
+                            : reader.Result.GetInt32("IdUsuario"),
+                        // TODO: concatenar Nombre y Apellidpo paterno aqui
+                        NombreUsuario = await reader.Result.IsDBNullAsync("Nombre")
+                            ? ""
+                            : reader.Result.GetString("Nombre"),
+
+                        IdRenta = await reader.Result.IsDBNullAsync("IdRenta")
+                            ? 0
+                            : reader.Result.GetInt32("IdRenta"),
+                        // TODO: ver que onda con el campo de fecha renta.
+                        // Fecha = await reader.Result.IsDBNullAsync("IdRenta")
+                        //     ? 0
+                        //     : reader.Result.GetInt32("IdRenta"),
+                        IdCliente = await reader.Result.IsDBNullAsync("IdCliente")
+                            ? 0
+                            : reader.Result.GetInt32("IdCliente"),
+                        // TODO: ver que onda con el campo de nombreCliente + apellido paterno
+
+                        IdVenta = await reader.Result.IsDBNullAsync("IdVenta")
+                            ? 0
+                            : reader.Result.GetInt32("IdVenta"),
+
+                        Concepto = await reader.Result.IsDBNullAsync("Concepto")
+                            ? ""
+                            : reader.Result.GetString("Concepto"),
+
+                        IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
+                            ? 0
+                            : reader.Result.GetInt32("IdPaquete"),
+                        // TODo: ver que onda con nombre paquete.
+
+                        IdLocker = await reader.Result.IsDBNullAsync("IdLocker")
+                            ? 0
+                            : reader.Result.GetInt32("IdLocker"),
+                        // TODO: ver k onda con nombre locker
+
+                        NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
+                            ? ""
+                            : reader.Result.GetString("NumeroRecibo"),
+                        Monto = await reader.Result.IsDBNullAsync("Monto")
+                            ? 0
+                            : reader.Result.GetDecimal("Monto"),
+                    };
+
+                    listIngrsos.Add(ingreso);
+                }
+                Log.Debug("Se han obtenido con éxito la información de los Ingresos.");
+
+                return listIngrsos;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
