@@ -44,7 +44,7 @@ namespace GymCastillo.Model.Database {
                                             tc.IdTipoCliente, tc.NombreTipoCliente,
                                             l.IdLocker, l.Nombre as NombreLocker
                                       FROM Cliente c
-                                      INNER JOIN Paquete p ON c.IdPaquete = p.IdPaquete
+                                      left join Paquete p ON c.IdPaquete = p.IdPaquete
                                       INNER JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
                                       LEFT JOIN Locker l ON c.IdLocker = l.IdLocker";
 

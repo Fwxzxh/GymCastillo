@@ -90,12 +90,13 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
         }
 
         private async void RefreshGrid() {
-            ListaClientes.Clear();
+            //ListaClientes.Clear();
+            InitTest.ObCoClienteRenta.Clear();
             var usuarios = await GetFromDb.GetClientesRenta();
             foreach (var item in usuarios.OrderBy(c => c.Nombre)) {
-                ListaClientes.Add(item);
+                InitTest.ObCoClienteRenta.Add(item);
             }
-            InitInfo.ListaClientesRenta = usuarios;
+            //InitInfo.ListaClientesRenta = usuarios;
         }
 
         private async void FilterList(string query) {

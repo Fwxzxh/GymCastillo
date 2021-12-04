@@ -18,7 +18,7 @@ SELECT
     c.ApellidoPaterno, c.Domicilio, c.FechaNacimiento,
     c.Telefono, c.NombreContacto, c.TelefonoContacto,
     c.Foto, c.CondicionEspecial, c.FechaUltimoAcceso,
-    c.MontoUltimoPago, c.Activo, c.FechaUltimoPago
+    c.MontoUltimoPago, c.Activo, c.FechaUltimoPago,
     c.FechaVencimientoPago, c.DeudaCliente, 
     c.MedioConocio, c.MedioConocio,
     c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles,
