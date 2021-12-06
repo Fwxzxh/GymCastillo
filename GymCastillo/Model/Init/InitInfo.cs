@@ -84,6 +84,8 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static List<Ingresos> ListIngresos { get; set; }
 
+        public static List<Egresos> ListEgresos { get; set; }
+
         /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
@@ -108,6 +110,7 @@ namespace GymCastillo.Model.Init {
                 var allEspacios = GetFromDb.GetEspacios();
 
                 var allIngresos = GetFromDb.GetIngresos();
+                var allEgresos = GetFromDb.GetEgresos();
 
                 // Esperamos los resultados...
                 ListaClientes = await allClientes;
@@ -126,13 +129,14 @@ namespace GymCastillo.Model.Init {
                 ListEspacios = await allEspacios;
 
                 ListIngresos = await allIngresos;
+                ListEgresos = await allEgresos;
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
-                    allIngresos).ConfigureAwait(false);
+                    allIngresos, allEgresos).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 return true;

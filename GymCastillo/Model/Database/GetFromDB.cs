@@ -935,5 +935,88 @@ namespace GymCastillo.Model.Database {
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
+
+        public static async Task<List<Egresos>> GetEgresos() {
+            Log.Debug("Se ha empezado el proceso de obtener todos los ingresos.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"SELECT
+                                          p.IdPagosGeneral, p.FechaRegistro,
+                                          p.IdUsuario, u.Nombre, u.ApellidoPaterno,
+                                          p.Servicios, p.Nomina, p.IdUsuarioPagar,
+                                          up.Nombre, up.ApellidoPaterno,
+                                          p.IdInstructor, i.Nombre, i.ApellidoPaterno,
+                                          p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
+                                      FROM egresos p
+                                      INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
+                                      LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
+                                      LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor;";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listEgresos = new List<Egresos>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var egreso = new Egresos() {
+                        IdMovimiento = reader.Result.GetInt32("IdPagosGeneral"),
+                        FechaRegistro = reader.Result.GetDateTime("FechaRegistro"),
+
+                        IdUsuario = await reader.Result.IsDBNullAsync("IdUsuario")
+                            ? 0
+                            : reader.Result.GetInt32("IdUsuario"),
+                        // TODO: concatenar Nombre y Apellidpo paterno aqui
+                        NombreUsuario = await reader.Result.IsDBNullAsync("Nombre")
+                            ? ""
+                            : reader.Result.GetString("Nombre"),
+
+                        Servicios = !await reader.Result.IsDBNullAsync("Servicios") && reader.Result.GetBoolean("Servicios"),
+                        Nomina = !await reader.Result.IsDBNullAsync("Nomina") && reader.Result.GetBoolean("Nomina"),
+                        // TODO: ver que onda con el campo de fecha renta.
+                        // Fecha = await reader.Result.IsDBNullAsync("IdRenta")
+                        //     ? 0
+                        //     : reader.Result.GetInt32("IdRenta"),
+                        IdUsuarioPagar = await reader.Result.IsDBNullAsync("IdUsuarioPagar")
+                            ? 0
+                            : reader.Result.GetInt32("IdUsuarioPagar"),
+                        // TODO: ver que onda con el campo de nombreCliente + apellido paterno
+
+                        IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
+                            ? 0
+                            : reader.Result.GetInt32("IdInstructor"),
+                        Otros = !await reader.Result.IsDBNullAsync("Otros") && reader.Result.GetBoolean("Otros"),
+
+                        Concepto = await reader.Result.IsDBNullAsync("Concepto")
+                            ? ""
+                            : reader.Result.GetString("Concepto"),
+
+                        NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
+                            ? ""
+                            : reader.Result.GetString("NumeroRecibo"),
+                        Monto = await reader.Result.IsDBNullAsync("Monto")
+                            ? 0
+                            : reader.Result.GetDecimal("Monto"),
+                    };
+
+                    listEgresos.Add(egreso);
+                }
+                Log.Debug("Se han obtenido con éxito la información de los Ingresos.");
+
+                return listEgresos;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
     }
 }

@@ -76,6 +76,10 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static ObservableCollection<Ingresos> ObCoIngresos { get; set; }
 
+        /// La ObservableCollection de todos los egreoso.
+        /// </summary>
+        public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
+
         /// <summary>
         /// Constructor de InitTest,
         /// </summary>
@@ -96,6 +100,7 @@ namespace GymCastillo.Model.Init {
 
             ObCoEspacio = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
             ObCoIngresos = new ObservableCollection<Ingresos>(InitInfo.ListIngresos);
+            ObCoEgresos = new ObservableCollection<Egresos>(InitInfo.ListEgresos);
         }
     }
 }
