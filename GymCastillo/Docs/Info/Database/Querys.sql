@@ -15,12 +15,12 @@ SELECT * FROM ingresos;
 	-- Consulta de lo de cliente
 SELECT
     c.IdCliente, c.Nombre, c.ApellidoMaterno,
-    c.ApellidoPaterno, c.Domicilio, c.FechaNacimiento,
-    c.Telefono, c.NombreContacto, c.TelefonoContacto,
-    c.Foto, c.CondicionEspecial, c.FechaUltimoAcceso,
-    c.MontoUltimoPago, c.Activo, c.FechaUltimoPago,
-    c.FechaVencimientoPago, c.DeudaCliente, 
-    c.MedioConocio, c.MedioConocio,
+    c.ApellidoPaterno, c.FechaNacimiento, c.Telefono, 
+    c.NombreContacto, c.TelefonoContacto, c.Foto, 
+    c.CondicionEspecial, c.DescripcionCondicionEspecial,
+    c.FechaUltimoAcceso, c.MontoUltimoPago, c.Activo, 
+    c.FechaUltimoPago, c.FechaVencimientoPago, 
+    c.DeudaCliente, c.MedioConocio, c.MedioConocio,
     c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles,
     c.DuracionPaquete, c.Nino,
     p.IdPaquete, p.NombrePaquete,
@@ -34,23 +34,24 @@ LEFT JOIN locker l ON c.IdLocker = l.IdLocker;
 	-- Dar de alta
 INSERT INTO cliente 
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-	@FechaNacimiento, @Domicilio, @Telefono, @CondicionEspecial, 
-	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
+	@FechaNacimiento, @Telefono, @CondicionEspecial,
+	@DescripcionCondicionEspecial, @NombreContacto, 
+	@TelefonoContacto, @Foto, @FechaUltimoAcceso, 
 	@MontoUltimoPago, @Activo, @FechaUltimoPago,
-    @FechaVencimientoPago, @DeudaCliente,
+        @FechaVencimientoPago, @DeudaCliente,
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
 	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
 	-- Editar valores (usuario)
 
 UPDATE cliente
-SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
+SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
     IdTipoCliente=@IdTipoCliente
 WHERE IdCliente=@IdCliente;
 
 # UPDATE cliente
-# SET domicilio='domT', telefono='0123456789', condicionespecial=true,
+# SET telefono='0123456789', condicionespecial=true,
 #     nombrecontacto='contactot', telefonocontacto='9876543210', foto=null,
 #     activo=true, medioconocio='lol', descuento=1, nino=false,
 #     idtipocliente=2, idpaquete=1
@@ -247,7 +248,7 @@ WHERE idhorario=@IdHorario;
 	-- Consulta Egresos
 SELECT
     p.IdPagosGeneral, p.FechaRegistro,
-    p.IdUsuario, u.Nombre, u.ApellidoPaterno,
+    p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as Nombre,
     p.Servicios, p.Nomina, p.IdUsuarioPagar,
     up.Nombre, up.ApellidoPaterno,
     p.IdInstructor, i.Nombre, i.ApellidoPaterno,
@@ -268,7 +269,7 @@ VALUES
 	-- Consulta Ingresos
 SELECT
     i.IdIngresos, i.FechaRegistro,
-    i.IdUsuario, u.Nombre, u.ApellidoPaterno,
+    i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as Nombre,
     i.IdRenta, r.FechaRenta, i.IdCliente,
     c.Nombre, c.ApellidoPaterno, i.IdVenta,
     v.Concepto, i.Otros, i.Concepto,
