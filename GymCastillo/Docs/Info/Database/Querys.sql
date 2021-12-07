@@ -44,7 +44,7 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	-- Editar valores (usuario)
 
 UPDATE cliente
-SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
+SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, @DescripcionCondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
     IdTipoCliente=@IdTipoCliente
