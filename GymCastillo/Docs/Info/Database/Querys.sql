@@ -256,10 +256,10 @@ WHERE idhorario=@IdHorario;
 	-- Consulta Egresos
 SELECT
     p.IdPagosGeneral, p.FechaRegistro,
-    p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as Nombre,
+    p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
     p.Servicios, p.Nomina, p.IdUsuarioPagar,
-    up.Nombre, up.ApellidoPaterno,
-    p.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    CONCAT(up.Nombre, ' ', up.ApellidoPaterno, ' ', up.ApellidoMaterno) as NombreUsuarioPagar,
+    p.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
 FROM egresos p
 INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
@@ -277,9 +277,9 @@ VALUES
 	-- Consulta Ingresos
 SELECT
     i.IdIngresos, i.FechaRegistro,
-    i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as Nombre,
+    i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
     i.IdRenta, r.FechaRenta, i.IdCliente,
-    c.Nombre, c.ApellidoPaterno, i.IdVenta,
+    CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente, i.IdVenta,
     v.Concepto, i.Otros, i.Concepto,
     i.IdPaquete, p.NombrePaquete,
     i.IdLocker, l.Nombre,
