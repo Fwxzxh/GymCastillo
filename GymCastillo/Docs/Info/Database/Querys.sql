@@ -210,8 +210,10 @@ WHERE idclase=@IdClase;
 SELECT
     p.IdPaquete, p.Gym, p.NombrePaquete,
     p.Descripcion, p.NumClasesTotales,
-    p.NumClasesSemanales, p.Costo
-FROM paquete p;
+    p.NumClasesSemanales, p.Costo,
+    c.IdClase, c.NombreClase
+FROM paquete p
+LEFT JOIN clase c ON c.IdPaquete = p.IdPaquete;
 
 -- Alta Paquetes
 INSERT INTO paquete
