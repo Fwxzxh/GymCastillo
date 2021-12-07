@@ -151,7 +151,7 @@ WHERE IdUsuario=@IdUsuario;
 select
     c.IdClase, c.NombreClase, c.Descripcion,
     c.CupoMaximo, c.Activo,
-    i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
     c.IdPaquete, p.NombrePaquete
 from clase c
@@ -165,7 +165,7 @@ left join paquete p on c.IdPaquete = p.IdPaquete;
 SELECT
     c.IdClase, c.NombreClase, c.Descripcion,
     c.CupoMaximo, c.Activo,
-    i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
     group_concat(h.Dia) as Dia,
     group_concat(h.HoraInicio) HoraDeInicio,
@@ -182,7 +182,7 @@ group by c.IdClase;
 SELECT
     c.IdClase, c.NombreClase, c.Descripcion,
     c.CupoMaximo, c.Activo,
-    i.IdInstructor, i.Nombre, i.ApellidoPaterno,
+    i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
     c.IdPaquete, p.NombrePaquete
 FROM clase c
