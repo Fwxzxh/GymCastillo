@@ -78,7 +78,7 @@ create table Clase (
     foreign key (IdEspacio) references Espacio (IdEspacio)
 	-- IdPaquete
     IdPaquete int,
-    foreign key (IdPaquete) references Inventario (IdPaquete)
+    foreign key (IdPaquete) references Paquete (IdPaquete)
 );
 
 create table Horario (
