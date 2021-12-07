@@ -52,6 +52,17 @@ create table Instructor (
     foreign key (IdTipoInstructor) references TipoInstructor (IdTipoInstructor)
 );
 
+create table Paquete (
+    -- Tabla que guarda los registros de los paquetes
+    IdPaquete int auto_increment primary key,
+    Gym bool not null, -- Si el paquete tendrá o no gym
+    NombrePaquete varchar(100),
+    Descripcion varchar(300),
+    NumClasesTotales int, -- Número de clases por mes
+    NumClasesSemanales int, -- Número de clases por semana
+    Costo decimal not null
+);
+
 create table Clase (
     -- Tabla que guarda los registros de las clases.
     IdClase int auto_increment primary key,
@@ -65,6 +76,9 @@ create table Clase (
 	-- IdEspacio
     IdEspacio int,
     foreign key (IdEspacio) references Espacio (IdEspacio)
+	-- IdPaquete
+    IdPaquete int,
+    foreign key (IdPaquete) references Inventario (IdPaquete)
 );
 
 create table Horario (
@@ -74,20 +88,6 @@ create table Horario (
     HoraInicio varchar(4) not null,
     HoraFin varchar(4) not null,
     CupoActual int, -- Cuantas personas hay en ese momento
-	-- IdClase
-    IdClase int,
-    foreign key (IdClase) references Clase (IdClase)
-);
-
-create table Paquete (
-    -- Tabla que guarda los registros de los paquetes
-    IdPaquete int auto_increment primary key,
-    Gym bool not null, -- Si el paquete tendrá o no gym
-    NombrePaquete varchar(100),
-    Descripcion varchar(300),
-    NumClasesTotales int, -- Número de clases por mes
-    NumClasesSemanales int, -- Número de clases por semana
-    Costo decimal not null,
 	-- IdClase
     IdClase int,
     foreign key (IdClase) references Clase (IdClase)
