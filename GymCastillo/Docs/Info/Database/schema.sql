@@ -107,10 +107,10 @@ create table Cliente (
     Nombre varchar(30) not null not null,
     ApellidoPaterno varchar(30) not null,
     ApellidoMaterno varchar(30) not null,
-    DescripcionCondicionEspecial varchar(150) not null,
     FechaNacimiento datetime not null,
     Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
     CondicionEspecial bool not null,
+    DescripcionCondicionEspecial varchar(150) not null,
     NombreContacto varchar(30),
     TelefonoContacto varchar(10),
     Foto blob,
