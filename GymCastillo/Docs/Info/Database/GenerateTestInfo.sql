@@ -161,7 +161,7 @@ VALUES (default, 'Lucero', 'Guevara', 'Hernandez', CURDATE()
        , null, 'Otro', 4, 1, 0, FALSE, 3, 5, null);
 INSERT INTO cliente
 VALUES (default, 'Adriana', 'Guevara', 'García', CURDATE()
-       , '4427136487', TRUE, 'Mala pata de momento' 'Julieta Izquierdo Perez' ,'4428733623', null, CURDATE(), 1050.0, TRUE, CURDATE(), CURDATE()
+       , '4427136487', TRUE, 'Mala pata de momento', 'Julieta Izquierdo Perez' ,'4428733623', null, CURDATE(), 1050.0, TRUE, CURDATE(), CURDATE()
        , null, 'Redes sociales', 8, 2, 1, FALSE, 3, 6, null);
 INSERT INTO cliente
 VALUES (default, 'Andres', 'Lima', 'Rangel', CURDATE()
