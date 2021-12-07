@@ -75,7 +75,7 @@ create table Clase (
     foreign key (IdInstructor) references Instructor (IdInstructor),
 	-- IdEspacio
     IdEspacio int,
-    foreign key (IdEspacio) references Espacio (IdEspacio)
+    foreign key (IdEspacio) references Espacio (IdEspacio),
 	-- IdPaquete
     IdPaquete int,
     foreign key (IdPaquete) references Paquete (IdPaquete)
