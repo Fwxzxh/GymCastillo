@@ -107,7 +107,7 @@ create table Cliente (
     Nombre varchar(30) not null not null,
     ApellidoPaterno varchar(30) not null,
     ApellidoMaterno varchar(30) not null,
-    Domicilio varchar(150) not null,
+    DescripcionCondicionEspecial varchar(150) not null,
     FechaNacimiento datetime not null,
     Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
     CondicionEspecial bool not null,
@@ -172,7 +172,7 @@ create table Rentas (
 create table Usuario (
     -- Tabla que guarda los registros de los usuarios del sistema.
     IdUsuario int AUTO_INCREMENT PRIMARY KEY,
-    Nombre varchar(30) not null not null,
+    Nombre varchar(30) not null,
     ApellidoPaterno varchar(30) not null,
     ApellidoMaterno varchar(30) not null,
     Domicilio varchar(150) not null,
@@ -188,10 +188,36 @@ create table Usuario (
     MontoUltimoPago decimal
 );
 
+create table Personal (
+    IdPersonal int AUTO_INCREMENT PRIMARY KEY,
+    Nombre varchar(30) not null,
+    ApellidoPaterno varchar(30) not null,
+    ApellidoMaterno varchar(30) not null,
+    Puesto varchar(50),
+    FechaNacimiento datetime not null,
+    Telefono varchar(10) unique not null,
+    NombreContacto varchar(30),
+    TelefonoContacto varchar(30),
+    Foto blob,
+    FechaUltimoAcceso datetime,
+    FechaUltimoPago datetime,
+    MontoUltimoPago decimal
+);
+
+create table Inventario (
+    IdProducto int AUTO_INCREMENT PRIMARY KEY,
+    NombreProducto varchar(30) not null,
+    Descripcion varchar(150) not null,
+    Costo decimal,
+    Existencias int
+);
+
 create table Ventas (
-    -- Tabla que guarda los registros de las ventas (Visitas al gym o clase)
+    -- Tabla que guarda los registros de las ventas (Visitas al gym o clase) y productos
     IdVenta int auto_increment primary key,
     FechaVenta datetime not null,
+    IdProducto int,
+    foreign key (IdProducto) references Inventario (IdProducto),
     Concepto varchar(2000) not null,
     Costo decimal not null
 );
