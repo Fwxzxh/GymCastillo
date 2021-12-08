@@ -30,10 +30,6 @@ namespace GymCastillo.Model.Validations.Personal {
                 .Length(3, 30).WithMessage("El apellido materno debe de tener entre 3 y 30 caracteres.")
                 .Must(IsLetter).WithMessage("El apellido materno solo debe de tener letras");
 
-            RuleFor(usuario => usuario.Domicilio)
-                .NotNull().NotEmpty().WithMessage("El domicilio no puede estar vacío.")
-                .Length(3, 150).WithMessage("El apellido materno debe de tener entre 3 y 150 caracteres.");
-
             RuleFor(usuario => usuario.Telefono)
                 .NotNull().NotEmpty().WithMessage("El número de teléfono no puede estar vacío.")
                 .Length(10).WithMessage("El número de teléfono debe de ser de 10 dígitos.")

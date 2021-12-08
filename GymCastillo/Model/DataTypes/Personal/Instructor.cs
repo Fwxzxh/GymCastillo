@@ -131,7 +131,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
             Log.Debug("Se ha iniciado el proceso de delete en un Instructor.");
 
             // Fk key constraint check.
-            if (InitInfo.ListaClases.Any(x => x.IdInstructor == Id)) {
+            if (InitInfo.ObCoClases.Any(x => x.IdInstructor == Id)) {
                 // Este instructor esta dado asignado en alguna clase
                 ShowPrettyMessages.InfoOk(
                     "Hay clases asignadas a este instructor, asi que no puedes eliminar al instructor, cambia esas clases a otro instructor para eliminarlo.",

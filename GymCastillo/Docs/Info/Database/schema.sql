@@ -269,6 +269,8 @@ create table Ingresos (
     Monto decimal
 );
 
+-- Información de inicio:
+
 -- Creamos el usuario admin
 insert into usuario
     (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, FechaUltimoAcceso)
@@ -277,9 +279,9 @@ values
 
     -- Tipos de cliente
 INSERT INTO tipocliente
-VALUES (default, 'Membresia', 'Clientes con solo Gym');
+VALUES (default, 'Membresía', 'Clientes con solo Gym');
 INSERT INTO tipocliente
-VALUES (default, 'Membresia con promocion', 'Clientes con descuento');
+VALUES (default, 'Membresía con promoción', 'Clientes con descuento');
 INSERT INTO tipocliente
 VALUES (default, 'De clase', 'Clientes con solo Clases');
 

@@ -32,9 +32,19 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public int IdUsuarioPagar { get; set; }
 
         /// <summary>
+        /// El nombre del usuario que hizo el pago.
+        /// </summary>
+        public string NombreUsuarioPagar { get; set; }
+
+        /// <summary>
         /// Id del instructor
         /// </summary>
         public int IdInstructor { get; set; }
+
+        /// <summary>
+        /// El nombre del instructor.
+        /// </summary>
+        public string NombreInstructor { get; set; }
 
         /// <summary>
         /// Método que da de alta un Pago.

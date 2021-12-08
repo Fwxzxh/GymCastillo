@@ -3,9 +3,9 @@ use gymcastillo;
 
 -- Tipos de cliente
 INSERT INTO tipocliente
-VALUES (default, 'Membresia', 'Clientes con solo Gym');
+VALUES (default, 'Membresía', 'Clientes con solo Gym');
 INSERT INTO tipocliente
-VALUES (default, 'Membresia con promocion', 'Clientes con descuento');
+VALUES (default, 'Membresía con promoción', 'Clientes con descuento');
 INSERT INTO tipocliente
 VALUES (default, 'De clase', 'Clientes con solo Clases');
 
@@ -13,13 +13,13 @@ VALUES (default, 'De clase', 'Clientes con solo Clases');
 INSERT INTO espacio
 VALUES (default, 'Alberca', 'Para las clases de natación');
 INSERT INTO espacio
-VALUES (default, 'Cuadrilatero', 'Para las clases de box');
+VALUES (default, 'Cuadrilátero', 'Para las clases de box');
 INSERT INTO espacio
-VALUES (default, 'Vacio 1', 'Libre para nueva clase');
+VALUES (default, 'Vacío 1', 'Libre para nueva clase');
 INSERT INTO espacio
-VALUES (default, 'Vacio 2', 'Libre para nueva clase');
+VALUES (default, 'Vacío 2', 'Libre para nueva clase');
 INSERT INTO espacio
-VALUES (default, 'Vacio 3', 'Libre para nueva clase');
+VALUES (default, 'Vacío 3', 'Libre para nueva clase');
 
 -- Tipos de instructores
 INSERT INTO tipoinstructor
@@ -73,21 +73,6 @@ VALUES (default, 'Cassandra', 'Carrillo', 'Ledezma', 'Calle Mi Corazon #25 Colon
 , '4420608128', 'Juan Pablo Alegría Escobedo' ,'4426273881', null, CURDATE(), CURDATE(),1500.0, '0700', '1400', 5
 , null, 1500.0, null, 3, 1);
 
--- Paquetes
-INSERT INTO paquete
-VALUES (default, TRUE, 'Gym', 'Descripción del paquete 1', null, null, 350.0);
-INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 1 sin gym', 'Descripción del paquete 2',  4, 1, 350);
-INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 2 sin gym', 'Descripción del paquete 3',  8, 2, 700);
-INSERT INTO paquete
-VALUES (default, FALSE, 'Paquete 3 sin gym', 'Descripción del paquete 4', 12, 3, 1050);
-INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 4 con gym', 'Descripción del paquete 5', 4, 1, 700);
-INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 5 con gym', 'Descripción del paquete 6', 8, 2, 1050);
-INSERT INTO paquete
-VALUES (default, TRUE, 'Paquete 6 con gym', 'Descripción del paquete 7', 12, 3, 1400);
 
 -- Clases
 INSERT INTO clase

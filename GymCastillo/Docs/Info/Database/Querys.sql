@@ -20,7 +20,7 @@ SELECT
     c.CondicionEspecial, c.DescripcionCondicionEspecial,
     c.FechaUltimoAcceso, c.MontoUltimoPago, c.Activo, 
     c.FechaUltimoPago, c.FechaVencimientoPago, 
-    c.DeudaCliente, c.MedioConocio, c.MedioConocio,
+    c.DeudaCliente, c.MedioConocio,
     c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles,
     c.DuracionPaquete, c.Nino,
     p.IdPaquete, p.NombrePaquete,
@@ -38,25 +38,17 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@DescripcionCondicionEspecial, @NombreContacto, 
 	@TelefonoContacto, @Foto, @FechaUltimoAcceso, 
 	@MontoUltimoPago, @Activo, @FechaUltimoPago,
-        @FechaVencimientoPago, @DeudaCliente,
+    @FechaVencimientoPago, @DeudaCliente,
 	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
 	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
 	-- Editar valores (usuario)
 
 UPDATE cliente
-SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, @DescripcionCondicionEspecial,
+SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
     IdTipoCliente=@IdTipoCliente
 WHERE IdCliente=@IdCliente;
-
-# UPDATE cliente
-# SET telefono='0123456789', condicionespecial=true,
-#     nombrecontacto='contactot', telefonocontacto='9876543210', foto=null,
-#     activo=true, medioconocio='lol', descuento=1, nino=false,
-#     idtipocliente=2, idpaquete=1
-# WHERE idcliente=13;
-	-- Editar valores (automatico)
 
 -- Instructor
 	-- Consulta de lo de Instructor
@@ -143,7 +135,7 @@ SET domicilio=@Domicilio, username=@Username, password=@Password,
     telefono=@Telefono, NombreContacto=@NombreContacto,
     telefonocontacto=@TelefonoContacto, foto=@Foto
 WHERE IdUsuario=@IdUsuario;
-	-- Editar valores (automatico)
+	-- Editar valores (automático)
 
 
 -- Clases
@@ -280,7 +272,7 @@ SELECT
     i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
     i.IdRenta, r.FechaRenta, i.IdCliente,
     CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente, i.IdVenta,
-    v.Concepto, i.Otros, i.Concepto,
+    i.Otros, i.Concepto,
     i.IdPaquete, p.NombrePaquete,
     i.IdLocker, l.Nombre,
     i.NumeroRecibo, i.Monto

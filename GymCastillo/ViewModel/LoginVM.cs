@@ -60,9 +60,8 @@ namespace GymCastillo.ViewModel {
 
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");
-                    var done = Task.Run(() => InitInfo.GetAllInfo());
-                    if (done.GetAwaiter().GetResult()) {
-                        var tests = new InitTest();
+                    var init= new InitInfo();
+                    if (init.DoneTasks) {
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

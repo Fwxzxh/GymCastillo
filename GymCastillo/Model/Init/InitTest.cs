@@ -76,7 +76,8 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static ObservableCollection<Ingresos> ObCoIngresos { get; set; }
 
-        /// La ObservableCollection de todos los egreoso.
+        /// <summary>
+        /// La ObservableCollection de todos los egresos.
         /// </summary>
         public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
 
@@ -84,23 +85,24 @@ namespace GymCastillo.Model.Init {
         /// Constructor de InitTest,
         /// </summary>
         public InitTest() {
-            ObCoClientes = new ObservableCollection<Cliente>(InitInfo.ListaClientes);
-            ObCoInstructor = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
-            ObCoUsuario = new ObservableCollection<Usuario>(InitInfo.ListaUsuarios);
-            ObCoClienteRenta = new ObservableCollection<ClienteRenta>(InitInfo.ListaClientesRenta);
-
-            ObCoPaquete = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
-            ObCoTipoCliente = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
-            ObCoTipoInstructor = new ObservableCollection<Tipo>(InitInfo.ListaTipoInstructor);
-            ObCoLockerDisponibles = new ObservableCollection<Locker>(InitInfo.ListaLockersOpen);
-
-            ObCoLocker = new ObservableCollection<Locker>(InitInfo.ListaLockers);
-            ObCoClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
-            ObCoHorario = new ObservableCollection<Horario>(InitInfo.ListHorarios);
-
-            ObCoEspacio = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
-            ObCoIngresos = new ObservableCollection<Ingresos>(InitInfo.ListIngresos);
-            ObCoEgresos = new ObservableCollection<Egresos>(InitInfo.ListEgresos);
+            // TODO: si todo ok eliminar esto
+            // ObCoClientes = new ObservableCollection<Cliente>(InitInfo.ListaClientes);
+            // ObCoInstructor = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
+            // ObCoUsuario = new ObservableCollection<Usuario>(InitInfo.ListaUsuarios);
+            // ObCoClienteRenta = new ObservableCollection<ClienteRenta>(InitInfo.ListaClientesRenta);
+            //
+            // ObCoPaquete = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
+            // ObCoTipoCliente = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
+            // ObCoTipoInstructor = new ObservableCollection<Tipo>(InitInfo.ListaTipoInstructor);
+            // ObCoLockerDisponibles = new ObservableCollection<Locker>(InitInfo.ListaLockersOpen);
+            //
+            // ObCoLocker = new ObservableCollection<Locker>(InitInfo.ListaLockers);
+            // ObCoClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
+            // ObCoHorario = new ObservableCollection<Horario>(InitInfo.ListHorarios);
+            //
+            // ObCoEspacio = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
+            // ObCoIngresos = new ObservableCollection<Ingresos>(InitInfo.ListIngresos);
+            // ObCoEgresos = new ObservableCollection<Egresos>(InitInfo.ListEgresos);
         }
     }
 }

@@ -58,6 +58,16 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public bool Activo { get; set; }
 
+        /// <summary>
+        /// El id del paquete al que pertenece la clase.
+        /// </summary>
+        public int IdPaquete { get; set; }
+
+        /// <summary>
+        /// El nombre del paquete al que pertenece la clase.
+        /// </summary>
+        public string NombrePaquete { get; set; }
+
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
 

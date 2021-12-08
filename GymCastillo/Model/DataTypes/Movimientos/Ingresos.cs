@@ -22,6 +22,11 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public int IdRenta { get; set; }
 
         /// <summary>
+        /// La fecha en la que se hizo la renta.
+        /// </summary>
+        public DateTime FechaRenta { get; set; }
+
+        /// <summary>
         /// El id de la venta si el ingreso es por una venta
         /// </summary>
         public int IdVenta { get; set; }
@@ -32,14 +37,29 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public int IdCliente { get; set; }
 
         /// <summary>
+        /// El nombre del cliente si el ingreso es por un cliente.
+        /// </summary>
+        public string NombreCliente { get; set; }
+
+        /// <summary>
         /// El id del paquete que se va a comprar
         /// </summary>
         public int IdPaquete { get; set; }
 
         /// <summary>
+        /// El nombre del paquete que se va a
+        /// </summary>
+        public string NombrePaquete { get; set; }
+
+        /// <summary>
         /// El id del locker que se planea comprar.
         /// </summary>
         public int IdLocker { get; set; }
+
+        /// <summary>
+        /// EL nombre del locker que se planea comprar.
+        /// </summary>
+        public string NombreLocker { get; set; }
 
         /// <summary>
         /// Da de alta la instancia actual del ingreso en la base de datos.

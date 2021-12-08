@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using System.Windows;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
@@ -21,6 +20,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// Si el cliente tiene alguna condición especial.
         /// </summary>
         public bool CondicionEspecial { get; set; }
+
+        /// <summary>
+        /// La descripción de la condición del cliente.
+        /// </summary>
+        public string DescripciónCondiciónEspecial { get; set; }
 
         /// <summary>
         /// Indica si el cliente esta activo.
@@ -104,19 +108,22 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
 
                 const string updateQuery = @"UPDATE cliente
-                                             SET Domicilio=@Domicilio, Telefono=@Telefono, CondicionEspecial=@CondicionEspecial,
+                                             SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
+                                                 DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
                                                  NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
                                                  Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
                                                  IdTipoCliente=@IdTipoCliente
-                                             WHERE IdCliente=@IdCliente";
+                                             WHERE IdCliente=@IdCliente;";
+
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
-                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+
+                command.Parameters.AddWithValue("@DescripcionCondicionEspecial", DescripciónCondiciónEspecial);
 
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
@@ -234,12 +241,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string altaQuery = @"INSERT INTO cliente 
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-                                           	@Domicilio, @FechaNacimiento, @Telefono, @CondicionEspecial, 
-                                           	@NombreContacto, @TelefonoContacto, @Foto, @FechaUltimoAcceso, 
+                                           	@FechaNacimiento, @Telefono, @CondicionEspecial,
+                                           	@DescripcionCondicionEspecial, @NombreContacto, 
+                                           	@TelefonoContacto, @Foto, @FechaUltimoAcceso, 
                                            	@MontoUltimoPago, @Activo, @FechaUltimoPago,
-                                            @FechaVencimientoPago, @DeudaCliente, 
-                                           	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponibles, 
-                                           	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker)";
+                                            @FechaVencimientoPago, @DeudaCliente,
+                                           	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
+                                           	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -247,12 +255,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
 
-                command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
 
+                command.Parameters.AddWithValue("@DescripcionCondicionEspecial", DescripciónCondiciónEspecial);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", null); // TODO: pendiente
                 command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -271,9 +280,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-
-                // IdPaqute e IdLocker en null.
-                command.Parameters.AddWithValue("@IdPaquete", null);
+                command.Parameters.AddWithValue("@IdPaquete", null); // No tenemos asignado todavía
                 command.Parameters.AddWithValue("@IdLocker", null);
 
                 Log.Debug("Se ha generado la query.");

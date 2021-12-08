@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
@@ -24,31 +23,32 @@ namespace GymCastillo.Model.Database {
         /// Método que se encarga de obtener todos los datos de los clientes.
         /// </summary>
         /// <returns>Una lista de objetos tipo Cliente.</returns>
-        public static async Task<List<Cliente>> GetClientes() {
+        public static async Task<ObservableCollection<Cliente>> GetClientes() {
             Log.Debug("se ha empezado el proceso de obtener la información de los Clientes.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
             Log.Debug("Se ha creado la conexión.");
 
-            const string sqlQuery = @"SELECT 
-                                            c.IdCliente, c.Nombre, c.ApellidoMaterno, 
-                                            c.ApellidoPaterno, c.Domicilio, c.FechaNacimiento, 
-                                            c.Telefono, c.NombreContacto, c.TelefonoContacto, 
-                                            c.Foto, c.CondicionEspecial, c.FechaUltimoAcceso,
-                                            c.MontoUltimoPago, c.Activo, c.FechaVencimientoPago, 
-                                            c.DeudaCliente, c.MedioConocio,
-                                            c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles, 
-                                            c.DuracionPaquete, c.Nino, 
-                                            p.IdPaquete, p.NombrePaquete,
-                                            tc.IdTipoCliente, tc.NombreTipoCliente,
-                                            l.IdLocker, l.Nombre as NombreLocker
-                                      FROM Cliente c
-                                      left join Paquete p ON c.IdPaquete = p.IdPaquete
+            const string sqlQuery = @"SELECT
+                                          c.IdCliente, c.Nombre, c.ApellidoMaterno,
+                                          c.ApellidoPaterno, c.FechaNacimiento, c.Telefono, 
+                                          c.NombreContacto, c.TelefonoContacto, c.Foto, 
+                                          c.CondicionEspecial, c.DescripcionCondicionEspecial,
+                                          c.FechaUltimoAcceso, c.MontoUltimoPago, c.Activo, 
+                                          c.FechaUltimoPago, c.FechaVencimientoPago, 
+                                          c.DeudaCliente, c.MedioConocio,
+                                          c.ClasesTotalesDisponibles, c.ClasesSemanaDisponibles,
+                                          c.DuracionPaquete, c.Nino,
+                                          p.IdPaquete, p.NombrePaquete,
+                                          tc.IdTipoCliente, tc.NombreTipoCliente,
+                                          l.IdLocker, l.Nombre as NombreLocker
+                                      FROM cliente c
+                                      INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       INNER JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
-                                      LEFT JOIN Locker l ON c.IdLocker = l.IdLocker";
+                                      LEFT JOIN locker l ON c.IdLocker = l.IdLocker";
 
-            var listCliente = new List<Cliente>();
+            var listCliente = new ObservableCollection<Cliente>();
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -68,14 +68,11 @@ namespace GymCastillo.Model.Database {
                         ApellidoPaterno = await reader.Result.IsDBNullAsync("ApellidoPaterno")
                             ? ""
                             : reader.Result.GetString("ApellidoPaterno"),
-                        Domicilio = await reader.Result.IsDBNullAsync("Domicilio")
-                            ? ""
-                            : reader.Result.GetString("Domicilio"),
                         FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento"),
-
                         Telefono = await reader.Result.IsDBNullAsync("Telefono")
                             ? ""
                             : reader.Result.GetString("Telefono"),
+
                         NombreContacto = await reader.Result.IsDBNullAsync("NombreContacto")
                             ? ""
                             : reader.Result.GetString("NombreContacto"),
@@ -84,15 +81,20 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetString("TelefonoContacto"),
 
                         //Foto = await reader.Result.IsDBNullAsync("Foto") ? null : reader.Result.GetBytes("Foto"), TODO: Ver como obtener la foto.
+
                         CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") &&
                                             reader.Result.GetBoolean("CondicionEspecial"),
-                        FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
+                        DescripciónCondiciónEspecial = await reader.Result.IsDBNullAsync("DescripcionCondicionEspecial")
+                            ? ""
+                            : reader.Result.GetString("DescripcionCondicionEspecial"),
 
+                        FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
                             : reader.Result.GetDecimal("MontoUltimoPago"),
                         Activo = !await reader.Result.IsDBNullAsync("Activo") &&
                                  reader.Result.GetBoolean("Activo"),
+
                         FechaVencimientoPago = reader.Result.GetDateTime("FechaVencimientoPago"),
 
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente")
@@ -156,7 +158,7 @@ namespace GymCastillo.Model.Database {
         /// Método que se encarga de obtener todos los datos de los instructores
         /// </summary>
         /// <returns>Una lista de objetos tipo Instructor</returns>
-        public static async Task<List<Instructor>> GetInstructores() {
+        public static async Task<ObservableCollection<Instructor>> GetInstructores() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Instructores.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -183,7 +185,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listInstructores = new List<Instructor>();
+                var listInstructores = new ObservableCollection<Instructor>();
 
                 while (await reader.Result.ReadAsync()) {
                     var instructor = new Instructor() {
@@ -278,7 +280,7 @@ namespace GymCastillo.Model.Database {
         /// Clase que se encarga de obtener todos los datos de los Usuarios
         /// </summary>
         /// <returns>Una lista de objetos tipo Usuario.</returns>
-        public static async Task<List<Usuario>> GetUsuarios() {
+        public static async Task<ObservableCollection<Usuario>> GetUsuarios() {
             Log.Debug("se ha empezado el proceso de obtener la información de los usuarios.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -299,7 +301,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listUsuario = new List<Usuario>();
+                var listUsuario = new ObservableCollection<Usuario>();
 
                 while (await reader.Result.ReadAsync()) {
                     var usuario = new Usuario() {
@@ -339,7 +341,6 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetString("TelefonoContacto"),
 
                         //Foto = reader.Result.get("Foto"), // Ver que onda con la foto.
-                        // TODO: ver que onda con los datos iniciales de FechaUltimoAcceso y Fecha ultimoPago.
                         FechaUltimoAcceso = await reader.Result.IsDBNullAsync("FechaUltimoAcceso")
                             ? DateTime.Parse("00:00")
                             : reader.Result.GetDateTime("FechaUltimoAcceso"),
@@ -373,7 +374,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene toda la información sobre los clientes renta.
         /// </summary>
         /// <returns>Una lista de objetos tipo ClienteRenta</returns>
-        public static async Task<List<ClienteRenta>> GetClientesRenta() {
+        public static async Task<ObservableCollection<ClienteRenta>> GetClientesRenta() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los clientes renta.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -387,7 +388,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listClienteRenta = new List<ClienteRenta>();
+                var listClienteRenta = new ObservableCollection<ClienteRenta>();
 
                 while (await reader.Result.ReadAsync()) {
                     var clienteRenta = new ClienteRenta() {
@@ -449,32 +450,33 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene toda la información sobre los paquetes.
         /// </summary>
         /// <returns>Una lista de objetos tipo Paquete.</returns>
-        public static async Task<List<Paquete>> GetPaquetes() {
+        public static async Task<ObservableCollection<Paquete>> GetPaquetes() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los paquetes.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"select
+            const string sqlQuery = @"SELECT
                                           p.IdPaquete, p.Gym, p.NombrePaquete,
-                                          p.Descripcion,
-                                          p.NumClasesTotales, p.NumClasesSemanales,
-                                          p.Costo, p.IdClase, c.NombreClase
-                                      from paquete p
-                                      left join clase c on p.IdClase = c.IdClase";
+                                          p.Descripcion, p.NumClasesTotales,
+                                          p.NumClasesSemanales, p.Costo,
+                                          c.IdClase, c.NombreClase
+                                      FROM paquete p
+                                      LEFT JOIN clase c ON c.IdPaquete = p.IdPaquete";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listPaquetes = new List<Paquete>();
+                var listPaquetes = new ObservableCollection<Paquete>();
 
                 while (await reader.Result.ReadAsync()) {
                     var paquete = new Paquete() {
                         IdPaquete = reader.Result.GetInt32("IdPaquete"),
-                        Gym = !await reader.Result.IsDBNullAsync("Gym") && reader.Result.GetBoolean("Gym"),
+                        Gym = !await reader.Result.IsDBNullAsync("Gym") &&
+                              reader.Result.GetBoolean("Gym"),
                         NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
                             ? ""
                             : reader.Result.GetString("NombrePaquete"),
@@ -482,17 +484,17 @@ namespace GymCastillo.Model.Database {
                         Descripcion = await reader.Result.IsDBNullAsync("Descripcion")
                             ? ""
                             : reader.Result.GetString("Descripcion"),
-
                         NumClasesTotales = await reader.Result.IsDBNullAsync("NumClasesTotales")
                             ? 0
                             : reader.Result.GetInt32("NumClasesTotales"),
+
                         NumClasesSemanales = await reader.Result.IsDBNullAsync("NumClasesSemanales")
                             ? 0
                             : reader.Result.GetInt32("NumClasesSemanales"),
-
                         Costo = await reader.Result.IsDBNullAsync("Costo")
                             ? 0
                             : reader.Result.GetInt32("Costo"),
+
                         IdClase = await reader.Result.IsDBNullAsync("IdClase")
                             ? 0
                             : reader.Result.GetInt32("IdClase"),
@@ -521,7 +523,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene toda la información sobre los tipos de cliente.
         /// </summary>
         /// <returns>Una lista de objetos tipo Tipo</returns>
-        public static async Task<List<Tipo>> GetTipoCliente() {
+        public static async Task<ObservableCollection<Tipo>> GetTipoCliente() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los tipos de cliente.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -535,7 +537,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listTipo = new List<Tipo>();
+                var listTipo = new ObservableCollection<Tipo>();
 
                 while (await reader.Result.ReadAsync()) {
                     var tipo = new Tipo() {
@@ -568,7 +570,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene toda la información de los tipos de instructor.
         /// </summary>
         /// <returns>Una lista de objetos tipo</returns>
-        public static async Task<List<Tipo>> GetTipoInstructor() {
+        public static async Task<ObservableCollection<Tipo>> GetTipoInstructor() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los tipos de Instructor.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -582,7 +584,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listTipo = new List<Tipo>();
+                var listTipo = new ObservableCollection<Tipo>();
 
                 while (await reader.Result.ReadAsync()) {
                     var tipo = new Tipo() {
@@ -616,7 +618,7 @@ namespace GymCastillo.Model.Database {
         /// </summary>
         /// <param name="onlyOpen">Indica si se deben de dar solo los lockers disponibles.</param>
         /// <returns>Una lista de objetos tipo Locker</returns>
-        public static async Task<List<Locker>> GetLockers(bool onlyOpen=false) {
+        public static async Task<ObservableCollection<Locker>> GetLockers(bool onlyOpen=false) {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Lockers.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -632,7 +634,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listLocker = new List<Locker>();
+                var listLocker = new ObservableCollection<Locker>();
 
                 while (await reader.Result.ReadAsync()) {
                     var locker = new Locker() {
@@ -664,7 +666,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene todas las clases.
         /// </summary>
         /// <returns>Una lista que contiene objetos tipo Clase.</returns>
-        public static async Task<List<Clase>> GetClases() {
+        public static async Task<ObservableCollection<Clase>> GetClases() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Lockers.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -674,18 +676,20 @@ namespace GymCastillo.Model.Database {
             const string sqlQuery = @"select
                                           c.IdClase, c.NombreClase, c.Descripcion,
                                           c.CupoMaximo, c.Activo,
-                                          i.IdInstructor, i.Nombre, i.ApellidoPaterno,
-                                          e.IdEspacio, e.NombreEspacio
+                                          i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
+                                          e.IdEspacio, e.NombreEspacio,
+                                          c.IdPaquete, p.NombrePaquete
                                       from clase c
                                       left join instructor i on c.IdInstructor = i.IdInstructor
-                                      left join espacio e on e.IdEspacio = c.IdEspacio;";
+                                      left join espacio e on e.IdEspacio = c.IdEspacio
+                                      left join paquete p on c.IdPaquete = p.IdPaquete;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listClases = new List<Clase>();
+                var listClases = new ObservableCollection<Clase>();
 
                 while (await reader.Result.ReadAsync()) {
                     var locker = new Clase() {
@@ -696,24 +700,33 @@ namespace GymCastillo.Model.Database {
                         Descripcion = await reader.Result.IsDBNullAsync("Descripcion")
                             ? ""
                             : reader.Result.GetString("Descripcion"),
-                        IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
-                            ? 0
-                            : reader.Result.GetInt32("IdInstructor"),
-                        // Todo: concatenar Nombre y ApellidoPaterno.
-                        NombreInstructor = await reader.Result.IsDBNullAsync("Nombre")
-                            ? ""
-                            : reader.Result.GetString("Nombre"),
+
                         CupoMaximo = await reader.Result.IsDBNullAsync("CupoMaximo")
                             ? 0
                             : reader.Result.GetInt32("CupoMaximo"),
+                        Activo = !await reader.Result.IsDBNullAsync("Activo")
+                                 && reader.Result.GetBoolean("Activo"),
+
+                        IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
+                            ? 0
+                            : reader.Result.GetInt32("IdInstructor"),
+                        NombreInstructor = await reader.Result.IsDBNullAsync("NombreInstructor")
+                            ? ""
+                            : reader.Result.GetString("NombreInstructor"),
+
                         IdEspacio = await reader.Result.IsDBNullAsync("IdEspacio")
                             ? 0
                             : reader.Result.GetInt32("IdEspacio"),
                         NombreEspacio = await reader.Result.IsDBNullAsync("NombreEspacio")
                             ? ""
                             : reader.Result.GetString("NombreEspacio"),
-                        Activo = !await reader.Result.IsDBNullAsync("Activo")
-                                 && reader.Result.GetBoolean("Activo"),
+
+                        IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
+                            ? 0
+                            : reader.Result.GetInt32("IdPaquete"),
+                        NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
+                            ? ""
+                            : reader.Result.GetString("NombrePaquete"),
                     };
                     listClases.Add(locker);
                 }
@@ -735,7 +748,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene todos los horarios.
         /// </summary>
         /// <returns>Una lista con objetos tipo <c>Horario</c></returns>
-        public static async Task<List<Horario>> GetHorarios() {
+        public static async Task<ObservableCollection<Horario>> GetHorarios() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Horarios.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -749,7 +762,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listHorarios = new List<Horario>();
+                var listHorarios = new ObservableCollection<Horario>();
 
                 while (await reader.Result.ReadAsync()) {
                     var horario = new Horario() {
@@ -790,7 +803,7 @@ namespace GymCastillo.Model.Database {
         /// Método que se obtiene todos los espacios.
         /// </summary>
         /// <returns>Una lista con objetos tipo <c>Espacio</c></returns>
-        public static async Task<List<Espacio>> GetEspacios() {
+        public static async Task<ObservableCollection<Espacio>> GetEspacios() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los espacios.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -804,7 +817,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listEspacios = new List<Espacio>();
+                var listEspacios = new ObservableCollection<Espacio>();
 
                 while (await reader.Result.ReadAsync()) {
                     var espacio = new Espacio() {
@@ -835,10 +848,10 @@ namespace GymCastillo.Model.Database {
         }
 
         /// <summary>
-        ///
+        /// Método que obtiene todos los ingresos.
         /// </summary>
-        /// <returns></returns>
-        public static async Task<List<Ingresos>> GetIngresos() {
+        /// <returns>Una lista con objetos tipo ingresos.</returns>
+        public static async Task<ObservableCollection<Ingresos>> GetIngresos() {
             Log.Debug("Se ha empezado el proceso de obtener todos los ingresos.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -847,10 +860,10 @@ namespace GymCastillo.Model.Database {
 
             const string sqlQuery = @"SELECT
                                           i.IdIngresos, i.FechaRegistro,
-                                          i.IdUsuario, u.Nombre, u.ApellidoPaterno,
+                                          i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
                                           i.IdRenta, r.FechaRenta, i.IdCliente,
-                                          c.Nombre, c.ApellidoPaterno, i.IdVenta,
-                                          v.Concepto, i.Otros, i.Concepto,
+                                          CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente, i.IdVenta,
+                                          i.Otros, i.Concepto,
                                           i.IdPaquete, p.NombrePaquete,
                                           i.IdLocker, l.Nombre,
                                           i.NumeroRecibo, i.Monto
@@ -867,7 +880,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listIngrsos = new List<Ingresos>();
+                var listIngresos = new ObservableCollection<Ingresos>();
 
                 while (await reader.Result.ReadAsync()) {
                     var ingreso = new Ingresos() {
@@ -877,27 +890,28 @@ namespace GymCastillo.Model.Database {
                         IdUsuario = await reader.Result.IsDBNullAsync("IdUsuario")
                             ? 0
                             : reader.Result.GetInt32("IdUsuario"),
-                        // TODO: concatenar Nombre y Apellidpo paterno aqui
-                        NombreUsuario = await reader.Result.IsDBNullAsync("Nombre")
+                        NombreUsuario = await reader.Result.IsDBNullAsync("NombreUsuario")
                             ? ""
-                            : reader.Result.GetString("Nombre"),
+                            : reader.Result.GetString("NombreUsuario"),
 
                         IdRenta = await reader.Result.IsDBNullAsync("IdRenta")
                             ? 0
                             : reader.Result.GetInt32("IdRenta"),
-                        // TODO: ver que onda con el campo de fecha renta.
-                        // Fecha = await reader.Result.IsDBNullAsync("IdRenta")
-                        //     ? 0
-                        //     : reader.Result.GetInt32("IdRenta"),
+                        FechaRenta = await reader.Result.IsDBNullAsync("FechaRenta")
+                            ? default
+                            : reader.Result.GetDateTime("FechaRenta"),
                         IdCliente = await reader.Result.IsDBNullAsync("IdCliente")
                             ? 0
                             : reader.Result.GetInt32("IdCliente"),
-                        // TODO: ver que onda con el campo de nombreCliente + apellido paterno
-
+                        NombreCliente = await reader.Result.IsDBNullAsync("NombreCliente")
+                            ? ""
+                            : reader.Result.GetString("NombreCliente"),
                         IdVenta = await reader.Result.IsDBNullAsync("IdVenta")
                             ? 0
                             : reader.Result.GetInt32("IdVenta"),
 
+                        Otros = !await reader.Result.IsDBNullAsync("Otros") &&
+                                reader.Result.GetBoolean("Otros"),
                         Concepto = await reader.Result.IsDBNullAsync("Concepto")
                             ? ""
                             : reader.Result.GetString("Concepto"),
@@ -905,12 +919,16 @@ namespace GymCastillo.Model.Database {
                         IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
                             ? 0
                             : reader.Result.GetInt32("IdPaquete"),
-                        // TODo: ver que onda con nombre paquete.
+                        NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
+                            ? ""
+                            : reader.Result.GetString("NombrePaquete"),
 
                         IdLocker = await reader.Result.IsDBNullAsync("IdLocker")
                             ? 0
                             : reader.Result.GetInt32("IdLocker"),
-                        // TODO: ver k onda con nombre locker
+                        NombreLocker = await reader.Result.IsDBNullAsync("NombreLocker")
+                            ? ""
+                            : reader.Result.GetString("NombreLocker"),
 
                         NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
                             ? ""
@@ -920,11 +938,11 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetDecimal("Monto"),
                     };
 
-                    listIngrsos.Add(ingreso);
+                    listIngresos.Add(ingreso);
                 }
                 Log.Debug("Se han obtenido con éxito la información de los Ingresos.");
 
-                return listIngrsos;
+                return listIngresos;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
@@ -936,7 +954,11 @@ namespace GymCastillo.Model.Database {
             }
         }
 
-        public static async Task<List<Egresos>> GetEgresos() {
+        /// <summary>
+        /// Método que obtiene una lista de todos los egresos.
+        /// </summary>
+        /// <returns>Una lista con objetos tipo egresos.</returns>
+        public static async Task<ObservableCollection<Egresos>> GetEgresos() {
             Log.Debug("Se ha empezado el proceso de obtener todos los ingresos.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -945,10 +967,10 @@ namespace GymCastillo.Model.Database {
 
             const string sqlQuery = @"SELECT
                                           p.IdPagosGeneral, p.FechaRegistro,
-                                          p.IdUsuario, u.Nombre, u.ApellidoPaterno,
+                                          p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
                                           p.Servicios, p.Nomina, p.IdUsuarioPagar,
-                                          up.Nombre, up.ApellidoPaterno,
-                                          p.IdInstructor, i.Nombre, i.ApellidoPaterno,
+                                          CONCAT(up.Nombre, ' ', up.ApellidoPaterno, ' ', up.ApellidoMaterno) as NombreUsuarioPagar,
+                                          p.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
                                           p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
                                       FROM egresos p
                                       INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
@@ -960,7 +982,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listEgresos = new List<Egresos>();
+                var listEgresos = new ObservableCollection<Egresos>();
 
                 while (await reader.Result.ReadAsync()) {
                     var egreso = new Egresos() {
@@ -970,31 +992,33 @@ namespace GymCastillo.Model.Database {
                         IdUsuario = await reader.Result.IsDBNullAsync("IdUsuario")
                             ? 0
                             : reader.Result.GetInt32("IdUsuario"),
-                        // TODO: concatenar Nombre y Apellidpo paterno aqui
-                        NombreUsuario = await reader.Result.IsDBNullAsync("Nombre")
+                        NombreUsuario = await reader.Result.IsDBNullAsync("NombreUsuario")
                             ? ""
-                            : reader.Result.GetString("Nombre"),
+                            : reader.Result.GetString("NombreUsuario"),
 
-                        Servicios = !await reader.Result.IsDBNullAsync("Servicios") && reader.Result.GetBoolean("Servicios"),
-                        Nomina = !await reader.Result.IsDBNullAsync("Nomina") && reader.Result.GetBoolean("Nomina"),
-                        // TODO: ver que onda con el campo de fecha renta.
-                        // Fecha = await reader.Result.IsDBNullAsync("IdRenta")
-                        //     ? 0
-                        //     : reader.Result.GetInt32("IdRenta"),
+                        Servicios = !await reader.Result.IsDBNullAsync("Servicios") &&
+                                    reader.Result.GetBoolean("Servicios"),
+                        Nomina = !await reader.Result.IsDBNullAsync("Nomina") &&
+                                 reader.Result.GetBoolean("Nomina"),
                         IdUsuarioPagar = await reader.Result.IsDBNullAsync("IdUsuarioPagar")
                             ? 0
                             : reader.Result.GetInt32("IdUsuarioPagar"),
-                        // TODO: ver que onda con el campo de nombreCliente + apellido paterno
+                        NombreUsuarioPagar = await reader.Result.IsDBNullAsync("NombreUsuarioPagar")
+                            ? ""
+                            : reader.Result.GetString("NombreUsuarioPagar"),
 
                         IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
                             ? 0
                             : reader.Result.GetInt32("IdInstructor"),
-                        Otros = !await reader.Result.IsDBNullAsync("Otros") && reader.Result.GetBoolean("Otros"),
+                        NombreInstructor = await reader.Result.IsDBNullAsync("NombreInstructor")
+                            ? ""
+                            : reader.Result.GetString("NombreInstructor"),
 
+                        Otros = !await reader.Result.IsDBNullAsync("Otros") &&
+                                reader.Result.GetBoolean("Otros"),
                         Concepto = await reader.Result.IsDBNullAsync("Concepto")
                             ? ""
                             : reader.Result.GetString("Concepto"),
-
                         NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
                             ? ""
                             : reader.Result.GetString("NumeroRecibo"),

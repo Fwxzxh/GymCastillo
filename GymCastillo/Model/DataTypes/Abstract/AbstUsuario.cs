@@ -29,7 +29,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public string ApellidoMaterno { get; set; }
 
         /// <summary>
-        /// Domicilio actual del usuario
+        /// El domicilio del cliente.
         /// </summary>
         public string Domicilio { get; set; }
 

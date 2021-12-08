@@ -47,7 +47,7 @@ namespace GymCastillo.Model.Helpers {
         /// <returns>Una lista de objetos tipo horario</returns>
         private static List<Horario> GetHorarios(int idClase) {
             // Leemos la lista de horarios desde la memoria.
-            var horarios = InitInfo.ListHorarios;
+            var horarios = InitInfo.ObCoHorarios;
 
             // Filtramos los horarios que necesitamos.
             var horariosFiltrados = new List<Horario>();

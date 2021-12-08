@@ -74,7 +74,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                                                  Descripcion=@Descripcion,
                                                  NumClasesTotales=@NumClasesTotales, 
                                                  NumClasesSemanales=@NumClasesSemanales,
-                                                 Costo=@Costo, IdClase=@IdClase
+                                                 Costo=@Costo
                                              WHERE IdPaquete=@IdPaquete";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -87,7 +87,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@NumeroClasesSemanales", NumClasesSemanales.ToString());
 
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
                 Log.Debug("Se ha generado la query.");
 
@@ -114,11 +113,10 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 Log.Debug("Se ha creado la conexión.");
 
                 const string altaQuery = @"INSERT INTO paquete
-                                           VALUES 
-                                               (default, @Gym, @NombrePaquete, 
-                                                @Descripcion,
-                                                @NumClasesTotales, @NumClasesSemanales,
-                                                @Costo, @IdClase);";
+                                           VALUES
+                                               (default, @Gym, @NombrePaquete,
+                                               @Descripcion, @NumClasesTotales, 
+                                               @NumClasesSemanales, @Costo)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -127,10 +125,9 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
                 command.Parameters.AddWithValue("@NumClasesTotales", NumClasesTotales.ToString());
-                command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
 
+                command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
-                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
 
                 Log.Debug("Se ha generado la query.");
 

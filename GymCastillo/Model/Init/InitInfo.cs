@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 using GymCastillo.Model.Database;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
@@ -16,80 +13,97 @@ namespace GymCastillo.Model.Init {
     /// <summary>
     /// Clase que se encarga de hacer todas las queries necesarias para el inicio del programa.
     /// </summary>
-    public static class InitInfo {
+    public class InitInfo {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// La lista de todos los clientes.
+        /// La ObservableCollection  de todos los clientes.
         /// </summary>
-        public static List<Cliente> ListaClientes { get; set; }
+        public static ObservableCollection<Cliente> ObCoClientes { get; set; }
 
         /// <summary>
-        /// La lista de todos los instructores.
+        /// La ObservableCollection  de todos los instructores.
         /// </summary>
-        public static List<Instructor> ListaInstructor { get; set; }
+        public static ObservableCollection<Instructor> ObCoInstructor { get; set; }
 
         /// <summary>
-        /// La lista de todos los usuarios.
+        /// La ObservableCollection  de todos los usuarios.
         /// </summary>
-        public static List<Usuario> ListaUsuarios { get; set; }
+        public static ObservableCollection<Usuario> ObCoUsuarios { get; set; }
 
         /// <summary>
-        /// La lista de todos los clientes de renta.
+        /// La ObservableCollection  de todos los clientes de renta.
         /// </summary>
-        public static List<ClienteRenta> ListaClientesRenta { get; set; }
+        public static ObservableCollection<ClienteRenta> ObCoClientesRenta { get; set; }
 
         /// <summary>
-        /// La lista de todos los paquetes.
+        /// La ObservableCollection  de todos los paquetes.
         /// </summary>
-        public static List<Paquete> ListaDePaquetes { get; set; }
+        public static ObservableCollection<Paquete> ObCoDePaquetes { get; set; }
 
         /// <summary>
-        /// La lista de todos los tipos de clientes.
+        /// La ObservableCollection  de todos los tipos de clientes.
         /// </summary>
-        public static List<Tipo> ListaTipoCliente { get; set; }
+        public static ObservableCollection<Tipo> ObCoTipoCliente { get; set; }
 
         /// <summary>
-        /// La lista de todos los tipos de instructores.
+        /// La ObservableCollection  de todos los tipos de instructores.
         /// </summary>
-        public static List<Tipo> ListaTipoInstructor { get; set; }
+        public static ObservableCollection<Tipo> ObCoTipoInstructor { get; set; }
 
         /// <summary>
-        /// La lista de todos los lockers Disponibles.
+        /// La ObservableCollection  de todos los lockers Disponibles.
         /// </summary>
-        public static List<Locker> ListaLockersOpen { get; set; }
+        public static ObservableCollection<Locker> ObCoLockersOpen { get; set; }
 
         /// <summary>
-        /// La lista de todos los lockers.
+        /// La ObservableCollection  de todos los lockers.
         /// </summary>
-        public static List<Locker> ListaLockers { get; set; }
+        public static ObservableCollection<Locker> ObCoLockers { get; set; }
 
         /// <summary>
-        /// La lista de todas las clases.
+        /// La ObservableCollection  de todas las clases.
         /// </summary>
-        public static List<Clase> ListaClases { get; set; }
+        public static ObservableCollection<Clase> ObCoClases { get; set; }
 
         /// <summary>
-        /// La lista que contiene TODOS los horarios.
+        /// La ObservableCollection  que contiene TODOS los horarios.
         /// </summary>
-        public static List<Horario> ListHorarios { get; set; }
+        public static ObservableCollection<Horario> ObCoHorarios { get; set; }
 
         /// <summary>
-        /// La lista que contiene todos los espacios.
+        /// La ObservableCollection  que contiene todos los espacios.
         /// </summary>
-        public static List<Espacio> ListEspacios { get; set; }
+        public static ObservableCollection<Espacio> ObCoEspacios { get; set; }
 
         /// <summary>
-        /// La lista que contiene todos los ingresos.
+        /// La ObservableCollection  que contiene todos los ingresos.
         /// </summary>
-        public static List<Ingresos> ListIngresos { get; set; }
+        public static ObservableCollection<Ingresos> ObCoIngresos { get; set; }
 
-        public static List<Egresos> ListEgresos { get; set; }
+        /// <summary>
+        /// La ObservableCollection que contiene todos los egresos.
+        /// </summary>
+        public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
+
+
+        /// <summary>
+        /// Indica si las queries han terminado de ejecutarse.
+        /// </summary>
+        public bool DoneTasks { get; }
+
+        /// <summary>
+        /// Inicializa las queries en paralelo y retorna un true cuando todas terminen.
+        /// </summary>
+        public InitInfo() {
+            var res = GetAllInfo();
+            DoneTasks = true;
+        }
 
         /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
-        public static async Task<bool> GetAllInfo() {
+        private static async Task<bool> GetAllInfo() {
             Log.Info("Se ha empezado el proceso de obtener la información de la base de datos.");
 
             try {
@@ -113,23 +127,23 @@ namespace GymCastillo.Model.Init {
                 var allEgresos = GetFromDb.GetEgresos();
 
                 // Esperamos los resultados...
-                ListaClientes = await allClientes;
-                ListaInstructor = await allInstructores;
-                ListaUsuarios = await allUsuarios;
-                ListaClientesRenta = await allClientesRenta;
+                ObCoClientes = await allClientes;
+                ObCoInstructor = await allInstructores;
+                ObCoUsuarios = await allUsuarios;
+                ObCoClientesRenta = await allClientesRenta;
 
-                ListaDePaquetes = await allPaquetes;
-                ListaTipoCliente = await allTipoClientes;
-                ListaTipoInstructor = await allTipoInstructores;
-                ListaLockersOpen = await allLockersOpen;
+                ObCoDePaquetes = await allPaquetes;
+                ObCoTipoCliente = await allTipoClientes;
+                ObCoTipoInstructor = await allTipoInstructores;
+                ObCoLockersOpen = await allLockersOpen;
 
-                ListaLockers = await allLockers;
-                ListaClases = await allClases;
-                ListHorarios = await allHorarios;
-                ListEspacios = await allEspacios;
+                ObCoLockers = await allLockers;
+                ObCoClases = await allClases;
+                ObCoHorarios = await allHorarios;
+                ObCoEspacios = await allEspacios;
 
-                ListIngresos = await allIngresos;
-                ListEgresos = await allEgresos;
+                ObCoIngresos = await allIngresos;
+                ObCoEgresos = await allEgresos;
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
