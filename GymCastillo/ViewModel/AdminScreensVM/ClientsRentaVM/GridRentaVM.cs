@@ -18,7 +18,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
     public class GridRentaVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
-        private List<ClienteRenta> clienteRenta { get; set; }
+        private ObservableCollection<ClienteRenta> clienteRenta { get; set; }
 
         public NewCRWindowCommand newCRCommand { get; set; }
 
@@ -56,8 +56,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
             try {
                 //var collectionView = CollectionViewSource.GetDefaultView(InitTest.ObCoClienteRenta);
 
-                ListaClientes = new ObservableCollection<ClienteRenta>(InitInfo.ListaClientesRenta);
-                clienteRenta = InitInfo.ListaClientesRenta;
+                ListaClientes = new ObservableCollection<ClienteRenta>(InitInfo.ObCoClientesRenta);
+                clienteRenta = InitInfo.ObCoClientesRenta;
                 newCRCommand = new(this);
                 overview = new(this);
                 delete = new(this);

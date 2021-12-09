@@ -53,8 +53,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
         public PaquetesSettingsVM() {
             try {
                 Log.Debug("Ventana de configuración de paquetes iniciada");
-                ListaPaquetes = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
-                ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
+                ListaPaquetes = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
+                ListaClases = new ObservableCollection<Clase>(InitInfo.ObCoClases);
                 SaveCommand = new RelayCommand(SavePaquete);
                 CancelCommand = new RelayCommand(CancelarPaquete);
                 DeleteCommand = new RelayCommand(DeletePaquete);

@@ -135,7 +135,7 @@
                                 <Button ToolTip="Ver más"
                                         Margin="5 0"
                                     DataContext="{StaticResource vm}"
-                                    Command="{Binding overViewCommand}">
+                                    Command="{Binding OverViewCommand}">
                                 <materialDesign:PackIcon Kind="EyeAddOutline"/>
                             </Button>
                             <Button ToolTip="Eliminar"

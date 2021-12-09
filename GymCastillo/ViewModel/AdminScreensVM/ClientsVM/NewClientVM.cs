@@ -64,7 +64,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         private void ReloadLockers() {
             lockerList.Clear();
-            var locker = InitInfo.ListaLockersOpen;
+            var locker = InitInfo.ObCoLockersOpen;
             foreach (var item in locker) {
                 lockerList.Add(item);
             }
@@ -72,8 +72,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         public NewClientVM() {
             try {
-                paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
-                usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
+                paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
+                usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
                 lockerList = new ObservableCollection<Locker>();
                 medioList = new ObservableCollection<string> {
                     "Amigos",

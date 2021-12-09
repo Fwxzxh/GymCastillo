@@ -44,7 +44,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
             try {
                 Log.Debug("Nuevo instructor ventana inicializada");
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-                TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ListaTipoInstructor);
+                TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ObCoTipoInstructor);
                 instructorCommand = new(this);
 
             }

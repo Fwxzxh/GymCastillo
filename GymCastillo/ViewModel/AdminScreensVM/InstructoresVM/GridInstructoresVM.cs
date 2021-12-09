@@ -29,7 +29,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
 
         public DeleteInstructorCommand delete { get; set; }
 
-        private List<Instructor> instructores { get; set; }
+        private ObservableCollection<Instructor> instructores { get; set; }
 
         private string query;
 
@@ -58,7 +58,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
             try {
                 newWindow = new(this);
                 overviewInstructor = new(this);
-                instructores = InitInfo.ListaInstructor;
+                instructores = InitInfo.ObCoInstructor;
                 delete = new(this);
                 ListaInstructores = new ObservableCollection<Instructor>();
                 foreach (var item in instructores.OrderBy(i => i.Nombre)) {
