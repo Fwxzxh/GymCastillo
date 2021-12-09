@@ -13,7 +13,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
     /// Clase que contiene los campos y métodos de la clase pagos.
     /// </summary>
-    public class Egresos : AbstractMovimientos, IOnlyAlta {
+    public class Egresos : AbstractMovimientos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@FechaRegistro", FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@IdUsuario", "1");// TODO: obtener el id en el logIn.
+                command.Parameters.AddWithValue("@IdUsuario", Init.Init.LoggedId.ToString());
 
                 command.Parameters.AddWithValue("@Servicios", Servicios.ToString());
                 command.Parameters.AddWithValue("@Nomina", Convert.ToInt32(Nomina).ToString());

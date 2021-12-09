@@ -11,9 +11,9 @@ namespace GymCastillo.Model.Init {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// String que contiene el username del usuario que inicio seción.
+        /// String que contiene el username del usuario que inicio sección.
         /// </summary>
-        public static string LoggedId { get; set; }
+        public static int LoggedId { get; set; }
 
         /// <summary>
         /// Método que se encarga del proceso de logIn.
@@ -41,9 +41,10 @@ namespace GymCastillo.Model.Init {
                 Log.Debug("Se ha realizado la query de LogIn con éxito.");
 
                 if (cmd.HasRows) {
+                    while (cmd.Read()) {
+                        LoggedId = cmd.GetInt32("IdUsuario");
+                    }
                     Log.Debug("LogIn Exitoso");
-                    // TODO: obtener el id del que se loggueo
-                    //LoggedId = username;
                     return true;
                 }
                 else {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -65,9 +66,32 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
+        /// <summary>
+        /// Método que valida si se puede eliminar un espacio.
+        /// </summary>
+        /// <returns>False si falla una validación.</returns>
+        private bool CheckDeleteConstrains() {
+            // clase
+            if (InitInfo.ObCoClases.Any(x => x.IdEspacio == IdEspacio)) {
+                ShowPrettyMessages.InfoOk(
+                    "No se puede eliminar este espacio ya que esta asignado a una clase, intente cambiar esa clase primero.",
+                    "Hay una clase ");
+                return false;
+            }
+
+            // rentas
+            // TODO: esperar a tener la tabla de rentas para hacer la validación.
+
+            return true;
+        }
+
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete de un espacio.");
-            //TODO: hacer FK check
+
+            // Checamos si podemos eliminar
+            if (!CheckDeleteConstrains()) {
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
