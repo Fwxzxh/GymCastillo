@@ -40,7 +40,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
                 this.instructor = instructor;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 updateInstructor = new(this);
-                TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ListaTipoInstructor);
+                TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ObCoTipoInstructor);
             }
             catch (Exception e) {
                 Log.Error(e.Message);

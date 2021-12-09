@@ -19,7 +19,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private List<Cliente> clientes { get; set; }
+        private ObservableCollection<Cliente> clientes { get; set; }
         
         public ObservableCollection<Cliente> ClientesLista { get; set; }
 
@@ -27,7 +27,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         public DeleteClientCommand deleteClient { get; set; }
 
-        public OverViewClienteCommand overViewCommand { get; set; }
+        public OverViewClienteCommand OverViewCommand { get; set; }
 
         private Cliente selectedClient;
         public Cliente SelectedClient {
@@ -55,9 +55,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         public GridClientesVM() {
             try {
-                clientes = InitInfo.ListaClientes;
+                clientes = InitInfo.ObCoClientes;
                 ClientesLista = new ObservableCollection<Cliente>();
-                overViewCommand = new(this);
+                OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
 

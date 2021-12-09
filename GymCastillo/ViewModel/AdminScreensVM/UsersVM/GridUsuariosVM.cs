@@ -26,9 +26,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
 
         public ObservableCollection<Usuario> ListaUsuarios { get; set; }
 
-        private List<Usuario> usuarios;
+        private ObservableCollection<Usuario> usuarios;
 
-        public List<Usuario> Usuarios {
+        public ObservableCollection<Usuario> Usuarios {
             get { return usuarios; }
             set
             {
@@ -61,8 +61,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
 
         public GridUsuariosVM() {
             try {
-                ListaUsuarios = new ObservableCollection<Usuario>(InitInfo.ListaUsuarios);
-                usuarios = InitInfo.ListaUsuarios;
+                ListaUsuarios = new ObservableCollection<Usuario>(InitInfo.ObCoUsuarios);
+                usuarios = InitInfo.ObCoUsuarios;
                 delete = new(this);
                 newUserWindow = new(this);
                 overview = new(this);
@@ -77,7 +77,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         private async void RefreshGrid() {
             ListaUsuarios.Clear();
             var usuarios = await GetFromDb.GetUsuarios();
-            InitInfo.ListaUsuarios = usuarios;
+            InitInfo.ObCoUsuarios = usuarios;
             foreach (var item in usuarios.OrderBy(c => c.Nombre)) {
                 ListaUsuarios.Add(item);
             }

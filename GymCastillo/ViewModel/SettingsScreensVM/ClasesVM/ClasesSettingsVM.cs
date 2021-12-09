@@ -76,7 +76,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
                 //ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
                 //ListaInstructores = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
                 //ListaInstructores = lista.ObCoInstructor;
-                ListaEspacios = new ObservableCollection<Espacio>(InitInfo.ListEspacios);
+                ListaEspacios = new ObservableCollection<Espacio>(InitInfo.ObCoEspacios);
                 CancelCommand = new RelayCommand(CancelUpdate);
                 DeleteCommand = new RelayCommand(DeleteClass);
                 SaveCommand = new RelayCommand<bool>(SaveClass);

@@ -53,7 +53,7 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClientes}, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
@@ -135,7 +135,7 @@
                                 <Button ToolTip="Ver más"
                                         Margin="5 0"
                                     DataContext="{StaticResource vm}"
-                                    Command="{Binding overViewCommand}">
+                                    Command="{Binding OverViewCommand}">
                                 <materialDesign:PackIcon Kind="EyeAddOutline"/>
                             </Button>
                             <Button ToolTip="Eliminar"

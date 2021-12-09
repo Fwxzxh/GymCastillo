@@ -94,8 +94,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
             saveClient = new(this);
 
 
-            paquetesList = new ObservableCollection<Paquete>(InitInfo.ListaDePaquetes);
-            usuarioList = new ObservableCollection<Tipo>(InitInfo.ListaTipoCliente);
+            paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
+            usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
             lockerList = new ObservableCollection<Locker>();
             medioList = new ObservableCollection<string> {
                     "Amigos",
@@ -112,7 +112,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         //TODO: filtrar por lokers desocupados + actual locker del cliente
         private void ReloadLockers() {
             LockersList.Clear();
-            var locker = InitInfo.ListaLockers;
+            var locker = InitInfo.ObCoLockers;
             foreach (var item in locker) {
                 LockersList.Add(item);
             }
