@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -150,6 +151,41 @@ namespace GymCastillo.Model.DataTypes.Personal {
         }
 
         /// <summary>
+        /// Método que checa si se puede eliminar el objeto en la base de datos.
+        /// </summary>
+        /// <returns>False si falla una validación.</returns>
+        private bool CheckDeleteConstrains() {
+            // Checamos que podamos eliminarlo
+            if (DeudaCliente > 0) {
+                ShowPrettyMessages.InfoOk(
+                    $"No es posible eliminar este cliente ya que tiene una deuda actual de $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    "Cliente con deuda");
+                return false;
+            }
+
+            if (ClasesTotalesDisponibles > 0) {
+                ShowPrettyMessages.InfoOk(
+                    $"No es posible eliminar este cliente ya que tiene {ClasesTotalesDisponibles.ToString()} clases disponibles.",
+                    "Cliente con clases disponibles.");
+                return false;
+            }
+
+            // Checamos si no hay ingresos para este cliente.
+            for (var index = 0; index < InitInfo.ObCoIngresos.Count; index++) {
+                var x = InitInfo.ObCoIngresos[index];
+
+                if (x.IdCliente == Id) {
+                    ShowPrettyMessages.InfoOk(
+                        $"No es posible eliminar este cliente ya que tiene ingresos registrados y al eliminarlo se perdería la información sobre sus ingresos.",
+                        "Cliente con Ingresos registrados.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Método que borra (desactiva) la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
@@ -160,22 +196,10 @@ namespace GymCastillo.Model.DataTypes.Personal {
             if (Activo == false) {
                 // eliminamos
 
-                // Checamos que podamos eliminarlo
-                if (DeudaCliente > 0) {
-                    ShowPrettyMessages.InfoOk(
-                        $"No es posible eliminar este cliente ya que tiene una deuda actual de $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
-                        "Cliente con deuda");
+                // Checamos si podemos eliminar
+                if (!CheckDeleteConstrains()) {
                     return 0;
                 }
-
-                if (ClasesTotalesDisponibles > 0) {
-                    ShowPrettyMessages.InfoOk(
-                        $"No es posible eliminar este cliente ya que tiene {ClasesTotalesDisponibles.ToString()} clases disponibles.",
-                        "Cliente con clases disponibles.");
-                    return 0;
-                }
-
-                // TODO: check FK de cliente en ingresos.
 
                 try {
                     await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -322,5 +346,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public override string GetHorarioStr() {
             throw new NotImplementedException();
         }
+
     }
 }

@@ -22,7 +22,6 @@ namespace GymCastillo.Model.Admin {
         public static async Task Update(AbstOtrosTipos objeto, bool silent=false) {
             try {
                 // validamos
-                // TODO: hacer validaciones.
                 await ValidateAgain(objeto);
 
                 // Hacemos update

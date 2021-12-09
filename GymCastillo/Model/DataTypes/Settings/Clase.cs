@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -108,9 +109,29 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
+        /// <summary>
+        /// Método que checa si se puede borrar este objeto en la base de datos.
+        /// </summary>
+        /// <returns>False si falla una validación.</returns>
+        private bool CheckDeleteConstrains() {
+            if (InitInfo.ObCoHorarios.Any(x => x.IdClase == IdClase)) {
+                ShowPrettyMessages.InfoOk(
+                    "No se puede eliminar esta clase ya que esta asignada a un horario, intente eliminar los horarios primero.",
+                    "Clase asignada a un horario.");
+                return false;
+
+            }
+
+            return true;
+        }
 
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en una clase.");
+
+            // Checamos si podemos eliminar
+            if (!CheckDeleteConstrains()) {
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);

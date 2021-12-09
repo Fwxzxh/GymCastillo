@@ -5,7 +5,6 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
@@ -13,7 +12,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
     /// Clase que contiene todos los campos y métodos de la clase Ingresos.
     /// </summary>
-    public class Ingresos : AbstractMovimientos, IOnlyAlta {
+    public class Ingresos : AbstractMovimientos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@FechaRegistro", FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@IdUsuario", "1");// TODO: obtener el id en el logIn.
+                command.Parameters.AddWithValue("@IdUsuario", Init.Init.LoggedId.ToString());
 
                 command.Parameters.AddWithValue("@IdRenta", IdRenta.ToString());
                 command.Parameters.AddWithValue("@IdCliente", IdCliente.ToString());
