@@ -53,7 +53,7 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClientes}, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"

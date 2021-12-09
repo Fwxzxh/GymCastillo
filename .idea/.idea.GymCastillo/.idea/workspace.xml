@@ -8,18 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/GridRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/GridRentaVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/GridClientesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/GridClientesVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/NewClientVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/NewClientVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/OverviewClientsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/OverviewClientsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/GridInstructoresVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/GridInstructoresVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/NewInstructorVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/NewInstructorVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/OverviewInstructorVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/OverviewInstructorVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/GridUsuariosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/GridUsuariosVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/ClasesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/ClasesSettingsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/PaquetesVM/PaquetesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/PaquetesVM/PaquetesSettingsVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +78,7 @@
       <workItem from="1639004323750" duration="2051000" />
       <workItem from="1639014657527" duration="310000" />
       <workItem from="1639015050099" duration="1405000" />
-      <workItem from="1639066365925" duration="2299000" />
+      <workItem from="1639066365925" duration="3571000" />
     </task>
     <servers />
   </component>
