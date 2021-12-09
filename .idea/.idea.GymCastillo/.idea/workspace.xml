@@ -9,7 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,15 +29,22 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="4" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="221TtTnXtsoooSI7Nvn4nlRWfON" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -110,5 +119,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

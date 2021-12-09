@@ -135,7 +135,7 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetInt16("IdLocker"),
                         NombreLocker = await reader.Result.IsDBNullAsync("NombreLocker")
                             ? ""
-                            : reader.Result.GetString("NombreLocker"),
+                            : reader.Result.GetString("NombreLocker")
                     };
 
                     listCliente.Add(cliente);
@@ -926,9 +926,9 @@ namespace GymCastillo.Model.Database {
                         IdLocker = await reader.Result.IsDBNullAsync("IdLocker")
                             ? 0
                             : reader.Result.GetInt32("IdLocker"),
-                        NombreLocker = await reader.Result.IsDBNullAsync("NombreLocker")
+                        NombreLocker = await reader.Result.IsDBNullAsync("Nombre")
                             ? ""
-                            : reader.Result.GetString("NombreLocker"),
+                            : reader.Result.GetString("Nombre"),
 
                         NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
                             ? ""

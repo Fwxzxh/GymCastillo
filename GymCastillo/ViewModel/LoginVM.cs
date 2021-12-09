@@ -55,6 +55,7 @@ namespace GymCastillo.ViewModel {
                     Log.Info("LogIn exitoso.");
                     var init= new InitInfo();
                     if (init.DoneTasks) {
+                        //ShowPrettyMessages.ErrorOk($"{InitInfo.ObCoClientes.Count}", "test");
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();
