@@ -127,23 +127,23 @@ namespace GymCastillo.Model.Init {
                 var allEgresos = GetFromDb.GetEgresos();
 
                 //inicializamos los campos
-                ObCoClientes = new ObservableCollection<Cliente>();
-                ObCoInstructor = new ObservableCollection<Instructor>();
-                ObCoUsuarios = new ObservableCollection<Usuario>();
-                ObCoClientesRenta = new ObservableCollection<ClienteRenta>();
-
-                ObCoDePaquetes = new ObservableCollection<Paquete>();
-                ObCoTipoCliente = new ObservableCollection<Tipo>();
-                ObCoTipoInstructor = new ObservableCollection<Tipo>();
-                ObCoLockersOpen = new ObservableCollection<Locker>();
-
-                ObCoLockers = new ObservableCollection<Locker>();
-                ObCoClases = new ObservableCollection<Clase>();
-                ObCoHorarios = new ObservableCollection<Horario>();
-                ObCoEspacios = new ObservableCollection<Espacio>();
-
-                ObCoIngresos = new ObservableCollection<Ingresos>();
-                ObCoEgresos = new ObservableCollection<Egresos>();
+                //ObCoClientes = new ObservableCollection<Cliente>();
+                // ObCoInstructor = new ObservableCollection<Instructor>();
+                // ObCoUsuarios = new ObservableCollection<Usuario>();
+                // ObCoClientesRenta = new ObservableCollection<ClienteRenta>();
+                //
+                // ObCoDePaquetes = new ObservableCollection<Paquete>();
+                // ObCoTipoCliente = new ObservableCollection<Tipo>();
+                // ObCoTipoInstructor = new ObservableCollection<Tipo>();
+                // ObCoLockersOpen = new ObservableCollection<Locker>();
+                //
+                // ObCoLockers = new ObservableCollection<Locker>();
+                // ObCoClases = new ObservableCollection<Clase>();
+                // ObCoHorarios = new ObservableCollection<Horario>();
+                // ObCoEspacios = new ObservableCollection<Espacio>();
+                //
+                // ObCoIngresos = new ObservableCollection<Ingresos>();
+                // ObCoEgresos = new ObservableCollection<Egresos>();
 
                 // Esperamos los resultados...
                 ObCoClientes = await allClientes;
