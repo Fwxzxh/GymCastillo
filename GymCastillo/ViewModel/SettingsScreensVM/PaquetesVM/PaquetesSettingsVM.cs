@@ -87,10 +87,10 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.PaquetesVM {
         private async void RefreshGrid() {
             ListaPaquetes.Clear();
             ListaClases.Clear();
-            InitTest.ObCoPaquete.Clear();
+            InitInfo.ObCoDePaquetes.Clear();
             var paquetes = await GetFromDb.GetPaquetes();
             foreach (var item in paquetes) {
-                InitTest.ObCoPaquete.Add(item);
+                InitInfo.ObCoDePaquetes.Add(item);
             }
             Paquete = null;
             Paquete = new();

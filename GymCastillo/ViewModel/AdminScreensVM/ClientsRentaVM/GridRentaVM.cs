@@ -91,10 +91,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
 
         private async void RefreshGrid() {
             //ListaClientes.Clear();
-            InitTest.ObCoClienteRenta.Clear();
+            InitInfo.ObCoClientesRenta.Clear();
             var usuarios = await GetFromDb.GetClientesRenta();
             foreach (var item in usuarios.OrderBy(c => c.Nombre)) {
-                InitTest.ObCoClienteRenta.Add(item);
+                InitInfo.ObCoClientesRenta.Add(item);
             }
             //InitInfo.ListaClientesRenta = usuarios;
         }

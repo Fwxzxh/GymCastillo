@@ -13,7 +13,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <oc:InitTest x:Key="oc"/>
+        <oc:InitInfo x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -53,7 +53,7 @@
                       FontSize="20"
                       Margin="10"
                       Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClientes}}"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}}"
                       SelectedValue="{Binding Clase.IdEspacio}"
                       SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
                       SelectedValuePath="IdEspacio">
@@ -77,7 +77,7 @@
                       FontSize="20"
                       Margin="10"
                       Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoPaquete}}"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoDePaquetes}}"
                       SelectedValue="{Binding Clase.IdEspacio}"
                       SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
                       SelectedValuePath="IdEspacio"
@@ -230,7 +230,7 @@
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
                   SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoIngresos}, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoIngresos}, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha"
                                     Binding="{Binding FechaRegistro.Date}"

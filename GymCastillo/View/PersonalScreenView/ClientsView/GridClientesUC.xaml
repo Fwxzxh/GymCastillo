@@ -17,7 +17,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <clientsVm:GridClientesVM x:Key="vm"/>
-        <oc:InitTest x:Key="oc"/>
+        <oc:InitInfo x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>

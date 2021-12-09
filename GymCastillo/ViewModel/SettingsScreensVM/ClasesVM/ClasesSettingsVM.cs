@@ -65,9 +65,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
 
         private void FilterData(string value) {
             if (value != null) {
-                CollectionViewSource.GetDefaultView(InitTest.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.OrdinalIgnoreCase);
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.OrdinalIgnoreCase);
             }
-            else CollectionViewSource.GetDefaultView(InitTest.ObCoClases);
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoClases);
         }
 
         public ClasesSettingsVM() {
@@ -105,9 +105,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
                     Log.Debug($"Alta de la clase {Clase.NombreClase} ");
                     await AdminOtrosTipos.Alta(Clase);
                     var clases = await GetFromDb.GetClases();
-                    InitTest.ObCoClases.Clear();
+                    InitInfo.ObCoClases.Clear();
                     foreach (var item in clases) {
-                        InitTest.ObCoClases.Add(item);
+                        InitInfo.ObCoClases.Add(item);
                     }
 
                 }
@@ -141,19 +141,19 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
             Clase = null;
             Clase = new();
             var clases = await GetFromDb.GetClases();
-            InitTest.ObCoClases.Clear();
+            InitInfo.ObCoClases.Clear();
             //.Clear();
             //var clases = await GetFromDb.GetClases();
             //InitTest.ObCoClases = new ObservableCollection<Clase>(clases);
             //InitInfo.ListaClases = clases;
             if (activa) {
                 foreach (var item in clases.Where(c => c.Activo == true)) {
-                    InitTest.ObCoClases.Add(item);
+                    InitInfo.ObCoClases.Add(item);
                 }
             }
             else {
                 foreach (var item in clases) {
-                    InitTest.ObCoClases.Add(item);
+                    InitInfo.ObCoClases.Add(item);
                 }
             }
             //paquetes.RefreshGrid();

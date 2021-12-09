@@ -16,7 +16,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <vm:ClasesSettingsVM x:Key="vm"/>
-        <oc:InitTest x:Key="oc"/>
+        <oc:InitInfo x:Key="oc"/>
         <converter:Converter x:Key="converter"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
@@ -59,7 +59,7 @@
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
-                  ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoClases}, UpdateSourceTrigger=Default}"
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClases}, UpdateSourceTrigger=Default}"
                   SelectedItem="{Binding Clase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch">
@@ -187,7 +187,7 @@
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           FontSize="20"
-                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInstructor}, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Nombre"
                           SelectedValue="{Binding Clase.IdInstructor}"
                           SelectedItem="{Binding Clase.NombreInstructor, UpdateSourceTrigger=Explicit}"
@@ -201,7 +201,7 @@
                           FontSize="20"
                           Margin="20 0"
                           Width="250"
-                          ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoEspacio}, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoEspacios}, UpdateSourceTrigger=PropertyChanged}"
                           SelectedValue="{Binding Clase.IdEspacio}"
                           SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
                           SelectedValuePath="IdEspacio"

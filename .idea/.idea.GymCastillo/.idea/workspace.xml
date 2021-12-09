@@ -9,9 +9,21 @@
   <component name="ChangeListManager">
     <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes to init info">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/InitTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/EspaciosView/EspaciosUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/EspaciosView/EspaciosUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/PaquetesView/PaquetesSettingsUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/PaquetesView/PaquetesSettingsUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PagosScreensView/EgresosViews/EgresosUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PagosScreensView/EgresosViews/EgresosUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PagosScreensView/IngresosViews/IngresosUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PagosScreensView/IngresosViews/IngresosUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/GridClientesRUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/GridClientesRUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/GridInstructoresUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/GridInstructoresUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/GridRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/GridRentaVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/GridClientesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/GridClientesVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/GridInstructoresVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/GridInstructoresVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/ClasesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/ClasesSettingsVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/PaquetesVM/PaquetesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/PaquetesVM/PaquetesSettingsVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/SettingsVM/MainSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/SettingsVM/MainSettingsVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +42,6 @@
     <option name="projectConfigVersion" value="4" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Database/GetFromDB.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -89,6 +100,7 @@
       <workItem from="1639014657527" duration="310000" />
       <workItem from="1639015050099" duration="1405000" />
       <workItem from="1639066365925" duration="3571000" />
+      <workItem from="1639078972307" duration="2043000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>

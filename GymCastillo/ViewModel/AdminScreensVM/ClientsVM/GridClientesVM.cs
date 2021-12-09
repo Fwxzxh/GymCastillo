@@ -95,10 +95,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         }
 
         private async void RefreshGrid() {
-            InitTest.ObCoClientes.Clear();
+            InitInfo.ObCoClientes.Clear();
             var clientesRe = await GetFromDb.GetClientes();
             foreach (var item in clientesRe) {
-                InitTest.ObCoClientes.Add(item);
+                InitInfo.ObCoClientes.Add(item);
             }
         }
 

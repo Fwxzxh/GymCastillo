@@ -14,7 +14,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <oc:InitTest x:Key="oc"/>
+        <oc:InitInfo x:Key="oc"/>
     </UserControl.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -52,7 +52,7 @@
                       FontSize="20"
                       Margin="10"
                       Width="350"
-                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoInstructor}}"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInstructor}}"
                       SelectedValue="{Binding Clase.IdEspacio}"
                       SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
                       SelectedValuePath="IdEspacio">
@@ -112,7 +112,7 @@
                       FontSize="20"
                       Margin="10"
                       Width="350"
-                      ItemsSource="{Binding Source={x:Static oc:InitTest.ObCoUsuario}}"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoUsuarios}}"
                       SelectedValue="{Binding Clase.IdEspacio}"
                       SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
                       SelectedValuePath="IdEspacio">

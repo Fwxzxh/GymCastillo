@@ -57,10 +57,10 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.SettingsVM {
 
         private async void Refresh() {
             Espacio = new();
-            InitTest.ObCoEspacio.Clear();
+            InitInfo.ObCoEspacios.Clear();
             var espacios = await GetFromDb.GetEspacios();
             foreach (var item in espacios) {
-                InitTest.ObCoEspacio.Add(item);
+                InitInfo.ObCoEspacios.Add(item);
             }
         }
     }
