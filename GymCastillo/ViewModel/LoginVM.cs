@@ -1,19 +1,12 @@
 ﻿using log4net;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using log4net.Config;
-using log4net.Repository;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -68,17 +61,17 @@ namespace GymCastillo.ViewModel {
                     }
                 }
                 else {
-                    Log.Info("LogIn fallido, credenciales erroneas.");
+                    Log.Info("LogIn fallido, credenciales erróneas.");
                     ShowPrettyMessages.WarningOk(
                         "Usuario y/o contraseña incorrectos.",
                         "Error de credenciales");
                 }
             }
             catch (MySqlException e) {
-                Log.Error("El string de conexión probablemente sea erroneo.");
+                Log.Error("El string de conexión probablemente sea erróneo.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.WarningOk(
-                    "Error: verifica tus credenciales de base de datos, probablemente sean erroneas.",
+                    "Error: verifica tus credenciales de base de datos, probablemente sean erróneas.",
                     "Error de conexión");
             }
             catch (Exception e) {

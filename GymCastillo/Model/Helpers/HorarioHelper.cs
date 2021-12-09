@@ -152,7 +152,7 @@ namespace GymCastillo.Model.Helpers {
 
                 Log.Debug("Se han guardado los horarios exitosamente.");
                 ShowPrettyMessages.InfoOk(
-                    "Se han actualizado los horarios con éxtio.",
+                    "Se han actualizado los horarios con éxito.",
                     "Operación exitosa.");
             }
             catch (Exception e) {

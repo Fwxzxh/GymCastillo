@@ -4,7 +4,6 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
-using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
@@ -149,22 +148,23 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 Log.Debug("Se ha creado la conexión.");
 
                 const string altaQuery = @"INSERT INTO clase
-                                           VALUES 
-                                               (default, @NombreClase, @Descripcion, 
-                                               @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);";
+                                           VALUES
+                                               (default, @NombreClase, @Descripcion,
+                                               @CupoMaximo, @Activo, @IdInstructor, @IdEspacio,
+                                               @IdPaquete);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@NombreClase", NombreClase);
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
 
-                command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
-
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", "1");
 
                 command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
+
+                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
 
                 Log.Debug("Se ha generado la query.");
 
