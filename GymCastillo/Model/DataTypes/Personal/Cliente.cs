@@ -299,7 +299,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
                 command.Parameters.AddWithValue("@ClasesTotalesDisponibles", ClasesTotalesDisponibles.ToString());
-                command.Parameters.AddWithValue("@ClasesSemanaDisponibles", ClasesSemanaDisponibles.ToString());
+                command.Parameters.AddWithValue("@ClasesSemanaDisponible", ClasesSemanaDisponibles.ToString());
 
                 command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());

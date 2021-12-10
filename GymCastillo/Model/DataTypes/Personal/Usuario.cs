@@ -28,7 +28,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <summary>
         /// La cantidad del último Pago.
         /// </summary>
-        /// TODO: Pensar si mover FechaUltimoPago, Monto UltimoPago a otra tabla.
         public decimal MontoUltimoPago { get; set; }
 
         /// <summary>

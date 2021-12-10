@@ -30,7 +30,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public string Descripción { get; set; }
 
-
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un espacio.");
 

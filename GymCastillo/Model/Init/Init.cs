@@ -67,7 +67,7 @@ namespace GymCastillo.Model.Init {
         /// <summary>
         /// Método que se encarga de hacer Update de la ultima conexión del usuario conectado.
         /// </summary>
-        // TODO:
+        // TODO: ver que onda con las fechas de última conexión.
         private static void UpdateLastConnection() {
 
         }
