@@ -7,6 +7,9 @@
     <Compile Update="View\AdminScreensView\AdminControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\AdminScreensView\AdminControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml">

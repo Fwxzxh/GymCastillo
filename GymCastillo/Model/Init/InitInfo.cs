@@ -96,14 +96,14 @@ namespace GymCastillo.Model.Init {
         /// Inicializa las queries en paralelo y retorna un true cuando todas terminen.
         /// </summary>
         public InitInfo() {
-            var res = GetAllInfo();
+            //var res = GetAllInfo();
             DoneTasks = true;
         }
 
         /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
-        private static async Task<bool> GetAllInfo() {
+        public static async Task<bool> GetAllInfo() {
             Log.Info("Se ha empezado el proceso de obtener la información de la base de datos.");
 
             try {
@@ -139,7 +139,7 @@ namespace GymCastillo.Model.Init {
                 //
                 // ObCoLockers = new ObservableCollection<Locker>();
                 // ObCoClases = new ObservableCollection<Clase>();
-                // ObCoHorarios = new ObservableCollection<Horario>();
+                // ObCoHorarios = new ObservableCollection<Horarios>();
                 // ObCoEspacios = new ObservableCollection<Espacio>();
                 //
                 // ObCoIngresos = new ObservableCollection<Ingresos>();
@@ -177,10 +177,10 @@ namespace GymCastillo.Model.Init {
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener toda la información inicial de la base de datos.");
                 Log.Error($"Error: {e.Message}");
-                ShowPrettyMessages.ErrorOk(
-                    "Ha ocurrido un error al obtener la información inicial de la base de datos, si este error persiste, contacte a los administradores",
-                    "Error fatal.");
-                throw;
+                //ShowPrettyMessages.ErrorOk(
+                //    "Ha ocurrido un error al obtener la información inicial de la base de datos, si este error persiste, contacte a los administradores",
+                //    "Error fatal.");
+                return false;
             }
         }
     }

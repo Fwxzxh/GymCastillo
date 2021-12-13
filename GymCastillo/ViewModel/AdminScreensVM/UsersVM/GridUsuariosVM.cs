@@ -70,7 +70,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             catch (Exception e) {
                 Log.Error(e.Message);
                 //ShowPrettyMessages.ErrorOk(e.Message, "Error");
-                throw;
             }
         }
 

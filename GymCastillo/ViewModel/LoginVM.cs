@@ -46,7 +46,7 @@ namespace GymCastillo.ViewModel {
             loginCommand = new LoginCommand();
         }
 
-        public void LogIn(string userName, string password) {
+        public async void LogIn(string userName, string password) {
 
             try {
                 if (Init.LogIn(userName, password)) {
@@ -55,6 +55,7 @@ namespace GymCastillo.ViewModel {
                     Log.Info("LogIn exitoso.");
                     var init= new InitInfo();
                     if (init.DoneTasks) {
+                        await InitInfo.GetAllInfo();
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

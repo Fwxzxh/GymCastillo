@@ -1,4 +1,5 @@
-﻿using GymCastillo.Model.Interfaces;
+﻿using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.ViewModel.SettingsScreensVM.ClasesVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,12 @@ using System.Windows.Shapes;
 
 namespace GymCastillo.View.AdminScreensView.ClasesView {
     /// <summary>
-    /// Interaction logic for HorariosSettingsWindow.xaml
+    /// Interaction logic for HorariosWindow.xaml
     /// </summary>
-    public partial class HorariosSettingsWindow : Window, IClosable {
-        public HorariosSettingsWindow() {
+    public partial class HorariosWindow : Window {
+        public HorariosWindow(Clase clase) {
             InitializeComponent();
+            DataContext = new HorariosSettingsVM(clase);
         }
     }
 }

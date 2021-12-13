@@ -15,7 +15,7 @@ namespace GymCastillo.Model.Admin {
         /// Método que se encarga de dar de alta una asistencia al objeto tipo AbstClientInstructor en la base de datos.
         /// </summary>
         /// <param name="objeto">El objeto al cual se le va a dar de alta la asistencia.</param>
-        /// <param name="clase">El objeto tipo Horario al cual se le va a aumentar el cupo actual.</param>
+        /// <param name="clase">El objeto tipo Horarios al cual se le va a aumentar el cupo actual.</param>
         public static void NuevaAsistencia(AbstClientInstructor objeto, Horario clase) {
             // Descontamos la clase del cliente.
             // Actualizamos la asistencia en el horario indicado.

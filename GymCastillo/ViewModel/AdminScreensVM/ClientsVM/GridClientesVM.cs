@@ -55,8 +55,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
         public GridClientesVM() {
             try {
-                clientes = InitInfo.ObCoClientes;
-                ClientesLista = new ObservableCollection<Cliente>();
+                //clientes = InitInfo.ObCoClientes;
+                //ClientesLista = new ObservableCollection<Cliente>();
                 OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
@@ -97,7 +97,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         private async void RefreshGrid() {
             InitInfo.ObCoClientes.Clear();
             var clientesRe = await GetFromDb.GetClientes();
-            foreach (var item in clientesRe) {
+            foreach (var item in clientesRe.Where(c=> c.Activo == true)) {
                 InitInfo.ObCoClientes.Add(item);
             }
         }

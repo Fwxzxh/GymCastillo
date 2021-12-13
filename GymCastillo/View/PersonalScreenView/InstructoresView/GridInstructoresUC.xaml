@@ -52,8 +52,8 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInstructor}, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInstructor}, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"

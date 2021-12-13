@@ -12,6 +12,7 @@ using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensCommands.ClientsCommands;
 using log4net;
+using Microsoft.Win32;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
     public class OverviewClientsVM : INotifyPropertyChanged {
@@ -36,6 +37,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         }
 
         public SaveClientCommand saveClient { get; set; }
+
+        public RelayCommand CredencialCommand { get; private set; }
+        public RelayCommand ImageCommand { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -86,14 +91,22 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
             }
         }
 
+        private string photoPath;
+
+        public string PhotoPath {
+            get { return photoPath; }
+            set { photoPath = value;
+                OnPropertyChanged(nameof(photoPath));
+            }
+        }
 
 
         public OverviewClientsVM(Cliente cliente) {
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             SelectedClient = cliente;
             saveClient = new(this);
-
-
+            ImageCommand = new RelayCommand(SelectPhoto);
+            CredencialCommand = new RelayCommand(GenerarCredencial);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
             lockerList = new ObservableCollection<Locker>();
@@ -107,6 +120,19 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
 
             //descuento = selectedClient.Descuento;
             pago = selectedClient.DeudaCliente;
+        }
+
+        private void GenerarCredencial() {
+            throw new NotImplementedException();
+        }
+
+        private void SelectPhoto() {
+            OpenFileDialog dialog = new();
+            dialog.Filter = "Image files|*.png;*.jpg;*.jpeg";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            if (dialog.ShowDialog() == true) {
+                PhotoPath = dialog.FileName;
+            }
         }
 
         //TODO: filtrar por lokers desocupados + actual locker del cliente

@@ -9,7 +9,7 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes.Settings {
     /// <summary>
-    /// Clase que tiene los campos y métodos de los objetos tipo Horario.
+    /// Clase que tiene los campos y métodos de los objetos tipo Horarios.
     /// </summary>
     public class Horario : AbstOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
@@ -73,7 +73,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 Log.Debug("Se ha creado la query.");
 
-                var res =await ExecSql.NonQuery(command, "Update Horario");
+                var res =await ExecSql.NonQuery(command, "Update Horarios");
                 Log.Debug("Se ha editado un horario.");
 
                 return res;
@@ -104,7 +104,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 Log.Debug("Se ha creado la query.");
 
-                var res = await ExecSql.NonQuery(command, "Delete Horario");
+                var res = await ExecSql.NonQuery(command, "Delete Horarios");
                 Log.Debug("Se ha eliminado un horario de la tabla.");
 
                 return res;
@@ -142,7 +142,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 Log.Debug("Se ha generado la query.");
 
-                var res = await ExecSql.NonQuery(command, "Alta Horario");
+                var res = await ExecSql.NonQuery(command, "Alta Horarios");
                 Log.Debug("Se ha dado de alta un horario.");
 
                 return res;

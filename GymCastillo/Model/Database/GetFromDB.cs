@@ -747,7 +747,7 @@ namespace GymCastillo.Model.Database {
         /// <summary>
         /// Método que obtiene todos los horarios.
         /// </summary>
-        /// <returns>Una lista con objetos tipo <c>Horario</c></returns>
+        /// <returns>Una lista con objetos tipo <c>Horarios</c></returns>
         public static async Task<ObservableCollection<Horario>> GetHorarios() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los Horarios.");
 

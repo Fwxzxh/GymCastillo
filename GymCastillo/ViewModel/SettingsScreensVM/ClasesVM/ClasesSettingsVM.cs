@@ -62,7 +62,6 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
                 FilterData(value);
             }
         }
-
         private void FilterData(string value) {
             if (value != null) {
                 CollectionViewSource.GetDefaultView(InitInfo.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.OrdinalIgnoreCase);
@@ -89,8 +88,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM.ClasesVM {
         }
 
         private void OpenHorariosW() {
-            HorariosSettingsWindow horarios = new();
-            horarios.Show();
+            HorariosWindow horarios = new(Clase);
+            horarios.ShowDialog();
         }
 
         private async void SaveClass(bool guardar) {

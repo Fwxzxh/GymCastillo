@@ -58,13 +58,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
             try {
                 newWindow = new(this);
                 overviewInstructor = new(this);
-                instructores = InitInfo.ObCoInstructor;
                 delete = new(this);
-                ListaInstructores = new ObservableCollection<Instructor>();
-                foreach (var item in instructores.OrderBy(i => i.Nombre)) {
-                    ListaInstructores.Add(item);
-                }
-
                 Log.Debug("Inicializada la pantalla de instructores con éxito.");
             }
             catch (Exception e) {
@@ -107,9 +101,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.InstructoresVM {
         }
 
         private async void RefreshGrid() {
-            ListaInstructores.Clear();
-            var instructors = await GetFromDb.GetInstructores();
+            //ListaInstructores.Clear();
             InitInfo.ObCoInstructor.Clear();
+            var instructors = await GetFromDb.GetInstructores();
             foreach (var item in instructors.OrderBy(i => i.Nombre)) {
                 InitInfo.ObCoInstructor.Add(item);
             }

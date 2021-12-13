@@ -52,7 +52,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public ObservableCollection<Horario> HorasDomingo { get; set; }
 
         /// <summary>
-        /// Constructor de la clase Front Horario
+        /// Constructor de la clase Front Horarios
         /// </summary>
         public FrontHorario() {
             // Inicializamos las listas.

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes;
@@ -12,6 +13,8 @@ using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.AdminScreensCommands.ClientsCommands;
 using log4net;
+using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
     public class NewClientVM : INotifyPropertyChanged {
@@ -34,8 +37,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
             }
         }
 
-
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
+
+        public RelayCommand ImageCommand { get; set; }
 
         public NewClientCommand newClientCommand { get; set; }
 
@@ -51,6 +55,16 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
         }
 
         private bool lockerIsChecked = false;
+
+        private string photoPath;
+
+        public string PhotoPath {
+            get { return photoPath; }
+            set { photoPath = value;
+                OnPropertyChanged(nameof(PhotoPath));
+            }
+        }
+
 
         public bool LockerIsChecked {
             get { return lockerIsChecked; }
@@ -81,7 +95,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
                     "Publicidad",
                     "Otros"
                 };
-
+                ImageCommand = new RelayCommand(SelectPhoto);
                 newCliente.FechaNacimiento = DateTime.Now;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 newClientCommand = new(this);
@@ -91,6 +105,15 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsVM {
                 MessageBox.Show(e.Message);
             }
 
+        }
+
+        private void SelectPhoto() {
+            OpenFileDialog dialog = new();
+            dialog.Filter = "Image files|*.png;*.jpg;*.jpeg";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            if (dialog.ShowDialog() == true) {
+                PhotoPath = dialog.FileName;
+            }
         }
 
         public async void CrearCliente() {

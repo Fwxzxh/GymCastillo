@@ -43,7 +43,7 @@
                     <home:HomeViewUserControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem ToolTip="Asistencias" Visibility="Collapsed">
+            <TabItem ToolTip="Asistencias">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
@@ -71,7 +71,7 @@
                     <personalScreenView:UsersViewUserControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem ToolTip="Clases" Visibility="Collapsed">  
+            <TabItem ToolTip="Clases">  
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon

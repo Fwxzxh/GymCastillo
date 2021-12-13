@@ -56,8 +56,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM {
             try {
                 //var collectionView = CollectionViewSource.GetDefaultView(InitTest.ObCoClienteRenta);
 
-                ListaClientes = new ObservableCollection<ClienteRenta>(InitInfo.ObCoClientesRenta);
-                clienteRenta = InitInfo.ObCoClientesRenta;
+                //ListaClientes = new ObservableCollection<ClienteRenta>(InitInfo.ObCoClientesRenta);
+                //clienteRenta = InitInfo.ObCoClientesRenta;
                 newCRCommand = new(this);
                 overview = new(this);
                 delete = new(this);
