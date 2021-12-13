@@ -289,3 +289,26 @@ VALUES
     (@IdIngresos, @FechaRegistro, @IdUsuario,
     @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
     @IdPaquete, @IdLocker, @NumeroRecibo, @Monto);
+    
+
+-- Personal
+SELECT
+    p.IdPersonal, p.Nombre, p.ApellidoPaterno,
+    p.ApellidoMaterno, p.Domicilio, p.Puesto,
+    p.FechaNacimiento, p.Telefono, p.NombreContacto,
+    p.TelefonoContacto, p.Foto, p.FechaUltimoAcceso,
+    p.FechaUltimoPago, p.MontoUltimoPago
+FROM personal p;
+	-- Dar de alta
+INSERT INTO personal
+VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+	    @Domicilio, @Puesto, @FechaNacimiento, @Telefono, 
+	    @NombreContacto, @TelefonoContacto, @Foto,
+	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
+	-- Editar valores (usuario)
+UPDATE usuario
+SET domicilio=@Domicilio, telefono=@Telefono, 
+    NombreContacto=@NombreContacto,
+    telefonocontacto=@TelefonoContacto, foto=@Foto
+WHERE IdUsuario=@IdUsuario;
+	-- Editar valores (automático)
