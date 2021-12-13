@@ -193,6 +193,7 @@ create table Personal (
     Nombre varchar(30) not null,
     ApellidoPaterno varchar(30) not null,
     ApellidoMaterno varchar(30) not null,
+    Domicilio varchar(150) not null,
     Puesto varchar(50),
     FechaNacimiento datetime not null,
     Telefono varchar(10) unique not null,
