@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -9,7 +8,7 @@ using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.View.AdminScreensView.UsuariosView;
-using GymCastillo.ViewModel.AdminScreensCommands.UsersCommands;
+using GymCastillo.ViewModel.PersonalScreensVM.Commands.UsersCommands;
 using log4net;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {

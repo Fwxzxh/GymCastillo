@@ -2,12 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.ClasesVM"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:clasesVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClasesVM"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
@@ -15,7 +15,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
-        <vm:ClasesSettingsVM x:Key="vm"/>
+        <clasesVm:ClasesSettingsVM x:Key="vm"/>
         <oc:InitInfo x:Key="oc"/>
         <converter:Converter x:Key="converter"/>
     </UserControl.Resources>

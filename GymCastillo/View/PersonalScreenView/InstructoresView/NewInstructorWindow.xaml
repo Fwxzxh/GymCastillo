@@ -6,7 +6,7 @@
         x:Name="newInstructorWindow"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:instructoresVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.InstructoresVM"
+        xmlns:instructoresVm="clr-namespace:GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         TextElement.FontWeight="Medium"

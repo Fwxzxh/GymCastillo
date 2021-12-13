@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymCastillo.View.AdminScreensView.ClasesView"
         mc:Ignorable="d"
-        xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM.ClasesVM"
         xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"

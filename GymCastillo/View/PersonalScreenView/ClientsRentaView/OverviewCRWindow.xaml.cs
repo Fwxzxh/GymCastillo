@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM;
+using GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM;
 
 namespace GymCastillo.View.PersonalScreenView.ClientsRentaView {
     /// <summary>

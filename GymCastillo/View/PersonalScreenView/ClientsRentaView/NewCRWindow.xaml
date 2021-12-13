@@ -6,7 +6,7 @@
         x:Name="newCR"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:clientsRentaVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClientsRentaVM"
+        xmlns:clientsRentaVm="clr-namespace:GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         TextElement.FontWeight="Medium"

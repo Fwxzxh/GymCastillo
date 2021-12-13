@@ -6,7 +6,7 @@
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:clientsVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.ClientsVM"
+             xmlns:clientsVm="clr-namespace:GymCastillo.ViewModel.PersonalScreensVM.ClientsVM"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              BorderThickness="0"

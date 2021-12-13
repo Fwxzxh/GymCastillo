@@ -1,5 +1,4 @@
 ﻿using GymCastillo.Model.DataTypes.Settings;
-using GymCastillo.ViewModel.SettingsScreensVM.ClasesVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GymCastillo.ViewModel.AdminScreensVM.ClasesVM;
 
 namespace GymCastillo.View.AdminScreensView.ClasesView {
     /// <summary>

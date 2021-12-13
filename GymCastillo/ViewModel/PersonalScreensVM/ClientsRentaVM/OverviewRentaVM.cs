@@ -4,35 +4,38 @@ using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.PersonalScreensVM.Commands.UsersCommands;
+using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientesRentaCommands;
 using log4net;
 
-namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
-    public class NewUsuarioVM : INotifyPropertyChanged {
+namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM {
+    public class OverviewRentaVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
 
-        public NewUserCommand newUser { get; set; }
+        public UpdateClienteCommand updateCliente { get; set; }
 
+        public ClienteRenta clienteHold { get; set; }
 
-        private Usuario usuario = new() { FechaNacimiento = DateTime.Now };
+        private ClienteRenta cliente;
 
-        public Usuario Usuario {
-            get { return usuario; }
+        public ClienteRenta Cliente {
+            get { return cliente; }
             set
             {
-                usuario = value;
-                OnPropertyChanged(nameof(Usuario));
+                cliente = value;
+                OnPropertyChanged(nameof(Cliente));
             }
         }
 
-        public NewUsuarioVM() {
+        public OverviewRentaVM(ClienteRenta cliente) {
             try {
+                this.cliente = cliente;
+                clienteHold = cliente;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-                newUser = new(this);
+                updateCliente = new(this);
 
             }
             catch (Exception) {
@@ -41,16 +44,16 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             }
         }
 
-        public async void NewUser() {
-            await AdminUsuariosGeneral.Alta(Usuario);
-            Log.Debug("Nuevo usuario creado");
-            Usuario = new() { FechaNacimiento = DateTime.Now};
-        }
-
         private void CloseWindow(IClosable window) {
+
             if (window != null) {
                 window.Close();
-            }
+             }
+        }
+
+        public async void UpdateCR() {
+            await AdminUsuariosGeneral.Update(Cliente);
+            Log.Debug("Cliente Renta actualilzado");
         }
 
         private void OnPropertyChanged(string propertyName) {
