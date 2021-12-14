@@ -45,7 +45,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public int CupoActual { get; set; }
 
         public override async Task<int> Update() {
-            Log.Debug("Se ha iniciado el proceso de update de un horario.");
+            Log.Warn("Se ha iniciado el proceso de update de un horario.");
 
             // Verificamos si no es una alta disfrazada de update.
             if (IdHorario == 0) {
