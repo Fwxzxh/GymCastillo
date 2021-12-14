@@ -139,7 +139,7 @@ namespace GymCastillo.Model.Admin {
                     await instructorValidator.ValidateAndThrowAsync((Espacio) objeto);
                     break;
 
-                case "Horarios":
+                case "Horario":
                     var usuarioValidator = new HorarioValidation();
                     await usuarioValidator.ValidateAndThrowAsync((Horario) objeto);
                     break;

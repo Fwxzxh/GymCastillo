@@ -46,7 +46,8 @@
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
                   MaxHeight="300"
-                  ItemsSource="{Binding ListaHorarios}">
+                  ItemsSource="{Binding ListaHorarios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedHorario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*"
                                     Header="Día"
@@ -99,15 +100,16 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True" Width="0.6*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="-25 0">
+                            <StackPanel Orientation="Horizontal">
                                 <Button ToolTip="Eliminar"
-                                    Background="Transparent"
-                                    BorderBrush="Red"
-                                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                                    Margin="5 0">
+                                        Background="Transparent"
+                                        BorderBrush="Red"
+                                        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext}"
+                                        Command="{Binding DeleteCommand}"
+                                        Foreground="{DynamicResource MaterialDesignDarkForeground}">
                                     <materialDesign:PackIcon Kind="TrashCanOutline"/>
                                 </Button>
                             </StackPanel>
@@ -126,7 +128,6 @@
                       Width="auto"
                       SelectedIndex="{Binding Dia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Margin="10 0">
-                <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="Lunes"/>
                 <ComboBoxItem Content="Martes"/>
                 <ComboBoxItem Content="Miércoles"/>
