@@ -7,6 +7,7 @@ using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
@@ -122,7 +123,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private void GenerarCredencial() {
-            throw new NotImplementedException();
+            Log.Debug("Creando credencial");
+            DigitalCard.DrawCard(SelectedClient);
         }
 
         private void SelectPhoto() {
