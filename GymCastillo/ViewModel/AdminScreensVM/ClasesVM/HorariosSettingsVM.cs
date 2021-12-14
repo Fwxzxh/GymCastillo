@@ -99,7 +99,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                 ListaHorarios.Clear();
             }
             var horarios = await GetFromDb.GetHorarios();
-            InitInfo.ObCoHorarios = horarios;
+            InitInfo.ObCoHorarios.Clear();
+            foreach (var item in horarios) {
+                InitInfo.ObCoHorarios.Add(item);
+            }
             foreach (var item in horarios.Where(h => h.IdClase == id).OrderBy(dia => dia.Dia)) {
                 ListaHorarios.Add(item);
             }

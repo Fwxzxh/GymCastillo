@@ -7,6 +7,7 @@
         xmlns:settings="clr-namespace:GymCastillo.View.SettingsScreensView"
         xmlns:pagos="clr-namespace:GymCastillo.View.PagosScreensView"
         xmlns:admin="clr-namespace:GymCastillo.View.AdminScreensView"
+        xmlns:clases="clr-namespace:GymCastillo.View.ClsesScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:personalScreenView="clr-namespace:GymCastillo.View.PersonalScreenView"
@@ -81,6 +82,9 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <clases:ClasesSummaryUC/>
+                </TabItem.Content>
             </TabItem>
             <TabItem ToolTip="Pagos">
                 <TabItem.Header>
