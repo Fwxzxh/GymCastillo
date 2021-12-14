@@ -138,6 +138,7 @@
 
     <ItemGroup>
       <Folder Include="ViewModel\SettingsScreensVM" />
+      <Folder Include="View\ClsesScreensView\" />
     </ItemGroup>
 
 </Project>
