@@ -7,66 +7,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added more FK validations &amp; less TODOs">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="minor alta cliente fix">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Docs/Assets/GenericProfile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/In&amp;Out.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Rentas.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Database.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Database.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosSettingsWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosSettingsWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/EspaciosView/EspaciosUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/EspaciosView/EspaciosUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/PaquetesView/PaquetesSettingsUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/AdminScreensView/PaquetesView/PaquetesSettingsUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/GridClientesRUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/GridClientesRUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/NewCRWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/NewCRWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/OverviewCRWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/OverviewCRWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/GridClientesUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/NewClientsWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/NewClientsWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/OverviewClientsWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/OverviewClientsWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/GridInstructoresUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/GridInstructoresUC.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/NewInstructorWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/NewInstructorWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/OverviewInstructorWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/InstructoresView/OverviewInstructorWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientesRentaCommands/AltaClienteRentaCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientesRentaCommands/AltaClienteRentaCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientesRentaCommands/DeleteCRCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientesRentaCommands/DeleteCRCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientesRentaCommands/NewCRWindowCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientesRentaCommands/NewCRWindowCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientesRentaCommands/OverviewCRCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientesRentaCommands/OverviewCRCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientesRentaCommands/UpdateClienteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientesRentaCommands/UpdateClienteCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientsCommands/DeleteClientCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientsCommands/DeleteClientCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientsCommands/NewClientCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientsCommands/NewClientCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientsCommands/NewClientWindowCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientsCommands/NewClientWindowCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientsCommands/OverViewClienteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientsCommands/OverViewClienteCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/ClientsCommands/SaveClientCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/ClientsCommands/SaveClientCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/InstructorsCommands/DeleteInstructorCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/InstructorsCommands/DeleteInstructorCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/InstructorsCommands/NewInstructorCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/InstructorsCommands/NewInstructorCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/InstructorsCommands/NewWindowInstructorCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/InstructorsCommands/NewWindowInstructorCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/InstructorsCommands/OverviewInstructorCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/InstructorsCommands/OverviewInstructorCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/InstructorsCommands/UpdateInstructorCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/InstructorsCommands/UpdateInstructorCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/UsersCommands/DeleteUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/UsersCommands/DeleteUserCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/UsersCommands/NewUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/UsersCommands/NewUserCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/UsersCommands/NewUserWindowCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/UsersCommands/NewUserWindowCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/UsersCommands/OverviewUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/UsersCommands/OverviewUserCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensCommands/UsersCommands/UpdateUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/Commands/UsersCommands/UpdateUserCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/GridRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/GridRentaVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/NewClienteRVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/NewClienteRVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsRentaVM/OverviewRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/OverviewRentaVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/GridClientesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/GridClientesVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/NewClientVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClientsVM/OverviewClientsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/OverviewClientsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/GridInstructoresVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/InstructoresVM/GridInstructoresVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/NewInstructorVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/InstructoresVM/NewInstructorVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/InstructoresVM/OverviewInstructorVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/InstructoresVM/OverviewInstructorVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/GridUsuariosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/GridUsuariosVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/NewUsuarioVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/NewUsuarioVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/OverviewUsuariosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/UsersVM/OverviewUsuariosVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/ClasesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClasesVM/ClasesSettingsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/ClasesVM/HorariosSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClasesVM/HorariosSettingsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/PaquetesVM/PaquetesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PaquetesVM/PaquetesSettingsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/SettingsVM/MainSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/EspaciosVM/EspaciosSettingsVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstractMovimientos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstractMovimientos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="xml" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,7 +56,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3d7feeea46f0a7edf6cb722578ee59fa71a0641fbdb2b3662221f519f8e9efe5/XamlReader.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/ClasesSettingsUC.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/View/AdminScreensView/ClasesView/HorariosWindow.xaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -102,12 +82,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="PLAIN_TEXT" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -142,6 +123,14 @@
       <workItem from="1639014657527" duration="310000" />
       <workItem from="1639015050099" duration="1405000" />
       <workItem from="1639066365925" duration="3571000" />
+      <workItem from="1639160802476" duration="477000" />
+      <workItem from="1639191666087" duration="7013000" />
+      <workItem from="1639259115227" duration="3693000" />
+      <workItem from="1639349106058" duration="2961000" />
+      <workItem from="1639352505913" duration="10806000" />
+      <workItem from="1639418816247" duration="788000" />
+      <workItem from="1639419657791" duration="5229000" />
+      <workItem from="1639433903438" duration="596000" />
       <workItem from="1639436748579" duration="954000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
@@ -165,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639083289717</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="minor alta cliente fix">
+      <created>1639099317330</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1639099317330</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +198,7 @@
     <MESSAGE value="Minor fixes to init info" />
     <MESSAGE value="Deleted InitTest.cs" />
     <MESSAGE value="Added more FK validations &amp; less TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more FK validations &amp; less TODOs" />
+    <MESSAGE value="minor alta cliente fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor alta cliente fix" />
   </component>
 </project>

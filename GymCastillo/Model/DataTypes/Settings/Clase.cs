@@ -77,8 +77,8 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 Log.Debug("Se ha creado la conexión.");
 
                 const string updateQuery = @"UPDATE clase
-                                             SET cupomaximo=@CupoMaximo, activo=@Activo,
-                                                 idinstructor=@IdInstructor, idespacio=@IdEspacio,
+                                             SET CupoMaximo=@CupoMaximo, Activo=@Activo,
+                                                 IdInstructor=@IdInstructor, IdEspacio=@IdEspacio,
                                                  Descripcion=@Descripcion
                                              WHERE IdClase=@IdClase;";
 
@@ -91,7 +91,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
 
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
-
 
                 Log.Debug("Se ha generado la query.");
 
@@ -180,12 +179,12 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
 
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
-                command.Parameters.AddWithValue("@Activo", "1");
+                command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
 
                 command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
 
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
+                command.Parameters.AddWithValue("@IdPaquete", IdPaquete == 0 ? null : IdPaquete.ToString());
 
                 Log.Debug("Se ha generado la query.");
 

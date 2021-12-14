@@ -3,11 +3,9 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
-using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.Model.Validations.Pagos;
 using log4net;
-using MySqlConnector;
 
 namespace GymCastillo.Model.Admin {
     /// <summary>
@@ -19,13 +17,15 @@ namespace GymCastillo.Model.Admin {
         /// <summary>
         /// Método que se encarga de
         /// </summary>
-        public static async Task Alta(AbstractMovimientos objeto) {
+        public static async Task Alta(IOnlyAlta objeto) {
             Log.Debug("Se ha iniciado el proceso de alta de un objeto de solo alta.");
 
             try {
                 // validamos
+                // TODO: hacer validaciones para rentas que también implementa IOnlyAlta.
                 var movimientoValidator = new PagosValidation();
-                await movimientoValidator.ValidateAndThrowAsync(objeto);
+                await movimientoValidator.ValidateAndThrowAsync((AbstractMovimientos)objeto);
+
 
                 // Hacemos el alta.
                 var res = await objeto.Alta();

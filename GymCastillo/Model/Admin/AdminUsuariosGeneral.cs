@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
-using GymCastillo.Model.Validations;
 using GymCastillo.Model.Validations.Personal;
 using log4net;
 
@@ -151,6 +149,10 @@ namespace GymCastillo.Model.Admin {
                 case "ClienteRenta":
                     var clienteRentaValidator = new ClienteRentaValidation();
                     await clienteRentaValidator.ValidateAndThrowAsync((ClienteRenta) objeto);
+                    break;
+
+                case "Personal":
+                    // TODO: agregar el tipo de verificación de Personal.
                     break;
 
                 default:
