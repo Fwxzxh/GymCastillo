@@ -13,7 +13,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
     /// Clase que contiene los campos y métodos de la clase pagos.
     /// </summary>
-    public class Egresos : AbstractMovimientos {
+    public class Egresos : AbstractMovimientos, IOnlyAlta {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         /// <summary>
         /// Método que da de alta un Pago.
         /// </summary>
-        public override async Task<int> Alta() {
+        public async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un egreso.");
 
             try {

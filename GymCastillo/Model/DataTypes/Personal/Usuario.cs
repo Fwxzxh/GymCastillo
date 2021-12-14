@@ -148,16 +148,20 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaNacimiento",
+                    FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
 
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 Log.Debug("Se ha creado la query.");
 
                 var res = await ExecSql.NonQuery(command, "Alta Usuario");

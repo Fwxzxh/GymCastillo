@@ -304,6 +304,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                // TODO: maybe quitar IdPaquete e IdLocker de la alta
                 command.Parameters.AddWithValue("@IdPaquete", null); // No tenemos asignado todavía
                 command.Parameters.AddWithValue("@IdLocker", null);
 

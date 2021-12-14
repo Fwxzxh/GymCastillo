@@ -56,6 +56,7 @@ namespace GymCastillo.ViewModel {
                     var init= new InitInfo();
                     if (init.DoneTasks) {
                         await InitInfo.GetAllInfo();
+                        // DigitalCard.DrawCard();
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

@@ -5,6 +5,7 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.Model.Interfaces;
 using log4net;
 using MySqlConnector;
 
@@ -12,7 +13,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
     /// <summary>
     /// Clase que contiene todos los campos y métodos de la clase Ingresos.
     /// </summary>
-    public class Ingresos : AbstractMovimientos {
+    public class Ingresos : AbstractMovimientos, IOnlyAlta {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         /// <summary>
         /// Da de alta la instancia actual del ingreso en la base de datos.
         /// </summary>
-        public override async Task<int> Alta() {
+        public async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un ingreso.");
 
             try {
