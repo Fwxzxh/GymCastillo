@@ -235,7 +235,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
-
                 Log.Debug("Se ha creado la query.");
 
                 var res =await ExecSql.NonQuery(command, "Alta Instructor");
@@ -261,7 +260,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
         }
 
         /// <summary>
-        /// Método que se encarga de actualizar el pago del obtejo actual en la base de datos
+        /// Método que se encarga de actualizar el pago del objeto actual en la base de datos
         /// </summary>
         /// <param name="cantidad"></param>
         public override void Pago(decimal cantidad) {

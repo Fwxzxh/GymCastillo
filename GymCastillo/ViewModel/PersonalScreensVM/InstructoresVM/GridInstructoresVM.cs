@@ -76,7 +76,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
                 }
                 else {
                     ListaInstructores.Clear();
-                    var filteredList = instructores.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList();
+                    var filteredList = instructores.Where(c =>
+                        c.Nombre.ToLower().Contains(query.ToLower())
+                        || c.ApellidoPaterno.ToLower().Contains(query.ToLower())
+                        || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList();
                     foreach (var cliente in filteredList) {
                         ListaInstructores.Add(cliente);
                     }
