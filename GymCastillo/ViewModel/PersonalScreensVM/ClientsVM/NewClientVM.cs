@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Otros;
@@ -10,6 +12,7 @@ using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
+using ImageMagick;
 using log4net;
 using Microsoft.Win32;
 
@@ -62,7 +65,6 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
-
         public bool LockerIsChecked {
             get { return lockerIsChecked; }
             set
@@ -110,6 +112,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (dialog.ShowDialog() == true) {
                 PhotoPath = dialog.FileName;
+                var image = new MagickImage(PhotoPath);
+                newCliente.Foto = image;
             }
         }
 

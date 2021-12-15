@@ -106,8 +106,7 @@ namespace GymCastillo.Model.Init {
         public static async Task<bool> GetAllInfo() {
             Log.Info("Se ha empezado el proceso de obtener la información de la base de datos.");
 
-            try {
-                // Lanzamos las tareas.
+            try { // Lanzamos las tareas.
                 var allClientes = GetFromDb.GetClientes();
                 var allInstructores = GetFromDb.GetInstructores();
                 var allUsuarios = GetFromDb.GetUsuarios();
@@ -125,25 +124,6 @@ namespace GymCastillo.Model.Init {
 
                 var allIngresos = GetFromDb.GetIngresos();
                 var allEgresos = GetFromDb.GetEgresos();
-
-                //inicializamos los campos
-                //ObCoClientes = new ObservableCollection<Cliente>();
-                // ObCoInstructor = new ObservableCollection<Instructor>();
-                // ObCoUsuarios = new ObservableCollection<Usuario>();
-                // ObCoClientesRenta = new ObservableCollection<ClienteRenta>();
-                //
-                // ObCoDePaquetes = new ObservableCollection<Paquete>();
-                // ObCoTipoCliente = new ObservableCollection<Tipo>();
-                // ObCoTipoInstructor = new ObservableCollection<Tipo>();
-                // ObCoLockersOpen = new ObservableCollection<Locker>();
-                //
-                // ObCoLockers = new ObservableCollection<Locker>();
-                // ObCoClases = new ObservableCollection<Clase>();
-                // ObCoHorarios = new ObservableCollection<Horarios>();
-                // ObCoEspacios = new ObservableCollection<Espacio>();
-                //
-                // ObCoIngresos = new ObservableCollection<Ingresos>();
-                // ObCoEgresos = new ObservableCollection<Egresos>();
 
                 // Esperamos los resultados...
                 ObCoClientes = await allClientes;

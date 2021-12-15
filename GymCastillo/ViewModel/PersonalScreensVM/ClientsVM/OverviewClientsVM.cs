@@ -11,6 +11,7 @@ using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
+using ImageMagick;
 using log4net;
 using Microsoft.Win32;
 
@@ -133,10 +134,12 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (dialog.ShowDialog() == true) {
                 PhotoPath = dialog.FileName;
+                var image = new MagickImage(PhotoPath);
+                selectedClient.Foto = image;
             }
         }
 
-        //TODO: filtrar por lokers desocupados + actual locker del cliente
+        //TODO: filtrar por lockers desocupados + actual locker del cliente
         private void ReloadLockers() {
             LockersList.Clear();
             var locker = InitInfo.ObCoLockers;

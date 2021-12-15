@@ -128,7 +128,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", Foto); // TODO: Abr k pdo con esto
+                command.Parameters.AddWithValue("@Foto", Foto.ToByteArray());
 
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
@@ -279,33 +279,45 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
                 command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
 
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaNacimiento",
+                    FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+                command.Parameters.AddWithValue("@CondicionEspecial",
+                    Convert.ToInt32(CondicionEspecial).ToString());
 
-                command.Parameters.AddWithValue("@DescripcionCondicionEspecial", DescripciónCondiciónEspecial);
-                command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
+                command.Parameters.AddWithValue("@DescripcionCondicionEspecial",
+                    DescripciónCondiciónEspecial);
+                command.Parameters.AddWithValue("@NombreContacto",
+                    NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); // TODO: pendiente
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@Foto", Foto.ToByteArray());
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@Activo", "1"); // Siempre True al dar de alta.
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    FechaUltimoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                command.Parameters.AddWithValue("@FechaVencimientoPago", FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaVencimientoPago",
+                    FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@DeudaCliente",
+                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("@ClasesTotalesDisponibles", ClasesTotalesDisponibles.ToString());
-                command.Parameters.AddWithValue("@ClasesSemanaDisponible", ClasesSemanaDisponibles.ToString());
+                command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
+                    ClasesTotalesDisponibles.ToString());
+                command.Parameters.AddWithValue("@ClasesSemanaDisponible",
+                    ClasesSemanaDisponibles.ToString());
 
                 command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+
                 // TODO: maybe quitar IdPaquete e IdLocker de la alta
-                command.Parameters.AddWithValue("@IdPaquete", null); // No tenemos asignado todavía
+                command.Parameters.AddWithValue("@IdPaquete", null);
                 command.Parameters.AddWithValue("@IdLocker", null);
 
                 Log.Debug("Se ha generado la query.");

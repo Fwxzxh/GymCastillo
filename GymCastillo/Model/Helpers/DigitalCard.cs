@@ -22,10 +22,23 @@ namespace GymCastillo.Model.Helpers {
 
                 // TODO: ver que onda con esto
                 const string plantillaPath = @"C:/GymCastillo/Assets/IdentifiacionP1.png";
+                const string genericProfilePath = @"C:/GymCastillo/Assets/GenericProfile.png";
+
+                // Verificamos que exista la plantilla.
+                if (!File.Exists(plantillaPath)) {
+                    throw new FileNotFoundException(
+                        "No se ha encontrado el archivo con la plantilla de la credencial, verifique su existencia.");
+                }
+
+                // Verificamos que exista la plantilla
+                if (!File.Exists(genericProfilePath)) {
+                    throw new FileNotFoundException(
+                        "No se ha encontrado el archivo con la imagen de perfil por defecto, verifique su existencia.");
+                }
 
                 var saveRoute = $"C:/GymCastillo/Clientes/{cliente.Id.ToString()}-{cliente.ApellidoPaterno}/";
                 var saveFile = $"Card-{cliente.Id.ToString()}.png";
-                var saveDir = saveRoute + saveFile;
+                var saveDir = $"{saveRoute}{saveFile}";
 
                 // Creamos la carpeta del cliente
                 Directory.CreateDirectory(saveRoute);
@@ -36,11 +49,11 @@ namespace GymCastillo.Model.Helpers {
                 var id = cliente.Id.ToString();
                 var teléfono = cliente.Telefono;
 
-
-                // Verificar si tiene foto de perfil guardada.
-                var profileImage = cliente.Foto == null
-                    ? new MagickImage(@"C:/GymCastillo/Assets/GenericProfile.png")
-                    : new MagickImage(@"C:/GymCastillo/Assets/something.png");
+                // verificamos si tiene foto de perfil guardada.
+                var profileImage = cliente.FotoRaw == null
+                    ? new MagickImage(genericProfilePath)
+                    : cliente.Foto;
+                    // : new MagickImage(@"C:/GymCastillo/Assets/something.png");
 
                 // Definimos los settings de la fuente.
                 var idSettings = new MagickReadSettings {
@@ -76,7 +89,7 @@ namespace GymCastillo.Model.Helpers {
                 using var nombresLabel = new MagickImage($"caption:{nombres}", nombreSettings);
                 using var telefonoLabel = new MagickImage($"caption:{teléfono}", telefonoSettings);
 
-                // Ponemos la imagen de perfil debajo de la
+                // Ponemos la imagen de perfil debajo de la plantilla
                 plantilla.Composite(profileImage, 146, 147, CompositeOperator.DstOver);
 
                 // Aplicamos el Id del usuario
@@ -96,6 +109,17 @@ namespace GymCastillo.Model.Helpers {
                 // Guardamos
                 plantilla.Write(saveDir);
                 Log.Debug("Se ha creado la nueva credencial con éxito.");
+
+                ShowPrettyMessages.NiceMessageOk(
+                    $"Se ha generado la nueva credencial con éxito en la ruta {saveDir}.",
+                    "Credencial Generada");
+            }
+            catch (FileNotFoundException e) {
+                Log.Error("Ha ocurrido un error al generar la credencial de un usuario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"{e.Message}",
+                    "Archivo no encontrado");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al generar la credencial de un usuario.");

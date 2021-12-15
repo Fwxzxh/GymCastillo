@@ -80,7 +80,9 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("TelefonoContacto"),
 
-                        //Foto = await reader.Result.IsDBNullAsync("Foto") ? null : reader.Result.GetBytes("Foto"), TODO: Ver como obtener la foto.
+                        FotoRaw = await reader.Result.IsDBNullAsync("Foto")
+                            ? null
+                            : (byte[])reader.Result["Foto"],
 
                         CondicionEspecial = !await reader.Result.IsDBNullAsync("CondicionEspecial") &&
                                             reader.Result.GetBoolean("CondicionEspecial"),
