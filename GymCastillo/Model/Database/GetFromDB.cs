@@ -222,9 +222,15 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("TelefonoContacto"),
 
-                        // Foto = reader.Result.GetDateTime("FechaUltimoAcceso"), TODO Foto
-                        FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
-                        FechaUltimoPago = reader.Result.GetDateTime("FechaUltimoPago"),
+                        FotoRaw = await reader.Result.IsDBNullAsync("Foto")
+                            ? null
+                            : (byte[])reader.Result["Foto"],
+                        FechaUltimoAcceso = await reader.Result.IsDBNullAsync("FechaUltimoAcceso")
+                            ? default
+                            : reader.Result.GetDateTime("FechaUltimoAcceso"),
+                        FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")
+                            ? default
+                            : reader.Result.GetDateTime("FechaUltimoPago"),
 
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
@@ -347,7 +353,9 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("TelefonoContacto"),
 
-                        //Foto = reader.Result.get("Foto"), // Ver que onda con la foto.
+                        FotoRaw = await reader.Result.IsDBNullAsync("Foto")
+                            ? null
+                            : (byte[])reader.Result["Foto"],
                         FechaUltimoAcceso = await reader.Result.IsDBNullAsync("FechaUltimoAcceso")
                             ? DateTime.Parse("00:00")
                             : reader.Result.GetDateTime("FechaUltimoAcceso"),
@@ -425,8 +433,12 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("TelefonoContacto"),
 
-                        //Foto = reader.Result.get("Foto"), // Ver que onda con la foto.
-                        FechaUltimoPago = reader.Result.GetDateTime("FechaUltimoPago"),
+                        FotoRaw = await reader.Result.IsDBNullAsync("Foto")
+                            ? null
+                            : (byte[])reader.Result["Foto"],
+                        FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")
+                            ? default
+                            : reader.Result.GetDateTime("FechaUltimoPago"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
                             : reader.Result.GetInt32("MontoUltimoPago"),

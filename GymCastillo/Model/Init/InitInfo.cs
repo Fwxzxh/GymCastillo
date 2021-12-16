@@ -90,14 +90,15 @@ namespace GymCastillo.Model.Init {
         /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
         /// </summary>
-        public bool DoneTasks { get; }
+        public readonly bool DoneTasks;
 
         /// <summary>
         /// Inicializa las queries en paralelo y retorna un true cuando todas terminen.
         /// </summary>
         public InitInfo() {
-            //var res = GetAllInfo();
-            DoneTasks = true;
+            if (DoneTasks) return;
+            var done = Task.Run(GetAllInfo);
+            DoneTasks = done.GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -125,6 +126,14 @@ namespace GymCastillo.Model.Init {
                 var allIngresos = GetFromDb.GetIngresos();
                 var allEgresos = GetFromDb.GetEgresos();
 
+                // Nos aseguramos que todas las tareas hayan terminado.
+                await Task.WhenAll(
+                    allClientes, allInstructores, allUsuarios, allClientesRenta,
+                    allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
+                    allLockersOpen, allClases, allHorarios, allEspacios,
+                    allIngresos, allEgresos).ConfigureAwait(false);
+                Log.Info("Se ha obtenido toda la información de la base de datos.");
+
                 // Esperamos los resultados...
                 ObCoClientes = await allClientes;
                 ObCoInstructor = await allInstructores;
@@ -144,22 +153,14 @@ namespace GymCastillo.Model.Init {
                 ObCoIngresos = await allIngresos;
                 ObCoEgresos = await allEgresos;
 
-                // Nos aseguramos que todas las tareas hayan terminado.
-                await Task.WhenAll(
-                    allClientes, allInstructores, allUsuarios, allClientesRenta,
-                    allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
-                    allLockersOpen, allClases, allHorarios, allEspacios,
-                    allIngresos, allEgresos).ConfigureAwait(false);
-                Log.Info("Se ha obtenido toda la información de la base de datos.");
-
                 return true;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener toda la información inicial de la base de datos.");
                 Log.Error($"Error: {e.Message}");
-                //ShowPrettyMessages.ErrorOk(
-                //    "Ha ocurrido un error al obtener la información inicial de la base de datos, si este error persiste, contacte a los administradores",
-                //    "Error fatal.");
+                ShowPrettyMessages.ErrorOk(
+                    "Ha ocurrido un error al obtener la información inicial de la base de datos, si este error persiste, contacte a los administradores",
+                    "Error fatal.");
                 return false;
             }
         }
