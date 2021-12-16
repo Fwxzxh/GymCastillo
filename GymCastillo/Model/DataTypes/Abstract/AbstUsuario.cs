@@ -120,7 +120,6 @@ namespace GymCastillo.Model.DataTypes.Abstract {
                 image.Freeze();
                 return image;
             }
-
         }
 
         /// <summary>

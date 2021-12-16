@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.Model.Validations.Pagos;
@@ -22,10 +23,7 @@ namespace GymCastillo.Model.Admin {
 
             try {
                 // validamos
-                // TODO: hacer validaciones para rentas que también implementa IOnlyAlta.
-                var movimientoValidator = new PagosValidation();
-                await movimientoValidator.ValidateAndThrowAsync((AbstractMovimientos)objeto);
-
+                await ValidateAgain(objeto);
 
                 // Hacemos el alta.
                 var res = await objeto.Alta();
@@ -48,6 +46,30 @@ namespace GymCastillo.Model.Admin {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de averiguar el tipo de objeto que es y validar los campos especializados.
+        /// </summary>
+        /// <param name="objeto"></param>
+        /// <exception cref="Exception"></exception>
+        private static async Task ValidateAgain(IOnlyAlta objeto) {
+            var tipo = objeto.GetType().Name;
+
+            switch (tipo) {
+                case "AbstractMovimientos":
+                    var movimientoValidator = new PagosValidation();
+                    await movimientoValidator.ValidateAndThrowAsync((AbstractMovimientos)objeto);
+                    break;
+
+                case "Rentas":
+                    var rentasValidator = new RentasValidation();
+                    await rentasValidator.ValidateAndThrowAsync((Rentas)objeto);
+                    break;
+
+                default:
+                    throw new Exception("Error: no se pudo identificar al objeto.");
             }
         }
     }

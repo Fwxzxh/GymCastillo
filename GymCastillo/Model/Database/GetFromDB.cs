@@ -466,6 +466,15 @@ namespace GymCastillo.Model.Database {
         }
 
         /// <summary>
+        /// Método que obtiene toda la información sobre el personal.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static async Task<ObservableCollection<Personal>> GetPersonal() {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Método que obtiene toda la información sobre los paquetes.
         /// </summary>
         /// <returns>Una lista de objetos tipo Paquete.</returns>

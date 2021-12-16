@@ -53,7 +53,6 @@ namespace GymCastillo.Model.Helpers {
                 var profileImage = cliente.FotoRaw == null
                     ? new MagickImage(genericProfilePath)
                     : cliente.Foto;
-                    // : new MagickImage(@"C:/GymCastillo/Assets/something.png");
 
                 // Definimos los settings de la fuente.
                 var idSettings = new MagickReadSettings {

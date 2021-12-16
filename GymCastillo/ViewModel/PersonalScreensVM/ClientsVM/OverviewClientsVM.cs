@@ -110,8 +110,6 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             CredencialCommand = new RelayCommand(GenerarCredencial);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
-            // paquetesList = InitInfo.ObCoDePaquetes;
-            // usuarioList = InitInfo.ObCoTipoCliente;
             lockerList = new ObservableCollection<Locker>();
             medioList = new ObservableCollection<string> {
                     "Amigos",

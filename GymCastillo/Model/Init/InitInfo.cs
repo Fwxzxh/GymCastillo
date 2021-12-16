@@ -116,6 +116,7 @@ namespace GymCastillo.Model.Init {
                 var allPaquetes = GetFromDb.GetPaquetes();
                 var allTipoClientes = GetFromDb.GetTipoCliente();
                 var allTipoInstructores = GetFromDb.GetTipoInstructor();
+                // TODO: igual y ya no ocupamos las queries de onlyOpen.
                 var allLockersOpen = GetFromDb.GetLockers(true);
 
                 var allLockers = GetFromDb.GetLockers();
