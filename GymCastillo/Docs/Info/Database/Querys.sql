@@ -27,20 +27,21 @@ SELECT
     tc.IdTipoCliente, tc.NombreTipoCliente,
     l.IdLocker, l.Nombre as NombreLocker
 FROM cliente c
-INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
-INNER JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
+LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
+LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
 LEFT JOIN locker l ON c.IdLocker = l.IdLocker;
 
 	-- Dar de alta
-INSERT INTO cliente 
+INSERT INTO clientes 
+	(IdCliente, Nombre, ApellidoPaterno,
+	ApellidoMaterno, Telefono, CondicionEspecial,
+	DescripcionCondicionEspecial, NombreContacto, TelefonoContacto,
+	Foto, Activo, MedioConocio, Nino, IdTipoCliente)
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
 	@FechaNacimiento, @Telefono, @CondicionEspecial,
 	@DescripcionCondicionEspecial, @NombreContacto, 
-	@TelefonoContacto, @Foto, @FechaUltimoAcceso, 
-	@MontoUltimoPago, @Activo, @FechaUltimoPago,
-    @FechaVencimientoPago, @DeudaCliente,
-	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
-	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);
+	@TelefonoContacto, @Foto, @MedioConocio, 
+	@Nino, @IdTipoCliente);
 	-- Editar valores (usuario)
 
 UPDATE cliente
