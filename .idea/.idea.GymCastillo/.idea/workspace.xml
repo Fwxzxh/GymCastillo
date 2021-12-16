@@ -7,16 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Foto back working">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Foto overview Working">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/OverviewClientsWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsView/OverviewClientsWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/OverviewClientsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/OverviewClientsVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +118,7 @@
       <workItem from="1639529403863" duration="52000" />
       <workItem from="1639529760404" duration="16006000" />
       <workItem from="1639587685231" duration="6227000" />
-      <workItem from="1639596097166" duration="8143000" />
+      <workItem from="1639596097166" duration="10932000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -175,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639557398822</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Foto overview Working">
+      <created>1639625193230</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1639625193230</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +217,7 @@
     <MESSAGE value="minorFixes to clase, DigitalCard.cs, Rentas.cs, Personal.cs, added &amp; new Diagram" />
     <MESSAGE value="Card Generation Almost there" />
     <MESSAGE value="Foto back working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Foto back working" />
+    <MESSAGE value="Foto overview Working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Foto overview Working" />
   </component>
 </project>

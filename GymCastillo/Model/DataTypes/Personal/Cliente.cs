@@ -268,15 +268,18 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"INSERT INTO cliente 
-                                           VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-                                           	@FechaNacimiento, @Telefono, @CondicionEspecial,
-                                           	@DescripcionCondicionEspecial, @NombreContacto, 
-                                           	@TelefonoContacto, @Foto, @FechaUltimoAcceso, 
-                                           	@MontoUltimoPago, @Activo, @FechaUltimoPago,
-                                            @FechaVencimientoPago, @DeudaCliente,
-                                           	@MedioConocio, @ClasesTotalesDisponibles, @ClasesSemanaDisponible, 
-                                           	@DuracionPaquete, @Nino, @IdTipoCliente, @IdPaquete, @IdLocker);";
+                const string altaQuery = @"INSERT INTO cliente
+                                               (IdCliente, Nombre, ApellidoPaterno, ApellidoMaterno,
+                                                FechaNacimiento, Telefono, CondicionEspecial,
+                                                DescripcionCondicionEspecial, NombreContacto,
+                                                TelefonoContacto, Foto, Activo, MedioConocio,
+                                                Nino, IdTipoCliente)
+                                           VALUES
+                                               (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+                                                @FechaNacimiento, @Telefono, @CondicionEspecial,
+                                                @DescripcionCondicionEspecial, @NombreContacto,
+                                                @TelefonoContacto, @Foto, @Activo, @MedioConocio,
+                                                @Nino, @IdTipoCliente)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -296,34 +299,12 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null);
-                command.Parameters.AddWithValue("@FechaUltimoAcceso",
-                    FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
-
-                command.Parameters.AddWithValue("@MontoUltimoPago",
-                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
                 command.Parameters.AddWithValue("@Activo", "1"); // Siempre True al dar de alta.
-                command.Parameters.AddWithValue("@FechaUltimoPago",
-                    FechaUltimoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
-
-                command.Parameters.AddWithValue("@FechaVencimientoPago",
-                    FechaVencimientoPago.Date.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@DeudaCliente",
-                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
-
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
-                command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
-                    ClasesTotalesDisponibles.ToString());
-                command.Parameters.AddWithValue("@ClasesSemanaDisponible",
-                    ClasesSemanaDisponibles.ToString());
 
-                command.Parameters.AddWithValue("@DuracionPaquete", DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
-
-                // TODO: maybe quitar IdPaquete e IdLocker de la alta
-                command.Parameters.AddWithValue("@IdPaquete", null);
-                command.Parameters.AddWithValue("@IdLocker", null);
 
                 Log.Debug("Se ha generado la query.");
 

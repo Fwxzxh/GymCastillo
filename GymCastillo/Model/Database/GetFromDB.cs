@@ -44,8 +44,8 @@ namespace GymCastillo.Model.Database {
                                           tc.IdTipoCliente, tc.NombreTipoCliente,
                                           l.IdLocker, l.Nombre as NombreLocker
                                       FROM cliente c
-                                      INNER JOIN paquete p ON c.IdPaquete = p.IdPaquete
-                                      INNER JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
+                                      LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
+                                      LEFT JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
                                       LEFT JOIN locker l ON c.IdLocker = l.IdLocker";
 
             var listCliente = new ObservableCollection<Cliente>();
@@ -90,14 +90,18 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("DescripcionCondicionEspecial"),
 
-                        FechaUltimoAcceso = reader.Result.GetDateTime("FechaUltimoAcceso"),
+                        FechaUltimoAcceso = await reader.Result.IsDBNullAsync("FechaUltimoAcceso")
+                            ? default
+                            : reader.Result.GetDateTime("FechaUltimoAcceso"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
                             : reader.Result.GetDecimal("MontoUltimoPago"),
                         Activo = !await reader.Result.IsDBNullAsync("Activo") &&
                                  reader.Result.GetBoolean("Activo"),
 
-                        FechaVencimientoPago = reader.Result.GetDateTime("FechaVencimientoPago"),
+                        FechaVencimientoPago = await reader.Result.IsDBNullAsync("FechaVencimientoPago")
+                           ? default
+                           : reader.Result.GetDateTime("FechaVencimientoPago"),
 
                         DeudaCliente = await reader.Result.IsDBNullAsync("DeudaCliente")
                             ? 0
@@ -116,7 +120,8 @@ namespace GymCastillo.Model.Database {
                         DuraciónPaquete = await reader.Result.IsDBNullAsync("DuracionPaquete")
                             ? 0
                             : reader.Result.GetInt32("DuracionPaquete"),
-                        Niño = reader.Result.GetBoolean("nino"),
+                        Niño = !await reader.Result.IsDBNullAsync("Nino")  &&
+                               reader.Result.GetBoolean("Nino"),
 
                         IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
                             ? 0
