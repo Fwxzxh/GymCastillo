@@ -243,7 +243,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");

@@ -37,6 +37,11 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<ClienteRenta> ObCoClientesRenta { get; set; }
 
         /// <summary>
+        /// La ObservableCollection de todos en el personal.
+        /// </summary>
+        public static ObservableCollection<Personal> ObCoPersonal { get; set; }
+
+        /// <summary>
         /// La ObservableCollection  de todos los paquetes.
         /// </summary>
         public static ObservableCollection<Paquete> ObCoDePaquetes { get; set; }
@@ -126,13 +131,14 @@ namespace GymCastillo.Model.Init {
 
                 var allIngresos = GetFromDb.GetIngresos();
                 var allEgresos = GetFromDb.GetEgresos();
+                var allPersonal = GetFromDb.GetPersonal();
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
-                    allIngresos, allEgresos).ConfigureAwait(false);
+                    allIngresos, allEgresos, allPersonal).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 // Esperamos los resultados...
@@ -153,6 +159,7 @@ namespace GymCastillo.Model.Init {
 
                 ObCoIngresos = await allIngresos;
                 ObCoEgresos = await allEgresos;
+                ObCoPersonal = await allPersonal;
 
                 return true;
             }

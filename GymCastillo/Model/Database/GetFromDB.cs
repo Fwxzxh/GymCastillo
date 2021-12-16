@@ -468,10 +468,86 @@ namespace GymCastillo.Model.Database {
         /// <summary>
         /// Método que obtiene toda la información sobre el personal.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns>Una lista de objetos tipo Personal</returns>
         public static async Task<ObservableCollection<Personal>> GetPersonal() {
-            throw new NotImplementedException();
+            Log.Debug("Se ha empezado el proceso de obtener la información del Personal.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            // TODO: fecha de últimoAcceso
+            const string sqlQuery = @"SELECT
+                                          p.IdPersonal, p.Nombre, p.ApellidoPaterno,
+                                          p.ApellidoMaterno, p.Domicilio, p.Puesto,
+                                          p.FechaNacimiento, p.Telefono, p.NombreContacto,
+                                          p.TelefonoContacto, p.Foto, p.FechaUltimoAcceso,
+                                          p.FechaUltimoPago, p.MontoUltimoPago
+                                      FROM personal p";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listPersonal = new ObservableCollection<Personal>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var personal = new Personal() {
+                        Id = reader.Result.GetInt32("IdPersonal"),
+                        Nombre = await reader.Result.IsDBNullAsync("Nombre")
+                            ? ""
+                            : reader.Result.GetString("Nombre"),
+                        ApellidoPaterno = await reader.Result.IsDBNullAsync("ApellidoPaterno")
+                            ? ""
+                            : reader.Result.GetString("ApellidoPaterno"),
+
+                        ApellidoMaterno = await reader.Result.IsDBNullAsync("ApellidoMaterno")
+                            ? ""
+                            : reader.Result.GetString("ApellidoMaterno"),
+                        Domicilio = await reader.Result.IsDBNullAsync("Domicilio")
+                            ? ""
+                            : reader.Result.GetString("Domicilio"),
+                        Puesto = await reader.Result.IsDBNullAsync("Puesto")
+                            ? ""
+                            : reader.Result.GetString("Puesto"),
+
+                        FechaNacimiento = reader.Result.GetDateTime("FechaNacimiento"),
+                        Telefono = await reader.Result.IsDBNullAsync("Telefono")
+                            ? ""
+                            : reader.Result.GetString("Telefono"),
+                        NombreContacto = await reader.Result.IsDBNullAsync("NombreContacto")
+                            ? ""
+                            : reader.Result.GetString("NombreContacto"),
+
+                        TelefonoContacto = await reader.Result.IsDBNullAsync("TelefonoContacto")
+                            ? ""
+                            : reader.Result.GetString("TelefonoContacto"),
+                        FotoRaw = await reader.Result.IsDBNullAsync("Foto")
+                            ? null
+                            : (byte[])reader.Result["Foto"],
+                        FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")
+                            ? default
+                            : reader.Result.GetDateTime("FechaUltimoPago"),
+                        MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
+                            ? 0
+                            : reader.Result.GetInt32("MontoUltimoPago"),
+
+                    };
+                    listPersonal.Add(personal);
+                }
+                Log.Debug("Se han obtenido con éxito la información del Personal.");
+
+                return listPersonal;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información del Personal.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información del Personal. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
         }
 
         /// <summary>

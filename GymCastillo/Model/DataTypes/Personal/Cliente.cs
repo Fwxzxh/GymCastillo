@@ -133,7 +133,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", Foto.ToByteArray());
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
 
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
                 command.Parameters.AddWithValue("@MedioConocio", MedioConocio);
@@ -345,6 +345,5 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public override string GetHorarioStr() {
             throw new NotImplementedException();
         }
-
     }
 }
