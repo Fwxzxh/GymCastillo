@@ -18,6 +18,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
+        /// Retorna el directorio del cliente
+        /// </summary>
+        public string ClienteDir => $"C:/GymCastillo/Clientes/{Id.ToString()}-{ApellidoPaterno}/";
+
+        /// <summary>
         /// Si el cliente tiene alguna condición especial.
         /// </summary>
         public bool CondicionEspecial { get; set; }
@@ -291,7 +296,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", Foto.ToByteArray());
+                command.Parameters.AddWithValue("@Foto", null);
                 command.Parameters.AddWithValue("@FechaUltimoAcceso",
                     FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
 

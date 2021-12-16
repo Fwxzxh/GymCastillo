@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -10,7 +11,6 @@ namespace GymCastillo.Model.DataTypes.Abstract {
     /// Clase abstracta que contiene los campos y métodos base para Cliente, Instructor, Cliente Renta y Usuario
     /// </summary>
     public abstract class AbstUsuario {
-
 
         /// <summary>
         /// Id en la base de datos.
@@ -106,7 +106,22 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// <summary>
         /// Foto en bitmapImage Para el Front
         /// </summary>
-        public BitmapImage FotoBitmap => (BitmapImage) new ImageSourceConverter().ConvertFrom(foto);
+        public BitmapImage FotoBitmap {
+            get {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                using var mem = new MemoryStream(foto);
+                mem.Position = 0;
+                image.StreamSource = mem;
+                image.EndInit();
+                image.Freeze();
+                return image;
+            }
+
+        }
 
         /// <summary>
         /// Método que Actualiza el objeto en la base de datos.

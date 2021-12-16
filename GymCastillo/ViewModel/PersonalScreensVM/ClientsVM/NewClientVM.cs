@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Otros;
@@ -107,9 +105,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private void SelectPhoto() {
-            OpenFileDialog dialog = new();
-            dialog.Filter = "Image files|*.png;*.jpg;*.jpeg";
-            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
             if (dialog.ShowDialog() == true) {
                 PhotoPath = dialog.FileName;
                 var image = new MagickImage(PhotoPath);

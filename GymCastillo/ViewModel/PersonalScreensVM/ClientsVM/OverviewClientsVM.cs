@@ -110,6 +110,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             CredencialCommand = new RelayCommand(GenerarCredencial);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
+            // paquetesList = InitInfo.ObCoDePaquetes;
+            // usuarioList = InitInfo.ObCoTipoCliente;
             lockerList = new ObservableCollection<Locker>();
             medioList = new ObservableCollection<string> {
                     "Amigos",
@@ -129,9 +131,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private void SelectPhoto() {
-            OpenFileDialog dialog = new();
-            dialog.Filter = "Image files|*.png;*.jpg;*.jpeg";
-            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
             if (dialog.ShowDialog() == true) {
                 PhotoPath = dialog.FileName;
                 var image = new MagickImage(PhotoPath);
@@ -155,6 +158,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 Pago = selectedClient.DeudaCliente;
             }
         }
+
         //TODO: implementar bien la lógica del costo del locker
         private void UpdatePago(decimal deuda) {
 
@@ -173,7 +177,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         /// <summary>
-        /// Metodo para hacer update del cliente, solo llama al selected cliente y guardar, ya tiene todos los cambios
+        /// Método para hacer update del cliente, solo llama al selected cliente y guardar, ya tiene todos los cambios
         /// </summary>
         public void UpdateClient() {
             Task.Run(() => AdminUsuariosGeneral.Update(SelectedClient));

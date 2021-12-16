@@ -32,16 +32,18 @@ LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
 LEFT JOIN locker l ON c.IdLocker = l.IdLocker;
 
 	-- Dar de alta
-INSERT INTO clientes 
-	(IdCliente, Nombre, ApellidoPaterno,
-	ApellidoMaterno, Telefono, CondicionEspecial,
-	DescripcionCondicionEspecial, NombreContacto, TelefonoContacto,
-	Foto, Activo, MedioConocio, Nino, IdTipoCliente)
-VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno, 
-	@FechaNacimiento, @Telefono, @CondicionEspecial,
-	@DescripcionCondicionEspecial, @NombreContacto, 
-	@TelefonoContacto, @Foto, @MedioConocio, 
-	@Nino, @IdTipoCliente);
+INSERT INTO cliente
+    (IdCliente, Nombre, ApellidoPaterno, ApellidoMaterno,
+     FechaNacimiento, Telefono, CondicionEspecial,
+     DescripcionCondicionEspecial, NombreContacto,
+     TelefonoContacto, Foto, Activo, MedioConocio,
+     Nino, IdTipoCliente)
+VALUES
+    (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
+     @FechaNacimiento, @Telefono, @CondicionEspecial,
+     @DescripcionCondicionEspecial, @NombreContacto,
+     @TelefonoContacto, @Foto, @Activo, @MedioConocio,
+     @Nino, @IdTipoCliente);
 	-- Editar valores (usuario)
 
 UPDATE cliente
@@ -306,6 +308,7 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	    @Domicilio, @Puesto, @FechaNacimiento, @Telefono, 
 	    @NombreContacto, @TelefonoContacto, @Foto,
 	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
+
 	-- Editar valores (usuario)
 UPDATE usuario
 SET domicilio=@Domicilio, telefono=@Telefono, 
