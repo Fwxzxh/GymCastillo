@@ -313,3 +313,21 @@ SET domicilio=@Domicilio, telefono=@Telefono,
     telefonocontacto=@TelefonoContacto, foto=@Foto
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)
+
+
+-- Inventario
+	-- Consulta Productos
+SELECT	i.IdProducto, i.NombreProducto,
+	i.Descripcion, i.Costo, i.Existencias
+FROM	inventario i
+
+	-- Dar de alta productos
+INSERT INTO inventario
+VALUES 	(default, @NombreProducto,
+	@Descripcion, @Costo, @Existencias);
+
+	-- Actualizar productos
+UPDATE 	inventario
+SET 	Descripcion=@Descripcion, Costo=@Costo,
+	Existencias=@Existencias
+WHERE	IdProducto=@IdProducto;
