@@ -255,3 +255,15 @@ INSERT INTO ingresos
 VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ5524567890', 100.0);
 INSERT INTO ingresos
 VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 1, 4,'ABCDEFGHIJ5554567890', 100.0);
+
+-- Personal
+INSERT INTO personal
+VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', 'Puesto 1', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', 'Puesto 2', CURDATE(), '5511591258', 'Elihihu', '5511917682', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Lionel Andres', 'Messi', 'Dominguez', 'Calle Julian Zuniga #7 Colonia Presidentes', 'Puesto 3', CURDATE(), '5517594921', 'Jessica Cortes Vazquez', '5514685493', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', 'Puesto 4', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', 'Puesto 5', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0);
