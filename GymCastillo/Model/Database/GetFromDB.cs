@@ -481,7 +481,7 @@ namespace GymCastillo.Model.Database {
                                           p.IdPersonal, p.Nombre, p.ApellidoPaterno,
                                           p.ApellidoMaterno, p.Domicilio, p.Puesto,
                                           p.FechaNacimiento, p.Telefono, p.NombreContacto,
-                                          p.TelefonoContacto, p.Foto, p.FechaUltimoAcceso,
+                                          p.TelefonoContacto, p.Foto,
                                           p.FechaUltimoPago, p.MontoUltimoPago
                                       FROM personal p";
 
