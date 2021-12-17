@@ -106,7 +106,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
                                            	    @Domicilio, @Puesto, @FechaNacimiento, @Telefono, 
                                            	    @NombreContacto, @TelefonoContacto, @Foto,
-                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago)";
+                                           	    @FechaUltimoPago, @MontoUltimoPago)";
 
 
                 await using var command = new MySqlCommand(altaQuery, connection);
@@ -124,8 +124,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", FotoRaw);
 
-                // TODO: No ocupamos la fecha de último acceso.
-                //command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 

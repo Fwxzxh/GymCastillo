@@ -91,7 +91,6 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
 
-
         /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
         /// </summary>
@@ -109,7 +108,7 @@ namespace GymCastillo.Model.Init {
         /// <summary>
         /// Método que lanza las queries de manera asíncrona y obtiene los resultados.
         /// </summary>
-        public static async Task<bool> GetAllInfo() {
+        private static async Task<bool> GetAllInfo() {
             Log.Info("Se ha empezado el proceso de obtener la información de la base de datos.");
 
             try { // Lanzamos las tareas.
