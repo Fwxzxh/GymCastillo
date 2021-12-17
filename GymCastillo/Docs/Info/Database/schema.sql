@@ -200,7 +200,6 @@ create table Personal (
     NombreContacto varchar(30),
     TelefonoContacto varchar(30),
     Foto blob,
-    FechaUltimoAcceso datetime,
     FechaUltimoPago datetime,
     MontoUltimoPago decimal
 );
