@@ -323,26 +323,55 @@ namespace GymCastillo.Model.DataTypes.Personal {
         }
 
         /// <summary>
-        /// Método que se encarga de dar de alta una nueva asistencia a la instancia actual.
+        /// Método que se encarga de registrar los campos de una nueva asistencia.
         /// </summary>
         /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
-        public override Task<int> NuevaAsistencia() {
-            throw new NotImplementedException();
+        public async Task<int> NuevaAsistencia(int numClasesAEntrar) {
+            Log.Debug("Se ha empezado el proceso de dar de alta una nueva asistencia en Cliente.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string asistenciaQuery = @"UPDATE cliente
+                                                     	SET FechaUltimoAcceso=@FechaUltimoAcceso, 
+                                                     	ClasesTotalesDisponibles=@ClasesTotalesDisponibles, 
+                                                     	ClasesSemanaDisponibles=@ClasesSemanaDisponibles
+                                                     	WHERE IdCliente=@IdCliente";
+
+                await using var command = new MySqlCommand(asistenciaQuery, connection);
+
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
+                    (ClasesTotalesDisponibles - numClasesAEntrar).ToString());
+                command.Parameters.AddWithValue("@ClasesSemanaDisponibles.",
+                    (ClasesSemanaDisponibles - numClasesAEntrar).ToString());
+
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+
+                Log.Debug("Se ha creado la query.");
+
+                var res =await ExecSql.NonQuery(command, "Nueva Asistencia Cliente");
+                Log.Debug("Se ha registrado la asistencia de un cliente.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de registrar la asistencia del cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>
         /// Método que se encarga de actualizar el pago del objeto actual en la base de datos
         /// </summary>
         /// <param name="cantidad"></param>
-        public override void Pago(decimal cantidad) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Método que obtiene el horario de la instancia del cliente y lo da en un string.
-        /// </summary>
-        /// <returns>El horario en un string.</returns>
-        public override string GetHorarioStr() {
+        public void Pago(decimal cantidad) {
             throw new NotImplementedException();
         }
     }

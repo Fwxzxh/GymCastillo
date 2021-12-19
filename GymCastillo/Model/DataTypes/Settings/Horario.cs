@@ -47,12 +47,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Update() {
             Log.Warn("Se ha iniciado el proceso de update de un horario.");
 
-            // Verificamos si no es una alta disfrazada de update.
-            if (IdHorario == 0) {
-                var res = await Alta();
-                return res;
-            }
-
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -89,7 +83,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete de un horario.");
-            // TODO: Hacer FK check
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -159,8 +152,32 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// <summary>
         /// Método que actualiza la cantidad del cupo actual.
         /// </summary>
-        public void NuevaAsistencia() {
-            throw new NotImplementedException();
+        public async Task<int> NuevaAsistencia() {
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string query = @"update horario set CupoActual=CupoActual+1 where IdHorario=@IdHorario";
+
+                await using var command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@FechaUltimoAcceso", IdHorario.ToString());
+
+                Log.Debug("Se ha creado la query.");
+
+                var res =await ExecSql.NonQuery(command, "Update Cupo horario");
+                Log.Debug("Se ha actualizado el cupo en horario.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el update del cupo.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
         /// <summary>

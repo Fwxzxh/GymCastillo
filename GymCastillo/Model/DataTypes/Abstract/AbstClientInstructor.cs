@@ -21,22 +21,5 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// El monto de el último movimiento monetario hecho al usuario.
         /// </summary>
         public decimal MontoUltimoPago { get; set; }
-
-        /// <summary>
-        /// Método que da de alta una nueva asitencia a el usuario
-        /// </summary>
-        /// <returns>El núemro de columnas afectadas en la query.</returns>
-        public abstract Task<int> NuevaAsistencia();
-
-        /// <summary>
-        /// Método que aplica
-        /// </summary>
-        public abstract void Pago(decimal cantidad);
-
-        /// <summary>
-        /// Método que obtiene el horario del cliente o Instructor.
-        /// </summary>
-        /// <returns>El horario en string</returns>
-        public abstract string GetHorarioStr();
     }
 }
