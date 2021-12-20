@@ -57,6 +57,7 @@ namespace GymCastillo.Model.Admin {
         private static async Task ValidateAgain(IOnlyAlta objeto) {
             var tipo = objeto.GetType().Name;
 
+            // TODO: check si esto funciona bien y no regresa el nombre de Ingresos.
             switch (tipo) {
                 case "AbstractMovimientos":
                     var movimientoValidator = new PagosValidation();

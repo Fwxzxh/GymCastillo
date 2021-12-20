@@ -36,7 +36,7 @@ namespace GymCastillo.Model.Helpers {
                         "No se ha encontrado el archivo con la imagen de perfil por defecto, verifique su existencia.");
                 }
 
-                var saveRoute = $"C:/GymCastillo/Clientes/{cliente.Id.ToString()}-{cliente.ApellidoPaterno}/";
+                var saveRoute = cliente.ClienteDir;
                 var saveFile = $"Card-{cliente.Id.ToString()}.png";
                 var saveDir = $"{saveRoute}{saveFile}";
 

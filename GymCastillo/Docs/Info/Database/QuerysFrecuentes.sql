@@ -1,9 +1,9 @@
 -- Pasos para realizar un pago a instructor o usuario
 	-- Instructores
 	-- idk Quisiera saber si cuando fue la última vez que le pague a un vato y cuanto:
-    	SELECT CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) AS Nombre,
-    	i.FechaUltimoPago, i.MontoUltimoPago
-    	FROM instructor i
+    SELECT CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) AS Nombre,
+    i.FechaUltimoPago, i.MontoUltimoPago
+    FROM instructor i
 	WHERE idinstructor = @IdInstructor;
     	-- Luego procedería a hacer el pago:
     	INSERT INTO egresos

@@ -18,9 +18,10 @@ namespace GymCastillo.Model.DataTypes.Personal {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// Retorna el directorio del cliente
+        /// Retorna la ruta al directorio personal del cliente
         /// </summary>
-        public string ClienteDir => $"C:/GymCastillo/Clientes/{Id.ToString()}-{ApellidoPaterno}/";
+        public string ClienteDir =>
+            $"C:/GymCastillo/Clientes/{Id.ToString()}-{ApellidoPaterno}-{Nombre.Split(" ").First()}/";
 
         /// <summary>
         /// Si el cliente tiene alguna condición especial.

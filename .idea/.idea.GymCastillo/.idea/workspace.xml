@@ -7,18 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="One little whitespace gets its very own commit! Oh, life is so erratic!">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Asistencias Back Done, Minor changes.">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/QuerysFrecuentes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/QuerysFrecuentes.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstClientInstructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstClientInstructor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,9 @@
       <workItem from="1639596097166" duration="18613000" />
       <workItem from="1639692258013" duration="7930000" />
       <workItem from="1639795604705" duration="13812000" />
-      <workItem from="1639846324905" duration="22115000" />
+      <workItem from="1639846324905" duration="24939000" />
+      <workItem from="1639931653987" duration="250000" />
+      <workItem from="1639949188686" duration="7613000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -230,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639713743317</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Asistencias Back Done, Minor changes.">
+      <created>1639899410475</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1639899410475</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +285,7 @@
     <MESSAGE value="Added back for Personal Working" />
     <MESSAGE value="Updated Schema &amp; Queries for Personal." />
     <MESSAGE value="One little whitespace gets its very own commit! Oh, life is so erratic!" />
-    <option name="LAST_COMMIT_MESSAGE" value="One little whitespace gets its very own commit! Oh, life is so erratic!" />
+    <MESSAGE value="Asistencias Back Done, Minor changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Asistencias Back Done, Minor changes." />
   </component>
 </project>

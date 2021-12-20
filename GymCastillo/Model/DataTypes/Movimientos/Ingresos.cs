@@ -22,6 +22,11 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public int IdRenta { get; set; }
 
         /// <summary>
+        /// Indica el tipo de ingreso 1:Clientes, 2:Ventas, 3:Rentas, 4:Otros
+        /// </summary>
+        public int Tipo { get; set; }
+
+        /// <summary>
         /// La fecha en la que se hizo la renta.
         /// </summary>
         public DateTime FechaRenta { get; set; }
@@ -80,17 +85,25 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
-                command.Parameters.AddWithValue("@FechaRegistro", FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@IdUsuario", Init.Init.LoggedId.ToString());
+                command.Parameters.AddWithValue("@FechaRegistro",
+                    FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@IdUsuario",
+                    Init.Init.LoggedId.ToString());
 
-                command.Parameters.AddWithValue("@IdRenta", IdRenta.ToString());
-                command.Parameters.AddWithValue("@IdCliente", IdCliente.ToString());
-                command.Parameters.AddWithValue("@IdVenta", IdVenta.ToString());
-                command.Parameters.AddWithValue("@Otros", Convert.ToInt32(Otros).ToString());
+                command.Parameters.AddWithValue("@IdRenta",
+                    IdRenta == 0 ? null : IdRenta.ToString());
+                command.Parameters.AddWithValue("@IdCliente",
+                    IdCliente == 0 ? null : IdCliente.ToString());
+                command.Parameters.AddWithValue("@IdVenta",
+                    IdVenta == 0 ? null : IdVenta.ToString());
+                command.Parameters.AddWithValue("@Otros",
+                    Convert.ToInt32(Otros).ToString());
                 command.Parameters.AddWithValue("@Concepto", Concepto);
 
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete.ToString());
-                command.Parameters.AddWithValue("@IdLocker", IdLocker.ToString());
+                command.Parameters.AddWithValue("@IdPaquete",
+                    IdPaquete == 0 ? null : IdPaquete.ToString());
+                command.Parameters.AddWithValue("@IdLocker",
+                    IdLocker == 0 ? null : IdLocker.ToString());
 
                 command.Parameters.AddWithValue("@NumeroRecibo", NumeroRecibo);
                 command.Parameters.AddWithValue("@Monto", Monto.ToString(CultureInfo.InvariantCulture));
