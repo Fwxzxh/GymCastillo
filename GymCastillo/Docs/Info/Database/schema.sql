@@ -63,14 +63,6 @@ create table Paquete (
     Costo decimal not null
 );
 
-create table PaquetesClases (
-	-- Tabla para que los paquetes tengan varias clases y las clases varios paquetes
-	IdPaquete int,
-	foreign key (IdPaquete) references Paquete (IdPaquete),
-	IdClase,
-	foreign key (IdClase) references Paquete (IdClase)
-);
-
 create table Clase (
     -- Tabla que guarda los registros de las clases.
     IdClase int auto_increment primary key,
@@ -84,6 +76,14 @@ create table Clase (
 	-- IdEspacio
     IdEspacio int,
     foreign key (IdEspacio) references Espacio (IdEspacio)
+);
+
+create table PaquetesClases (
+	-- Tabla para que los paquetes tengan varias clases y las clases varios paquetes
+	IdPaquete int,
+	foreign key (IdPaquete) references Paquete (IdPaquete),
+	IdClase,
+	foreign key (IdClase) references Paquete (IdClase)
 );
 
 create table Horario (
