@@ -148,12 +148,14 @@ select
     c.CupoMaximo, c.Activo,
     i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
-    c.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 from clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
-left join paquete p on pc.IdPaquete = p.IdPaquete;
+left join paquete p on pc.IdPaquete = p.IdPaquete
+group by c.IdClase;
 
 
 -- Clases
@@ -166,7 +168,7 @@ SELECT
     group_concat(h.Dia) as Dia,
     group_concat(h.HoraInicio) HoraDeInicio,
     group_concat(h.HoraFin) HoraDeTermino,
-    c.IdPaquete, p.NombrePaquete
+    p.IdPaquete, p.NombrePaquete
 FROM clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
@@ -181,7 +183,7 @@ SELECT
     c.CupoMaximo, c.Activo,
     i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
-    c.IdPaquete, p.NombrePaquete
+    p.IdPaquete, p.NombrePaquete
 FROM clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
@@ -209,7 +211,7 @@ SELECT
     c.IdClase, c.NombreClase
 FROM paquete p
 left join paquetesclases pc on pc.IdPaquete = p.IdPaquete
-left join clases c on c.IdClase = pc.IdClase;
+left join clase c on c.IdClase = pc.IdClase;
 
 -- Alta Paquetes
 INSERT INTO paquete

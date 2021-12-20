@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added personal Validator &amp; CardFiles to Deploy">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Venta.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="added Venta.cs &amp; Inventario.cs &amp; minor Fix">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PersonalVM/NewPersonalVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PersonalVM/NewPersonalVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/GenerateTestInfo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/GenerateTestInfo.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +134,7 @@
       <workItem from="1639795604705" duration="13812000" />
       <workItem from="1639846324905" duration="24939000" />
       <workItem from="1639931653987" duration="250000" />
-      <workItem from="1639949188686" duration="12514000" />
+      <workItem from="1639949188686" duration="14602000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -255,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639971050336</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added Venta.cs &amp; Inventario.cs &amp; minor Fix">
+      <created>1639971921438</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1639971921438</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +313,7 @@
     <MESSAGE value="Asistencias Back Done, Minor changes." />
     <MESSAGE value="Pagos Back done, added PagosHelper.cs" />
     <MESSAGE value="Added personal Validator &amp; CardFiles to Deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added personal Validator &amp; CardFiles to Deploy" />
+    <MESSAGE value="added Venta.cs &amp; Inventario.cs &amp; minor Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Venta.cs &amp; Inventario.cs &amp; minor Fix" />
   </component>
 </project>

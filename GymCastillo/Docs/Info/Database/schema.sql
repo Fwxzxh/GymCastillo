@@ -82,8 +82,8 @@ create table PaquetesClases (
 	-- Tabla para que los paquetes tengan varias clases y las clases varios paquetes
 	IdPaquete int,
 	foreign key (IdPaquete) references Paquete (IdPaquete),
-	IdClase,
-	foreign key (IdClase) references Paquete (IdClase)
+	IdClase int,
+	foreign key (IdClase) references Clase (IdClase)
 );
 
 create table Horario (

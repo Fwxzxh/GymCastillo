@@ -274,8 +274,6 @@ VALUES (1,1);
 INSERT INTO paquetesclases
 VALUES (1,2);
 INSERT INTO paquetesclases
-VALUES (1,3);
-INSERT INTO paquetesclases
 VALUES (2,1);
 INSERT INTO paquetesclases
 VALUES (2,2);
