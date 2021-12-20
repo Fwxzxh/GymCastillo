@@ -5,6 +5,7 @@ using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations.Config;
+using GymCastillo.Model.Validations.Personal;
 using log4net;
 
 namespace GymCastillo.Model.Admin {
@@ -147,6 +148,11 @@ namespace GymCastillo.Model.Admin {
                 case "Paquete":
                     var clienteRentaValidator = new PaqueteValidation();
                     await clienteRentaValidator.ValidateAndThrowAsync((Paquete) objeto);
+                    break;
+
+                case "PaquetesClases":
+                    var paquetesClases = new PaqueteClaseValidation();
+                    await paquetesClases.ValidateAndThrowAsync((PaquetesClases) objeto);
                     break;
 
                 default:
