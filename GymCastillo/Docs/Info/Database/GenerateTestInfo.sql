@@ -92,9 +92,9 @@ VALUES (default, 'Cassandra', 'Carrillo', 'Ledezma', 'Calle Mi Corazon #25 Colon
 
 -- Clases
 INSERT INTO clase
-VALUES (default, 'Natación', 'Se enseña a nadar', 24, TRUE, 1, 1, 1);
+VALUES (default, 'Natación', 'Se enseña a nadar', 24, TRUE, 1, 1);
 INSERT INTO clase
-VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2, 2);
+VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2);
 
 -- Horarios
 INSERT INTO horario
