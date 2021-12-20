@@ -37,7 +37,7 @@
                     Margin="10"
                     HorizontalAlignment="Left"/>
                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
-                    Command="{Binding loginCommand}"
+                    Command="{Binding asistenciaInstructor}"
                     Content="Instructor"
                     VerticalAlignment="Center"
                     Margin="10"

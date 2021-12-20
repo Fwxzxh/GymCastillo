@@ -25,6 +25,9 @@
     <Compile Update="View\AsistenciasView\AsistenciaClienteWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AsistenciasView\AsistenciaInstructorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ClsesScreensView\ClasesSummaryUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AsistenciasView\AsistenciaClienteWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AsistenciasView\AsistenciaInstructorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ClsesScreensView\ClasesSummaryUC.xaml">
