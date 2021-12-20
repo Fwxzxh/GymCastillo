@@ -152,7 +152,8 @@ select
 from clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
-left join paquete p on c.IdPaquete = p.IdPaquete;
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete;
 
 
 -- Clases
@@ -167,10 +168,11 @@ SELECT
     group_concat(h.HoraFin) HoraDeTermino,
     c.IdPaquete, p.NombrePaquete
 FROM clase c
-LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
-LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
-LEFT JOIN horario h ON h.IdClase = c.IdClase
-left join paquete p on c.IdPaquete = p.IdPaquete
+left join instructor i on c.IdInstructor = i.IdInstructor
+left join espacio e on e.IdEspacio = c.IdEspacio
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete
+left join horario h on c.IdClase = h.IdClase
 group by c.IdClase;
 
 -- Consulta clase sin horario:
@@ -181,22 +183,21 @@ SELECT
     e.IdEspacio, e.NombreEspacio,
     c.IdPaquete, p.NombrePaquete
 FROM clase c
-LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
-LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
-left join paquete p on c.IdPaquete = p.IdPaquete;
+left join instructor i on c.IdInstructor = i.IdInstructor
+left join espacio e on e.IdEspacio = c.IdEspacio
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete;
 
 -- Alta de clases
 INSERT INTO clase
 VALUES
     (default, @NombreClase, @Descripcion,
-    @CupoMaximo, @Activo, @IdInstructor, @IdEspacio,
-    @IdPaquete);
+    @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);
 
 -- Actualización de clases
 UPDATE clase
 SET cupomaximo=@CupoMaximo, activo=@Activo,
-    idinstructor=@IdInstructor, idespacio=@IdEspacio,
-    idpaquete=@IdPaquete
+    idinstructor=@IdInstructor, idespacio=@IdEspacio
 WHERE idclase=@IdClase;
 
 -- Paquetes
@@ -207,7 +208,8 @@ SELECT
     p.NumClasesSemanales, p.Costo,
     c.IdClase, c.NombreClase
 FROM paquete p
-LEFT JOIN clase c ON c.IdPaquete = p.IdPaquete;
+left join paquetesclases pc on pc.IdPaquete = p.IdPaquete
+left join clases c on c.IdClase = pc.IdClase;
 
 -- Alta Paquetes
 INSERT INTO paquete
