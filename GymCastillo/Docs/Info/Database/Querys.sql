@@ -168,7 +168,8 @@ SELECT
     group_concat(h.Dia) as Dia,
     group_concat(h.HoraInicio) HoraDeInicio,
     group_concat(h.HoraFin) HoraDeTermino,
-    p.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 FROM clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
@@ -183,12 +184,14 @@ SELECT
     c.CupoMaximo, c.Activo,
     i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
-    p.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 FROM clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
-left join paquete p on pc.IdPaquete = p.IdPaquete;
+left join paquete p on pc.IdPaquete = p.IdPaquete
+group by c.IdClase;
 
 -- Alta de clases
 INSERT INTO clase
@@ -237,7 +240,8 @@ VALUES (@IdPaquete, @IdClase);
 UPDATE paquetesclases
 SET (@IdPaquete, @IdClase);
 
-DELETE paquetesclases
+DELETE 
+FROM paquetesclases
 WHERE idpaquete=@IdPaquete
 AND idclase=@IdClase;
 
