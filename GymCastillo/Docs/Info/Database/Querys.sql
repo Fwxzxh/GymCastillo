@@ -211,10 +211,12 @@ SELECT
     p.IdPaquete, p.Gym, p.NombrePaquete,
     p.Descripcion, p.NumClasesTotales,
     p.NumClasesSemanales, p.Costo,
-    c.IdClase, c.NombreClase
+    group_concat(c.IdClase) as IdClase,
+    group_concat(c.NombreClase) as NombreClase
 FROM paquete p
 left join paquetesclases pc on pc.IdPaquete = p.IdPaquete
-left join clase c on c.IdClase = pc.IdClase;
+left join clase c on c.IdClase = pc.IdClase
+group by p.IdPaquete;
 
 -- Alta Paquetes
 INSERT INTO paquete
