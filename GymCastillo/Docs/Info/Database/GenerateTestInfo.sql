@@ -267,3 +267,15 @@ INSERT INTO personal
 VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', 'Puesto 4', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0);
 INSERT INTO personal
 VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', 'Puesto 5', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0);
+
+-- PaquetesClases
+INSERT INTO paquetesclases
+VALUES (1,1);
+INSERT INTO paquetesclases
+VALUES (1,2);
+INSERT INTO paquetesclases
+VALUES (1,3);
+INSERT INTO paquetesclases
+VALUES (2,1);
+INSERT INTO paquetesclases
+VALUES (2,2);
