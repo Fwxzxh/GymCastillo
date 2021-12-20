@@ -44,8 +44,8 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
             AsistenciasHelper helper = new();
             Asistencia.Tipo = 1;
             if (helper.CheckId(Asistencia)) {
-                if (helper.CheckEntrada(Asistencia).Item1) {
-                    Asistencia = helper.CheckEntrada(Asistencia).Item2;
+                if (helper.CheckEntrada(Asistencia).Entrada) {
+                    Asistencia = helper.CheckEntrada(Asistencia);
                     AsistenciaClienteWindow window = new(Asistencia);
                     window.ShowDialog();
                 }

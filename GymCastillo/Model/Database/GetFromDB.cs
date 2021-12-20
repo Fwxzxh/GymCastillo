@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
@@ -565,9 +567,12 @@ namespace GymCastillo.Model.Database {
                                           p.IdPaquete, p.Gym, p.NombrePaquete,
                                           p.Descripcion, p.NumClasesTotales,
                                           p.NumClasesSemanales, p.Costo,
-                                          c.IdClase, c.NombreClase
+                                          group_concat(c.IdClase) as IdClase,
+                                          group_concat(c.NombreClase) as NombreClase
                                       FROM paquete p
-                                      LEFT JOIN clase c ON c.IdPaquete = p.IdPaquete";
+                                      left join PaquetesClases pc on pc.IdPaquete = p.IdPaquete
+                                      left join clase c on c.IdClase = pc.IdClase
+                                      group by p.IdPaquete;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -600,8 +605,8 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetInt32("Costo"),
 
                         IdClase = await reader.Result.IsDBNullAsync("IdClase")
-                            ? 0
-                            : reader.Result.GetInt32("IdClase"),
+                            ? ""
+                            : reader.Result.GetString("IdClase"),
                         NombreClase = await reader.Result.IsDBNullAsync("NombreClase")
                             ? ""
                             : reader.Result.GetString("NombreClase"),
@@ -618,6 +623,47 @@ namespace GymCastillo.Model.Database {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los paquetes. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene toda la información de la tabla de intersección PaquetesClases.
+        /// </summary>
+        /// <returns>Una lista con los PaquetesClases.</returns>
+        public static async Task<List<PaquetesClases>> GetPaquetesClases() {
+            Log.Debug("Se ha empezado el proceso de obtener la información de los PaquetesClases.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from PaquetesClases";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listPaquetes = new List<PaquetesClases>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var paqueteClase = new PaquetesClases() {
+                        IdPaquete = reader.Result.GetInt32("IdPaquete"),
+                        IdClase = reader.Result.GetInt32("IdClase"),
+                    };
+                    listPaquetes.Add(paqueteClase);
+                }
+                Log.Debug("Se han obtenido con éxito la información de los paquetesClase.");
+
+                return listPaquetes;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de las clases en los paquetes..");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los paquetes en las clases. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
@@ -781,12 +827,10 @@ namespace GymCastillo.Model.Database {
                                           c.IdClase, c.NombreClase, c.Descripcion,
                                           c.CupoMaximo, c.Activo,
                                           i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
-                                          e.IdEspacio, e.NombreEspacio,
-                                          c.IdPaquete, p.NombrePaquete
+                                          e.IdEspacio, e.NombreEspacio
                                       from clase c
                                       left join instructor i on c.IdInstructor = i.IdInstructor
-                                      left join espacio e on e.IdEspacio = c.IdEspacio
-                                      left join paquete p on c.IdPaquete = p.IdPaquete;";
+                                      left join espacio e on e.IdEspacio = c.IdEspacio";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -825,12 +869,12 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("NombreEspacio"),
 
-                        IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
-                            ? 0
-                            : reader.Result.GetInt32("IdPaquete"),
-                        NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
-                            ? ""
-                            : reader.Result.GetString("NombrePaquete"),
+                        // IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
+                        //     ? 0
+                        //     : reader.Result.GetInt32("IdPaquete"),
+                        // NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
+                        //     ? ""
+                        //     : reader.Result.GetString("NombrePaquete"),
                     };
                     listClases.Add(locker);
                 }

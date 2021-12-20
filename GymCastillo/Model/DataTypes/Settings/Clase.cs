@@ -58,16 +58,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public bool Activo { get; set; }
 
-        /// <summary>
-        /// El id del paquete al que pertenece la clase.
-        /// </summary>
-        public int IdPaquete { get; set; }
-
-        /// <summary>
-        /// El nombre del paquete al que pertenece la clase.
-        /// </summary>
-        public string NombrePaquete { get; set; }
-
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
 
@@ -170,8 +160,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 const string altaQuery = @"INSERT INTO clase
                                            VALUES
                                                (default, @NombreClase, @Descripcion,
-                                               @CupoMaximo, @Activo, @IdInstructor, @IdEspacio,
-                                               @IdPaquete);";
+                                               @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -183,8 +172,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
-
-                command.Parameters.AddWithValue("@IdPaquete", IdPaquete == 0 ? null : IdPaquete.ToString());
 
                 Log.Debug("Se ha generado la query.");
 

@@ -52,12 +52,12 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public decimal Costo { get; set; }
 
         /// <summary>
-        /// Contiene el id la clases que incluye el paquete.
+        /// Contiene el id la clases que incluye el paquete separados por comas.
         /// </summary>
-        public int IdClase { get; set; }
+        public string IdClase { get; set; }
 
         /// <summary>
-        /// Contiene el nombre de las clase que incluye el paquete.
+        /// Contiene el nombre de las clases que incluyen el paquete separados por comas.
         /// </summary>
         public string NombreClase { get; set; }
 
@@ -85,6 +85,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
                 command.Parameters.AddWithValue("@NumeroClasesTotales", NumClasesTotales.ToString());
                 command.Parameters.AddWithValue("@NumeroClasesSemanales", NumClasesSemanales.ToString());
+                // TODO: agregar IdClase
 
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
 
@@ -129,6 +130,8 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
 
+                //TODO: agregar IdClase.
+
                 Log.Debug("Se ha generado la query.");
 
                 var res = await ExecSql.NonQuery(command, "Alta Paquete");
@@ -147,6 +150,8 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en una clase.");
+
+            // TODO: hacer FK check en Clientes y PaquetesClases.
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);

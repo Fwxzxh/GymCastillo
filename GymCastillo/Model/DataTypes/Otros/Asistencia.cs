@@ -33,6 +33,11 @@ namespace GymCastillo.Model.DataTypes.Otros {
         public int Id { get; set; }
 
         /// <summary>
+        /// indica si se le concede la entrada al usuario.
+        /// </summary>
+        public bool Entrada { get; set; }
+
+        /// <summary>
         /// Indica si se aplica la penalización de entrada al Instructor.
         /// </summary>
         public bool Penalización { get; set; }
@@ -66,7 +71,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// Método que llena la lista de <see cref="ListaHorarios"/>, con los horarios para la hora actual.
         /// </summary>
         /// <param name="clases">Lista Con las clases a las que puede entrar el cliente.</param>
-        public void GetHorarios(List<int> clases) {
+        public void GetHorarios(IEnumerable<int> clases) {
             // TODO: probar esto
             var horarios =
                 InitInfo.ObCoHorarios.Where(

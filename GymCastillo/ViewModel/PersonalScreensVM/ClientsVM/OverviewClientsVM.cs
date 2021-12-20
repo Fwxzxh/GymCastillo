@@ -136,6 +136,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             if (dialog.ShowDialog() == true) {
                 PhotoPath = dialog.FileName;
                 var image = new MagickImage(PhotoPath);
+
                 selectedClient.Foto = image;
             }
         }

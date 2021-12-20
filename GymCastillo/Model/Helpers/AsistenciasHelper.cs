@@ -79,7 +79,7 @@ namespace GymCastillo.Model.Helpers {
         /// <returns>
         /// Una tupla con un bool indicando si se le puede dar acceso y un nuevo objeto asistencia actualizado.
         /// </returns>
-        public (bool, Asistencia) CheckEntrada(Asistencia asistencia) {
+        public Asistencia CheckEntrada(Asistencia asistencia) {
             if (asistencia.Tipo == 1) {
                 // Cliente
 
@@ -95,20 +95,21 @@ namespace GymCastillo.Model.Helpers {
                         $"El cliente {cliente.Nombre} {cliente.ApellidoPaterno}, se le ha vencido su Pago el {cliente.FechaVencimientoPago.ToString(CultureInfo.InvariantCulture)}",
                         "Pago Vencido.");
 
-                    return (false, asistencia);
+                    return asistencia;
                 }
+
+                asistencia.Entrada = true;
                 // Si puede entrar.
 
                 // Obtenemos la lista de las clases a las que puede entrar.
-                var clases = InitInfo.ObCoClases.Where(
-                    x => x.IdPaquete == asistencia.DatosCliente.IdPaquete).ToList();
+                var clases = InitInfo.ListPaquetesClases.Where(
+                    x => x.IdPaquete == asistencia.DatosCliente.IdPaquete).AsParallel().ToList();
 
                 // Obtenemos los horarios de las clases a las que puede entrar.
-                // TODO: probar esto.
-                asistencia.GetHorarios(clases.Select(x => x.IdClase).ToList());
+                asistencia.GetHorarios(clases.Select(x => x.IdClase));
 
                 // Puede entrar
-                return (true, asistencia);
+                return asistencia;
             }
             // Instructor
 
@@ -123,11 +124,13 @@ namespace GymCastillo.Model.Helpers {
                 ShowPrettyMessages.WarningOk(
                     $"El instructor {instructor.Nombre} {instructor.ApellidoPaterno} llego tarde, su hora de entrada es: {instructor.HoraEntrada.ToString()}",
                     "Retardo");
-                return (false, asistencia);
+                return asistencia;
             }
 
+            asistencia.Entrada = true;
+
             // Puede Entrar
-            return (true, asistencia);
+            return asistencia;
         }
 
         /// <summary>
