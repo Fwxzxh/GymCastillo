@@ -17,7 +17,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
         public RelayCommand SaveCommand { get; set; }
 
-        private Personal personal;
+        private Personal personal = new();
 
         public Personal Personal {
             get { return personal; }
@@ -27,7 +27,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
                 OnPropertyChanged(nameof(Personal));
             }
         }
-
 
         public NewPersonalVM() {
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
@@ -48,6 +47,5 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

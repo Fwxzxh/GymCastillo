@@ -148,11 +148,14 @@ select
     c.CupoMaximo, c.Activo,
     i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
-    c.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 from clase c
 left join instructor i on c.IdInstructor = i.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
-left join paquete p on c.IdPaquete = p.IdPaquete;
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete
+group by c.IdClase;
 
 
 -- Clases
@@ -165,12 +168,14 @@ SELECT
     group_concat(h.Dia) as Dia,
     group_concat(h.HoraInicio) HoraDeInicio,
     group_concat(h.HoraFin) HoraDeTermino,
-    c.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 FROM clase c
-LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
-LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
-LEFT JOIN horario h ON h.IdClase = c.IdClase
-left join paquete p on c.IdPaquete = p.IdPaquete
+left join instructor i on c.IdInstructor = i.IdInstructor
+left join espacio e on e.IdEspacio = c.IdEspacio
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete
+left join horario h on c.IdClase = h.IdClase
 group by c.IdClase;
 
 -- Consulta clase sin horario:
@@ -179,26 +184,26 @@ SELECT
     c.CupoMaximo, c.Activo,
     i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
     e.IdEspacio, e.NombreEspacio,
-    c.IdPaquete, p.NombrePaquete
+    group_concat(p.IdPaquete) as IdPaquete,
+    group_concat(p.NombrePaquete) as NombrePaquete
 FROM clase c
-LEFT JOIN instructor i ON c.IdInstructor = i.IdInstructor
-LEFT JOIN espacio e ON e.IdEspacio = c.IdEspacio
-left join paquete p on c.IdPaquete = p.IdPaquete;
+left join instructor i on c.IdInstructor = i.IdInstructor
+left join espacio e on e.IdEspacio = c.IdEspacio
+left join paquetesclases pc on c.IdClase = pc.IdClase
+left join paquete p on pc.IdPaquete = p.IdPaquete
+group by c.IdClase;
 
 -- Alta de clases
 INSERT INTO clase
 VALUES
     (default, @NombreClase, @Descripcion,
-    @CupoMaximo, @Activo, @IdInstructor, @IdEspacio,
-    @IdPaquete);
+    @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);
 
 -- Actualización de clases
 UPDATE clase
 SET cupomaximo=@CupoMaximo, activo=@Activo,
-    idinstructor=@IdInstructor, idespacio=@IdEspacio,
-    idpaquete=@IdPaquete
+    idinstructor=@IdInstructor, idespacio=@IdEspacio
 WHERE idclase=@IdClase;
-
 
 -- Paquetes
 -- Consulta paquete
@@ -206,9 +211,12 @@ SELECT
     p.IdPaquete, p.Gym, p.NombrePaquete,
     p.Descripcion, p.NumClasesTotales,
     p.NumClasesSemanales, p.Costo,
-    c.IdClase, c.NombreClase
+    group_concat(c.IdClase) as IdClase,
+    group_concat(c.NombreClase) as NombreClase
 FROM paquete p
-LEFT JOIN clase c ON c.IdPaquete = p.IdPaquete;
+left join paquetesclases pc on pc.IdPaquete = p.IdPaquete
+left join clase c on c.IdClase = pc.IdClase
+group by p.IdPaquete;
 
 -- Alta Paquetes
 INSERT INTO paquete
@@ -226,6 +234,18 @@ SET gym=@Gym, nombrepaquete=@NombrePaquete,
     costo=@Costo
 WHERE idpaquete=@IdPaquete;
 
+
+-- PaquetesClases
+INSERT INTO paquetesclases
+VALUES (@IdPaquete, @IdClase);
+
+UPDATE paquetesclases
+SET (@IdPaquete, @IdClase);
+
+DELETE 
+FROM paquetesclases
+WHERE idpaquete=@IdPaquete
+AND idclase=@IdClase;
 
 -- Horarios
 -- Consulta horario

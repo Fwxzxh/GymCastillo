@@ -92,9 +92,9 @@ VALUES (default, 'Cassandra', 'Carrillo', 'Ledezma', 'Calle Mi Corazon #25 Colon
 
 -- Clases
 INSERT INTO clase
-VALUES (default, 'Natación', 'Se enseña a nadar', 24, TRUE, 1, 1, 1);
+VALUES (default, 'Natación', 'Se enseña a nadar', 24, TRUE, 1, 1);
 INSERT INTO clase
-VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2, 2);
+VALUES (default, 'Box', 'Se enseña a pegar', 12, TRUE, 1, 2);
 
 -- Horarios
 INSERT INTO horario
@@ -267,3 +267,13 @@ INSERT INTO personal
 VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', 'Puesto 4', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0);
 INSERT INTO personal
 VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', 'Puesto 5', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0);
+
+-- PaquetesClases
+INSERT INTO paquetesclases
+VALUES (1,1);
+INSERT INTO paquetesclases
+VALUES (1,2);
+INSERT INTO paquetesclases
+VALUES (2,1);
+INSERT INTO paquetesclases
+VALUES (2,2);

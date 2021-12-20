@@ -75,10 +75,15 @@ create table Clase (
     foreign key (IdInstructor) references Instructor (IdInstructor),
 	-- IdEspacio
     IdEspacio int,
-    foreign key (IdEspacio) references Espacio (IdEspacio),
-	-- IdPaquete
-    IdPaquete int,
-    foreign key (IdPaquete) references Paquete (IdPaquete)
+    foreign key (IdEspacio) references Espacio (IdEspacio)
+);
+
+create table PaquetesClases (
+	-- Tabla para que los paquetes tengan varias clases y las clases varios paquetes
+	IdPaquete int,
+	foreign key (IdPaquete) references Paquete (IdPaquete),
+	IdClase int,
+	foreign key (IdClase) references Clase (IdClase)
 );
 
 create table Horario (

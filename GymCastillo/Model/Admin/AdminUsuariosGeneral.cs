@@ -4,6 +4,7 @@ using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Validations.Config;
 using GymCastillo.Model.Validations.Personal;
 using log4net;
 
@@ -152,7 +153,8 @@ namespace GymCastillo.Model.Admin {
                     break;
 
                 case "Personal":
-                    // TODO: agregar el tipo de verificación de Personal.
+                    var personalValidator = new PersonalValidator();
+                    await personalValidator.ValidateAndThrowAsync((Personal) objeto);
                     break;
 
                 default:

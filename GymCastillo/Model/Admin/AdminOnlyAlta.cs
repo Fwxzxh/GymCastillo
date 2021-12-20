@@ -12,7 +12,7 @@ namespace GymCastillo.Model.Admin {
     /// <summary>
     /// Clase que se encarga de aplicar el método only alta en las interfaces donde se ocupan
     /// </summary>
-    public class AdminOnlyAlta {
+    public static class AdminOnlyAlta {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
