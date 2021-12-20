@@ -16,6 +16,12 @@
     <Compile Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminScreensView\PersonalView\GridPersonalUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ClsesScreensView\ClasesSummaryUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +67,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PersonalView\GridPersonalUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ClsesScreensView\ClasesSummaryUC.xaml">
