@@ -228,6 +228,17 @@ SET gym=@Gym, nombrepaquete=@NombrePaquete,
 WHERE idpaquete=@IdPaquete;
 
 
+-- PaquetesClases
+INSERT INTO paquetesclases
+VALUES (@IdPaquete, @IdClase);
+
+UPDATE paquetesclases
+SET (@IdPaquete, @IdClase);
+
+DELETE paquetesclases
+WHERE idpaquete=@IdPaquete
+AND idclase=@IdClase;
+
 -- Horarios
 -- Consulta horario
 SELECT h.idhorario, h.dia, h.horainicio,
