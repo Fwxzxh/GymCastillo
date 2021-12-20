@@ -151,6 +151,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="-10 0">
+                                <Button ToolTip="Agregar Clases"
+                                        Margin="5 0"
+                                        Command="{Binding OpenHorarios}"
+                                        DataContext="{StaticResource vm}">
+                                    <materialDesign:PackIcon Kind="PlusOutline"/>
+                                </Button>
                                 <Button ToolTip="Eliminar"
                                     Background="Transparent"
                                     BorderBrush="Red"

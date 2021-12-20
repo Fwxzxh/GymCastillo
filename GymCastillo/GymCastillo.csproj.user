@@ -22,6 +22,9 @@
     <Compile Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AsistenciasView\AsistenciaClienteWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ClsesScreensView\ClasesSummaryUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +76,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AsistenciasView\AsistenciaClienteWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ClsesScreensView\ClasesSummaryUC.xaml">

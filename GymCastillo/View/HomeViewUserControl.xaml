@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GymCastillo.View"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.AsistenciasVM"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -12,8 +12,37 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="720" d:DesignWidth="1200">
-    <Grid Margin="100" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <UserControl.Resources>
+        <vm:HomeAsistenciasVM x:Key="vm"/>
+    </UserControl.Resources>
+    <Grid Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center"
+          DataContext="{StaticResource vm}">
+
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox materialDesign:HintAssist.Hint="ID"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Yellow"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     BorderBrush="Yellow"
+                     Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                     Width="190"
+                     PreviewTextInput="TextBox_PreviewTextInput"
+                     HorizontalAlignment="Left"
+                     Text="{Binding Asistencia.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="10"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Command="{Binding asistenciaCliente}"
+                    Content="Cliente"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    HorizontalAlignment="Left"/>
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Command="{Binding loginCommand}"
+                    Content="Instructor"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    HorizontalAlignment="Left"/>
+            </StackPanel>
             <Image Source="\Docs\Assets\CastilloF2.png" Height="600" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>  
     </Grid>
