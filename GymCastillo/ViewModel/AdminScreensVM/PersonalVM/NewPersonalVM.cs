@@ -17,7 +17,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
         public RelayCommand SaveCommand { get; set; }
 
-        private Personal personal;
+        private Personal personal = new();
 
         public Personal Personal {
             get { return personal; }
