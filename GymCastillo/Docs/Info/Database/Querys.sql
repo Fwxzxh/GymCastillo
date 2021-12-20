@@ -299,7 +299,7 @@ SELECT
     p.IdPersonal, p.Nombre, p.ApellidoPaterno,
     p.ApellidoMaterno, p.Domicilio, p.Puesto,
     p.FechaNacimiento, p.Telefono, p.NombreContacto,
-    p.TelefonoContacto, p.Foto, p.FechaUltimoAcceso,
+    p.TelefonoContacto, p.Foto,
     p.FechaUltimoPago, p.MontoUltimoPago
 FROM personal p;
 	-- Dar de alta
@@ -307,7 +307,7 @@ INSERT INTO personal
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	    @Domicilio, @Puesto, @FechaNacimiento, @Telefono, 
 	    @NombreContacto, @TelefonoContacto, @Foto,
-	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
+	    @FechaUltimoPago, @MontoUltimoPago);
 
 	-- Editar valores (usuario)
 UPDATE usuario

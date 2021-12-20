@@ -17,6 +17,11 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
+        /// Indica que tipo de Egreso es; 1:NominaUsuarios, 2:NominaInstructores, 3:Servicios, 4:Otros
+        /// </summary>
+        public int Tipo { get; set; }
+
+        /// <summary>
         /// Indica si el movimiento es por un servicio.
         /// </summary>
         public bool Servicios { get; set; }
@@ -65,18 +70,27 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
-                command.Parameters.AddWithValue("@FechaRegistro", FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@IdUsuario", Init.Init.LoggedId.ToString());
+                command.Parameters.AddWithValue("@FechaRegistro",
+                    FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@IdUsuario",
+                    Init.Init.LoggedId.ToString());
 
-                command.Parameters.AddWithValue("@Servicios", Servicios.ToString());
-                command.Parameters.AddWithValue("@Nomina", Convert.ToInt32(Nomina).ToString());
-                command.Parameters.AddWithValue("@Otros", Convert.ToInt32(Otros).ToString());
-                command.Parameters.AddWithValue("@IdUsuarioPagar", IdUsuarioPagar.ToString());
+                command.Parameters.AddWithValue("@Servicios",
+                    Convert.ToInt32(Servicios).ToString());
+                command.Parameters.AddWithValue("@Nomina",
+                    Convert.ToInt32(Nomina).ToString());
+                command.Parameters.AddWithValue("@Otros",
+                    Convert.ToInt32(Otros).ToString());
+                command.Parameters.AddWithValue("@IdUsuarioPagar",
+                    IdUsuarioPagar == 0 ? null : IdUsuarioPagar.ToString());
 
-                command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
-                command.Parameters.AddWithValue("@Concepto", Concepto);
+                command.Parameters.AddWithValue("@IdInstructor",
+                    IdInstructor == 0 ? null : IdInstructor.ToString());
+                command.Parameters.AddWithValue("@Concepto",
+                    Concepto);
                 command.Parameters.AddWithValue("@NumeroRecibo", NumeroRecibo);
-                command.Parameters.AddWithValue("@Monto", Monto.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Monto",
+                    Monto.ToString(CultureInfo.InvariantCulture));
 
                 Log.Debug("Se ha generado la query.");
 
