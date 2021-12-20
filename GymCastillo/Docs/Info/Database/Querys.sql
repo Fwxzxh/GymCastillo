@@ -199,7 +199,6 @@ SET cupomaximo=@CupoMaximo, activo=@Activo,
     idpaquete=@IdPaquete
 WHERE idclase=@IdClase;
 
-
 -- Paquetes
 -- Consulta paquete
 SELECT

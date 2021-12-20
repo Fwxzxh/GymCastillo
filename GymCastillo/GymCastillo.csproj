@@ -25,6 +25,12 @@
       <Compile Update="View\PersonalScreenView\UsersViewUserControl.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
+      <None Update="Docs\Assets\GenericProfile.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Docs\Assets\Plantilla.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>

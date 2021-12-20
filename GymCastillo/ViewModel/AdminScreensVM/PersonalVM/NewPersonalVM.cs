@@ -28,7 +28,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
             }
         }
 
-
         public NewPersonalVM() {
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             SaveCommand = new RelayCommand(GuardarPersonal);
@@ -48,6 +47,5 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

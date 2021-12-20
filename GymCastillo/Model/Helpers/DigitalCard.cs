@@ -21,19 +21,19 @@ namespace GymCastillo.Model.Helpers {
             try {
 
                 // TODO: ver que onda con esto
-                const string plantillaPath = @"C:/GymCastillo/Assets/IdentifiacionP1.png";
+                const string plantillaPath = @"C:/GymCastillo/Assets/Plantilla.png";
                 const string genericProfilePath = @"C:/GymCastillo/Assets/GenericProfile.png";
 
                 // Verificamos que exista la plantilla.
                 if (!File.Exists(plantillaPath)) {
                     throw new FileNotFoundException(
-                        "No se ha encontrado el archivo con la plantilla de la credencial, verifique su existencia.");
+                        $"No se ha encontrado el archivo con la plantilla de la credencial, verifique su existencia en la ruta {plantillaPath}");
                 }
 
                 // Verificamos que exista la plantilla
                 if (!File.Exists(genericProfilePath)) {
                     throw new FileNotFoundException(
-                        "No se ha encontrado el archivo con la imagen de perfil por defecto, verifique su existencia.");
+                        $"No se ha encontrado el archivo con la imagen de perfil por defecto, verifique su existencia en la ruta {genericProfilePath}");
                 }
 
                 var saveRoute = cliente.ClienteDir;

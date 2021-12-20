@@ -7,16 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Asistencias Back Done, Minor changes.">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Pagos Back done, added PagosHelper.cs">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Docs/Assets/Plantilla.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Config/PersonalValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/QuerysFrecuentes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/QuerysFrecuentes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PersonalVM/NewPersonalVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PersonalVM/NewPersonalVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +53,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Admin/AdminOnlyAlta.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -80,7 +81,15 @@
     <property name="settings.editor.selected.configurable" value="XamlPreviewOptionsPage" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.GymCastillo">
+    <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Publish GymCastillo to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
+      <method v="2" />
+    </configuration>
     <configuration name="GymCastillo" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -130,7 +139,7 @@
       <workItem from="1639795604705" duration="13812000" />
       <workItem from="1639846324905" duration="24939000" />
       <workItem from="1639931653987" duration="250000" />
-      <workItem from="1639949188686" duration="7613000" />
+      <workItem from="1639949188686" duration="11641000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -237,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639899410475</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Pagos Back done, added PagosHelper.cs">
+      <created>1639966415274</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1639966415274</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +302,7 @@
     <MESSAGE value="Updated Schema &amp; Queries for Personal." />
     <MESSAGE value="One little whitespace gets its very own commit! Oh, life is so erratic!" />
     <MESSAGE value="Asistencias Back Done, Minor changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Asistencias Back Done, Minor changes." />
+    <MESSAGE value="Pagos Back done, added PagosHelper.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pagos Back done, added PagosHelper.cs" />
   </component>
 </project>
