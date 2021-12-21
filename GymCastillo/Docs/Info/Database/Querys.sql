@@ -275,17 +275,20 @@ SELECT
     p.Servicios, p.Nomina, p.IdUsuarioPagar,
     CONCAT(up.Nombre, ' ', up.ApellidoPaterno, ' ', up.ApellidoMaterno) as NombreUsuarioPagar,
     p.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
+    p.IdPersonal, CONCAT(ps.Nombre, ' ', ps.ApellidoPaterno, ' ', ps.ApellidoMaterno) as NombrePersonal,
     p.Otros, p.Concepto, p.NumeroRecibo, p.Monto
 FROM egresos p
 INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
 LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
-LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor;
+LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor
+LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal;
 	-- Alta pagos
 INSERT INTO egresos
 VALUES
     (@IdPagosGeneral, @FechaRegistro, @IdUsuario,
     @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
-    @IdInstructor, @Concepto, @NumeroRecibo, @Monto);
+    @IdInstructor, @IdPersonal, @Concepto, 
+    @NumeroRecibo, @Monto);
 
 
 -- Ingresos
@@ -298,7 +301,7 @@ SELECT
     i.Otros, i.Concepto,
     i.IdPaquete, p.NombrePaquete,
     i.IdLocker, l.Nombre,
-    i.NumeroRecibo, i.Monto
+    i.NumeroRecibo, i.Monto, i.MontoRecibido
 FROM ingresos i
 INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
 LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
@@ -311,7 +314,8 @@ INSERT INTO ingresos
 VALUES
     (@IdIngresos, @FechaRegistro, @IdUsuario,
     @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
-    @IdPaquete, @IdLocker, @NumeroRecibo, @Monto);
+    @IdPaquete, @IdLocker, @NumeroRecibo, @Monto,
+    @MontoRecibido);
     
 
 -- Personal
