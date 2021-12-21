@@ -296,11 +296,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
             }
         }
 
-        /// <summary>
-        /// Método que se encarga de actualizar el pago del objeto actual en la base de datos
-        /// </summary>
-        /// <param name="cantidad"></param>
-        public void Pago(decimal cantidad) {
+        public override Task<int> Pago() {
             throw new NotImplementedException();
         }
     }

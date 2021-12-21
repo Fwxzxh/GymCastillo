@@ -368,12 +368,62 @@ namespace GymCastillo.Model.DataTypes.Personal {
             }
         }
 
-        /// <summary>
-        /// Método que se encarga de actualizar el pago del objeto actual en la base de datos
-        /// </summary>
-        /// <param name="cantidad"></param>
-        public void Pago(decimal cantidad) {
-            throw new NotImplementedException();
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update cliente
+                                           set
+                                               MontoUltimoPago=@MontoUltimoPago, FechaUltimoPago=@FechaUltimoPago,
+                                               FechaVencimientoPago=@FechaVencimientoPago, DeudaCliente=@DeudaCliente,
+                                               ClasesTotalesDisponibles=@ClasesTotalesDisponibles, 
+                                               ClasesSemanaDisponibles=@ClasesSemanaDisponibles,
+                                               DuracionPaquete=@DuracionPaquete, IdLocker=@IdLocker, IdPaquete=@IdPaquete
+                                           where IdCliente=@IdCliente";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.Parameters.AddWithValue("@FechaVencimientoPago",
+                    FechaVencimientoPago.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@DeudaCliente",
+                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
+
+
+                command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
+                    ClasesTotalesDisponibles.ToString());
+                command.Parameters.AddWithValue("@ClasesSemanaDisponibles",
+                    ClasesSemanaDisponibles.ToString());
+
+                command.Parameters.AddWithValue("@DuracionPaquete",
+                    DuraciónPaquete.ToString());
+                command.Parameters.AddWithValue("@IdLocker",
+                    IdLocker.ToString());
+                command.Parameters.AddWithValue("@IdPaquete",
+                    IdPaquete.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Cliente");
+                Log.Debug("Se han actualizado los datos del cliente por un pago.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del cliente en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del cliente en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

@@ -177,5 +177,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return 0;
             }
         }
+
+        public override Task<int> Pago() {
+            throw new NotImplementedException();
+        }
     }
 }

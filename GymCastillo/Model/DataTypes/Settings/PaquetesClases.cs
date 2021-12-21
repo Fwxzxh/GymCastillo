@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -65,6 +66,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de alta de una clase a un paquete.");
 
+            if (InitInfo.ListPaquetesClases.Any(
+                    x => x.IdClase == IdClase && x.IdPaquete == IdPaquete)) {
+                ShowPrettyMessages.ErrorOk(
+                    "No puedes dar de alta esta clase porque ya fue registrada en este paquete con anterioridad.",
+                    "Clase duplicada.");
+                return 0;
+            }
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -79,13 +88,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 var res = await ExecSql.NonQuery(command, "Alta PaquetesClases");
                 Log.Debug("Se ha dado de alta un PaqueteClase de la tabla.");
-                return res;
 
+                return res;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta la clase en el paquete..");
                 Log.Error($"Error: {e.Message}");
-                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al dar de alta la clase en el paquete, Error: {e.Message}",
                     "Error desconocido");
                 return 0;
             }

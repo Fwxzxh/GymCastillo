@@ -204,6 +204,18 @@ VALUES (default, CURDATE(), null, 'Venta 4', 250.0);
 INSERT INTO ventas
 VALUES (default, CURDATE(), null, 'Venta 5', 150.0);
 
+-- Personal
+INSERT INTO personal
+VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', 'Puesto 1', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', 'Puesto 2', CURDATE(), '5511591258', 'Elihihu', '5511917682', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Lionel Andres', 'Messi', 'Dominguez', 'Calle Julian Zuniga #7 Colonia Presidentes', 'Puesto 3', CURDATE(), '5517594921', 'Jessica Cortes Vazquez', '5514685493', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', 'Puesto 4', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0);
+INSERT INTO personal
+VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', 'Puesto 5', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0);
+
 -- pagos
 INSERT INTO egresos
 VALUES (default, CURDATE(), 1, FALSE, FALSE, TRUE, NULL, NULL, NULL, 'Comida pal staff', 'ABCDEFGHIJ1234567890', 100.0);
@@ -240,37 +252,25 @@ VALUES (default, CURDATE(), 1, 1, NULL, NULL, FALSE, 'Renta', 1, null, 'ABCDEFGH
 INSERT INTO ingresos
 VALUES (default, CURDATE(), 1, NULL, 1, NULL, FALSE, 'Cliente', 1, null, 'ABCDEFGHIJ2234567890', 100.0, 50.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 1, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ2224567890', 100.0, 100.0));
+VALUES (default, CURDATE(), 1, NULL, NULL, 1, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ2224567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición juguete staff', 1, null, 'ABCDEFGHIJ3234567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición juguete staff', 1, null, 'ABCDEFGHIJ3234567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, 2, NULL, NULL, FALSE, 'Renta', 1, 1, 'ABCDEFGHIJ3324567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, 2, NULL, NULL, FALSE, 'Renta', 1, 1, 'ABCDEFGHIJ3324567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, 2, NULL, FALSE, 'Cliente', 1, 2, 'ABCDEFGHIJ3334567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, 2, NULL, FALSE, 'Cliente', 1, 2, 'ABCDEFGHIJ3334567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 2, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ4234567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, NULL, 2, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ4234567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición Maquina Gym ', 1, 6, 'ABCDEFGHIJ4424567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición Maquina Gym ', 1, 6, 'ABCDEFGHIJ4424567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, 3, NULL, NULL, FALSE, 'Renta', 1, null, 'ABCDEFGHIJ4444567890', 100.0, 70.0)
+VALUES (default, CURDATE(), 1, 3, NULL, NULL, FALSE, 'Renta', 1, null, 'ABCDEFGHIJ4444567890', 100.0, 70.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 1, null, 'ABCDEFGHIJ5234567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, 3, NULL, FALSE, 'Cliente', 1, null, 'ABCDEFGHIJ5234567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ5524567890', 100.0, 100.0)
+VALUES (default, CURDATE(), 1, NULL, NULL, 3, FALSE, 'Venta', 1, null, 'ABCDEFGHIJ5524567890', 100.0, 100.0);
 INSERT INTO ingresos
-VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 1, 4,'ABCDEFGHIJ5554567890', 100.0, 100.0)
-
--- Personal
-INSERT INTO personal
-VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', 'Puesto 1', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0);
-INSERT INTO personal
-VALUES (default, 'Antonio', 'Sanchez', 'Salas', 'Calle Fernando Loyola #122 Colonia Presidentes', 'Puesto 2', CURDATE(), '5511591258', 'Elihihu', '5511917682', null, CURDATE(), 100.0);
-INSERT INTO personal
-VALUES (default, 'Lionel Andres', 'Messi', 'Dominguez', 'Calle Julian Zuniga #7 Colonia Presidentes', 'Puesto 3', CURDATE(), '5517594921', 'Jessica Cortes Vazquez', '5514685493', null, CURDATE(), 100.0);
-INSERT INTO personal
-VALUES (default, 'Raul', 'Hernandez', 'Jimenez', 'Calle Del Meson Cedros #76 Colonia Presidentes', 'Puesto 4', CURDATE(), '5518542660', 'Lionel Andres Messi Dominguez', '5517707234', null, CURDATE(), 100.0);
-INSERT INTO personal
-VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Colonia Presidentes', 'Puesto 5', CURDATE(), '5518794638', 'Raul Hernandez Jimenez', '5519159992', null, CURDATE(), 100.0);
+VALUES (default, CURDATE(), 1, NULL, NULL, NULL, TRUE, 'Reposición comida staff', 1, 4,'ABCDEFGHIJ5554567890', 100.0, 100.0);
 
 -- PaquetesClases
 INSERT INTO paquetesclases

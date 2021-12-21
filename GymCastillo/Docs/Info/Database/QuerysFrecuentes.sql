@@ -7,10 +7,13 @@
 	WHERE idinstructor = @IdInstructor;
     	-- Luego procedería a hacer el pago:
     	INSERT INTO egresos
-    	VALUES (default, @FechaRegistro, @IdUsuario, @Servicios, @Nomina, @Otros, @IdUsuarioPagar, @IdInstructor, @Concepto, @NumeroRecibo, @Monto);
+    	VALUES (default, @FechaRegistro, @IdUsuario, @Servicios,
+    	        @Nomina, @Otros, @IdUsuarioPagar, @IdInstructor,
+    	        @Concepto, @NumeroRecibo, @Monto);
     	-- Luego actulizaría los datos del instructor:
     	UPDATE instructor
-    	SET fechaultimopago=@FechaUltimoPago, montoultimopago=@MontoUltimoPago, sueldoadescontar=@SueldoADescontar, faltas=@Faltas;
+    	SET fechaultimopago=@FechaUltimoPago, montoultimopago=@MontoUltimoPago,
+    	    sueldoadescontar=@SueldoADescontar, faltas=@Faltas;
     	-- Y idk si quisiera saber cuando fue la última vez que le pagué a un pibardo:
     	SELECT e.fecharegistro, e.idinstructor, e.monto, e.concepto
     	FROM e.egresos

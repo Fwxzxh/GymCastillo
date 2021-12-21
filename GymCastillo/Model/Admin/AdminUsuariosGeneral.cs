@@ -161,5 +161,17 @@ namespace GymCastillo.Model.Admin {
                     throw new Exception("Error: no se pudo identificar al objeto.");
             }
         }
+
+        /// <summary>
+        /// Método que se encarga de actualizar los campos de deuda y sueldo Por pagar del objeto AbsClientInstructor.
+        /// </summary>
+        /// <param name="objeto"></param>
+        /// <param name="cantidad"></param>
+        public static void Pago(AbstClientInstructor objeto, decimal cantidad) {
+            // Validamos si hay deuda.
+            // Si hay deuda descontamos la cantidad al objeto dado.
+            // Validamos
+            throw new NotImplementedException();
+        }
     }
 }

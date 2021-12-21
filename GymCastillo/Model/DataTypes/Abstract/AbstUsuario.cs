@@ -139,5 +139,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
         public abstract Task<int> Alta();
+
+        /// <summary>
+        /// Método que se encarga de actualizar los campos del pago.
+        /// </summary>
+        /// <returns>El número de col afectadas.</returns>
+        public abstract Task<int> Pago();
     }
 }

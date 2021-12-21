@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
+using GymCastillo.Model.Init;
 using log4net;
 
 namespace GymCastillo.Model.Helpers {
@@ -35,8 +37,42 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 0;
                         ingreso.IdVenta = 0;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
+
+                        // Obtenemos el cliente
+                        var cliente = InitInfo.ObCoClientes.First(x => x.Id == ingreso.IdCliente);
+
+                        // Actualizamos los datos del cliente.
+                        cliente.MontoUltimoPago = ingreso.Monto;
+                        cliente.FechaUltimoPago = DateTime.Now;
+
+                        // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
+                        if (ingreso.IdPaquete != 0) {
+                            // Obtenemos el paquete.
+                            var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == ingreso.IdPaquete);
+
+                            // actualizamos.
+                            cliente.IdPaquete = ingreso.IdPaquete;
+                            cliente.FechaVencimientoPago += TimeSpan.FromDays(30);
+                            cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
+                            cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
+                            cliente.DuraciónPaquete += 30;
+                        }
+
+                        // calculamos la deuda.
+                        // TODO: ver como calcular la deudaaaa (con un monto y un campo de recibido).
+
+                        // cliente.DeudaCliente =
+                        cliente.IdLocker = ingreso.IdLocker;
+
+                        // Registramos el pago
+                        await cliente.Pago();
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Cliente");
+                        ShowPrettyMessages.NiceMessageOk(
+                            "Se ha realizado el pago correctamente.",
+                            "Operación Exitosa");
                         break;
                     case 2: // Ventas
                         // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdVenta.
@@ -44,7 +80,9 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdCliente = 0;
                         ingreso.IdLocker = 0;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Ventas");
                         break;
                     case 3: //Rentas
@@ -54,6 +92,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdLocker = 0;
                         ingreso.IdVenta = 0;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Rentas");
                         break;
@@ -64,6 +103,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdVenta = 0;
                         ingreso.IdRenta = 0;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Otros");
                         break;
@@ -102,20 +142,30 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdUsuarioPagar.
                         egreso.Nomina = true;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
+
+                        // TODO: actualizamos los campos en usuario
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Usuarios.");
                         break;
                     case 2: // NominaInstructores:
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdInstructor.
                         egreso.Nomina = true;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
+
+                        // TODO: actualizamos los campos en Instructores.
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
+                    // TODO: Agregar Nómina Personal
                     case 3: // Servicios
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Servicios.
                         egreso.Servicios = true;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Servicios.");
                         break;
@@ -123,6 +173,7 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Otros.
                         egreso.Otros = true;
 
+                        // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Otros.");
                         break;
@@ -130,7 +181,6 @@ namespace GymCastillo.Model.Helpers {
                         // Error
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
-
             }
             catch (KeyNotFoundException e) {
                 Log.Error("Ha ocurrido un error al identificar el tipo de egreso");
