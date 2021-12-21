@@ -67,6 +67,11 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public string NombreLocker { get; set; }
 
         /// <summary>
+        /// El monto recibido del cliente.
+        /// </summary>
+        public decimal MontoRecibido { get; set; }
+
+        /// <summary>
         /// Da de alta la instancia actual del ingreso en la base de datos.
         /// </summary>
         public async Task<int> Alta() {
@@ -81,7 +86,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                                            VALUES
                                                (default, @FechaRegistro, @IdUsuario,
                                                @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
-                                               @IdPaquete, @IdLocker, @NumeroRecibo, @Monto);";
+                                               @IdPaquete, @IdLocker, @NumeroRecibo, @Monto, @MontoRecibido);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -106,7 +111,10 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                     IdLocker == 0 ? null : IdLocker.ToString());
 
                 command.Parameters.AddWithValue("@NumeroRecibo", NumeroRecibo);
-                command.Parameters.AddWithValue("@Monto", Monto.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@Monto",
+                    Monto.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MontoRecibido",
+                    MontoRecibido.ToString(CultureInfo.InvariantCulture));
 
                 Log.Debug("Se ha generado la query.");
 

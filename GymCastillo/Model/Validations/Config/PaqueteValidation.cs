@@ -7,9 +7,6 @@ namespace GymCastillo.Model.Validations.Config {
         public PaqueteValidation() {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
 
-            RuleFor(paquete => paquete.IdClase)
-                .NotNull().WithMessage("El id de clase no debe de ser nulo.");
-
             RuleFor(paquete => paquete.Gym)
                 .NotNull().WithMessage("El gym no puede ser nulo.");
 

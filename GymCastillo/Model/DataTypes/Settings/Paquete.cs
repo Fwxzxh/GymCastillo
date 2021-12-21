@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -130,8 +131,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@NumClasesSemanales", NumClasesSemanales.ToString());
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
 
-                //TODO: agregar IdClase.
-
                 Log.Debug("Se ha generado la query.");
 
                 var res = await ExecSql.NonQuery(command, "Alta Paquete");
@@ -148,10 +147,39 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
+
+        /// <summary>
+        /// Método que checa si se puede borrar el paquete.
+        /// </summary>
+        /// <returns>True si pasa todas las validaciones.</returns>
+        private bool CheckDeleteConstrains() {
+            // Checamos que no tenga clases.
+            if (InitInfo.ListPaquetesClases.Any(x => x.IdPaquete == IdPaquete)) {
+                ShowPrettyMessages.InfoOk(
+                    "Hay clases asignadas a este paquete, antes de eliminarlo debe eliminar estas clases del paquete.",
+                    "Clases asignadas al paquete");
+                return false;
+            }
+
+            // Checamos que no haya clientes con el paquete.
+            if (InitInfo.ObCoClientes.Any(x => x.IdPaquete == IdPaquete)) {
+                ShowPrettyMessages.InfoOk(
+                    "Hay clientes que tienen asignado este paquete, antes de eliminarlo debe cambiar el paquete de estos clientes.",
+                    "Clientes con paquete asignado.");
+                return false;
+
+            }
+
+            return true;
+        }
+
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en una clase.");
 
-            // TODO: hacer FK check en Clientes y PaquetesClases.
+            // Checamos si podemos eliminar
+            if (!CheckDeleteConstrains()) {
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
