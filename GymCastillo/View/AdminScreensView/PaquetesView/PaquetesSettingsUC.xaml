@@ -153,7 +153,7 @@
                             <StackPanel Orientation="Horizontal" Margin="-10 0">
                                 <Button ToolTip="Agregar Clases"
                                         Margin="5 0"
-                                        Command="{Binding OpenHorarios}"
+                                        Command="{Binding OpenClases}"
                                         DataContext="{StaticResource vm}">
                                     <materialDesign:PackIcon Kind="PlusOutline"/>
                                 </Button>
@@ -177,31 +177,22 @@
                 <TextBox materialDesign:HintAssist.Hint="Nombre Paquete"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          VerticalContentAlignment="Center"
-                         Width="260"
+                         Width="330"
                          FontSize="20"
-                         Margin="20 0"
+                         Margin="40 0"
                          Text="{Binding Paquete.NombrePaquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          materialDesign:HintAssist.Hint="Clase"
-                          materialDesign:HintAssist.FloatingScale="0.6"
-                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          FontSize="20"
-                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClases}, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="NombreClase"
-                          SelectedValue="{Binding Paquete.IdClase}"
-                          SelectedItem="{Binding Paquete.NombreClase, UpdateSourceTrigger=Explicit}"
-                          SelectedValuePath="IdClase"
-                          Margin="20 0"/>
                 <TextBox materialDesign:HintAssist.Hint="# Semanales"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          FontSize="20"
+                         Width="180"
                          Margin="20 0"
                          Text="{Binding Paquete.NumClasesSemanales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="# Totales"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          FontSize="20"
+                         Width="180"
                          Margin="20 0"
                          Text="{Binding Paquete.NumClasesTotales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>

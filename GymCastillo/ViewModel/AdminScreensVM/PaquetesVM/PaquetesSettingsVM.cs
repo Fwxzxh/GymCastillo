@@ -7,6 +7,7 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.View.AdminScreensView.PaquetesView;
 using log4net;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
@@ -14,12 +15,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
+        public RelayCommand OpenClases { get; set; }
         public RelayCommand DeleteCommand { get; set; }
 
         public ObservableCollection<Paquete> ListaPaquetes { get; set; }
@@ -54,12 +53,19 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
                 SaveCommand = new RelayCommand(SavePaquete);
                 CancelCommand = new RelayCommand(CancelarPaquete);
                 DeleteCommand = new RelayCommand(DeletePaquete);
+                OpenClases = new RelayCommand(ConfigurarClases);
             }
             catch (Exception e) {
                 Log.Error("Error en el vm de paquetes");
                 Log.Error(e.Message);
                 //ShowPrettyMessages.ErrorOk($"Error en la ventana de paquetes {e.Message}", "Error");
             }
+        }
+
+        private void ConfigurarClases() {
+            PaquetesClasesWindow window = new(Paquete);
+            window.ShowDialog();
+            RefreshGrid();
         }
 
         private async void DeletePaquete() {
@@ -90,6 +96,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
             }
             Paquete = null;
             Paquete = new();
+        }
+        private void OnPropertyChanged(string propertyName) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

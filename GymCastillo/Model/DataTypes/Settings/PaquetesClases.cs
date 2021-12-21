@@ -70,7 +70,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string deleteQuery = @"insert into PaquetesClases values (@IdClase, @IdPaquete)";
+                const string deleteQuery = @"insert into PaquetesClases values (@IdPaquete, @IdClase)";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
 

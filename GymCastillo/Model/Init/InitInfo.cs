@@ -92,7 +92,7 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
 
-        public static List<PaquetesClases> ListPaquetesClases { get; set; }
+        public static ObservableCollection<PaquetesClases> ListPaquetesClases { get; set; }
 
         /// <summary>
         /// Indica si las queries han terminado de ejecutarse.

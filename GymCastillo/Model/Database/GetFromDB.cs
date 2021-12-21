@@ -632,7 +632,7 @@ namespace GymCastillo.Model.Database {
         /// Método que obtiene toda la información de la tabla de intersección PaquetesClases.
         /// </summary>
         /// <returns>Una lista con los PaquetesClases.</returns>
-        public static async Task<List<PaquetesClases>> GetPaquetesClases() {
+        public static async Task<ObservableCollection<PaquetesClases>> GetPaquetesClases() {
             Log.Debug("Se ha empezado el proceso de obtener la información de los PaquetesClases.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -646,7 +646,7 @@ namespace GymCastillo.Model.Database {
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
-                var listPaquetes = new List<PaquetesClases>();
+                var listPaquetes = new ObservableCollection<PaquetesClases>();
 
                 while (await reader.Result.ReadAsync()) {
                     var paqueteClase = new PaquetesClases() {
