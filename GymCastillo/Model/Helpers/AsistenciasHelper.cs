@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.Init;
 using log4net;
@@ -39,22 +40,23 @@ namespace GymCastillo.Model.Helpers {
         /// <returns><c>true</c> Si los datos son correctos y el usuario existe.</returns>
         public bool CheckId(Asistencia asistencia) {
             if (asistencia.Tipo == 1) {
-                // es cliente
+                // <--> es cliente
                 var clienteQuery = InitInfo.ObCoClientes.Where(x => x.Id == asistencia.Id)
                     .AsParallel().ToList();
 
                 if (clienteQuery.Count == 0) {
                     // El cliente no se encontró
+                    Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
                     ShowPrettyMessages.WarningOk(
                         $"No se ha podido encontrar el cliente con Id {asistencia.Id.ToString()}.",
                         "Cliente No encontrado.");
                     return false;
                 }
 
-                // Existe
+                // Existe ->
                 return true;
             }
-            // es instructor.
+            // <--> es instructor.
 
             // Obtenemos el instructor.
             var instructorQuery = InitInfo.ObCoInstructor.Where(x => x.Id == asistencia.Id)
@@ -62,13 +64,14 @@ namespace GymCastillo.Model.Helpers {
 
             if (instructorQuery.Count == 0) {
                 // El instructor no se encontró
+                Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
                 ShowPrettyMessages.WarningOk(
                     $"No se ha podido encontrar el instructor con Id {asistencia.Id.ToString()}.",
                     "Cliente No encontrado.");
                 return false;
             }
 
-            // Existe
+            // Existe ->
             return true;
         }
 
@@ -77,7 +80,7 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="asistencia">El objeto con la información inicial de la asistencia.</param>
         /// <returns>
-        /// Una tupla con un bool indicando si se le puede dar acceso y un nuevo objeto asistencia actualizado.
+        /// un nuevo objeto tipo asistencia con la información necesaria para seguir con el proceso de asistencia.
         /// </returns>
         public Asistencia CheckEntrada(Asistencia asistencia) {
             if (asistencia.Tipo == 1) {
@@ -122,7 +125,8 @@ namespace GymCastillo.Model.Helpers {
             // validamos si puede entrar.
             if (DateTime.Now > instructor.HoraEntrada) {
                 ShowPrettyMessages.WarningOk(
-                    $"El instructor {instructor.Nombre} {instructor.ApellidoPaterno} llego tarde, su hora de entrada es: {instructor.HoraEntrada.ToString()}",
+                    $"El instructor {instructor.Nombre} {instructor.ApellidoPaterno} llego tarde, " +
+                    $"su hora de entrada es: {instructor.HoraEntrada.ToString(CultureInfo.InvariantCulture)}",
                     "Retardo");
                 return asistencia;
             }
@@ -138,6 +142,7 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="asistencia">Objeto que tiene la información de la asistencia.</param>
         private async Task AsistenciaCliente(Asistencia asistencia) {
+            Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Cliente");
 
             // Validamos si tienen clases disponibles.
             if (asistencia.NúmeroClasesAEntrar > asistencia.DatosCliente.ClasesSemanaDisponibles ||
@@ -149,45 +154,34 @@ namespace GymCastillo.Model.Helpers {
                 return;
             }
 
-            // Guardamos la asistencia en cliente.
-            var asistenciaTask =  asistencia.DatosCliente.NuevaAsistencia(asistencia.NúmeroClasesAEntrar);
+            // Lanzamos la alta de la asistencia.
+            var altaTask = AdminClienteInstructor.NuevaAsistencia(asistencia);
 
             // Actualizamos el cupo en la clase.
             foreach (var horario in asistencia.ListaHorarios) {
-                if (asistencia.ClasesAEntrar.Contains(horario.IdClase)) {
-
-                    // si nuestra lista de id con las clases a entrar coincide con el horario.
-                     var res = await Task.Run(() => horario.NuevaAsistencia());
-                     if (res == 0) {
-                         ShowPrettyMessages.WarningOk(
-                             "No se ha actualizado la base de datos al intentar actualizar el cupo actual de la clase.",
-                             "Si cambios.");
-                     }
+                if (!asistencia.ClasesAEntrar.Contains(horario.IdClase)) continue;
+                // si nuestra lista de id con las clases a entrar coincide con el horario.
+                var res = await Task.Run(() => horario.NuevaAsistencia());
+                if (res == 0) {
+                    ShowPrettyMessages.WarningOk(
+                        "No se ha actualizado la base de datos al intentar actualizar el cupo actual de la clase.",
+                        "Si cambios.");
                 }
             }
 
-            var resAsistenciaTask = await asistenciaTask;
-
-            if (resAsistenciaTask == 0) {
-                ShowPrettyMessages.WarningOk(
-                     "No se ha actualizado la base de datos a la hora de actualizar los datos de entrada del cliente.",
-                     "Sin cambios.");
-            }
+            await altaTask;
+            Log.Debug("Se ha Terminado el proceso de registrar la asistencia de un Cliente.");
         }
 
         /// <summary>
         /// Método que se encarga de la asistencia de un Instructor.
         /// </summary>
         private async Task AsistenciaInstructor(Asistencia asistencia) {
+            Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Instructor.");
 
-            // Registramos la asistencia.
-            var taskAsistencia = asistencia.DatosInstructor.NuevaAsistencia(asistencia.SueldoADescontar);
-            var res = await taskAsistencia;
-            if (res == 0) {
-                ShowPrettyMessages.WarningOk(
-                     "No se ha actualizado la base de datos a la hora de actualizar los datos de entrada del Instructor.",
-                     "Sin cambios.");
-            }
+            // Lanzamos el alta de la asistencia.
+            await AdminClienteInstructor.NuevaAsistencia(asistencia);
+            Log.Debug("Se ha Terminado el proceso de registrar la asistencia de un Instructor.");
         }
     }
 }
