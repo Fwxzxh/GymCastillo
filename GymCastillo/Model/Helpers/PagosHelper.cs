@@ -149,6 +149,7 @@ namespace GymCastillo.Model.Helpers {
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Usuarios.");
                         break;
+
                     case 2: // NominaInstructores:
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdInstructor.
                         egreso.Nomina = true;
@@ -160,8 +161,20 @@ namespace GymCastillo.Model.Helpers {
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
-                    // TODO: Agregar Nómina Personal
-                    case 3: // Servicios
+
+                    case 3: // NominaPersonal:
+                        // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdPersonal.
+                        egreso.Nomina = true;
+
+                        // Registramos el Pago
+                        await AdminOnlyAlta.Alta(egreso);
+
+                        // TODO: actualizamos los campos en Personal.
+
+                        Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
+                        break;
+
+                    case 4: // Servicios
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Servicios.
                         egreso.Servicios = true;
 
@@ -169,7 +182,8 @@ namespace GymCastillo.Model.Helpers {
                         await AdminOnlyAlta.Alta(egreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Servicios.");
                         break;
-                    case 4: // Otros
+
+                    case 5: // Otros
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Otros.
                         egreso.Otros = true;
 
@@ -177,6 +191,7 @@ namespace GymCastillo.Model.Helpers {
                         await AdminOnlyAlta.Alta(egreso);
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Otros.");
                         break;
+
                     default:
                         // Error
                         throw new KeyNotFoundException("No se ha encontrado el tipo");

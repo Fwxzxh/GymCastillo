@@ -52,6 +52,16 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public string NombreInstructor { get; set; }
 
         /// <summary>
+        /// Id del Personal
+        /// </summary>
+        public int IdPersonal { get; set; }
+
+        /// <summary>
+        /// Nombre del personal.
+        /// </summary>
+        public string NombrePersonal { get; set; }
+
+        /// <summary>
         /// Método que da de alta un Pago.
         /// </summary>
         public async Task<int> Alta() {
@@ -66,7 +76,8 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                                            VALUES
                                                (default, @FechaRegistro, @IdUsuario,
                                                @Servicios, @Nomina, @Otros, @IdUsuarioPagar,
-                                               @IdInstructor, @Concepto, @NumeroRecibo, @Monto);";
+                                               @IdInstructor, @IdPersonal, @Concepto, 
+                                               @NumeroRecibo, @Monto);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -86,6 +97,8 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
 
                 command.Parameters.AddWithValue("@IdInstructor",
                     IdInstructor == 0 ? null : IdInstructor.ToString());
+                command.Parameters.AddWithValue("@IdPersonal",
+                    IdPersonal == 0 ? null : IdPersonal.ToString());
                 command.Parameters.AddWithValue("@Concepto",
                     Concepto);
                 command.Parameters.AddWithValue("@NumeroRecibo", NumeroRecibo);
