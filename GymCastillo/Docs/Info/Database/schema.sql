@@ -243,6 +243,9 @@ create table Egresos (
 	-- IdInstructor
     IdInstructor int, -- Si fue nomina, aquí ingresar el id del instructor a quién se le va a pagar
     foreign key (IdInstructor) references Instructor (IdInstructor),
+	-- IdPersonal
+    IdPersonal int, -- Si fue nomina, aquí ingresar el id del instructor a quién se le va a pagar
+    foreign key (IdPersonal) references Personal (IdPersonal),
     Concepto varchar (2000) not null,
     NumeroRecibo varchar(30) not null,
     Monto decimal not null
@@ -271,7 +274,8 @@ create table Ingresos (
     IdLocker int, -- Para saber si le cobramos el adicional a locker (Sigue siendo opcional)
     foreign key (IdLocker) references Locker (IdLocker),
     NumeroRecibo varchar(30) not null,
-    Monto decimal
+    Monto decimal,
+    Recibido decimal
 );
 
 -- Información de inicio:
