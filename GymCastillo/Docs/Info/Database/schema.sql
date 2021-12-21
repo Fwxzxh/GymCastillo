@@ -275,7 +275,7 @@ create table Ingresos (
     foreign key (IdLocker) references Locker (IdLocker),
     NumeroRecibo varchar(30) not null,
     Monto decimal,
-    Recibido decimal
+    MontoRecibido decimal
 );
 
 -- Información de inicio:
