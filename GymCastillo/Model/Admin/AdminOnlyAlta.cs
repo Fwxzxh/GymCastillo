@@ -69,7 +69,9 @@ namespace GymCastillo.Model.Admin {
                     await rentasValidator.ValidateAndThrowAsync((Rentas)objeto);
                     break;
 
-                case "Alta":
+                case "Ingreso":
+                    break;
+                case "Egreso":
                     break;
 
                 default:
