@@ -178,8 +178,42 @@ namespace GymCastillo.Model.DataTypes.Personal {
             }
         }
 
-        public override Task<int> Pago() {
-            throw new NotImplementedException();
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago de un usuario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update usuario
+                                           set
+                                               FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago
+                                           where IdUsuario=@IdUsuario;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.Parameters.AddWithValue("@IdUsuario",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Usuario");
+                Log.Debug("Se han actualizado los datos del usuario por un pago de nómina.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del usuario en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del usuario en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

@@ -387,7 +387,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 await using var command = new MySqlCommand(pagoQuery, connection);
 
-
                 command.Parameters.AddWithValue("@MontoUltimoPago",
                     MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@FechaUltimoPago",
@@ -397,7 +396,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     FechaVencimientoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@DeudaCliente",
                     DeudaCliente.ToString(CultureInfo.InvariantCulture));
-
 
                 command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
                     ClasesTotalesDisponibles.ToString());
@@ -410,6 +408,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     IdLocker.ToString());
                 command.Parameters.AddWithValue("@IdPaquete",
                     IdPaquete.ToString());
+
+                command.Parameters.AddWithValue("@IdCliente",
+                    Id.ToString());
 
                 var res = await ExecSql.NonQuery(command, "Alta Pago Cliente");
                 Log.Debug("Se han actualizado los datos del cliente por un pago.");

@@ -7,10 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Nómina Personal fields &amp; MontoRecibido in Ingresos">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Egresos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="XamlPreviewOptionsPage" />
+    <property name="settings.editor.selected.configurable" value="CognitiveComplexityAnalysisOptionPage" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.GymCastillo">
@@ -140,7 +144,7 @@
       <workItem from="1640020681304" duration="2826000" />
       <workItem from="1640040054165" duration="259000" />
       <workItem from="1640040367797" duration="18520000" />
-      <workItem from="1640101626030" duration="4096000" />
+      <workItem from="1640101626030" duration="9146000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -310,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640112767081</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram">
+      <created>1640113756982</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1640113756982</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +355,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fixes to init info" />
     <MESSAGE value="Deleted InitTest.cs" />
     <MESSAGE value="Added more FK validations &amp; less TODOs" />
     <MESSAGE value="minor alta cliente fix" />
@@ -369,6 +379,11 @@
     <MESSAGE value="¯\_(ツ)_/¯" />
     <MESSAGE value="Fix Paquete validation and Paquete FK check messages" />
     <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos" />
+    <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

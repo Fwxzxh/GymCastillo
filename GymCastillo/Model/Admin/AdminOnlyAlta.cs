@@ -16,7 +16,7 @@ namespace GymCastillo.Model.Admin {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// Método que se encarga de
+        /// Método que se encarga de dar de alta una instancia del objeto dado en la base de datos.
         /// </summary>
         public static async Task Alta(IOnlyAlta objeto) {
             Log.Debug("Se ha iniciado el proceso de alta de un objeto de solo alta.");

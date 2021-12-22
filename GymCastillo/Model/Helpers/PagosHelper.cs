@@ -45,7 +45,7 @@ namespace GymCastillo.Model.Helpers {
 
                         // Actualizamos los datos del cliente.
                         cliente.MontoUltimoPago = ingreso.Monto;
-                        cliente.FechaUltimoPago = DateTime.Now;
+                        cliente.FechaUltimoPago = ingreso.FechaRegistro;
 
                         // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
                         if (ingreso.IdPaquete != 0) {
@@ -61,19 +61,20 @@ namespace GymCastillo.Model.Helpers {
                         }
 
                         // calculamos la deuda.
-                        // TODO: ver como calcular la deudaaaa (con un monto y un campo de recibido).
+                        if (ingreso.MontoRecibido < ingreso.Monto) {
+                            // hay deuda
+                            cliente.DeudaCliente += ingreso.Monto - ingreso.MontoRecibido;
+                        }
 
                         // cliente.DeudaCliente =
                         cliente.IdLocker = ingreso.IdLocker;
 
                         // Registramos el pago
-                        await cliente.Pago();
+                        await AdminUsuariosGeneral.Pago(cliente);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Cliente");
-                        ShowPrettyMessages.NiceMessageOk(
-                            "Se ha realizado el pago correctamente.",
-                            "Operación Exitosa");
                         break;
+
                     case 2: // Ventas
                         // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdVenta.
                         ingreso.IdRenta = 0;
@@ -85,6 +86,7 @@ namespace GymCastillo.Model.Helpers {
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Ventas");
                         break;
+
                     case 3: //Rentas
                         // Primero se tiene que hacer la renta!!!
                         // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdRenta
@@ -94,8 +96,10 @@ namespace GymCastillo.Model.Helpers {
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Rentas");
                         break;
+
                     case 4: // Otros
                         // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto,
                         ingreso.IdCliente = 0;
@@ -105,8 +109,10 @@ namespace GymCastillo.Model.Helpers {
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Otros");
                         break;
+
                     default:
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
@@ -145,7 +151,15 @@ namespace GymCastillo.Model.Helpers {
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
 
-                        // TODO: actualizamos los campos en usuario
+                        // Obtenemos el usuario
+                        var usuario = InitInfo.ObCoUsuarios.First(x => x.Id == egreso.IdUsuarioPagar);
+
+                        // Actualizamos
+                        usuario.MontoUltimoPago = egreso.Monto;
+                        usuario.FechaUltimoPago = egreso.FechaRegistro;
+
+                        // Registramos
+                        await AdminUsuariosGeneral.Pago(usuario);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Usuarios.");
                         break;
@@ -157,7 +171,19 @@ namespace GymCastillo.Model.Helpers {
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
 
-                        // TODO: actualizamos los campos en Instructores.
+                        // Obtenemos al instructor
+                        var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
+
+                        // Actualizamos los campos.
+                        // TODO: Agregar y obtener los demás campos
+                        instructor.MontoUltimoPago = egreso.Monto;
+                        instructor.FechaUltimoPago = egreso.FechaRegistro;
+                        // instructor.DiasATrabajar =
+                        // instructor.SueldoADescontar
+                        // instructor.MétodoFechaPago =
+
+                        // Registramos el pago
+                        await AdminUsuariosGeneral.Pago(instructor);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
@@ -169,7 +195,15 @@ namespace GymCastillo.Model.Helpers {
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
 
-                        // TODO: actualizamos los campos en Personal.
+                        // Obtenemos al personal
+                        var personal = InitInfo.ObCoPersonal.First(x => x.Id == egreso.IdPersonal);
+
+                        // Actualizamos
+                        personal.MontoUltimoPago = egreso.Monto;
+                        personal.FechaUltimoPago = egreso.FechaRegistro;
+
+                        // Registramos
+                        await AdminUsuariosGeneral.Pago(personal);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
@@ -180,6 +214,7 @@ namespace GymCastillo.Model.Helpers {
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Servicios.");
                         break;
 
@@ -189,6 +224,7 @@ namespace GymCastillo.Model.Helpers {
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
+
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Otros.");
                         break;
 

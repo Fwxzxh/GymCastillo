@@ -126,6 +126,36 @@ namespace GymCastillo.Model.Admin {
         }
 
         /// <summary>
+        /// Método que se encarga de registrar el pago del usuario y validarlo.
+        /// </summary>
+        /// <param name="usuario">El usuario a dar de alta.</param>
+        public static async Task Pago(AbstUsuario usuario) {
+            Log.Debug("Se ha iniciado un proceso de pago genérico.");
+
+            try {
+                // TODO: ver si podemos de alguna manera validar los datos de los pagos.
+
+                var res = await usuario.Pago();
+
+                // Verificamos los cambios.
+                if (res == 0) {
+                    // No se han hecho cambios a la bd
+                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    Log.Warn("No se han hecho cambios a la base de datos.");
+                }
+                else {
+                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                }
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso genérico de pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
+
+        /// <summary>
         /// Método que se encarga de averiguar el tipo de objeto es y validar los campos especializados.
         /// </summary>
         private static async Task ValidateAgain(AbstUsuario objeto) {

@@ -147,8 +147,45 @@ namespace GymCastillo.Model.DataTypes.Personal {
         }
 
 
-        public override Task<int> Pago() {
-            throw new NotImplementedException();
+        /// <summary>
+        /// método que se encarga de actualizar los datos de pago de un personal
+        /// </summary>
+        /// <returns>el número de columns afectadas.</returns>
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago de un personal");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update personal
+                                           set FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago
+                                           where IdPersonal=@IdPersonal;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.Parameters.AddWithValue("@IdPersonal",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Personal");
+                Log.Debug("Se han actualizado los datos del personal por un pago de nómina.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del personal en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del personal en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

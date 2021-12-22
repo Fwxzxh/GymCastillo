@@ -296,8 +296,54 @@ namespace GymCastillo.Model.DataTypes.Personal {
             }
         }
 
-        public override Task<int> Pago() {
-            throw new NotImplementedException();
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago de un usuario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                // TODO: igual y ocupamos también los dias trabajados
+                const string pagoQuery = @"update instructor
+                                           set
+                                               FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago,
+                                               DiasATrabajar=@DiasATrabajar, SueldoADescontar=@SueldoADescontar,
+                                               MetodoFechaPago=@MetodoFechaPago
+                                           where IdInstructor=@IdInstructor;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@DiasATrabajar",
+                    DiasATrabajar.ToString());
+                command.Parameters.AddWithValue("@SueldoADescontar",
+                    SueldoADescontar.ToString(CultureInfo.InvariantCulture));
+
+                // TODO: ver para que es esto
+                command.Parameters.AddWithValue("@MétodoFechaPago",
+                    MétodoFechaPago.ToString());
+
+                command.Parameters.AddWithValue("@IdInstructor",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Instructor");
+                Log.Debug("Se han actualizado los datos del instructor por un pago de nómina.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del Instructor en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del Instructor en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }
