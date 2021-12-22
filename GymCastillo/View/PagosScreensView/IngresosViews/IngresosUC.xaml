@@ -264,7 +264,7 @@
                   ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoIngresos}, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha"
-                                    Binding="{Binding FechaRegistro.Date}"
+                                    Binding="{Binding FechaRegistro}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">

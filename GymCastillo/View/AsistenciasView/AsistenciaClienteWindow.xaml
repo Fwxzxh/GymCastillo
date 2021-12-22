@@ -16,8 +16,9 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         BorderThickness="5"
-        d:DesignHeight="600" d:DesignWidth="800">
+        d:DesignHeight="800" d:DesignWidth="800">
     <Window.Resources>
+        <acceso:IdToClaseConverter x:Key="clase"/>
         <acceso:BoolToAcceso x:Key="acceso"/>
         <acceso:BoolToColor x:Key="color"/>
     </Window.Resources>
@@ -28,8 +29,8 @@
     </Window.Style>
     <Grid Margin="30">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -87,17 +88,30 @@
                            FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Registrar Acceso"
-                        Margin="20"
+                        Margin="10"
                         Command="{Binding updateUser}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"
                         HorizontalAlignment="Center"
-                        Margin="20"
+                        Margin="10"
                         Command="{Binding CloseWindowCommand, Mode=OneWay}"
                         CommandParameter="{Binding ElementName=asistenciaCliente}"
                         FontSize="20"/>
             </StackPanel>
         </Grid>
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding ListaHorarios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Clase"
+                                    Binding="{Binding IdClase, Converter={StaticResource clase}}"
+                                    Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
     </Grid>
 </Window>

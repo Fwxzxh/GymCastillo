@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using log4net;
@@ -41,12 +42,25 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
             }
         }
 
+        private List<Horario> listaHorarios;
+
+        public List<Horario> ListaHorarios {
+            get { return listaHorarios; }
+            set
+            {
+                listaHorarios = value;
+                OnPropertyChanged(nameof(ListaHorarios));
+            }
+        }
+
 
         public AsistenciaClientesVM(Asistencia asistencia) {
             Log.Debug("Ventana Asistencia Clientes iniciada");
             this.asistencia = asistencia;
             Cliente = asistencia.DatosCliente;
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
+            ListaHorarios = asistencia.ListaHorarios;
+
         }
 
         private void CloseWindow(IClosable window) {
