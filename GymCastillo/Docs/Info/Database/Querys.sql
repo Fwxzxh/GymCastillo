@@ -350,11 +350,12 @@ FROM	inventario i
 
 	-- Dar de alta productos
 INSERT INTO inventario
-VALUES 	(default, @NombreProducto,
-	@Descripcion, @Costo, @Existencias);
+VALUES
+    (default, @NombreProducto,
+    @Descripcion, @Costo, @Existencias);
 
 	-- Actualizar productos
-UPDATE 	inventario
-SET 	Descripcion=@Descripcion, Costo=@Costo,
-	Existencias=@Existencias
-WHERE	IdProducto=@IdProducto;
+UPDATE inventario
+SET Descripcion=@Descripcion, Costo=@Costo,
+    Existencias=@Existencias
+WHERE IdProducto=@IdProducto;

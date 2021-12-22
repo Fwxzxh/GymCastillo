@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations.Config;
 using GymCastillo.Model.Validations.Personal;
+using GymCastillo.Model.Validations.Ventas;
 using log4net;
 
 namespace GymCastillo.Model.Admin {
@@ -31,11 +33,13 @@ namespace GymCastillo.Model.Admin {
                 // Verificamos los cambios.
                 if (res == 0) {
                     // No se han hecho cambios a la bd.
-                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos",
+                        "Sin cambios");
                 }
                 else {
                     if (!silent) {
-                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.",
+                            "Operación Exitosa");
                     }
                 }
             }
@@ -65,11 +69,13 @@ namespace GymCastillo.Model.Admin {
                 // Verificamos los cambios.
                 if (res == 0) {
                     // No se han hecho cambios a la bd
-                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos",
+                        "Sin cambios");
                 }
                 else {
                     if (!silent) {
-                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.",
+                            "Operación Exitosa");
                     }
                 }
             }
@@ -103,12 +109,14 @@ namespace GymCastillo.Model.Admin {
                 // Verificamos los cambios.
                 if (res == 0) {
                     // No se han hecho cambios a la bd
-                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos",
+                        "Sin cambios");
                     Log.Warn("No se han hecho cambios a la base de datos.");
                 }
                 else {
                     if (!silent) {
-                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                        ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.",
+                            "Operación Exitosa");
                     }
                 }
             }
@@ -153,6 +161,11 @@ namespace GymCastillo.Model.Admin {
                 case "PaquetesClases":
                     var paquetesClases = new PaqueteClaseValidation();
                     await paquetesClases.ValidateAndThrowAsync((PaquetesClases) objeto);
+                    break;
+
+                case "Inventario":
+                    var inventarioValidation = new InventarioValidation();
+                    await inventarioValidation.ValidateAndThrowAsync((Inventario) objeto);
                     break;
 
                 default:
