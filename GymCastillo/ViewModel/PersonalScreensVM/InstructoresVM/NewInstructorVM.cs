@@ -9,7 +9,9 @@ using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.InstructorsCommands;
+using ImageMagick;
 using log4net;
+using Microsoft.Win32;
 
 namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
     public class NewInstructorVM : INotifyPropertyChanged {
@@ -18,6 +20,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
 
         public NewInstructorCommand instructorCommand { get; set; }
+        public RelayCommand ImageCommand { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -39,19 +43,42 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
             }
         }
 
+        private string photoPath;
+
+        public string PhotoPath {
+            get { return photoPath; }
+            set
+            {
+                photoPath = value;
+                OnPropertyChanged(nameof(PhotoPath));
+            }
+        }
+
         public NewInstructorVM() {
             try {
                 Log.Debug("Nuevo instructor ventana inicializada");
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ObCoTipoInstructor);
                 instructorCommand = new(this);
-
+                ImageCommand = new RelayCommand(SelectPhoto);
             }
             catch (Exception e) {
                 Log.Error(e.Message);
                 ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
 
+        }
+
+        private void SelectPhoto() {
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+            if (dialog.ShowDialog() == true) {
+                PhotoPath = dialog.FileName;
+                var image = new MagickImage(PhotoPath);
+                instructor.Foto = image;
+            }
         }
 
         public async void CrearInstructor() {

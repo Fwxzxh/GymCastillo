@@ -39,7 +39,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public RelayCommand ImageCommand { get; set; }
 
-        public NewClientCommand newClientCommand { get; set; }
+        public RelayCommand<IClosable> newClientCommand { get; set; }
 
         private Cliente newCliente = new();
 
@@ -95,7 +95,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 ImageCommand = new RelayCommand(SelectPhoto);
                 newCliente.FechaNacimiento = DateTime.Now;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-                newClientCommand = new(this);
+                newClientCommand = new RelayCommand<IClosable>(this.CrearCliente);
+                //newClientCommand = new(this);
                 Log.Debug("Nuevo cliente ventana inicializada");
             }
             catch (Exception e) {
@@ -116,11 +117,11 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
-        public async void CrearCliente() {
+        public async void CrearCliente(IClosable window) {
             Log.Debug("Nuevo usuario creado");
             await AdminUsuariosGeneral.Alta(NewCliente);
             NewCliente = new Cliente();
-
+            window.Close();
         }
 
         private void CloseWindow(IClosable window) {

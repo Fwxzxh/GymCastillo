@@ -98,6 +98,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Teléfono"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Width="250"
                          MaxLength="10"
                          FontSize="20"
@@ -133,6 +134,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Width="250"
                          MaxLength="10"
                          FontSize="20"
@@ -142,6 +144,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Sueldo"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -154,6 +157,7 @@
                          materialDesign:HintAssist.Hint="Sueldo a Descontar"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Margin="-15 0 30 0 "
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Width="250"
                          FontSize="20"
                          Text="{Binding Instructor.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
@@ -216,16 +220,17 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="65 0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
+                    Margin="65 0"
+                    Command="{Binding ImageCommand}">
                 <materialDesign:PackIcon Kind="CameraPlusOutline"
                                          Width="30"
                                          Height="30"/>
             </Button>
-            <Rectangle Width="200"
-                       Height="200"
-                       Fill="Transparent"
-                       Stroke="AntiqueWhite"
-                       Margin="20"/>
+            <Image Width="200"
+                   Height="200"
+                   Source="{Binding PhotoPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Margin="20"/>
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 

@@ -39,6 +39,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -48,6 +49,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -57,6 +59,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -92,6 +95,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -110,6 +114,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
                          Width="250"
                          FontSize="20"
@@ -131,6 +136,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
                          Width="375"
                          FontSize="20"
@@ -163,18 +169,19 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="65 0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
+                    Margin="65 0"
+                    Command="{Binding ImageCommand}">
                 <materialDesign:PackIcon Kind="CameraPlusOutline"
                                          Width="30"
                                          Height="30"/>
             </Button>
 
             <!--change for image-->
-            <Rectangle Width="200"
-                       Height="200"
-                       Fill="Transparent"
-                       Stroke="AntiqueWhite"
-                       Margin="20"/>
+            <Image Width="200"
+                   Height="200"
+                   Source="{Binding Usuario.FotoBitmap}"
+                   Margin="20"/>
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 

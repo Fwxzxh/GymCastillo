@@ -37,6 +37,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -46,6 +47,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -55,6 +57,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -75,6 +78,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
                          Width="380"
                          FontSize="20"
@@ -95,6 +99,7 @@
                 <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
                          VerticalContentAlignment="Center"
                          Width="375"
@@ -103,20 +108,32 @@
                          Text="{Binding Personal.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
+                <TextBox materialDesign:HintAssist.Hint="Puesto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="375"
+                         FontSize="20"
+                         Margin="30 0"
+                         Text="{Binding Personal.Puesto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="65 0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                    Command="{Binding ImageCommand}"
+                    Margin="65 0">
                 <materialDesign:PackIcon Kind="CameraPlusOutline"
                                          Width="30"
                                          Height="30"/>
             </Button>
 
             <!--change for image-->
-            <Rectangle Width="200"
-                       Height="200"
-                       Fill="Transparent"
-                       Stroke="AntiqueWhite"
-                       Margin="20"/>
+            <Image Width="200"
+                   Height="200"
+                   Source="{Binding Personal.FotoBitmap}"
+                   Margin="20"/>
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 

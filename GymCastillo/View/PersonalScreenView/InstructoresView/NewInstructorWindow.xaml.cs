@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
 using GymCastillo.Model.Interfaces;
 
 namespace GymCastillo.View.PersonalScreenView.InstructoresView {
@@ -8,6 +9,11 @@ namespace GymCastillo.View.PersonalScreenView.InstructoresView {
     public partial class NewInstructorWindow : Window, IClosable {
         public NewInstructorWindow() {
             InitializeComponent();
+        }
+
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

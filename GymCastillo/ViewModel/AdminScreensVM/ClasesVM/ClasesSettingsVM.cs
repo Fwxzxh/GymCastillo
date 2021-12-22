@@ -72,9 +72,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         public ClasesSettingsVM() {
             try {
                 Log.Debug("Iniciando settings de clases.");
-                //ListaClases = new ObservableCollection<Clase>(InitInfo.ListaClases);
-                //ListaInstructores = new ObservableCollection<Instructor>(InitInfo.ListaInstructor);
-                //ListaInstructores = lista.ObCoInstructor;
                 ListaEspacios = new ObservableCollection<Espacio>(InitInfo.ObCoEspacios);
                 CancelCommand = new RelayCommand(CancelUpdate);
                 DeleteCommand = new RelayCommand(DeleteClass);
@@ -90,6 +87,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         private void OpenHorariosW() {
             HorariosWindow horarios = new(Clase);
             horarios.ShowDialog();
+            Clase = null;
+            Clase = new();
         }
 
         private async void SaveClass(bool guardar) {

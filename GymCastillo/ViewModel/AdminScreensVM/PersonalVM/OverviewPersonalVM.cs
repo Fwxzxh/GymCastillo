@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
+using ImageMagick;
 using log4net;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +17,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
-
+        public RelayCommand ImageCommand { get; set; }
 
         private Personal personal;
 
@@ -28,12 +30,34 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
             }
         }
 
+        private string photoPath;
+
+        public string PhotoPath {
+            get { return photoPath; }
+            set
+            {
+                photoPath = value;
+                OnPropertyChanged(nameof(PhotoPath));
+            }
+        }
+
         public OverviewPersonalVM(Personal personal) {
             this.personal = personal;
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-
+            ImageCommand = new RelayCommand(SelectPhoto);
         }
 
+        private void SelectPhoto() {
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+            if (dialog.ShowDialog() == true) {
+                PhotoPath = dialog.FileName;
+                var image = new MagickImage(PhotoPath);
+                personal.Foto = image;
+            }
+        }
         private void CloseWindow(IClosable window) {
             if (window != null) {
                 window.Close();

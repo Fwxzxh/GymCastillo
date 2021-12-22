@@ -69,17 +69,18 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="1">
-                <TextBox materialDesign:HintAssist.Hint="Dirección"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Center"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     materialDesign:TextFieldAssist.HasClearButton="True"
-                     VerticalContentAlignment="Center"
-                     Width="830"
-                     FontSize="20"
-                     Margin="20 0"
-                     Text="{Binding SelectedClient.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Descripción Condición Especial"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="830"
+                         FontSize="20"
+                         Margin="20 0"
+                         IsEnabled="{Binding SelectedClient.CondicionEspecial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding SelectedClient.DescripciónCondiciónEspecial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
@@ -100,6 +101,7 @@
                          MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Text="{Binding SelectedClient.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <CheckBox Content="Condición especial"
@@ -129,6 +131,7 @@
                          MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Text="{Binding SelectedClient.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -172,6 +175,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Width="250"
                          FontSize="20"
                          Text="{Binding Descuento, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -188,14 +192,14 @@
                           FontSize="20"
                           Width="auto"
                           Margin="0 0 15 0"/>
-                    <CheckBox Content="Locker"
+                    <!--<CheckBox Content="Locker"
                               IsChecked="{Binding LockerIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"
                               VerticalAlignment="Center"
                               FontSize="20"
-                              Width="auto"/>
+                              Width="auto"/>-->
                 </StackPanel>
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                <!--<ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Locker No."
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:ValidationAssist.Suppress="True"
@@ -211,7 +215,7 @@
                           SelectedValuePath="IdLocker"
                           SelectedValue="{Binding SelectedClient.IdLocker}"
                           SelectedItem="{Binding SelectedClient.NombreLocker}"
-                          ItemsSource="{Binding LockersList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                          ItemsSource="{Binding LockersList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Total Pagar"
                          materialDesign:HintAssist.FloatingScale="0.6"

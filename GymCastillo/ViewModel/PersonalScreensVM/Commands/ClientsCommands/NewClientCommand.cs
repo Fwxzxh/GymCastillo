@@ -21,7 +21,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands {
         }
 
         public void Execute(object parameter) {
-            vm.CrearCliente();
+            //vm.CrearCliente();
         }
     }
 }
