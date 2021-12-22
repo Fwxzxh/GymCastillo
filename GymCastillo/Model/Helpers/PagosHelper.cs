@@ -70,6 +70,7 @@ namespace GymCastillo.Model.Helpers {
                         }
 
                         // TODO: Hacer check si dan más dinero
+                        // Si dan más dinero descontamos de la deuda.
                         if (ingreso.MontoRecibido > ingreso.Monto) {
                             var resto = ingreso.MontoRecibido - ingreso.Monto;
                             cliente.DeudaCliente -= resto;
