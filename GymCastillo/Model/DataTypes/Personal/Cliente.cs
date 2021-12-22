@@ -405,9 +405,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@DuracionPaquete",
                     DuraciónPaquete.ToString());
                 command.Parameters.AddWithValue("@IdLocker",
-                    IdLocker.ToString());
+                    IdLocker == 0 ? null : IdLocker.ToString());
                 command.Parameters.AddWithValue("@IdPaquete",
-                    IdPaquete.ToString());
+                    IdPaquete == 0 ? null : IdPaquete.ToString());
 
                 command.Parameters.AddWithValue("@IdCliente",
                     Id.ToString());

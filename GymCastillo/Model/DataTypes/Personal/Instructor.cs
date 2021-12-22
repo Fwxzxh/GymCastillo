@@ -308,8 +308,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 const string pagoQuery = @"update instructor
                                            set
                                                FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago,
-                                               DiasATrabajar=@DiasATrabajar, SueldoADescontar=@SueldoADescontar,
-                                               MetodoFechaPago=@MetodoFechaPago
+                                               DiasTrabajados=@DiasTrabajados,
+                                               SueldoADescontar=@SueldoADescontar
                                            where IdInstructor=@IdInstructor;";
 
                 await using var command = new MySqlCommand(pagoQuery, connection);
@@ -319,14 +319,12 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@MontoUltimoPago",
                     MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
 
-                command.Parameters.AddWithValue("@DiasATrabajar",
-                    DiasATrabajar.ToString());
+                command.Parameters.AddWithValue("@DiasTrabajados",
+                    DiasTrabajados.ToString());
+
                 command.Parameters.AddWithValue("@SueldoADescontar",
                     SueldoADescontar.ToString(CultureInfo.InvariantCulture));
 
-                // TODO: ver para que es esto
-                command.Parameters.AddWithValue("@MétodoFechaPago",
-                    MétodoFechaPago.ToString());
 
                 command.Parameters.AddWithValue("@IdInstructor",
                     Id.ToString());

@@ -6,17 +6,17 @@ using MySqlConnector;
 
 namespace GymCastillo.Model.Database {
     /// <summary>
-    /// Clase que se encarga de ejecutar comandos SQL comúnes.
+    /// Clase que se encarga de ejecutar comandos SQL comunes.
     /// </summary>
     public static class ExecSql {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// Método que se encarga de ejecutar <c>NonQuerys</c> Ej. Update, Delete, Insert.
+        /// Método que se encarga de ejecutar <c>NonQueries</c> Ej. Update, Delete, Insert.
         /// </summary>
-        /// <param name="query">Objeto tipo <c>MySqlCommand</c> que contiene el string de conección y la query SQL a ejecutar.</param>
-        /// <param name="tipo"><c>string</c> que contiene informacion de la query, para mensjaes de error y logging.</param>
-        /// <returns>El número de columnas afectadas por la querry.</returns>
+        /// <param name="query">Objeto tipo <c>MySqlCommand</c> que contiene el string de conexión y la query SQL a ejecutar.</param>
+        /// <param name="tipo"><c>string</c> que contiene información de la query, para mensajes de error y logging.</param>
+        /// <returns>El número de columnas afectadas por la query.</returns>
         public static async Task<int> NonQuery(MySqlCommand query, string tipo) {
             Log.Debug($"Se va a ejecutar una sentencia SQL tipo {tipo}");
 

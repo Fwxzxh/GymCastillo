@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.Init;
 using log4net;
@@ -24,7 +25,7 @@ namespace GymCastillo.Model.Helpers {
         /// Método que da de alta un nuevo Ingreso.
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
-        public async Task NewIngreso(Ingresos ingreso) {
+        public async Task NewIngreso(Ingresos ingreso, AbstUsuario objeto=null) {
             // TODO: implementar lo de los tickets.
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
 
@@ -33,7 +34,7 @@ namespace GymCastillo.Model.Helpers {
             try {
                 switch (ingreso.Tipo) {
                     case 1: // Cliente
-                        // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdCliente, IdRenta.
+                        // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdCliente, IdLocker.
                         ingreso.IdRenta = 0;
                         ingreso.IdVenta = 0;
 
@@ -54,7 +55,7 @@ namespace GymCastillo.Model.Helpers {
 
                             // actualizamos.
                             cliente.IdPaquete = ingreso.IdPaquete;
-                            cliente.FechaVencimientoPago += TimeSpan.FromDays(30);
+                            cliente.FechaVencimientoPago = ingreso.FechaRegistro + TimeSpan.FromDays(30);
                             cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
                             cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
                             cliente.DuraciónPaquete += 30;
@@ -65,6 +66,8 @@ namespace GymCastillo.Model.Helpers {
                             // hay deuda
                             cliente.DeudaCliente += ingreso.Monto - ingreso.MontoRecibido;
                         }
+
+                        // TODO: Hacer check si dan más dinero
 
                         // cliente.DeudaCliente =
                         cliente.IdLocker = ingreso.IdLocker;
@@ -178,9 +181,9 @@ namespace GymCastillo.Model.Helpers {
                         // TODO: Agregar y obtener los demás campos
                         instructor.MontoUltimoPago = egreso.Monto;
                         instructor.FechaUltimoPago = egreso.FechaRegistro;
-                        // instructor.DiasATrabajar =
-                        // instructor.SueldoADescontar
-                        // instructor.MétodoFechaPago =
+
+                        instructor.DiasTrabajados = 0;
+                        instructor.SueldoADescontar = 0; // TODO: hacer el descuento del sueldo a descontar en el front
 
                         // Registramos el pago
                         await AdminUsuariosGeneral.Pago(instructor);

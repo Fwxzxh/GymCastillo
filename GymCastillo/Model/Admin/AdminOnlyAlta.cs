@@ -69,6 +69,9 @@ namespace GymCastillo.Model.Admin {
                     await rentasValidator.ValidateAndThrowAsync((Rentas)objeto);
                     break;
 
+                case "Alta":
+                    break;
+
                 default:
                     throw new Exception("Error: no se pudo identificar al objeto.");
             }
