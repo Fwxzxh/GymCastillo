@@ -71,11 +71,12 @@ namespace GymCastillo.Model.Admin {
 
                 case "Ingresos":
                     break;
+
                 case "Egresos":
                     break;
 
                 default:
-                    throw new Exception("Error: no se pudo identificar al objeto.");
+                    throw new Exception("no se pudo identificar al objeto. AdminOnlyAla");
             }
         }
     }

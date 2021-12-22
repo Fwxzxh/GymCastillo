@@ -100,6 +100,10 @@ namespace GymCastillo.Model.Database {
                         Activo = !await reader.Result.IsDBNullAsync("Activo") &&
                                  reader.Result.GetBoolean("Activo"),
 
+
+                        FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")
+                           ? default
+                           : reader.Result.GetDateTime("FechaUltimoPago"),
                         FechaVencimientoPago = await reader.Result.IsDBNullAsync("FechaVencimientoPago")
                            ? default
                            : reader.Result.GetDateTime("FechaVencimientoPago"),
