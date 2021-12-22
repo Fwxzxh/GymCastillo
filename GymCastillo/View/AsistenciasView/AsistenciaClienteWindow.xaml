@@ -27,7 +27,7 @@
             <Setter Property="BorderBrush" Value="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"/>
         </Style>
     </Window.Style>
-    <Grid Margin="30">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -101,7 +101,20 @@
             </StackPanel>
         </Grid>
         <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding ListaHorarios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  Margin="0 20 0 0"
+                  CanUserAddRows="True"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserResizeColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  FontSize="20"
+                  HeadersVisibility="All"
+                  HorizontalContentAlignment="Center"
+                  HorizontalAlignment="Stretch"
+                  SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding ListaHorarios, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Clase"
                                     Binding="{Binding IdClase, Converter={StaticResource clase}}"
