@@ -177,11 +177,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string query = @"update horario set CupoActual=CupoActual+1 where IdHorario=@IdHorario";
+                const string query = @"update horario set CupoActual=@CupoActual where IdHorario=@IdHorario";
 
                 await using var command = new MySqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", IdHorario.ToString());
+                command.Parameters.AddWithValue("@IdHorario",
+                    IdHorario.ToString());
+                command.Parameters.AddWithValue("@CupoActual",
+                    (CupoActual + 1).ToString());
 
                 Log.Debug("Se ha creado la query.");
 

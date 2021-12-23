@@ -7,6 +7,7 @@ using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -294,7 +295,7 @@ namespace GymCastillo.Model.Database {
         }
 
         /// <summary>
-        /// Clase que se encarga de obtener todos los datos de los Usuarios
+        /// Método que se encarga de obtener todos los datos de los Usuarios
         /// </summary>
         /// <returns>Una lista de objetos tipo Usuario.</returns>
         public static async Task<ObservableCollection<Usuario>> GetUsuarios() {
@@ -1263,6 +1264,50 @@ namespace GymCastillo.Model.Database {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de obtener todos los datos de el inventario
+        /// </summary>
+        /// <returns>Una lista de objetos tipo inventario</returns>
+        public static async Task<ObservableCollection<Inventario>> GetInventario() {
+            Log.Debug("se ha empezado el proceso de obtener la información del inventario.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from inventario";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listInventario = new ObservableCollection<Inventario>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var item = new Inventario() {
+                        IdProducto = reader.Result.GetInt32("IdProducto"),
+                        NombreProducto = reader.Result.GetString("NombreProducto"),
+                        Descripción = reader.Result.GetString("Descripcion"),
+                        Costo = reader.Result.GetDecimal("Costo"),
+                        Existencias = reader.Result.GetInt32("Existencias"),
+                    };
+                    listInventario.Add(item);
+                }
+                Log.Debug("Se ha in obtenido con éxito la información del inventario");
+
+                return listInventario;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información del inventario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información del inventario. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }

@@ -6,6 +6,7 @@ using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Helpers;
 using log4net;
 
@@ -97,9 +98,14 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<PaquetesClases> ListPaquetesClases { get; set; }
 
         /// <summary>
-        /// La ObservableCollection que contiene las rentas
+        /// La ObservableCollection que contiene las rentas.
         /// </summary>
         public static ObservableCollection<Rentas> ObCoRentas { get; set; }
+
+        /// <summary>
+        /// la ObservableCollection que contiene el inventario.
+        /// </summary>
+        public static ObservableCollection<Inventario> ObCoInventario { get; set; }
 
         /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
@@ -144,6 +150,7 @@ namespace GymCastillo.Model.Init {
                 var allPaquetesClases = GetFromDb.GetPaquetesClases();
 
                 var allRentas = GetFromDb.GetRentas();
+                var allInventario = GetFromDb.GetInventario();
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
@@ -151,7 +158,7 @@ namespace GymCastillo.Model.Init {
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
                     allIngresos, allEgresos, allPersonal, allPaquetesClases,
-                    allRentas).ConfigureAwait(false);
+                    allRentas, allInventario).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 // Esperamos los resultados...
@@ -176,6 +183,7 @@ namespace GymCastillo.Model.Init {
                 ListPaquetesClases = await allPaquetesClases;
 
                 ObCoRentas = await allRentas;
+                ObCoInventario = await allInventario;
 
                 return true;
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -159,18 +160,42 @@ namespace GymCastillo.Model.Helpers {
             var altaTask = AdminClienteInstructor.NuevaAsistencia(asistencia);
 
             // Actualizamos el cupo en la clase.
-            foreach (var horario in asistencia.ListaHorarios) {
-                if (!asistencia.ClasesAEntrar.Contains(horario.IdClase)) continue;
+            var resCupos = new List<int>();
+            // TODO: esto esta mal
+            // iteramos sobre los horarios disponibles
+
+            var horariosActualizar =
+                asistencia.ListaHorarios.Where(x => asistencia.ClasesAEntrar.Contains(x.IdHorario));
+
+            foreach (var horario in horariosActualizar) {
                 // si nuestra lista de id con las clases a entrar coincide con el horario.
                 var res = await Task.Run(() => horario.NuevaAsistencia());
                 if (res == 0) {
                     ShowPrettyMessages.WarningOk(
                         "No se ha actualizado la base de datos al intentar actualizar el cupo actual de la clase.",
-                        "Si cambios.");
+                        "Sin cambios.");
                 }
+                resCupos.Add(res);
             }
 
-            await altaTask;
+            // Verificamos que los cambios se hayan hecho.
+            var resAlta = await altaTask;
+            ShowPrettyMessages.ErrorOk($"{resAlta.ToString()} {resCupos.Count} {asistencia.ClasesAEntrar.Count}", "");
+            if (resAlta && resCupos.Count == asistencia.ClasesAEntrar.Count) {
+                Log.Debug("Se han comprobado los cambios de las asistencias exitosamente");
+                ShowPrettyMessages.NiceMessageOk(
+                    "Se han registrado la asistencia de manera exitosa.",
+                    "Asistencia Exitosa");
+                return;
+            }
+
+            // Hubo un problema
+            if (resCupos.Any(x => x == 0)){
+                ShowPrettyMessages.WarningOk(
+                    "Ha ocurrido un problema con el registro de las asistencias contacte a los administradores.",
+                    "Cambios incompletos");
+            }
+
             Log.Debug("Se ha Terminado el proceso de registrar la asistencia de un Cliente.");
         }
 
@@ -181,7 +206,13 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Instructor.");
 
             // Lanzamos el alta de la asistencia.
-            await AdminClienteInstructor.NuevaAsistencia(asistencia);
+            var altaTask = await AdminClienteInstructor.NuevaAsistencia(asistencia);
+            if (altaTask) {
+                Log.Debug("Se han comprobado los cambios de las asistencias exitosamente");
+                ShowPrettyMessages.NiceMessageOk(
+                    "Se han registrado la asistencia de manera exitosa.",
+                    "Asistencia Exitosa");
+            }
             Log.Debug("Se ha Terminado el proceso de registrar la asistencia de un Instructor.");
         }
     }

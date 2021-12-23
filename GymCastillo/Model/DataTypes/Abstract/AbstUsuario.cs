@@ -113,9 +113,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
                 image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = null;
-                using var mem = new MemoryStream(foto);
-                mem.Position = 0;
-                image.StreamSource = mem;
+                if (foto != null) {
+                    using var mem = new MemoryStream(foto);
+                    mem.Position = 0;
+                    image.StreamSource = mem;
+                }
                 image.EndInit();
                 image.Freeze();
                 return image;
