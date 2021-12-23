@@ -193,6 +193,7 @@
                          VerticalContentAlignment="Center"
                          FontSize="20"
                          Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Text="{Binding Inventario.Existencias, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Costo"
@@ -200,6 +201,7 @@
                          VerticalContentAlignment="Center"
                          FontSize="20"
                          Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          Text="{Binding Inventario.Costo, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
