@@ -158,8 +158,9 @@
                                     Background="Transparent"
                                     BorderBrush="Red"
                                     Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                                        DataContext="{StaticResource vm}"
                                     Margin="5 0"
-                                    Command="{Binding deleteClient}">
+                                    Command="{Binding DeleteCommand}">
                                     <materialDesign:PackIcon Kind="TrashCanOutline"/>
                                 </Button>
                             </StackPanel>
@@ -211,7 +212,6 @@
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"
-                        Command="{Binding DeleteCommand}"
                         Margin="20"
                         FontSize="20"/>
             </StackPanel>
