@@ -24,26 +24,30 @@
                      materialDesign:TextFieldAssist.HasClearButton="True"
                      BorderBrush="Yellow"
                      Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                     Width="190"
+                     Width="230"
+                     FontSize="20"
                      PreviewTextInput="TextBox_PreviewTextInput"
-                     HorizontalAlignment="Left"
+                     HorizontalAlignment="Right"
                      Text="{Binding Asistencia.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="10"/>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
                     Command="{Binding asistenciaCliente}"
                     Content="Cliente"
                     VerticalAlignment="Center"
                     Margin="10"
+                        FontSize="20"
                     HorizontalAlignment="Left"/>
                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
                     Command="{Binding asistenciaInstructor}"
                     Content="Instructor"
+                        FontSize="20"
                     VerticalAlignment="Center"
                     Margin="10"
                     HorizontalAlignment="Left"/>
             </StackPanel>
-            <Image Source="\Docs\Assets\CastilloF2.png" Height="600" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Source="\Docs\Assets\CastilloF2.png" Height="500" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>  
     </Grid>
 </UserControl>
