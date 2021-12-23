@@ -68,7 +68,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); // TODO foto
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
 
                 var res = await ExecSql.NonQuery(command, "Update Usuario");
 
@@ -154,7 +154,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
 
                 command.Parameters.AddWithValue("@FechaUltimoAcceso",
                     FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));

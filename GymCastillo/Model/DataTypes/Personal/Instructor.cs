@@ -98,7 +98,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); // TODO: Ver que onda con la foto
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
                 command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("HHmm"));
 
                 command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));
@@ -219,7 +219,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
                 command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
@@ -304,7 +304,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                // TODO: igual y ocupamos también los dias trabajados
                 const string pagoQuery = @"update instructor
                                            set
                                                FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago,
