@@ -17,6 +17,7 @@ namespace GymCastillo.Model.Admin {
         /// <param name="asistencia">Objeto con la información necesaria para la asistencia.</param>
         public static async Task<bool> NuevaAsistencia(Asistencia asistencia) {
             Log.Debug("Se ha iniciado el proceso de dar de alta una nueva asistencia genérica.");
+
             try {
                 switch (asistencia.Tipo) {
                     case 1: // Cliente

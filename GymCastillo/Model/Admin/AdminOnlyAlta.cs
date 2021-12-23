@@ -13,12 +13,13 @@ namespace GymCastillo.Model.Admin {
     /// Clase que se encarga de aplicar el método only alta en las interfaces donde se ocupan
     /// </summary>
     public static class AdminOnlyAlta {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Método que se encarga de dar de alta una instancia del objeto dado en la base de datos.
         /// </summary>
-        public static async Task Alta(IOnlyAlta objeto) {
+        public static async Task<bool> Alta(IOnlyAlta objeto) {
             Log.Debug("Se ha iniciado el proceso de alta de un objeto de solo alta.");
 
             try {
@@ -33,19 +34,24 @@ namespace GymCastillo.Model.Admin {
                     // No se han hecho cambios a la bd
                     ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
                     Log.Warn("No se han hecho cambios a la base de datos.");
+
+                    return false;
                 }
                 else {
                     ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    return true;
                 }
             }
             catch (ValidationException msg) {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");
+                return false;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de Alta.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
+                return false;
             }
         }
 
@@ -66,6 +72,10 @@ namespace GymCastillo.Model.Admin {
                 case "Ingresos" or "Egresos":
                     var ingresoValidation = new PagosValidation();
                     await ingresoValidation.ValidateAndThrowAsync((AbstractMovimientos)objeto);
+                    break;
+
+                case "Venta":
+                    // TODO: hacer validaciones de venta
                     break;
 
                 default:

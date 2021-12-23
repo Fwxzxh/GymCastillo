@@ -79,7 +79,12 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
 
             // rentas
-            // TODO: esperar a tener la tabla de rentas para hacer la validación.
+            if (InitInfo.ObCoRentas.Any(x => x.IdEspacio == IdEspacio)){
+                ShowPrettyMessages.InfoOk(
+                    "No se puede eliminar este espacio ya que esta asignado a una Renta y se podría perder información si se borra, debe eliminar la renta antes.",
+                    "Hay una clase ");
+                return false;
+            }
 
             return true;
         }

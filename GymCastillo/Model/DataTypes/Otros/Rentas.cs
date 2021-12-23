@@ -14,7 +14,8 @@ namespace GymCastillo.Model.DataTypes.Otros {
     /// Clase que contiene los métodos y campos de la clase de rentas.
     /// </summary>
     public class Rentas : IOnlyAlta{
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Id de la renta.

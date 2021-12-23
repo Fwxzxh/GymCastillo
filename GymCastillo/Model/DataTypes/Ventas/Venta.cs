@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GymCastillo.Model.Interfaces;
+using log4net;
 
 namespace GymCastillo.Model.DataTypes.Ventas {
     /// <summary>
     /// Clase que contiene los métodos y campos del tipo de dato venta.
     /// </summary>
     public class Venta : IOnlyAlta{
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// El id de la venta.
@@ -21,7 +23,6 @@ namespace GymCastillo.Model.DataTypes.Ventas {
         /// <summary>
         /// El id del producto a vender
         /// </summary>
-        // TODO: igual y esto pasarlo a un string de productos.
         public int IdProducto { get; set; }
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace GymCastillo.Model.DataTypes.Ventas {
         public decimal Costo { get; set; }
 
         public Task<int> Alta() {
+            Log.Debug("Se ha iniciado el proceso de dar de alta Personal.");
             throw new NotImplementedException();
         }
     }

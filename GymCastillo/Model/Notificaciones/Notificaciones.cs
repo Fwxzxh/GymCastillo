@@ -28,7 +28,7 @@ namespace GymCastillo.Model.Notificaciones {
 
             return usuarios;
         }
+
+
     }
-
-
 }
