@@ -15,7 +15,7 @@ namespace GymCastillo.Model.Admin {
         /// Método que se encarga de dar de alta una asistencia al objeto tipo AbstClientInstructor en la base de datos.
         /// </summary>
         /// <param name="asistencia">Objeto con la información necesaria para la asistencia.</param>
-        public static async Task NuevaAsistencia(Asistencia asistencia) {
+        public static async Task<bool> NuevaAsistencia(Asistencia asistencia) {
             Log.Debug("Se ha iniciado el proceso de dar de alta una nueva asistencia genérica.");
             try {
                 switch (asistencia.Tipo) {
@@ -33,7 +33,7 @@ namespace GymCastillo.Model.Admin {
                         }
 
                         Log.Debug("Se ha terminado el proceso de dar de alta la asistencia genérica de cliente.");
-                        break;
+                        return true;
 
                     case 2: // Instructor
 
@@ -47,7 +47,7 @@ namespace GymCastillo.Model.Admin {
                                 "No se ha actualizado la base de datos a la hora de actualizar los datos de entrada del Instructor.",
                                 "Sin cambios.");
                         }
-                        break;
+                        return true;
 
                     default:
                         // No se encontró el tipo de la asistencia Error!!!
@@ -60,6 +60,7 @@ namespace GymCastillo.Model.Admin {
                 ShowPrettyMessages.ErrorOk(
                     $"No se ha podido identificar el tipo de la asistencia, contacte a un administrador. Error: {e.Message}",
                     "Error Desconocido");
+                return false;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error el el proceso de registrar la asistencia.");
@@ -67,6 +68,7 @@ namespace GymCastillo.Model.Admin {
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido en el proceso de registrar la asistencia. {e.Message}",
                     "Error Desconocido");
+                return false;
             }
         }
 

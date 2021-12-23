@@ -39,8 +39,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 0;
                         ingreso.IdVenta = 0;
 
-                        // Registramos el Pago
-                        await AdminOnlyAlta.Alta(ingreso);
 
                         // Obtenemos el cliente
                         var cliente = InitInfo.ObCoClientes.First(x => x.Id == ingreso.IdCliente);
@@ -78,7 +76,10 @@ namespace GymCastillo.Model.Helpers {
                         // cliente.DeudaCliente =
                         cliente.IdLocker = ingreso.IdLocker;
 
-                        // Registramos el pago
+                        // Registramos el Pago
+                        await AdminOnlyAlta.Alta(ingreso);
+
+                        // actualizamos los campos del cliente
                         await AdminUsuariosGeneral.Pago(cliente);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Cliente");
@@ -157,15 +158,15 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdUsuarioPagar.
                         egreso.Nomina = true;
 
-                        // Registramos el Pago
-                        await AdminOnlyAlta.Alta(egreso);
-
                         // Obtenemos el usuario
                         var usuario = InitInfo.ObCoUsuarios.First(x => x.Id == egreso.IdUsuarioPagar);
 
                         // Actualizamos
                         usuario.MontoUltimoPago = egreso.Monto;
                         usuario.FechaUltimoPago = egreso.FechaRegistro;
+
+                        // Registramos el Pago
+                        await AdminOnlyAlta.Alta(egreso);
 
                         // Registramos
                         await AdminUsuariosGeneral.Pago(usuario);
