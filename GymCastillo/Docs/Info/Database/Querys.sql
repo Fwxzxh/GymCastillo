@@ -359,3 +359,27 @@ UPDATE inventario
 SET Descripcion=@Descripcion, Costo=@Costo,
     Existencias=@Existencias
 WHERE IdProducto=@IdProducto;
+
+
+-- Rentas
+	-- Consulta Rentas
+SELECT	r.IdRenta, r.FechaRenta, r.IdClienteRenta,
+	CONCAT(r.Nombre, ' ', r.ApellidoPaterno, ' ', r.ApellidoMaterno) as NombreClienteR,
+	r.IdEspacio, r.NombreEspacio, r.Dia,
+	r.HoraInicio, r.HoraFin, r.Costo
+FROM	rentas r
+LEFT JOIN clienterenta cr ON r.IdClienteRenta = cr.IdClienteRenta
+LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
+
+	-- Dar de alta Rentas
+INSERT INTO rentas
+VALUES (default, @FechaRenta, @IdClienteRenta,
+       @IdEspacio, @NombreEspacio, @Dia,
+       @HoraInicio, @HoraFin, @Costo);
+       
+       -- Actualizar Rentas Creo que no debería poder actualizar nada, pero idk pongo todoxd
+UPDATE	rentas
+SET	FechaRenta=@FechaRenta, IdClienteRenta=@IdClienteRenta,
+	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio, Dia=@Dia,
+	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo
+WHERE	IdRenta=@IdRenta;
