@@ -1,6 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +19,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoPersonal { get; set; }
         public RelayCommand PagoServicios { get; set; }
         public RelayCommand PagoOtros { get; set; }
+
+        private PagosHelper pagos = new();
 
         private Usuario usuario = new();
 
@@ -73,6 +78,58 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             }
         }
 
+
+
+        public EgresosVM() {
+            PagoUsuario = new RelayCommand(UserPayment);
+            PagoInstructor = new RelayCommand(InstructorPayment);
+            PagoPersonal = new RelayCommand(PersonalPayment);
+            PagoServicios = new RelayCommand(ServicesPayment);
+            PagoOtros = new RelayCommand(OthersPayment);
+        }
+
+        private async void OthersPayment() {
+            egresos.Tipo = 5;
+            await pagos.NewEgreso(egresos);
+            RefreshGrid();
+        }
+
+        private async void ServicesPayment() {
+            egresos.Tipo = 4;
+            await pagos.NewEgreso(egresos);
+            RefreshGrid();
+        }
+
+        private async void PersonalPayment() {
+            egresos.Tipo = 3;
+            egresos.IdPersonal = personal.Id;
+            await pagos.NewEgreso(egresos);
+            RefreshGrid();
+        }
+
+        private async void InstructorPayment() {
+            egresos.Tipo = 2;
+            egresos.IdInstructor = instructor.Id;
+            await pagos.NewEgreso(egresos);
+            RefreshGrid();
+        }
+
+        private async void UserPayment() {
+            egresos.Tipo = 1;
+            egresos.IdUsuarioPagar = usuario.Id;
+            await pagos.NewEgreso(egresos);
+            RefreshGrid();
+        }
+
+        private async void RefreshGrid() {
+            var pagos = await GetFromDb.GetEgresos();
+            InitInfo.ObCoEgresos.Clear();
+            foreach (var item in pagos) {
+                InitInfo.ObCoEgresos.Add(item);
+            }
+            ClearData();
+        }
+
         private void ClearData() {
             Usuario = null;
             Usuario = new();
@@ -82,10 +139,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Personal = new();
             Egresos = null;
             Egresos = new();
-        }
-
-        public EgresosVM() {
-
         }
 
         private void OnPropertyChanged(string propertyName) {
