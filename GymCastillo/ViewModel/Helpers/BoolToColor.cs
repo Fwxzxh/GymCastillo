@@ -11,7 +11,7 @@ namespace GymCastillo.ViewModel.Helpers {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             var respuesta = (bool)value;
             if (respuesta) {
-                return "Green";
+                return "#39ff14";
             }
             else return "Red";
         }

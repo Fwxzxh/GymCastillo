@@ -347,7 +347,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@ClasesTotalesDisponibles",
                     (ClasesTotalesDisponibles - numClasesAEntrar).ToString());
-                command.Parameters.AddWithValue("@ClasesSemanaDisponibles.",
+                command.Parameters.AddWithValue("@ClasesSemanaDisponibles",
                     (ClasesSemanaDisponibles - numClasesAEntrar).ToString());
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());

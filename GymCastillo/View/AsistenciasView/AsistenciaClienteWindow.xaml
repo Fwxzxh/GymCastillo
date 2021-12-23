@@ -28,35 +28,21 @@
         </Style>
     </Window.Style>
     <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Grid.Row="0">
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                       Text="{Binding Cliente.Id, Mode=TwoWay, StringFormat=ID: {0}}"
-                       FontSize="20"/>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           FontSize="20">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="Nombre: {0} {1} {2}">
-                                <Binding Path="Cliente.Nombre"/>
-                                <Binding Path="Cliente.ApellidoPaterno"/>
-                                <Binding Path="Cliente.ApellidoMaterno"/>
-                            </MultiBinding>
-                        </TextBlock.Text>
-                        </TextBlock>
-                </TextBlock>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.NombrePaquete, Mode=TwoWay, StringFormat=Paquete: {0}}"
+                           Text="{Binding Cliente.NombrePaquete, Mode=TwoWay, StringFormat=Paquete: {0}}"                           
                            FontSize="20"/>
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="{Binding Cliente.NombreTipoCliente, Mode=TwoWay, StringFormat=Tipo de usuario: {0}}"
@@ -68,41 +54,17 @@
                            Text="{Binding Cliente.ClasesTotalesDisponibles, Mode=TwoWay, StringFormat=Clases Totales Disponibles: {0}}"
                            FontSize="20"/>
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, StringFormat=Último Pago: {0:D}}"
+                           Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, StringFormat=Último Pago: {0:D}, ConverterCulture=es-MX}"
                            FontSize="20"/>
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="{Binding Cliente.MontoUltimoPago, Mode=TwoWay, StringFormat=Monto Último Pago: {0:C}}"
                            FontSize="20"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" 
-                        VerticalAlignment="Center">
-                <Image Height="150"
-                       Width="150"
-                       Source="{Binding Cliente.FotoBitmap}"/>
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Asistencia.Entrada, Mode=TwoWay, StringFormat=Acceso: {0}, Converter={StaticResource acceso}}"
-                           Foreground="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"
+                           Text="{Binding Cliente.DeudaCliente, Mode=TwoWay, StringFormat=Deuda: {0:C}}"
                            FontSize="20"/>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Fecha límite de pago: {0:D}}"
-                           FontSize="20"/>
-                <Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Registrar Acceso"
-                        Margin="10"
-                        Command="{Binding updateUser}"
-                        FontSize="20"/>
-                <Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Cancelar"
-                        HorizontalAlignment="Center"
-                        Margin="10"
-                        Command="{Binding CloseWindowCommand, Mode=OneWay}"
-                        CommandParameter="{Binding ElementName=asistenciaCliente}"
-                        FontSize="20"/>
             </StackPanel>
-        </Grid>
-        <DataGrid Grid.Row="1"
-                  Margin="0 20 0 0"
-                  CanUserAddRows="True"
+            <DataGrid Grid.Row="1"
+                      CanUserAddRows="True"
                   CanUserReorderColumns="False"
                   CanUserResizeRows="False"
                   CanUserResizeColumns="False"
@@ -111,20 +73,74 @@
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
-                  HorizontalContentAlignment="Center"
-                  HorizontalAlignment="Stretch"
-                  SelectedItem="{Binding SelectedInstructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  HorizontalAlignment="Center"
+                        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext}"
+                  SelectedItem="{Binding Horario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding ListaHorarios, UpdateSourceTrigger=PropertyChanged}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Clase"
+                <DataGrid.Resources>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Clase"
                                     Binding="{Binding IdClase, Converter={StaticResource clase}}"
-                                    Width="*"
+                                    Width="auto"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
+                                          DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext}"
+                                          Command="{Binding AddCommand}"
+                                          CommandParameter="{Binding Horario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Column="1" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Asistencia.Entrada, Mode=TwoWay, StringFormat=Acceso: {0}, Converter={StaticResource acceso}}"
+                           Foreground="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"
+                           FontSize="30"
+                           HorizontalAlignment="Center"/>
+            <Image Height="150"
+                       Width="150"
+                       Source="{Binding Cliente.FotoBitmap}"/>
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat=" {0} {1} {2}">
+                            <Binding Path="Cliente.Nombre"/>
+                            <Binding Path="Cliente.ApellidoPaterno"/>
+                            <Binding Path="Cliente.ApellidoMaterno"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                        </TextBlock>
+                </TextBlock>
 
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-            
-        </DataGrid>
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Límite de pago: {0:D}, ConverterCulture=es-MX}"
+                           FontSize="20"/>
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Registrar Acceso"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        Command="{Binding AsistenciaCommand}"
+                        CommandParameter="{Binding ElementName=asistenciaCliente}"
+                        FontSize="20"/>
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Cancelar"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=asistenciaCliente}"
+                        FontSize="20"/>
+        </StackPanel>
     </Grid>
 </Window>

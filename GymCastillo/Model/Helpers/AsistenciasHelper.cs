@@ -141,7 +141,7 @@ namespace GymCastillo.Model.Helpers {
         /// Método que se encarga de la asistencia de un cliente.
         /// </summary>
         /// <param name="asistencia">Objeto que tiene la información de la asistencia.</param>
-        private async Task AsistenciaCliente(Asistencia asistencia) {
+        public async Task AsistenciaCliente(Asistencia asistencia) {
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Cliente");
 
             // Validamos si tienen clases disponibles.
@@ -176,7 +176,7 @@ namespace GymCastillo.Model.Helpers {
         /// <summary>
         /// Método que se encarga de la asistencia de un Instructor.
         /// </summary>
-        private async Task AsistenciaInstructor(Asistencia asistencia) {
+        public async Task AsistenciaInstructor(Asistencia asistencia) {
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Instructor.");
 
             // Lanzamos el alta de la asistencia.

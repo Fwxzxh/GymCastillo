@@ -19,235 +19,10 @@
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          materialDesign:HintAssist.Hint="Tipo"
-                          materialDesign:HintAssist.FloatingScale="0.6"
-                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          FontSize="20"
-                  Margin="10"
-                          HorizontalAlignment="Left"
-                          Width="250">
-            <ComboBoxItem Content="Clientes"
-                          x:Name="clientes"/>
-            <ComboBoxItem Content="Ventas"
-                          x:Name="ventas"/>
-            <ComboBoxItem Content="Rentas"
-                          x:Name="rentas"/>
-            <ComboBoxItem Content="Otros"
-                          x:Name="otros"/>
-        </ComboBox>
-        
-        <!--Clientes-->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Clientes"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}}"
-                      SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      SelectedValuePath="IdEspacio">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Nombre"/>
-                                    <Binding Path="ApellidoPaterno"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Paquete"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoDePaquetes}}"
-                      SelectedItem="{Binding Paquete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      SelectedValuePath="IdEspacio"
-                      DisplayMemberPath="NombrePaquete"/>
-            <TextBox materialDesign:HintAssist.Hint="No. Recibo"
-                     materialDesign:HintAssist.FloatingScale="0.6"                 
-                     Grid.Row="1"
-                     Width="150"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Concepto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="420"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox materialDesign:HintAssist.Hint="Deuda Cliente"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="170"
-                     IsEnabled="False"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Cliente.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Último Pago"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="170"
-                     IsEnabled="False"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Monto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="150"
-                     IsEnabled="False"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="180"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Text="{Binding Ingresos.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
-                    Content="Pagar"
-                    Command="{Binding PagoCliente}"
-                    VerticalAlignment="Center"
-                    Margin="10"
-                    FontSize="20"
-                    HorizontalAlignment="Left"/>
-        </StackPanel>
-        
-        <!--Ventas-->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=ventas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox materialDesign:HintAssist.Hint="Concepto Venta"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="320"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Monto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="320"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-        </StackPanel>
-        
-        <!--Otros-->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=otros, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox materialDesign:HintAssist.Hint="Concepto Otros"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="320"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Monto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="320"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-        </StackPanel>
-
-        <!--Renta-->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Clientes"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="300"
-                      ItemsSource="{Binding ListaEspacios}"
-                      SelectedValue="{Binding Clase.IdEspacio}"
-                      SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
-                      SelectedValuePath="IdEspacio"
-                      DisplayMemberPath="NombreEspacio"/>
-            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Espacio Renta"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="270"
-                      ItemsSource="{Binding ListaEspacios}"
-                      SelectedValue="{Binding Clase.IdEspacio}"
-                      SelectedItem="{Binding Clase.NombreEspacio, UpdateSourceTrigger=Explicit}"
-                      SelectedValuePath="IdEspacio"
-                      DisplayMemberPath="NombreEspacio"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox materialDesign:HintAssist.Hint="No. Recibo"
-                     materialDesign:HintAssist.FloatingScale="0.6"                 
-                     Grid.Row="1"
-                     Width="150"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-
-            <TextBox materialDesign:HintAssist.Hint="Concepto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="420"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox materialDesign:HintAssist.Hint="Monto"
-                     materialDesign:HintAssist.FloatingScale="0.6"
-                     Width="150"
-                     Grid.Row="1"
-                     FontSize="20"
-                     Margin="10"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-        </StackPanel>
-
-        <DataGrid Grid.Row="4"
+        <DataGrid Grid.Row="0"
                   Margin="0 0 0 20"
                   CanUserAddRows="True"
                   CanUserReorderColumns="False"
@@ -337,5 +112,308 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:HintAssist.Hint="Tipo"
+                      materialDesign:HintAssist.FloatingScale="0.6"
+                      materialDesign:TextFieldAssist.HasClearButton="True"
+                      FontSize="20"
+                      Margin="10"
+                      SelectedIndex="{Binding Item, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      HorizontalAlignment="Left"
+                      Width="250">
+                <ComboBoxItem Content="Clientes" x:Name="clientes"/>
+                <ComboBoxItem Content="Ventas" x:Name="ventas"/>
+                <ComboBoxItem Content="Rentas" x:Name="rentas"/>
+                <ComboBoxItem Content="Otros" x:Name="otros"/>
+            </ComboBox>
+            <!--Clientes-->
+
+            <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                    Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:HintAssist.Hint="Nombre Cliente"
+                      materialDesign:HintAssist.FloatingScale="0.6"
+                      materialDesign:TextFieldAssist.HasClearButton="True"
+                      FontSize="20"
+                      Margin="10"
+                      Width="250"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}}"
+                      SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      SelectedValuePath="IdEspacio">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Nombre"/>
+                                        <Binding Path="ApellidoPaterno"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:HintAssist.Hint="Paquete"
+                      materialDesign:HintAssist.FloatingScale="0.6"
+                      materialDesign:TextFieldAssist.HasClearButton="True"
+                      FontSize="20"
+                      Margin="10"
+                      Width="250"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoDePaquetes}}"
+                      SelectedItem="{Binding Paquete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      SelectedValuePath="IdEspacio"
+                      DisplayMemberPath="NombrePaquete"/>
+                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                     materialDesign:HintAssist.FloatingScale="0.6"                 
+                     Grid.Row="1"
+                     Width="150"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Concepto"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="420"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox materialDesign:HintAssist.Hint="Deuda Cliente"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="170"
+                     IsEnabled="False"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Cliente.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Último Pago"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="170"
+                     IsEnabled="False"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="180"
+                     IsEnabled="False"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="180"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Ingresos.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Content="Pagar"
+                    Command="{Binding PagoCliente}"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    FontSize="20"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!--ventas-->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        Visibility="{Binding ElementName=ventas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox materialDesign:HintAssist.Hint="Concepto Venta"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Monto,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=c}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding ElementName=ventas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        Content="Pagar"
+                        Command="{Binding PagoVenta}"
+                        VerticalAlignment="Center"
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!--Renta-->
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Nombre Cliente"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          Margin="10"
+                          Width="250"
+                          SelectedItem="{Binding ClienteRenta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientesRenta}}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Nombre"/>
+                                        <Binding Path="ApellidoPaterno"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Espacio Renta"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          Margin="10"
+                          SelectedItem="{Binding Espacio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoEspacios}}"
+                          DisplayMemberPath="NombreEspacio"/>
+                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                         materialDesign:HintAssist.FloatingScale="0.6"                 
+                         Grid.Row="1"
+                         Width="150"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Concepto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="300"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal" 
+                        Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox materialDesign:HintAssist.Hint="Monto a Pagar" 
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="180"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Monto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto Recibido" 
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="180"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        Content="Pagar"
+                        Command="{Binding PagoRenta}"
+                        VerticalAlignment="Center"
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!--ventas-->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        Visibility="{Binding ElementName=otros, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBox materialDesign:HintAssist.Hint="Concepto Venta"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.Monto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         Width="320"
+                         Grid.Row="1"
+                         FontSize="20"
+                         Margin="10"
+                         Text="{Binding Ingresos.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding ElementName=otros, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        Content="Pagar"
+                        Command="{Binding PagoOtros}"
+                        VerticalAlignment="Center"
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
