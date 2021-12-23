@@ -6,15 +6,12 @@ using ImageMagick;
 using log4net;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
     public class NewPersonalVM : INotifyPropertyChanged {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
         public RelayCommand SaveCommand { get; set; }

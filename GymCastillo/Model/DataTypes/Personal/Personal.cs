@@ -108,7 +108,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            	    @NombreContacto, @TelefonoContacto, @Foto,
                                            	    @FechaUltimoPago, @MontoUltimoPago)";
 
-
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@Nombre", Nombre);

@@ -63,14 +63,9 @@ namespace GymCastillo.Model.Admin {
                     await rentasValidator.ValidateAndThrowAsync((Rentas)objeto);
                     break;
 
-                case "Ingresos":
+                case "Ingresos" or "Egresos":
                     var ingresoValidation = new PagosValidation();
                     await ingresoValidation.ValidateAndThrowAsync((AbstractMovimientos)objeto);
-                    break;
-
-                case "Egresos":
-                    var egresoValidation = new PagosValidation();
-                    await egresoValidation.ValidateAndThrowAsync((AbstractMovimientos)objeto);
                     break;
 
                 default:
