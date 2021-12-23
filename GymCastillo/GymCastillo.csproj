@@ -145,6 +145,7 @@
 
     <ItemGroup>
       <Folder Include="ViewModel\SettingsScreensVM" />
+      <Folder Include="View\VentasScreensView\VentasView\" />
     </ItemGroup>
 
 </Project>
