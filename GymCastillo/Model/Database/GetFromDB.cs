@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
@@ -385,6 +384,56 @@ namespace GymCastillo.Model.Database {
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los usuarios. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene toda la información de las rentas.
+        /// </summary>
+        /// <returns>Una lista con las rentas.</returns>
+        public static async Task<ObservableCollection<Rentas>> GetRentas() {
+            Log.Debug("Se ha empezado el proceso de obtener la información de las rentas.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from rentas";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listRentas = new ObservableCollection<Rentas>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var renta = new Rentas() {
+                        IdRenta = reader.Result.GetInt32("IdRenta"),
+                        FechaRenta = reader.Result.GetDateTime("FechaRenta"),
+                        IdEspacio = reader.Result.GetInt32("IdEspacio"),
+                        NombreEspacio = reader.Result.GetString("NombreEspacio"),
+                        Dia = reader.Result.GetInt32("Dia"),
+                        HoraInicio = DateTime.ParseExact(reader.Result.GetString("HoraInicio"), "HHmm",
+                            CultureInfo.InvariantCulture),
+                        HoraFin = DateTime.ParseExact(reader.Result.GetString("HoraFin"), "HHmm",
+                            CultureInfo.InvariantCulture),
+                        Costo = reader.Result.GetDecimal("Costo"),
+                    };
+                    listRentas.Add(renta);
+                }
+                Log.Debug("Se han obtenido con éxito la información de las rentas.");
+
+                return listRentas;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de las rentas.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de las rentas. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }

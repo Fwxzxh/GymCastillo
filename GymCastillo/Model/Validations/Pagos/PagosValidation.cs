@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
-using GymCastillo.Model.Interfaces;
 
 namespace GymCastillo.Model.Validations.Pagos {
     public class PagosValidation : AbstractValidator<AbstractMovimientos> {
@@ -9,7 +8,7 @@ namespace GymCastillo.Model.Validations.Pagos {
 
             RuleFor(clase => clase.Concepto)
                 .NotEmpty().WithMessage("El concepto no puede estar vacío.")
-                .Length(3, 2000).WithMessage("El concepto debe de ser de entre 3 y 2000 caracteres.");
+                .Length(3, 300).WithMessage("El concepto debe de ser de entre 3 y 300 caracteres.");
 
             RuleFor(clase => clase.NumeroRecibo)
                 .NotEmpty().WithMessage("El número de recibo no puede estar vacío.")

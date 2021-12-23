@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
+using log4net;
+using MySqlConnector;
 
 namespace GymCastillo.Model.DataTypes.Otros {
 
@@ -8,11 +14,17 @@ namespace GymCastillo.Model.DataTypes.Otros {
     /// Clase que contiene los métodos y campos de la clase de rentas.
     /// </summary>
     public class Rentas : IOnlyAlta{
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// Id de la renta.
         /// </summary>
         public int IdRenta { get; set; }
+
+        /// <summary>
+        /// La fecha en la que se va a llevar acabo la renta.
+        /// </summary>
+        public DateTime FechaRenta { get; set; }
 
         /// <summary>
         /// Id del cliente al que se le hizo la renta.
@@ -54,8 +66,51 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// </summary>
         public decimal Costo { get; set; }
 
-        public Task<int> Alta() {
-            throw new NotImplementedException();
+        public async Task<int> Alta() {
+            Log.Debug("Se ha iniciado el proceso de dar de alta Personal.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string altaQuery = @"insert into rentas
+                                           values
+                                               (default, @FechaRenta, @IdClienteRenta,
+                                                @IdEspacio, @Dia, @HoraInicio, @HoraFin,
+                                                @Costo)";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+
+                command.Parameters.AddWithValue("@FechaRenta",
+                    FechaRenta.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@IdClienteRenta", IdClienteRenta.ToString());
+
+                command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
+                command.Parameters.AddWithValue("@Dia", Dia.ToString());
+                command.Parameters.AddWithValue("@HoraInicio",
+                    HoraInicio.ToString("HHmm"));
+                command.Parameters.AddWithValue("@HoraFin",
+                    HoraFin.ToString("HHmm"));
+
+                command.Parameters.AddWithValue("@Costo",
+                    Costo.ToString(CultureInfo.InvariantCulture));
+
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Alta Renta");
+                Log.Debug("Se ha registrado una Renta.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta una renta.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al registrar una renta. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

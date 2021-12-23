@@ -66,6 +66,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de alta de una clase a un paquete.");
 
+            // Checamos que no haya sido dada de alta anteriormente.
             if (InitInfo.ListPaquetesClases.Any(
                     x => x.IdClase == IdClase && x.IdPaquete == IdPaquete)) {
                 ShowPrettyMessages.ErrorOk(

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -113,6 +114,24 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un horario.");
+
+            // verificamos que no se puedan dar horarios a la misma hora y mismo lugar.
+
+            var horariosChocan =
+                InitInfo.ObCoHorarios
+                    // Obtenemos los horarios cuya clase empieza durante la duración de nuestra clase.
+                    .Where(x => x.HoraInicio >= HoraInicio && x.HoraInicio <= HoraFin)
+                    // Obtenemos los id de las clases de esos horarios
+                    .Select(x => x.IdClase).AsParallel();
+
+            var chocan = horariosChocan.Any(x => x == IdClase);
+
+            if (chocan) {
+                ShowPrettyMessages.ErrorOk(
+                    "No se pudo dar de alta este horario ya que este coincide en tiempo y lugar con otra clase.",
+                    "Lugar ocupado a esta hora.");
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);

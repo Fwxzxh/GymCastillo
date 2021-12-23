@@ -25,7 +25,9 @@ namespace GymCastillo.Model.Helpers {
         /// Método que da de alta un nuevo Ingreso.
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
-        public async Task NewIngreso(Ingresos ingreso, AbstUsuario objeto=null) {
+        /// TODO: igual y es buena idea mandar el objeto.
+        public async Task NewIngreso(Ingresos ingreso) {
+
             // TODO: implementar lo de los tickets.
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
 
@@ -68,6 +70,11 @@ namespace GymCastillo.Model.Helpers {
                         }
 
                         // TODO: Hacer check si dan más dinero
+                        // Si dan más dinero descontamos de la deuda.
+                        if (ingreso.MontoRecibido > ingreso.Monto) {
+                            var resto = ingreso.MontoRecibido - ingreso.Monto;
+                            cliente.DeudaCliente -= resto;
+                        }
 
                         // cliente.DeudaCliente =
                         cliente.IdLocker = ingreso.IdLocker;
@@ -178,7 +185,6 @@ namespace GymCastillo.Model.Helpers {
                         var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
 
                         // Actualizamos los campos.
-                        // TODO: Agregar y obtener los demás campos
                         instructor.MontoUltimoPago = egreso.Monto;
                         instructor.FechaUltimoPago = egreso.FechaRegistro;
 

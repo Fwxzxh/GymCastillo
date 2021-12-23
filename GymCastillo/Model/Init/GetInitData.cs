@@ -15,7 +15,6 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static string ConnString { get; set; }
 
-
         // la ruta al archivo ini.
         private const string IniPath = @"C:\GymCastillo\config.ini";
 
@@ -96,8 +95,7 @@ namespace GymCastillo.Model.Init {
                 ini.Write("DbPass", "root", "Config");
                 ini.Write("PrecioLocker", "50", "Settings");
                 ini.Write("DescuentoRetardo", "50", "Settings");
-                File.SetAttributes(IniPath, FileAttributes.Hidden);
-
+                // File.SetAttributes(IniPath, FileAttributes.Hidden);
 
             }
             catch (Exception e) {
