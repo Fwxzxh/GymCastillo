@@ -400,7 +400,14 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"select * from rentas";
+            const string sqlQuery = @"SELECT
+                                          r.IdRenta, r.FechaRenta, r.IdClienteRenta,
+                                          CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
+                                          r.IdEspacio, e.NombreEspacio, r.Dia,
+                                          r.HoraInicio, r.HoraFin, r.Costo
+                                      FROM rentas r
+                                      LEFT JOIN ClienteRenta cr ON r.IdClienteRenta = cr.IdClienteRenta
+                                      LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -413,12 +420,19 @@ namespace GymCastillo.Model.Database {
                     var renta = new Rentas() {
                         IdRenta = reader.Result.GetInt32("IdRenta"),
                         FechaRenta = reader.Result.GetDateTime("FechaRenta"),
+                        IdClienteRenta = reader.Result.GetInt32("IdClienteRenta"),
+
+                        NombreClienteRenta = reader.Result.GetString("NombreCliente"),
+
                         IdEspacio = reader.Result.GetInt32("IdEspacio"),
                         NombreEspacio = reader.Result.GetString("NombreEspacio"),
                         Dia = reader.Result.GetInt32("Dia"),
-                        HoraInicio = DateTime.ParseExact(reader.Result.GetString("HoraInicio"), "HHmm",
+
+                        HoraInicio = DateTime.ParseExact(reader.Result.GetString("HoraInicio"),
+                            "HHmm",
                             CultureInfo.InvariantCulture),
-                        HoraFin = DateTime.ParseExact(reader.Result.GetString("HoraFin"), "HHmm",
+                        HoraFin = DateTime.ParseExact(reader.Result.GetString("HoraFin"),
+                            "HHmm",
                             CultureInfo.InvariantCulture),
                         Costo = reader.Result.GetDecimal("Costo"),
                     };
@@ -427,7 +441,6 @@ namespace GymCastillo.Model.Database {
                 Log.Debug("Se han obtenido con éxito la información de las rentas.");
 
                 return listRentas;
-
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener la información de las rentas.");

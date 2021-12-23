@@ -363,11 +363,12 @@ WHERE IdProducto=@IdProducto;
 
 -- Rentas
 	-- Consulta Rentas
-SELECT	r.IdRenta, r.FechaRenta, r.IdClienteRenta,
-	CONCAT(r.Nombre, ' ', r.ApellidoPaterno, ' ', r.ApellidoMaterno) as NombreClienteR,
-	r.IdEspacio, r.NombreEspacio, r.Dia,
-	r.HoraInicio, r.HoraFin, r.Costo
-FROM	rentas r
+SELECT
+    r.IdRenta, r.FechaRenta, r.IdClienteRenta,
+    CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
+    r.IdEspacio, e.NombreEspacio, r.Dia,
+    r.HoraInicio, r.HoraFin, r.Costo
+FROM rentas r
 LEFT JOIN clienterenta cr ON r.IdClienteRenta = cr.IdClienteRenta
 LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
 

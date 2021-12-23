@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
@@ -83,7 +82,7 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<Espacio> ObCoEspacios { get; set; }
 
         /// <summary>
-        /// La ObservableCollection  que contiene todos los ingresos.
+        /// La ObservableCollection que contiene todos los ingresos.
         /// </summary>
         public static ObservableCollection<Ingresos> ObCoIngresos { get; set; }
 
@@ -92,7 +91,15 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static ObservableCollection<Egresos> ObCoEgresos { get; set; }
 
+        /// <summary>
+        /// La ObservableCollection que contiene la tabla de intersección de los Paquetes y las clases.
+        /// </summary>
         public static ObservableCollection<PaquetesClases> ListPaquetesClases { get; set; }
+
+        /// <summary>
+        /// La ObservableCollection que contiene las rentas
+        /// </summary>
+        public static ObservableCollection<Rentas> ObCoRentas { get; set; }
 
         /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
@@ -136,12 +143,15 @@ namespace GymCastillo.Model.Init {
                 var allPersonal = GetFromDb.GetPersonal();
                 var allPaquetesClases = GetFromDb.GetPaquetesClases();
 
+                var allRentas = GetFromDb.GetRentas();
+
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
                     allClientes, allInstructores, allUsuarios, allClientesRenta,
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
-                    allIngresos, allEgresos, allPersonal, allPaquetesClases).ConfigureAwait(false);
+                    allIngresos, allEgresos, allPersonal, allPaquetesClases,
+                    allRentas).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 // Esperamos los resultados...
@@ -164,6 +174,8 @@ namespace GymCastillo.Model.Init {
                 ObCoEgresos = await allEgresos;
                 ObCoPersonal = await allPersonal;
                 ListPaquetesClases = await allPaquetesClases;
+
+                ObCoRentas = await allRentas;
 
                 return true;
             }

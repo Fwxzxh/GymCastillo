@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.Helpers;
 using log4net;
@@ -53,7 +52,6 @@ namespace GymCastillo.Model.Admin {
                     default:
                         // No se encontró el tipo de la asistencia Error!!!
                         throw new EntryPointNotFoundException("No se encontró el tipo de asistencia.");
-
                 }
             }
             catch (EntryPointNotFoundException e) {

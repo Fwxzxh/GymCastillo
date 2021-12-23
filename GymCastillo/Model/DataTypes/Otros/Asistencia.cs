@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
@@ -38,11 +37,6 @@ namespace GymCastillo.Model.DataTypes.Otros {
         public bool Entrada { get; set; }
 
         /// <summary>
-        /// Indica si se aplica la penalización de entrada al Instructor.
-        /// </summary>
-        public bool Penalización { get; set; }
-
-        /// <summary>
         /// El sueldo a descontar en el caso de que se aplique la penalización.
         /// </summary>
         public decimal SueldoADescontar { get; set; }
@@ -56,11 +50,6 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// El número de clases a entrar para saber cuantas descontar.
         /// </summary>
         public int NúmeroClasesAEntrar { get; set; }
-
-        /// <summary>
-        /// Contiene la Penalización del Instructor por retardo.
-        /// </summary>
-        public decimal PenalizaciónInstructor { get; set; }
 
         /// <summary>
         /// Una lista con los horarios de clases disponibles para cierta hora de entrada.
