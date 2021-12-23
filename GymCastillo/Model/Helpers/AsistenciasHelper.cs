@@ -11,7 +11,7 @@ namespace GymCastillo.Model.Helpers {
     /// <summary>
     /// Clase que se encarga de manejar los registros de las asistencias.
     /// </summary>
-    public class AsistenciasHelper {
+    public static class AsistenciasHelper {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         // Se actualiza:
@@ -38,7 +38,7 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="asistencia">Un objeto con los datos iniciales de la asistencia.</param>
         /// <returns><c>true</c> Si los datos son correctos y el usuario existe.</returns>
-        public bool CheckId(Asistencia asistencia) {
+        public static bool CheckId(Asistencia asistencia) {
             if (asistencia.Tipo == 1) {
                 // <--> es cliente
                 var clienteQuery = InitInfo.ObCoClientes.Where(x => x.Id == asistencia.Id)
@@ -82,7 +82,7 @@ namespace GymCastillo.Model.Helpers {
         /// <returns>
         /// un nuevo objeto tipo asistencia con la información necesaria para seguir con el proceso de asistencia.
         /// </returns>
-        public Asistencia CheckEntrada(Asistencia asistencia) {
+        public static Asistencia CheckEntrada(Asistencia asistencia) {
             if (asistencia.Tipo == 1) {
                 // Cliente
 
@@ -141,7 +141,8 @@ namespace GymCastillo.Model.Helpers {
         /// Método que se encarga de la asistencia de un cliente.
         /// </summary>
         /// <param name="asistencia">Objeto que tiene la información de la asistencia.</param>
-        public async Task AsistenciaCliente(Asistencia asistencia) {
+        public static async Task AsistenciaCliente(Asistencia asistencia) {
+            // TODO: hacer el check de que se hayan actualizado los campos de manera correcta y un mensaje de confirmación.
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Cliente");
 
             // Validamos si tienen clases disponibles.
@@ -176,7 +177,7 @@ namespace GymCastillo.Model.Helpers {
         /// <summary>
         /// Método que se encarga de la asistencia de un Instructor.
         /// </summary>
-        public async Task AsistenciaInstructor(Asistencia asistencia) {
+        public static async Task AsistenciaInstructor(Asistencia asistencia) {
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Instructor.");
 
             // Lanzamos el alta de la asistencia.

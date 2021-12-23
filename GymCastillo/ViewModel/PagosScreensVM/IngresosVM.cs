@@ -23,8 +23,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoRenta { get; set; }
         public RelayCommand PagoOtros { get; set; }
 
-        private PagosHelper pagos = new();
-
         private Paquete paquete = new();
 
         public Paquete Paquete {
@@ -103,7 +101,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             ingresos.Tipo = 4;
-            await pagos.NewIngreso(ingresos);
+            await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
         }
 
@@ -120,7 +118,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Monto = paquete.Costo;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
-            await pagos.NewIngreso(ingresos);
+            await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
 
         }
@@ -140,8 +138,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Paquete = null;
             Ingresos = null;
             Espacio = null;
-            pagos = null;
-            pagos = new();
             ClienteRenta = null;
             ClienteRenta = new();
             Espacio = new();

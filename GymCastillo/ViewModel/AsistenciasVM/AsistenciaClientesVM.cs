@@ -86,10 +86,9 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
         }
 
         private async void AltaAsistencia(IClosable closable) {
-            AsistenciasHelper helper = new();
             asistencia.ClasesAEntrar = selectedHorario.Select(x => x.IdHorario).ToList();
             asistencia.NúmeroClasesAEntrar = selectedHorario.Count();
-            await helper.AsistenciaCliente(asistencia);
+            await AsistenciasHelper.AsistenciaCliente(asistencia);
             RefreshData();
             closable.Close();
         }

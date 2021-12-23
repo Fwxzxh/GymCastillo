@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
-using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.Init;
 using log4net;
@@ -12,7 +11,7 @@ namespace GymCastillo.Model.Helpers {
     /// <summary>
     /// Clase que se encarga de manejar los pagos
     /// </summary>
-    public class PagosHelper {
+    public static class PagosHelper {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         // 1. Me llega el objeto del front con los datos,
@@ -26,7 +25,7 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// TODO: igual y es buena idea mandar el objeto.
-        public async Task NewIngreso(Ingresos ingreso) {
+        public static async Task NewIngreso(Ingresos ingreso) {
 
             // TODO: implementar lo de los tickets.
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
@@ -147,7 +146,7 @@ namespace GymCastillo.Model.Helpers {
         /// Método que da de alta un nuevo egreso.
         /// </summary>
         /// <param name="egreso">Un objeto con la información del egreso.</param>
-        public async Task NewEgreso(Egresos egreso) {
+        public static async Task NewEgreso(Egresos egreso) {
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo egreso.");
 
             egreso.FechaRegistro = DateTime.Now;

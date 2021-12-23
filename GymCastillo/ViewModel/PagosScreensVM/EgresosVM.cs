@@ -20,7 +20,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoServicios { get; set; }
         public RelayCommand PagoOtros { get; set; }
 
-        private PagosHelper pagos = new();
+        // private PagosHelper pagos = new();
 
         private Usuario usuario = new();
 
@@ -90,34 +90,34 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             egresos.Tipo = 5;
-            await pagos.NewEgreso(egresos);
+            await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void ServicesPayment() {
             egresos.Tipo = 4;
-            await pagos.NewEgreso(egresos);
+            await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void PersonalPayment() {
             egresos.Tipo = 3;
             egresos.IdPersonal = personal.Id;
-            await pagos.NewEgreso(egresos);
+            await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void InstructorPayment() {
             egresos.Tipo = 2;
             egresos.IdInstructor = instructor.Id;
-            await pagos.NewEgreso(egresos);
+            await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void UserPayment() {
             egresos.Tipo = 1;
             egresos.IdUsuarioPagar = usuario.Id;
-            await pagos.NewEgreso(egresos);
+            await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 

@@ -2,12 +2,7 @@
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.Helpers;
 using GymCastillo.View.AsistenciasView;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.AsistenciasVM {
     public class HomeAsistenciasVM : INotifyPropertyChanged {
@@ -15,8 +10,6 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
 
         public RelayCommand asistenciaCliente { get; set; }
         public RelayCommand asistenciaInstructor { get; set; }
-
-        private AsistenciasHelper helper = new();
 
         private Asistencia asistencia = new();
 
@@ -48,8 +41,8 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
 
         private void AsistenciaInstructorView() {
             Asistencia.Tipo = 2;
-            if (helper.CheckId(Asistencia)) {
-                Asistencia = helper.CheckEntrada(Asistencia);
+            if (AsistenciasHelper.CheckId(Asistencia)) {
+                Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaInstructorWindow window = new(Asistencia);
                 window.ShowDialog();
             }
@@ -57,8 +50,8 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
 
         private void AsistenciaClienteView() {
             Asistencia.Tipo = 1;
-            if (helper.CheckId(Asistencia)) {
-                Asistencia = helper.CheckEntrada(Asistencia);
+            if (AsistenciasHelper.CheckId(Asistencia)) {
+                Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaClienteWindow window = new(Asistencia);
                 window.ShowDialog();
             }
