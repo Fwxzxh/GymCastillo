@@ -221,8 +221,8 @@ create table Ventas (
     -- Tabla que guarda los registros de las ventas (Visitas al gym o clase) y productos
     IdVenta int auto_increment primary key,
     FechaVenta datetime not null,
-    IdProducto int,
-    foreign key (IdProducto) references Inventario (IdProducto),
+    IdProducto varchar(150),
+    VisitaGym bool,
     Concepto varchar(2000) not null,
     Costo decimal not null
 );
