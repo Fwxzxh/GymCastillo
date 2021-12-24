@@ -31,21 +31,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public decimal DeudaCliente { get; set; }
 
         /// <summary>
-        /// Lista separada por comas de los IdRenta del clienteRenta
-        /// </summary>
-        public string IdRenta { get; set; }
-
-        /// <summary>
-        /// Lista separada por comas de las fechas de las rentas del usuario.
-        /// </summary>
-        public string FechaRenta { get; set; }
-
-        /// <summary>
-        /// Lista separada por comas de lo que se ha pagado por las rentas del cliente.
-        /// </summary>
-        public string CostoRenta { get; set; }
-
-        /// <summary>
         /// Método que actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la operación.</returns>
@@ -55,7 +40,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
 
-                const string updateQuery = @"UPDATE clienterenta
+                const string updateQuery = @"UPDATE ClienteRenta
                                              SET Domicilio=@Domicilio, Telefono=@Telefono, 
                                                  NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, 
                                                  Foto=@Foto
@@ -78,7 +63,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -106,7 +91,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string deleteQuery = @"delete from clienterenta where IdClienteRenta=@IdClienteRenta";
+                const string deleteQuery = @"delete from ClienteRenta where IdClienteRenta=@IdClienteRenta";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
                 command.Parameters.AddWithValue("@IdClienteRenta", Id.ToString());
@@ -129,7 +114,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <summary>
         /// Método que da de alta la instancia actual del objeto en la base de datos.
         /// </summary>
-        /// <returns>El número de columas afectadas en la operación.</returns>
+        /// <returns>El número de columnas afectadas en la operación.</returns>
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un ClienteRenta.");
             try {
@@ -168,7 +153,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -176,8 +161,46 @@ namespace GymCastillo.Model.DataTypes.Personal {
             }
         }
 
-        public override Task<int> Pago() {
-            throw new NotImplementedException();
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos de pago a un clienteRenta");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update ClienteRenta
+                                           set
+                                               FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago,
+                                               DeudaCliente=@DeudaCliente
+                                           where IdClienteRenta=@IdClienteRenta;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.Parameters.AddWithValue("@DeudaCliente",
+                    DeudaCliente.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@IdClienteRenta",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Cliente Renta");
+                Log.Debug("Se han actualizado los datos del Cliente Renta por una renta");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del clienteRenta en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del cliente Renta en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace GymCastillo.Model.DataTypes.Ventas {
         public decimal Costo { get; set; }
 
         public Task<int> Alta() {
-            Log.Debug("Se ha iniciado el proceso de dar de alta Personal.");
+            Log.Debug("Se ha iniciado el proceso de dar de alta una venta.");
             throw new NotImplementedException();
         }
     }

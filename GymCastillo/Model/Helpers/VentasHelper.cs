@@ -7,6 +7,10 @@ namespace GymCastillo.Model.Helpers {
     public static class VentasHelper {
 
         public static void NuevaVenta() {
+            // Puede ser venta de inventario o venta de entrada al gym.
+            // Verificamos que tipo de venta es.
+
+
 
         }
     }

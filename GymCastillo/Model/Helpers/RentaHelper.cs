@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Init;
 using log4net;
 
@@ -19,7 +20,9 @@ namespace GymCastillo.Model.Helpers {
         /// Método Para dar de alta una Renta registrando antes la renta y después el ingreso
         /// </summary>
         /// <param name="renta">El objeto con la información de la renta.</param>
-        public static async Task NuevaRenta(Rentas renta) {
+        /// <param name="clienteRenta">El objeto con la información del cliente</param>
+        /// <param name="montoRecibido">La cantidad recibida por la renta (para calcular la deuda)</param>
+        public static async Task NuevaRenta(Rentas renta, ClienteRenta clienteRenta, decimal montoRecibido) {
             // Debemos de Hacer la renta y luego registrar el ingreso
             Log.Debug("Se ha iniciado el proceso de registrar una renta.");
 
@@ -33,10 +36,12 @@ namespace GymCastillo.Model.Helpers {
                     var ingreso = new Ingresos {
                         Tipo = 3,
                         Concepto = "",
-                        NumeroRecibo = ""
+                        NumeroRecibo = "",
+                        Monto = renta.Costo,
+                        MontoRecibido = montoRecibido
                     };
 
-                    // Obtenemos el IdRenta
+                    // Obtenemos el IdRenta de la renta dada de alta.
                     if (InitInfo.ObCoRentas.Count > 0) {
                         var idRentaMax = InitInfo.ObCoRentas.Max(x => x.IdRenta);
                         ingreso.IdRenta = idRentaMax + 1;
@@ -45,7 +50,16 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 1;
                     }
 
+                    // Registramos el ingreso
                     await PagosHelper.NewIngreso(ingreso);
+
+                    // Actualizamos la información del cliente
+                    clienteRenta.FechaUltimoPago = DateTime.Now;
+                    clienteRenta.MontoUltimoPago = montoRecibido;
+                    clienteRenta.DeudaCliente += renta.Costo - montoRecibido;
+
+                    // Actualizamos los campos del cliente
+                    await AdminUsuariosGeneral.Pago(clienteRenta);
 
                     Log.Debug("Se ha completado el proceso de registro de renta de manera exitosa.");
                 }
