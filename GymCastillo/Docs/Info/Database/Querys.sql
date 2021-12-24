@@ -384,3 +384,20 @@ SET	FechaRenta=@FechaRenta, IdClienteRenta=@IdClienteRenta,
 	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio, Dia=@Dia,
 	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo
 WHERE	IdRenta=@IdRenta;
+
+
+-- Ventas
+SELECT	v.IdVenta, v.FechaVenta, v.IdsProductos,
+	v.VisitaGym, v.Concepto, v.Costo
+FROM	ventas v;
+
+	-- Alta ventas
+INSERT INTO ventas
+VALUES (default, @FechaVenta, @IdsProductos,
+       @VisitaGym, @Concepto, @Costo);
+       
+       -- Actualizar ventas
+UPDATE	ventas
+SET	FechaVenta=@FechaVenta, IdsProductos=@IdsProductos,
+       	VisitaGym=@VisitaGym, Concepto=@Concepto, Costo=@Costo
+WHERE	IdVenta=@IdVenta;
