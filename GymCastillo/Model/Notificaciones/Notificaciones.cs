@@ -30,5 +30,11 @@ namespace GymCastillo.Model.Notificaciones {
         }
 
 
+        public static void ResetCampos() {
+            // necesitamos saber cuando limpiarlos
+            // Se limpian los cupos de las clases del dia diario.
+            // Se limpian los campos de las clases por semana de los clientes dependiendo de su paquete cada semana.
+
+        }
     }
 }

@@ -29,7 +29,12 @@ namespace GymCastillo.Model.DataTypes.Ventas {
         /// <summary>
         /// El id del producto a vender
         /// </summary>
-        public int IdProducto { get; set; }
+        public string IdsProductos { get; set; }
+
+        /// <summary>
+        /// Indica si la venta es solo una visita al gym.
+        /// </summary>
+        public bool VisitaGym { get; set; }
 
         /// <summary>
         /// El concepto de la venta.
@@ -50,15 +55,19 @@ namespace GymCastillo.Model.DataTypes.Ventas {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string altaQuery = @"";
+                const string altaQuery = @"INSERT INTO ventas
+                                           VALUES (default, @FechaVenta, @IdsProductos,
+                                                  @VisitaGym, @Concepto, @Costo);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
                 command.Parameters.AddWithValue("@FechaVenta",
                     FechaVenta.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@IdsProductos", IdsProductos);
 
+                command.Parameters.AddWithValue("@VisitaGym",
+                    Convert.ToInt32(VisitaGym).ToString());
                 command.Parameters.AddWithValue("@Concepto", Concepto);
-
                 command.Parameters.AddWithValue("@Costo",
                     Costo.ToString(CultureInfo.InvariantCulture));
 

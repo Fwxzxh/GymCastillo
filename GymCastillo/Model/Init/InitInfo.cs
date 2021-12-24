@@ -15,7 +15,8 @@ namespace GymCastillo.Model.Init {
     /// Clase que se encarga de hacer todas las queries necesarias para el inicio del programa.
     /// </summary>
     public class InitInfo {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// La ObservableCollection  de todos los clientes.

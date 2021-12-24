@@ -1333,11 +1333,12 @@ namespace GymCastillo.Model.Database {
 
                 var listVentas = new ObservableCollection<Venta>();
 
-                // TODO: Acomodar los campos con los nuevos cambios.
                 while (await reader.Result.ReadAsync()) {
                     var item = new Venta() {
                         IdVenta = reader.Result.GetInt32("IdVenta"),
                         FechaVenta = reader.Result.GetDateTime("FechaVenta"),
+                        IdsProductos = reader.Result.GetString("IdsProductos"),
+                        VisitaGym = reader.Result.GetBoolean("VisitaGym"),
                         Concepto = reader.Result.GetString("Concepto"),
                         Costo = reader.Result.GetDecimal("Costo"),
                     };

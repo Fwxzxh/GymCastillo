@@ -39,7 +39,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 0;
                         ingreso.IdVenta = 0;
 
-
                         // Obtenemos el cliente
                         var cliente = InitInfo.ObCoClientes.First(x => x.Id == ingreso.IdCliente);
 

@@ -54,7 +54,6 @@ namespace GymCastillo.Model.Helpers {
                         "Ha ocurrido un error al registrar la venta, Contacte a los administradores",
                         "Error al registrar la renta");
                 }
-
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error desconocido al Hacer el proceso de registrar la Venta.");

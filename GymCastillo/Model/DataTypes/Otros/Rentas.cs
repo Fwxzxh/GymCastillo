@@ -85,10 +85,13 @@ namespace GymCastillo.Model.DataTypes.Otros {
 
                 command.Parameters.AddWithValue("@FechaRenta",
                     FechaRenta.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@IdClienteRenta", IdClienteRenta.ToString());
+                command.Parameters.AddWithValue("@IdClienteRenta",
+                    IdClienteRenta.ToString());
 
-                command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
-                command.Parameters.AddWithValue("@Dia", Dia.ToString());
+                command.Parameters.AddWithValue("@IdEspacio",
+                    IdEspacio.ToString());
+                command.Parameters.AddWithValue("@Dia",
+                    Dia.ToString());
                 command.Parameters.AddWithValue("@HoraInicio",
                     HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin",
