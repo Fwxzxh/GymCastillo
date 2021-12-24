@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor Fixes &amp; added Ventas &amp; Rentas Helper">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Rentas Enhancements">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Ventas/VentaValidation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/ClienteRenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/ClienteRenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Venta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Venta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +147,7 @@
       <workItem from="1640101626030" duration="22027000" />
       <workItem from="1640207957994" duration="14652000" />
       <workItem from="1640227907303" duration="14407000" />
-      <workItem from="1640292908631" duration="10480000" />
+      <workItem from="1640292908631" duration="12590000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -406,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640298287063</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Rentas Enhancements">
+      <created>1640312749092</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1640312749092</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +449,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Pagos Back done, added PagosHelper.cs" />
     <MESSAGE value="Added personal Validator &amp; CardFiles to Deploy" />
     <MESSAGE value="added Venta.cs &amp; Inventario.cs &amp; minor Fix" />
     <MESSAGE value="woa!! this one was really HARD!" />
@@ -465,7 +473,8 @@
     <MESSAGE value="PagosHelper.cs to static" />
     <MESSAGE value="Asistencias Bug Fixed" />
     <MESSAGE value="Minor Fixes &amp; added Ventas &amp; Rentas Helper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Fixes &amp; added Ventas &amp; Rentas Helper" />
+    <MESSAGE value="Rentas Enhancements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rentas Enhancements" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

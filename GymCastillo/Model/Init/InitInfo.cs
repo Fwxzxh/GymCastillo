@@ -108,6 +108,11 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<Inventario> ObCoInventario { get; set; }
 
         /// <summary>
+        /// La ObservableCollection que contiene las ventas;
+        /// </summary>
+        public static ObservableCollection<Venta> ObCoVentas { get; set; }
+
+        /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
         /// </summary>
         public readonly bool DoneTasks;
@@ -151,6 +156,7 @@ namespace GymCastillo.Model.Init {
 
                 var allRentas = GetFromDb.GetRentas();
                 var allInventario = GetFromDb.GetInventario();
+                var allVentas = GetFromDb.GetVentas();
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
@@ -158,7 +164,7 @@ namespace GymCastillo.Model.Init {
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
                     allIngresos, allEgresos, allPersonal, allPaquetesClases,
-                    allRentas, allInventario).ConfigureAwait(false);
+                    allRentas, allInventario, allVentas).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 // Esperamos los resultados...
@@ -184,6 +190,7 @@ namespace GymCastillo.Model.Init {
 
                 ObCoRentas = await allRentas;
                 ObCoInventario = await allInventario;
+                ObCoVentas = await allVentas;
 
                 return true;
             }

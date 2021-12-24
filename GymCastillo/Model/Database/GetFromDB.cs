@@ -1312,5 +1312,50 @@ namespace GymCastillo.Model.Database {
                 throw; // -> manejamos el error en el siguiente nivel.
             }
         }
+
+        /// <summary>
+        /// Método que se encarga de obtener todos los datos de las ventas.
+        /// </summary>
+        /// <returns>Una lista de objetos tipo Venta</returns>
+        public static async Task<ObservableCollection<Venta>> GetVentas() {
+            Log.Debug("se ha empezado el proceso de obtener la información de las ventas.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from ventas";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listVentas = new ObservableCollection<Venta>();
+
+                // TODO: Acomodar los campos con los nuevos cambios.
+                while (await reader.Result.ReadAsync()) {
+                    var item = new Venta() {
+                        IdVenta = reader.Result.GetInt32("IdVenta"),
+                        FechaVenta = reader.Result.GetDateTime("FechaVenta"),
+                        Concepto = reader.Result.GetString("Concepto"),
+                        Costo = reader.Result.GetDecimal("Costo"),
+                    };
+                    listVentas.Add(item);
+                }
+                Log.Debug("Se ha in obtenido con éxito la información del inventario");
+
+                return listVentas;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de las ventas.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de las ventas. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
     }
 }

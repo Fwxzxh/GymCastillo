@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
 using GymCastillo.Model.DataTypes.Otros;
+using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.Model.Validations.Pagos;
+using GymCastillo.Model.Validations.Ventas;
 using log4net;
 
 namespace GymCastillo.Model.Admin {
@@ -75,7 +77,8 @@ namespace GymCastillo.Model.Admin {
                     break;
 
                 case "Venta":
-                    // TODO: hacer validaciones de venta
+                    var ventaValidation = new VentaValidation();
+                    await ventaValidation.ValidateAndThrowAsync((Venta)objeto);
                     break;
 
                 default:
