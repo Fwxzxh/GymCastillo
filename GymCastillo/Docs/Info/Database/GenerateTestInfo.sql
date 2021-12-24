@@ -194,15 +194,15 @@ VALUES (DEFAULT, CURDATE(), 2, 1, 1, '1000', '1100', 700.0);
 
 -- ventas
 INSERT INTO ventas
-VALUES (default, CURDATE(), null, 'Venta 1', 100.0);
+VALUES (default, CURDATE(), '1,2', FALSE, 'Venta 1', 100.0);
 INSERT INTO ventas
-VALUES (default, CURDATE(), null, 'Venta 2', 200.0);
+VALUES (default, CURDATE(), '1', FALSE, 'Venta 2', 200.0);
 INSERT INTO ventas
-VALUES (default, CURDATE(), null, 'Venta 3', 300.0);
+VALUES (default, CURDATE(), null, TRUE, 'Venta 3', 300.0);
 INSERT INTO ventas
-VALUES (default, CURDATE(), null, 'Venta 4', 250.0);
+VALUES (default, CURDATE(), '1', FALSE, 'Venta 4', 250.0);
 INSERT INTO ventas
-VALUES (default, CURDATE(), null, 'Venta 5', 150.0);
+VALUES (default, CURDATE(), '2', FALSE, 'Venta 5', 150.0);
 
 -- Personal
 INSERT INTO personal
