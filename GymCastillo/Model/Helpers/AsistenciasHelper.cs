@@ -180,7 +180,6 @@ namespace GymCastillo.Model.Helpers {
 
             // Verificamos que los cambios se hayan hecho.
             var resAlta = await altaTask;
-            ShowPrettyMessages.ErrorOk($"{resAlta.ToString()} {resCupos.Count} {asistencia.ClasesAEntrar.Count}", "");
             if (resAlta && resCupos.Count == asistencia.ClasesAEntrar.Count) {
                 Log.Debug("Se han comprobado los cambios de las asistencias exitosamente");
                 ShowPrettyMessages.NiceMessageOk(

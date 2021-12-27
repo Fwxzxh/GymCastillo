@@ -1337,7 +1337,9 @@ namespace GymCastillo.Model.Database {
                     var item = new Venta() {
                         IdVenta = reader.Result.GetInt32("IdVenta"),
                         FechaVenta = reader.Result.GetDateTime("FechaVenta"),
-                        IdsProductos = reader.Result.GetString("IdsProductos"),
+                        IdsProductos = await reader.Result.IsDBNullAsync("IdsProductos")
+                            ? ""
+                            : reader.Result.GetString("IdsProductos"),
                         VisitaGym = reader.Result.GetBoolean("VisitaGym"),
                         Concepto = reader.Result.GetString("Concepto"),
                         Costo = reader.Result.GetDecimal("Costo"),

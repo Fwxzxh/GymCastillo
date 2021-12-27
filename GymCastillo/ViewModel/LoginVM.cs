@@ -3,10 +3,12 @@ using MySqlConnector;
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.Model.Notificaciones;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -55,6 +57,8 @@ namespace GymCastillo.ViewModel {
                     Log.Info("LogIn exitoso.");
                     var init= new InitInfo();
                     if (init.DoneTasks) {
+                        await Notificaciones.CheckResetFields();
+                        await Notificaciones.ResetFieldsAndUpdate();
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

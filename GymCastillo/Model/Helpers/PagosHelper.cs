@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.Init;
@@ -183,11 +184,12 @@ namespace GymCastillo.Model.Helpers {
                         var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
 
                         // Actualizamos los campos.
+                        egreso.Monto -= instructor.SueldoADescontar;
                         instructor.MontoUltimoPago = egreso.Monto;
                         instructor.FechaUltimoPago = egreso.FechaRegistro;
 
                         instructor.DiasTrabajados = 0;
-                        instructor.SueldoADescontar = 0; // TODO: hacer el descuento del sueldo a descontar en el front
+                        instructor.SueldoADescontar = 0;
 
                         // Registramos el pago
                         await AdminUsuariosGeneral.Pago(instructor);

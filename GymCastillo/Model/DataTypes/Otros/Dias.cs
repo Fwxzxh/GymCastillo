@@ -1,11 +1,11 @@
 ﻿namespace GymCastillo.Model.DataTypes.Otros {
     public enum Dias {
-        Lunes,
-        Martes,
-        Miércoles,
-        Jueves,
-        Viernes,
-        Sábado,
-        Domingo
+        Lunes = 1,
+        Martes = 2,
+        Miércoles = 3,
+        Jueves = 4,
+        Viernes = 5,
+        Sábado = 6,
+        Domingo = 7
     }
 }

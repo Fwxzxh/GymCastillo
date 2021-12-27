@@ -278,6 +278,14 @@ create table Ingresos (
     MontoRecibido decimal
 );
 
+create table ResetTimer (
+    id int auto_increment primary key ,
+    ResetFechaSemana datetime
+);
+
+insert into ResetTimer
+set id=default, ResetFechaSemana=sysdate();
+
 -- Información de inicio:
 
 -- Creamos el usuario admin
