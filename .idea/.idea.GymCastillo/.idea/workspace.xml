@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor Fixes to validations, added Bot.cs,">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Updated Diagram">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,7 @@
       <workItem from="1640466505708" duration="10584000" />
       <workItem from="1640566311829" duration="2598000" />
       <workItem from="1640589149780" duration="3122000" />
-      <workItem from="1640629352110" duration="10234000" />
+      <workItem from="1640629352110" duration="10793000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -446,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640677363735</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Updated Diagram">
+      <created>1640678753191</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1640678753191</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +486,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Validations For ClaseValidation" />
     <MESSAGE value="Diagram Updated &amp; Asistencias Enhancements" />
     <MESSAGE value="¯\_(ツ)_/¯" />
     <MESSAGE value="Fix Paquete validation and Paquete FK check messages" />
@@ -505,7 +510,8 @@
     <MESSAGE value="Minor Fixes, VentasHelper.cs Done" />
     <MESSAGE value="Minor Fixes, Reset Timers Done." />
     <MESSAGE value="Minor Fixes to validations, added Bot.cs," />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Fixes to validations, added Bot.cs," />
+    <MESSAGE value="Updated Diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Diagram" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
