@@ -21,7 +21,7 @@ namespace GymCastillo.Model.Admin {
         /// <summary>
         /// Método que se encarga de dar de alta una instancia del objeto dado en la base de datos.
         /// </summary>
-        public static async Task<bool> Alta(IOnlyAlta objeto) {
+        public static async Task<bool> Alta(IOnlyAlta objeto, bool silent=false) {
             Log.Debug("Se ha iniciado el proceso de alta de un objeto de solo alta.");
 
             try {
@@ -39,10 +39,12 @@ namespace GymCastillo.Model.Admin {
 
                     return false;
                 }
-                else {
+
+                if (!silent) {
                     ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
-                    return true;
                 }
+
+                return true;
             }
             catch (ValidationException msg) {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");

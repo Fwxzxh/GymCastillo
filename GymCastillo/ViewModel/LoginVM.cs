@@ -55,10 +55,9 @@ namespace GymCastillo.ViewModel {
 
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");
-                    var init= new InitInfo();
+                    var init= new InitInfo(); // Obtenemos la información inicial
                     if (init.DoneTasks) {
-                        await Notificaciones.CheckResetFields();
-                        await Notificaciones.ResetFieldsAndUpdate();
+                        await Notificaciones.CheckResetFields(); // Verificamos si debemos resetear los cupos.
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

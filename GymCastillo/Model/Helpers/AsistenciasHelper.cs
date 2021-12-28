@@ -13,7 +13,8 @@ namespace GymCastillo.Model.Helpers {
     /// Clase que se encarga de manejar los registros de las asistencias.
     /// </summary>
     public static class AsistenciasHelper {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         // Se actualiza:
         // Cliente: FechaUltimoAcceso, ClasesTotalesDisponibles (si entra), ClasesSemanaDisponibles (si entra).
@@ -33,7 +34,6 @@ namespace GymCastillo.Model.Helpers {
         //         1. Guardamos la asistencia actualizando los campos de Cliente y de Horarios.
         //     b. Si es instructor, Podemos Registrar la asistencia Actualizando los campos de Instructor.
 
-
         /// <summary>
         /// Método que checa si los datos iniciales de la asistencia (Tipo e Id) son válidos.
         /// </summary>
@@ -45,17 +45,15 @@ namespace GymCastillo.Model.Helpers {
                 var clienteQuery = InitInfo.ObCoClientes.Where(x => x.Id == asistencia.Id)
                     .AsParallel().ToList();
 
-                if (clienteQuery.Count == 0) {
-                    // El cliente no se encontró
-                    Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
-                    ShowPrettyMessages.WarningOk(
-                        $"No se ha podido encontrar el cliente con Id {asistencia.Id.ToString()}.",
-                        "Cliente No encontrado.");
-                    return false;
-                }
+                if (clienteQuery.Count != 0) return true;
+                // El cliente no se encontró
+                Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
+                ShowPrettyMessages.WarningOk(
+                    $"No se ha podido encontrar el cliente con Id {asistencia.Id.ToString()}.",
+                    "Cliente No encontrado.");
+                return false;
 
                 // Existe ->
-                return true;
             }
             // <--> es instructor.
 
@@ -63,17 +61,15 @@ namespace GymCastillo.Model.Helpers {
             var instructorQuery = InitInfo.ObCoInstructor.Where(x => x.Id == asistencia.Id)
                 .AsParallel().ToList();
 
-            if (instructorQuery.Count == 0) {
-                // El instructor no se encontró
-                Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
-                ShowPrettyMessages.WarningOk(
-                    $"No se ha podido encontrar el instructor con Id {asistencia.Id.ToString()}.",
-                    "Cliente No encontrado.");
-                return false;
-            }
+            if (instructorQuery.Count != 0) return true;
+            // El instructor no se encontró
+            Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
+            ShowPrettyMessages.WarningOk(
+                $"No se ha podido encontrar el instructor con Id {asistencia.Id.ToString()}.",
+                "Cliente No encontrado.");
+            return false;
 
             // Existe ->
-            return true;
         }
 
         /// <summary>
@@ -143,7 +139,6 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="asistencia">Objeto que tiene la información de la asistencia.</param>
         public static async Task AsistenciaCliente(Asistencia asistencia) {
-            // TODO: hacer el check de que se hayan actualizado los campos de manera correcta y un mensaje de confirmación.
             Log.Debug("Se ha iniciado el proceso de registrar la asistencia de un Cliente");
 
             // Validamos si tienen clases disponibles.
@@ -161,8 +156,6 @@ namespace GymCastillo.Model.Helpers {
 
             // Actualizamos el cupo en la clase.
             var resCupos = new List<int>();
-            // TODO: esto esta mal
-            // iteramos sobre los horarios disponibles
 
             var horariosActualizar =
                 asistencia.ListaHorarios.Where(x => asistencia.ClasesAEntrar.Contains(x.IdHorario));
@@ -189,7 +182,7 @@ namespace GymCastillo.Model.Helpers {
             }
 
             // Hubo un problema
-            if (resCupos.Any(x => x == 0)){
+            if (resCupos.Any(x => x == 0)) {
                 ShowPrettyMessages.WarningOk(
                     "Ha ocurrido un problema con el registro de las asistencias contacte a los administradores.",
                     "Cambios incompletos");

@@ -116,13 +116,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
             Log.Debug("Se ha iniciado el proceso de dar de alta un horario.");
 
             // verificamos que no se puedan dar horarios a la misma hora y mismo lugar.
-
             var horariosChocan =
                 InitInfo.ObCoHorarios
                     // Obtenemos los horarios cuya clase empieza durante la duración de nuestra clase.
-                    .Where(x => x.HoraInicio >= HoraInicio && x.HoraInicio <= HoraFin)
+                    .Where(x => x.HoraInicio >= HoraInicio || x.HoraInicio <= HoraFin)
                     // Obtenemos los id de las clases de esos horarios
-                    .Select(x => x.IdClase).AsParallel();
+                    .Select(x => x.IdClase).AsParallel().ToList();
+
+            ShowPrettyMessages.InfoOk($"{horariosChocan.Count.ToString()}", "");
 
             var chocan = horariosChocan.Any(x => x == IdClase);
 

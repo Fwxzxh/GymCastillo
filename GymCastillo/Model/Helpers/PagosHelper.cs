@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Init;
 using log4net;
 
@@ -47,39 +48,8 @@ namespace GymCastillo.Model.Helpers {
                         cliente.MontoUltimoPago = ingreso.Monto;
                         cliente.FechaUltimoPago = ingreso.FechaRegistro;
 
-                        // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
-                        if (ingreso.IdPaquete != 0) {
-                            // Obtenemos el paquete.
-                            var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == ingreso.IdPaquete);
-
-                            // actualizamos.
-                            cliente.IdPaquete = ingreso.IdPaquete;
-                            cliente.FechaVencimientoPago = ingreso.FechaRegistro + TimeSpan.FromDays(30);
-                            cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
-                            cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
-                            cliente.DuraciónPaquete += 30;
-                        }
-
-                        // calculamos la deuda.
-                        if (ingreso.MontoRecibido < ingreso.Monto) {
-                            // hay deuda
-                            cliente.DeudaCliente += ingreso.Monto - ingreso.MontoRecibido;
-                        }
-
-                        // Si dan más dinero descontamos de la deuda.
-                        if (ingreso.MontoRecibido > ingreso.Monto) {
-                            var resto = ingreso.MontoRecibido - ingreso.Monto;
-                            cliente.DeudaCliente -= resto;
-                        }
-
-                        // cliente.DeudaCliente =
-                        cliente.IdLocker = ingreso.IdLocker;
-
-                        // Registramos el Pago
-                        await AdminOnlyAlta.Alta(ingreso);
-
-                        // actualizamos los campos del cliente
-                        await AdminUsuariosGeneral.Pago(cliente);
+                        // Registramos el proceso.
+                        await IngresoCliente(ingreso, cliente);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Cliente");
                         break;
@@ -143,6 +113,59 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
+        /// Método que hace el proceso de dar de alta un egreso a un cliente.
+        /// </summary>
+        /// <param name="ingreso">Un objeto con la información del ingreso.</param>
+        /// <param name="cliente">Un objeto con la información del cliente</param>
+        private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente) {
+
+            // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
+            if (ingreso.IdPaquete != 0) {
+                // Obtenemos el paquete.
+                var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == ingreso.IdPaquete);
+
+                // actualizamos.
+                cliente.IdPaquete = ingreso.IdPaquete;
+                cliente.FechaVencimientoPago = ingreso.FechaRegistro + TimeSpan.FromDays(30);
+                cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
+                cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
+                cliente.DuraciónPaquete += 30;
+            }
+
+            // calculamos la deuda.
+            if (ingreso.MontoRecibido < ingreso.Monto) {
+                // hay deuda
+                cliente.DeudaCliente += ingreso.Monto - ingreso.MontoRecibido;
+                ShowPrettyMessages.InfoOk(
+                    $"Se va a abonar una deuda de: $ {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    "Deuda A abonar");
+            }
+
+            // Si dan más dinero descontamos de la deuda.
+            if (ingreso.MontoRecibido > ingreso.Monto) {
+                var resto = ingreso.MontoRecibido - ingreso.Monto;
+                cliente.DeudaCliente -= resto;
+                ShowPrettyMessages.InfoOk(
+                    $"El cliente quedará con una deuda de: $ {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    "");
+            }
+
+            // cliente.DeudaCliente =
+            cliente.IdLocker = ingreso.IdLocker;
+
+            // Registramos el Pago
+            var res = await AdminOnlyAlta.Alta(ingreso, true);
+
+            if (res) {
+                // actualizamos los campos del cliente
+                await AdminUsuariosGeneral.Pago(cliente);
+            }
+            else {
+                throw new Exception("No se ha completado la alta del ingreso de manera correcta.");
+            }
+        }
+
+        /// <summary>
         /// Método que da de alta un nuevo egreso.
         /// </summary>
         /// <param name="egreso">Un objeto con la información del egreso.</param>
@@ -165,10 +188,12 @@ namespace GymCastillo.Model.Helpers {
                         usuario.FechaUltimoPago = egreso.FechaRegistro;
 
                         // Registramos el Pago
-                        await AdminOnlyAlta.Alta(egreso);
+                        var res = await AdminOnlyAlta.Alta(egreso, true);
 
-                        // Registramos
-                        await AdminUsuariosGeneral.Pago(usuario);
+                        if (res) {
+                            // Registramos
+                            await AdminUsuariosGeneral.Pago(usuario);
+                        }
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Usuarios.");
                         break;
@@ -176,9 +201,6 @@ namespace GymCastillo.Model.Helpers {
                     case 2: // NominaInstructores:
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdInstructor.
                         egreso.Nomina = true;
-
-                        // Registramos el Pago
-                        await AdminOnlyAlta.Alta(egreso);
 
                         // Obtenemos al instructor
                         var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
@@ -191,8 +213,16 @@ namespace GymCastillo.Model.Helpers {
                         instructor.DiasTrabajados = 0;
                         instructor.SueldoADescontar = 0;
 
-                        // Registramos el pago
-                        await AdminUsuariosGeneral.Pago(instructor);
+                        // Registramos el Pago
+                        var resInstructores = await AdminOnlyAlta.Alta(egreso);
+
+                        if (resInstructores) {
+                            // Registramos el pago
+                            await AdminUsuariosGeneral.Pago(instructor);
+                        }
+                        else {
+                            throw new Exception("No se registro el egreso de manera correcta.");
+                        }
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
@@ -201,9 +231,6 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, IdPersonal.
                         egreso.Nomina = true;
 
-                        // Registramos el Pago
-                        await AdminOnlyAlta.Alta(egreso);
-
                         // Obtenemos al personal
                         var personal = InitInfo.ObCoPersonal.First(x => x.Id == egreso.IdPersonal);
 
@@ -211,8 +238,16 @@ namespace GymCastillo.Model.Helpers {
                         personal.MontoUltimoPago = egreso.Monto;
                         personal.FechaUltimoPago = egreso.FechaRegistro;
 
-                        // Registramos
-                        await AdminUsuariosGeneral.Pago(personal);
+                        // Registramos el Pago
+                        var resAlta = await AdminOnlyAlta.Alta(egreso, true);
+
+                        if (resAlta) {
+                            // Registramos
+                            await AdminUsuariosGeneral.Pago(personal);
+                        }
+                        else {
+                            throw new Exception("no se registro el egreso de manera correcta.");
+                        }
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
