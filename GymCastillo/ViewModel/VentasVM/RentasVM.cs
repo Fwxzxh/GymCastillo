@@ -81,12 +81,12 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private void CancelarRenta() {
-            clienteRenta = null;
-            renta = null;
-            espacio = null;
-            clienteRenta = new();
-            espacio = new();
-            renta = new() { FechaRenta = DateTime.Now };
+            ClienteRenta = null;
+            Renta = null;
+            Espacio = null;
+            ClienteRenta = new();
+            Espacio = new();
+            Renta = new() { FechaRenta = DateTime.Now };
         }
 
         private async void GuardarRenta(bool guardar) {

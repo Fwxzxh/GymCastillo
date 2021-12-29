@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ventas="clr-namespace:GymCastillo.View.VentasScreensView.VentasView"
              xmlns:rentas="clr-namespace:GymCastillo.View.VentasScreensView.RentasView"
              xmlns:inventario="clr-namespace:GymCastillo.View.VentasScreensView.InventarioView"
              mc:Ignorable="d" 
@@ -29,9 +30,9 @@
                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
-                <!--<TabItem.Content>
-                    <clientsView:GridClientesUC/>
-                </TabItem.Content>-->
+                <TabItem.Content>
+                    <ventas:VentasUC/>
+                </TabItem.Content>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
