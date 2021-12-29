@@ -135,43 +135,43 @@ VALUES (default, 'B5', FALSE);
 INSERT INTO cliente
 VALUES (default, 'Daniel', 'Gonzalez', 'Martinez', CURDATE()
        , '4426861255', FALSE, null, 'Miriam Robledo Gonzalez' ,'4420142743', null, CURDATE(), 350.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Redes sociales', null, null, 0, FALSE, 1, 1, null);
+       , null, 'Redes sociales', null, null, 0, FALSE, 1, 1, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Enrique', 'Padilla', 'Martinez', CURDATE()
        , '4426483144', FALSE, null, 'Lucero Guevara Hernandez' ,'4428052331', null, CURDATE(), 350.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Otro', null, null, 0, FALSE, 1, 1, null);
+       , null, 'Otro', null, null, 0, FALSE, 1, 1, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Julieta', 'Izquierdo', 'Perez', CURDATE()
        , '4423209770', FALSE, null, 'Adriana Guevara García' ,'4421621366', null, CURDATE(), 350.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Amig@', null, null, 0, FALSE, 1, 1, 1);
+       , null, 'Amig@', null, null, 0, FALSE, 1, 1, 1, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Daniela', 'Paredes', 'Castro', CURDATE()
        , '4421256969', FALSE, null, 'Andres Lima Rangel' ,'4428248718', null, CURDATE(), 350.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Amig@', 4, 1, 3, FALSE, 3, 2, 2);
+       , null, 'Amig@', 4, 1, 3, FALSE, 3, 2, 2, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Paola', 'Salinas', 'Hernandez', CURDATE()
        , '4428510144', FALSE, null, 'Ruben García Ordaz' ,'4425261623', null, CURDATE(), 700.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Redes sociales', 8, 2, 0, FALSE, 3, 3, 6);
+       , null, 'Redes sociales', 8, 2, 0, FALSE, 3, 3, 6, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Miriam', 'Robledo', 'Gonzalez', CURDATE()
        , '4428169031', FALSE, null, 'Daniel Gonzalez Martinez' ,'4422934869', null, CURDATE(), 1050.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Otro', 12, 3, 2, FALSE, 3, 4, null);
+       , null, 'Otro', 12, 3, 2, FALSE, 3, 4, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Lucero', 'Guevara', 'Hernandez', CURDATE()
        , '4420812321', FALSE, null, 'Enrique Padilla Martinez' ,'4428077153', null, CURDATE(), 700.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Otro', 4, 1, 0, FALSE, 3, 5, null);
+       , null, 'Otro', 4, 1, 0, FALSE, 3, 5, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Adriana', 'Guevara', 'García', CURDATE()
        , '4427136487', TRUE, 'Mala pata de momento', 'Julieta Izquierdo Perez' ,'4428733623', null, CURDATE(), 1050.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Redes sociales', 8, 2, 1, FALSE, 3, 6, null);
+       , null, 'Redes sociales', 8, 2, 1, FALSE, 3, 6, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Andres', 'Lima', 'Rangel', CURDATE()
        , '4425191796', FALSE, null, 'Daniela Paredes Castro' ,'4426784592', null, CURDATE(), 1400.0, TRUE, CURDATE(), CURDATE()
-       , null, 'Amig@', 12, 3, 0, FALSE, 3, 7, null);
+       , null, 'Amig@', 12, 3, 0, FALSE, 3, 7, null, 'a1');
 INSERT INTO cliente
 VALUES (default, 'Ruben', 'García', 'Ordaz', CURDATE()
        , '4423623553', FALSE, null, 'Paola Salinas Hernandez' ,'4425122504', null, CURDATE(), 1050.0, TRUE, CURDATE(),  CURDATE()
-       , null, 'Redes sociales', 12, 3, 2, FALSE, 3, 4, null);
+       , null, 'Redes sociales', 12, 3, 2, FALSE, 3, 4, null, 'a1');
 
 INSERT INTO clienterenta
 VALUES (default, 'Jessica', 'Cortes', 'Vazquez', 'Calle Cedros #24 Colonia Arboledas', CURDATE(), '5511258591', 'Antonio Sanchez Salas', '5512928544', null, CURDATE(), 100.0, 200.0);
@@ -186,11 +186,11 @@ VALUES (default, 'Camilo', 'Septimo', 'Morona', 'Calle Mariano Perrusquia #88 Co
 
 -- rentas
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 1, 3, 1, '0700', '0800', 400.0);
+VALUES (DEFAULT, CURDATE(), 1, 3, '0700', '0800', 400.0);
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 1, 1, 1, '0800', '0900', 700.0);
+VALUES (DEFAULT, CURDATE(), 1, 1, '0800', '0900', 700.0);
 INSERT INTO rentas
-VALUES (DEFAULT, CURDATE(), 2, 1, 1, '1000', '1100', 700.0);
+VALUES (DEFAULT, CURDATE(), 2, 1, '1000', '1100', 700.0);
 
 -- ventas
 INSERT INTO ventas
