@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,14 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
             this.asistencia = asistencia;
             instructor = asistencia.DatosInstructor;
             CloseWindowCommand = new RelayCommand<IClosable>(CloseWindow);
+            AsistenciaCommand = new RelayCommand<IClosable>(RegistrarEntrada);
 
+        }
+
+        private async void RegistrarEntrada(IClosable obj) {
+            Asistencia.SueldoADescontar = instructor.SueldoADescontar;
+            await AsistenciasHelper.AsistenciaInstructor(Asistencia);
+            obj.Close();
         }
 
         private void CloseWindow(IClosable obj) {

@@ -1,6 +1,7 @@
 ﻿using GymCastillo.ViewModel.AdminScreensVM.ClasesVM;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,8 @@ namespace GymCastillo.View.AdminScreensView {
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ClasesSettingsVM.Query = "";
+            ClasesSettingsVM vM = new();
+            vM.Query = "";
         }
     }
 }

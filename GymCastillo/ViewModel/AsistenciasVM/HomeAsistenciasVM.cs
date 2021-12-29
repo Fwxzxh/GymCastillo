@@ -45,6 +45,7 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaInstructorWindow window = new(Asistencia);
                 window.ShowDialog();
+                id = 0;
             }
         }
 
@@ -54,6 +55,7 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaClienteWindow window = new(Asistencia);
                 window.ShowDialog();
+                id = 0;
             }
         }
 

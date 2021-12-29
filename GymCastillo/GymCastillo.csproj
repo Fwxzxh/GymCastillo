@@ -148,8 +148,4 @@
       </Compile>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ViewModel\SettingsScreensVM" />
-    </ItemGroup>
-
 </Project>

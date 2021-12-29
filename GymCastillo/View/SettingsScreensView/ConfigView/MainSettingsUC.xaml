@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM"
+             xmlns:not="clr-namespace:GymCastillo.Model.Notificaciones"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -11,28 +13,30 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
-    
-    <Grid Margin="20">
+    <UserControl.Resources>
+        <not:Notificaciones x:Key="not"/>
+        <vm:MainSettingsVM x:Key="vm"/>
+    </UserControl.Resources>
+    <Grid Margin="20" DataContext="{StaticResource vm}">
 
         <StackPanel Grid.Column="1"
                     HorizontalAlignment="Left">
             <Label Content="Configuraciones generales."
                    HorizontalAlignment="Left"
+                   FontSize="25"/>
+            <TextBlock Text="Última Actualización:"
+                       FontSize="20"
+                       Margin="0 20"/>
+            <Label Content="{Binding Source={x:Static not:Notificaciones.FechaUltimoReset}, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
                    FontSize="20"/>
-            <TextBox materialDesign:HintAssist.Hint="Precio Lockers"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         FontSize="20"
-                         Width="250"
-                         Margin="20 10"
-                         Text="{Binding Paquete.NumClasesSemanales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <TextBox materialDesign:HintAssist.Hint="Descuento Retardo"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         FontSize="20"
-                         Width="250"
-                         Margin="20 10"
-                         Text="{Binding Paquete.NumClasesTotales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                    Content="Actualizar Manualmente"
+                    HorizontalAlignment="Center"
+                    Command="{Binding ManualCommand}"
+                    ToolTip="Actualiza los cupos semanales manualmente."
+                    Margin="10"
+                    FontSize="20"/>
         </StackPanel>
     </Grid>
 </UserControl>

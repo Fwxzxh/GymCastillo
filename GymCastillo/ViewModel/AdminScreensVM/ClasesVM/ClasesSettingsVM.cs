@@ -23,6 +23,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         }
         public ObservableCollection<Clase> ListaClases { get; set; }
         public ObservableCollection<Instructor> ListaInstructores { get; set; }
+
         //public InitTest lista { get; set; }
         public ObservableCollection<Espacio> ListaEspacios { get; set; }
         public RelayCommand CancelCommand { get; private set; }
@@ -53,12 +54,12 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
             }
         }
 
-        private static string query;
+        private string query = "";
 
-        public static string Query {
+        public string Query {
             get { return query; }
             set { query = value;
-                //OnPropertyChanged(nameof(Query));
+                OnPropertyChanged(nameof(Query));
                 FilterData(value);
             }
         }

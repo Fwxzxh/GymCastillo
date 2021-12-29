@@ -14,7 +14,7 @@ namespace GymCastillo.Model.Notificaciones {
     /// Clase que contiene los métodos para obtener las notificaciones y los cuales son necesarios para que el programa
     /// Este al tanto de las fechas y los plazos.
     /// </summary>
-    public static class Notificaciones {
+    public class Notificaciones {
 
         /// <summary>
         /// La fecha del último reset de los campos de la bd.
