@@ -169,7 +169,6 @@ create table Rentas (
     IdEspacio int,
     foreign key (IdEspacio) references Espacio (IdEspacio),
 	-- IdHorario
-    Dia int not null,
     HoraInicio varchar(4) not null,
     HoraFin varchar(4) not null,
     Costo decimal
