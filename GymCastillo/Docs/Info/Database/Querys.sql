@@ -25,7 +25,8 @@ SELECT
     c.DuracionPaquete, c.Nino,
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
-    l.IdLocker, l.Nombre as NombreLocker
+    l.IdLocker, l.Nombre as NombreLocker,
+    c.ChatID
 FROM cliente c
 LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
 LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -50,7 +51,7 @@ UPDATE cliente
 SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-    IdTipoCliente=@IdTipoCliente
+    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
 WHERE IdCliente=@IdCliente;
 
 -- Instructor
@@ -366,8 +367,8 @@ WHERE IdProducto=@IdProducto;
 SELECT
     r.IdRenta, r.FechaRenta, r.IdClienteRenta,
     CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
-    r.IdEspacio, e.NombreEspacio, r.Dia,
-    r.HoraInicio, r.HoraFin, r.Costo
+    r.IdEspacio, e.NombreEspacio, r.HoraInicio, 
+    r.HoraFin, r.Costo
 FROM rentas r
 LEFT JOIN clienterenta cr ON r.IdClienteRenta = cr.IdClienteRenta
 LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
@@ -375,13 +376,13 @@ LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
 	-- Dar de alta Rentas
 INSERT INTO rentas
 VALUES (default, @FechaRenta, @IdClienteRenta,
-       @IdEspacio, @NombreEspacio, @Dia,
+       @IdEspacio, @NombreEspacio,
        @HoraInicio, @HoraFin, @Costo);
        
        -- Actualizar Rentas Creo que no debería poder actualizar nada, pero idk pongo todoxd
 UPDATE	rentas
 SET	FechaRenta=@FechaRenta, IdClienteRenta=@IdClienteRenta,
-	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio, Dia=@Dia,
+	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio,
 	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo
 WHERE	IdRenta=@IdRenta;
 
