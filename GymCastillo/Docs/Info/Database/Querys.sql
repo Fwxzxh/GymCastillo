@@ -367,8 +367,8 @@ WHERE IdProducto=@IdProducto;
 SELECT
     r.IdRenta, r.FechaRenta, r.IdClienteRenta,
     CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
-    r.IdEspacio, e.NombreEspacio, r.Dia,
-    r.HoraInicio, r.HoraFin, r.Costo
+    r.IdEspacio, e.NombreEspacio, r.HoraInicio, 
+    r.HoraFin, r.Costo
 FROM rentas r
 LEFT JOIN clienterenta cr ON r.IdClienteRenta = cr.IdClienteRenta
 LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
@@ -376,13 +376,13 @@ LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
 	-- Dar de alta Rentas
 INSERT INTO rentas
 VALUES (default, @FechaRenta, @IdClienteRenta,
-       @IdEspacio, @NombreEspacio, @Dia,
+       @IdEspacio, @NombreEspacio,
        @HoraInicio, @HoraFin, @Costo);
        
        -- Actualizar Rentas Creo que no debería poder actualizar nada, pero idk pongo todoxd
 UPDATE	rentas
 SET	FechaRenta=@FechaRenta, IdClienteRenta=@IdClienteRenta,
-	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio, Dia=@Dia,
+	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio,
 	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo
 WHERE	IdRenta=@IdRenta;
 
