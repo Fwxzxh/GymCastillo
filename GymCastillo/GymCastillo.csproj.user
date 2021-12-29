@@ -67,6 +67,9 @@
     <Compile Update="View\VentasScreensView\InventarioView\InventarioUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\VentasScreensView\RentasView\RentasUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\VentasScreensView\VentasControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +136,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\VentasScreensView\InventarioView\InventarioUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\VentasScreensView\RentasView\RentasUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\VentasScreensView\VentasControl.xaml">

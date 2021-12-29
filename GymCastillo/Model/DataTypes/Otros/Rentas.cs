@@ -68,7 +68,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
         public decimal Costo { get; set; }
 
         public async Task<int> Alta() {
-            Log.Debug("Se ha iniciado el proceso de dar de alta Personal.");
+            Log.Debug("Se ha iniciado el proceso de dar de alta Renta.");
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
