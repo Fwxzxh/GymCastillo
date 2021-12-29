@@ -25,7 +25,8 @@ SELECT
     c.DuracionPaquete, c.Nino,
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
-    l.IdLocker, l.Nombre as NombreLocker
+    l.IdLocker, l.Nombre as NombreLocker,
+    c.ChatID
 FROM cliente c
 LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
 LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -50,7 +51,7 @@ UPDATE cliente
 SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
     NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
     Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-    IdTipoCliente=@IdTipoCliente
+    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
 WHERE IdCliente=@IdCliente;
 
 -- Instructor
