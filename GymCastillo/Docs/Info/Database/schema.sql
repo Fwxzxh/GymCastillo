@@ -136,7 +136,8 @@ create table Cliente (
     foreign key (IdPaquete) references Paquete (IdPaquete),
 	-- Solución ante el problema de crear clientes y al mismo tiempo asignar locker
     IdLocker int,
-    foreign key (IdLocker) references Locker (IdLocker)
+    foreign key (IdLocker) references Locker (IdLocker),
+    ChatID varchar(20)
 );
 
 
