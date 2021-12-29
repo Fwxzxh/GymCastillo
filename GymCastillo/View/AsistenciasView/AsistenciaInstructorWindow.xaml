@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymCastillo.View.AsistenciasView"
         xmlns:acceso="clr-namespace:GymCastillo.ViewModel.Helpers"
+        Name="asistenciaInstructor"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -54,35 +55,44 @@
                         </TextBlock.Text>
                         </TextBlock>
                 </TextBlock>
-                <!--<TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.NombrePaquete, Mode=TwoWay, StringFormat=Paquete: {0}}"
-                           FontSize="20"/>-->
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="{Binding Instructor.NombreTipoInstructor, Mode=TwoWay, StringFormat=Tipo de instructor: {0}}"
                            FontSize="20"/>
-                <!--<TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.ClasesSemanaDisponibles, Mode=TwoWay, StringFormat=Clases Semanales Disponibles: {0}}"
-                           FontSize="20"/>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.ClasesTotalesDisponibles, Mode=TwoWay, StringFormat=Clases Totales Disponibles: {0}}"
-                           FontSize="20"/>-->
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Descuento"
+                         materialDesign:HintAssist.FloatingScale=".5"
+                         Width="150"
+                         FontSize="20"
+                         Margin="20"
+                         Visibility="{Binding Asistencia.Entrada, Converter={StaticResource InverseBoolToVisConverter}}"
+                         Text="{Binding Instructor.SueldoADescontar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" 
                         VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Asistencia.Entrada, Mode=TwoWay, StringFormat=Acceso: {0}, Converter={StaticResource acceso}}"
+                           Foreground="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"
+                           FontSize="30"
+                           HorizontalAlignment="Center"/>
                 <Image Height="150"
                        Width="150"
                        Source="{Binding Instructor.FotoBitmap}"/>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Asistencia.Entrada, Mode=TwoWay, StringFormat=Acceso: {0:d}, Converter={StaticResource acceso}}"
-                           Foreground="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"
-                           FontSize="20"/>
-                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                <!--<TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Fecha límite de pago: {0:d}}"
-                           FontSize="20"/>
+                           FontSize="20"/>-->
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Registrar Acceso"
-                        Margin="20"
-                        Command="{Binding updateUser}"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        Command="{Binding AsistenciaCommand}"
+                        CommandParameter="{Binding ElementName=asistenciaInstructor}"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Cancelar"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=asistenciaInstructor}"
                         FontSize="20"/>
             </StackPanel>
         </Grid>

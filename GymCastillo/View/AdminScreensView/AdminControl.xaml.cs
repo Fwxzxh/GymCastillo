@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymCastillo.ViewModel.AdminScreensVM.ClasesVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace GymCastillo.View.AdminScreensView {
     public partial class AdminControl : UserControl {
         public AdminControl() {
             InitializeComponent();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            ClasesSettingsVM.Query = "";
         }
     }
 }

@@ -52,6 +52,7 @@
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                     <DataGridTextColumn.CellStyle>
@@ -70,6 +71,7 @@
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                     <DataGridTextColumn.CellStyle>
@@ -88,6 +90,7 @@
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                     <DataGridTextColumn.CellStyle>
@@ -106,6 +109,7 @@
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                     <DataGridTextColumn.CellStyle>
@@ -124,6 +128,7 @@
                                BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="TextBlock.FontSize" Value="25"/>
                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                     <DataGridTextColumn.CellStyle>

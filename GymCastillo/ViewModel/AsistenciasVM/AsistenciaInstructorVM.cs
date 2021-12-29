@@ -1,5 +1,7 @@
-﻿using GymCastillo.Model.DataTypes.Otros;
+﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +12,8 @@ using System.Threading.Tasks;
 namespace GymCastillo.ViewModel.AsistenciasVM {
     public class AsistenciaInstructorVM : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
+        public RelayCommand<IClosable> AsistenciaCommand { get; set; }
+        public RelayCommand<IClosable> CloseWindowCommand { get; set; }
 
         private Asistencia asistencia;
 
@@ -37,7 +41,14 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
         public AsistenciaInstructorVM(Asistencia asistencia) {
             this.asistencia = asistencia;
             instructor = asistencia.DatosInstructor;
+            CloseWindowCommand = new RelayCommand<IClosable>(CloseWindow);
 
+        }
+
+        private void CloseWindow(IClosable obj) {
+            if (obj != null) {
+                obj.Close();
+            }
         }
 
         private void OnPropertyChanged(string propertyName) {

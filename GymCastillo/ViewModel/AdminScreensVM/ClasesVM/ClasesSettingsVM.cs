@@ -53,18 +53,18 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
             }
         }
 
-        private string query;
+        private static string query;
 
-        public string Query {
+        public static string Query {
             get { return query; }
             set { query = value;
-                OnPropertyChanged(nameof(Query));
+                //OnPropertyChanged(nameof(Query));
                 FilterData(value);
             }
         }
-        private void FilterData(string value) {
+        private static void FilterData(string value) {
             if (value != null) {
-                CollectionViewSource.GetDefaultView(InitInfo.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.OrdinalIgnoreCase);
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
             }
             else CollectionViewSource.GetDefaultView(InitInfo.ObCoClases);
         }
@@ -134,16 +134,12 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
             }
         }
 
-        private async void RefreshGrid(bool activa) {
-            //PaquetesVM.PaquetesSettingsVM paquetes = new();
+        public async void RefreshGrid(bool activa) {
+            Query = "";
             Clase = null;
             Clase = new();
             var clases = await GetFromDb.GetClases();
             InitInfo.ObCoClases.Clear();
-            //.Clear();
-            //var clases = await GetFromDb.GetClases();
-            //InitTest.ObCoClases = new ObservableCollection<Clase>(clases);
-            //InitInfo.ListaClases = clases;
             if (activa) {
                 foreach (var item in clases.Where(c => c.Activo == true)) {
                     InitInfo.ObCoClases.Add(item);
@@ -154,7 +150,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                     InitInfo.ObCoClases.Add(item);
                 }
             }
-            //paquetes.RefreshGrid();
 
         }
     }
