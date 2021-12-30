@@ -3,9 +3,9 @@ using MySqlConnector;
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using GymCastillo.Model.Bot;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Notificaciones;
@@ -58,6 +58,11 @@ namespace GymCastillo.ViewModel {
                     var init= new InitInfo(); // Obtenemos la información inicial
                     if (init.DoneTasks) {
                         await Notificaciones.CheckResetFields(); // Verificamos si debemos resetear los cupos.
+                        // iniciamos el bot.
+                        // var bot = new Bot("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
+                        // bot.StopBot();
+
+                        var x = Bot.Estado;
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();

@@ -48,11 +48,6 @@ namespace GymCastillo.Model.DataTypes.Otros {
         public string NombreEspacio { get; set; }
 
         /// <summary>
-        /// Int que representa el dia en que se renta el espacio.
-        /// </summary>
-        public int Dia { get; set; }
-
-        /// <summary>
         /// La hora de inicio de la renta.
         /// </summary>
         public DateTime HoraInicio { get; set; }
@@ -78,7 +73,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
                 const string altaQuery = @"insert into rentas
                                            values
                                                (default, @FechaRenta, @IdClienteRenta,
-                                                @IdEspacio, @Dia, @HoraInicio, @HoraFin,
+                                                @IdEspacio, @HoraInicio, @HoraFin,
                                                 @Costo)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
@@ -90,8 +85,6 @@ namespace GymCastillo.Model.DataTypes.Otros {
 
                 command.Parameters.AddWithValue("@IdEspacio",
                     IdEspacio.ToString());
-                command.Parameters.AddWithValue("@Dia",
-                    Dia.ToString());
                 command.Parameters.AddWithValue("@HoraInicio",
                     HoraInicio.ToString("HHmm"));
                 command.Parameters.AddWithValue("@HoraFin",

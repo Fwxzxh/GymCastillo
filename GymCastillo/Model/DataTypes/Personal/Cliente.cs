@@ -104,6 +104,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public string NombreLocker { get; set; }
 
         /// <summary>
+        /// El Id del chat de este cliente
+        /// </summary>
+        public string ChatId { get; set; }
+
+        /// <summary>
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>

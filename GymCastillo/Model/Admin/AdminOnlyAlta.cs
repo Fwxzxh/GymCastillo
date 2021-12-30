@@ -34,14 +34,18 @@ namespace GymCastillo.Model.Admin {
                 // Verificamos la query.
                 if (res == 0) {
                     // No se han hecho cambios a la bd
-                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    ShowPrettyMessages.WarningOk(
+                        "No se han hecho cambios a la base de datos",
+                        "Sin cambios");
                     Log.Warn("No se han hecho cambios a la base de datos.");
 
                     return false;
                 }
 
                 if (!silent) {
-                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                    ShowPrettyMessages.NiceMessageOk(
+                        "Se ha actualizado la base de datos.",
+                        "Operación Exitosa");
                 }
 
                 return true;

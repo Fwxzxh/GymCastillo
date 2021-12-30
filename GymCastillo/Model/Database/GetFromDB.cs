@@ -43,7 +43,8 @@ namespace GymCastillo.Model.Database {
                                           c.DuracionPaquete, c.Nino,
                                           p.IdPaquete, p.NombrePaquete,
                                           tc.IdTipoCliente, tc.NombreTipoCliente,
-                                          l.IdLocker, l.Nombre as NombreLocker
+                                          l.IdLocker, l.Nombre as NombreLocker,
+                                          c.ChatID
                                       FROM cliente c
                                       LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       LEFT JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -100,7 +101,6 @@ namespace GymCastillo.Model.Database {
                         Activo = !await reader.Result.IsDBNullAsync("Activo") &&
                                  reader.Result.GetBoolean("Activo"),
 
-
                         FechaUltimoPago = await reader.Result.IsDBNullAsync("FechaUltimoPago")
                            ? default
                            : reader.Result.GetDateTime("FechaUltimoPago"),
@@ -147,7 +147,11 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetInt16("IdLocker"),
                         NombreLocker = await reader.Result.IsDBNullAsync("NombreLocker")
                             ? ""
-                            : reader.Result.GetString("NombreLocker")
+                            : reader.Result.GetString("NombreLocker"),
+
+                        ChatId = await reader.Result.IsDBNullAsync("ChatID")
+                            ? ""
+                            : reader.Result.GetString("ChatID")
                     };
 
                     listCliente.Add(cliente);
@@ -404,7 +408,7 @@ namespace GymCastillo.Model.Database {
             const string sqlQuery = @"SELECT
                                           r.IdRenta, r.FechaRenta, r.IdClienteRenta,
                                           CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
-                                          r.IdEspacio, e.NombreEspacio, r.Dia,
+                                          r.IdEspacio, e.NombreEspacio,
                                           r.HoraInicio, r.HoraFin, r.Costo
                                       FROM rentas r
                                       LEFT JOIN ClienteRenta cr ON r.IdClienteRenta = cr.IdClienteRenta
@@ -427,7 +431,6 @@ namespace GymCastillo.Model.Database {
 
                         IdEspacio = reader.Result.GetInt32("IdEspacio"),
                         NombreEspacio = reader.Result.GetString("NombreEspacio"),
-                        Dia = reader.Result.GetInt32("Dia"),
 
                         HoraInicio = DateTime.ParseExact(reader.Result.GetString("HoraInicio"),
                             "HHmm",

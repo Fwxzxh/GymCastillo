@@ -70,7 +70,6 @@ namespace GymCastillo.Model.Notificaciones {
             }
         }
 
-
         /// <summary>
         /// Método que se encarga de resetear los cupos de los horarios y las clases por semana a su valor original.
         /// </summary>
@@ -213,7 +212,6 @@ namespace GymCastillo.Model.Notificaciones {
                 return false;
             }
         }
-
 
         /// <summary>
         /// Método que Hace Update de la fecha de ultimo Reset de Campos

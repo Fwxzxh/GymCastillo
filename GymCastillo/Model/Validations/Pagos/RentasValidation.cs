@@ -13,11 +13,6 @@ namespace GymCastillo.Model.Validations.Pagos {
             RuleFor(renta => renta.IdEspacio)
                 .NotNull().WithMessage("El id del espacio de renta no debe ser nulo.");
 
-            RuleFor(renta => renta.Dia)
-                .NotNull().WithMessage("El dia no puede ser nulo ")
-                .GreaterThanOrEqualTo(1).WithMessage("El dia no es un día válido, Menor a 1.")
-                .LessThanOrEqualTo(7).WithMessage("El dia no es un día válido, Mayor a 7");
-
             RuleFor(renta => renta.HoraInicio)
                 .NotNull().WithMessage("La hora de inicio no debe ser nula.");
 
