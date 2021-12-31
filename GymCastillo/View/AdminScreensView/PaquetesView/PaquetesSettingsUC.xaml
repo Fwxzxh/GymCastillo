@@ -113,7 +113,7 @@
 
                 <DataGridTextColumn Header="Gym"
                                     Binding="{Binding Gym, Converter={StaticResource toYes}}"
-                                    Width="*"
+                                    Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
@@ -131,7 +131,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Costo"
                                     Binding="{Binding Costo, StringFormat=C}"
-                                    Width="*"
+                                    Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
@@ -147,10 +147,11 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True"
+                                        Width=".6*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="-10 0">
+                            <StackPanel Orientation="Horizontal">
                                 <Button ToolTip="Agregar Clases"
                                         Margin="5 0"
                                         Command="{Binding OpenClases}"

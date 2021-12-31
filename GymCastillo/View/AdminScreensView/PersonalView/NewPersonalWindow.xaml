@@ -109,6 +109,15 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
+                <TextBox materialDesign:HintAssist.Hint="Dirección"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="375"
+                         FontSize="20"
+                         Margin="30 0"
+                         Text="{Binding Personal.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Puesto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"

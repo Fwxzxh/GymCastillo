@@ -136,10 +136,11 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True"
+                                        Width=".8*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="-10 0">
+                            <StackPanel Orientation="Horizontal">
                                 <Button ToolTip="Editar Clase"
                                         Margin="5 0"
                                         Background="Transparent"
