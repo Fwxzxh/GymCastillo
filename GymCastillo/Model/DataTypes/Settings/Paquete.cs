@@ -109,6 +109,13 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de alta ");
 
+            if (NumClasesSemanales * 4 != NumClasesTotales) {
+                ShowPrettyMessages.ErrorOk(
+                    "El número de clases totales debe de tomar en cuenta 4 semanas. Ej: 2 Clases semanales para 8 clases totales.",
+                    "Número de clases invalido");
+                return 0;
+            }
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();

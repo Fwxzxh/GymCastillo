@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GymCastillo.Model.Helpers;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class RentasVM : INotifyPropertyChanged {
@@ -93,8 +94,18 @@ namespace GymCastillo.ViewModel.VentasVM {
             renta.IdClienteRenta = clienteRenta.Id;
             renta.IdEspacio = espacio.IdEspacio;
 
-            await AdminOnlyAlta.Alta(Renta);
+            // await AdminOnlyAlta.Alta(Renta);
+            // TODO: Agregar campo recibido para mandar una deuda de las rentas y remplazarlo por el tercer
+            // argumento de NuevaRenta.
+            await RentaHelper.NuevaRenta(renta, clienteRenta, renta.Costo);
             RefreshGrid();
+
+            // Actualizamos los ingresos
+            var updatedIngresos = await GetFromDb.GetIngresos();
+            InitInfo.ObCoIngresos.Clear();
+            foreach (var item in updatedIngresos) {
+                InitInfo.ObCoIngresos.Add(item);
+            }
         }
 
         private async void RefreshGrid() {

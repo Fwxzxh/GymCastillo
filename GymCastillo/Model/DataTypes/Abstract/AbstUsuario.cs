@@ -108,6 +108,9 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// </summary>
         public BitmapImage FotoBitmap {
             get {
+                if (foto.Length == 0) {
+                    return null;
+                }
                 var image = new BitmapImage();
                 image.BeginInit();
                 image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;

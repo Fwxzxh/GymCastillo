@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
@@ -20,11 +21,52 @@ namespace GymCastillo.Model.Helpers {
             // Puede ser venta de inventario o venta de entrada al gym.
             // Verificamos que tipo de venta es.
 
+            // El costo debe de ser coherente.
+            if (montoRecibido < venta.Costo) {
+                ShowPrettyMessages.ErrorOk(
+                    "El monto recibido de la venta no puede ser menor al costo de la venta.",
+                    "Transacción invalida.");
+                return;
+            }
+
+
+            if (venta.IdsProductos != "") {
+                var listaProductos = venta.IdsProductos.Split(",");
+
+                var allProductos = InitInfo.ObCoInventario;
+
+                foreach (var producto in listaProductos) {
+                    var cantidad = listaProductos.Count(x => x == producto);
+                    var tenemosExistencias = allProductos
+                        .Where(x => x.IdProducto.ToString() == producto)// Obtengo el producto
+                        .All(x => x.Existencias - cantidad >= 0);
+                    if (!tenemosExistencias) {
+                        ShowPrettyMessages.ErrorOk(
+                            $"No tenemos suficientes existencias del producto con Id: {producto}",
+                            "Inventario insuficiente.");
+                        return;
+                    }
+                }
+            }
+
             try {
                 // Lanzamos la venta
-                var res = await AdminOnlyAlta.Alta(venta);
+                var res = await AdminOnlyAlta.Alta(venta, true);
 
                 if (res) { // Si se completo exitosamente la venta
+                    Log.Debug("Se completo exitosamente la venta");
+
+                    // Actualizamos el inventario
+                    if (venta.IdsProductos != "") {
+                        var listaIdCarrito = venta.IdsProductos.Split(",");
+                        var listaCarrito = InitInfo.ObCoInventario
+                            .Where(x => listaIdCarrito.Contains(x.IdProducto.ToString()));
+
+                        foreach (var producto in listaCarrito) {
+                            await producto.UpdateExistencias(
+                                listaIdCarrito.Count(x => x == producto.IdProducto.ToString()));
+                        }
+                    }
 
                     // Creamos el ingreso
                     var ingreso = new Ingresos() {

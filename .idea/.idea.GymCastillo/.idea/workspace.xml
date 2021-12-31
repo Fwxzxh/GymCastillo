@@ -7,16 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Bot Dependency">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor Fixes, MVP Telegram bot">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOnlyAlta.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Rentas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Rentas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/RentasValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/RentasValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Config/PaqueteValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Config/PaqueteValidation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/PagosValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/PagosValidation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/View/VentasScreensView/VentasView/VentasUC.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/VentasScreensView/VentasView/VentasUC.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/GridClientesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/GridClientesVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,16 +53,17 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/847eb618332dc7f4898f9184789686dc449210e3f714c3387772efb3c38c/PropertyPathWorker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Admin/AdminOnlyAlta.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -163,7 +170,7 @@
       <workItem from="1640796926422" duration="3388000" />
       <workItem from="1640828487900" duration="280000" />
       <workItem from="1640834899520" duration="7099000" />
-      <workItem from="1640905034406" duration="50000" />
+      <workItem from="1640905034406" duration="12664000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -473,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640679075204</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Minor Fixes, MVP Telegram bot">
+      <created>1640905105338</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1640905105338</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="¯\_(ツ)_/¯" />
     <MESSAGE value="Fix Paquete validation and Paquete FK check messages" />
     <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos" />
     <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram" />
@@ -532,7 +545,8 @@
     <MESSAGE value="Minor Fixes to validations, added Bot.cs," />
     <MESSAGE value="Updated Diagram" />
     <MESSAGE value="Added Bot Dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Bot Dependency" />
+    <MESSAGE value="Minor Fixes, MVP Telegram bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor Fixes, MVP Telegram bot" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

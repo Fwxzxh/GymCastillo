@@ -145,5 +145,38 @@ namespace GymCastillo.Model.DataTypes.Ventas {
                 return 0;
             }
         }
+
+        public async Task<int> UpdateExistencias(int cantidad) {
+            Log.Debug("Se ha iniciado el proceso de dar de actualizar las existencias de un producto");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string altaQuery = @"update inventario
+                                           set Existencias=@Existencias
+                                           where IdProducto=@IdProducto;";
+
+                await using var command = new MySqlCommand(altaQuery, connection);
+
+                command.Parameters.AddWithValue("@Existencias", (Existencias - cantidad).ToString());
+                command.Parameters.AddWithValue("@IdProducto", IdProducto.ToString());
+
+                Log.Debug("Se ha generado la query.");
+
+                var res = await ExecSql.NonQuery(command, "Update existencias Inventarios");
+                Log.Debug("Se han actualizado las existencias de un producto.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar las existencias de un producto.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
+        }
     }
 }

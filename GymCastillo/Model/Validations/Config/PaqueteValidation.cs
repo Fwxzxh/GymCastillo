@@ -19,10 +19,10 @@ namespace GymCastillo.Model.Validations.Config {
                 .Length(3, 300).WithMessage("La descripción del paquete debe de tener entre 3 y 300 caracteres.");
 
             RuleFor(paquete => paquete.NumClasesTotales)
-                .NotEmpty().WithMessage("El número de clases totales no puede ser 0");
+                .NotNull().WithMessage("El número de clases totales no puede ser nulo.");
 
             RuleFor(paquete => paquete.NumClasesSemanales)
-                .NotEmpty().WithMessage("El número de clases semanales no puede ser 0");
+                .NotNull().WithMessage("El número de clases semanales no puede ser nulo");
 
             RuleFor(paquete => paquete.Costo)
                 .NotEmpty().WithMessage("El costo del paquete no puede estar vacío o ser 0.");

@@ -115,17 +115,30 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta un horario.");
 
-            // verificamos que no se puedan dar horarios a la misma hora y mismo lugar.
-            var horariosChocan =
-                InitInfo.ObCoHorarios
-                    // Obtenemos los horarios cuya clase empieza durante la duración de nuestra clase.
-                    .Where(x => x.HoraInicio >= HoraInicio || x.HoraInicio <= HoraFin)
-                    // Obtenemos los id de las clases de esos horarios
-                    .Select(x => x.IdClase).AsParallel().ToList();
+            if (HoraInicio.TimeOfDay > HoraFin.TimeOfDay) {
+                ShowPrettyMessages.ErrorOk(
+                    "La hora de fin no puede ser menor que la hora de inicio.",
+                    "Horario Invalido");
+                return 0;
+            }
 
-            ShowPrettyMessages.InfoOk($"{horariosChocan.Count.ToString()}", "");
+            var chocan = false;
 
-            var chocan = horariosChocan.Any(x => x == IdClase);
+            foreach (var horario in InitInfo.ObCoHorarios) {
+                if (horario.Dia == Dia) {
+                    Log.Debug($"{horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
+                    if (HoraInicio.TimeOfDay == horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay == horario.HoraFin.TimeOfDay) {
+                        chocan = true;
+                    }
+
+                    if (HoraInicio.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraInicio.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                        chocan = true;
+                    }
+                    if (HoraFin.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                        chocan = true;
+                    }
+                }
+            }
 
             if (chocan) {
                 ShowPrettyMessages.ErrorOk(

@@ -225,7 +225,7 @@
                          VerticalContentAlignment="Center"
                          FontSize="20"
                          Margin="20 0"
-                         Text="{Binding Venta.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center">

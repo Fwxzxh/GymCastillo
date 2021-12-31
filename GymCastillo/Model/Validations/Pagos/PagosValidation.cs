@@ -11,8 +11,8 @@ namespace GymCastillo.Model.Validations.Pagos {
                 .Length(3, 300).WithMessage("El concepto debe de ser de entre 3 y 300 caracteres.");
 
             RuleFor(clase => clase.NumeroRecibo)
-                .NotEmpty().WithMessage("El número de recibo no puede estar vacío.")
-                .Length(3, 30).WithMessage("El número de recibo debe de ser de entre 3 y 30 caracteres.");
+                // .NotEmpty().WithMessage("El número de recibo no puede estar vacío.")
+                .Length(0, 30).WithMessage("El número de recibo debe de ser de entre 3 y 30 caracteres.");
 
             RuleFor(clase => clase.Monto)
                 .NotEmpty().WithMessage("El número de recibo no puede estar vacío o en 0.");

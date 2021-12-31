@@ -26,6 +26,8 @@ namespace GymCastillo.Model.Helpers {
             // Debemos de Hacer la renta y luego registrar el ingreso
             Log.Debug("Se ha iniciado el proceso de registrar una renta.");
 
+            //TODO: hacer el handling de deuda de rentas.
+
             try {
                 // Registramos la renta
                 var res = await AdminOnlyAlta.Alta(renta);
@@ -35,7 +37,7 @@ namespace GymCastillo.Model.Helpers {
                     // Llenamos el ingreso con los datos necesarios.
                     var ingreso = new Ingresos {
                         Tipo = 3,
-                        Concepto = "",
+                        Concepto = $"Renta de espacio: {renta.IdEspacio.ToString()} Cliente {renta.IdClienteRenta.ToString()}",
                         NumeroRecibo = "",
                         Monto = renta.Costo,
                         MontoRecibido = montoRecibido

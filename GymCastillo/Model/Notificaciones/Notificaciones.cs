@@ -85,9 +85,13 @@ namespace GymCastillo.Model.Notificaciones {
 
             if (done.All(x => x)) {
                 Log.Info("Se han reseteado los cambios exitosamente.");
+                ShowPrettyMessages.NiceMessageOk(
+                    "Se han reseteado los campos exitosamente.",
+                    "Operación exitosa.");
                 return;
             }
             Log.Error("Ha ocurrido un error, el proceso de reset no se ha completado exitosamente.");
+
         }
 
         /// <summary>

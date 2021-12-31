@@ -30,7 +30,6 @@ namespace GymCastillo.Model.Bot {
         /// </summary>
         private CancellationTokenSource CancellationToken { init; get; }
 
-
         // Funcionamiento bot
         // <- Mandar ticket de venta si esta registrado.
         // <- Mandar updates de horarios y cosas asi.

@@ -3,12 +3,11 @@ using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Ventas;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class VentasVM : INotifyPropertyChanged {
@@ -51,6 +50,17 @@ namespace GymCastillo.ViewModel.VentasVM {
             {
                 index = value;
                 OnPropertyChanged(nameof(Index));
+            }
+        }
+
+        private string concepto;
+
+        public string Concepto {
+            get { return concepto; }
+
+            set {
+                concepto = value;
+                OnPropertyChanged(nameof(concepto));
             }
         }
 
@@ -126,18 +136,36 @@ namespace GymCastillo.ViewModel.VentasVM {
 
         private async void HacerVenta() {
             Venta.FechaVenta = DateTime.Now;
+            Venta.Concepto = Concepto;
             Venta.Costo = Costo;
             foreach (var item in ListaVenta) {
-                Venta.IdsProductos += $"{item.IdProducto},";
+                Venta.IdsProductos += $"{item.IdProducto.ToString()},";
             }
-            await AdminOnlyAlta.Alta(Venta);
+            // await AdminOnlyAlta.Alta(Venta);
+            await VentasHelper.NuevaVenta(Venta, Recibido);
             ClearFields();
+
+            // Actualizamos el inventario por las existencias.
+            var updatedInventario = await GetFromDb.GetInventario();
+            InitInfo.ObCoInventario.Clear();
+            foreach (var item in updatedInventario) {
+                InitInfo.ObCoInventario.Add(item);
+            }
+
+            // Actualizamos los ingresos
+            var updatedIngresos = await GetFromDb.GetIngresos();
+            InitInfo.ObCoIngresos.Clear();
+            foreach (var item in updatedIngresos) {
+                InitInfo.ObCoIngresos.Add(item);
+            }
+
         }
 
         private void ClearFields() {
             Costo = 0;
             Recibido = 0;
             Total = 0;
+            Concepto = "";
             Venta = null;
             venta = new();
             ListaVenta.Clear();
