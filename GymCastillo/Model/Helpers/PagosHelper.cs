@@ -214,7 +214,7 @@ namespace GymCastillo.Model.Helpers {
                         instructor.SueldoADescontar = 0;
 
                         // Registramos el Pago
-                        var resInstructores = await AdminOnlyAlta.Alta(egreso);
+                        var resInstructores = await AdminOnlyAlta.Alta(egreso, true);
 
                         if (resInstructores) {
                             // Registramos el pago

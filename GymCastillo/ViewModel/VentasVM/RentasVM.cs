@@ -95,8 +95,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             renta.IdEspacio = espacio.IdEspacio;
 
             // await AdminOnlyAlta.Alta(Renta);
-            // TODO: Agregar campo recibido para mandar una deuda de las rentas y remplazarlo por el tercer
-            // argumento de NuevaRenta.
+            // TODO: Agregar campo recibido para mandar una deuda de las rentas y remplazarlo por el tercer argumento de NuevaRenta.
             await RentaHelper.NuevaRenta(renta, clienteRenta, renta.Costo);
             RefreshGrid();
 

@@ -120,11 +120,11 @@ namespace GymCastillo.Model.Helpers {
             asistencia.DatosInstructor = instructor;
 
             // validamos si puede entrar.
-            if (DateTime.Now > instructor.HoraEntrada) {
+            if (DateTime.Now.TimeOfDay > instructor.HoraEntrada.TimeOfDay) {
                 ShowPrettyMessages.WarningOk(
                     $"El instructor {instructor.Nombre} {instructor.ApellidoPaterno} llego tarde, " +
-                    $"su hora de entrada es: {instructor.HoraEntrada.ToString(CultureInfo.InvariantCulture)}",
-                    "Retardo");
+                    $"su hora de entrada es: {instructor.HoraEntrada.TimeOfDay.ToString()} y son las {DateTime.Now:HH:mm:ss}",
+                    "Entrada fuera de hora de instructor.");
                 return asistencia;
             }
 

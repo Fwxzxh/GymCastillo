@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
@@ -29,8 +28,9 @@ namespace GymCastillo.Model.Helpers {
                 return;
             }
 
+            venta.IdsProductos = venta.VisitaGym ? "" : venta.IdsProductos;
 
-            if (venta.IdsProductos != "") {
+            if (venta.IdsProductos != "" && venta.VisitaGym == false) {
                 var listaProductos = venta.IdsProductos.Split(",");
 
                 var allProductos = InitInfo.ObCoInventario;

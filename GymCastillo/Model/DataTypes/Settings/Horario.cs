@@ -122,21 +122,27 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 return 0;
             }
 
+            if (HoraInicio.TimeOfDay == HoraFin.TimeOfDay) {
+                ShowPrettyMessages.ErrorOk(
+                    "La hora de inicio y la hora de fin no pueden ser la misma hora.",
+                    "Horario Invalido");
+                return 0;
+            }
+
             var chocan = false;
 
             foreach (var horario in InitInfo.ObCoHorarios) {
-                if (horario.Dia == Dia) {
-                    Log.Debug($"{horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
-                    if (HoraInicio.TimeOfDay == horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay == horario.HoraFin.TimeOfDay) {
-                        chocan = true;
-                    }
+                if (horario.Dia != Dia) continue;
+                Log.Debug($"{horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
+                if (HoraInicio.TimeOfDay == horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay == horario.HoraFin.TimeOfDay) {
+                    chocan = true;
+                }
 
-                    if (HoraInicio.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraInicio.TimeOfDay < horario.HoraFin.TimeOfDay) {
-                        chocan = true;
-                    }
-                    if (HoraFin.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay < horario.HoraFin.TimeOfDay) {
-                        chocan = true;
-                    }
+                if (HoraInicio.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraInicio.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                    chocan = true;
+                }
+                if (HoraFin.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                    chocan = true;
                 }
             }
 

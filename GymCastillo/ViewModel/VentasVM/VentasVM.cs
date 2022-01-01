@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Ventas;
 using log4net;
 using System;
@@ -138,6 +137,8 @@ namespace GymCastillo.ViewModel.VentasVM {
             Venta.FechaVenta = DateTime.Now;
             Venta.Concepto = Concepto;
             Venta.Costo = Costo;
+            Venta.VisitaGym = Gym;
+
             foreach (var item in ListaVenta) {
                 Venta.IdsProductos += $"{item.IdProducto.ToString()},";
             }
@@ -145,11 +146,13 @@ namespace GymCastillo.ViewModel.VentasVM {
             await VentasHelper.NuevaVenta(Venta, Recibido);
             ClearFields();
 
-            // Actualizamos el inventario por las existencias.
-            var updatedInventario = await GetFromDb.GetInventario();
-            InitInfo.ObCoInventario.Clear();
-            foreach (var item in updatedInventario) {
-                InitInfo.ObCoInventario.Add(item);
+            if (!gym) { // Solo si no es una entrada a un gym.
+                // Actualizamos el inventario por las existencias.
+                var updatedInventario = await GetFromDb.GetInventario();
+                InitInfo.ObCoInventario.Clear();
+                foreach (var item in updatedInventario) {
+                    InitInfo.ObCoInventario.Add(item);
+                }
             }
 
             // Actualizamos los ingresos
@@ -158,7 +161,6 @@ namespace GymCastillo.ViewModel.VentasVM {
             foreach (var item in updatedIngresos) {
                 InitInfo.ObCoIngresos.Add(item);
             }
-
         }
 
         private void ClearFields() {

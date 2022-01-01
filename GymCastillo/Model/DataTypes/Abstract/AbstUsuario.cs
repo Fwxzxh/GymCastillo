@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GymCastillo.Model.Helpers;
 using ImageMagick;
@@ -116,11 +115,9 @@ namespace GymCastillo.Model.DataTypes.Abstract {
                 image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = null;
-                if (foto != null) {
-                    using var mem = new MemoryStream(foto);
-                    mem.Position = 0;
-                    image.StreamSource = mem;
-                }
+                using var mem = new MemoryStream(foto);
+                mem.Position = 0;
+                image.StreamSource = mem;
                 image.EndInit();
                 image.Freeze();
                 return image;
@@ -146,7 +143,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public abstract Task<int> Alta();
 
         /// <summary>
-        /// Método que se encarga de actualizar los campos del pago.
+        /// Método que se encarga de actualizar los campos del pago de la instancia actual en la base de datos.
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
         public abstract Task<int> Pago();

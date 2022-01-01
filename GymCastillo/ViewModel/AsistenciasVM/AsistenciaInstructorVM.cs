@@ -3,12 +3,7 @@ using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.AsistenciasVM {
     public class AsistenciaInstructorVM : INotifyPropertyChanged {

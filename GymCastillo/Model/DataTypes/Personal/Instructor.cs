@@ -324,7 +324,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@SueldoADescontar",
                     SueldoADescontar.ToString(CultureInfo.InvariantCulture));
 
-
                 command.Parameters.AddWithValue("@IdInstructor",
                     Id.ToString());
 

@@ -86,12 +86,11 @@ namespace GymCastillo.Model.Notificaciones {
             if (done.All(x => x)) {
                 Log.Info("Se han reseteado los cambios exitosamente.");
                 ShowPrettyMessages.NiceMessageOk(
-                    "Se han reseteado los campos exitosamente.",
+                    "Se han reseteado los campos exitosamente, Se recomienda Reiniciar el programa.",
                     "Operación exitosa.");
                 return;
             }
             Log.Error("Ha ocurrido un error, el proceso de reset no se ha completado exitosamente.");
-
         }
 
         /// <summary>
@@ -130,8 +129,7 @@ namespace GymCastillo.Model.Notificaciones {
                     Log.Debug("Se ha generado la query.");
 
                     await ExecSql.NonQuery(command, "Reset Clases Semanales");
-                    Log.Debug("Se ha hecho el Reset de las clases semanales.");
-
+                    Log.Debug($"Se ha hecho el Reset de las clases semanales para el paquete {paquete.IdPaquete.ToString()}");
                 }
                 catch (Exception e) {
                     Log.Error("Ha ocurrido un error desconocido a la hora de resetear las clases semanales.");

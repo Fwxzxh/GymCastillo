@@ -26,8 +26,6 @@ namespace GymCastillo.Model.Helpers {
             // Debemos de Hacer la renta y luego registrar el ingreso
             Log.Debug("Se ha iniciado el proceso de registrar una renta.");
 
-            //TODO: hacer el handling de deuda de rentas.
-
             try {
                 // Registramos la renta
                 var res = await AdminOnlyAlta.Alta(renta);
