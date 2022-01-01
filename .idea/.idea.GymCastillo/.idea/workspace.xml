@@ -7,19 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Mayor Fixes to everything">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="fixed shit that havent been fixed in last commit">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Abstract/AbstUsuario.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AsistenciasVM/AsistenciaInstructorVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AsistenciasVM/AsistenciaInstructorVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +160,8 @@
       <workItem from="1640834899520" duration="7099000" />
       <workItem from="1640905034406" duration="13123000" />
       <workItem from="1641000788854" duration="256000" />
-      <workItem from="1641001080798" duration="7004000" />
+      <workItem from="1641001080798" duration="9500000" />
+      <workItem from="1641080844997" duration="562000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -493,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640938347911</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fixed shit that havent been fixed in last commit">
+      <created>1641013051810</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1641013051810</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +526,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos" />
     <MESSAGE value="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram" />
     <MESSAGE value="Pagos Back Almost done" />
     <MESSAGE value="MInor fix Pagos" />
@@ -552,7 +550,8 @@
     <MESSAGE value="Added Bot Dependency" />
     <MESSAGE value="Minor Fixes, MVP Telegram bot" />
     <MESSAGE value="Mayor Fixes to everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mayor Fixes to everything" />
+    <MESSAGE value="fixed shit that havent been fixed in last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed shit that havent been fixed in last commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -62,7 +62,8 @@ namespace GymCastillo.Model.Bot {
                 HandleUpdateTask,
                 HandleErrorAsync,
                 receiverOptions,
-                CancellationToken.Token);
+                CancellationToken.Token
+                );
 
             Log.Info("Se ha iniciado el bot.");
 

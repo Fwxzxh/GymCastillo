@@ -135,9 +135,10 @@ namespace GymCastillo.Model.Helpers {
             // calculamos la deuda.
             if (ingreso.MontoRecibido < ingreso.Monto) {
                 // hay deuda
-                cliente.DeudaCliente += ingreso.Monto - ingreso.MontoRecibido;
+                var newDeuda = ingreso.Monto - ingreso.MontoRecibido;
+                cliente.DeudaCliente += newDeuda;
                 ShowPrettyMessages.InfoOk(
-                    $"Se va a abonar una deuda de: $ {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    $"Se va a abonar una deuda de: $ {newDeuda.ToString(CultureInfo.InvariantCulture)}",
                     "Deuda A abonar");
             }
 
@@ -147,7 +148,7 @@ namespace GymCastillo.Model.Helpers {
                 cliente.DeudaCliente -= resto;
                 ShowPrettyMessages.InfoOk(
                     $"El cliente quedará con una deuda de: $ {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
-                    "");
+                    "Actualización de deuda");
             }
 
             // cliente.DeudaCliente =
