@@ -7,9 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Clearer Msg in deuda cliente">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Updated, Pago deuda cliente">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/PagosValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Pagos/PagosValidation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +163,7 @@
       <workItem from="1640905034406" duration="13123000" />
       <workItem from="1641000788854" duration="256000" />
       <workItem from="1641001080798" duration="9500000" />
-      <workItem from="1641080844997" duration="905000" />
+      <workItem from="1641080844997" duration="8473000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes to init info">
       <created>1639071627887</created>
@@ -499,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641081478753</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Updated, Pago deuda cliente">
+      <created>1641081840088</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1641081840088</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +542,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Pagos Back Almost done" />
     <MESSAGE value="MInor fix Pagos" />
     <MESSAGE value="Herping the fucking derp right here and now." />
     <MESSAGE value="Inventario back done" />
@@ -558,7 +566,8 @@
     <MESSAGE value="Mayor Fixes to everything" />
     <MESSAGE value="fixed shit that havent been fixed in last commit" />
     <MESSAGE value="Clearer Msg in deuda cliente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clearer Msg in deuda cliente" />
+    <MESSAGE value="Updated, Pago deuda cliente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated, Pago deuda cliente" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

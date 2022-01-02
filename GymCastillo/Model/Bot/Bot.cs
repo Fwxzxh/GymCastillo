@@ -21,6 +21,12 @@ namespace GymCastillo.Model.Bot {
         public static bool Estado { get; set; }
 
         /// <summary>
+        /// La contraseña para autenticar al usuario
+        /// </summary>
+        // public static string Pass { get; set; }
+        public static string Pass = "1234";
+
+        /// <summary>
         /// instancia del bot
         /// </summary>
         private TelegramBotClient BotClient { init; get; }
@@ -85,11 +91,15 @@ namespace GymCastillo.Model.Bot {
 
             Console.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
 
-            // Echo received message text
-            var sentMessage = await botClient.SendTextMessageAsync(
-                chatId: chatId,
-                text: "You said:\n" + messageText,
-                cancellationToken: cancellationToken);
+            // Si esta registrado, averiguamos que nos mandaron.
+
+            await MatchMsg(messageText, botClient, chatId, cancellationToken);
+
+            // // Echo received message text
+            // var sentMessage = await botClient.SendTextMessageAsync(
+            //     chatId: chatId,
+            //     text: "You said:\n" + messageText,
+            //     cancellationToken: cancellationToken);
         }
 
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken) {
@@ -101,6 +111,48 @@ namespace GymCastillo.Model.Bot {
 
             Console.WriteLine(errorMessage);
             return Task.CompletedTask;
+        }
+
+        private async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId, CancellationToken cancellationToken) {
+            var command = msg.Split(" ");
+
+            var key = command[0];
+
+            switch (key) {
+                case "card":
+                    // Verificamos que el usuario este registrado en la db
+                    break;
+                case "auth":
+                    // auth idCliente pass
+                    var resAuth = await BotCommands.Auth(command, chatId, botClient, cancellationToken);
+
+                    if (!resAuth) {
+                        await botClient.SendTextMessageAsync(chatId,
+                            "No he podido entender tu mensaje, recuerda que para registrarte tienes que mandar:",
+                            cancellationToken: cancellationToken);
+                        await botClient.SendTextMessageAsync(chatId,
+                            "auth id código",
+                            cancellationToken: cancellationToken);
+                        await botClient.SendTextMessageAsync(chatId,
+                            "Donde el id es tu identificador de registro, el cual puedes encontrar en tu credencial o preguntándole al operador.",
+                            cancellationToken: cancellationToken);
+                        await botClient.SendTextMessageAsync(chatId,
+                            "y el código es un código corto que te va a proporcionar el operador.",
+                            cancellationToken: cancellationToken);
+                    }
+                    break;
+                case "estado":
+                    // Verificamos que el usuario este registrado en la db
+                    await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "Estado Msg" , cancellationToken: cancellationToken);
+                    break;
+                default:
+                    await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "No se encontró esta opción." , cancellationToken: cancellationToken);
+                    break;
+            }
         }
     }
 }
