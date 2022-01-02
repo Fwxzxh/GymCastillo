@@ -118,6 +118,21 @@
                          Margin="30 0"
                          Text="{Binding Personal.Puesto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Monto Último Pago"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         IsReadOnly="True"
+                         Margin="10 0"
+                         FontSize="20"
+                         Text="{Binding Personal.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                            materialDesign:HintAssist.Hint="Último Pago"
+                            materialDesign:HintAssist.FloatingScale="0.6"
+                            FontSize="20"
+                            Margin="30 0"
+                            Width="170"
+                            IsEnabled="False"
+                            SelectedDate="{Binding Personal.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">

@@ -31,6 +31,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
@@ -135,29 +136,23 @@
                          Text="{Binding Cliente.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
-            <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="4">
-                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                            materialDesign:HintAssist.Hint="Último Acceso"
-                            materialDesign:HintAssist.FloatingScale="0.6"
-                            FontSize="20"
-                            Margin="30 0"
-                            IsEnabled="False"
-                            SelectedDate="{Binding Usuario.FechaUltimoAcceso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="4">
                 <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                             materialDesign:HintAssist.Hint="Último Pago"
                             materialDesign:HintAssist.FloatingScale="0.6"
                             FontSize="20"
                             Margin="30 0"
                             IsEnabled="False"
-                            SelectedDate="{Binding Usuario.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            SelectedDate="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Monto Último Pago"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          IsReadOnly="True"
                          Margin="10 0"
                          FontSize="20"
-                         Text="{Binding Usuario.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
-            </StackPanel>-->
+                         Text="{Binding Cliente.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+            </StackPanel>
+            
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
@@ -182,7 +177,7 @@
                         Command="{Binding updateCliente}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Cancelar"
+                        Content="Salir"
                         Command="{Binding CloseWindowCommand, Mode=OneWay}"
                         CommandParameter="{Binding ElementName=overviewWindow}"
                         Margin="20"

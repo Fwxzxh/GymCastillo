@@ -82,7 +82,19 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Clase"
                                     Binding="{Binding IdClase, Converter={StaticResource clase}}"
-                                    Width="auto"
+                                    Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Inicio"
+                                    Binding="{Binding HoraInicio, StringFormat=t}"
+                                    Width=".7*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Fin"
+                                    Binding="{Binding HoraFin, StringFormat=t}"
+                                    Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     </DataGridTextColumn>

@@ -48,6 +48,24 @@
                       IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
                       ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInventario}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID"
+                                    Binding="{Binding IdProducto}"
+                                    Width=".3*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Setter Property="TextBlock.FontSize" Value="25"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="Producto"
                                     Binding="{Binding NombreProducto}"
                                     Width="*"
@@ -127,6 +145,24 @@
                       IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
                       ItemsSource="{Binding ListaVenta, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID"
+                                    Binding="{Binding IdProducto}"
+                                    Width=".3*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Setter Property="TextBlock.FontSize" Value="25"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="Producto"
                                     Binding="{Binding NombreProducto}"
                                     Width="*"

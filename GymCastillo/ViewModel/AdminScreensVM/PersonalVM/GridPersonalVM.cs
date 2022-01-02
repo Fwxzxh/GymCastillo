@@ -1,5 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using GymCastillo.View.AdminScreensView.PersonalView;
 using log4net;
 using System;
@@ -50,15 +54,29 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         private void OverviewWindo() {
             OverviewPersonalWindow window = new(SelectedPersonal);
             window.ShowDialog();
+            RefreshGrid();
         }
 
-        private void BorrarPersonal() {
-            throw new NotImplementedException();
+        private async void BorrarPersonal() {
+            if (ShowPrettyMessages.QuestionYesNo("¿Desea borrar el personal seleccionado?", "Confirmación")) {
+                await AdminUsuariosGeneral.Delete(SelectedPersonal);
+                RefreshGrid();
+            }
+            else return;
+        }
+
+        private async void RefreshGrid() {
+            var lista = await GetFromDb.GetPersonal();
+            InitInfo.ObCoPersonal.Clear();
+            foreach (var item in lista) {
+                InitInfo.ObCoPersonal.Add(item);
+            }
         }
 
         private void NewWindowPersonal() {
             NewPersonalWindow window = new();
             window.ShowDialog();
+            RefreshGrid();
         }
 
         private void OnPropertyChanged(string propertyName) {

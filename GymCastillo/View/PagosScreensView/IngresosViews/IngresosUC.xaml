@@ -129,8 +129,6 @@
                       HorizontalAlignment="Left"
                       Width="250">
                 <ComboBoxItem Content="Clientes" x:Name="clientes"/>
-                <ComboBoxItem Content="Ventas" x:Name="ventas"/>
-                <ComboBoxItem Content="Rentas" x:Name="rentas"/>
                 <ComboBoxItem Content="Otros" x:Name="otros"/>
             </ComboBox>
             <!--Clientes-->
@@ -246,7 +244,7 @@
             </StackPanel>
 
             <!--ventas-->
-            <StackPanel Grid.Row="1"
+            <!--<StackPanel Grid.Row="1"
                         Orientation="Horizontal"
                         Visibility="{Binding ElementName=ventas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TextBox materialDesign:HintAssist.Hint="Concepto Venta"
@@ -285,11 +283,11 @@
                         Margin="10"
                         FontSize="20"
                         HorizontalAlignment="Center"/>
-            </StackPanel>
+            </StackPanel>-->
 
             <!--Renta-->
 
-            <StackPanel Grid.Row="1"
+            <!--<StackPanel Grid.Row="1"
                         Orientation="Horizontal"
                         Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -371,7 +369,7 @@
                         Margin="10"
                         FontSize="20"
                         HorizontalAlignment="Center"/>
-            </StackPanel>
+            </StackPanel>-->
 
             <!--otros-->
             <StackPanel Grid.Row="1"

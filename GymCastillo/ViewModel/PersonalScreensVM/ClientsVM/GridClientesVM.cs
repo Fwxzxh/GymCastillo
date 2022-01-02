@@ -18,7 +18,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ObservableCollection<Cliente> clientes { get; set; }
-        
+
         public ObservableCollection<Cliente> ClientesLista { get; set; }
 
         public NewClientWindowCommand newClient { get; set; }
@@ -26,6 +26,19 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public DeleteClientCommand deleteClient { get; set; }
 
         public OverViewClienteCommand OverViewCommand { get; set; }
+
+        private bool activo = true;
+
+        public bool Activo {
+            get { return activo; }
+            set
+            {
+                activo = value;
+                OnPropertyChanged(nameof(Activo));
+                RefreshGrid(value);
+            }
+        }
+
 
         private Cliente selectedClient;
         public Cliente SelectedClient {
@@ -53,12 +66,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public GridClientesVM() {
             try {
-                //clientes = InitInfo.ObCoClientes;
-                //ClientesLista = new ObservableCollection<Cliente>();
                 OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
-
+                RefreshGrid(true);
                 Log.Debug("Se ha inicializado y se han obtenido los datos de la pantalla de GridClientes.");
             }
             catch (Exception e) {
@@ -73,7 +84,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public void OpenOverview() {
             OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
             window.ShowDialog();
-            RefreshGrid();
+            RefreshGrid(activo);
             Log.Debug("Ventana de overview iniciada");
         }
 
@@ -81,26 +92,29 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             Log.Debug("Ventana de nuevo usuario iniciada");
             NewClientsWindow window = new();
             window.ShowDialog();
-            RefreshGrid();
+            RefreshGrid(activo);
         }
 
         public async void DeleteClient() {
             if (ShowPrettyMessages.QuestionYesNo("¿Desea borrar el cliente?", "Confirmación")) {
                 await AdminUsuariosGeneral.Delete(SelectedClient);
-                RefreshGrid();
+                RefreshGrid(activo);
             }
             else return;
         }
 
-        private async void RefreshGrid() {
+        private async void RefreshGrid(bool value) {
+            var lista = await GetFromDb.GetClientes();
             InitInfo.ObCoClientes.Clear();
-            var clientesRe = await GetFromDb.GetClientes();
-            // foreach (var item in clientesRe.Where(c=> c.Activo == true)) {
-            //     InitInfo.ObCoClientes.Add(item);
-            // }
-
-            foreach (var item in clientesRe) {
-                InitInfo.ObCoClientes.Add(item);
+            if (value) {
+                foreach (var item in lista.Where(c => c.Activo == true)) {
+                    InitInfo.ObCoClientes.Add(item);
+                }
+            }
+            else {
+                foreach (var item in lista) {
+                    InitInfo.ObCoClientes.Add(item);
+                }
             }
         }
 

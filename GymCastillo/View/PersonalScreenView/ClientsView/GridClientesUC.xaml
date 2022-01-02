@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
+             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:clientsVm="clr-namespace:GymCastillo.ViewModel.PersonalScreensVM.ClientsVM"
@@ -18,6 +19,7 @@
     <UserControl.Resources>
         <clientsVm:GridClientesVM x:Key="vm"/>
         <oc:InitInfo x:Key="oc"/>
+        <converter:BoolToYesOrNort x:Key="converter"/>
     </UserControl.Resources>
     <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -25,6 +27,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <CheckBox HorizontalAlignment="Center"
+                  Content="Clientes Activos"
+                  FontSize="20"
+                  IsChecked="{Binding Activo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Row="0"
                  x:Name="TxtSearch"
                  materialDesign:HintAssist.Hint="Buscar"
@@ -56,6 +62,24 @@
                   ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"
+                                    Width=".3*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"
                                     Width="*"
@@ -113,6 +137,24 @@
                 <DataGridTextColumn Header="Teléfono"
                                     Binding="{Binding Telefono}"
                                     Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Activo"
+                                    Binding="{Binding Activo, Converter={StaticResource converter}}"
+                                    Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>

@@ -121,9 +121,14 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void RefreshGrid() {
             var pagos = await GetFromDb.GetIngresos();
+            var clientes = await GetFromDb.GetClientes();
+            InitInfo.ObCoClientes.Clear();
             InitInfo.ObCoIngresos.Clear();
             foreach (var item in pagos) {
                 InitInfo.ObCoIngresos.Add(item);
+            }
+            foreach (var item in clientes) {
+                InitInfo.ObCoClientes.Add(item);
             }
             ClearData();
 
