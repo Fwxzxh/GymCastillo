@@ -50,7 +50,7 @@ namespace GymCastillo.Model.Helpers {
                 var teléfono = cliente.Telefono;
 
                 // verificamos si tiene foto de perfil guardada.
-                var profileImage = cliente.FotoRaw == null
+                var profileImage = cliente.FotoRaw.Length == 0
                     ? new MagickImage(genericProfilePath)
                     : cliente.Foto;
 
