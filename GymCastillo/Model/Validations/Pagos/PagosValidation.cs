@@ -15,7 +15,7 @@ namespace GymCastillo.Model.Validations.Pagos {
                 .Length(0, 30).WithMessage("El número de recibo debe de ser de entre 3 y 30 caracteres.");
 
             RuleFor(clase => clase.Monto)
-                .NotEmpty().WithMessage("El número de recibo no puede estar vacío o en 0.");
+                .NotNull().WithMessage("El monto no debe se der nulo.");
 
             RuleFor(clase => clase.FechaRegistro)
                 .NotNull().WithMessage("la fecha de registro no puede ser nula.");
