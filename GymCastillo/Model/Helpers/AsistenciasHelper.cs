@@ -49,7 +49,7 @@ namespace GymCastillo.Model.Helpers {
                 // El cliente no se encontró
                 Log.Warn("Se ha intentado tomar asistencia de un id no existente.");
                 ShowPrettyMessages.WarningOk(
-                    $"No se ha podido encontrar el cliente con Id {asistencia.Id.ToString()}.",
+                    $"No se ha podido encontrar el cliente con Id {asistencia.Id.ToString()}, puede que no exista o este inactivo.",
                     "Cliente No encontrado.");
                 return false;
 
@@ -91,6 +91,14 @@ namespace GymCastillo.Model.Helpers {
 
                 // Validamos si puede entrar.
                 if (DateTime.Today > cliente.FechaVencimientoPago) {
+
+                    if (cliente.FechaVencimientoPago == DateTime.MinValue) { // Clientes nuevos
+                        ShowPrettyMessages.WarningOk(
+                            "Este cliente aun no se le ha asignado un paquete, Debe comprar uno primero.",
+                            "Paquete sin asignar.");
+                            return asistencia;
+                    }
+
                     ShowPrettyMessages.WarningOk(
                         $"El cliente {cliente.Nombre} {cliente.ApellidoPaterno}, se le ha vencido su Pago el {cliente.FechaVencimientoPago.ToString(CultureInfo.InvariantCulture)}",
                         "Pago Vencido.");
