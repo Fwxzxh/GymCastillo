@@ -7,6 +7,7 @@ using System.ComponentModel;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using System.Linq;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class VentasVM : INotifyPropertyChanged {
@@ -126,6 +127,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             RemoveVenta = new RelayCommand(RemoverProducto);
             MakeVenta = new RelayCommand(HacerVenta);
             CancelVenta = new RelayCommand(Cancelar);
+            Refresh();
         }
 
         private void Cancelar() {
@@ -155,12 +157,7 @@ namespace GymCastillo.ViewModel.VentasVM {
                 }
             }
 
-            // Actualizamos los ingresos
-            var updatedIngresos = await GetFromDb.GetIngresos();
-            InitInfo.ObCoIngresos.Clear();
-            foreach (var item in updatedIngresos) {
-                InitInfo.ObCoIngresos.Add(item);
-            }
+            Refresh();
         }
 
         private void ClearFields() {
@@ -187,7 +184,17 @@ namespace GymCastillo.ViewModel.VentasVM {
             if (ListaVenta != null) {
                 ListaVenta.Clear();
             }
+
             ClearFields();
+        }
+
+        private async void Refresh() {
+            // Actualizamos los ingresos
+            var updatedIngresos = await GetFromDb.GetIngresos();
+            InitInfo.ObCoIngresos.Clear();
+            foreach (var item in updatedIngresos.OrderByDescending(c => c.FechaRegistro)) {
+                InitInfo.ObCoIngresos.Add(item);
+            }
         }
 
         private void ActualizarTotal() {

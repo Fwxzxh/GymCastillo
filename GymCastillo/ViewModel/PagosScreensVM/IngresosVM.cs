@@ -8,6 +8,7 @@ using GymCastillo.Model.Init;
 using log4net;
 using System;
 using System.ComponentModel;
+using System.Linq;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class IngresosVM : INotifyPropertyChanged {
@@ -15,8 +16,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand PagoCliente { get; set; }
-        public RelayCommand PagoVenta { get; set; }
-        public RelayCommand PagoRenta { get; set; }
         public RelayCommand PagoOtros { get; set; }
 
         private Paquete paquete = new();
@@ -90,23 +89,14 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         public IngresosVM() {
             PagoCliente = new RelayCommand(ClientsPyment);
-            PagoRenta = new RelayCommand(RentPayment);
-            PagoVenta = new RelayCommand(SalesPayement);
             PagoOtros = new RelayCommand(OthersPayment);
+            RefreshGrid();
         }
 
         private async void OthersPayment() {
             ingresos.Tipo = 4;
             await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
-        }
-
-        private void SalesPayement() {
-            throw new NotImplementedException();
-        }
-
-        private void RentPayment() {
-            throw new NotImplementedException();
         }
 
         private async void ClientsPyment() {
@@ -124,7 +114,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             var clientes = await GetFromDb.GetClientes();
             InitInfo.ObCoClientes.Clear();
             InitInfo.ObCoIngresos.Clear();
-            foreach (var item in pagos) {
+            foreach (var item in pagos.OrderByDescending(c => c.FechaRegistro)) {
                 InitInfo.ObCoIngresos.Add(item);
             }
             foreach (var item in clientes) {

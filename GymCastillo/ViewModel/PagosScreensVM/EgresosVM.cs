@@ -86,6 +86,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             PagoPersonal = new RelayCommand(PersonalPayment);
             PagoServicios = new RelayCommand(ServicesPayment);
             PagoOtros = new RelayCommand(OthersPayment);
+            RefreshGrid();
         }
 
         private async void OthersPayment() {
@@ -124,7 +125,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void RefreshGrid() {
             var pagos = await GetFromDb.GetEgresos();
             InitInfo.ObCoEgresos.Clear();
-            foreach (var item in pagos) {
+            foreach (var item in pagos.OrderByDescending(c => c.FechaRegistro)) {
                 InitInfo.ObCoEgresos.Add(item);
             }
             ClearData();
