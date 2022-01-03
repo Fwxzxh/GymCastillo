@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -83,6 +84,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 ShowPrettyMessages.InfoOk(
                     $"No se puede eliminar este cliente ya que tiene una deuda activa de: $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
                     "Cliente con deuda");
+                return 0;
+            }
+
+            if (InitInfo.ObCoRentas.Any(x => x.IdClienteRenta == Id)) {
+                ShowPrettyMessages.InfoOk(
+                    $"No se puede eliminar este cliente ya que tiene registros de ventas pasadas y al eliminarlo podría perder información.",
+                    "Cliente con registros.");
                 return 0;
             }
 

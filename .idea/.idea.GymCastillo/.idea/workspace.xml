@@ -7,9 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="minor Fixes to Messages">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor Fix to DigitalCard.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Movimientos/Ingresos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Rentas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Rentas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/ClienteRenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/ClienteRenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,14 +171,7 @@
       <workItem from="1641000788854" duration="256000" />
       <workItem from="1641001080798" duration="9500000" />
       <workItem from="1641080844997" duration="9303000" />
-      <workItem from="1641165193206" duration="2399000" />
-    </task>
-    <task id="LOCAL-00004" summary="minor alta cliente fix">
-      <created>1639099317330</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1639099317330</updated>
+      <workItem from="1641165193206" duration="15286000" />
     </task>
     <task id="LOCAL-00005" summary="minorFixes to clase, DigitalCard.cs, Rentas.cs, Personal.cs, added &amp; new Diagram">
       <created>1639444934571</created>
@@ -506,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641165867568</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Minor Fix to DigitalCard.cs">
+      <created>1641167744902</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1641167744903</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Inventario back done" />
     <MESSAGE value="Pagos Validation Done" />
     <MESSAGE value="Rentas Back done, Updated Card." />
     <MESSAGE value="Added rentas query" />
@@ -565,7 +574,8 @@
     <MESSAGE value="Updated, Pago deuda cliente" />
     <MESSAGE value="Bot auth &amp; alta in db done" />
     <MESSAGE value="minor Fixes to Messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor Fixes to Messages" />
+    <MESSAGE value="Minor Fix to DigitalCard.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor Fix to DigitalCard.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

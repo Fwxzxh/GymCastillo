@@ -109,6 +109,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public string ChatId { get; set; }
 
         /// <summary>
+        /// La fecha de registro del cliente
+        /// </summary>
+        public DateTime FechaRegistro { get; set; }
+
+        /// <summary>
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
@@ -279,13 +284,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                                 FechaNacimiento, Telefono, CondicionEspecial,
                                                 DescripcionCondicionEspecial, NombreContacto,
                                                 TelefonoContacto, Foto, Activo, MedioConocio,
-                                                Nino, IdTipoCliente)
+                                                Nino, IdTipoCliente, FechaRegistro)
                                            VALUES
                                                (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
                                                 @FechaNacimiento, @Telefono, @CondicionEspecial,
                                                 @DescripcionCondicionEspecial, @NombreContacto,
                                                 @TelefonoContacto, @Foto, @Activo, @MedioConocio,
-                                                @Nino, @IdTipoCliente)";
+                                                @Nino, @IdTipoCliente, @FechaRegistro)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -311,6 +316,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+
+                command.Parameters.AddWithValue("@FechaRegistro",
+                    FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 Log.Debug("Se ha generado la query.");
 

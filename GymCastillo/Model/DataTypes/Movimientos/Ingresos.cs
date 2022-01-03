@@ -42,6 +42,16 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
         public int IdCliente { get; set; }
 
         /// <summary>
+        /// El id del cliente renta al cual se le va pagar la deuda.
+        /// </summary>
+        public int IdClienteRenta { get; set; }
+
+        /// <summary>
+        /// Nombre del cliente renta al cual se le va a pagar la deuda.
+        /// </summary>
+        public string NombreClienteRenta { get; set; }
+
+        /// <summary>
         /// El nombre del cliente si el ingreso es por un cliente.
         /// </summary>
         public string NombreCliente { get; set; }
@@ -85,7 +95,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                 const string altaQuery = @"INSERT INTO ingresos
                                            VALUES
                                                (default, @FechaRegistro, @IdUsuario,
-                                               @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
+                                               @IdRenta, @IdCliente, @IdVenta, @IdClienteRenta ,@Otros, @Concepto,
                                                @IdPaquete, @IdLocker, @NumeroRecibo, @Monto, @MontoRecibido);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
@@ -101,6 +111,8 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                     IdCliente == 0 ? null : IdCliente.ToString());
                 command.Parameters.AddWithValue("@IdVenta",
                     IdVenta == 0 ? null : IdVenta.ToString());
+                command.Parameters.AddWithValue("@IdClienteRenta",
+                    IdVenta == 0 ? null : IdClienteRenta.ToString());
                 command.Parameters.AddWithValue("@Otros",
                     Convert.ToInt32(Otros).ToString());
                 command.Parameters.AddWithValue("@Concepto", Concepto);

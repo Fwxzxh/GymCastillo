@@ -53,7 +53,6 @@ namespace GymCastillo.Model.Helpers {
                     "Cliente No encontrado.");
                 return false;
 
-                // Existe ->
             }
             // <--> es instructor.
 
@@ -69,7 +68,6 @@ namespace GymCastillo.Model.Helpers {
                 "Cliente No encontrado.");
             return false;
 
-            // Existe ->
         }
 
         /// <summary>

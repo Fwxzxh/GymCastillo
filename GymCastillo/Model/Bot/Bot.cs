@@ -60,9 +60,7 @@ namespace GymCastillo.Model.Bot {
 
             CancellationToken = new CancellationTokenSource();
 
-            var receiverOptions = new ReceiverOptions() {
-                AllowedUpdates = { }
-            };
+            var receiverOptions = new ReceiverOptions();
 
             BotClient.StartReceiving(
                 HandleUpdateTask,

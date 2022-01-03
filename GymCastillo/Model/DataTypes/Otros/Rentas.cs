@@ -62,6 +62,11 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// </summary>
         public decimal Costo { get; set; }
 
+        /// <summary>
+        /// El monto recibido de la renta.
+        /// </summary>
+        public decimal MontoRecibido { get; set; }
+
         public async Task<int> Alta() {
             Log.Debug("Se ha iniciado el proceso de dar de alta Renta.");
 
@@ -74,7 +79,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
                                            values
                                                (default, @FechaRenta, @IdClienteRenta,
                                                 @IdEspacio, @HoraInicio, @HoraFin,
-                                                @Costo)";
+                                                @Costo, @MontoRecibido)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -91,6 +96,8 @@ namespace GymCastillo.Model.DataTypes.Otros {
                     HoraFin.ToString("HHmm"));
 
                 command.Parameters.AddWithValue("@Costo",
+                    Costo.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MontoRecibido",
                     Costo.ToString(CultureInfo.InvariantCulture));
 
                 Log.Debug("Se ha generado la query.");

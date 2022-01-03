@@ -23,7 +23,8 @@ namespace GymCastillo.Model.Bot {
         /// <param name="botClient"></param>
         /// <param name="cancellationToken"></param>
         /// <returns><c>true</c> si el proceso se hizo satisfactoriamente.</returns>
-        public static async Task<bool> Auth(string[] args, long chatId, ITelegramBotClient botClient, CancellationToken cancellationToken) {
+        public static async Task<bool> Auth(string[] args, long chatId, ITelegramBotClient botClient,
+            CancellationToken cancellationToken) {
             // en la primera posición esta la palabra auth
             // en la segunda debe de haber un id y en la tercera la contraseña.
             try {
@@ -77,6 +78,20 @@ namespace GymCastillo.Model.Bot {
                 Log.Debug($"BOT_ERROR: {e.Message}");
                 return false;
             }
+        }
+
+        public static async Task<bool> Status(string[] args, long chatId, ITelegramBotClient botClient,
+            CancellationToken cancellationToken) {
+
+            try {
+
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return false;
         }
     }
 }

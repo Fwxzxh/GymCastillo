@@ -20,7 +20,6 @@ namespace GymCastillo.Model.Helpers {
 
             try {
 
-                // TODO: ver que onda con esto
                 const string plantillaPath = @"C:/GymCastillo/Assets/Plantilla.png";
                 const string genericProfilePath = @"C:/GymCastillo/Assets/GenericProfile.png";
 

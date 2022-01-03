@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -94,6 +95,14 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 ShowPrettyMessages.ErrorOk(
                     "No puedes borrar el usuario admin, ya que podrías no poder entrar al programa después.",
                     "Error al borrar usuario admin.");
+                return 0;
+            }
+
+            if (InitInfo.ObCoEgresos.Any(x => x.IdUsuarioPagar == Id)) {
+                ShowPrettyMessages.ErrorOk(
+                    "Este usuario tiene movimientos registrados, si lo eliminan podría haber perdida de información.",
+                    "Usuario con movimientos.");
+
                 return 0;
             }
 

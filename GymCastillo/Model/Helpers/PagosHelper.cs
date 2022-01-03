@@ -92,6 +92,19 @@ namespace GymCastillo.Model.Helpers {
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Otros");
                         break;
 
+                    case 5: // Pago deuda cliente renta
+                        // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdClienteRenta
+                        ingreso.IdCliente = 0;
+                        ingreso.IdLocker = 0;
+                        ingreso.IdVenta = 0;
+                        ingreso.IdRenta = 0;
+
+                        // Registramos el Pago
+                        await AdminOnlyAlta.Alta(ingreso);
+
+                        Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Otros");
+                        break;
+
                     default:
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }

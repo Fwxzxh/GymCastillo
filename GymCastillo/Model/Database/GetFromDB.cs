@@ -44,7 +44,7 @@ namespace GymCastillo.Model.Database {
                                           p.IdPaquete, p.NombrePaquete,
                                           tc.IdTipoCliente, tc.NombreTipoCliente,
                                           l.IdLocker, l.Nombre as NombreLocker,
-                                          c.ChatID
+                                          c.ChatID, c.FechaRegistro
                                       FROM cliente c
                                       LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       LEFT JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -151,7 +151,9 @@ namespace GymCastillo.Model.Database {
 
                         ChatId = await reader.Result.IsDBNullAsync("ChatID")
                             ? ""
-                            : reader.Result.GetString("ChatID")
+                            : reader.Result.GetString("ChatID"),
+
+                        FechaRegistro = reader.Result.GetDateTime("FechaRegistro")
                     };
 
                     listCliente.Add(cliente);
@@ -409,7 +411,7 @@ namespace GymCastillo.Model.Database {
                                           r.IdRenta, r.FechaRenta, r.IdClienteRenta,
                                           CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
                                           r.IdEspacio, e.NombreEspacio,
-                                          r.HoraInicio, r.HoraFin, r.Costo
+                                          r.HoraInicio, r.HoraFin, r.Costo, r.MontoRecibido
                                       FROM rentas r
                                       LEFT JOIN ClienteRenta cr ON r.IdClienteRenta = cr.IdClienteRenta
                                       LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;";
@@ -439,6 +441,7 @@ namespace GymCastillo.Model.Database {
                             "HHmm",
                             CultureInfo.InvariantCulture),
                         Costo = reader.Result.GetDecimal("Costo"),
+                        MontoRecibido = reader.Result.GetDecimal("MontoRecibido"),
                     };
                     listRentas.Add(renta);
                 }
@@ -1080,6 +1083,7 @@ namespace GymCastillo.Model.Database {
                                           i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
                                           i.IdRenta, r.FechaRenta, i.IdCliente,
                                           CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente, i.IdVenta,
+                                          i.IdClienteRenta, CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRenta,
                                           i.Otros, i.Concepto,
                                           i.IdPaquete, p.NombrePaquete,
                                           i.IdLocker, l.Nombre,
@@ -1088,6 +1092,7 @@ namespace GymCastillo.Model.Database {
                                       INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
                                       LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
                                       LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
+                                      LEFT JOIN clienteRenta cr ON i.IdClienteRenta = cr.IdClienteRenta
                                       LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
                                       LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
                                       LEFT JOIN locker l ON i.IdLocker = l.IdLocker;";
@@ -1126,6 +1131,13 @@ namespace GymCastillo.Model.Database {
                         IdVenta = await reader.Result.IsDBNullAsync("IdVenta")
                             ? 0
                             : reader.Result.GetInt32("IdVenta"),
+
+                        IdClienteRenta = await reader.Result.IsDBNullAsync("IdClienteRenta")
+                            ? 0
+                            : reader.Result.GetInt32("IdPaquete"),
+                        NombreClienteRenta = await reader.Result.IsDBNullAsync("NombreClienteRenta")
+                            ? ""
+                            : reader.Result.GetString("NombreClienteRenta"),
 
                         Otros = !await reader.Result.IsDBNullAsync("Otros") &&
                                 reader.Result.GetBoolean("Otros"),
