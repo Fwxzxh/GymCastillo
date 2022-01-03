@@ -26,7 +26,7 @@ SELECT
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
     l.IdLocker, l.Nombre as NombreLocker,
-    c.ChatID
+    c.ChatID, c.FechaIngreso
 FROM cliente c
 LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
 LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -38,13 +38,13 @@ INSERT INTO cliente
      FechaNacimiento, Telefono, CondicionEspecial,
      DescripcionCondicionEspecial, NombreContacto,
      TelefonoContacto, Foto, Activo, MedioConocio,
-     Nino, IdTipoCliente)
+     Nino, IdTipoCliente, FechaRenta)
 VALUES
     (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
      @FechaNacimiento, @Telefono, @CondicionEspecial,
      @DescripcionCondicionEspecial, @NombreContacto,
      @TelefonoContacto, @Foto, @Activo, @MedioConocio,
-     @Nino, @IdTipoCliente);
+     @Nino, @IdTipoCliente, @FechaRenta);
 	-- Editar valores (usuario)
 
 UPDATE cliente
@@ -298,7 +298,9 @@ SELECT
     i.IdIngresos, i.FechaRegistro,
     i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
     i.IdRenta, r.FechaRenta, i.IdCliente,
-    CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente, i.IdVenta,
+    CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente,
+    i.IdClienteRenta,
+    CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRenta, i.IdVenta,
     i.Otros, i.Concepto,
     i.IdPaquete, p.NombrePaquete,
     i.IdLocker, l.Nombre,
@@ -307,6 +309,7 @@ FROM ingresos i
 INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
 LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
 LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
+LEFT JOIN clienterenta cr ON i.IdClienteRenta = cr.IdClienteRenta
 LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
 LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
 LEFT JOIN locker l ON i.IdLocker = l.IdLocker;
@@ -314,7 +317,7 @@ LEFT JOIN locker l ON i.IdLocker = l.IdLocker;
 INSERT INTO ingresos
 VALUES
     (@IdIngresos, @FechaRegistro, @IdUsuario,
-    @IdRenta, @IdCliente, @IdVenta, @Otros, @Concepto,
+    @IdRenta, @IdCliente, @IdVenta, @IdClienteRenta, @Otros, @Concepto,
     @IdPaquete, @IdLocker, @NumeroRecibo, @Monto,
     @MontoRecibido);
     
@@ -368,7 +371,7 @@ SELECT
     r.IdRenta, r.FechaRenta, r.IdClienteRenta,
     CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreCliente,
     r.IdEspacio, e.NombreEspacio, r.HoraInicio, 
-    r.HoraFin, r.Costo
+    r.HoraFin, r.Costo, r.MontoRecibido
 FROM rentas r
 LEFT JOIN clienterenta cr ON r.IdClienteRenta = cr.IdClienteRenta
 LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
@@ -377,13 +380,14 @@ LEFT JOIN espacio e ON e.IdEspacio = r.IdEspacio;
 INSERT INTO rentas
 VALUES (default, @FechaRenta, @IdClienteRenta,
        @IdEspacio, @NombreEspacio,
-       @HoraInicio, @HoraFin, @Costo);
+       @HoraInicio, @HoraFin, @Costo, @MontoRecibido);
        
        -- Actualizar Rentas Creo que no debería poder actualizar nada, pero idk pongo todoxd
 UPDATE	rentas
 SET	FechaRenta=@FechaRenta, IdClienteRenta=@IdClienteRenta,
 	IdEspacio=@IdEspacio, NombreEspacio=@NombreEspacio,
-	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo
+	HoraInicio=@HoraInicio, HoraFin=@HoraFin, Costo=@Costo,
+	MontoRecibido=@MontoRecibido
 WHERE	IdRenta=@IdRenta;
 
 
