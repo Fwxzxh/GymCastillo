@@ -17,6 +17,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand PagoCliente { get; set; }
         public RelayCommand PagoOtros { get; set; }
+        public RelayCommand PagoRenta { get; set; }
 
         private Paquete paquete = new();
 
@@ -90,7 +91,15 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public IngresosVM() {
             PagoCliente = new RelayCommand(ClientsPyment);
             PagoOtros = new RelayCommand(OthersPayment);
+            PagoRenta = new RelayCommand(RentPayment);
             RefreshGrid();
+        }
+
+        private async void RentPayment() {
+            ingresos.Tipo = 5;
+            ingresos.Monto = ClienteRenta.DeudaCliente;
+            ingresos.IdClienteRenta = ClienteRenta.Id;
+            await PagosHelper.NewIngreso(ingresos);
         }
 
         private async void OthersPayment() {

@@ -165,8 +165,8 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Monto Recibido"
-                                    Width=".7*"
+                <DataGridTextColumn Header="Recibido"
+                                    Width=".5*"
                                     Binding="{Binding MontoRecibido, StringFormat=C}"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
