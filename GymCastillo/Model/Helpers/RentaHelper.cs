@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
@@ -22,13 +23,20 @@ namespace GymCastillo.Model.Helpers {
         /// <param name="renta">El objeto con la información de la renta.</param>
         /// <param name="clienteRenta">El objeto con la información del cliente</param>
         /// <param name="montoRecibido">La cantidad recibida por la renta (para calcular la deuda)</param>
-        public static async Task NuevaRenta(Rentas renta, ClienteRenta clienteRenta, decimal montoRecibido) {
+        public static async Task NuevaRenta(Rentas renta, ClienteRenta clienteRenta) {
             // Debemos de Hacer la renta y luego registrar el ingreso
             Log.Debug("Se ha iniciado el proceso de registrar una renta.");
 
+            if (renta.Costo > renta.MontoRecibido) {
+                ShowPrettyMessages.InfoOk(
+                    $"Se le va a abonar una deuda al cliente {clienteRenta.Nombre} de: " +
+                    $"$ {(renta.Costo - renta.MontoRecibido).ToString(CultureInfo.InvariantCulture)} ",
+                    "Abono de deuda");
+            }
+
             try {
                 // Registramos la renta
-                var res = await AdminOnlyAlta.Alta(renta);
+                var res = await AdminOnlyAlta.Alta(renta, true);
 
                 if (res) { // Si se completo la alta exitosamente proseguimos
 
@@ -38,7 +46,7 @@ namespace GymCastillo.Model.Helpers {
                         Concepto = $"Renta de espacio: {renta.IdEspacio.ToString()} Cliente {renta.IdClienteRenta.ToString()}",
                         NumeroRecibo = "",
                         Monto = renta.Costo,
-                        MontoRecibido = montoRecibido
+                        MontoRecibido = renta.MontoRecibido
                     };
 
                     // Obtenemos el IdRenta de la renta dada de alta.
@@ -51,12 +59,12 @@ namespace GymCastillo.Model.Helpers {
                     }
 
                     // Registramos el ingreso
-                    await PagosHelper.NewIngreso(ingreso);
+                    await PagosHelper.NewIngreso(ingreso, true);
 
                     // Actualizamos la información del cliente
                     clienteRenta.FechaUltimoPago = DateTime.Now;
-                    clienteRenta.MontoUltimoPago = montoRecibido;
-                    clienteRenta.DeudaCliente += renta.Costo - montoRecibido;
+                    clienteRenta.MontoUltimoPago = renta.MontoRecibido;
+                    clienteRenta.DeudaCliente += renta.Costo - renta.MontoRecibido;
 
                     // Actualizamos los campos del cliente
                     await AdminUsuariosGeneral.Pago(clienteRenta);

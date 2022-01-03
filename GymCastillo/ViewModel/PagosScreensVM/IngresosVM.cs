@@ -100,6 +100,12 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Monto = ClienteRenta.DeudaCliente;
             ingresos.IdClienteRenta = ClienteRenta.Id;
             await PagosHelper.NewIngreso(ingresos);
+            RefreshGrid();
+            InitInfo.ObCoClientesRenta.Clear();
+            var newClientesRenta = await GetFromDb.GetClientesRenta();
+            foreach (var clientR in newClientesRenta) {
+                InitInfo.ObCoClientesRenta.Add(clientR);
+            }
         }
 
         private async void OthersPayment() {

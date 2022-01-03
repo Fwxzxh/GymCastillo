@@ -98,7 +98,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
                 command.Parameters.AddWithValue("@Costo",
                     Costo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@MontoRecibido",
-                    Costo.ToString(CultureInfo.InvariantCulture));
+                    MontoRecibido.ToString(CultureInfo.InvariantCulture));
 
                 Log.Debug("Se ha generado la query.");
 

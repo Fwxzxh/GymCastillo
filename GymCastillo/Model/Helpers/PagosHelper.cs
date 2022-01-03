@@ -26,8 +26,9 @@ namespace GymCastillo.Model.Helpers {
         /// Método que da de alta un nuevo Ingreso.
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
+        /// <param name="silent"><c>true</c> para no mostrar el mensaje de operación exitosa</param>
         /// TODO: igual y es buena idea mandar el objeto.
-        public static async Task NewIngreso(Ingresos ingreso) {
+        public static async Task NewIngreso(Ingresos ingreso, bool silent = false) {
 
             // TODO: implementar lo de los tickets.
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
@@ -74,7 +75,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdVenta = 0;
 
                         // Registramos el Pago
-                        await AdminOnlyAlta.Alta(ingreso);
+                        await AdminOnlyAlta.Alta(ingreso, silent);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Rentas");
                         break;
@@ -100,7 +101,17 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 0;
 
                         // Registramos el Pago
-                        await AdminOnlyAlta.Alta(ingreso);
+                        var resPagoDeuda = await AdminOnlyAlta.Alta(ingreso);
+
+                        if (resPagoDeuda) {
+                            var clienteRenta = InitInfo.ObCoClientesRenta.First(x => x.Id == ingreso.IdClienteRenta);
+
+                            clienteRenta.MontoUltimoPago = ingreso.MontoRecibido;
+                            clienteRenta.FechaUltimoPago = DateTime.Now;
+                            clienteRenta.DeudaCliente -= ingreso.MontoRecibido;
+
+                            await clienteRenta.Pago();
+                        }
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Otros");
                         break;
