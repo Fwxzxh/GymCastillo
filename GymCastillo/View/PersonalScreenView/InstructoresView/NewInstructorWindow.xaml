@@ -35,7 +35,6 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
@@ -166,30 +165,19 @@
                     <ComboBoxItem Content="Quincena"/>
                     <ComboBoxItem Content="Mensual"/>
                 </ComboBox>
-                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <!--<TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Monto Último Pago"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          IsReadOnly="True"
                          Margin="10 0"
                          FontSize="20"
-                         Text="{Binding Instructor.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+                         Text="{Binding Instructor.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>-->
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Días a Trabajar"
                          materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         Margin="20 0"
+                         Margin="15 0"
                          FontSize="20"
                          Text="{Binding Instructor.DiasATrabajar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         materialDesign:HintAssist.Hint="Días Trabajados"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         Margin="10 0"
-                         FontSize="20"
-                         Text="{Binding Instructor.DiasTrabajados, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                 <materialDesign:TimePicker Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                            materialDesign:HintAssist.Hint="Hora Entrada"
                                            materialDesign:HintAssist.FloatingScale="0.6"
@@ -206,7 +194,33 @@
                                            Margin="30 0"
                                            SelectedTime="{Binding Instructor.HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            VerticalAlignment="Center"/>
-                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                <!--<TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Días Trabajados"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         IsReadOnly="True"
+                         Margin="10 0"
+                         FontSize="20"
+                         Text="{Binding Instructor.DiasTrabajados, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+            </StackPanel>
+
+            <!--<StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                --><!--<materialDesign:TimePicker Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                           materialDesign:HintAssist.Hint="Hora Entrada"
+                                           materialDesign:HintAssist.FloatingScale="0.6"
+                                           materialDesign:TextFieldAssist.HasClearButton="True"
+                                           FontSize="20"
+                                           Margin="30 0"
+                                           SelectedTime="{Binding Instructor.HoraEntrada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           VerticalAlignment="Center"/>
+                <materialDesign:TimePicker Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                           materialDesign:HintAssist.Hint="Hora Salida"
+                                           materialDesign:HintAssist.FloatingScale="0.6"
+                                           materialDesign:TextFieldAssist.HasClearButton="True"
+                                           FontSize="20"
+                                           Margin="30 0"
+                                           SelectedTime="{Binding Instructor.HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           VerticalAlignment="Center"/>-->
+                <!--<DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                             materialDesign:HintAssist.Hint="Último Acceso"
                             materialDesign:HintAssist.FloatingScale="0.6"
                             FontSize="20"
@@ -219,8 +233,8 @@
                             FontSize="20"
                             Margin="30 0"
                             IsEnabled="False"
-                            SelectedDate="{Binding Instructor.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
+                            SelectedDate="{Binding Instructor.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>--><!--
+            </StackPanel>-->
 
         </Grid>
 

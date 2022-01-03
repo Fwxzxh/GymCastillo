@@ -22,17 +22,6 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
             }
         }
 
-        private int id;
-
-        public int Id {
-            get { return id; }
-            set
-            {
-                id = value;
-                OnPropertyChanged(nameof(Id));
-            }
-        }
-
         public HomeAsistenciasVM() {
             asistenciaCliente = new RelayCommand(AsistenciaClienteView);
             asistenciaInstructor = new RelayCommand(AsistenciaInstructorView);
@@ -45,7 +34,7 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaInstructorWindow window = new(Asistencia);
                 window.ShowDialog();
-                id = 0;
+                Asistencia.Id = 0;
             }
         }
 
@@ -55,7 +44,7 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaClienteWindow window = new(Asistencia);
                 window.ShowDialog();
-                id = 0;
+                Asistencia.Id = 0;
             }
         }
 

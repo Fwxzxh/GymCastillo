@@ -143,10 +143,11 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn IsReadOnly="True"
+                                        Width=".7*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="-10 0" DataContext="{StaticResource vm}">
+                            <StackPanel Orientation="Horizontal" DataContext="{StaticResource vm}">
                                 <Button ToolTip="Ver más"
                                         Margin="5 0"
                                         Command="{Binding OverviewPersonal}">

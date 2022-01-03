@@ -73,11 +73,22 @@
                      materialDesign:HintAssist.FloatingScale="0.6"
                      materialDesign:TextFieldAssist.HasClearButton="True"
                      VerticalContentAlignment="Center"
-                     Width="830"
+                     Width="550"
                      FontSize="20"
                      Margin="20 0"
                      Text="{Binding Instructor.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Teléfono"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         Width="250"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         MaxLength="10"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Instructor.Telefono,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
             </StackPanel>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
@@ -92,17 +103,6 @@
                             SelectedDate="{Binding Instructor.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
 
-                <TextBox materialDesign:HintAssist.Hint="Teléfono"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         Width="250"
-                         PreviewTextInput="TextBox_PreviewTextInput"
-                         MaxLength="10"
-                         FontSize="20"
-                         Margin="20 0"
-                         Text="{Binding Instructor.Telefono,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Tipo de Instructor"
                           materialDesign:HintAssist.FloatingScale="0.6"
@@ -114,6 +114,16 @@
                           SelectedValuePath="IdTipo"
                           SelectedValue="{Binding Instructor.IdTipoInstructor}"
                           DisplayMemberPath="NombreTipo"/>
+                
+                <TextBox materialDesign:HintAssist.Hint="Sueldo"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         Width="250"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Instructor.Sueldo, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             </StackPanel>
 
@@ -138,18 +148,6 @@
                          Margin="20 0"
                          Text="{Binding Instructor.TelefonoContacto,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Sueldo"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         Width="250"
-                         PreviewTextInput="TextBox_PreviewTextInput"
-                         FontSize="20"
-                         Margin="20 0"
-                         Text="{Binding Instructor.Sueldo, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Forma de Pago"
                           materialDesign:HintAssist.FloatingScale="0.6"
@@ -163,6 +161,20 @@
                     <ComboBoxItem Content="Quincena"/>
                     <ComboBoxItem Content="Mensual"/>
                 </ComboBox>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                <TextBox materialDesign:HintAssist.Hint="Sueldo a Descontar"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         Width="250"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Instructor.SueldoADescontar, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Monto Último Pago"
                          materialDesign:HintAssist.FloatingScale="0.6"
@@ -181,7 +193,7 @@
                          materialDesign:HintAssist.Hint="Días Trabajados"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          IsReadOnly="True"
-                         Margin="10 0"
+                         Margin="25 0"
                          FontSize="20"
                          Text="{Binding Instructor.DiasTrabajados, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>

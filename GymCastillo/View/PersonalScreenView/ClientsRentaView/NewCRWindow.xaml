@@ -96,6 +96,7 @@
                          VerticalContentAlignment="Center"
                          PreviewTextInput="TextBox_PreviewTextInput"
                          Width="375"
+                         IsEnabled="False"
                          FontSize="20"
                          Margin="30 0"
                          Text="{Binding Cliente.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=C}"

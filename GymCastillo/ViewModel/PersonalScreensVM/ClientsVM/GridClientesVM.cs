@@ -27,7 +27,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public OverViewClienteCommand OverViewCommand { get; set; }
 
-        private bool activo = true;
+        private bool activo = false;
 
         public bool Activo {
             get { return activo; }
@@ -66,10 +66,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public GridClientesVM() {
             try {
+                RefreshGrid(Activo);
                 OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
-                RefreshGrid(true);
                 Log.Debug("Se ha inicializado y se han obtenido los datos de la pantalla de GridClientes.");
             }
             catch (Exception e) {

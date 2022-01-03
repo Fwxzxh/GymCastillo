@@ -94,7 +94,7 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Fin"
                                     Binding="{Binding HoraFin, StringFormat=t}"
-                                    Width=".5*"
+                                    Width=".7*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     </DataGridTextColumn>
