@@ -156,6 +156,7 @@
                           FontSize="20"
                           Margin="20 0"
                           Width="250"
+                          IsEnabled="False"
                           ItemsSource="{Binding paquetesList}"
                           DisplayMemberPath="NombrePaquete"
                           SelectedValuePath="IdPaquete"
@@ -171,7 +172,15 @@
                           ItemsSource="{Binding medioList}"
                           SelectedValue="{Binding SelectedClient.MedioConocio}"
                           SelectedItem="{Binding SelectedClient.MedioConocio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox materialDesign:HintAssist.Hint="Descuento"
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Total Pagar"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         IsReadOnly="True"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding SelectedClient.Pago, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Width="250"/>
+                <!--<TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
@@ -180,20 +189,13 @@
                          FontSize="20"
                          Text="{Binding SelectedClient.Descuento, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="20 0"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
 
             </StackPanel>
 
             <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="65 0">
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Total Pagar"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         FontSize="20"
-                         Margin="25 0"
-                         Text="{Binding SelectedClient.Pago, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Width="250"/>
+
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Monto Último Pago"
                          materialDesign:HintAssist.FloatingScale="0.6"

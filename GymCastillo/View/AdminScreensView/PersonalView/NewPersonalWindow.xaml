@@ -72,7 +72,7 @@
                             IsTodayHighlighted="True"
                             FontSize="19"
                             Margin="30 0"
-                            SelectedDate="{Binding Usuario.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedDate="{Binding Personal.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
                 <TextBox materialDesign:HintAssist.Hint="Teléfono"
                          materialDesign:HintAssist.FloatingScale="0.6"

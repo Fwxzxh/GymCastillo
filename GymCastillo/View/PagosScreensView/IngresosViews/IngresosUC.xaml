@@ -287,7 +287,7 @@
 
             <!--Renta-->
 
-            <!--<StackPanel Grid.Row="1"
+            <StackPanel Grid.Row="1"
                         Orientation="Horizontal"
                         Visibility="{Binding ElementName=rentas, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -369,7 +369,7 @@
                         Margin="10"
                         FontSize="20"
                         HorizontalAlignment="Center"/>
-            </StackPanel>-->
+            </StackPanel>
 
             <!--otros-->
             <StackPanel Grid.Row="1"

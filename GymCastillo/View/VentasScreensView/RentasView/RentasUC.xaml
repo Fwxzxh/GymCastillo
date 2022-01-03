@@ -165,6 +165,24 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Monto Recibido"
+                                    Width=".7*"
+                                    Binding="{Binding MontoRecibido, StringFormat=C}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <!--<DataGridTemplateColumn IsReadOnly="True" Width=".3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -223,7 +241,6 @@
                                            materialDesign:HintAssist.FloatingScale="0.6"
                                            VerticalContentAlignment="Center"
                                            FontSize="20"
-                                           Width="250"
                                            Margin="20 0"
                                            Text="{Binding Renta.HoraInicio, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
                                            Style="{StaticResource MaterialDesignOutlinedTimePicker}"/>
@@ -231,7 +248,6 @@
                                            materialDesign:HintAssist.FloatingScale="0.6"
                                            VerticalContentAlignment="Center"
                                            FontSize="20"
-                                           Width="250"
                                            Margin="20 0"
                                            Text="{Binding Renta.HoraFin, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
                                            Style="{StaticResource MaterialDesignOutlinedTimePicker}"/>
@@ -240,8 +256,15 @@
                          VerticalContentAlignment="Center"
                          FontSize="20"
                          Margin="20 0"
-                         Width="250"
+                         Width="200"
                          Text="{Binding Renta.Costo, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         VerticalContentAlignment="Center"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Renta.MontoRecibido, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=C}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
