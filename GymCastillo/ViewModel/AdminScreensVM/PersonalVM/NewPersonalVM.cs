@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using ImageMagick;
 using log4net;
@@ -17,7 +19,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand ImageCommand { get; set; }
 
-        private Personal personal = new();
+        private Personal personal = new() {
+            FechaNacimiento = DateTime.Now
+        };
 
         public Personal Personal {
             get { return personal; }
@@ -59,8 +63,14 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
 
         private async void GuardarPersonal() {
             await AdminUsuariosGeneral.Alta(Personal);
+            Personal = null;
+            Personal = new() {
+                FechaNacimiento = DateTime.Now
+            };
             Log.Debug("Alta de personal nuevo realizada");
         }
+
+
 
         private void CloseWindow(IClosable window) {
             if (window != null) {

@@ -83,6 +83,7 @@
                             materialDesign:HintAssist.FloatingScale="0.6"
                             materialDesign:TextFieldAssist.HasClearButton="True"
                             Width="250"
+                            IsEnabled="False"
                             IsTodayHighlighted="True"
                             FontSize="19"
                             Margin="20 0"

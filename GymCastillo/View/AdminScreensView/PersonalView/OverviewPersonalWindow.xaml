@@ -69,6 +69,7 @@
                             materialDesign:HintAssist.FloatingScale="0.6"
                             materialDesign:TextFieldAssist.HasClearButton="True"
                             Width="380"
+                            IsEnabled="False"
                             IsTodayHighlighted="True"
                             FontSize="19"
                             Margin="30 0"
@@ -155,7 +156,7 @@
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Guardar"
                         Margin="20"
-                        Command="{Binding newUser}"
+                        Command="{Binding SaveCommand}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"

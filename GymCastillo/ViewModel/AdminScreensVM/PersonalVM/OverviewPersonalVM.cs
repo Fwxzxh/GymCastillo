@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
 using ImageMagick;
@@ -17,6 +18,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
+        public RelayCommand SaveCommand { get; set; }
+
         public RelayCommand ImageCommand { get; set; }
 
         private Personal personal;
@@ -45,6 +48,12 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
             this.personal = personal;
             CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
             ImageCommand = new RelayCommand(SelectPhoto);
+            SaveCommand = new RelayCommand(GuardarPersonal);
+        }
+
+        private async void GuardarPersonal() {
+            await AdminUsuariosGeneral.Update(Personal);
+            Log.Debug("Personal Actualizado");
         }
 
         private void SelectPhoto() {

@@ -43,6 +43,18 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
             }
         }
 
+        private ObservableCollection<Clase> listaClases;
+
+        public ObservableCollection<Clase> ListaClases {
+            get { return listaClases; }
+            set
+            {
+                listaClases = value;
+                OnPropertyChanged(nameof(ListaClases));
+            }
+        }
+
+
         private Paquete paquete;
 
         public Paquete Paquete {
@@ -58,13 +70,16 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
 
         public PaquetesClases PaquetesClases {
             get { return paquetesClases; }
-            set { paquetesClases = value;
+            set
+            {
+                paquetesClases = value;
                 OnPropertyChanged(nameof(PaquetesClases));
             }
         }
 
         public ClasesPaqueteVM(Paquete paquete) {
             Clases = new ObservableCollection<PaquetesClases>();
+            ListaClases = new ObservableCollection<Clase>();
             this.paquete = paquete;
             DeleteCommand = new RelayCommand(DeleteClase);
             AddCommand = new RelayCommand(AddClase);
@@ -82,16 +97,22 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
 
         private async void RefreshGrid() {
             InitInfo.ListPaquetesClases.Clear();
+            InitInfo.ObCoClases.Clear();
+            var listaActiva = await GetFromDb.GetClases();
             var listaclases = await GetFromDb.GetPaquetesClases();
             foreach (var item in listaclases) {
                 InitInfo.ListPaquetesClases.Add(item);
+            }
+            foreach (var item in listaActiva.Where(c => c.Activo == true)) {
+                InitInfo.ObCoClases.Add(item);
+                ListaClases.Add(item);
             }
 
             if (clases != null) {
                 clases.Clear();
             }
 
-            foreach (var clase in listaclases.Where(c=> c.IdPaquete == paquete.IdPaquete)) {
+            foreach (var clase in listaclases.Where(c => c.IdPaquete == paquete.IdPaquete)) {
                 clases.Add(clase);
             }
         }

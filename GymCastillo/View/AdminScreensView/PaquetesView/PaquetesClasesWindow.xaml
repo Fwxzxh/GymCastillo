@@ -51,7 +51,7 @@
                       FontSize="20"
                       HeadersVisibility="All"
                       SelectedItem="{Binding SelectedClase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClases}, UpdateSourceTrigger=Default}"
+                      ItemsSource="{Binding ListaClases, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       HorizontalContentAlignment="Center"
                       HorizontalAlignment="Stretch">
                 <DataGrid.Columns>
