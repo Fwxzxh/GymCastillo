@@ -90,7 +90,7 @@ namespace GymCastillo.Model.Helpers {
                 var b = new Barcode();
 
                 b.Encode(
-                    TYPE.UPCA,
+                    TYPE.CODE128,
                     code,
                     Color.Black,
                     Color.White,

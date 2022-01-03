@@ -34,17 +34,19 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaInstructorWindow window = new(Asistencia);
                 window.ShowDialog();
-                Asistencia.Id = 0;
+                Asistencia = null;
+                Asistencia = new();
             }
         }
 
-        private void AsistenciaClienteView() {
+        public void AsistenciaClienteView() {
             Asistencia.Tipo = 1;
             if (AsistenciasHelper.CheckId(Asistencia)) {
                 Asistencia = AsistenciasHelper.CheckEntrada(Asistencia);
                 AsistenciaClienteWindow window = new(Asistencia);
                 window.ShowDialog();
-                Asistencia.Id = 0;
+                Asistencia = null;
+                Asistencia = new();
             }
         }
 
