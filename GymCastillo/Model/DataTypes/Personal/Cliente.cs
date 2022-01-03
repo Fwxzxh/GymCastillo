@@ -318,7 +318,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
 
                 command.Parameters.AddWithValue("@FechaRegistro",
-                    FechaRegistro.ToString("yyyy-MM-dd HH:mm:ss"));
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 Log.Debug("Se ha generado la query.");
 

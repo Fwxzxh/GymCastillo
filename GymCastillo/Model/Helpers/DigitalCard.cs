@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
+using BarcodeLib;
 using GymCastillo.Model.DataTypes.Personal;
 using ImageMagick;
 using log4net;
@@ -46,7 +48,8 @@ namespace GymCastillo.Model.Helpers {
                 var apellidos = $"{cliente.ApellidoPaterno} {cliente.ApellidoMaterno}";
                 var nombres = cliente.Nombre;
                 var id = cliente.Id.ToString();
-                var teléfono = cliente.Telefono;
+                var fechaRegistro = cliente.FechaRegistro.Date;
+                var code = $"1{id}".PadLeft(12, '0');
 
                 // verificamos si tiene foto de perfil guardada.
                 var profileImage = cliente.FotoRaw.Length == 0
@@ -63,6 +66,7 @@ namespace GymCastillo.Model.Helpers {
                     Width = 40 // width of text box
                 };
 
+                // Definimos los settings de los nombres.
                 var nombreSettings = new MagickReadSettings {
                     Font = "Calibri",
                     FillColor = MagickColors.White,
@@ -72,7 +76,8 @@ namespace GymCastillo.Model.Helpers {
                     Width = 650 // width of text box
                 };
 
-                var telefonoSettings = new MagickReadSettings {
+                // Definimos lo settings de la fecha de registro
+                var fechaRegistroSettings = new MagickReadSettings {
                     Font = "Calibri",
                     FillColor = MagickColors.White,
                     TextGravity = Gravity.Center,
@@ -81,14 +86,27 @@ namespace GymCastillo.Model.Helpers {
                     Width = 650 // width of text box
                 };
 
+                // Creamos el código de barras.
+                var b = new Barcode();
+
+                b.Encode(
+                    TYPE.UPCA,
+                    code,
+                    Color.Black,
+                    Color.White,
+                    300, 130);
+
                 using var plantilla = new MagickImage(plantillaPath);
                 using var idLabel = new MagickImage($"caption:{id}", idSettings);
                 using var apellidosLabel = new MagickImage($"caption:{apellidos}", nombreSettings);
                 using var nombresLabel = new MagickImage($"caption:{nombres}", nombreSettings);
-                using var telefonoLabel = new MagickImage($"caption:{teléfono}", telefonoSettings);
+                using var fechaRegistroLabel =
+                    // ReSharper disable once HeapView.BoxingAllocation
+                    new MagickImage($"caption:{fechaRegistro:dd/MM/yyyy}", fechaRegistroSettings);
+                using var barcodeImg = new MagickImage(b.Encoded_Image_Bytes);
 
                 // Ponemos la imagen de perfil debajo de la plantilla
-                plantilla.Composite(profileImage, 146, 147, CompositeOperator.DstOver);
+                plantilla.Composite(profileImage, 146, 140, CompositeOperator.DstOver);
 
                 // Aplicamos el Id del usuario
                 plantilla.Composite(idLabel, 10, 10, CompositeOperator.Over);
@@ -99,10 +117,11 @@ namespace GymCastillo.Model.Helpers {
                 // Aplicamos el label de los nombres
                 plantilla.Composite(nombresLabel, 0, 565, CompositeOperator.Over);
 
-                // Aplicamos el label de los nombres
-                plantilla.Composite(telefonoLabel, 0, 620, CompositeOperator.Over);
+                // Aplicamos el label de la fecha de registro
+                plantilla.Composite(fechaRegistroLabel, 0, 620, CompositeOperator.Over);
 
-                // TODO: agregar el código de barras cuando este.
+                // Agregamos el código de barras
+                plantilla.Composite(barcodeImg, 180, 800, CompositeOperator.Over);
 
                 // Guardamos
                 plantilla.Write(saveDir);

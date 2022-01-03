@@ -38,15 +38,16 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string updateQuery = @"UPDATE usuario
+                const string updateQuery = @"UPDATE personal
                                              SET domicilio=@Domicilio, telefono=@Telefono, 
                                                  NombreContacto=@NombreContacto,
-                                                 telefonocontacto=@TelefonoContacto, foto=@Foto
-                                             WHERE IdUsuario=@IdUsuario";
+                                                 telefonocontacto=@TelefonoContacto, foto=@Foto,
+                                                 Puesto=@Puesto
+                                             WHERE IdPersonal=@IdPersonal";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
-                command.Parameters.AddWithValue("@IdUsuario", Id.ToString());
+                command.Parameters.AddWithValue("@IdPersonal", Id.ToString());
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
 
@@ -54,6 +55,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", FotoRaw);
+
+                command.Parameters.AddWithValue("@Puesto", Puesto);
 
                 var res = await ExecSql.NonQuery(command, "Update Personal");
 
