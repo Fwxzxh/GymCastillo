@@ -86,7 +86,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
                 command.Parameters.AddWithValue("@NumeroClasesTotales", NumClasesTotales.ToString());
                 command.Parameters.AddWithValue("@NumeroClasesSemanales", NumClasesSemanales.ToString());
-                // TODO: agregar IdClase
 
                 command.Parameters.AddWithValue("@Costo", Costo.ToString(CultureInfo.InvariantCulture));
 
@@ -154,7 +153,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
             }
         }
 
-
         /// <summary>
         /// Método que checa si se puede borrar el paquete.
         /// </summary>
@@ -175,6 +173,13 @@ namespace GymCastillo.Model.DataTypes.Settings {
                     "Clientes con paquete asignado.");
                 return false;
 
+            }
+
+            if (InitInfo.ObCoIngresos.Any(x => x.IdPaquete == IdPaquete)) {
+                ShowPrettyMessages.ErrorOk(
+                    "No se puede eliminar este paquete porque tiene ingresos registrados y si se elimina se puede perder información.",
+                    "Paquete con Ingresos.");
+                return false;
             }
 
             return true;

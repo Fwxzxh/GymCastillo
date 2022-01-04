@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -73,6 +74,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de Delete en cliente.");
+
+            if (InitInfo.ObCoEgresos.Any(x => x.IdUsuarioPagar == Id)) {
+                ShowPrettyMessages.InfoOk(
+                    "Este personal tiene movimientos registrados, si lo eliminan podría haber perdida de información.",
+                    "Personal con movimientos");
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);

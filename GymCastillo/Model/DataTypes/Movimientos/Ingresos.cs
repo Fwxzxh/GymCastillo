@@ -112,7 +112,7 @@ namespace GymCastillo.Model.DataTypes.Movimientos {
                 command.Parameters.AddWithValue("@IdVenta",
                     IdVenta == 0 ? null : IdVenta.ToString());
                 command.Parameters.AddWithValue("@IdClienteRenta",
-                    IdVenta == 0 ? null : IdClienteRenta.ToString());
+                    IdClienteRenta == 0 ? null : IdClienteRenta.ToString());
                 command.Parameters.AddWithValue("@Otros",
                     Convert.ToInt32(Otros).ToString());
                 command.Parameters.AddWithValue("@Concepto", Concepto);

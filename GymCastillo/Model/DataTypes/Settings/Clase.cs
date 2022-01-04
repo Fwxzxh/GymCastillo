@@ -117,10 +117,18 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en una clase.");
 
+            if (!Activo) {
+                ShowPrettyMessages.InfoOk(
+                    "No se permiten eliminar clases inactivas esto porque es probable que se vuelvan a ocupar.",
+                    "Clase ya inactiva");
+                return 0;
+            }
+
             // Checamos si podemos eliminar
             if (!CheckDeleteConstrains()) {
                 return 0;
             }
+
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
