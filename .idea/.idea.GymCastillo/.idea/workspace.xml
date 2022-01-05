@@ -7,12 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="FIXED">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PaquetesVM/ClasesPaqueteVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PaquetesVM/ClasesPaqueteVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +46,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/DataTypes/Settings/Clase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
@@ -82,7 +83,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.GymCastillo">
+  <component name="RunManager" selected="Publish to folder.Publish GymCastillo to folder (1)">
     <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
       <method v="2" />
@@ -165,21 +166,8 @@
       <workItem from="1641001080798" duration="9500000" />
       <workItem from="1641080844997" duration="9303000" />
       <workItem from="1641165193206" duration="18323000" />
-      <workItem from="1641232451099" duration="5001000" />
-    </task>
-    <task id="LOCAL-00007" summary="Foto back working">
-      <created>1639557398822</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1639557398822</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Foto overview Working">
-      <created>1639625193230</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1639625193230</updated>
+      <workItem from="1641232451099" duration="5121000" />
+      <workItem from="1641253154087" duration="4273000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed Cliente Alta Bloat">
       <created>1639633221266</created>
@@ -510,7 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641189227786</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Card Barcode Generation Working">
+      <created>1641237512066</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1641237512066</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Minor fixes">
+      <created>1641255488958</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1641255488958</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,8 +546,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added rentas query" />
-    <MESSAGE value="Horarios Time &amp; place alta check added" />
     <MESSAGE value="Foto enabled in all places" />
     <MESSAGE value="added GetRentas" />
     <MESSAGE value="AsistenciasHelper to static" />
@@ -569,7 +569,9 @@
     <MESSAGE value="Minor Fix to DigitalCard.cs" />
     <MESSAGE value="Added FechaRegistro Cliente, &amp; back for pago Cliente Renta debe, &amp; minor fixes" />
     <MESSAGE value="FIXED" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIXED" />
+    <MESSAGE value="Card Barcode Generation Working" />
+    <MESSAGE value="Minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

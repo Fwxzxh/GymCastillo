@@ -64,7 +64,7 @@ namespace GymCastillo.Model.DataTypes.Otros {
             // TODO: probar esto
             var horarios =
                 InitInfo.ObCoHorarios.Where(
-                    x => clases.Contains(x.IdClase) && x.HoraInicio > DateTime.Now)
+                    x => clases.Contains(x.IdClase) && x.HoraInicio.TimeOfDay >= DateTime.Now.TimeOfDay)
                     .OrderBy(x => x.HoraInicio).AsParallel().ToList();
 
             ListaHorarios = horarios;

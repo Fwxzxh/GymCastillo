@@ -41,6 +41,7 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar: FechaRegistro, IdUsuario, Concepto, NumRecibo?, Monto, IdCliente, IdLocker.
                         ingreso.IdRenta = 0;
                         ingreso.IdVenta = 0;
+                        ingreso.IdClienteRenta = 0;
 
                         // Obtenemos el cliente
                         var cliente = InitInfo.ObCoClientes.First(x => x.Id == ingreso.IdCliente);
@@ -60,6 +61,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdRenta = 0;
                         ingreso.IdCliente = 0;
                         ingreso.IdLocker = 0;
+                        ingreso.IdClienteRenta = 0;
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
@@ -73,6 +75,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdCliente = 0;
                         ingreso.IdLocker = 0;
                         ingreso.IdVenta = 0;
+                        ingreso.IdClienteRenta = 0;
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso, silent);
@@ -86,6 +89,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdLocker = 0;
                         ingreso.IdVenta = 0;
                         ingreso.IdRenta = 0;
+                        ingreso.IdClienteRenta = 0;
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
@@ -230,6 +234,7 @@ namespace GymCastillo.Model.Helpers {
                         // Obtenemos al instructor
                         var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
 
+                        // TODO: ver como manejar el sueldo a descontar con los pagos con juanpi.
                         // Actualizamos los campos.
                         egreso.Monto -= instructor.SueldoADescontar;
                         instructor.MontoUltimoPago = egreso.Monto;

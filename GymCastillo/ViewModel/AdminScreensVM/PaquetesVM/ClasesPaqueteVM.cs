@@ -4,13 +4,9 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using log4net;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
     public class ClasesPaqueteVM : INotifyPropertyChanged {
