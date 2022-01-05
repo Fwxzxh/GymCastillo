@@ -94,7 +94,7 @@ namespace GymCastillo.Model.Helpers {
                     code,
                     Color.Black,
                     Color.White,
-                    300, 130);
+                    320, 160);
 
                 using var plantilla = new MagickImage(plantillaPath);
                 using var idLabel = new MagickImage($"caption:{id}", idSettings);
@@ -121,7 +121,7 @@ namespace GymCastillo.Model.Helpers {
                 plantilla.Composite(fechaRegistroLabel, 0, 620, CompositeOperator.Over);
 
                 // Agregamos el código de barras
-                plantilla.Composite(barcodeImg, 180, 800, CompositeOperator.Over);
+                plantilla.Composite(barcodeImg, 160, 800, CompositeOperator.Over);
 
                 // Guardamos
                 plantilla.Write(saveDir);

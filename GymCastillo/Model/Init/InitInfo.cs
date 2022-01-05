@@ -204,5 +204,21 @@ namespace GymCastillo.Model.Init {
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// Método que se encarga de actualizar la lista de clientes.
+        /// </summary>
+        /// <returns></returns>
+        public static async void UpdateClientes() {
+
+            var nuevosClientes = await GetFromDb.GetClientes();
+
+            ObCoClientes.Clear();
+
+            foreach (var cliente in nuevosClientes) {
+                ObCoClientes.Add(cliente);
+            }
+        }
     }
 }

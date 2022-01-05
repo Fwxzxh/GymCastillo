@@ -39,7 +39,7 @@ namespace GymCastillo.Model.Admin {
                     case 2: // Instructor
 
                         // Damos de alta la asistencia
-                        var taskAsistencia = asistencia.DatosInstructor.NuevaAsistencia(asistencia.SueldoADescontar);
+                        var taskAsistencia = asistencia.DatosInstructor.NuevaAsistencia();
                         var res = await taskAsistencia;
 
                         // Verificamos que se hayan dado de alt los campos.

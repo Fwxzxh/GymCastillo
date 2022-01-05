@@ -234,9 +234,7 @@ namespace GymCastillo.Model.Helpers {
                         // Obtenemos al instructor
                         var instructor = InitInfo.ObCoInstructor.First(x => x.Id == egreso.IdInstructor);
 
-                        // TODO: ver como manejar el sueldo a descontar con los pagos con juanpi.
                         // Actualizamos los campos.
-                        egreso.Monto -= instructor.SueldoADescontar;
                         instructor.MontoUltimoPago = egreso.Monto;
                         instructor.FechaUltimoPago = egreso.FechaRegistro;
 

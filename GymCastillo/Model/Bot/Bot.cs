@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GymCastillo.Model.Init;
 using log4net;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
@@ -13,7 +16,8 @@ namespace GymCastillo.Model.Bot {
     /// Clase que se encarga de manejar el bot de telegram.
     /// </summary>
     public class Bot {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?
+            .DeclaringType);
 
         /// <summary>
         /// Indica si el bot esta corriendo o no.
@@ -29,12 +33,12 @@ namespace GymCastillo.Model.Bot {
         /// <summary>
         /// instancia del bot
         /// </summary>
-        private TelegramBotClient BotClient { init; get; }
+        private TelegramBotClient BotClient { set; get; }
 
         /// <summary>
         /// El token para cancelar el bot.
         /// </summary>
-        private CancellationTokenSource CancellationToken { init; get; }
+        private CancellationTokenSource CancellationToken { set; get; }
 
         // Funcionamiento bot
         // <- Mandar ticket de venta si esta registrado.
@@ -46,13 +50,13 @@ namespace GymCastillo.Model.Bot {
         // - Limitar la cantidad
 
         /// <summary>
-        /// Constructor de la
+        /// Constructor del bot.
         /// </summary>
         /// <param name="apiKey"></param>
         public Bot(string apiKey) {
 
             if (Estado) {
-                Log.Info("Se ha intentado crear dos veces el bot aaaaaaaa");
+                Log.Warn("Se ha intentado crear dos veces el bot ");
                 return;
             }
 
@@ -80,7 +84,8 @@ namespace GymCastillo.Model.Bot {
             Log.Info("Se ha detenido el bot.");
         }
 
-        private async Task HandleUpdateTask(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) {
+        private async Task HandleUpdateTask(ITelegramBotClient botClient, Update update,
+            CancellationToken cancellationToken) {
             if (update.Type != UpdateType.Message) return;
             if (update.Message!.Type != MessageType.Text) return;
 
@@ -88,19 +93,16 @@ namespace GymCastillo.Model.Bot {
             var messageText = update.Message.Text;
 
             Console.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
+            Trace.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
 
             // Si esta registrado, averiguamos que nos mandaron.
 
             await MatchMsg(messageText, botClient, chatId, cancellationToken);
 
-            // // Echo received message text
-            // var sentMessage = await botClient.SendTextMessageAsync(
-            //     chatId: chatId,
-            //     text: "You said:\n" + messageText,
-            //     cancellationToken: cancellationToken);
         }
 
-        private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken) {
+        private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception,
+            CancellationToken cancellationToken) {
             var errorMessage = exception switch {
                 ApiRequestException apiRequestException
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode.ToString()}]\n{apiRequestException.Message}",
@@ -111,17 +113,39 @@ namespace GymCastillo.Model.Bot {
             return Task.CompletedTask;
         }
 
-        private async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId, CancellationToken cancellationToken) {
+        private async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
+            CancellationToken cancellationToken) {
             var command = msg.Split(" ");
 
             var key = command[0];
 
+            Trace.WriteLine($"Recibida key {key}");
+
             switch (key) {
-                case "card":
+                case "/card":
                     // Verificamos que el usuario este registrado en la db
+                    if (command.Length != 1) {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "Comando invalido, para obtener tu tarjeta digital, solo tienes que escribir: card" ,
+                            cancellationToken: cancellationToken);
+                        return;
+                    }
+
+                    if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
+                        var resCard = await BotCommands.Card(command, chatId, botClient, cancellationToken);
+                    }
+                    else {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot" ,
+                            cancellationToken: cancellationToken);
+                    }
                     break;
-                case "auth":
+
+                case "/auth":
                     // auth idCliente pass
+                    // Se tiene que actualizar la lista de clientes desde la GUI después de que se actualize esto.
                     var resAuth = await BotCommands.Auth(command, chatId, botClient, cancellationToken);
 
                     if (!resAuth) {
@@ -139,12 +163,34 @@ namespace GymCastillo.Model.Bot {
                             cancellationToken: cancellationToken);
                     }
                     break;
-                case "estado":
+
+                case "/estado":
                     // Verificamos que el usuario este registrado en la db
-                    await botClient.SendTextMessageAsync(
-                        chatId: chatId,
-                        text: "Estado Msg" , cancellationToken: cancellationToken);
+                    if (command.Length != 1) {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "Comando invalido, para obtener tu estado, solo tienes que escribir: estado" ,
+                            cancellationToken: cancellationToken);
+                        return;
+                    }
+
+                    if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
+                        var resEstado = await BotCommands.Status(command, chatId, botClient, cancellationToken);
+                    }
+                    else {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot" ,
+                            cancellationToken: cancellationToken);
+                    }
                     break;
+
+                case "/debug":
+                        await botClient.SendTextMessageAsync(chatId,
+                            $"ChatId: {chatId.ToString()}",
+                            cancellationToken: cancellationToken);
+                    break;
+
                 default:
                     await botClient.SendTextMessageAsync(
                         chatId: chatId,

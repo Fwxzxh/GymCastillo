@@ -255,7 +255,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// Método que se encarga de dar de alta una nueva asistencia a la instancia actual.
         /// </summary>
         /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
-        public async Task<int> NuevaAsistencia(decimal sueldoDescontar) {
+        public async Task<int> NuevaAsistencia() {
             Log.Debug("Se ha iniciado el proceso de dar de alta una nueva asistencia en instructor.");
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -273,7 +273,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@FechaUltimoAcceso",
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@SueldoADescontar",
-                    (SueldoADescontar + sueldoDescontar).ToString(CultureInfo.InvariantCulture));
+                    SueldoADescontar.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@DiasTrabajados",
                     (DiasTrabajados + 1).ToString(CultureInfo.InvariantCulture));
 
