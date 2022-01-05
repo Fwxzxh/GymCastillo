@@ -65,7 +65,7 @@
                          FontSize="20"
                          Margin="20"
                          Visibility="{Binding Asistencia.Entrada, Converter={StaticResource InverseBoolToVisConverter}}"
-                         Text="{Binding Instructor.SueldoADescontar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+                         Text="{Binding Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" 
                         VerticalAlignment="Center">

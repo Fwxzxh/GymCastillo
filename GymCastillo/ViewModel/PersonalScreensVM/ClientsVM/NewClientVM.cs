@@ -121,6 +121,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             Log.Debug("Nuevo usuario creado");
             await AdminUsuariosGeneral.Alta(NewCliente);
             NewCliente = new Cliente();
+            PhotoPath = null;
             //window.Close();
         }
 

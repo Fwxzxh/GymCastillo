@@ -41,6 +41,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             {
                 instructor = value;
                 OnPropertyChanged(nameof(Instructor));
+                if (instructor != null) {
+                    MontoFinal = instructor.Sueldo - instructor.SueldoADescontar;
+                }
             }
         }
 
@@ -77,8 +80,16 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 ClearData();
             }
         }
+        private decimal montoFinal;
 
-
+        public decimal MontoFinal {
+            get { return montoFinal; }
+            set
+            {
+                montoFinal = value;
+                OnPropertyChanged(nameof(MontoFinal));
+            }
+        }
 
         public EgresosVM() {
             PagoUsuario = new RelayCommand(UserPayment);
@@ -111,6 +122,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void InstructorPayment() {
             egresos.Tipo = 2;
             egresos.IdInstructor = instructor.Id;
+            egresos.Monto = MontoFinal;
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -140,6 +152,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Personal = new();
             Egresos = null;
             Egresos = new();
+            MontoFinal = 0;
         }
 
         private void OnPropertyChanged(string propertyName) {

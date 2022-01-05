@@ -271,7 +271,8 @@
                          Grid.Row="1"
                          FontSize="20"
                          Margin="10"
-                         Text="{Binding Egresos.Monto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         IsReadOnly="True"
+                         Text="{Binding MontoFinal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Grid.Row="3"
