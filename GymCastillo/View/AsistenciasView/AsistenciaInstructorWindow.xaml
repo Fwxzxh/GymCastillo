@@ -58,6 +58,9 @@
                 <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="{Binding Instructor.NombreTipoInstructor, Mode=TwoWay, StringFormat=Tipo de instructor: {0}}"
                            FontSize="20"/>
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Instructor.SueldoADescontar, Mode=TwoWay, StringFormat=Sueldo a descontar: {0:C}}"
+                           FontSize="20"/>
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale=".5"

@@ -65,18 +65,18 @@
             </StackPanel>
             <DataGrid Grid.Row="1"
                       CanUserAddRows="True"
-                  CanUserReorderColumns="False"
-                  CanUserResizeRows="False"
-                  CanUserResizeColumns="False"
-                  SelectionMode="Single"
-                  IsReadOnly="True"
-                  AutoGenerateColumns="False"
-                  FontSize="20"
-                  HeadersVisibility="All"
-                  HorizontalAlignment="Center"
-                        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext}"
-                  SelectedItem="{Binding Horario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding ListaHorarios, UpdateSourceTrigger=PropertyChanged}">
+                      CanUserReorderColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserResizeColumns="False"
+                      SelectionMode="Single"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      FontSize="20"
+                      HeadersVisibility="All"
+                      HorizontalAlignment="Center"
+                      DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext}"
+                      SelectedItem="{Binding Horario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding ListaHorarios, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.Resources>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
@@ -99,7 +99,7 @@
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Cupo"
-                                    Binding="{Binding Cupo}"
+                                    Binding="{Binding CupoActual}"
                                     Width=".7*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
