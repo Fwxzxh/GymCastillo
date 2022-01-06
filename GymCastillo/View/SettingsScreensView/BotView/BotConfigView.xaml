@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="GymCastillo.View.SettingsScreensView.BotView.BotConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+             Background="{DynamicResource MaterialDesignDarkBackground}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="20"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <vm:BotSettingsVM x:Key="vm"/>
+    </UserControl.Resources>
+    <Grid Margin="20" DataContext="{StaticResource vm}">
+        <StackPanel>
+            <Label Content="Estado del bot"
+                   Margin="0 10"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Inciar Bot"
+                        Command="{Binding ManualCommand}"
+                        ToolTip="Inicia el bot"
+                        FontSize="18"
+                        Margin="10"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Apagar Bot"
+                        Command="{Binding ManualCommand}"
+                        ToolTip="Apaga el bot"
+                        FontSize="18"
+                        Margin="10"/>
+            </StackPanel>
+            <Label Content="Contacto con clientes"
+                   Margin="0 10"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox materialDesign:HintAssist.Hint="Nombre Cliente"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          HorizontalAlignment="Left"
+                          ItemsSource="{Binding Clientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Nombre"
+                          Margin="10 0"/>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Mensaje a enviar"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         TextWrapping="Wrap"
+                         MaxLength="200"
+                         MaxHeight="60"
+                         Width="700"/>
+            </StackPanel>
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                    Content="Mandar Mensaje"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ManualCommand}"
+                    ToolTip="Envia los mensajes"
+                    FontSize="18"
+                    Margin="10"/>
+            <Label Content="Registro de usuarios"
+                   Margin="0 10"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                    Content="Generar Contraseña"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ManualCommand}"
+                    ToolTip="Envia los mensajes"
+                    FontSize="18"
+                    Margin="10 0"/>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.Hint="Contraseña"
+                         IsReadOnly="True"
+                         HorizontalAlignment="Left"
+                         Margin="10 0"/>
+            </StackPanel>
+            <Label Content="Log"
+                   Margin="0 10"/>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     IsReadOnly="True"
+                     Height="200"
+                     Margin="10 0"/>
+        </StackPanel>
+        
+
+    </Grid>
+</UserControl>

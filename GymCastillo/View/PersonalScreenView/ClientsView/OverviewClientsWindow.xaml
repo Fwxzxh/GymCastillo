@@ -195,35 +195,42 @@
 
             <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="65 0">
-
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Monto Último Pago"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         Margin="20 0"
-                         FontSize="20"
-                         Text="{Binding SelectedClient.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+                             materialDesign:HintAssist.Hint="Deuda Cliente"
+                             materialDesign:HintAssist.FloatingScale="0.6"
+                             Width="250"
+                             IsReadOnly="True"
+                             Margin="20 0"
+                             FontSize="20"
+                             Text="{Binding SelectedClient.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Monto Último Pago"
+                             materialDesign:HintAssist.FloatingScale="0.6"
+                             IsReadOnly="True"
+                             Margin="20 0"
+                             FontSize="20"
+                             Text="{Binding SelectedClient.MontoUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
                     <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                            materialDesign:HintAssist.Hint="Último Pago"
-                            materialDesign:HintAssist.FloatingScale="0.6"
-                            FontSize="20"
-                            Margin="20 0"
-                            IsEnabled="False"
-                            SelectedDate="{Binding SelectedClient.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                materialDesign:HintAssist.Hint="Último Pago"
+                                materialDesign:HintAssist.FloatingScale="0.6"
+                                FontSize="20"
+                                Margin="20 0"
+                                IsEnabled="False"
+                                SelectedDate="{Binding SelectedClient.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <CheckBox Content="Niño"
-                          VerticalContentAlignment="Center"
-                          VerticalAlignment="Center"
-                          FontSize="20"
-                          Width="auto"
+                              VerticalContentAlignment="Center"
+                              VerticalAlignment="Center"
+                              FontSize="20"
+                              Width="auto"
                               IsChecked="{Binding SelectedClient.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Margin="10 0 15 0"/>
+                              Margin="10 0 15 0"/>
                     <CheckBox Content="Activo"
-                          VerticalContentAlignment="Center"
-                          VerticalAlignment="Center"
-                          FontSize="20"
-                          Width="auto"
+                              VerticalContentAlignment="Center"
+                              VerticalAlignment="Center"
+                              FontSize="20"
+                              Width="auto"
                               IsChecked="{Binding SelectedClient.Activo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Margin="0 0 0 0"/>
+                              Margin="0 0 0 0"/>
                 </StackPanel>
                 <!--<TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Total Pagar"
