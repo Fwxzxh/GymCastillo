@@ -7,11 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Bot custom mesage sending done.">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Bot horario command done">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,14 +169,7 @@
       <workItem from="1641276475549" duration="4972000" />
       <workItem from="1641321836050" duration="16239000" />
       <workItem from="1641364085155" duration="721000" />
-      <workItem from="1641413440767" duration="14114000" />
-    </task>
-    <task id="LOCAL-00012" summary="Added back for Personal Working">
-      <created>1639640920582</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1639640920582</updated>
+      <workItem from="1641413440767" duration="17893000" />
     </task>
     <task id="LOCAL-00013" summary="Updated Schema &amp; Queries for Personal.">
       <created>1639713646332</created>
@@ -516,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641435616454</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Bot horario command done">
+      <created>1641444125237</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1641444125237</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="PagosHelper.cs to static" />
     <MESSAGE value="Asistencias Bug Fixed" />
     <MESSAGE value="Minor Fixes &amp; added Ventas &amp; Rentas Helper" />
     <MESSAGE value="Rentas Enhancements" />
@@ -575,7 +572,8 @@
     <MESSAGE value="Fixed Clases disponibles date, Don't copy assets in publish &amp; 1 more todo" />
     <MESSAGE value="bot card sending update" />
     <MESSAGE value="Bot custom mesage sending done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bot custom mesage sending done." />
+    <MESSAGE value="Bot horario command done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bot horario command done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

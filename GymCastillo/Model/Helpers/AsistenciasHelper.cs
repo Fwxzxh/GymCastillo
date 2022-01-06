@@ -157,6 +157,38 @@ namespace GymCastillo.Model.Helpers {
                 return;
             }
 
+            // validamos si los cupos actuales
+            var horariosAEntrar =
+                InitInfo.ObCoHorarios.Where(x => asistencia.ClasesAEntrar.Contains(x.IdClase));
+
+            foreach (var horario in horariosAEntrar) {
+                // verificamos su cupo max
+                var clase = InitInfo.ObCoClases.First(x => x.IdClase == horario.IdClase);
+
+                if (horario.CupoActual + 1 < clase.CupoMaximo) continue;
+                var res = ShowPrettyMessages.QuestionYesNo(
+                    $"El cupo máximo para la clase de {clase.NombreClase} es {clase.CupoMaximo.ToString()} " +
+                    $"y la clase de {horario.HoraInicio:h:mm tt} a {horario.HoraFin:h:mm tt} pasará a tener un cupo actual de {horario.CupoActual + 1} " +
+                    $"¿Desea registrar la asistencia?",
+                    "Sobrecarga de cupo");
+                if (!res) {
+                    return;
+                }
+            }
+
+            // validamos si el paquete solo tiene clases.
+            var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == asistencia.DatosCliente.IdPaquete);
+            if (!paquete.Gym) {
+                // NO tiene gym
+                if (asistencia.ClasesAEntrar.Count == 0) {
+                    ShowPrettyMessages.WarningOk(
+                        $"El paquete {paquete.NombrePaquete} que tiene el cliente no incluye gym asi que debe de " +
+                        $"entrar a una clase si no no tiene permitido el acceso.",
+                        "Paquete de solo clases");
+                    return;
+                }
+            }
+
             // Lanzamos la alta de la asistencia.
             var altaTask = AdminClienteInstructor.NuevaAsistencia(asistencia);
 
