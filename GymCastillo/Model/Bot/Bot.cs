@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,8 +29,8 @@ namespace GymCastillo.Model.Bot {
         /// <summary>
         /// La contraseña para autenticar al usuario
         /// </summary>
-        // public static string Pass { get; set; }
-        public static string Pass = "1234";
+        public static string Pass { get; set; }
+        // public static string Pass = "1234";
 
         /// <summary>
         /// instancia del bot
@@ -49,7 +50,6 @@ namespace GymCastillo.Model.Bot {
         // -> Registrarte y autenticarte: auth {idCliente} {passRandom}
         // -> Pedir un estado de tu usuario: estado
         // - Limitar la cantidad de trafico que acepta el bot
-        //
 
         /// <summary>
         /// Constructor del bot.
@@ -274,6 +274,18 @@ namespace GymCastillo.Model.Bot {
                     "Error al mandar el mensaje.");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Método que genera un nuevo password para el bot de telegram.
+        /// </summary>
+        /// <returns>Un <c>string</c> con el nuevo password.</returns>
+        public static string GenPassword() {
+            var path = Path.GetRandomFileName();
+            path = path.Replace(".", ""); // Remove period.
+            var pass = path.Substring(0, 5);
+            Pass = pass;
+            return pass;
         }
     }
 }

@@ -159,7 +159,7 @@ namespace GymCastillo.Model.Helpers {
 
             // validamos si los cupos actuales
             var horariosAEntrar =
-                InitInfo.ObCoHorarios.Where(x => asistencia.ClasesAEntrar.Contains(x.IdClase));
+                InitInfo.ObCoHorarios.Where(x => asistencia.ClasesAEntrar.Contains(x.IdHorario));
 
             foreach (var horario in horariosAEntrar) {
                 // verificamos su cupo max
