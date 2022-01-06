@@ -49,6 +49,7 @@ namespace GymCastillo.Model.Bot {
         // -> Registrarte y autenticarte: auth {idCliente} {passRandom}
         // -> Pedir un estado de tu usuario: estado
         // - Limitar la cantidad de trafico que acepta el bot
+        //
 
         /// <summary>
         /// Constructor del bot.
@@ -171,7 +172,7 @@ namespace GymCastillo.Model.Bot {
                             "No he podido entender tu mensaje, recuerda que para registrarte tienes que mandar:",
                             cancellationToken: cancellationToken);
                         await botClient.SendTextMessageAsync(chatId,
-                            "auth id código",
+                            "/auth id código",
                             cancellationToken: cancellationToken);
                         await botClient.SendTextMessageAsync(chatId,
                             "Donde el id es tu identificador de registro, " +
@@ -196,7 +197,7 @@ namespace GymCastillo.Model.Bot {
                     if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
                         var resEstado = await BotCommands.Status(command, chatId, botClient, cancellationToken);
 
-                        if (resEstado) {
+                        if (!resEstado) {
                             await botClient.SendTextMessageAsync(chatId,
                                 "No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
                                 "solo tienes que escribir /estado ",
@@ -216,6 +217,16 @@ namespace GymCastillo.Model.Bot {
                         await botClient.SendTextMessageAsync(chatId,
                             $"ChatId: {chatId.ToString()}",
                             cancellationToken: cancellationToken);
+                    break;
+                case "/horario":
+                    var resHorario = await BotCommands.Clases(chatId, botClient, cancellationToken);
+
+                    if (!resHorario) {
+                        await botClient.SendTextMessageAsync(chatId,
+                            "No he podido entender tu mensaje \nrecuerda que para obtener tu horario " +
+                            "solo tienes que escribir /horario ",
+                            cancellationToken: cancellationToken);
+                    }
                     break;
 
                 default:

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
@@ -98,8 +99,14 @@ namespace GymCastillo.Model.Bot {
                 // obtenemos el cliente
                 var cliente = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
 
+                var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == cliente.IdPaquete);
+
                 await botClient.SendTextMessageAsync(chatId,
                     $"Id:{cliente.Id.ToString()} Nombre: {cliente.Nombre} {cliente.ApellidoPaterno}",
+                    cancellationToken: cancellationToken);
+
+                await botClient.SendTextMessageAsync(chatId,
+                    $"Paquete: {paquete.NombrePaquete} Clases: {paquete.NombreClase}",
                     cancellationToken: cancellationToken);
 
                 await botClient.SendTextMessageAsync(chatId,
@@ -167,6 +174,78 @@ namespace GymCastillo.Model.Bot {
                 Trace.WriteLine($"BOT: Ha ocurrido un error en el comando card, Error: {e.Message};");
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de obtener las clases y horarios disponibles del usuario que las necesita.
+        /// </summary>
+        /// <param name="chatId">El id del chat del usuario.</param>
+        /// <param name="botClient"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns><c>true</c> si el proceso se completo de manera correcta.</returns>
+        public static async Task<bool> Clases(long chatId, ITelegramBotClient botClient,
+            CancellationToken cancellationToken) {
+
+            try {
+                if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
+                    var cliente = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
+
+
+                    // no tiene paquete asignado
+                    if (cliente.IdPaquete == 0) {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "No tienes registrado ningún paquete asi que no tienes clases disponibles.",
+                            cancellationToken: cancellationToken);
+                        return true;
+                    }
+
+                    // Checamos si tiene clases
+                    // obtenemos las clases del paquete.
+                    var clasesDelPaquete = InitInfo.ListPaquetesClases
+                        .Where(x => x.IdPaquete == cliente.IdPaquete)
+                        .Select(x => x.IdClase).AsParallel().ToList();
+
+                    if (clasesDelPaquete.Count == 0) {
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: "Tu paquete no tiene clases registradas.",
+                            cancellationToken: cancellationToken);
+                        return true;
+                    }
+
+                    var clases = InitInfo.ObCoClases.Where(x => clasesDelPaquete.Contains(x.IdClase));
+
+                    var mensaje = "";
+                    foreach (var clase in clases) {
+                            mensaje += $"{clase.NombreClase}:\n";
+                        var horarios = InitInfo.ObCoHorarios.
+                            Where(x => x.IdClase == clase.IdClase).OrderBy(x => x.Dia);
+                        foreach (var horario in horarios) {
+                            mensaje +=
+                                $"{((Dias) horario.Dia).ToString()} {horario.HoraInicio:h:mm tt} - {horario.HoraFin:h:mm tt} \n";
+                        }
+                    }
+                    await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: mensaje,
+                        cancellationToken: cancellationToken);
+                    return true;
+                }
+                else {
+                    await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "Tu chat no se encuentra registrado, " +
+                              "debes registrarte primero con el comando auth para poder usar el bot" ,
+                        cancellationToken: cancellationToken);
+                    return true;
+                }
+            }
+            catch (Exception e) {
+                Trace.WriteLine(e);
                 return false;
             }
         }

@@ -7,12 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="bot card sending update">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Bot custom mesage sending done.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +47,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Bot/Bot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
@@ -171,14 +171,7 @@
       <workItem from="1641276475549" duration="4972000" />
       <workItem from="1641321836050" duration="16239000" />
       <workItem from="1641364085155" duration="721000" />
-      <workItem from="1641413440767" duration="8059000" />
-    </task>
-    <task id="LOCAL-00011" summary="MinorFixes &amp; Added RentasValidation.cs">
-      <created>1639637884066</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1639637884066</updated>
+      <workItem from="1641413440767" duration="14114000" />
     </task>
     <task id="LOCAL-00012" summary="Added back for Personal Working">
       <created>1639640920582</created>
@@ -516,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641413533481</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Bot custom mesage sending done.">
+      <created>1641435616453</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1641435616454</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="AsistenciasHelper to static" />
     <MESSAGE value="PagosHelper.cs to static" />
     <MESSAGE value="Asistencias Bug Fixed" />
     <MESSAGE value="Minor Fixes &amp; added Ventas &amp; Rentas Helper" />
@@ -575,7 +574,8 @@
     <MESSAGE value="Minor fixes" />
     <MESSAGE value="Fixed Clases disponibles date, Don't copy assets in publish &amp; 1 more todo" />
     <MESSAGE value="bot card sending update" />
-    <option name="LAST_COMMIT_MESSAGE" value="bot card sending update" />
+    <MESSAGE value="Bot custom mesage sending done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bot custom mesage sending done." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
