@@ -8,12 +8,18 @@ namespace GymCastillo.Model.Init {
     /// Helper que expone toda la información necesaria para el inicio del programa.
     /// </summary>
     public static class GetInitData {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?
+            .DeclaringType);
 
         /// <summary>
         /// Cadena de conexión a la base de datos.
         /// </summary>
         public static string ConnString { get; set; }
+
+        /// <summary>
+        /// api key para conectarse al bot de telegram
+        /// </summary>
+        public static string TelegramApiKey { get; set; }
 
         // la ruta al archivo ini.
         private const string IniPath = @"C:\GymCastillo\config.ini";
@@ -45,6 +51,58 @@ namespace GymCastillo.Model.Init {
                     $"configuración. Error: {e.Message}",
                     "Error desconocido");
                 throw; // --> Nos llevamos el error al siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de obtener el apiKey del ini
+        /// </summary>
+        /// <returns>La api key</returns>
+        public static string GetApiKey() {
+            Log.Info("Se ha empezado el proceso de obtener el api key de telegram.");
+
+            try {
+                var ini = new IniFile(IniPath);
+                var key = ini.Read("TlgApi", "Config");
+                TelegramApiKey = key;
+                Log.Info("Se ha leído los datos de la api key exitosamente del archivo de configuración.");
+
+                return TelegramApiKey;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al leer la información de conexión del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de conexión del archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // --> Nos llevamos el error al siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de escribir en el campo de la api key.
+        /// </summary>
+        /// <param name="key">String con la api key.</param>
+        public static void WriteApikey(string key) {
+            Log.Info("Se ha iniciado el proceso de escribir la api key de telegram.");
+
+            try {
+                var ini = new IniFile(IniPath);
+
+                ini.Write("TlgApi", key, "Config");
+                Log.Info("Se ha escrito la api key de telegram.");
+                ShowPrettyMessages.NiceMessageOk(
+                    $"Se ha guardado la api key de manera exitosa",
+                    "Api key guardada");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al escribir la información de api key del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al escribir la información de la api key de telegram en el archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
             }
         }
 
@@ -93,9 +151,7 @@ namespace GymCastillo.Model.Init {
 
                 ini.Write("DbUser", "root", "Config");
                 ini.Write("DbPass", "root", "Config");
-                ini.Write("PrecioLocker", "50", "Settings");
-                ini.Write("DescuentoRetardo", "50", "Settings");
-                // File.SetAttributes(IniPath, FileAttributes.Hidden);
+                ini.Write("TlgApi", "", "Config");
 
             }
             catch (Exception e) {
@@ -131,20 +187,13 @@ namespace GymCastillo.Model.Init {
                     "Error en archivo de configuración.");
             }
 
-            if (!ini.KeyExists("PrecioLocker", "Settings")) {
-                ini.Write("PrecioLocker", "50", "Settings");
+            if (!ini.KeyExists("TlgApi", "Config")) {
+                ini.Write("TlgApi", "", "Config");
                 ShowPrettyMessages.WarningOk(
-                    "Se han encontrado inconsistencias en el Campo PrecioLocker del archivo de configuración, " +
+                    "Se han encontrado inconsistencias en el Campo TlgApi del archivo de configuración, " +
                     "Se ha restaurado con los valores por defecto.",
                     "Error en archivo de configuración.");
             }
-
-            if (ini.KeyExists("DescuentoRetardo", "Settings")) return;
-            ini.Write("DescuentoRetardo", "50", "Settings");
-            ShowPrettyMessages.WarningOk(
-                "Se han encontrado inconsistencias en el Campo PrecioLocker del archivo de configuración, " +
-                "Se ha restaurado con los valores por defecto.",
-                "Error en archivo de configuración.");
         }
     }
 }

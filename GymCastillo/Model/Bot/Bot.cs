@@ -57,30 +57,48 @@ namespace GymCastillo.Model.Bot {
         /// <param name="apiKey"></param>
         public Bot(string apiKey) {
 
+            if (apiKey == "") {
+                ShowPrettyMessages.ErrorOk(
+                    "No se hay apiKey guardada, debes guardar una y después iniciar el bot manualmente",
+                    "No se encontró una api key");
+                return;
+            }
+
             if (Estado) {
                 Log.Warn("Se ha intentado crear dos veces el bot ");
                 return;
             }
 
-            BotClient = new TelegramBotClient(apiKey);
+            try {
+                Log.Info("Iniciando el bot.");
 
-            CancellationToken = new CancellationTokenSource();
+                BotClient = new TelegramBotClient(apiKey);
 
-            var receiverOptions = new ReceiverOptions() {
-                ThrowPendingUpdates = true,
-                AllowedUpdates = new[] {UpdateType.Message},
-            };
+                CancellationToken = new CancellationTokenSource();
 
-            BotClient.StartReceiving(
-                HandleUpdateTask,
-                HandleErrorAsync,
-                receiverOptions,
-                CancellationToken.Token
+                var receiverOptions = new ReceiverOptions() {
+                    ThrowPendingUpdates = true,
+                    AllowedUpdates = new[] {UpdateType.Message},
+                };
+
+                BotClient.StartReceiving(
+                    HandleUpdateTask,
+                    HandleErrorAsync,
+                    receiverOptions,
+                    CancellationToken.Token
                 );
 
-            Log.Info("Se ha iniciado el bot.");
+                Log.Info("Se ha iniciado el bot.");
 
-            Estado = true;
+                Estado = true;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido al iniciar el bot.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al iniciar el bot de telegram, contacte a los administradores. Error: {e.Message}",
+                    "Error desconocido");
+            }
         }
 
         public void StopBot() {
@@ -99,10 +117,11 @@ namespace GymCastillo.Model.Bot {
 
             Console.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
             Trace.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
+            // Log.Info($"Received a '{messageText}' message in chat {chatId.ToString()}.");
 
             // Si esta registrado, averiguamos que nos mandaron.
 
-            await MatchMsg(messageText, botClient, chatId, cancellationToken);
+            MatchMsg(messageText, botClient, chatId, cancellationToken);
         }
 
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception,
@@ -124,7 +143,7 @@ namespace GymCastillo.Model.Bot {
         /// <param name="botClient"></param>
         /// <param name="chatId"></param>
         /// <param name="cancellationToken"></param>
-        private static async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
+        private static async void MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
             CancellationToken cancellationToken) {
             var command = msg.Split(" ");
 
