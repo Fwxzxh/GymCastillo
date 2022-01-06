@@ -58,8 +58,10 @@ namespace GymCastillo.ViewModel {
                     var init= new InitInfo(); // Obtenemos la información inicial
                     if (init.DoneTasks) {
                         await Notificaciones.CheckResetFields(); // Verificamos si debemos resetear los cupos.
+
                         // iniciamos el bot.
                         var bot = new Bot("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
+                        // await Bot.SendMessage("aaaa \n aaaaa \n faaaaa", 5);
                         // bot.StopBot();
 
                         var x = Bot.Estado;

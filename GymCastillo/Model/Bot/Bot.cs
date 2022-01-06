@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
 using Telegram.Bot;
@@ -33,12 +34,12 @@ namespace GymCastillo.Model.Bot {
         /// <summary>
         /// instancia del bot
         /// </summary>
-        private TelegramBotClient BotClient { set; get; }
+        private static TelegramBotClient BotClient { set; get; }
 
         /// <summary>
         /// El token para cancelar el bot.
         /// </summary>
-        private CancellationTokenSource CancellationToken { set; get; }
+        private static CancellationTokenSource CancellationToken { set; get; }
 
         // Funcionamiento bot
         // <- Mandar ticket de venta si esta registrado.
@@ -47,7 +48,7 @@ namespace GymCastillo.Model.Bot {
         // <-> Mandar la credencial Digital o pedirla: card
         // -> Registrarte y autenticarte: auth {idCliente} {passRandom}
         // -> Pedir un estado de tu usuario: estado
-        // - Limitar la cantidad
+        // - Limitar la cantidad de trafico que acepta el bot
 
         /// <summary>
         /// Constructor del bot.
@@ -64,7 +65,10 @@ namespace GymCastillo.Model.Bot {
 
             CancellationToken = new CancellationTokenSource();
 
-            var receiverOptions = new ReceiverOptions();
+            var receiverOptions = new ReceiverOptions() {
+                ThrowPendingUpdates = true,
+                AllowedUpdates = new[] {UpdateType.Message},
+            };
 
             BotClient.StartReceiving(
                 HandleUpdateTask,
@@ -98,7 +102,6 @@ namespace GymCastillo.Model.Bot {
             // Si esta registrado, averiguamos que nos mandaron.
 
             await MatchMsg(messageText, botClient, chatId, cancellationToken);
-
         }
 
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception,
@@ -113,7 +116,14 @@ namespace GymCastillo.Model.Bot {
             return Task.CompletedTask;
         }
 
-        private async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
+        /// <summary>
+        /// Método que se encarga de obtener el mensaje que le llego al bot y manejarlo.
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="botClient"></param>
+        /// <param name="chatId"></param>
+        /// <param name="cancellationToken"></param>
+        private static async Task MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
             CancellationToken cancellationToken) {
             var command = msg.Split(" ");
 
@@ -123,7 +133,7 @@ namespace GymCastillo.Model.Bot {
 
             switch (key) {
                 case "/card":
-                    // Verificamos que el usuario este registrado en la db
+                    // Verificamos que el comando este bien
                     if (command.Length != 1) {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
@@ -132,13 +142,21 @@ namespace GymCastillo.Model.Bot {
                         return;
                     }
 
+                    // Verificamos que el usuario este registrado en la db
                     if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
                         var resCard = await BotCommands.Card(command, chatId, botClient, cancellationToken);
+
+                        if (!resCard) {
+                            await botClient.SendTextMessageAsync(chatId,
+                                "No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
+                                "solo tienes que escribir /card ",
+                                cancellationToken: cancellationToken);
+                        }
                     }
                     else {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot" ,
+                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot",
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -156,7 +174,8 @@ namespace GymCastillo.Model.Bot {
                             "auth id código",
                             cancellationToken: cancellationToken);
                         await botClient.SendTextMessageAsync(chatId,
-                            "Donde el id es tu identificador de registro, el cual puedes encontrar en tu credencial o preguntándole al operador.",
+                            "Donde el id es tu identificador de registro, " +
+                            "el cual puedes encontrar en tu credencial o preguntándole al operador.",
                             cancellationToken: cancellationToken);
                         await botClient.SendTextMessageAsync(chatId,
                             "y el código es un código corto que te va a proporcionar el operador.",
@@ -176,11 +195,19 @@ namespace GymCastillo.Model.Bot {
 
                     if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
                         var resEstado = await BotCommands.Status(command, chatId, botClient, cancellationToken);
+
+                        if (resEstado) {
+                            await botClient.SendTextMessageAsync(chatId,
+                                "No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
+                                "solo tienes que escribir /estado ",
+                                cancellationToken: cancellationToken);
+                        }
                     }
                     else {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot" ,
+                            text: "Tu chat no se encuentra registrado, " +
+                                  "debes registrarte primero con el comando auth para poder usar el bot" ,
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -194,8 +221,47 @@ namespace GymCastillo.Model.Bot {
                 default:
                     await botClient.SendTextMessageAsync(
                         chatId: chatId,
-                        text: "No se encontró esta opción." , cancellationToken: cancellationToken);
+                        text: "No se encontró esta opción, recuerda que los comandos disponibles son:\n" +
+                              "/card \n/auth id código \n/estado",
+                        cancellationToken: cancellationToken);
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de mandar un mensaje a un usuario particular.
+        /// </summary>
+        /// <param name="mensaje">El mensaje a enviar.</param>
+        /// <param name="id">El id del cliente al cual le debe de llegar el mensaje.</param>
+        /// <returns><c>true</c> si el mensaje se mando con éxito</returns>
+        public static async Task<bool> SendMessage(string mensaje, int id) {
+
+            var cliente = InitInfo.ObCoClientes.First(x => x.Id == id);
+
+            if (cliente.ChatId == "") {
+                ShowPrettyMessages.WarningOk(
+                    "El cliente seleccionado no esta registrado en el bot de telegram.",
+                    "Cliente no registrado.");
+                return false;
+            }
+
+            var chatId = cliente.ChatId;
+
+            try {
+                await BotClient.SendTextMessageAsync(
+                    chatId: chatId,
+                    mensaje,
+                    cancellationToken: CancellationToken.Token);
+
+                return true;
+            }
+            catch (Exception e) {
+                Log.Error("ha ocurrido un error al mandar el mensaje.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido a la hora de mandar el mensaje. Error: {e.Message}",
+                    "Error al mandar el mensaje.");
+                return false;
             }
         }
     }

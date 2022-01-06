@@ -17,7 +17,7 @@ namespace GymCastillo.Model.Helpers {
         /// <summary>
         /// Método que se encarga de dibujar sobre la plantilla de la credencial
         /// </summary>
-        public static void DrawCard(Cliente cliente) {
+        public static void DrawCard(Cliente cliente, bool silent=false) {
             Log.Warn("Ha iniciado el proceso de generar la credencial de un cliente.");
 
             try {
@@ -127,9 +127,11 @@ namespace GymCastillo.Model.Helpers {
                 plantilla.Write(saveDir);
                 Log.Debug("Se ha creado la nueva credencial con éxito.");
 
-                ShowPrettyMessages.NiceMessageOk(
-                    $"Se ha generado la nueva credencial con éxito en la ruta {saveDir}.",
-                    "Credencial Generada");
+                if (!silent) {
+                    ShowPrettyMessages.NiceMessageOk(
+                        $"Se ha generado la nueva credencial con éxito en la ruta {saveDir}.",
+                        "Credencial Generada");
+                }
             }
             catch (FileNotFoundException e) {
                 Log.Error("Ha ocurrido un error al generar la credencial de un usuario.");

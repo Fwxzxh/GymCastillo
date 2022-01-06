@@ -12,8 +12,6 @@ using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
 using Telegram.Bot;
-using Telegram.Bot.Types;
-using Telegram.Bot.Types.InputFiles;
 using File = System.IO.File;
 
 namespace GymCastillo.Model.Bot {
@@ -144,28 +142,29 @@ namespace GymCastillo.Model.Bot {
             try {
                 var client = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
 
-                var path = $"{client.ClienteDir}Card-{client.Id.ToString()}";
+                var path = $"{client.ClienteDir}Card-{client.Id.ToString()}.png";
 
                 if (File.Exists(path)) {
-                    await using var stream = File.OpenRead(path);
+                        await using var stream = File.OpenRead(path);
 
                         await botClient.SendPhotoAsync(chatId,
-
-                        $"{client.ClienteDir}Card-{client.Id.ToString()}",
-                        cancellationToken: cancellationToken);
+                            stream,
+                            cancellationToken: cancellationToken);
                     return true;
                 }
                 else {
-                    DigitalCard.DrawCard(client);
+                    DigitalCard.DrawCard(client, true);
+
+                    await using var stream = File.OpenRead(path);
 
                     await botClient.SendPhotoAsync(chatId,
-                        $"{client.ClienteDir}Card-{client.Id.ToString()}",
+                        stream,
                         cancellationToken: cancellationToken);
                     return true;
                 }
             }
             catch (Exception e) {
-                Trace.WriteLine($"BOT: Ha ocurrido un error en el comando status, Error: {e.Message};");
+                Trace.WriteLine($"BOT: Ha ocurrido un error en el comando card, Error: {e.Message};");
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
                 return false;
