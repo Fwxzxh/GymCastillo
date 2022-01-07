@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -37,6 +38,17 @@ namespace GymCastillo.Model.Notificaciones {
                 InitInfo.ObCoClientes.Where(x => x.FechaVencimientoPago < DateTime.Today + TimeSpan.FromDays(dias));
 
             return usuarios;
+        }
+
+        /// <summary>
+        /// Método que obtiene los horarios para el dia de hoy.
+        /// </summary>
+        /// <returns>Los horarios que corresponden al dia de hoy</returns>
+        public static IEnumerable<Horario> GetHorariosToday() {
+            var hoy =(int) DateTime.Now.DayOfWeek;
+            var horarios = InitInfo.ObCoHorarios.Where(x => x.Dia == hoy);
+
+            return horarios;
         }
 
         /// <summary>

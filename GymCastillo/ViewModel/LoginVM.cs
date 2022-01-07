@@ -60,10 +60,8 @@ namespace GymCastillo.ViewModel {
                         await Notificaciones.CheckResetFields(); // Verificamos si debemos resetear los cupos.
 
                         // iniciamos el bot.
-                        GetInitData.WriteApikey("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
-                        var key = GetInitData.GetApiKey();
-                        // var bot = new Bot("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
-                        var bot = new Bot(key);
+                        // var key = GetInitData.GetApiKey();
+                        // var bot = new Bot(key);
                         // await Bot.SendMessage("aaaa \n aaaaa \n faaaaa", 5);
                         // bot.StopBot();
 

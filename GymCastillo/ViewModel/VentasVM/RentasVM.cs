@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;

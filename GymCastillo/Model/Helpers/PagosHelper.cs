@@ -27,7 +27,6 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// <param name="silent"><c>true</c> para no mostrar el mensaje de operación exitosa</param>
-        /// TODO: igual y es buena idea mandar el objeto.
         public static async Task NewIngreso(Ingresos ingreso, bool silent = false) {
 
             // TODO: implementar lo de los tickets.
@@ -174,6 +173,8 @@ namespace GymCastillo.Model.Helpers {
             if (ingreso.MontoRecibido > ingreso.Monto) {
                 var resto = ingreso.MontoRecibido - ingreso.Monto;
                 cliente.DeudaCliente -= resto;
+                cliente.MontoUltimoPago = resto;
+
                 ShowPrettyMessages.InfoOk(
                     $"El cliente quedará con una deuda de: $ {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
                     "Actualización de deuda");

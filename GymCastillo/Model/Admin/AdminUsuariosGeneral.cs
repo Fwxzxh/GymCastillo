@@ -133,7 +133,6 @@ namespace GymCastillo.Model.Admin {
             Log.Debug("Se ha iniciado un proceso de pago genérico.");
 
             try {
-                // TODO: ver si podemos de alguna manera validar los datos de los pagos.
 
                 var res = await usuario.Pago();
 
