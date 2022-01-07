@@ -22,13 +22,13 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Inciar Bot"
-                        Command="{Binding ManualCommand}"
+                        Command="{Binding StartBot}"
                         ToolTip="Inicia el bot"
                         FontSize="18"
                         Margin="10"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Apagar Bot"
-                        Command="{Binding ManualCommand}"
+                        Command="{Binding StopBot}"
                         ToolTip="Apaga el bot"
                         FontSize="18"
                         Margin="10"/>
@@ -40,12 +40,14 @@
                           Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           HorizontalAlignment="Left"
                           ItemsSource="{Binding Clientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Nombre"
                           Margin="10 0"/>
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Mensaje a enviar"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          TextWrapping="Wrap"
+                         Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MaxLength="200"
                          MaxHeight="60"
                          Width="700"/>
@@ -53,7 +55,7 @@
             <Button Style="{StaticResource MaterialDesignPaperButton}"
                     Content="Mandar Mensaje"
                     HorizontalAlignment="Left"
-                    Command="{Binding ManualCommand}"
+                    Command="{Binding SendMessage}"
                     ToolTip="Envia los mensajes"
                     FontSize="18"
                     Margin="10"/>
@@ -63,13 +65,13 @@
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                     Content="Generar Contraseña"
                     HorizontalAlignment="Left"
-                    Command="{Binding ManualCommand}"
+                    Command="{Binding GenPassword}"
                     ToolTip="Envia los mensajes"
                     FontSize="18"
                     Margin="10 0"/>
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
                          materialDesign:HintAssist.Hint="Contraseña"
+                         Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          IsReadOnly="True"
                          HorizontalAlignment="Left"
                          Margin="10 0"/>

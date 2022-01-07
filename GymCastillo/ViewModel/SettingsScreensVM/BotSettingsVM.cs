@@ -1,4 +1,6 @@
-﻿using GymCastillo.Model.Database;
+﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Bot;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
 using log4net;
 using System;
@@ -14,6 +16,47 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Bot Bot;
+        public RelayCommand StartBot { get; set; }
+        public RelayCommand StopBot { get; set; }
+        public RelayCommand SendMessage { get; set; }
+        public RelayCommand GenPassword { get; set; }
+
+        private string password;
+
+        public string Password {
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+
+        private string message;
+
+        public string Message {
+            get { return message; }
+            set
+            {
+                message = value;
+                OnPropertyChanged(nameof(Message));
+            }
+        }
+
+        private Cliente cliente;
+
+        public Cliente Cliente {
+            get { return cliente; }
+            set
+            {
+                cliente = value;
+                OnPropertyChanged(nameof(Cliente));
+            }
+        }
+
+
         private ObservableCollection<Cliente> clientes;
 
         public ObservableCollection<Cliente> Clientes {
@@ -27,7 +70,28 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         public BotSettingsVM() {
             Clientes = new ObservableCollection<Cliente>();
+            StartBot = new RelayCommand(IniciarBot);
+            StopBot = new RelayCommand(DetenerBot);
+            SendMessage = new RelayCommand(MandarMensaje);
+            GenPassword = new RelayCommand(GenerarPassword);
             RefreshData();
+        }
+
+        private void GenerarPassword() {
+            Password = Bot.GenPassword();
+        }
+
+        private async void MandarMensaje() {
+            await Bot.SendMessage(message, cliente.Id);
+        }
+
+        private void DetenerBot() {
+            Bot = new("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
+            Bot.StopBot();
+        }
+
+        private void IniciarBot() {
+            Bot = new("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
         }
 
         private async void RefreshData() {
