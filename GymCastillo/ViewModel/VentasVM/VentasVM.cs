@@ -8,17 +8,24 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using System.Linq;
+using System.Drawing.Printing;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class VentasVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public RelayCommand AddVenta { get; set; }
         public RelayCommand RemoveVenta { get; set; }
         public RelayCommand MakeVenta { get; set; }
         public RelayCommand CancelVenta { get; set; }
+
+        private Font consola = new("Arial", 10);
+
+        private PrintDocument pd = new();
 
         private Venta venta = new();
 
@@ -127,7 +134,52 @@ namespace GymCastillo.ViewModel.VentasVM {
             RemoveVenta = new RelayCommand(RemoverProducto);
             MakeVenta = new RelayCommand(HacerVenta);
             CancelVenta = new RelayCommand(Cancelar);
+            pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
             Refresh();
+        }
+
+        private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {
+            Image image = Image.FromFile(@"C:\GymCastillo\Assets\CastilloF2.png");
+            var newimage = ResizeImage(image, 500, 350);
+
+            Point ulCorner = new Point(55, 0);
+
+            Graphics g = ppeArgs.Graphics;
+            var settings = ppeArgs.PageSettings;
+            float yPos = 125;
+            int count = 0;
+            //Read margins from PrintPageEventArgs      
+            float leftMargin = 0;
+            int renglon = 18;
+            var totalVenta = 0m;
+
+            g.DrawImage(newimage, ulCorner);
+            //g.DrawString("qwertyuiopasdfghjklñzxcvbnmqwertyuiopasdf", consola, Brushes.Black, leftMargin, yPos);
+            //renglon += 15;
+            g.DrawString("Producto                                            Total", consola, Brushes.Black, leftMargin, yPos + renglon);
+            renglon += 15;
+            g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
+            float topMargin = 145 + renglon;
+            foreach (var item in ListaVenta) {
+                var total = item.Costo.ToString();
+                var name = "";
+                totalVenta += item.Costo;
+
+                name = item.NombreProducto;
+
+                yPos = topMargin + (count * consola.GetHeight(g));
+                g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
+                g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+                count++;
+            }
+            var newYpos = yPos + 15;
+            g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
+            newYpos += 15;
+            g.DrawString(string.Format("Total Venta ${0,40}", totalVenta), consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
+            newYpos += 15;
+            g.DrawString("                   Gracias por su compra!", consola, Brushes.Black, leftMargin, newYpos);
         }
 
         private void Cancelar() {
@@ -142,10 +194,12 @@ namespace GymCastillo.ViewModel.VentasVM {
             Venta.VisitaGym = Gym;
 
             foreach (var item in ListaVenta) {
-                Venta.IdsProductos += $"{item.IdProducto.ToString()},";
+                Venta.IdsProductos += $"{item.IdProducto},";
             }
             // await AdminOnlyAlta.Alta(Venta);
             await VentasHelper.NuevaVenta(Venta, Recibido);
+            pd.PrintPage += new PrintPageEventHandler(PrintTicket);
+            pd.Print();
             ClearFields();
 
             if (!gym) { // Solo si no es una entrada a un gym.
@@ -156,6 +210,7 @@ namespace GymCastillo.ViewModel.VentasVM {
                     InitInfo.ObCoInventario.Add(item);
                 }
             }
+
 
             Refresh();
         }
@@ -210,6 +265,35 @@ namespace GymCastillo.ViewModel.VentasVM {
                 costo += item.Costo;
             }
             Costo += costo;
+        }
+
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        private static Bitmap ResizeImage(Image image, int width, int height) {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage)) {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes()) {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
         private void OnPropertyChanged(string propertyName) {

@@ -94,6 +94,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
         private async void RefreshGrid() {
             InitInfo.ListPaquetesClases.Clear();
             InitInfo.ObCoClases.Clear();
+            ListaClases.Clear();
             var listaActiva = await GetFromDb.GetClases();
             var listaclases = await GetFromDb.GetPaquetesClases();
             foreach (var item in listaclases) {
