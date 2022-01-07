@@ -41,8 +41,23 @@
                           HorizontalAlignment="Left"
                           ItemsSource="{Binding Clientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="Nombre"
-                          Margin="10 0"/>
+                          Margin="10 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="ID"/>
+                                        <Binding Path="Nombre"/>
+                                        <Binding Path="ApellidoPaterno"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Mensaje a enviar"
                          materialDesign:TextFieldAssist.HasClearButton="True"
@@ -62,6 +77,13 @@
             <Label Content="Registro de usuarios"
                    Margin="0 10"/>
             <StackPanel Orientation="Horizontal">
+
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Contraseña"
+                         Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         IsReadOnly="True"
+                         HorizontalAlignment="Left"
+                         Margin="10 0"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                     Content="Generar Contraseña"
                     HorizontalAlignment="Left"
@@ -69,18 +91,27 @@
                     ToolTip="Envia los mensajes"
                     FontSize="18"
                     Margin="10 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Contraseña"
-                         Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         IsReadOnly="True"
-                         HorizontalAlignment="Left"
-                         Margin="10 0"/>
+                         materialDesign:HintAssist.Hint="API Key"
+                         Margin="10"
+                         Width="250"
+                         Text="{Binding ApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Guardar Key"
+                        HorizontalAlignment="Center"
+                        Command="{Binding SaveKey}"
+                        Margin="10 0"
+                        FontSize="20"/>
+                
             </StackPanel>
             <Label Content="Log"
                    Margin="0 10"/>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      IsReadOnly="True"
-                     Height="200"
+                     Height="auto"
                      Margin="10 0"/>
         </StackPanel>
         

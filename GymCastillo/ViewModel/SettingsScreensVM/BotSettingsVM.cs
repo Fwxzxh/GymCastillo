@@ -2,6 +2,8 @@
 using GymCastillo.Model.Bot;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         public RelayCommand StopBot { get; set; }
         public RelayCommand SendMessage { get; set; }
         public RelayCommand GenPassword { get; set; }
+        public RelayCommand SaveKey { get; set; }
+
 
         private string password;
 
@@ -68,12 +72,25 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
+        private string apiKey;
+
+        public string ApiKey {
+            get { return apiKey; }
+            set
+            {
+                apiKey = value;
+                OnPropertyChanged(nameof(ApiKey));
+            }
+        }
+
         public BotSettingsVM() {
             Clientes = new ObservableCollection<Cliente>();
             StartBot = new RelayCommand(IniciarBot);
             StopBot = new RelayCommand(DetenerBot);
             SendMessage = new RelayCommand(MandarMensaje);
             GenPassword = new RelayCommand(GenerarPassword);
+            SaveKey = new RelayCommand(GuardarKey);
+
             RefreshData();
         }
 
@@ -83,6 +100,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         private async void MandarMensaje() {
             await Bot.SendMessage(message, cliente.Id);
+            Message = "";
         }
 
         private void DetenerBot() {
@@ -92,6 +110,14 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         private void IniciarBot() {
             Bot = new("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
+        }
+        private void GuardarKey() {
+            if (!string.IsNullOrWhiteSpace(ApiKey)) {
+                GetInitData.WriteApikey(ApiKey);
+            }
+            else {
+                ShowPrettyMessages.ErrorOk("La key no debe de estar vacía", "Error");
+            }
         }
 
         private async void RefreshData() {

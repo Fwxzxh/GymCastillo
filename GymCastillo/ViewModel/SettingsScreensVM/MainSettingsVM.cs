@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.Init;
 using GymCastillo.Model.Notificaciones;
 using log4net;
 using System;
@@ -14,10 +16,12 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand ManualCommand { get; set; }
-       
+        public RelayCommand SaveKey { get; set; }
+
         public MainSettingsVM() {
             ManualCommand = new(Actualizar);
         }
+
 
         private async void Actualizar() {
             await Notificaciones.ResetFieldsAndUpdate();
