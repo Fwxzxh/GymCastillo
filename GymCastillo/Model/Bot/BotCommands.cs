@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -99,7 +100,17 @@ namespace GymCastillo.Model.Bot {
                 // obtenemos el cliente
                 var cliente = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
 
-                var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == cliente.IdPaquete);
+
+                Paquete paquete;
+                if (cliente.IdPaquete == 0) {
+                    paquete = new Paquete {
+                        NombreClase = "",
+                        NombrePaquete = "Sin paquete"
+                    };
+                }
+                else {
+                    paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == cliente.IdPaquete);
+                }
 
                 var msg = "";
 

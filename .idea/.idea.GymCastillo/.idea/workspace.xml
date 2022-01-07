@@ -7,12 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Better status message">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor bot improvements">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotSettingsVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +46,8 @@
     <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Bot/BotCommands.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/ViewModel/VentasVM/RentasVM.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Bot/Bot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
@@ -56,8 +59,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/847eb618332dc7f4898f9184789686dc449210e3f714c3387772efb3c38c/PropertyPathWorker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Init/GetInitData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/ViewModel/VentasVM/RentasVM.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/ViewModel/VentasVM/RentasVM.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/ViewModel/VentasVM/RentasVM.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -176,21 +182,7 @@
       <workItem from="1641321836050" duration="16239000" />
       <workItem from="1641364085155" duration="721000" />
       <workItem from="1641413440767" duration="17984000" />
-      <workItem from="1641495506244" duration="13145000" />
-    </task>
-    <task id="LOCAL-00017" summary="Added personal Validator &amp; CardFiles to Deploy">
-      <created>1639971050336</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1639971050336</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added Venta.cs &amp; Inventario.cs &amp; minor Fix">
-      <created>1639971921438</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1639971921438</updated>
+      <workItem from="1641495506244" duration="26758000" />
     </task>
     <task id="LOCAL-00019" summary="woa!! this one was really HARD!">
       <created>1639974044084</created>
@@ -521,7 +513,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641514347794</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Minor bot improvements">
+      <created>1641518729847</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1641518729847</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Minor bot improvements">
+      <created>1641518766788</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1641518766788</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor Fixes, VentasHelper.cs Done" />
     <MESSAGE value="Minor Fixes, Reset Timers Done." />
     <MESSAGE value="Minor Fixes to validations, added Bot.cs," />
     <MESSAGE value="Updated Diagram" />
@@ -580,7 +585,8 @@
     <MESSAGE value="added password generation" />
     <MESSAGE value="Added Ini file api key storage" />
     <MESSAGE value="Better status message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better status message" />
+    <MESSAGE value="Minor bot improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor bot improvements" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

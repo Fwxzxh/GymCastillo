@@ -24,12 +24,12 @@ namespace GymCastillo.Model.Bot {
         /// <summary>
         /// Indica si el bot esta corriendo o no.
         /// </summary>
-        public static bool Estado { get; set; }
+        public static bool Estado { get; private set; }
 
         /// <summary>
         /// La contraseña para autenticar al usuario
         /// </summary>
-        public static string Pass { get; set; }
+        public static string Pass { get; private set; }
         // public static string Pass = "1234";
 
         /// <summary>
@@ -110,10 +110,10 @@ namespace GymCastillo.Model.Bot {
             Log.Info("Se ha detenido el bot.");
         }
 
-        private async Task HandleUpdateTask(ITelegramBotClient botClient, Update update,
+        private static Task HandleUpdateTask(ITelegramBotClient botClient, Update update,
             CancellationToken cancellationToken) {
-            if (update.Type != UpdateType.Message) return;
-            if (update.Message!.Type != MessageType.Text) return;
+            if (update.Type != UpdateType.Message) return Task.CompletedTask;
+            if (update.Message!.Type != MessageType.Text) return Task.CompletedTask;
 
             var chatId = update.Message.Chat.Id;
             var messageText = update.Message.Text;
@@ -125,9 +125,10 @@ namespace GymCastillo.Model.Bot {
             // Si esta registrado, averiguamos que nos mandaron.
 
             MatchMsg(messageText, botClient, chatId, cancellationToken);
+            return Task.CompletedTask;
         }
 
-        private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception,
+        private static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception,
             CancellationToken cancellationToken) {
             var errorMessage = exception switch {
                 ApiRequestException apiRequestException
@@ -146,9 +147,9 @@ namespace GymCastillo.Model.Bot {
         /// <param name="botClient"></param>
         /// <param name="chatId"></param>
         /// <param name="cancellationToken"></param>
-        private static async void MatchMsg(string msg, ITelegramBotClient botClient, long chatId,
+        private static async void MatchMsg(string text, ITelegramBotClient botClient, long chatId,
             CancellationToken cancellationToken) {
-            var command = msg.Split(" ");
+            var command = text.Split(" ");
 
             var key = command[0];
 
@@ -171,7 +172,8 @@ namespace GymCastillo.Model.Bot {
 
                         if (!resCard) {
                             await botClient.SendTextMessageAsync(chatId,
-                                "No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
+                                "Lo siento, No he podido entender tu mensaje \n" +
+                                "recuerda que para obtener tu credencial " +
                                 "solo tienes que escribir /card ",
                                 cancellationToken: cancellationToken);
                         }
@@ -179,7 +181,7 @@ namespace GymCastillo.Model.Bot {
                     else {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot",
+                            text: "Lo siento, tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot",
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -190,18 +192,17 @@ namespace GymCastillo.Model.Bot {
                     var resAuth = await BotCommands.Auth(command, chatId, botClient, cancellationToken);
 
                     if (!resAuth) {
+
+                        var msg = "";
+                        msg += "Lo siento, No he podido entender tu mensaje, \n" +
+                               "recuerda que para registrarte tienes que mandar:\n";
+                        msg += "/auth id código\n";
+                        msg += "Donde el id es tu identificador de registro, " +
+                               "el cual puedes encontrar en tu credencial o pidiéndoselo al operador.\n";
+                        msg += "y el código es un código corto que te va a proporcionar el operador.";
+
                         await botClient.SendTextMessageAsync(chatId,
-                            "No he podido entender tu mensaje, recuerda que para registrarte tienes que mandar:",
-                            cancellationToken: cancellationToken);
-                        await botClient.SendTextMessageAsync(chatId,
-                            "/auth id código",
-                            cancellationToken: cancellationToken);
-                        await botClient.SendTextMessageAsync(chatId,
-                            "Donde el id es tu identificador de registro, " +
-                            "el cual puedes encontrar en tu credencial o preguntándole al operador.",
-                            cancellationToken: cancellationToken);
-                        await botClient.SendTextMessageAsync(chatId,
-                            "y el código es un código corto que te va a proporcionar el operador.",
+                            msg,
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -211,7 +212,8 @@ namespace GymCastillo.Model.Bot {
                     if (command.Length != 1) {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Comando invalido, para obtener tu estado, solo tienes que escribir: estado" ,
+                            text: "Lo siento, No entendí tu mensaje \n" +
+                                  "recuerda que para obtener tu estado, solo tienes que escribir: /estado" ,
                             cancellationToken: cancellationToken);
                         return;
                     }
@@ -221,7 +223,7 @@ namespace GymCastillo.Model.Bot {
 
                         if (!resEstado) {
                             await botClient.SendTextMessageAsync(chatId,
-                                "No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
+                                "lo siento, No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
                                 "solo tienes que escribir /estado ",
                                 cancellationToken: cancellationToken);
                         }
@@ -229,8 +231,8 @@ namespace GymCastillo.Model.Bot {
                     else {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Tu chat no se encuentra registrado, " +
-                                  "debes registrarte primero con el comando auth para poder usar el bot" ,
+                            text: "Lo siento, Tu chat no se encuentra registrado \n" +
+                                  "debes registrarte primero con el comando auth y tu identificador para poder usar el bot" ,
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -245,8 +247,8 @@ namespace GymCastillo.Model.Bot {
 
                     if (!resHorario) {
                         await botClient.SendTextMessageAsync(chatId,
-                            "No he podido entender tu mensaje \nrecuerda que para obtener tu horario " +
-                            "solo tienes que escribir /horario ",
+                            "Lo siento, no he podido entender tu mensaje \n" +
+                            "recuerda que para obtener tu horario solo tienes que escribir /horario ",
                             cancellationToken: cancellationToken);
                     }
                     break;
@@ -254,8 +256,12 @@ namespace GymCastillo.Model.Bot {
                 default:
                     await botClient.SendTextMessageAsync(
                         chatId: chatId,
-                        text: "No se encontró esta opción, recuerda que los comandos disponibles son:\n" +
-                              "/card \n/auth id código \n/estado",
+                        text: "Lo siento, no he podido entender tu mensaje\n" +
+                              "recuerda que los comandos disponibles son:\n" +
+                              "/card Para obtener tu credencial digital.\n" +
+                              "/auth id pass Para registrarte.\n" +
+                              "/estado Para obtener más información sobre tus perfil.\n" +
+                              "/horario Para conocer los horarios de tus clases.",
                         cancellationToken: cancellationToken);
                     break;
             }
@@ -267,7 +273,7 @@ namespace GymCastillo.Model.Bot {
         /// <param name="mensaje">El mensaje a enviar.</param>
         /// <param name="id">El id del cliente al cual le debe de llegar el mensaje.</param>
         /// <returns><c>true</c> si el mensaje se mando con éxito</returns>
-        public static async Task<bool> SendMessage(string mensaje, int id) {
+        public static async Task SendMessage(string mensaje, int id) {
 
             var cliente = InitInfo.ObCoClientes.First(x => x.Id == id);
 
@@ -275,7 +281,7 @@ namespace GymCastillo.Model.Bot {
                 ShowPrettyMessages.WarningOk(
                     "El cliente seleccionado no esta registrado en el bot de telegram.",
                     "Cliente no registrado.");
-                return false;
+                return;
             }
 
             var chatId = cliente.ChatId;
@@ -285,8 +291,6 @@ namespace GymCastillo.Model.Bot {
                     chatId: chatId,
                     mensaje,
                     cancellationToken: CancellationToken.Token);
-
-                return true;
             }
             catch (Exception e) {
                 Log.Error("ha ocurrido un error al mandar el mensaje.");
@@ -294,7 +298,6 @@ namespace GymCastillo.Model.Bot {
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido a la hora de mandar el mensaje. Error: {e.Message}",
                     "Error al mandar el mensaje.");
-                return false;
             }
         }
 
@@ -305,8 +308,9 @@ namespace GymCastillo.Model.Bot {
         public static string GenPassword() {
             var path = Path.GetRandomFileName();
             path = path.Replace(".", ""); // Remove period.
-            var pass = path.Substring(0, 5);
+            var pass = path.Substring(0, 7);
             Pass = pass;
+
             return pass;
         }
     }
