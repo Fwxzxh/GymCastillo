@@ -7,7 +7,6 @@ using GymCastillo.Model.Init;
 using log4net;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel.SettingsScreensVM {
     public class BotSettingsVM : INotifyPropertyChanged {
@@ -142,8 +141,11 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
-        public void WriteBot() {
-
+        /// <summary>
+        /// Log del bot.
+        /// </summary>
+        public void WriteBot(string text) {
+            LogBot += $"{text}\n";
         }
 
         private async void RefreshData() {

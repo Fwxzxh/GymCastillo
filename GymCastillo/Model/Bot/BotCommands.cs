@@ -87,6 +87,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: comando invalido para auth, Error: {e.Message};");
+                Bot.LogBot += "BOT: comando invalido para auth, Error: {e.Message}\n";
                 Log.Debug("BOT_ERROR: Comando invalido para auth");
                 Log.Debug($"BOT_ERROR: {e.Message}");
                 return false;
@@ -131,6 +132,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: Ha ocurrido un error en el comando status, Error: {e.Message};");
+                Bot.LogBot += "BOT: Ha ocurrido un error en el comando status, Error: {e.Message};\n";
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
                 return false;
@@ -166,6 +168,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: Ha ocurrido un error en el comando card, Error: {e.Message};");
+                Bot.LogBot += "BOT: Ha ocurrido un error en el comando card, Error: {e.Message}\n";
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
                 return false;
