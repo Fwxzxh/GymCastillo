@@ -3,13 +3,9 @@ using GymCastillo.Model.Bot;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
 using log4net;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GymCastillo.Model.Init;
 
 namespace GymCastillo.ViewModel.SettingsScreensVM {
     public class BotSettingsVM : INotifyPropertyChanged {
@@ -86,12 +82,12 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         }
 
         private void DetenerBot() {
-            Bot = new("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
             Bot.StopBot();
         }
 
         private void IniciarBot() {
-            Bot = new("5031509807:AAEqBUEnXaARUzeFAWjd-Tk_FQt220LyEfM");
+            var key = GetInitData.GetApiKey();
+            Bot = new Bot(key);
         }
 
         private async void RefreshData() {

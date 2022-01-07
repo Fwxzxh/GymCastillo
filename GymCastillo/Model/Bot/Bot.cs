@@ -66,6 +66,9 @@ namespace GymCastillo.Model.Bot {
 
             if (Estado) {
                 Log.Warn("Se ha intentado crear dos veces el bot ");
+                ShowPrettyMessages.WarningOk(
+                    "El bot ya esta en ejecución",
+                    "Bot en ejecución");
                 return;
             }
 

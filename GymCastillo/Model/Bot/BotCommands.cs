@@ -176,7 +176,6 @@ namespace GymCastillo.Model.Bot {
                 if (InitInfo.ObCoClientes.Any(x => x.ChatId == chatId.ToString())) {
                     var cliente = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
 
-
                     // no tiene paquete asignado
                     if (cliente.IdPaquete == 0) {
                         await botClient.SendTextMessageAsync(
