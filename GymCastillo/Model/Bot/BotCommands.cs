@@ -101,36 +101,19 @@ namespace GymCastillo.Model.Bot {
 
                 var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == cliente.IdPaquete);
 
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Id:{cliente.Id.ToString()} Nombre: {cliente.Nombre} {cliente.ApellidoPaterno}",
-                    cancellationToken: cancellationToken);
+                var msg = "";
+
+                msg += $"Id:{cliente.Id.ToString()} Nombre: {cliente.Nombre} {cliente.ApellidoPaterno}\n";
+                msg += $"Paquete: {paquete.NombrePaquete} Clases: {paquete.NombreClase}\n";
+                msg += $"Fecha vencimiento paquete: {cliente.FechaVencimientoPago:dd/MM/yyyy}\n";
+                msg += $"Fecha de ultimo pago: {cliente.FechaUltimoPago:dd/MM/yyyy}\n";
+                msg += $"Monto de ultimo pago: {cliente.MontoUltimoPago.ToString(CultureInfo.InvariantCulture)}\n";
+                msg += $"Clases Semanales disponibles: {cliente.ClasesSemanaDisponibles.ToString()}\n";
+                msg += $"Clases Totales Disponibles: {cliente.ClasesTotalesDisponibles.ToString()}\n";
+                msg += $"Deuda: {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}";
 
                 await botClient.SendTextMessageAsync(chatId,
-                    $"Paquete: {paquete.NombrePaquete} Clases: {paquete.NombreClase}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Fecha vencimiento paquete: {cliente.FechaVencimientoPago:dd/MM/yyyy}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Fecha de ultimo pago: {cliente.FechaUltimoPago:dd/MM/yyyy}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Monto de ultimo pago: {cliente.MontoUltimoPago.ToString(CultureInfo.InvariantCulture)}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Clases Semanales disponibles: {cliente.ClasesSemanaDisponibles.ToString()}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Clases Totales Disponibles: {cliente.ClasesTotalesDisponibles.ToString()}",
-                    cancellationToken: cancellationToken);
-
-                await botClient.SendTextMessageAsync(chatId,
-                    $"Deuda: {cliente.DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                    msg,
                     cancellationToken: cancellationToken);
 
                 return true;

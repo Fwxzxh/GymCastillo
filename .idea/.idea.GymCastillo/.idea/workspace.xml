@@ -7,11 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="added password generation">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Ini file api key storage">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,14 +170,7 @@
       <workItem from="1641321836050" duration="16239000" />
       <workItem from="1641364085155" duration="721000" />
       <workItem from="1641413440767" duration="17984000" />
-      <workItem from="1641495506244" duration="9610000" />
-    </task>
-    <task id="LOCAL-00015" summary="Asistencias Back Done, Minor changes.">
-      <created>1639899410475</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1639899410475</updated>
+      <workItem from="1641495506244" duration="10503000" />
     </task>
     <task id="LOCAL-00016" summary="Pagos Back done, added PagosHelper.cs">
       <created>1639966415274</created>
@@ -517,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641500578685</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Added Ini file api key storage">
+      <created>1641508083670</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1641508083670</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Rentas Enhancements" />
     <MESSAGE value="VentasHelper.cs almost done" />
     <MESSAGE value="Minor Fixes, VentasHelper.cs Done" />
     <MESSAGE value="Minor Fixes, Reset Timers Done." />
@@ -576,7 +573,8 @@
     <MESSAGE value="Bot horario command done" />
     <MESSAGE value="Added more checks in AsistenciasHelper.cs" />
     <MESSAGE value="added password generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added password generation" />
+    <MESSAGE value="Added Ini file api key storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Ini file api key storage" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
