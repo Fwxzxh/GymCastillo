@@ -36,7 +36,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
             {
                 query = value;
                 OnPropertyChanged(nameof(Query));
-                FilterList(query);
+                //FilterList(query);
             }
         }
 
@@ -65,28 +65,28 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
 
 
         }
-        private async void FilterList(string query) {
-            instructores = await GetFromDb.GetInstructores();
-            if (instructores != null) {
-                if (string.IsNullOrWhiteSpace(query)) {
-                    ListaInstructores.Clear();
-                    foreach (var cliente in instructores.OrderBy(i => i.Nombre)) {
-                        ListaInstructores.Add(cliente);
-                    }
-                }
-                else {
-                    ListaInstructores.Clear();
-                    var filteredList = instructores.Where(c =>
-                        c.Nombre.ToLower().Contains(query.ToLower())
-                        || c.ApellidoPaterno.ToLower().Contains(query.ToLower())
-                        || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList();
-                    foreach (var cliente in filteredList) {
-                        ListaInstructores.Add(cliente);
-                    }
-                }
-            }
-            else return;
-        }
+        //private async void FilterList(string query) {
+        //    instructores = await GetFromDb.GetInstructores();
+        //    if (instructores != null) {
+        //        if (string.IsNullOrWhiteSpace(query)) {
+        //            ListaInstructores.Clear();
+        //            foreach (var cliente in instructores.OrderBy(i => i.Nombre)) {
+        //                ListaInstructores.Add(cliente);
+        //            }
+        //        }
+        //        else {
+        //            ListaInstructores.Clear();
+        //            var filteredList = instructores.Where(c =>
+        //                c.Nombre.ToLower().Contains(query.ToLower())
+        //                || c.ApellidoPaterno.ToLower().Contains(query.ToLower())
+        //                || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList();
+        //            foreach (var cliente in filteredList) {
+        //                ListaInstructores.Add(cliente);
+        //            }
+        //        }
+        //    }
+        //    else return;
+        //}
 
         public void OpenOverview() {
             OverviewInstructorWindow overview = new(selectedInstructor);

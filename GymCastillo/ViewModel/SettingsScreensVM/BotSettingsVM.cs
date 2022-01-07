@@ -56,6 +56,28 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
+        private string logBot;
+
+        public string LogBot {
+            get { return logBot; }
+            set
+            {
+                logBot = value;
+                OnPropertyChanged(nameof(LogBot));
+            }
+        }
+
+        private bool estado;
+
+        public bool Estado {
+            get { return estado; }
+            set
+            {
+                estado = value;
+                OnPropertyChanged(nameof(Estado));
+            }
+        }
+
 
         private ObservableCollection<Cliente> clientes;
 
@@ -80,13 +102,14 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         }
 
         public BotSettingsVM() {
+            GetInitData.GetApiKey();
             Clientes = new ObservableCollection<Cliente>();
             StartBot = new RelayCommand(IniciarBot);
             StopBot = new RelayCommand(DetenerBot);
             SendMessage = new RelayCommand(MandarMensaje);
             GenPassword = new RelayCommand(GenerarPassword);
             SaveKey = new RelayCommand(GuardarKey);
-
+            ApiKey = GetInitData.TelegramApiKey;
             RefreshData();
         }
 
@@ -101,11 +124,14 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         private void DetenerBot() {
             Bot.StopBot();
+            Estado = Bot.Estado;
         }
 
         private void IniciarBot() {
             var key = GetInitData.GetApiKey();
             Bot = new Bot(key);
+            Estado = Bot.Estado;
+
         }
         private void GuardarKey() {
             if (!string.IsNullOrWhiteSpace(ApiKey)) {
@@ -114,6 +140,10 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             else {
                 ShowPrettyMessages.ErrorOk("La key no debe de estar vacía", "Error");
             }
+        }
+
+        public void WriteBot() {
+
         }
 
         private async void RefreshData() {

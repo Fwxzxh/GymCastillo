@@ -33,7 +33,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM {
             {
                 query = value;
                 OnPropertyChanged(nameof(Query));
-                FilterList(Query);
+                //FilterList(Query);
             }
         }
 
