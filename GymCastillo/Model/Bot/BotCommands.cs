@@ -37,7 +37,7 @@ namespace GymCastillo.Model.Bot {
             // en la primera posición esta la palabra auth
             // en la segunda debe de haber un id y en la tercera la contraseña.
             try {
-                if (args.Length != 3) throw new Exception("No se introdujo el comando de manera correcta.");
+                if (args.Length != 3) throw new Exception($"No se introdujo el comando de manera correcta {args.Length}.");
 
                 var id = int.Parse(args[1]);
                 var pass = args[2];
@@ -87,6 +87,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: comando invalido para auth, Error: {e.Message};");
+                Bot.LogBot += "BOT: comando invalido para auth, Error: {e.Message}\n";
                 Log.Debug("BOT_ERROR: Comando invalido para auth");
                 Log.Debug($"BOT_ERROR: {e.Message}");
                 return false;
@@ -131,6 +132,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: Ha ocurrido un error en el comando status, Error: {e.Message};");
+                Bot.LogBot += "BOT: Ha ocurrido un error en el comando status, Error: {e.Message};\n";
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
                 return false;
@@ -166,6 +168,7 @@ namespace GymCastillo.Model.Bot {
             }
             catch (Exception e) {
                 Trace.WriteLine($"BOT: Ha ocurrido un error en el comando card, Error: {e.Message};");
+                Bot.LogBot += "BOT: Ha ocurrido un error en el comando card, Error: {e.Message}\n";
                 Log.Error("BOT_ERROR: Ha ocurrido un error al obtener el status.");
                 Log.Error($"BOT_ERROR: {e.Message}");
                 return false;

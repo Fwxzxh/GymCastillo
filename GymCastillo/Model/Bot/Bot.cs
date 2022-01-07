@@ -30,7 +30,11 @@ namespace GymCastillo.Model.Bot {
         /// La contraseña para autenticar al usuario
         /// </summary>
         public static string Pass { get; private set; }
-        // public static string Pass = "1234";
+
+        /// <summary>
+        /// EL logger del bot.
+        /// </summary>
+        public static string LogBot { get; set; }
 
         /// <summary>
         /// instancia del bot
@@ -92,6 +96,7 @@ namespace GymCastillo.Model.Bot {
                 );
 
                 Log.Info("Se ha iniciado el bot.");
+                LogBot += "Se ha iniciado el bot.\n";
 
                 Estado = true;
             }
@@ -108,6 +113,7 @@ namespace GymCastillo.Model.Bot {
             CancellationToken.Cancel();
             Estado = false;
             Log.Info("Se ha detenido el bot.");
+            LogBot += "Se ha detenido el bot.\n";
         }
 
         private static Task HandleUpdateTask(ITelegramBotClient botClient, Update update,
@@ -120,7 +126,7 @@ namespace GymCastillo.Model.Bot {
 
             Console.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
             Trace.WriteLine($"Received a '{messageText}' message in chat {chatId.ToString()}.");
-            // Log.Info($"Received a '{messageText}' message in chat {chatId.ToString()}.");
+            LogBot += $"Received a '{messageText}' message in chat {chatId.ToString()}.\n";
 
             // Si esta registrado, averiguamos que nos mandaron.
 
@@ -143,7 +149,7 @@ namespace GymCastillo.Model.Bot {
         /// <summary>
         /// Método que se encarga de obtener el mensaje que le llego al bot y manejarlo.
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="text"></param>
         /// <param name="botClient"></param>
         /// <param name="chatId"></param>
         /// <param name="cancellationToken"></param>
@@ -156,7 +162,7 @@ namespace GymCastillo.Model.Bot {
             Trace.WriteLine($"Recibida key {key}");
 
             switch (key) {
-                case "/card":
+                case "/credencial":
                     // Verificamos que el comando este bien
                     if (command.Length != 1) {
                         await botClient.SendTextMessageAsync(
@@ -174,19 +180,19 @@ namespace GymCastillo.Model.Bot {
                             await botClient.SendTextMessageAsync(chatId,
                                 "Lo siento, No he podido entender tu mensaje \n" +
                                 "recuerda que para obtener tu credencial " +
-                                "solo tienes que escribir /card ",
+                                "solo tienes que escribir /credencial ",
                                 cancellationToken: cancellationToken);
                         }
                     }
                     else {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
-                            text: "Lo siento, tu chat no se encuentra registrado, debes registrarte primero con el comando auth para poder usar el bot",
+                            text: "Lo siento, tu chat no se encuentra registrado, debes registrarte primero con el comando /registro para poder usar el bot",
                             cancellationToken: cancellationToken);
                     }
                     break;
 
-                case "/auth":
+                case "/registro":
                     // auth idCliente pass
                     // Se tiene que actualizar la lista de clientes desde la GUI después de que se actualize esto.
                     var resAuth = await BotCommands.Auth(command, chatId, botClient, cancellationToken);
@@ -196,7 +202,7 @@ namespace GymCastillo.Model.Bot {
                         var msg = "";
                         msg += "Lo siento, No he podido entender tu mensaje, \n" +
                                "recuerda que para registrarte tienes que mandar:\n";
-                        msg += "/auth id código\n";
+                        msg += "/registro id código\n";
                         msg += "Donde el id es tu identificador de registro, " +
                                "el cual puedes encontrar en tu credencial o pidiéndoselo al operador.\n";
                         msg += "y el código es un código corto que te va a proporcionar el operador.";
@@ -207,13 +213,13 @@ namespace GymCastillo.Model.Bot {
                     }
                     break;
 
-                case "/estado":
+                case "/perfil":
                     // Verificamos que el usuario este registrado en la db
                     if (command.Length != 1) {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
                             text: "Lo siento, No entendí tu mensaje \n" +
-                                  "recuerda que para obtener tu estado, solo tienes que escribir: /estado" ,
+                                  "recuerda que para obtener tu estado, solo tienes que escribir: /perfil" ,
                             cancellationToken: cancellationToken);
                         return;
                     }
@@ -224,7 +230,7 @@ namespace GymCastillo.Model.Bot {
                         if (!resEstado) {
                             await botClient.SendTextMessageAsync(chatId,
                                 "lo siento, No he podido entender tu mensaje \nrecuerda que para obtener tu credencial " +
-                                "solo tienes que escribir /estado ",
+                                "solo tienes que escribir /datos ",
                                 cancellationToken: cancellationToken);
                         }
                     }
@@ -242,6 +248,7 @@ namespace GymCastillo.Model.Bot {
                             $"ChatId: {chatId.ToString()}",
                             cancellationToken: cancellationToken);
                     break;
+
                 case "/horario":
                     var resHorario = await BotCommands.Clases(chatId, botClient, cancellationToken);
 
@@ -258,9 +265,9 @@ namespace GymCastillo.Model.Bot {
                         chatId: chatId,
                         text: "Lo siento, no he podido entender tu mensaje\n" +
                               "recuerda que los comandos disponibles son:\n" +
-                              "/card Para obtener tu credencial digital.\n" +
-                              "/auth id pass Para registrarte.\n" +
-                              "/estado Para obtener más información sobre tus perfil.\n" +
+                              "/credencial Para obtener tu credencial digital.\n" +
+                              "/registro id pass Para registrarte.\n" +
+                              "/perfil Para obtener más información sobre tus perfil.\n" +
                               "/horario Para conocer los horarios de tus clases.",
                         cancellationToken: cancellationToken);
                     break;
@@ -293,8 +300,9 @@ namespace GymCastillo.Model.Bot {
                     cancellationToken: CancellationToken.Token);
             }
             catch (Exception e) {
-                Log.Error("ha ocurrido un error al mandar el mensaje.");
+                Log.Error("Ha ocurrido un error al mandar el mensaje.");
                 Log.Error($"Error: {e.Message}");
+                LogBot += $"Ha ocurrido un error al mandar el mensaje. Error: {e.Message}\n";
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido a la hora de mandar el mensaje. Error: {e.Message}",
                     "Error al mandar el mensaje.");

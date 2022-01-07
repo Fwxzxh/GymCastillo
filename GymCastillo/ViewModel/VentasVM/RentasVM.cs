@@ -6,11 +6,7 @@ using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using GymCastillo.Model.Helpers;
 

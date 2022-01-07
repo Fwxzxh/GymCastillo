@@ -189,6 +189,15 @@ namespace GymCastillo.Model.Helpers {
             if (res) {
                 // actualizamos los campos del cliente
                 await AdminUsuariosGeneral.Pago(cliente);
+
+                // Mandamos el ticket al bot
+                if (cliente.ChatId != "") {
+                    var msg = $"Se ha registrado exitosamente tu pago de $ {ingreso.MontoRecibido.ToString()} \n" +
+                              $"En la compra de: {ingreso.Concepto} \n" +
+                              $"El {ingreso.FechaRegistro.ToString("g")} \n" +
+                              $"¡Gracias por su preferencia!";
+                    await Bot.Bot.SendMessage(msg, cliente.Id);
+                }
             }
             else {
                 throw new Exception("No se ha completado la alta del ingreso de manera correcta.");
