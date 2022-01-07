@@ -37,7 +37,7 @@ namespace GymCastillo.Model.Bot {
             // en la primera posición esta la palabra auth
             // en la segunda debe de haber un id y en la tercera la contraseña.
             try {
-                if (args.Length != 3) throw new Exception("No se introdujo el comando de manera correcta.");
+                if (args.Length != 3) throw new Exception($"No se introdujo el comando de manera correcta {args.Length}.");
 
                 var id = int.Parse(args[1]);
                 var pass = args[2];

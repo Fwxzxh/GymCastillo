@@ -213,13 +213,13 @@ namespace GymCastillo.Model.Bot {
                     }
                     break;
 
-                case "/datos":
+                case "/perfil":
                     // Verificamos que el usuario este registrado en la db
                     if (command.Length != 1) {
                         await botClient.SendTextMessageAsync(
                             chatId: chatId,
                             text: "Lo siento, No entendí tu mensaje \n" +
-                                  "recuerda que para obtener tu estado, solo tienes que escribir: /estado" ,
+                                  "recuerda que para obtener tu estado, solo tienes que escribir: /perfil" ,
                             cancellationToken: cancellationToken);
                         return;
                     }
@@ -265,9 +265,9 @@ namespace GymCastillo.Model.Bot {
                         chatId: chatId,
                         text: "Lo siento, no he podido entender tu mensaje\n" +
                               "recuerda que los comandos disponibles son:\n" +
-                              "/card Para obtener tu credencial digital.\n" +
-                              "/auth id pass Para registrarte.\n" +
-                              "/estado Para obtener más información sobre tus perfil.\n" +
+                              "/credencial Para obtener tu credencial digital.\n" +
+                              "/registro id pass Para registrarte.\n" +
+                              "/perfil Para obtener más información sobre tus perfil.\n" +
                               "/horario Para conocer los horarios de tus clases.",
                         cancellationToken: cancellationToken);
                     break;
