@@ -188,6 +188,14 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private async void HacerVenta() {
+
+            if (venta.Costo == 0) {
+                ShowPrettyMessages.ErrorOk(
+                    "No se puede hacer una venta con el costo en 0",
+                    "Error en venta.");
+                return;
+            }
+
             Venta.FechaVenta = DateTime.Now;
             Venta.Concepto = Concepto;
             Venta.Costo = Costo;
