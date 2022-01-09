@@ -151,13 +151,13 @@ select
     e.IdEspacio, e.NombreEspacio,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-from clase c
-left join instructor i on c.IdInstructor = i.IdInstructor
+FROM ClaseInstructores ci
+left join clases c on c.IdClase = ci.IdClase
+left join instructores i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
 left join paquete p on pc.IdPaquete = p.IdPaquete
 group by c.IdClase;
-
 
 -- Clases
 -- Consulta clase con horario:
@@ -171,8 +171,9 @@ SELECT
     group_concat(h.HoraFin) HoraDeTermino,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-FROM clase c
-left join instructor i on c.IdInstructor = i.IdInstructor
+FROM ClaseInstructores ci
+left join clases c on c.IdClase = ci.IdClase
+left join instructores i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
 left join paquete p on pc.IdPaquete = p.IdPaquete
@@ -187,8 +188,9 @@ SELECT
     e.IdEspacio, e.NombreEspacio,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-FROM clase c
-left join instructor i on c.IdInstructor = i.IdInstructor
+FROM ClaseInstructores ci
+left join clases c on c.IdClase = ci.IdClase
+left join instructores i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
 left join paquete p on pc.IdPaquete = p.IdPaquete
@@ -196,15 +198,13 @@ group by c.IdClase;
 
 -- Alta de clases
 INSERT INTO clase
-VALUES
-    (default, @NombreClase, @Descripcion,
-    @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);
+VALUES	(default, @NombreClase, @Descripcion,
+		@CupoMaximo, @Activo, @IdEspacio);
 
 -- Actualización de clases
-UPDATE clase
-SET cupomaximo=@CupoMaximo, activo=@Activo,
-    idinstructor=@IdInstructor, idespacio=@IdEspacio
-WHERE idclase=@IdClase;
+UPDATE	clase
+SET	cupomaximo=@CupoMaximo, activo=@Activo, idespacio=@IdEspacio
+WHERE	idclase=@IdClase;
 
 -- Paquetes
 -- Consulta paquete
@@ -406,3 +406,33 @@ UPDATE	ventas
 SET	FechaVenta=@FechaVenta, IdsProductos=@IdsProductos,
        	VisitaGym=@VisitaGym, Concepto=@Concepto, Costo=@Costo
 WHERE	IdVenta=@IdVenta;
+
+
+-- ClaseInstructores
+-- Hacer que una clase tenga un instructor
+INSERT INTO ClaseInstructores
+VALUES (@IdClase, @IdInstructor);
+
+-- Para actualizar: borrar y luego a dar de alta, para borrar:
+DELETE FROM ClaseInstructores 
+WHERE IdClase = @IdClase
+AND IdInstructor = @IdInstructor;
+
+
+-- ClienteHorario
+INSERT INTO clientehorario
+VALUES (@IdCliente, @IdHoraio);
+
+DELETE FROM clientehorario
+WHERE IdCliente = @IdCliente
+AND IdHorario = @IdHorario;
+
+
+-- Consulta cupo maximo, cupo actual y cuantos clientes escritos en una hora
+SELECT
+	COUNT(ch.IdCliente) AS NumeroClientes, h.CupoActual, c.CupoMaximo
+FROM
+	clientehorario ch
+LEFT JOIN horario h ON h.IdHorario = ch.IdHorario
+LEFT JOIN clase c ON h.IdClase = c.IdClase
+WHERE ch.IdHorario = @IdHorario;
