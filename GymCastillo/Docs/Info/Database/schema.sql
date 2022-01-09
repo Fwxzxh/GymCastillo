@@ -70,12 +70,18 @@ create table Clase (
     Descripcion varchar(500) not null,
     CupoMaximo int not null, -- El cupo maximo de personas por hora
     Activo bool not null,
-	-- IdInstructor
-    IdInstructor int not null,
-    foreign key (IdInstructor) references Instructor (IdInstructor),
 	-- IdEspacio
     IdEspacio int,
     foreign key (IdEspacio) references Espacio (IdEspacio)
+);
+
+-- Ultimo update 08/01/22
+CREATE TABLE ClaseInstructores (
+    -- Tabla que permite que una clase tenga varios instructores
+    IdClase int,
+    foreign key (IdClase) references Clase (IdClase),
+    IdInstructor int,
+    foreign key (IdInstructor) references Instructor (IdInstructor)
 );
 
 create table PaquetesClases (
@@ -141,6 +147,14 @@ create table Cliente (
     FechaRegistro datetime
 );
 
+-- Ultimo update 08/01/22
+CREATE TABLE ClienteHorario (
+    -- Permite seleccionar los horarios a los clientes
+    IdCliente int,
+    foreign key (IdCliente) references Cliente (IdCliente),
+    IdHorario int,
+    foreign key (IdHorario) references Horario (IdHorario)
+);
 
 create table ClienteRenta (
     -- Tabla que guarda los registros de los clientes de renta de espacios en el gym.
