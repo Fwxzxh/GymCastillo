@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added FK key cheks">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Massive msg done">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +53,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/DataTypes/Settings/Clase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Bot/Bot.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -175,14 +175,7 @@
       <workItem from="1641495506244" duration="27149000" />
       <workItem from="1641575141643" duration="18131000" />
       <workItem from="1641798372179" duration="1987000" />
-      <workItem from="1641843643286" duration="11298000" />
-    </task>
-    <task id="LOCAL-00025" summary="Added Nómina Personal fields &amp; MontoRecibido in Ingresos, Updated Diagram">
-      <created>1640113756982</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1640113756982</updated>
+      <workItem from="1641843643286" duration="11550000" />
     </task>
     <task id="LOCAL-00026" summary="Pagos Back Almost done">
       <created>1640133614233</created>
@@ -520,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641868159960</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Massive msg done">
+      <created>1641887806767</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1641887806767</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed shit that havent been fixed in last commit" />
     <MESSAGE value="Clearer Msg in deuda cliente" />
     <MESSAGE value="Updated, Pago deuda cliente" />
     <MESSAGE value="Bot auth &amp; alta in db done" />
@@ -579,7 +578,8 @@
     <MESSAGE value="Minor bug en ventas" />
     <MESSAGE value="Implemented Recent Changes" />
     <MESSAGE value="Added FK key cheks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added FK key cheks" />
+    <MESSAGE value="Massive msg done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Massive msg done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
