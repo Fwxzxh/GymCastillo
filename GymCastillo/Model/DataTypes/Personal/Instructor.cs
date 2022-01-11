@@ -129,13 +129,14 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <returns>True si pasa todas las validaciones.</returns>
         private bool CheckDeleteConstrains() {
             // Fk key constraint check.
-            if (InitInfo.ObCoClases.Any(x => x.IdInstructor == Id)) {
-                // Este instructor esta dado asignado en alguna clase
-                ShowPrettyMessages.InfoOk(
-                    "Hay clases asignadas a este instructor, asi que no puedes eliminar al instructor, cambia esas clases a otro instructor para eliminarlo.",
-                    "Instructor asignado a una clase.");
-                return false;
-            }
+            // TODO: ver que onda con la fk check
+            // if (InitInfo.ObCoClases.Any(x => x.IdInstructor == Id)) {
+            //     // Este instructor esta dado asignado en alguna clase
+            //     ShowPrettyMessages.InfoOk(
+            //         "Hay clases asignadas a este instructor, asi que no puedes eliminar al instructor, cambia esas clases a otro instructor para eliminarlo.",
+            //         "Instructor asignado a una clase.");
+            //     return false;
+            // }
 
             for (var index = 0; index < InitInfo.ObCoEgresos.Count; index++) {
                 var x = InitInfo.ObCoEgresos[index];

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Validations.Config;

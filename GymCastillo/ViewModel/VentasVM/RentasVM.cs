@@ -8,6 +8,7 @@ using log4net;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.Helpers;
 
 namespace GymCastillo.ViewModel.VentasVM {

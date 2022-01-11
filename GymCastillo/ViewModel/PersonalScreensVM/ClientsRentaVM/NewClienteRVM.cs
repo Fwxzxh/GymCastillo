@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;

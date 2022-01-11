@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Helpers;
@@ -166,6 +167,9 @@ namespace GymCastillo.Model.Admin {
                 case "Inventario":
                     var inventarioValidation = new InventarioValidation();
                     await inventarioValidation.ValidateAndThrowAsync((Inventario) objeto);
+                    break;
+
+                case "ClaseInstructores" or "ClienteHorario":
                     break;
 
                 default:

@@ -95,8 +95,10 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         private async void SaveClass(bool guardar) {
             if (string.IsNullOrEmpty(Clase.NombreClase) ||
                 string.IsNullOrEmpty(Clase.Descripcion) ||
-                Clase.IdEspacio == 0 ||
-                Clase.IdInstructor == 0) {
+                Clase.IdEspacio == 0
+                // TODO: Bry, Esto ya no va ya que instructores funciona diferente.
+                //|| Clase.IdInstructor == 0
+                ) {
                 return;
             }
             else {

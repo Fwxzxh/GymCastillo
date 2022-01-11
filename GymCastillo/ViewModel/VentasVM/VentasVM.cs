@@ -189,22 +189,24 @@ namespace GymCastillo.ViewModel.VentasVM {
 
         private async void HacerVenta() {
 
-            if (venta.Costo == 0) {
-                ShowPrettyMessages.ErrorOk(
-                    "No se puede hacer una venta con el costo en 0",
-                    "Error en venta.");
-                return;
-            }
-
             Venta.FechaVenta = DateTime.Now;
             Venta.Concepto = Concepto;
             Venta.Costo = Costo;
             Venta.VisitaGym = Gym;
 
+            if (venta.Costo == 0 || venta.VisitaGym == false && ListaVenta.Count == 0) {
+                ShowPrettyMessages.ErrorOk(
+                    "No puedes dar de alta una venta vacía.",
+                    "Venta vacía");
+                return;
+            }
+
             foreach (var item in ListaVenta) {
                 Venta.IdsProductos += $"{item.IdProducto},";
             }
             // await AdminOnlyAlta.Alta(Venta);
+
+
             await VentasHelper.NuevaVenta(Venta, Recibido);
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
@@ -218,7 +220,6 @@ namespace GymCastillo.ViewModel.VentasVM {
                     InitInfo.ObCoInventario.Add(item);
                 }
             }
-
 
             Refresh();
         }

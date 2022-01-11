@@ -7,6 +7,7 @@ using log4net;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
     public class ClasesPaqueteVM : INotifyPropertyChanged {

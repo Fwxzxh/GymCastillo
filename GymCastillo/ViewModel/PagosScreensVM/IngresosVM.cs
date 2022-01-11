@@ -9,6 +9,7 @@ using log4net;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class IngresosVM : INotifyPropertyChanged {

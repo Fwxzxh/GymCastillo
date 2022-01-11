@@ -8,12 +8,13 @@ using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes.Settings {
+namespace GymCastillo.Model.DataTypes.IntersectionTables {
     /// <summary>
     /// clase que contiene los campos y métodos del tipo de datos PaquetesClases
     /// </summary>
     public class PaquetesClases : AbstOtrosTipos{
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?
+        .DeclaringType);
 
         /// <summary>
         /// El id del paquete
@@ -28,10 +29,10 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// <summary>
         /// Para este método no hay Update, no Usar
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         /// <returns></returns>
         public override Task<int> Update() {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override async Task<int> Delete() {

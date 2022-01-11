@@ -116,6 +116,10 @@ namespace GymCastillo.Model.Notificaciones {
             // Obtenemos las clases.
             var paquetes = InitInfo.ObCoDePaquetes;
 
+            if (paquetes.Count == 0) {
+                return true;
+            }
+
             foreach (var paquete in paquetes) {
                 // Por cada clase en clases vamos a resetear el número de clases por semana al valor x defecto
                 // dependiendo del paquete.

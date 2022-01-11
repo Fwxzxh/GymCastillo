@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Personal;
 
 namespace GymCastillo.Model.Validations.Personal {

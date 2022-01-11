@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
@@ -114,6 +115,16 @@ namespace GymCastillo.Model.Init {
         public static ObservableCollection<Venta> ObCoVentas { get; set; }
 
         /// <summary>
+        /// La ObservableCollection que contiene las clasesInstructores
+        /// </summary>
+        public static ObservableCollection<ClaseInstructores> ObCoClaseInstructores { get; set; }
+
+        /// <summary>
+        /// La ObservableCollection que contiene las clienteHorario
+        /// </summary>
+        public static ObservableCollection<ClienteHorario> ObCoClienteHorario { get; set; }
+
+        /// <summary>
         /// Indica si las queries han terminado de ejecutarse.
         /// </summary>
         public readonly bool DoneTasks;
@@ -158,6 +169,9 @@ namespace GymCastillo.Model.Init {
                 var allRentas = GetFromDb.GetRentas();
                 var allInventario = GetFromDb.GetInventario();
                 var allVentas = GetFromDb.GetVentas();
+                var allClaseInstructores = GetFromDb.GetClaseInstructores();
+
+                var allClienteHorario = GetFromDb.GetClienteHorario();
 
                 // Nos aseguramos que todas las tareas hayan terminado.
                 await Task.WhenAll(
@@ -165,7 +179,8 @@ namespace GymCastillo.Model.Init {
                     allPaquetes, allTipoClientes, allTipoInstructores, allLockersOpen,
                     allLockersOpen, allClases, allHorarios, allEspacios,
                     allIngresos, allEgresos, allPersonal, allPaquetesClases,
-                    allRentas, allInventario, allVentas).ConfigureAwait(false);
+                    allRentas, allInventario, allVentas, allClaseInstructores,
+                    allClienteHorario).ConfigureAwait(false);
                 Log.Info("Se ha obtenido toda la información de la base de datos.");
 
                 // Esperamos los resultados...
@@ -192,6 +207,9 @@ namespace GymCastillo.Model.Init {
                 ObCoRentas = await allRentas;
                 ObCoInventario = await allInventario;
                 ObCoVentas = await allVentas;
+                ObCoClaseInstructores = await allClaseInstructores;
+
+                ObCoClienteHorario = await allClienteHorario;
 
                 return true;
             }
@@ -202,22 +220,6 @@ namespace GymCastillo.Model.Init {
                     "Ha ocurrido un error al obtener la información inicial de la base de datos, si este error persiste, contacte a los administradores",
                     "Error fatal.");
                 return false;
-            }
-        }
-
-
-        /// <summary>
-        /// Método que se encarga de actualizar la lista de clientes.
-        /// </summary>
-        /// <returns></returns>
-        public static async void UpdateClientes() {
-
-            var nuevosClientes = await GetFromDb.GetClientes();
-
-            ObCoClientes.Clear();
-
-            foreach (var cliente in nuevosClientes) {
-                ObCoClientes.Add(cliente);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
@@ -195,8 +196,9 @@ namespace GymCastillo.Model.Database {
                                           group_concat(c.IdClase) as IdClase, group_concat(c.NombreClase) as NombreClase
                                       FROM instructor i
                                       INNER JOIN TipoInstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
-                                      LEFT JOIN clase c ON c.IdInstructor = i.IdInstructor
-                                      GROUP BY i.IdInstructor";
+                                      LEFT JOIN ClaseInstructores ci ON ci.IdInstructor = i.IdInstructor
+                                      LEFT JOIN clase c ON ci.IdClase = c.IdClase
+                                      GROUP BY i.IdInstructor;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -889,7 +891,7 @@ namespace GymCastillo.Model.Database {
         /// </summary>
         /// <returns>Una lista que contiene objetos tipo Clase.</returns>
         public static async Task<ObservableCollection<Clase>> GetClases() {
-            Log.Debug("Se ha empezado el proceso de obtener la información de los Lockers.");
+            Log.Debug("Se ha empezado el proceso de obtener la información de las Clases.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
@@ -899,10 +901,16 @@ namespace GymCastillo.Model.Database {
                                           c.IdClase, c.NombreClase, c.Descripcion,
                                           c.CupoMaximo, c.Activo,
                                           i.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
-                                          e.IdEspacio, e.NombreEspacio
-                                      from clase c
-                                      left join instructor i on c.IdInstructor = i.IdInstructor
-                                      left join espacio e on e.IdEspacio = c.IdEspacio";
+                                          e.IdEspacio, e.NombreEspacio,
+                                          group_concat(p.IdPaquete) as IdPaquete,
+                                          group_concat(p.NombrePaquete) as NombrePaquete
+                                      FROM ClaseInstructores ci
+                                      left join clase c on c.IdClase = ci.IdClase
+                                      left join instructor i on i.IdInstructor = ci.IdInstructor
+                                      left join espacio e on e.IdEspacio = c.IdEspacio
+                                      left join PaquetesClases pc on c.IdClase = pc.IdClase
+                                      left join paquete p on pc.IdPaquete = p.IdPaquete
+                                      group by c.IdClase";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -928,8 +936,8 @@ namespace GymCastillo.Model.Database {
                                  && reader.Result.GetBoolean("Activo"),
 
                         IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
-                            ? 0
-                            : reader.Result.GetInt32("IdInstructor"),
+                            ? ""
+                            : reader.Result.GetString("IdInstructor"),
                         NombreInstructor = await reader.Result.IsDBNullAsync("NombreInstructor")
                             ? ""
                             : reader.Result.GetString("NombreInstructor"),
@@ -941,12 +949,12 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("NombreEspacio"),
 
-                        // IdPaquete = await reader.Result.IsDBNullAsync("IdPaquete")
-                        //     ? 0
-                        //     : reader.Result.GetInt32("IdPaquete"),
-                        // NombrePaquete = await reader.Result.IsDBNullAsync("NombrePaquete")
-                        //     ? ""
-                        //     : reader.Result.GetString("NombrePaquete"),
+                        IdsPaquetes = await reader.Result.IsDBNullAsync("IdPaquete")
+                            ? ""
+                            : reader.Result.GetString("IdPaquete"),
+                        NombresPaquetes = await reader.Result.IsDBNullAsync("NombrePaquete")
+                            ? ""
+                            : reader.Result.GetString("NombrePaquete"),
                     };
                     listClases.Add(locker);
                 }
@@ -955,10 +963,10 @@ namespace GymCastillo.Model.Database {
                 return listClases;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error al obtener la información de los lockers..");
+                Log.Error("Ha ocurrido un error al obtener la información de las clases.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
-                    $"Ha ocurrido un error desconocido al obtener la información de los tipos de instructor. Error: {e.Message}",
+                    $"Ha ocurrido un error desconocido al obtener la información de las clases. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }
@@ -1364,13 +1372,97 @@ namespace GymCastillo.Model.Database {
                 Log.Debug("Se ha in obtenido con éxito la información del inventario");
 
                 return listVentas;
-
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener la información de las ventas.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de las ventas. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de obtener los datos de la tabla ClaseInstructores
+        /// </summary>
+        /// <returns>Una lista de objetos tipo <c>ClaseInstructores</c></returns>
+        public static async Task<ObservableCollection<ClaseInstructores>> GetClaseInstructores() {
+            Log.Debug("se ha empezado el proceso de obtener la información de los PaquetesInstructores.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from ClaseInstructores";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listClaseInstructores = new ObservableCollection<ClaseInstructores>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var claseInstructor = new ClaseInstructores() {
+                        IdClase = reader.Result.GetInt32("IdClase"),
+                        IdInstructor = reader.Result.GetInt32("IdInstructor"),
+                    };
+                    listClaseInstructores.Add(claseInstructor);
+
+                }
+                Log.Debug("Se han obtenido con éxito la información de las clasesInstructores.");
+
+                return listClaseInstructores;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los ClasesInstructores.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de las ClasesInstructores. Error: {e.Message}",
+                    "Error desconocido");
+                throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de obtener los datos de la tabla ClienteHorario.
+        /// </summary>
+        /// <returns>Una lista de obtjetos tipo <c>ClienteHorario</c></returns>
+        public static async Task<ObservableCollection<ClienteHorario>> GetClienteHorario() {
+            Log.Debug("se ha empezado el proceso de obtener la información de los ClienteHorario.");
+
+            await using var connection = new MySqlConnection(GetInitData.ConnString);
+            await connection.OpenAsync();
+            Log.Debug("Creamos la conexión.");
+
+            const string sqlQuery = @"select * from ClienteHorario";
+
+            try {
+                await using var command = new MySqlCommand(sqlQuery, connection);
+                using var reader = command.ExecuteReaderAsync();
+                Log.Debug("Ejecutamos la query.");
+
+                var listaClienteHorario = new ObservableCollection<ClienteHorario>();
+
+                while (await reader.Result.ReadAsync()) {
+                    var clienteHorario = new ClienteHorario() {
+                        IdCliente = reader.Result.GetInt32("IdCliente"),
+                        IdHorario = reader.Result.GetInt32("IdHorario")
+                    };
+                    listaClienteHorario.Add(clienteHorario);
+
+                }
+                Log.Debug("Se han obtenido con éxito la información de los clientesHorario.");
+
+                return listaClienteHorario;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los clientesHorario.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientesHorario. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
             }

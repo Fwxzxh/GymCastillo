@@ -29,12 +29,12 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public string Descripcion { get; set; }
 
         /// <summary>
-        /// Id del instructor designado a la clase.
+        /// Ids de los instructores asignados a la clase.
         /// </summary>
-        public int IdInstructor { get; set; }
+        public string IdInstructor { get; set; }
 
         /// <summary>
-        /// Nombre completo del instructor.
+        /// Nombres completos de los instructores asignados a la clase.
         /// </summary>
         public string NombreInstructor { get; set; }
 
@@ -58,6 +58,16 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public bool Activo { get; set; }
 
+        /// <summary>
+        /// los ids de los paquetes en los que se encuentra esta clase.
+        /// </summary>
+        public string IdsPaquetes { get; set; }
+
+        /// <summary>
+        /// Los nombres de los paquetes en los que se encuentra esta clase.
+        /// </summary>
+        public string NombresPaquetes { get; set; }
+
         public override async Task<int> Update() {
             Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Clase.");
 
@@ -68,7 +78,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
                 const string updateQuery = @"UPDATE clase
                                              SET CupoMaximo=@CupoMaximo, Activo=@Activo,
-                                                 IdInstructor=@IdInstructor, IdEspacio=@IdEspacio,
+                                                 IdEspacio=@IdEspacio,
                                                  Descripcion=@Descripcion
                                              WHERE IdClase=@IdClase;";
 
@@ -77,7 +87,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
 
-                command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
 
                 command.Parameters.AddWithValue("@Descripcion", Descripcion);
@@ -108,8 +117,9 @@ namespace GymCastillo.Model.DataTypes.Settings {
                     "No se puede eliminar esta clase ya que esta asignada a un horario, intente eliminar los horarios primero.",
                     "Clase asignada a un horario.");
                 return false;
-
             }
+
+            // TODO: checamos si no hay instructores asignados a esta clase.
 
             return true;
         }
@@ -168,7 +178,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 const string altaQuery = @"INSERT INTO clase
                                            VALUES
                                                (default, @NombreClase, @Descripcion,
-                                               @CupoMaximo, @Activo, @IdInstructor, @IdEspacio);";
+                                               @CupoMaximo, @Activo, @IdEspacio);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -178,7 +188,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
 
-                command.Parameters.AddWithValue("@IdInstructor", IdInstructor.ToString());
                 command.Parameters.AddWithValue("@IdEspacio", IdEspacio.ToString());
 
                 Log.Debug("Se ha generado la query.");

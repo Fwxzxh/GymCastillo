@@ -9,7 +9,7 @@ using GymCastillo.Model.Init;
 using log4net;
 using MySqlConnector;
 
-namespace GymCastillo.Model.DataTypes.Personal {
+namespace GymCastillo.Model.DataTypes.IntersectionTables {
     /// <summary>
     /// Clase que se encarga de guardar los campos y métodos del obtejo tipo ClienteRenta
     /// </summary>
