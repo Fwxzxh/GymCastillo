@@ -68,7 +68,8 @@ SELECT
     group_concat(c.IdClase) as IdClase, group_concat(c.NombreClase) as NombreClase
 FROM instructor i
 INNER JOIN tipoinstructor ti ON i.IdTipoInstructor = ti.IdTipoInstructor
-LEFT JOIN clase c ON c.IdInstructor = i.IdInstructor
+LEFT JOIN claseinstructores ci ON ci.IdInstructor = i.IdInstructor
+LEFT JOIN clase c ON ci.IdClase = c.IdClase
 GROUP BY i.IdInstructor;
 	-- Dar de alta
 INSERT INTO instructor
