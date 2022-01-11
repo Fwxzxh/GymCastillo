@@ -120,7 +120,6 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 return false;
             }
 
-            // TODO: checamos si no hay instructores asignados a esta clase.
             if (InitInfo.ObCoClaseInstructores.Any(x => x.IdClase == IdClase)) {
                 ShowPrettyMessages.InfoOk(
                     "No se puede eliminar esta clase ya que esta asignada a un instructor, " +
