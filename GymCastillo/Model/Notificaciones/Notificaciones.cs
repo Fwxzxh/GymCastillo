@@ -164,7 +164,6 @@ namespace GymCastillo.Model.Notificaciones {
         /// <summary>
         /// Obtiene la fecha de último Reseteo.
         /// </summary>
-        /// <returns>Una tupla con las fechas.</returns>
         private static async Task GetFechas() {
             Log.Info("se ha empezado el proceso de obtener la información de las fechas de reseteo.");
 

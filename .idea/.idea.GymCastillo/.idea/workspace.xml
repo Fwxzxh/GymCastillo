@@ -7,32 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor bug en ventas">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClaseInstructores.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClienteHorario.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Implemented Recent Changes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOtrosTipos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminOtrosTipos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Admin/AdminUsuariosGeneral.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/ClienteRenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClienteRenta.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/PaquetesClases.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/PaquetesClases.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/InitInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteRentaValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteRentaValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/PaqueteClaseValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/PaqueteClaseValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/OverviewCRWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/View/PersonalScreenView/ClientsRentaView/OverviewCRWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClasesVM/ClasesSettingsVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/ClasesVM/ClasesSettingsVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PaquetesVM/ClasesPaqueteVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/AdminScreensVM/PaquetesVM/ClasesPaqueteVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/IngresosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/IngresosVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/GridRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/GridRentaVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/NewClienteRVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/NewClienteRVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/OverviewRentaVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/OverviewRentaVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/RentasVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/VentasVM/VentasVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +40,7 @@
     <option name="projectConfigVersion" value="4" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Admin/AdminOtrosTipos.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
@@ -195,14 +175,7 @@
       <workItem from="1641495506244" duration="27149000" />
       <workItem from="1641575141643" duration="18131000" />
       <workItem from="1641798372179" duration="1987000" />
-      <workItem from="1641843643286" duration="6825000" />
-    </task>
-    <task id="LOCAL-00023" summary="¯\_(ツ)_/¯">
-      <created>1640109789410</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1640109789410</updated>
+      <workItem from="1641843643286" duration="7978000" />
     </task>
     <task id="LOCAL-00024" summary="Fix Paquete validation and Paquete FK check messages">
       <created>1640112767081</created>
@@ -540,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641605111342</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Implemented Recent Changes">
+      <created>1641864535153</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1641864535153</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor Fixes, MVP Telegram bot" />
     <MESSAGE value="Mayor Fixes to everything" />
     <MESSAGE value="fixed shit that havent been fixed in last commit" />
     <MESSAGE value="Clearer Msg in deuda cliente" />
@@ -599,7 +578,8 @@
     <MESSAGE value="Minor fixes, added 15 minute tolerance in asistencias" />
     <MESSAGE value="Tickets with telegram done" />
     <MESSAGE value="Minor bug en ventas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor bug en ventas" />
+    <MESSAGE value="Implemented Recent Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Recent Changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

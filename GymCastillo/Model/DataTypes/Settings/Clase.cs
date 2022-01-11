@@ -114,12 +114,20 @@ namespace GymCastillo.Model.DataTypes.Settings {
         private bool CheckDeleteConstrains() {
             if (InitInfo.ObCoHorarios.Any(x => x.IdClase == IdClase)) {
                 ShowPrettyMessages.InfoOk(
-                    "No se puede eliminar esta clase ya que esta asignada a un horario, intente eliminar los horarios primero.",
+                    "No se puede eliminar esta clase ya que esta asignada a un horario, " +
+                    "intente eliminar los horarios primero.",
                     "Clase asignada a un horario.");
                 return false;
             }
 
             // TODO: checamos si no hay instructores asignados a esta clase.
+            if (InitInfo.ObCoClaseInstructores.Any(x => x.IdClase == IdClase)) {
+                ShowPrettyMessages.InfoOk(
+                    "No se puede eliminar esta clase ya que esta asignada a un instructor, " +
+                    "intente cambiar esa clase primero.",
+                    "Clase asignada a un instructor.");
+                return false;
+            }
 
             return true;
         }
