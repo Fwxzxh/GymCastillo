@@ -206,7 +206,8 @@ create table Usuario (
     Foto blob,
     FechaUltimoAcceso datetime,
     FechaUltimoPago datetime,
-    MontoUltimoPago decimal
+    MontoUltimoPago decimal,
+    Sueldo decimal
 );
 
 create table Personal (
@@ -223,6 +224,7 @@ create table Personal (
     Foto blob,
     FechaUltimoPago datetime,
     MontoUltimoPago decimal
+    Sueldo decimal
 );
 
 create table Inventario (
