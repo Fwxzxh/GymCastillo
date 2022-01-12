@@ -126,19 +126,20 @@ SELECT
     u.Password, u.FechaNacimiento, u.Telefono,
     u.NombreContacto, u.TelefonoContacto,
     u.Foto, u.FechaUltimoAcceso,
-    u.FechaUltimoPago, u.MontoUltimoPago
+    u.FechaUltimoPago, u.MontoUltimoPago, u.Sueldo
 FROM usuario u;
 	-- Dar de alta
 INSERT INTO usuario
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	    @Domicilio, @Username, @Password, @FechaNacimiento,
 	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
-	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);
+	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, 
+	    @Sueldo);
 	-- Editar valores (usuario)
 UPDATE usuario
 SET domicilio=@Domicilio, username=@Username, password=@Password,
     telefono=@Telefono, NombreContacto=@NombreContacto,
-    telefonocontacto=@TelefonoContacto, foto=@Foto
+    telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)
 
@@ -329,20 +330,21 @@ SELECT
     p.ApellidoMaterno, p.Domicilio, p.Puesto,
     p.FechaNacimiento, p.Telefono, p.NombreContacto,
     p.TelefonoContacto, p.Foto,
-    p.FechaUltimoPago, p.MontoUltimoPago
+    p.FechaUltimoPago, p.MontoUltimoPago, p.Sueldo
 FROM personal p;
 	-- Dar de alta
 INSERT INTO personal
 VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	    @Domicilio, @Puesto, @FechaNacimiento, @Telefono, 
 	    @NombreContacto, @TelefonoContacto, @Foto,
-	    @FechaUltimoPago, @MontoUltimoPago);
+	    @FechaUltimoPago, @MontoUltimoPago, @Sueldo);
 
 	-- Editar valores (usuario)
 UPDATE usuario
 SET domicilio=@Domicilio, telefono=@Telefono, 
     NombreContacto=@NombreContacto,
-    telefonocontacto=@TelefonoContacto, foto=@Foto
+    telefonocontacto=@TelefonoContacto, foto=@Foto, 
+    sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)
 
