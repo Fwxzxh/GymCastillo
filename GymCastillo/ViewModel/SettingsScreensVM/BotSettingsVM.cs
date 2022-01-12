@@ -13,11 +13,19 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Bot Bot;
+
         public RelayCommand StartBot { get; set; }
         public RelayCommand StopBot { get; set; }
         public RelayCommand GenPassword { get; set; }
 
+        private Bot bot;
+
+        public Bot Bot {
+            get { return bot; }
+            set { bot = value;
+                OnPropertyChanged(nameof(Bot));
+            }
+        }
 
         private string password;
 
@@ -30,16 +38,17 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
-        private string logBot;
+        //private string logBot = Bot.LogBot;
 
-        public string LogBot {
-            get { return logBot; }
-            set
-            {
-                logBot = value;
-                OnPropertyChanged(nameof(LogBot));
-            }
-        }
+        //public string LogBot {
+        //    get { return logBot; }
+        //    set
+        //    {
+        //        logBot = value;
+        //        OnPropertyChanged(nameof(LogBot));
+        //        LogBot += Bot.LogBot;
+        //    }
+        //}
 
         private bool estado;
 
@@ -57,7 +66,6 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             StartBot = new RelayCommand(IniciarBot);
             StopBot = new RelayCommand(DetenerBot);
             GenPassword = new RelayCommand(GenerarPassword);
-            LogBot = Bot.LogBot;
         }
 
         private void GenerarPassword() {
@@ -73,14 +81,6 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             var key = GetInitData.GetApiKey();
             Bot = new Bot(key);
             Estado = Bot.Estado;
-
-        }
-
-        /// <summary>
-        /// Log del bot.
-        /// </summary>
-        public void WriteBot(string text) {
-            LogBot += $"{text}\n";
         }
 
         private void OnPropertyChanged(string propertyName) {

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM"
+             xmlns:log="clr-namespace:GymCastillo.Model.Bot"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -119,7 +120,7 @@
                      TextWrapping="Wrap"
                      VerticalScrollBarVisibility="Visible"
                      MaxHeight="350"
-                     Text="{Binding LogBot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Bot.LogBot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="10 0"/>
         </StackPanel>
         
