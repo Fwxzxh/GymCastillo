@@ -146,8 +146,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
-        private void PaqueteMensaje() {
-            throw new NotImplementedException();
+        private async void PaqueteMensaje() {
+            await Bot.SendMassiveMessage(PMessage, Paquete.IdPaquete);
+            PMessage = "";
         }
 
         private async void MandarMensaje() {
