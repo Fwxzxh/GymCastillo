@@ -147,8 +147,14 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         }
 
         private async void PaqueteMensaje() {
-            await Bot.SendMassiveMessage(PMessage, Paquete.IdPaquete);
-            PMessage = "";
+            if (Paquete != null) {
+                await Bot.SendMassiveMessage(PMessage, Paquete.IdPaquete);
+                PMessage = "";
+            }
+            else {
+                ShowPrettyMessages.ErrorOk("Por favor selecciona un paquete", "Error");
+            }
+
         }
 
         private async void MandarMensaje() {
