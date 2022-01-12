@@ -65,33 +65,65 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <DatePicker materialDesign:HintAssist.Hint="Fecha Nacimiento"
-                            materialDesign:HintAssist.FloatingScale="0.6"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
-                            Width="380"
-                            IsTodayHighlighted="True"
-                            FontSize="19"
-                            Margin="30 0"
-                            SelectedDate="{Binding Personal.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                <TextBox materialDesign:HintAssist.Hint="Dirección"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="380"
+                         FontSize="20"
+                         Margin="30 0"
+                         Text="{Binding Personal.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
                 <TextBox materialDesign:HintAssist.Hint="Teléfono"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
                          PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
-                         Width="380"
+                         Width="390"
                          FontSize="20"
                          Margin="30 0"
                          Text="{Binding Personal.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="2">
+                <DatePicker materialDesign:HintAssist.Hint="Fecha Nacimiento"
+                            materialDesign:HintAssist.FloatingScale="0.6"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            Width="250"
+                            IsTodayHighlighted="True"
+                            FontSize="19"
+                            Margin="20 0"
+                            SelectedDate="{Binding Personal.FechaNacimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                <TextBox materialDesign:HintAssist.Hint="Puesto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         Text="{Binding Personal.Puesto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Sueldo"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Personal.Sueldo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
                 <TextBox materialDesign:HintAssist.Hint="Nombre Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
-                         Width="375"
+                         Width="380"
                          FontSize="20"
                          Margin="30 0"
                          Text="{Binding Personal.NombreContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -102,30 +134,10 @@
                          MaxLength="10"
                          VerticalContentAlignment="Center"
                          PreviewTextInput="TextBox_PreviewTextInput"
-                         Width="375"
+                         Width="390"
                          FontSize="20"
                          Margin="30 0"
                          Text="{Binding Personal.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
-                <TextBox materialDesign:HintAssist.Hint="Dirección"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         VerticalContentAlignment="Center"
-                         Width="375"
-                         FontSize="20"
-                         Margin="30 0"
-                         Text="{Binding Personal.Domicilio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Puesto"
-                         materialDesign:HintAssist.FloatingScale="0.6"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         VerticalContentAlignment="Center"
-                         Width="375"
-                         FontSize="20"
-                         Margin="30 0"
-                         Text="{Binding Personal.Puesto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
         </Grid>

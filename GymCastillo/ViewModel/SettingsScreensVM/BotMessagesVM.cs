@@ -138,11 +138,13 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 await Bot.SendMassiveMessage(bMessage);
                 BMessage = "";
                 FileName = "";
+                SafeFileName = "";
             }
             else {
                 await Bot.SendMassiveMessageMultimedia(FileName, BMessage);
                 BMessage = "";
                 FileName = "";
+                SafeFileName = "";
             }
         }
 
