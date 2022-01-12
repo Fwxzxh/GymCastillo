@@ -38,11 +38,26 @@
                     Margin="10"
                     FontSize="20"/>
 
-            <Label Content="Configuracicone del bot"
+            <Label Content="Configuracion del bot"
                    HorizontalAlignment="Left"
                    FontSize="25"
                    Margin="0 10"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="API Key"
+                         Margin="10"
+                         Text="{Binding ApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Guardar Key"
+                        HorizontalAlignment="Center"
+                        Command="{Binding SaveKey}"
+                        Margin="10 0"
+                        FontSize="20"/>
+
+            </StackPanel>
 
         </StackPanel>
+
     </Grid>
 </UserControl>

@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="GymCastillo.View.SettingsScreensView.BotMessagesView.BotMessages"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.SettingsScreensVM"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+             Background="{DynamicResource MaterialDesignDarkBackground}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="20"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             d:DesignHeight="1024" d:DesignWidth="1280">
+    <UserControl.Resources>
+        <oc:InitInfo x:Key="oc"/>
+        <vm:BotMessagesVM x:Key="vm"/>
+    </UserControl.Resources>
+    <Grid Margin="20" DataContext="{StaticResource vm}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Mensajes Individuales"
+               Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            <ComboBox materialDesign:HintAssist.Hint="Nombre Cliente"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      HorizontalAlignment="Left"
+                      Width="250"
+                      ItemsSource="{Binding Clientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="10 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                    <Binding Path="Id"/>
+                                    <Binding Path="Nombre"/>
+                                    <Binding Path="ApellidoPaterno"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:HintAssist.Hint="Mensaje a enviar"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     TextWrapping="Wrap"
+                     Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="200"
+                     Width="700"
+                     MaxHeight="60"/>
+
+        </StackPanel>
+        <Button Style="{StaticResource MaterialDesignPaperButton}"
+                Content="Enviar Mensaje"
+                HorizontalAlignment="Left"
+                Command="{Binding SendMessage}"
+                ToolTip="Envia los mensajes"
+                Grid.Row="2"
+                FontSize="20"
+                Margin="10"/>
+        <Label Content="Mensajes por Paquete"
+               Grid.Row="3"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="4">
+            <ComboBox materialDesign:HintAssist.Hint="Paquete"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      HorizontalAlignment="Left"
+                      Width="250"
+                      DisplayMemberPath="NombrePaquete"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoDePaquetes}}"
+                      SelectedItem="{Binding Paquete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="10 0"/>
+
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Mensaje a enviar"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         TextWrapping="Wrap"
+                         Text="{Binding PMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="200"
+                         MaxHeight="60"
+                         Width="700"/>
+        </StackPanel>
+        <Button Style="{StaticResource MaterialDesignPaperButton}"
+                Content="Enviar Mensaje"
+                HorizontalAlignment="Left"
+                Command="{Binding SendPacketMessage}"
+                ToolTip="Envia los mensajes"
+                Grid.Row="5"
+                FontSize="20"
+                Margin="10"/>
+        <Label Content="Mensajes para Todos"
+               Grid.Row="6"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="7">
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:HintAssist.Hint="Mensaje a enviar"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     TextWrapping="Wrap"
+                     Text="{Binding BMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="10 0"
+                     MaxLength="200"
+                     MaxHeight="60"
+                     Width="700"/>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:HintAssist.Hint="Nombre del archivo"
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     FontSize="15"
+                     Margin="10 0"
+                     MaxWidth="200"
+                     Visibility="{Binding SafeFileName, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
+                     Text="{Binding SafeFileName, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="9">
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                    Content="Adjuntar archivo"
+                    HorizontalAlignment="Left"
+                    Command="{Binding AddFile}"
+                    ToolTip="Envia los mensajes"
+                    Grid.Row="8"
+                    FontSize="20"
+                    Margin="10"/>
+            
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                    Content="Enviar Mensaje"
+                    HorizontalAlignment="Left"
+                    Command="{Binding SendBroadcastMessage}"
+                    ToolTip="Envia los mensajes"
+                    Grid.Row="8"
+                    FontSize="20"
+                    Margin="10"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

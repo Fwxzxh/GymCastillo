@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:main="clr-namespace:GymCastillo.View.SettingsScreensView.ConfigView"
              xmlns:bot="clr-namespace:GymCastillo.View.SettingsScreensView.BotView"
+             xmlns:msg="clr-namespace:GymCastillo.View.SettingsScreensView.BotMessagesView"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -43,6 +44,17 @@
                 </TabItem.Header>
                 <TabItem.Content>
                     <bot:BotConfigView/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Width="160">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <TextBlock Text="Mensajes"
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <msg:BotMessages/>
                 </TabItem.Content>
             </TabItem>
 

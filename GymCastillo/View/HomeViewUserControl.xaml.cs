@@ -1,4 +1,5 @@
-﻿using GymCastillo.ViewModel.AsistenciasVM;
+﻿using GymCastillo.Model.Helpers;
+using GymCastillo.ViewModel.AsistenciasVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,11 +36,17 @@ namespace GymCastillo.View {
 
         private void id_PreviewKeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                if (id.Text.StartsWith("1")) {
-                    vm.Asistencia.Id = int.Parse(id.Text.Substring(1));
-                    vm.AsistenciaClienteView();
-                    id.Text = "0";
+                try {
+                    if (id.Text.StartsWith("1")) {
+                        vm.Asistencia.Id = int.Parse(id.Text.Substring(1));
+                        vm.AsistenciaClienteView();
+                        id.Text = "0";
+                    }
                 }
+                catch (Exception ) {
+                    ShowPrettyMessages.WarningOk("Input incorrecto, ingresa el ID y luego selecciona si es Cliente o Instructor", "Error");
+                }
+
             }
         }
 

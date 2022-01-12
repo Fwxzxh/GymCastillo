@@ -18,10 +18,32 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         public RelayCommand ManualCommand { get; set; }
         public RelayCommand SaveKey { get; set; }
 
-        public MainSettingsVM() {
-            ManualCommand = new(Actualizar);
+
+        private string apiKey;
+
+        public string ApiKey {
+            get { return apiKey; }
+            set
+            {
+                apiKey = value;
+                OnPropertyChanged(nameof(ApiKey));
+            }
         }
 
+        public MainSettingsVM() {
+            ApiKey = GetInitData.TelegramApiKey;
+            ManualCommand = new(Actualizar);
+            SaveKey = new RelayCommand(GuardarKey);
+        }
+
+        private void GuardarKey() {
+            if (!string.IsNullOrWhiteSpace(ApiKey)) {
+                GetInitData.WriteApikey(ApiKey);
+            }
+            else {
+                ShowPrettyMessages.ErrorOk("La key no debe de estar vacía", "Error");
+            }
+        }
 
         private async void Actualizar() {
             await Notificaciones.ResetFieldsAndUpdate();

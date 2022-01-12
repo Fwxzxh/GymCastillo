@@ -39,7 +39,7 @@
                 <Label Content="{Binding Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource converter}}"
                    Margin="0 10"/>
             </StackPanel>
-            <Label Content="Contacto con clientes"
+            <!--<Label Content="Contacto con clientes"
                    Margin="0 10"/>
             <StackPanel Orientation="Horizontal">
                 <ComboBox materialDesign:HintAssist.Hint="Nombre Cliente"
@@ -78,7 +78,7 @@
                     Command="{Binding SendMessage}"
                     ToolTip="Envia los mensajes"
                     FontSize="18"
-                    Margin="10"/>
+                    Margin="10"/>-->
             <Label Content="Registro de usuarios"
                    Margin="0 10"/>
             <StackPanel Orientation="Horizontal">
@@ -97,7 +97,7 @@
                     FontSize="18"
                     Margin="10 0"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <!--<StackPanel Orientation="Horizontal">
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="API Key"
                          Margin="10"
@@ -110,12 +110,15 @@
                         Margin="10 0"
                         FontSize="20"/>
                 
-            </StackPanel>
+            </StackPanel>-->
             <Label Content="Log"
                    Margin="0 10"/>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     IsReadOnly="True"
                      Height="auto"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Visible"
+                     MaxHeight="350"
                      Text="{Binding LogBot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="10 0"/>
         </StackPanel>
