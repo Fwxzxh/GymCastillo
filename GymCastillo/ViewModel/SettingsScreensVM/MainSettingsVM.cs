@@ -31,7 +31,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         }
 
         public MainSettingsVM() {
-            ApiKey = GetInitData.TelegramApiKey;
+            ApiKey = GetInitData.GetApiKey();
             ManualCommand = new(Actualizar);
             SaveKey = new RelayCommand(GuardarKey);
         }
