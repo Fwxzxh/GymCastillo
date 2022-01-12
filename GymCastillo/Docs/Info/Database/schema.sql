@@ -223,7 +223,7 @@ create table Personal (
     TelefonoContacto varchar(30),
     Foto blob,
     FechaUltimoPago datetime,
-    MontoUltimoPago decimal
+    MontoUltimoPago decimal,
     Sueldo decimal
 );
 
