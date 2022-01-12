@@ -317,11 +317,12 @@ namespace GymCastillo.Model.Bot {
         /// </summary>
         /// <param name="mensaje">El texto del mensaje a enviar.</param>
         /// <param name="idPaquete">El id del paquete para enviar el mensaje</param>
-        public static async Task SendMassiveMessage(string mensaje, int idPaquete) {
+        public static async Task SendMassiveMessage(string mensaje, int idPaquete=0) {
             Log.Debug("Se ha iniciado el proceso de mandar un lote de mensajes masivos.");
 
-            var clientesTelegram =
-                InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete);
+            var clientesTelegram = idPaquete == 0
+                ? InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete)
+                : InitInfo.ObCoClientes.Where(x => x.ChatId != "");
 
             try {
                 var count = 0;
@@ -358,11 +359,12 @@ namespace GymCastillo.Model.Bot {
         /// <param name="path">La ruta al recurso a subir.</param>
         /// <param name="description">Descripción de la foto a subir</param>
         /// <param name="idPaquete">El id del paquete al cual mandar el mensaje</param>
-        public static async Task SendMassiveMessageMultimedia(string path, string description, int idPaquete) {
+        public static async Task SendMassiveMessageMultimedia(string path, string description, int idPaquete=0) {
             Log.Debug("Se ha iniciado el proceso de mandar un lote de mensajes masivos.");
 
-            var clientesTelegram =
-                InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete);
+            var clientesTelegram = idPaquete == 0
+                ? InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete)
+                : InitInfo.ObCoClientes.Where(x => x.ChatId != "");
 
             await using var stream = File.OpenRead(path);
 
