@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -320,7 +318,7 @@ namespace GymCastillo.Model.Bot {
         public static async Task SendMassiveMessage(string mensaje, int idPaquete=0) {
             Log.Debug("Se ha iniciado el proceso de mandar un lote de mensajes masivos.");
 
-            var clientesTelegram = idPaquete == 0
+            var clientesTelegram = idPaquete != 0
                 ? InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete)
                 : InitInfo.ObCoClientes.Where(x => x.ChatId != "");
 
@@ -362,7 +360,7 @@ namespace GymCastillo.Model.Bot {
         public static async Task SendMassiveMessageMultimedia(string path, string description, int idPaquete=0) {
             Log.Debug("Se ha iniciado el proceso de mandar un lote de mensajes masivos.");
 
-            var clientesTelegram = idPaquete == 0
+            var clientesTelegram = idPaquete != 0
                 ? InitInfo.ObCoClientes.Where(x => x.ChatId != "" && x.IdPaquete == idPaquete)
                 : InitInfo.ObCoClientes.Where(x => x.ChatId != "");
 

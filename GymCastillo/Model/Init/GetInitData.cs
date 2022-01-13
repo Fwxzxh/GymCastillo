@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using GymCastillo.Model.Helpers;
 using log4net;
@@ -21,6 +22,22 @@ namespace GymCastillo.Model.Init {
         /// </summary>
         public static string TelegramApiKey { get; set; }
 
+        /// <summary>
+        /// Costo de la visita al gym.
+        /// </summary>
+        public static decimal VisitaGym { get; set; }
+
+        /// <summary>
+        /// Costo de la visita al box.
+        /// </summary>
+        public static decimal VisitaBox { get; set; }
+
+        /// <summary>
+        /// Costo de una visita a la alberca.
+        /// </summary>
+        public static decimal VisitaAlberca { get; set; }
+
+
         // la ruta al archivo ini.
         private const string IniPath = @"C:\GymCastillo\config.ini";
 
@@ -41,6 +58,8 @@ namespace GymCastillo.Model.Init {
 
                 ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=GymCastillo";
 
+                GetPreciosVisitas();
+
                 return ConnString;
             }
             catch (Exception e) {
@@ -51,6 +70,58 @@ namespace GymCastillo.Model.Init {
                     $"configuración. Error: {e.Message}",
                     "Error desconocido");
                 throw; // --> Nos llevamos el error al siguiente nivel.
+            }
+        }
+
+
+        /// <summary>
+        /// Método que lee los precios de las visitas.
+        /// </summary>
+        public static void GetPreciosVisitas() {
+            Log.Info("Se ha iniciado el proceso de obtener los precios de las visitas.");
+
+            try {
+
+                var ini = new IniFile(IniPath);
+                var gym = ini.Read("VisitaGym", "Precios");
+                var box = ini.Read("VisitaBox", "Precios");
+                var alberca = ini.Read("VisitaAlberca", "Precios");
+
+                VisitaGym = gym == "" ? 0 : decimal.Parse(gym);
+                VisitaBox = box == "" ? 0 : decimal.Parse(box);
+                VisitaAlberca = alberca == "" ? 0 : decimal.Parse(alberca);
+
+                Log.Info("Se han obtenido los precios de las visitas con éxito.");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al leer la información de los precios de visita del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los precios de visita del archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de guardar los precios de las visitas en el ini.
+        /// </summary>
+        public static void SavePreciosVisitas() {
+            Log.Info("Se ha iniciado el proceso de guardar los precios de las visitas.");
+
+            try {
+                var ini = new IniFile(IniPath);
+                ini.Write("VisitaGym", $"{VisitaGym.ToString(CultureInfo.InvariantCulture)}", "Precios");
+                ini.Write("VisitaBox", $"{VisitaBox.ToString(CultureInfo.InvariantCulture)}", "Precios");
+                ini.Write("VisitaAlberca", $"{VisitaAlberca.ToString(CultureInfo.InvariantCulture)}", "Precios");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al escribir la información de los precios de visita del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al escribir la información de los precios de visita del archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
             }
         }
 
