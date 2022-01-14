@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added PreciosVisitas in ini">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/LoginVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +53,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/847eb618332dc7f4898f9184789686dc449210e3f714c3387772efb3c38c/PropertyPathWorker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -176,14 +177,8 @@
       <workItem from="1641798372179" duration="1987000" />
       <workItem from="1641843643286" duration="11862000" />
       <workItem from="1641951224651" duration="6305000" />
-      <workItem from="1642017579716" duration="5578000" />
-    </task>
-    <task id="LOCAL-00029" summary="Inventario back done">
-      <created>1640210711871</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1640210711871</updated>
+      <workItem from="1642017579716" duration="7444000" />
+      <workItem from="1642125223580" duration="423000" />
     </task>
     <task id="LOCAL-00030" summary="Pagos Validation Done">
       <created>1640211035303</created>
@@ -521,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641955369000</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Added PreciosVisitas in ini">
+      <created>1642042993837</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1642042993838</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Bot auth &amp; alta in db done" />
     <MESSAGE value="minor Fixes to Messages" />
     <MESSAGE value="Minor Fix to DigitalCard.cs" />
     <MESSAGE value="Added FechaRegistro Cliente, &amp; back for pago Cliente Renta debe, &amp; minor fixes" />
@@ -580,7 +581,8 @@
     <MESSAGE value="Massive msg done" />
     <MESSAGE value="Massive multimeda msg done" />
     <MESSAGE value="Added paquete in massive msg" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added paquete in massive msg" />
+    <MESSAGE value="Added PreciosVisitas in ini" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PreciosVisitas in ini" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

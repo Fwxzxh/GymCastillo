@@ -42,6 +42,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public string Password { get; set; }
 
         /// <summary>
+        /// El sueldo del usuario.
+        /// </summary>
+        public decimal Sueldo { get; set; }
+
+        /// <summary>
         /// Método que Actualiza la instancia actual del objeto en la base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas por la operación.</returns>
@@ -54,7 +59,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 const string updateQuery = @"UPDATE usuario
                                              SET domicilio=@Domicilio, username=@Username, password=@Password,
                                                  telefono=@Telefono, NombreContacto=@NombreContacto,
-                                                 telefonocontacto=@TelefonoContacto, foto=@Foto
+                                                 telefonocontacto=@TelefonoContacto, foto=@Foto, Sueldo=@Sueldo
                                              WHERE IdUsuario=@IdUsuario";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -70,6 +75,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
                 command.Parameters.AddWithValue("@Foto", FotoRaw);
+
+                command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
 
                 var res = await ExecSql.NonQuery(command, "Update Usuario");
 
@@ -146,7 +153,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
                                            	    @Domicilio, @Username, @Password, @FechaNacimiento,
                                            	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
-                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);";
+                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, @Sueldo);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -171,6 +178,10 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago",
                     MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@Sueldo",
+                    Sueldo.ToString(CultureInfo.InvariantCulture));
+
                 Log.Debug("Se ha creado la query.");
 
                 var res = await ExecSql.NonQuery(command, "Alta Usuario");

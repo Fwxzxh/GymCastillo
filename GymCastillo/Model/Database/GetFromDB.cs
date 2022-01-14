@@ -319,7 +319,7 @@ namespace GymCastillo.Model.Database {
                                           u.Password, u.FechaNacimiento, u.Telefono,
                                           u.NombreContacto, u.TelefonoContacto,
                                           u.Foto, u.FechaUltimoAcceso,
-                                          u.FechaUltimoPago, u.MontoUltimoPago
+                                          u.FechaUltimoPago, u.MontoUltimoPago, u.Sueldo
                                       FROM usuario u";
 
             try {
@@ -379,6 +379,11 @@ namespace GymCastillo.Model.Database {
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
                             : reader.Result.GetInt32("MontoUltimoPago"),
+
+                        Sueldo = await reader.Result.IsDBNullAsync("Sueldo")
+                            ? 0
+                            : reader.Result.GetDecimal("Sueldo"),
+
                     };
 
                     listUsuario.Add(usuario);
@@ -558,7 +563,7 @@ namespace GymCastillo.Model.Database {
                                           p.ApellidoMaterno, p.Domicilio, p.Puesto,
                                           p.FechaNacimiento, p.Telefono, p.NombreContacto,
                                           p.TelefonoContacto, p.Foto,
-                                          p.FechaUltimoPago, p.MontoUltimoPago
+                                          p.FechaUltimoPago, p.MontoUltimoPago, p.Sueldo
                                       FROM personal p";
 
             try {
@@ -607,7 +612,11 @@ namespace GymCastillo.Model.Database {
                             : reader.Result.GetDateTime("FechaUltimoPago"),
                         MontoUltimoPago = await reader.Result.IsDBNullAsync("MontoUltimoPago")
                             ? 0
-                            : reader.Result.GetInt32("MontoUltimoPago"),
+                            : reader.Result.GetDecimal("MontoUltimoPago"),
+
+                        Sueldo = await reader.Result.IsDBNullAsync("Sueldo")
+                            ? 0
+                            : reader.Result.GetDecimal("Sueldo"),
 
                     };
                     listPersonal.Add(personal);
