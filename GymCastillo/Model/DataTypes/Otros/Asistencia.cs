@@ -61,9 +61,10 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// </summary>
         /// <param name="clases">Lista Con las clases a las que puede entrar el cliente.</param>
         public void GetHorarios(IEnumerable<int> clases) {
+
             var horarios =
                 InitInfo.ObCoHorarios.Where(
-                    x => clases.Contains(x.IdClase) && x.HoraInicio.TimeOfDay >= DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(15))
+                    x => clases.Contains(x.IdHorario) && x.HoraInicio.TimeOfDay >= DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(15))
                     .OrderBy(x => x.HoraInicio).AsParallel().ToList();
 
             ListaHorarios = horarios;

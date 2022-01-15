@@ -108,11 +108,11 @@ namespace GymCastillo.Model.Helpers {
                 // Si puede entrar.
 
                 // Obtenemos la lista de las clases a las que puede entrar.
-                var clases = InitInfo.ListPaquetesClases.Where(
-                    x => x.IdPaquete == asistencia.DatosCliente.IdPaquete).AsParallel().ToList();
+                var horariosCliente =
+                    InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == asistencia.Id);
 
                 // Obtenemos los horarios de las clases a las que puede entrar.
-                asistencia.GetHorarios(clases.Select(x => x.IdClase));
+                asistencia.GetHorarios(horariosCliente.Select(x => x.IdHorario));
 
                 // Puede entrar
                 return asistencia;

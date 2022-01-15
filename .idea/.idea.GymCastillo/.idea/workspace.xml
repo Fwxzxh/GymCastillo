@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Reportes Done">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor enhancements to Notificaciones.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotMessagesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotMessagesVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/AsistenciasHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,14 +178,7 @@
       <workItem from="1641951224651" duration="6305000" />
       <workItem from="1642017579716" duration="7444000" />
       <workItem from="1642125223580" duration="9436000" />
-      <workItem from="1642210522429" duration="1527000" />
-    </task>
-    <task id="LOCAL-00032" summary="Added rentas query">
-      <created>1640221934565</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1640221934565</updated>
+      <workItem from="1642210522429" duration="2937000" />
     </task>
     <task id="LOCAL-00033" summary="Horarios Time &amp; place alta check added">
       <created>1640224141792</created>
@@ -523,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642211143821</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Minor enhancements to Notificaciones.cs">
+      <created>1642212238128</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1642212238128</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added FechaRegistro Cliente, &amp; back for pago Cliente Renta debe, &amp; minor fixes" />
     <MESSAGE value="FIXED" />
     <MESSAGE value="Card Barcode Generation Working" />
     <MESSAGE value="Minor fixes" />
@@ -582,7 +581,8 @@
     <MESSAGE value="Added PreciosVisitas in ini" />
     <MESSAGE value="Added sueldo to Personal.cs &amp; Usuario.cs" />
     <MESSAGE value="Reportes Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reportes Done" />
+    <MESSAGE value="Minor enhancements to Notificaciones.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor enhancements to Notificaciones.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
