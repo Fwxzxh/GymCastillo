@@ -7,11 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added sueldo to Personal.cs &amp; Usuario.cs">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Reportes/GetReportes.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Reportes Done">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Diagrams/Programa.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotMessagesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/SettingsScreensVM/BotMessagesVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +178,7 @@
       <workItem from="1641951224651" duration="6305000" />
       <workItem from="1642017579716" duration="7444000" />
       <workItem from="1642125223580" duration="9436000" />
-      <workItem from="1642210522429" duration="410000" />
-    </task>
-    <task id="LOCAL-00031" summary="Rentas Back done, Updated Card.">
-      <created>1640221302831</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1640221302831</updated>
+      <workItem from="1642210522429" duration="1527000" />
     </task>
     <task id="LOCAL-00032" summary="Added rentas query">
       <created>1640221934565</created>
@@ -524,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642125954329</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Reportes Done">
+      <created>1642211143820</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1642211143821</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor Fix to DigitalCard.cs" />
     <MESSAGE value="Added FechaRegistro Cliente, &amp; back for pago Cliente Renta debe, &amp; minor fixes" />
     <MESSAGE value="FIXED" />
     <MESSAGE value="Card Barcode Generation Working" />
@@ -583,7 +581,8 @@
     <MESSAGE value="Added paquete in massive msg" />
     <MESSAGE value="Added PreciosVisitas in ini" />
     <MESSAGE value="Added sueldo to Personal.cs &amp; Usuario.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sueldo to Personal.cs &amp; Usuario.cs" />
+    <MESSAGE value="Reportes Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reportes Done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

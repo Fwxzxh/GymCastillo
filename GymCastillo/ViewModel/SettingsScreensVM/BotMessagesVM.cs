@@ -7,12 +7,9 @@ using GymCastillo.Model.Helpers;
 using log4net;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.SettingsScreensVM {
     public class BotMessagesVM : INotifyPropertyChanged {

@@ -96,9 +96,24 @@ namespace GymCastillo.Model.Notificaciones {
             var done = await Task.WhenAll(clasesSemana, cuposSemana, updateDate);
 
             if (done.All(x => x)) {
+
+                // Actualizamos los clientes
+                var clientes = await GetFromDb.GetClientes();
+                InitInfo.ObCoClientes.Clear();
+                foreach (var cliente in clientes) {
+                    InitInfo.ObCoClientes.Add(cliente);
+                }
+
+                // Actualizamos los cupos
+                var horarios = await GetFromDb.GetHorarios();
+                InitInfo.ObCoHorarios.Clear();
+                foreach (var horario in horarios) {
+                    InitInfo.ObCoHorarios.Add(horario);
+                }
+
                 Log.Info("Se han reseteado los cambios exitosamente.");
                 ShowPrettyMessages.NiceMessageOk(
-                    "Se han reseteado los campos exitosamente, Se recomienda Reiniciar el programa.",
+                    "Se han reseteado los campos  exitosamente, Se recomienda Reiniciar el programa.",
                     "Operación exitosa.");
                 return;
             }
