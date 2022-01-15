@@ -444,38 +444,40 @@ WHERE ch.IdHorario = @IdHorario;
 -- Ingresos y Egresos de los últimos 7 días
 
 -- Egresos
-SELECT	p.IdPagosGeneral, p.FechaRegistro,
-	p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
-        p.Servicios, p.Nomina, p.Otros, p.IdUsuarioPagar,
-        CONCAT(up.Nombre, ' ', up.ApellidoPaterno, ' ', up.ApellidoMaterno) as NombreUsuarioPagar,
-        p.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
-        p.IdPersonal, CONCAT(ps.Nombre, ' ', ps.ApellidoPaterno, ' ', ps.ApellidoMaterno) as NombrePersonal,
-        p.Concepto, p.NumeroRecibo, p.Monto
-FROM	egresos p
-	INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
-        LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
-        LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor
-        LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal
-WHERE	i.FechaRegistro >= NOW() + INTERVAL -7 DAY
-AND	i.FechaRegistro < NOW() + INTERVAL 0 DAY;
+SELECT
+    p.IdPagosGeneral, p.FechaRegistro,
+    p.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
+    p.Servicios, p.Nomina, p.Otros, p.IdUsuarioPagar,
+    CONCAT(up.Nombre, ' ', up.ApellidoPaterno, ' ', up.ApellidoMaterno) as NombreUsuarioPagar,
+    p.IdInstructor, CONCAT(i.Nombre, ' ', i.ApellidoPaterno, ' ', i.ApellidoMaterno) as NombreInstructor,
+    p.IdPersonal, CONCAT(ps.Nombre, ' ', ps.ApellidoPaterno, ' ', ps.ApellidoMaterno) as NombrePersonal,
+    p.Concepto, p.NumeroRecibo, p.Monto
+FROM egresos p
+    INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
+    LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
+    LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor
+    LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal
+WHERE p.FechaRegistro >= NOW() + INTERVAL -7 DAY
+    AND	p.FechaRegistro < NOW() + INTERVAL 0 DAY;
 
 -- Ingresos
-SELECT	i.IdIngresos, i.FechaRegistro AS FechaRegistroIngreso,
-	i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
-        i.IdRenta, CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRenta,
-        r.FechaRenta AS FechaRenta,
-        i.IdCliente, CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente,
-        i.IdVenta, v.Concepto AS ConceptoVenta,
-        i.IdClienteRenta, CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRentaDeuda,
-        i.Otros, i.Concepto AS ConceptoIngreso, i.IdPaquete, p.NombrePaquete, i.IdLocker,
-        i.NumeroRecibo, i.Monto, i.MontoRecibido
-FROM	ingresos i
-	INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
-        LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
-        LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
-        LEFT JOIN clienterenta cr ON i.IdClienteRenta = cr.IdClienteRenta
-        LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
-        LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
-        LEFT JOIN locker l ON i.IdLocker = l.IdLocker
-WHERE	i.FechaRegistro >= NOW() + INTERVAL -7 DAY
-AND	i.FechaRegistro < NOW() + INTERVAL 0 DAY;
+SELECT
+    i.IdIngresos, i.FechaRegistro AS FechaRegistroIngreso,
+    i.IdUsuario, CONCAT(u.Nombre, ' ', u.ApellidoPaterno, ' ', u.ApellidoMaterno) as NombreUsuario,
+    i.IdRenta, CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRenta,
+    r.FechaRenta AS FechaRenta,
+    i.IdCliente, CONCAT(c.Nombre, ' ', c.ApellidoPaterno, ' ', c.ApellidoMaterno) as NombreCliente,
+    i.IdVenta, v.Concepto AS ConceptoVenta,
+    i.IdClienteRenta, CONCAT(cr.Nombre, ' ', cr.ApellidoPaterno, ' ', cr.ApellidoMaterno) as NombreClienteRentaDeuda,
+    i.Otros, i.Concepto AS ConceptoIngreso, i.IdPaquete, p.NombrePaquete, i.IdLocker,
+    i.NumeroRecibo, i.Monto, i.MontoRecibido
+FROM ingresos i
+    INNER JOIN usuario u ON i.IdUsuario = u.IdUsuario
+    LEFT JOIN rentas r ON i.IdRenta = r.IdRenta
+    LEFT JOIN cliente c ON i.IdCliente = c.IdCliente
+    LEFT JOIN clienterenta cr ON i.IdClienteRenta = cr.IdClienteRenta
+    LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
+    LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
+    LEFT JOIN locker l ON i.IdLocker = l.IdLocker
+WHERE i.FechaRegistro >= NOW() + INTERVAL -7 DAY
+    AND	i.FechaRegistro < NOW() + INTERVAL 0 DAY;
