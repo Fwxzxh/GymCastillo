@@ -9,6 +9,7 @@ using GymCastillo.Model.Bot;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Notificaciones;
+using System.IO;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -46,6 +47,7 @@ namespace GymCastillo.ViewModel {
 
         public LoginVM() {
             loginCommand = new LoginCommand();
+            Directory.CreateDirectory(@"C:\GymCastillo\Reportes\");
         }
 
         public async void LogIn(string userName, string password) {

@@ -89,7 +89,7 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdVenta = 0;
                         ingreso.IdRenta = 0;
                         ingreso.IdClienteRenta = 0;
-
+                        ingreso.Otros = true;
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
 
