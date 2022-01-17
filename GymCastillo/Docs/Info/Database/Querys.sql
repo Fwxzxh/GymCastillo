@@ -153,8 +153,8 @@ select
     e.IdEspacio, e.NombreEspacio,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-FROM ClaseInstructores ci
-left join clase c on c.IdClase = ci.IdClase
+FROM Clase c
+left join claseinstructores ci on c.IdClase = ci.IdClase
 left join instructor i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
@@ -173,8 +173,8 @@ SELECT
     group_concat(h.HoraFin) HoraDeTermino,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-FROM ClaseInstructores ci
-left join clase c on c.IdClase = ci.IdClase
+FROM Clase c
+left join claseinstructores ci on c.IdClase = ci.IdClase
 left join instructor i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
@@ -190,8 +190,8 @@ SELECT
     e.IdEspacio, e.NombreEspacio,
     group_concat(p.IdPaquete) as IdPaquete,
     group_concat(p.NombrePaquete) as NombrePaquete
-FROM ClaseInstructores ci
-left join clases c on c.IdClase = ci.IdClase
+FROM Clase c
+left join claseinstructores ci on c.IdClase = ci.IdClase
 left join instructores i on i.IdInstructor = ci.IdInstructor
 left join espacio e on e.IdEspacio = c.IdEspacio
 left join paquetesclases pc on c.IdClase = pc.IdClase
