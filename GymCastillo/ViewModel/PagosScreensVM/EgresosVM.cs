@@ -115,6 +115,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void PersonalPayment() {
             egresos.Tipo = 3;
             egresos.IdPersonal = personal.Id;
+            egresos.Monto = personal.Sueldo;
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -130,6 +131,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void UserPayment() {
             egresos.Tipo = 1;
             egresos.IdUsuarioPagar = usuario.Id;
+            egresos.Monto = usuario.Sueldo;
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }

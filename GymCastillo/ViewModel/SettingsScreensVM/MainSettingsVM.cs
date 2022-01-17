@@ -17,7 +17,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         public RelayCommand ManualCommand { get; set; }
         public RelayCommand SaveKey { get; set; }
-
+        public RelayCommand SavePrecios { get; set; }
 
         private string apiKey;
 
@@ -30,10 +30,55 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
+        private decimal visitaGym;
+
+        public decimal VisitaGym {
+            get { return visitaGym; }
+            set
+            {
+                visitaGym = value;
+                OnPropertyChanged(nameof(VisitaGym));
+            }
+        }
+
+        private decimal visitaBox;
+
+        public decimal VisitaBox {
+            get { return visitaBox; }
+            set
+            {
+                visitaBox = value;
+                OnPropertyChanged(nameof(VisitaBox));
+            }
+        }
+
+        private decimal visitaAlberca;
+
+        public decimal VisitaAlberca {
+            get { return visitaAlberca; }
+            set
+            {
+                visitaAlberca = value;
+                OnPropertyChanged(nameof(VisitaAlberca));
+            }
+        }
+
+
         public MainSettingsVM() {
             ApiKey = GetInitData.GetApiKey();
             ManualCommand = new(Actualizar);
             SaveKey = new RelayCommand(GuardarKey);
+            SavePrecios = new RelayCommand(ActualizarPrecios);
+            VisitaGym = GetInitData.VisitaGym;
+            VisitaBox = GetInitData.VisitaBox;
+            VisitaAlberca = GetInitData.VisitaAlberca;
+        }
+
+        private void ActualizarPrecios() {
+            GetInitData.VisitaGym = VisitaGym;
+            GetInitData.VisitaBox = VisitaBox;
+            GetInitData.VisitaAlberca = VisitaAlberca;
+            GetInitData.SavePreciosVisitas();
         }
 
         private void GuardarKey() {

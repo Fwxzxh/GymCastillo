@@ -221,10 +221,28 @@
             <StackPanel Grid.Row="2"
                         HorizontalAlignment="Center">
                 <CheckBox Content="Sólo Visita"
-                          FontSize="20"
-                          IsChecked="{Binding Gym, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          x:Name="visita"
-                          HorizontalAlignment="Center"/>
+                              FontSize="20"
+                              Margin="10 0"
+                              IsChecked="{Binding Visita, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              x:Name="visita"
+                              HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding Visita, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton Content="Gym"
+                                 FontSize="20"
+                                 IsChecked="{Binding Gym, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}"/>
+                    <RadioButton Content="Box"
+                                 FontSize="20"
+                                 IsChecked="{Binding Box, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}"/>
+                    <RadioButton Content="Alberca"
+                                 FontSize="20"
+                                 IsChecked="{Binding Alberca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}"/>
+                </StackPanel>
+
 
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center"
@@ -243,6 +261,7 @@
                              FontSize="20"
                              Width="150"
                              Margin="20 0"
+                             IsEnabled="{Binding Visita , Converter={StaticResource InvertBooleanConverter}}"
                              Text="{Binding Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     <TextBox materialDesign:HintAssist.Hint="Cambio"
@@ -261,6 +280,7 @@
                          VerticalContentAlignment="Center"
                          FontSize="20"
                          Margin="20 0"
+                         IsEnabled="{Binding Visita , Converter={StaticResource InvertBooleanConverter}}"
                          Text="{Binding Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <StackPanel Orientation="Horizontal" 

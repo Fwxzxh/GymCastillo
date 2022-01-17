@@ -10,6 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using GymCastillo.Model.DataTypes.IntersectionTables;
+using GymCastillo.Model.Reportes;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class IngresosVM : INotifyPropertyChanged {
@@ -19,6 +20,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoCliente { get; set; }
         public RelayCommand PagoOtros { get; set; }
         public RelayCommand PagoRenta { get; set; }
+        public RelayCommand MakeReporte { get; set; }
 
         private Paquete paquete = new();
 
@@ -93,7 +95,13 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             PagoCliente = new RelayCommand(ClientsPyment);
             PagoOtros = new RelayCommand(OthersPayment);
             PagoRenta = new RelayCommand(RentPayment);
+            MakeReporte = new RelayCommand(ReporteSemanal);
             RefreshGrid();
+        }
+
+        private async void ReporteSemanal() {
+            var lista = await GetReportes.GetReporteIngresos();
+
         }
 
         private async void RentPayment() {

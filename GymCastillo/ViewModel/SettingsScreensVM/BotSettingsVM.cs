@@ -22,7 +22,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         public Bot Bot {
             get { return bot; }
-            set { bot = value;
+            set
+            {
+                bot = value;
                 OnPropertyChanged(nameof(Bot));
             }
         }
@@ -37,18 +39,6 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 OnPropertyChanged(nameof(Password));
             }
         }
-
-        //private string logBot = Bot.LogBot;
-
-        //public string LogBot {
-        //    get { return logBot; }
-        //    set
-        //    {
-        //        logBot = value;
-        //        OnPropertyChanged(nameof(LogBot));
-        //        LogBot += Bot.LogBot;
-        //    }
-        //}
 
         private bool estado;
 
@@ -68,8 +58,13 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             GenPassword = new RelayCommand(GenerarPassword);
         }
 
-        private void GenerarPassword() {
+        private async void GenerarPassword() {
             Password = Bot.GenPassword();
+            InitInfo.ObCoClientes.Clear();
+            var lista = await GetFromDb.GetClientes();
+            foreach (var item in lista) {
+                InitInfo.ObCoClientes.Add(item);
+            }
         }
 
         private void DetenerBot() {

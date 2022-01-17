@@ -59,7 +59,7 @@
                   AutoGenerateColumns="False"
                   FontSize="20"
                   HeadersVisibility="All"
-                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClases}, UpdateSourceTrigger=Default}"
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClases}, UpdateSourceTrigger=PropertyChanged, Mode=Default}"
                   SelectedItem="{Binding Clase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch">

@@ -123,6 +123,7 @@ namespace GymCastillo.Model.Init {
                     $"configuración. Error: {e.Message}",
                     "Error desconocido");
             }
+            ShowPrettyMessages.InfoOk("Se actualizaron los precios correctamente.", "Actualización");
         }
 
         /// <summary>

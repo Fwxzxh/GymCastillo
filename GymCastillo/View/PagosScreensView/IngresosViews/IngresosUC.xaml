@@ -92,8 +92,26 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Monto"
+                <DataGridTextColumn Header="Monto Total"
                                     Binding="{Binding Monto, StringFormat=C}"
+                                    Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Monto Recibido"
+                                    Binding="{Binding MontoRecibido, StringFormat=C}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -132,6 +150,13 @@
                 <ComboBoxItem Content="Clientes Renta" x:Name="rentas"/>
                 <ComboBoxItem Content="Otros" x:Name="otros"/>
             </ComboBox>
+            <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Content="Reporte Semanal"
+                    Command="{Binding MakeReporte}"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    FontSize="20"
+                    HorizontalAlignment="Right"/>
             <!--Clientes-->
 
             <StackPanel Grid.Row="1"

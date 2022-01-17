@@ -65,7 +65,8 @@ namespace GymCastillo.ViewModel.VentasVM {
         public string Concepto {
             get { return concepto; }
 
-            set {
+            set
+            {
                 concepto = value;
                 OnPropertyChanged(nameof(concepto));
             }
@@ -105,7 +106,20 @@ namespace GymCastillo.ViewModel.VentasVM {
             }
         }
 
-        private bool gym;
+        private bool visita;
+
+        public bool Visita {
+            get { return visita; }
+            set
+            {
+                visita = value;
+                OnPropertyChanged(nameof(Visita));
+                RefreshGrid();
+            }
+        }
+
+
+        private bool gym = false;
 
         public bool Gym {
             get { return gym; }
@@ -113,7 +127,33 @@ namespace GymCastillo.ViewModel.VentasVM {
             {
                 gym = value;
                 OnPropertyChanged(nameof(Gym));
-                RefreshGrid();
+                UpdateSale();
+            }
+        }
+
+
+        private bool box = false;
+
+        public bool Box {
+            get { return box; }
+            set
+            {
+                box = value;
+                OnPropertyChanged(nameof(Box));
+                UpdateSale();
+            }
+        }
+
+        private bool alberca = false;
+
+        public bool Alberca {
+            get { return alberca; }
+            set
+            {
+                alberca = value;
+                OnPropertyChanged(nameof(Alberca));
+                UpdateSale();
+
             }
         }
 
@@ -183,16 +223,36 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private void Cancelar() {
-            Gym = false;
+            Visita = false;
             ClearFields();
         }
 
-        private async void HacerVenta() {
+        private void UpdateSale() {
+            if (gym) {
+                Costo = GetInitData.VisitaGym;
+                Concepto = "Visita Gym";
+                Venta.Concepto = Concepto;
+                Venta.Costo = Costo;
+            }
+            else if (box) {
+                Costo = GetInitData.VisitaBox;
+                Concepto = "Visita Box";
+                Venta.Concepto = Concepto;
+                Venta.Costo = Costo;
+            }
+            else if (alberca) {
+                Costo = GetInitData.VisitaAlberca;
+                Concepto = "Visita Alberca";
+                Venta.Concepto = Concepto;
+                Venta.Costo = Costo;
+            }
+        }
 
+        private async void HacerVenta() {
             Venta.FechaVenta = DateTime.Now;
             Venta.Concepto = Concepto;
             Venta.Costo = Costo;
-            Venta.VisitaGym = Gym;
+            Venta.VisitaGym = Visita;
 
             if (venta.Costo == 0 || venta.VisitaGym == false && ListaVenta.Count == 0) {
                 ShowPrettyMessages.ErrorOk(
@@ -212,7 +272,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             pd.Print();
             ClearFields();
 
-            if (!gym) { // Solo si no es una entrada a un gym.
+            if (!visita) { // Solo si no es una entrada a un gym.
                 // Actualizamos el inventario por las existencias.
                 var updatedInventario = await GetFromDb.GetInventario();
                 InitInfo.ObCoInventario.Clear();
@@ -230,7 +290,10 @@ namespace GymCastillo.ViewModel.VentasVM {
             Total = 0;
             Concepto = "";
             Venta = null;
-            venta = new();
+            Venta = new();
+            Gym = false;
+            Box = false;
+            Alberca = false;
             ListaVenta.Clear();
         }
 
@@ -245,10 +308,13 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private void RefreshGrid() {
-            if (ListaVenta != null) {
+            if (ListaVenta != null || ListaVenta.Count != 0) {
                 ListaVenta.Clear();
             }
-
+            Costo = 0;
+            Recibido = 0;
+            Total = 0;
+            Concepto = "";
             ClearFields();
         }
 
