@@ -107,9 +107,9 @@ namespace GymCastillo.Model.Reportes {
                         IdLocker = await reader.Result.IsDBNullAsync("IdLocker")
                             ? 0
                             : reader.Result.GetInt32("IdLocker"),
-                        NombreLocker = await reader.Result.IsDBNullAsync("Nombre")
-                            ? ""
-                            : reader.Result.GetString("Nombre"),
+                        // NombreLocker = await reader.Result.IsDBNullAsync("Nombre")
+                        //     ? ""
+                        //     : reader.Result.GetString("Nombre"),
 
                         NumeroRecibo = await reader.Result.IsDBNullAsync("NumeroRecibo")
                             ? ""
