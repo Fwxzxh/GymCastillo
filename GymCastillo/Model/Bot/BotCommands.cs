@@ -145,7 +145,7 @@ namespace GymCastillo.Model.Bot {
             try {
                 var client = InitInfo.ObCoClientes.First(x => x.ChatId == chatId.ToString());
 
-                var path = $"{client.ClienteDir}Card-{client.Id.ToString()}.png";
+                var path = $"{client.ClienteDir}CardFront-{client.Id.ToString()}.png";
 
                 if (File.Exists(path)) {
                         await using var stream = File.OpenRead(path);

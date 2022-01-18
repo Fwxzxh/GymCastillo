@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using BarcodeLib;
 using GymCastillo.Model.DataTypes.Personal;
 using ImageMagick;
@@ -22,24 +23,30 @@ namespace GymCastillo.Model.Helpers {
 
             try {
 
-                const string plantillaPath = @"C:/GymCastillo/Assets/Plantilla.png";
+                const string plantillaFrontPath = @"C:/GymCastillo/Assets/PlantillaFront.png";
+                const string plantillaBackPath = @"C:/GymCastillo/Assets/PlantillaBack.png";
                 const string genericProfilePath = @"C:/GymCastillo/Assets/GenericProfile.png";
 
                 // Verificamos que exista la plantilla.
-                if (!File.Exists(plantillaPath)) {
+                if (!File.Exists(plantillaFrontPath) && !File.Exists(plantillaBackPath)) {
                     throw new FileNotFoundException(
-                        $"No se ha encontrado el archivo con la plantilla de la credencial, verifique su existencia en la ruta {plantillaPath}");
+                        $"No se ha encontrado el archivo con la plantilla de la credencial, " +
+                        $"verifique su existencia en la ruta {cliente.ClienteDir}");
                 }
 
-                // Verificamos que exista la plantilla
+                // Verificamos que exista la imagen de perfil genérico
                 if (!File.Exists(genericProfilePath)) {
                     throw new FileNotFoundException(
-                        $"No se ha encontrado el archivo con la imagen de perfil por defecto, verifique su existencia en la ruta {genericProfilePath}");
+                        $"No se ha encontrado el archivo con la imagen de perfil por defecto, " +
+                        $"verifique su existencia en la ruta {genericProfilePath}");
                 }
 
                 var saveRoute = cliente.ClienteDir;
-                var saveFile = $"Card-{cliente.Id.ToString()}.png";
-                var saveDir = $"{saveRoute}{saveFile}";
+                var saveFileFront = $"CardFront-{cliente.Id.ToString()}.png";
+                var saveFileBack = $"CardBack-{cliente.Id.ToString()}.png";
+
+                var saveDirFront = $"{saveRoute}{saveFileFront}";
+                var saveDirBack = $"{saveRoute}{saveFileBack}";
 
                 // Creamos la carpeta del cliente
                 Directory.CreateDirectory(saveRoute);
@@ -47,6 +54,7 @@ namespace GymCastillo.Model.Helpers {
                 // Obtenemos los datos principales
                 var apellidos = $"{cliente.ApellidoPaterno} {cliente.ApellidoMaterno}";
                 var nombres = cliente.Nombre;
+                var nombrePila = $"{cliente.Nombre.Split(" ").First()} {cliente.ApellidoPaterno}";
                 var id = cliente.Id.ToString();
                 var fechaRegistro = cliente.FechaRegistro.Date;
                 var code = $"1{id}".PadLeft(12, '0');
@@ -57,9 +65,10 @@ namespace GymCastillo.Model.Helpers {
                     : cliente.Foto;
 
                 // Definimos los settings de la fuente.
+                // Settings del Id
                 var idSettings = new MagickReadSettings {
                     Font = "Calibri",
-                    FillColor = MagickColors.Yellow,
+                    FillColor = MagickColors.White,
                     TextGravity = Gravity.Center,
                     BackgroundColor = MagickColors.Transparent,
                     Height = 40, // height of text box
@@ -69,8 +78,8 @@ namespace GymCastillo.Model.Helpers {
                 // Definimos los settings de los nombres.
                 var nombreSettings = new MagickReadSettings {
                     Font = "Calibri",
-                    FillColor = MagickColors.White,
-                    TextGravity = Gravity.Center,
+                    FillColor = MagickColors.Black,
+                    TextGravity = Gravity.West,
                     BackgroundColor = MagickColors.Transparent,
                     Height = 50, // height of text box
                     Width = 650 // width of text box
@@ -79,10 +88,20 @@ namespace GymCastillo.Model.Helpers {
                 // Definimos lo settings de la fecha de registro
                 var fechaRegistroSettings = new MagickReadSettings {
                     Font = "Calibri",
-                    FillColor = MagickColors.White,
-                    TextGravity = Gravity.Center,
+                    FillColor = MagickColors.Black,
+                    TextGravity = Gravity.West,
                     BackgroundColor = MagickColors.Transparent,
-                    Height = 30, // height of text box
+                    Height = 50, // height of text box
+                    Width = 650 // width of text box
+                };
+
+                // Definimos lo settings de la fecha de registro
+                var nombrePilaSettings = new MagickReadSettings {
+                    Font = "Calibri",
+                    FillColor = MagickColors.White,
+                    TextGravity = Gravity.West,
+                    BackgroundColor = MagickColors.Transparent,
+                    Height = 50, // height of text box
                     Width = 650 // width of text box
                 };
 
@@ -96,40 +115,49 @@ namespace GymCastillo.Model.Helpers {
                     Color.White,
                     320, 160);
 
-                using var plantilla = new MagickImage(plantillaPath);
+                using var plantillaFront = new MagickImage(plantillaFrontPath);
+                using var plantillaBack = new MagickImage(plantillaBackPath);
+
+                using var nombrePilaLabel = new MagickImage($"caption:{nombrePila}", nombrePilaSettings);
                 using var idLabel = new MagickImage($"caption:{id}", idSettings);
                 using var apellidosLabel = new MagickImage($"caption:{apellidos}", nombreSettings);
                 using var nombresLabel = new MagickImage($"caption:{nombres}", nombreSettings);
                 using var fechaRegistroLabel =
                     // ReSharper disable once HeapView.BoxingAllocation
                     new MagickImage($"caption:{fechaRegistro:dd/MM/yyyy}", fechaRegistroSettings);
+
                 using var barcodeImg = new MagickImage(b.Encoded_Image_Bytes);
 
-                // Ponemos la imagen de perfil debajo de la plantilla
-                plantilla.Composite(profileImage, 146, 140, CompositeOperator.DstOver);
+                // Ponemos el nombre de pila
+                plantillaFront.Composite(nombrePilaLabel, 50, 420, CompositeOperator.Over);
+
+                // Ponemos la imagen de perfil
+                plantillaBack.Composite(profileImage, 90, 190, CompositeOperator.Over);
 
                 // Aplicamos el Id del usuario
-                plantilla.Composite(idLabel, 10, 10, CompositeOperator.Over);
+                plantillaFront.Composite(idLabel, 10, 10, CompositeOperator.Over);
+
+                // // Aplicamos el label de los nombres
+                plantillaBack.Composite(nombresLabel, 530, 210, CompositeOperator.Over);
 
                 // Aplicamos el label de los apellidos
-                plantilla.Composite(apellidosLabel, 0, 515, CompositeOperator.Over);
-
-                // Aplicamos el label de los nombres
-                plantilla.Composite(nombresLabel, 0, 565, CompositeOperator.Over);
+                plantillaBack.Composite(apellidosLabel, 530, 346, CompositeOperator.Over);
 
                 // Aplicamos el label de la fecha de registro
-                plantilla.Composite(fechaRegistroLabel, 0, 620, CompositeOperator.Over);
+                plantillaBack.Composite(fechaRegistroLabel, 530, 480, CompositeOperator.Over);
 
                 // Agregamos el código de barras
-                plantilla.Composite(barcodeImg, 160, 800, CompositeOperator.Over);
+                plantillaFront.Composite(barcodeImg, 935, 525, CompositeOperator.Over);
 
                 // Guardamos
-                plantilla.Write(saveDir);
+                plantillaFront.Write(saveDirFront);
+                plantillaBack.Write(saveDirBack);
+
                 Log.Debug("Se ha creado la nueva credencial con éxito.");
 
                 if (!silent) {
                     ShowPrettyMessages.NiceMessageOk(
-                        $"Se ha generado la nueva credencial con éxito en la ruta {saveDir}.",
+                        $"Se ha generado la nueva credencial con éxito en la carpeta: {cliente.ClienteDir}.",
                         "Credencial Generada");
                 }
             }
