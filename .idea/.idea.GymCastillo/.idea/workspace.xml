@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fix ingresos query issue">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Docs/Assets/PlatnillaFront.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Docs/Assets/plantillaBack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Assets/Plantilla.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/BotCommands.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="NewCard Done &amp; working">
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +51,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Bot/BotCommands.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -184,14 +180,7 @@
       <workItem from="1642210522429" duration="3035000" />
       <workItem from="1642451742551" duration="1772000" />
       <workItem from="1642455599056" duration="630000" />
-      <workItem from="1642465104445" duration="10401000" />
-    </task>
-    <task id="LOCAL-00035" summary="added GetRentas">
-      <created>1640235631775</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1640235631775</updated>
+      <workItem from="1642465104445" duration="10766000" />
     </task>
     <task id="LOCAL-00036" summary="PagosHelper.cs to static">
       <created>1640236412950</created>
@@ -529,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642451951502</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="NewCard Done &amp; working">
+      <created>1642485941544</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1642485941546</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +559,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fixes" />
     <MESSAGE value="Fixed Clases disponibles date, Don't copy assets in publish &amp; 1 more todo" />
     <MESSAGE value="bot card sending update" />
     <MESSAGE value="Bot custom mesage sending done." />
@@ -588,7 +583,8 @@
     <MESSAGE value="Minor enhancements to Notificaciones.cs" />
     <MESSAGE value="Only registered horarios in asistencia" />
     <MESSAGE value="Fix ingresos query issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix ingresos query issue" />
+    <MESSAGE value="NewCard Done &amp; working" />
+    <option name="LAST_COMMIT_MESSAGE" value="NewCard Done &amp; working" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

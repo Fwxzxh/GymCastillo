@@ -138,13 +138,13 @@ namespace GymCastillo.Model.Helpers {
                 plantillaFront.Composite(idLabel, 10, 10, CompositeOperator.Over);
 
                 // // Aplicamos el label de los nombres
-                plantillaBack.Composite(nombresLabel, 530, 210, CompositeOperator.Over);
+                plantillaBack.Composite(nombresLabel, 540, 210, CompositeOperator.Over);
 
                 // Aplicamos el label de los apellidos
-                plantillaBack.Composite(apellidosLabel, 530, 346, CompositeOperator.Over);
+                plantillaBack.Composite(apellidosLabel, 540, 346, CompositeOperator.Over);
 
                 // Aplicamos el label de la fecha de registro
-                plantillaBack.Composite(fechaRegistroLabel, 530, 480, CompositeOperator.Over);
+                plantillaBack.Composite(fechaRegistroLabel, 540, 480, CompositeOperator.Over);
 
                 // Agregamos el código de barras
                 plantillaFront.Composite(barcodeImg, 935, 525, CompositeOperator.Over);
