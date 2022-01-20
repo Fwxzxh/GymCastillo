@@ -78,7 +78,7 @@ namespace GymCastillo.Model.DataTypes.IntersectionTables {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string deleteQuery = @"insert into PaquetesClases values (@IdClase, @IdInstructor)";
+                const string deleteQuery = @"insert into ClaseInstructores values (@IdClase, @IdInstructor)";
 
                 await using var command = new MySqlCommand(deleteQuery, connection);
 
