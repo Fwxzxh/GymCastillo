@@ -28,8 +28,8 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         public ObservableCollection<Espacio> ListaEspacios { get; set; }
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
-
-        public RelayCommand OpenHorarios { get;  private set; }
+        public RelayCommand OpenInstructores { get; set; }
+        public RelayCommand OpenHorarios { get; private set; }
         public RelayCommand<bool> SaveCommand { get; private set; }
 
         private Clase clase = new();
@@ -58,7 +58,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
 
         public string Query {
             get { return query; }
-            set { query = value;
+            set
+            {
+                query = value;
                 OnPropertyChanged(nameof(Query));
                 FilterData(value);
             }
@@ -78,11 +80,19 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                 DeleteCommand = new RelayCommand(DeleteClass);
                 SaveCommand = new RelayCommand<bool>(SaveClass);
                 OpenHorarios = new RelayCommand(OpenHorariosW);
+                OpenInstructores = new RelayCommand(InstrctoresAdd);
             }
             catch (Exception e) {
                 Log.Error(e.Message);
                 //ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
+        }
+
+        private void InstrctoresAdd() {
+            InstructoresClasesWindow instructores = new(Clase);
+            instructores.ShowDialog();
+            Clase = null;
+            Clase = new();
         }
 
         private void OpenHorariosW() {

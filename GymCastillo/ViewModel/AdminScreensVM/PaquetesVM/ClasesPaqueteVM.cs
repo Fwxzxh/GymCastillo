@@ -51,7 +51,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
             }
         }
 
-
         private Paquete paquete;
 
         public Paquete Paquete {

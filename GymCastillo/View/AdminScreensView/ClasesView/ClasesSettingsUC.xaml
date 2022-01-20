@@ -82,7 +82,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Instructor"
+                <!--<DataGridTextColumn Header="Instructor"
                                     Binding="{Binding NombreInstructor}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
@@ -99,7 +99,7 @@
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
                 <DataGridTextColumn Header="Espacio"
                                     Binding="{Binding NombreEspacio}"
                                     Width="*"
@@ -154,6 +154,12 @@
                                     DataContext="{StaticResource vm}">
                                     <materialDesign:PackIcon Kind="ClockPlusOutline"/>
                                 </Button>
+                                <Button ToolTip="Agregar Instructor"
+                                        Margin="5 0"
+                                        Command="{Binding OpenInstructores  }"
+                                    DataContext="{StaticResource vm}">
+                                    <materialDesign:PackIcon Kind="PeopleAdd"/>
+                                </Button>
                                 <Button ToolTip="Eliminar"
                                     Background="Transparent"
                                     BorderBrush="Red"
@@ -182,7 +188,7 @@
                          Margin="20 0"
                          Text="{Binding Clase.NombreClase, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                <!--<ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Instructor"
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
@@ -193,7 +199,7 @@
                           SelectedItem="{Binding Clase.NombreInstructor, UpdateSourceTrigger=Explicit}"
                           SelectedValuePath="Id"
                           Margin="20 0"
-                          Width="250"/>
+                          Width="250"/>-->
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Espacio"
                           materialDesign:HintAssist.FloatingScale="0.6"
@@ -221,7 +227,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
-                         Width="830"
+                         Width="540"
                          FontSize="20"
                          Margin="20 0"
                          Text="{Binding Clase.Descripcion, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"

@@ -151,9 +151,77 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
                 montoTotalTipo = 0;
 
+                document.Add(new Paragraph("Instructores").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in lista.Where(l => l.IdInstructor != 0)) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
+                }
+                document.Add(table);
+                document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
+                table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
+                montoTotalTipo = 0;
+
+                document.Add(new Paragraph("Personal").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in lista.Where(l => l.IdPersonal != 0)) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
+                }
+                document.Add(table);
+                document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
+                table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
+                montoTotalTipo = 0;
+
+                document.Add(new Paragraph("Servicios").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in lista.Where(l => l.Servicios == true)) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
+                }
+                document.Add(table);
+                document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
+                table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
+                montoTotalTipo = 0;
+
+                document.Add(new Paragraph("Otros").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in lista.Where(l => l.Otros == true)) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
+                }
+                document.Add(table);
+                document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
+                table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
+                montoTotalTipo = 0;
+                document.Add(new Paragraph((string.Format("Monto total últimos 7 días: {0:C}", montoTotalRecibido))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
 
 
