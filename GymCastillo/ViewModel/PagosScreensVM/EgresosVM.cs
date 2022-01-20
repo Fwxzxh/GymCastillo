@@ -4,21 +4,35 @@ using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.Model.Reportes;
+using iText.IO.Image;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class EgresosVM : INotifyPropertyChanged {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
         public event PropertyChangedEventHandler PropertyChanged;
+        private string path = @"C:\GymCastillo\Reportes\Egresos";
+
         public RelayCommand PagoUsuario { get; set; }
         public RelayCommand PagoInstructor { get; set; }
         public RelayCommand PagoPersonal { get; set; }
         public RelayCommand PagoServicios { get; set; }
         public RelayCommand PagoOtros { get; set; }
+        public RelayCommand MakeReporte { get; set; }
 
         // private PagosHelper pagos = new();
 
@@ -97,7 +111,57 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             PagoPersonal = new RelayCommand(PersonalPayment);
             PagoServicios = new RelayCommand(ServicesPayment);
             PagoOtros = new RelayCommand(OthersPayment);
+            MakeReporte = new RelayCommand(ReporteSemanal);
+            Directory.CreateDirectory(path);
             RefreshGrid();
+        }
+
+        private async void ReporteSemanal() {
+            var lista = await GetReportes.GetReporteEgresos();
+            Document document;
+            var fontSize = 15;
+            string[] columnas = { "Concepto", "Monto Total" };
+            float[] tamaños = { 1, 1};
+            try {
+                PdfDocument pdfDocument = new PdfDocument(new PdfWriter(new FileStream(@$"{path}\Egresos-{DateTime.Now.Day}-{DateTime.Now.Month}.pdf", FileMode.Create, FileAccess.Write)));
+                document = new Document(pdfDocument, PageSize.A4);
+                document.SetMargins(20, 20, 20, 20);
+                ImageData imageData = ImageDataFactory.Create(@"C:\GymCastillo\Assets\logo.jpg");
+                Image image = new Image(imageData).ScaleAbsolute(200, 100);
+                image.SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                document.Add(image);
+                var titulo = "Egresos Últimos 7 días";
+                var montoTotalRecibido = 0.0m;
+                var montoTotalTipo = 0.0m;
+
+                document.Add(new Paragraph(titulo).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize));
+                Table table = new Table(UnitValue.CreatePercentArray(tamaños));
+
+                document.Add(new Paragraph("Usuarios").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in lista.Where(l => l.IdUsuarioPagar != 0)) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
+                }
+                document.Add(table);
+                document.Add(new Paragraph((string.Format("Monto total: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
+                table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalTipo = 0;
+
+
+                document.Close();
+
+
+            }
+            catch (Exception e) {
+                Log.Debug("Error al crear documento pdf");
+                Log.Error(e.Message);
+            }
         }
 
         private async void OthersPayment() {

@@ -15,7 +15,6 @@ using System.IO;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Kernel.Geom;
-using System.Drawing.Printing;
 using iText.Layout.Properties;
 using iText.Layout.Element;
 using iText.IO.Image;
@@ -112,7 +111,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void ReporteSemanal() {
             var lista = await GetReportes.GetReporteIngresos();
             Document document;
-            PrintDocument pd = new();
             var fontSize = 15;
             string[] columnas = { "Concepto", "Monto Total", "Monto Recibido" };
             float[] tamaños = { 1, 1, 1};
@@ -128,7 +126,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 var titulo = "Ingresos Últimos 7 días";
                 var montoTotalRecibido = 0.0m;
                 var montoTotalTipo = 0.0m;
-                //Paragraph p = new Paragraph().Add(titulo);
 
                 document.Add(new Paragraph(titulo).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize));
                 Table table = new Table(UnitValue.CreatePercentArray(tamaños));
@@ -208,7 +205,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             catch (Exception e) {
                 Log.Debug("Error al crear documento pdf");
                 Log.Error(e.Message);
-
             }
         }
 

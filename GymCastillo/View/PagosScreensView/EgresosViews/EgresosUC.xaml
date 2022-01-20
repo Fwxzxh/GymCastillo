@@ -39,7 +39,7 @@
                   ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoEgresos}, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha"
-                                    Binding="{Binding FechaRegistro.Date}"
+                                    Binding="{Binding FechaRegistro}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -136,6 +136,13 @@
                 <ComboBoxItem Content="Servicios" x:Name="servicios"/>
                 <ComboBoxItem Content="Otros" x:Name="otros"/>
             </ComboBox>
+            <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Content="Reporte Semanal"
+                    Command="{Binding MakeReporte}"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    FontSize="20"
+                    HorizontalAlignment="Right"/>
             <!--usuarios-->
             <StackPanel Grid.Row="1"
                         Orientation="Horizontal"
