@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -12,7 +13,7 @@ namespace GymCastillo.Model.DataTypes.Ventas {
     /// <summary>
     /// Clase que contiene los métodos y campos del tipo de dato Inventario.
     /// </summary>
-    public class Inventario : AbstOtrosTipos{
+    public class Inventario : AbstOtrosTipos {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
@@ -146,7 +147,12 @@ namespace GymCastillo.Model.DataTypes.Ventas {
             }
         }
 
-        public async Task<int> UpdateExistencias(int cantidad) {
+        /// <summary>
+        /// Método que se encarga de actualizar la existencia del producto.
+        /// </summary>
+        /// <param name="cantidad">La cantidad a descontar de la existencia.</param>
+        /// <returns>La cantidad de columnas afectadas.</returns>
+        public async Task<int> UpdateExistencias(int cantidad, bool suma=false) {
             Log.Debug("Se ha iniciado el proceso de dar de actualizar las existencias de un producto");
 
             try {
@@ -160,7 +166,11 @@ namespace GymCastillo.Model.DataTypes.Ventas {
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
-                command.Parameters.AddWithValue("@Existencias", (Existencias - cantidad).ToString());
+                var existenciasActualizadas = suma
+                    ? Existencias + cantidad
+                    : Existencias - cantidad;
+
+                command.Parameters.AddWithValue("@Existencias", existenciasActualizadas.ToString());
                 command.Parameters.AddWithValue("@IdProducto", IdProducto.ToString());
 
                 Log.Debug("Se ha generado la query.");
