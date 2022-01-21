@@ -914,10 +914,10 @@ namespace GymCastillo.Model.Database {
                                           group_concat(p.IdPaquete) as IdPaquete,
                                           group_concat(p.NombrePaquete) as NombrePaquete
                                       FROM Clase c
-                                    left join claseinstructores ci on c.IdClase = ci.IdClase
+                                    left join ClaseInstructores ci on c.IdClase = ci.IdClase
                                     left join instructor i on i.IdInstructor = ci.IdInstructor
                                     left join espacio e on e.IdEspacio = c.IdEspacio
-                                    left join paquetesclases pc on c.IdClase = pc.IdClase
+                                    left join PaquetesClases pc on c.IdClase = pc.IdClase
                                     left join paquete p on pc.IdPaquete = p.IdPaquete
                                     group by c.IdClase;";
 
@@ -945,8 +945,8 @@ namespace GymCastillo.Model.Database {
                                  && reader.Result.GetBoolean("Activo"),
 
                         IdInstructor = await reader.Result.IsDBNullAsync("IdInstructor")
-                            ? ""
-                            : reader.Result.GetString("IdInstructor"),
+                            ? 0
+                            : reader.Result.GetInt32("IdInstructor"),
                         NombreInstructor = await reader.Result.IsDBNullAsync("NombreInstructor")
                             ? ""
                             : reader.Result.GetString("NombreInstructor"),

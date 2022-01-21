@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fix">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="MinorFix in clase Instructores">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClaseInstructores.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClaseInstructores.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Clase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +40,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Database/GetFromDB.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/DataTypes/IntersectionTables/ClaseInstructores.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
@@ -182,14 +184,7 @@
       <workItem from="1642451742551" duration="1772000" />
       <workItem from="1642455599056" duration="630000" />
       <workItem from="1642465104445" duration="12026000" />
-      <workItem from="1642717085528" duration="48000" />
-    </task>
-    <task id="LOCAL-00037" summary="Minor Fixes &amp; added Ventas &amp; Rentas Helper">
-      <created>1640298287063</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1640298287063</updated>
+      <workItem from="1642717085528" duration="2060000" />
     </task>
     <task id="LOCAL-00038" summary="Rentas Enhancements">
       <created>1640312749092</created>
@@ -527,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642486329604</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="MinorFix in clase Instructores">
+      <created>1642717160701</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1642717160701</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="bot card sending update" />
     <MESSAGE value="Bot custom mesage sending done." />
     <MESSAGE value="Bot horario command done" />
     <MESSAGE value="Added more checks in AsistenciasHelper.cs" />
@@ -586,7 +587,8 @@
     <MESSAGE value="Fix ingresos query issue" />
     <MESSAGE value="NewCard Done &amp; working" />
     <MESSAGE value="Minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
+    <MESSAGE value="MinorFix in clase Instructores" />
+    <option name="LAST_COMMIT_MESSAGE" value="MinorFix in clase Instructores" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

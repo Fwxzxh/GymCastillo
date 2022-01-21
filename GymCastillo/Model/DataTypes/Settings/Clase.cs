@@ -31,7 +31,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// <summary>
         /// Ids de los instructores asignados a la clase.
         /// </summary>
-        public string IdInstructor { get; set; }
+        public int IdInstructor { get; set; }
 
         /// <summary>
         /// Nombres completos de los instructores asignados a la clase.
