@@ -150,7 +150,8 @@ namespace GymCastillo.Model.DataTypes.Ventas {
         /// <summary>
         /// Método que se encarga de actualizar la existencia del producto.
         /// </summary>
-        /// <param name="cantidad">La cantidad a descontar de la existencia.</param>
+        /// <param name="cantidad">La cantidad a sumar/restar de la existencia.</param>
+        /// <param name="suma">Si se le manda true, suma la cantidad a la existencia</param>
         /// <returns>La cantidad de columnas afectadas.</returns>
         public async Task<int> UpdateExistencias(int cantidad, bool suma=false) {
             Log.Debug("Se ha iniciado el proceso de dar de actualizar las existencias de un producto");
