@@ -20,6 +20,7 @@ namespace GymCastillo.ViewModel.VentasVM {
 
         public RelayCommand<bool> SaveCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
 
         private Inventario inventario = new();
 
@@ -35,6 +36,12 @@ namespace GymCastillo.ViewModel.VentasVM {
         public InventarioVM() {
             SaveCommand = new RelayCommand<bool>(NuevoProducto);
             DeleteCommand = new RelayCommand(BorrarProducto);
+            CancelCommand = new RelayCommand(Cancelar);
+        }
+
+        private void Cancelar() {
+            Inventario = null;
+            Inventario = new();
         }
 
         private async void BorrarProducto() {
@@ -51,13 +58,29 @@ namespace GymCastillo.ViewModel.VentasVM {
         private async void NuevoProducto(bool guardar) {
             Log.Debug("Boton para dar de alta un nuevo producto en inventario");
             if (guardar) {
-                await AdminOtrosTipos.Alta(Inventario);
-                var clases = await GetFromDb.GetClases();
-                InitInfo.ObCoClases.Clear();
-                foreach (var item in clases) {
-                    InitInfo.ObCoClases.Add(item);
+                var lista = await GetFromDb.GetInventario();
+                foreach (var item in InitInfo.ObCoInventario) {
+                    if (item.NombreProducto == inventario.NombreProducto) {
+                        var producto = InitInfo.ObCoInventario.First(x => x.NombreProducto == inventario.NombreProducto);
+                        inventario = producto;
+                        await producto.UpdateExistencias(1, true);
+                        break;
+                    }
+                    else if (!string.IsNullOrEmpty(inventario.Descripción) &&
+                        inventario.Costo != 0 && inventario.Existencias != 0) {
+                        await AdminOtrosTipos.Alta(Inventario);
+                        break;
+                    }
+                    //else {
+                    //    ShowPrettyMessages.WarningOk("El producto no existe", "Aviso");
+                    //    break;
+                    //}
                 }
 
+                InitInfo.ObCoInventario.Clear();
+                foreach (var item in lista) {
+                    InitInfo.ObCoInventario.Add(item);
+                }
             }
             else {
                 await AdminOtrosTipos.Update(Inventario);

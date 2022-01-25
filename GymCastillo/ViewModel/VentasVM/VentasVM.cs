@@ -21,6 +21,7 @@ namespace GymCastillo.ViewModel.VentasVM {
         public RelayCommand AddVenta { get; set; }
         public RelayCommand RemoveVenta { get; set; }
         public RelayCommand MakeVenta { get; set; }
+        public RelayCommand AddProduct { get; set; }
         public RelayCommand CancelVenta { get; set; }
 
         private Font consola = new("Arial", 10);
@@ -157,9 +158,21 @@ namespace GymCastillo.ViewModel.VentasVM {
             }
         }
 
+        private string nombreProducto;
+
+        public string NombreProducto {
+            get { return nombreProducto; }
+            set
+            {
+                nombreProducto = value;
+                OnPropertyChanged(nameof(NombreProducto));
+            }
+        }
+
+
         private ObservableCollection<Inventario> listaVenta;
 
-        public ObservableCollection<Inventario> ListaVenta {
+        public  ObservableCollection<Inventario> ListaVenta {
             get { return listaVenta; }
             set
             {
@@ -174,8 +187,26 @@ namespace GymCastillo.ViewModel.VentasVM {
             RemoveVenta = new RelayCommand(RemoverProducto);
             MakeVenta = new RelayCommand(HacerVenta);
             CancelVenta = new RelayCommand(Cancelar);
+            AddProduct = new RelayCommand(AgregarProductoFromName);
             pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
             Refresh();
+        }
+
+        private void AgregarProductoFromName() {
+            if (string.IsNullOrEmpty(NombreProducto)) return;
+            try {
+                var producto = InitInfo.ObCoInventario.First(x => x.NombreProducto == NombreProducto);
+                if (producto != null) {
+                    //ShowPrettyMessages.InfoOk(producto.NombreProducto, "hola");
+                    ListaVenta.Add(producto);
+                    RefreshCosto();
+                    NombreProducto = "";
+                }
+            }
+            catch (Exception) {
+                ShowPrettyMessages.WarningOk("El producto no existe", "Error");
+                NombreProducto = "";
+            }
         }
 
         private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {
@@ -294,6 +325,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             Gym = false;
             Box = false;
             Alberca = false;
+            NombreProducto = "";
             ListaVenta.Clear();
         }
 

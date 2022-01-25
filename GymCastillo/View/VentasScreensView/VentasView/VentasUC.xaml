@@ -19,13 +19,14 @@
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Label Content="Inventario"
                    HorizontalAlignment="Center"
@@ -48,24 +49,7 @@
                       IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
                       ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInventario}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"
-                                    Binding="{Binding IdProducto}"
-                                    Width=".3*"
-                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader"
-                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                <Setter Property="TextBlock.FontSize" Value="25"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
+                    
                     <DataGridTextColumn Header="Producto"
                                     Binding="{Binding NombreProducto}"
                                     Width="*"
@@ -86,6 +70,24 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Precio"
                                     Binding="{Binding Costo,StringFormat=C}"
+                                    Width=".7*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Setter Property="TextBlock.FontSize" Value="25"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Existencias"
+                                    Binding="{Binding Existencias}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -102,7 +104,7 @@
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn IsReadOnly="True" Width=".4*">
+                    <DataGridTemplateColumn IsReadOnly="True" Width=".5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0">
@@ -117,6 +119,35 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Row="2">
+                <TextBox materialDesign:HintAssist.Hint="Nombre Producto"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         FontSize="20"
+                         Width="250"
+                         MaxWidth="300"
+                         Height="60"
+                         Name="nombreProducto"
+                         Text="{Binding NombreProducto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return"
+                                    Command="{Binding AddProduct}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                            Content="Agregar"
+                            Command="{Binding AddProduct}"
+                            Margin="20"
+                            Width="150"
+                            FontSize="20"/>
+
+            </StackPanel>
+
         </Grid>
 
         <Grid Grid.Column="1">
@@ -143,9 +174,9 @@
                       HorizontalAlignment="Stretch"
                       SelectedIndex="{Binding Index, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
-                      ItemsSource="{Binding ListaVenta, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
+                      ItemsSource="{Binding ListaVenta, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"
+                    <!--<DataGridTextColumn Header="ID"
                                     Binding="{Binding IdProducto}"
                                     Width=".3*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
@@ -162,7 +193,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                             </Style>
                         </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
+                    </DataGridTextColumn>-->
                     <DataGridTextColumn Header="Producto"
                                     Binding="{Binding NombreProducto}"
                                     Width="*"

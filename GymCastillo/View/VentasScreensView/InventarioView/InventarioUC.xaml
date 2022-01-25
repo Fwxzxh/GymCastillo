@@ -214,6 +214,7 @@
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Cancelar"
+                        Command="{Binding CancelCommand}"
                         Margin="20"
                         FontSize="20"/>
             </StackPanel>

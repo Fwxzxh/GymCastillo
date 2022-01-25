@@ -73,7 +73,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
             RefreshGrid();
         }
 
-        private async void RefreshGrid() {
+        private async void RefreshGrid() {  
             InitInfo.ObCoClaseInstructores.Clear();
             if (ListaInstructor != null) ListaInstructor.Clear();
 

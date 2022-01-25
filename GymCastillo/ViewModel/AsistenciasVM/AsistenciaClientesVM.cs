@@ -76,13 +76,20 @@ namespace GymCastillo.ViewModel.AsistenciasVM {
 
         public AsistenciaClientesVM(Asistencia asistencia) {
             Log.Debug("Ventana Asistencia Clientes iniciada");
-            this.asistencia = asistencia;
-            Cliente = asistencia.DatosCliente;
-            CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
-            ListaHorarios = asistencia.ListaHorarios;
-            selectedHorario = new ObservableCollection<Horario>();
-            AddCommand = new RelayCommand<Horario>(AddHorarios);
-            AsistenciaCommand = new RelayCommand<IClosable>(this.AltaAsistencia);
+            try {
+                this.asistencia = asistencia;
+                Cliente = asistencia.DatosCliente;
+                CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
+                ListaHorarios = asistencia.ListaHorarios;
+                selectedHorario = new ObservableCollection<Horario>();
+                AddCommand = new RelayCommand<Horario>(AddHorarios);
+                AsistenciaCommand = new RelayCommand<IClosable>(this.AltaAsistencia);
+            }
+            catch (Exception e) {
+                Log.Error("Error ocurrio en ventana asistencia clientes");
+                Log.Error(e.Message);
+            }
+
         }
 
         private async void AltaAsistencia(IClosable closable) {
