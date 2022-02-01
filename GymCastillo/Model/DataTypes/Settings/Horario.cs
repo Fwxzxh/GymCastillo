@@ -45,6 +45,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public int CupoActual { get; set; }
 
+        public int NumRegistrados {
+            get {
+                var num = InitInfo.ObCoClienteHorario
+                    .Count(x => x.IdHorario == IdHorario);
+                return num;
+            }
+        }
+
         public override async Task<int> Update() {
             Log.Warn("Se ha iniciado el proceso de update de un horario.");
 

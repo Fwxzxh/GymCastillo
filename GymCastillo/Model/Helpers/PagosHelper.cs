@@ -124,7 +124,7 @@ namespace GymCastillo.Model.Helpers {
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
             }
-            catch (ValidationException e) {
+            catch (ValidationException ) {
             }
             catch (KeyNotFoundException e) {
                 Log.Error("Ha ocurrido un error al identificar el tipo de ingreso");
@@ -198,7 +198,7 @@ namespace GymCastillo.Model.Helpers {
 
                 // Mandamos el ticket al bot
                 if (cliente.ChatId != "") {
-                    var msg = $"Se ha registrado exitosamente tu pago de $ {ingreso.MontoRecibido.ToString()} \n" +
+                    var msg = $"Se ha registrado exitosamente tu pago de $ {ingreso.MontoRecibido.ToString(CultureInfo.InvariantCulture)} \n" +
                               $"En la compra de: {ingreso.Concepto} \n" +
                               $"El {ingreso.FechaRegistro.ToString("g")} \n" +
                               $"¡Gracias por su preferencia!";
@@ -332,7 +332,7 @@ namespace GymCastillo.Model.Helpers {
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
             }
-            catch (ValidationException e) {
+            catch (ValidationException ) {
 
             }
             catch (KeyNotFoundException e) {
