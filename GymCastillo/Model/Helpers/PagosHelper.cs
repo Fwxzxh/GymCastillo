@@ -202,6 +202,14 @@ namespace GymCastillo.Model.Helpers {
             else {
                 throw new Exception("No se ha completado la alta del ingreso de manera correcta.");
             }
+
+            if (ingreso.IdPaquete != cliente.IdPaquete) { // Si se compra un paquete diferente al que se tenia
+                // Debemos resetear sus horarios
+                ShowPrettyMessages.InfoOk(
+                    "Se ha cambiado el paquete a el usuario, Debe actualizar los horarios de clase" +
+                    "asignados a este cliente, de lo contrario podría no poder entrar las clases de su paquete",
+                    "Cambio de paquete a usuario.");
+            }
         }
 
         /// <summary>
