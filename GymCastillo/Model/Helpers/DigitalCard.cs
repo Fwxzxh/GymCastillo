@@ -147,7 +147,7 @@ namespace GymCastillo.Model.Helpers {
                 plantillaBack.Composite(fechaRegistroLabel, 540, 480, CompositeOperator.Over);
 
                 // Agregamos el código de barras
-                plantillaFront.Composite(barcodeImg, 935, 525, CompositeOperator.Over);
+                plantillaFront.Composite(barcodeImg, 935, 20, CompositeOperator.Over);
 
                 // Guardamos
                 plantillaFront.Write(saveDirFront);

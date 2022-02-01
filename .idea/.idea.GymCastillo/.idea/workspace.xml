@@ -7,8 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Update UpdateExistencias">
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Update UpdateExistencias again">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/GymCastillo/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Assets/PlatnillaFront.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClienteHorario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/IntersectionTables/ClienteHorario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +43,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Helpers/DigitalCard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
@@ -182,14 +187,12 @@
       <workItem from="1642455599056" duration="630000" />
       <workItem from="1642465104445" duration="12026000" />
       <workItem from="1642717085528" duration="2096000" />
-      <workItem from="1642792339396" duration="1274000" />
-    </task>
-    <task id="LOCAL-00040" summary="Minor Fixes, VentasHelper.cs Done">
-      <created>1640320496294</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1640320496294</updated>
+      <workItem from="1642792339396" duration="2203000" />
+      <workItem from="1643156189340" duration="1344000" />
+      <workItem from="1643245973749" duration="633000" />
+      <workItem from="1643252264438" duration="523000" />
+      <workItem from="1643253046199" duration="651000" />
+      <workItem from="1643682964015" duration="1468000" />
     </task>
     <task id="LOCAL-00041" summary="Minor Fixes, Reset Timers Done.">
       <created>1640592286589</created>
@@ -527,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642793553556</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Update UpdateExistencias again">
+      <created>1642793639920</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1642793639920</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added more checks in AsistenciasHelper.cs" />
     <MESSAGE value="added password generation" />
     <MESSAGE value="Added Ini file api key storage" />
     <MESSAGE value="Better status message" />
@@ -586,7 +595,8 @@
     <MESSAGE value="MinorFix in clase Instructores" />
     <MESSAGE value="Minor type issues" />
     <MESSAGE value="Update UpdateExistencias" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update UpdateExistencias" />
+    <MESSAGE value="Update UpdateExistencias again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update UpdateExistencias again" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

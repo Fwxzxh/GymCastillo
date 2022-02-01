@@ -29,7 +29,7 @@ namespace GymCastillo.Model.DataTypes.IntersectionTables {
 
         public override Task<int> Update() {
             // No update
-            throw new System.NotSupportedException();
+            throw new NotSupportedException();
         }
 
         public override async Task<int> Delete() {
