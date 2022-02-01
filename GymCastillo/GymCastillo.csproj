@@ -33,6 +33,7 @@
     <ItemGroup>
       <None Remove="Docs\Assets\Castillo.ico" />
       <None Remove="Docs\Assets\Castillo.png" />
+      <None Remove="Docs\Assets\Castillo1.png" />
       <None Remove="Docs\Assets\CastilloF1.png" />
       <None Remove="Docs\Assets\CastilloF2.png" />
       <None Remove="Docs\Assets\CastilloF2C.png" />
@@ -65,6 +66,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Docs\Assets\Castillo.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Docs\Assets\Castillo1.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Docs\Assets\CastilloF2.png">

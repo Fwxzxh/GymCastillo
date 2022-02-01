@@ -180,7 +180,7 @@
                 Grid.Row="2"
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center"
-                Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                Style="{StaticResource MaterialDesignPaperButton}"
                 Height="50"
                 Command="{Binding newCRCommand}"
                 ToolTip="Nuevo Cliente"/>

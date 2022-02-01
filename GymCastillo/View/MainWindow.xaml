@@ -21,7 +21,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowState="Maximized"
-        Title="Gym Castillo" Height="1080" Width="1920">
+        Title="Club Castillo Force" Height="1080" Width="1920">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"

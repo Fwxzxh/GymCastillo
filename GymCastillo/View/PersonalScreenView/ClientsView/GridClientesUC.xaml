@@ -205,7 +205,7 @@
                 Grid.Row="2"
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center"
-                Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                Style="{StaticResource MaterialDesignPaperButton}"
                 Height="50"
                 ToolTip="Nuevo Cliente"
                 Command="{Binding newClient}"/>
