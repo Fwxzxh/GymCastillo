@@ -7,7 +7,7 @@ namespace GymCastillo.Model.Validations.Pagos {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
 
             RuleFor(clase => clase.Concepto)
-                .NotEmpty().WithMessage("El concepto no puede estar vacío.")
+                .NotNull().WithMessage("El concepto no puede estar vacío.")
                 .Length(3, 300).WithMessage("El concepto debe de ser de entre 3 y 300 caracteres.");
 
             RuleFor(clase => clase.NumeroRecibo)

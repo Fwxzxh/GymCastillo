@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Personal;
@@ -123,6 +124,8 @@ namespace GymCastillo.Model.Helpers {
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
             }
+            catch (ValidationException e) {
+            }
             catch (KeyNotFoundException e) {
                 Log.Error("Ha ocurrido un error al identificar el tipo de ingreso");
                 Log.Error($"Error: {e.Message}");
@@ -146,10 +149,13 @@ namespace GymCastillo.Model.Helpers {
         /// <param name="cliente">Un objeto con la información del cliente</param>
         private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente) {
 
+            var paqueteAntiguo = cliente.IdPaquete;
+
             // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
             if (ingreso.IdPaquete != 0) {
                 // Obtenemos el paquete.
                 var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == ingreso.IdPaquete);
+
 
                 // actualizamos.
                 cliente.IdPaquete = ingreso.IdPaquete;
@@ -203,11 +209,12 @@ namespace GymCastillo.Model.Helpers {
                 throw new Exception("No se ha completado la alta del ingreso de manera correcta.");
             }
 
-            if (ingreso.IdPaquete != cliente.IdPaquete) { // Si se compra un paquete diferente al que se tenia
+            if (ingreso.IdPaquete != paqueteAntiguo) { // Si se compra un paquete diferente al que se tenia
                 // Debemos resetear sus horarios
                 ShowPrettyMessages.InfoOk(
-                    "Se ha cambiado el paquete a el usuario, Debe actualizar los horarios de clase" +
-                    "asignados a este cliente, de lo contrario podría no poder entrar las clases de su paquete",
+                    "Se ha cambiado el paquete a el usuario, Debe actualizar los horarios de clase " +
+                    "asignados a este cliente, de lo contrario podría no poder entrar las clases de su paquete " +
+                    "o poder entrar a clases fuera de su paquete.",
                     "Cambio de paquete a usuario.");
             }
         }
@@ -270,7 +277,8 @@ namespace GymCastillo.Model.Helpers {
                             throw new Exception("No se registro el egreso de manera correcta.");
                         }
 
-                        Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
+                        Log.Debug(
+                            "Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
 
                     case 3: // NominaPersonal:
@@ -295,7 +303,8 @@ namespace GymCastillo.Model.Helpers {
                             throw new Exception("no se registro el egreso de manera correcta.");
                         }
 
-                        Log.Debug("Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
+                        Log.Debug(
+                            "Se ha terminado el proceso de dar de alta un nuevo egreso de tipo Nómina Instructores.");
                         break;
 
                     case 4: // Servicios
@@ -322,6 +331,9 @@ namespace GymCastillo.Model.Helpers {
                         // Error
                         throw new KeyNotFoundException("No se ha encontrado el tipo");
                 }
+            }
+            catch (ValidationException e) {
+
             }
             catch (KeyNotFoundException e) {
                 Log.Error("Ha ocurrido un error al identificar el tipo de egreso");

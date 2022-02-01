@@ -52,7 +52,7 @@ namespace GymCastillo.Model.Admin {
             }
             catch (ValidationException msg) {
                 ShowPrettyMessages.WarningOk($"{msg.Message}", "Datos erróneos");
-                return false;
+                throw;
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso de Alta.");
