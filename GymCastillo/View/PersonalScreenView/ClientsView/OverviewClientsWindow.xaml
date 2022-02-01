@@ -283,6 +283,11 @@
                         Margin="10"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Seleccionar Horario"
+                        Command="{Binding HorarioCommand}"
+                        Margin="10"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Salir"
                         Command="{Binding CloseWindowCommand, Mode=OneWay}"
                         CommandParameter="{Binding ElementName=overviewWindow}"

@@ -172,7 +172,7 @@ namespace GymCastillo.ViewModel.VentasVM {
 
         private ObservableCollection<Inventario> listaVenta;
 
-        public  ObservableCollection<Inventario> ListaVenta {
+        public ObservableCollection<Inventario> ListaVenta {
             get { return listaVenta; }
             set
             {
@@ -231,17 +231,59 @@ namespace GymCastillo.ViewModel.VentasVM {
             renglon += 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
             float topMargin = 145 + renglon;
-            foreach (var item in ListaVenta) {
-                var total = item.Costo.ToString();
-                var name = "";
-                totalVenta += item.Costo;
+            if (ListaVenta.Count() == 0) {
+                if (gym) {
+                    var total = venta.Costo;
+                    var name = "";
+                    totalVenta += venta.Costo;
 
-                name = item.NombreProducto;
+                    name = venta.Concepto;
 
-                yPos = topMargin + (count * consola.GetHeight(g));
-                g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
-                g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
-                count++;
+                    yPos = topMargin + (count * consola.GetHeight(g));
+                    g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
+                    g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+                    count++;
+                }
+                else if (alberca) {
+                    var total = venta.Costo;
+                    var name = "";
+                    totalVenta += venta.Costo;
+
+                    name = venta.Concepto;
+
+                    yPos = topMargin + (count * consola.GetHeight(g));
+                    g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
+                    g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+                    count++;
+                }
+                else if (box) {
+                    var total = venta.Costo;
+                    var name = "";
+                    totalVenta += venta.Costo;
+
+                    name = venta.Concepto;
+
+                    yPos = topMargin + (count * consola.GetHeight(g));
+                    g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
+                    g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+                    count++;
+                }
+
+            }
+            else {
+                foreach (var item in ListaVenta) {
+                    var total = item.Costo.ToString();
+                    var name = "";
+                    totalVenta += item.Costo;
+
+                    name = item.NombreProducto;
+
+                    yPos = topMargin + (count * consola.GetHeight(g));
+                    g.DrawString(string.Format("{0,2}", name), consola, Brushes.Black, leftMargin, yPos);
+                    g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+                    count++;
+                }
+
             }
             var newYpos = yPos + 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, newYpos);

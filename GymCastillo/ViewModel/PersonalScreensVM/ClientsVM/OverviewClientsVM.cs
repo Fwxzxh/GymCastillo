@@ -10,6 +10,7 @@ using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
+using GymCastillo.View.PersonalScreenView.ClientsView;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
 using ImageMagick;
 using log4net;
@@ -21,6 +22,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
+        public RelayCommand HorarioCommand { get; set; }
 
         public ObservableCollection<Paquete> paquetesList { get; set; }
         public ObservableCollection<Tipo> usuarioList { get; set; }
@@ -107,6 +109,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             SelectedClient = cliente;
             saveClient = new(this);
             ImageCommand = new RelayCommand(SelectPhoto);
+            HorarioCommand = new RelayCommand(SelectHorario);
             CredencialCommand = new RelayCommand(GenerarCredencial);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
             usuarioList = new ObservableCollection<Tipo>(InitInfo.ObCoTipoCliente);
@@ -121,6 +124,20 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
             //descuento = selectedClient.Descuento;
             pago = selectedClient.DeudaCliente;
+        }
+
+        private void SelectHorario() {
+            if (SelectedClient.IdPaquete == 0) {
+                ShowPrettyMessages.WarningOk(
+                    "No se pueden asignar horarios ya que este cliente no tiene paquete asignado.",
+                    "Cliente sin paquete");
+                return;
+            }
+            else {
+                HorariosClienteWindow horarios = new(SelectedClient);
+                horarios.ShowDialog();
+            }
+
         }
 
         private void GenerarCredencial() {
