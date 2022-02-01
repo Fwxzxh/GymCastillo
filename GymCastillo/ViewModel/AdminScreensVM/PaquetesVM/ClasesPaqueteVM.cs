@@ -84,8 +84,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
         }
 
         private async void AddClase() {
-            PaquetesClases.IdClase = SelectedClase.IdClase;
-            PaquetesClases.IdPaquete = paquete.IdPaquete;
+            //paquetesClases.IdClase = 0;
+            paquetesClases.IdClase = SelectedClase.IdClase;
+            paquetesClases.IdPaquete = Paquete.IdPaquete;
             await AdminOtrosTipos.Alta(paquetesClases, true);
             RefreshGrid();
             Log.Debug($"Nueva clase agregada al paquete {paquete.NombrePaquete}");
@@ -112,6 +113,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
             foreach (var clase in listaclases.Where(c => c.IdPaquete == paquete.IdPaquete)) {
                 clases.Add(clase);
             }
+            PaquetesClases = new();
         }
 
         private async void DeleteClase() {

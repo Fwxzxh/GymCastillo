@@ -53,7 +53,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
             }
         }
 
-        private Horario selectedHorario;
+        private Horario selectedHorario = new();
 
         public Horario SelectedHorario {
             get { return selectedHorario; }
