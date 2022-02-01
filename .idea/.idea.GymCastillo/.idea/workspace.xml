@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Ventas/Inventario.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
-    </list>
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added NumRegistrados in Horario.cs, minor fixes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +43,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/DataTypes/Settings/Horario.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
@@ -192,14 +188,7 @@
       <workItem from="1643252264438" duration="523000" />
       <workItem from="1643253046199" duration="651000" />
       <workItem from="1643682964015" duration="6341000" />
-      <workItem from="1643733426302" duration="6848000" />
-    </task>
-    <task id="LOCAL-00044" summary="Added Bot Dependency">
-      <created>1640679075204</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1640679075204</updated>
+      <workItem from="1643733426302" duration="7312000" />
     </task>
     <task id="LOCAL-00045" summary="Minor Fixes, MVP Telegram bot">
       <created>1640905105338</created>
@@ -537,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643743134904</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Added NumRegistrados in Horario.cs, minor fixes">
+      <created>1643743859545</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1643743859545</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor bot improvements" />
     <MESSAGE value="Fixed Bot empty paquete bug, minor enhancements to the messages, minor fixes" />
     <MESSAGE value="Minor fixes, added 15 minute tolerance in asistencias" />
     <MESSAGE value="Tickets with telegram done" />
@@ -596,7 +591,8 @@
     <MESSAGE value="Minor fix to card, updated PlantillaFront" />
     <MESSAGE value="Minor error handling in Pagos" />
     <MESSAGE value="Minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes" />
+    <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added NumRegistrados in Horario.cs, minor fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
