@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using GymCastillo.Model.Helpers;
+using ImageMagick;
 
 namespace GymCastillo.Model.DataTypes.Abstract {
     /// <summary>
@@ -29,7 +32,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public string ApellidoMaterno { get; set; }
 
         /// <summary>
-        /// Domicilio actual del usuario
+        /// El domicilio del cliente.
         /// </summary>
         public string Domicilio { get; set; }
 
@@ -54,11 +57,72 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public string TelefonoContacto { get; set; }
 
         /// <summary>
-        /// Foto del usuario
+        /// Array de bytes con la información de la imagen.
         /// </summary>
-        //TODO: Ver como manejar las fotos.
-        public BitmapImage Foto { get; set; }
+        private byte[] foto = Array.Empty<byte>();
 
+        /// <summary>
+        /// Foto del usuario en formato para manipular.
+        /// </summary>
+        public MagickImage Foto {
+            get => new(foto);
+            set {
+                // Creamos la geometría con el tamaño deseado.
+                var size = new MagickGeometry(355, 355) {
+                    IgnoreAspectRatio = true
+                };
+
+                // La ponemos en el tamaño adecuado
+                value.Resize(size);
+                var bytes = value.ToByteArray();
+
+                // Verificamos que la imagen pueda caber en la base de datos y si no bajamos la calidad.
+                if (bytes.Length >= 64000) {
+                    // Quality base 75
+                    value.Quality = 60;
+                }
+
+                // Si sigue demasiado grande mandamos un mensaje.
+                if (bytes.Length >= 64000) {
+                    ShowPrettyMessages.WarningOk(
+                        "Esta imagen es demasiado grande para ser guardada en la base de datos, elija otra o comprímala.",
+                        "Imagen Demasiado Grande");
+                    return;
+                }
+
+                foto = value.ToByteArray();
+            }
+        }
+
+        /// <summary>
+        /// Foto raw en un array de bytes.
+        /// </summary>
+        public byte[] FotoRaw {
+            get => foto;
+            set => foto = value;
+        }
+
+        /// <summary>
+        /// Foto en bitmapImage Para el Front
+        /// </summary>
+        public BitmapImage FotoBitmap {
+            get {
+                if (foto.Length == 0) {
+                    return null;
+                }
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                using var mem = new MemoryStream(foto);
+                mem.Position = 0;
+                image.StreamSource = mem;
+                image.EndInit();
+                image.Freeze();
+                return image;
+            }
+        }
 
         /// <summary>
         /// Método que Actualiza el objeto en la base de datos.
@@ -77,5 +141,11 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// </summary>
         /// <returns>El número de col afectadas.</returns>
         public abstract Task<int> Alta();
+
+        /// <summary>
+        /// Método que se encarga de actualizar los campos del pago de la instancia actual en la base de datos.
+        /// </summary>
+        /// <returns>El número de col afectadas.</returns>
+        public abstract Task<int> Pago();
     }
 }

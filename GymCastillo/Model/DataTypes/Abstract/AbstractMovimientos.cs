@@ -22,7 +22,7 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         public int IdUsuario { get; set; }
 
         /// <summary>
-        /// Nombre del usuario que re
+        /// Nombre del usuario que hace el movimiento
         /// </summary>
         public string NombreUsuario { get; set; }
 
@@ -45,10 +45,5 @@ namespace GymCastillo.Model.DataTypes.Abstract {
         /// Indica el monto del movimiento.
         /// </summary>
         public decimal Monto { get; set; }
-
-        /// <summary>
-        /// Método que da de alta un nuevo movimiento.
-        /// </summary>
-        public abstract void Alta();
     }
 }

@@ -4,30 +4,59 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
-		<ApplicationIcon>Docs\Assets\Castillo.ico</ApplicationIcon>
+        <ApplicationIcon>Docs\Assets\Castillo.ico</ApplicationIcon>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="View\PersonalScreenView\UsuariosView\**" />
       <Compile Remove="View\UsuariosView\**" />
+      <EmbeddedResource Remove="View\PersonalScreenView\UsuariosView\**" />
       <EmbeddedResource Remove="View\UsuariosView\**" />
+      <None Remove="View\PersonalScreenView\UsuariosView\**" />
       <None Remove="View\UsuariosView\**" />
+      <Page Remove="View\PersonalScreenView\UsuariosView\**" />
       <Page Remove="View\UsuariosView\**" />
+      <Page Update="View\PersonalScreenView\UsersViewUserControl.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Compile Update="View\PersonalScreenView\UsersViewUserControl.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <None Update="Docs\Info\Database\schema.sql">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Docs\Assets\Castillo.ico" />
       <None Remove="Docs\Assets\Castillo.png" />
+      <None Remove="Docs\Assets\Castillo1.png" />
       <None Remove="Docs\Assets\CastilloF1.png" />
       <None Remove="Docs\Assets\CastilloF2.png" />
       <None Remove="Docs\Assets\CastilloF2C.png" />
     </ItemGroup>
 
     <ItemGroup>
+      <!--<Content Include=".github\workflows\deployApp.yml" />-->
+      <Content Include="Logger.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+  
+    <ItemGroup>
+      <PackageReference Include="BarcodeLib" Version="2.4.0" />
       <PackageReference Include="FluentValidation" Version="10.3.4" />
+      <PackageReference Include="itext7" Version="7.2.1" />
       <PackageReference Include="log4net" Version="2.0.13" />
+      <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="8.4.0" />
       <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
       <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
       <PackageReference Include="MySqlConnector" Version="2.0.0" />
+      <PackageReference Include="Telegram.Bot" Version="17.0.0" />
+      <PackageReference Include="Telegram.Bot.Extensions.Polling" Version="1.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,6 +66,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Docs\Assets\Castillo.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Docs\Assets\Castillo1.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Docs\Assets\CastilloF2.png">
@@ -61,9 +93,6 @@
         <SubType>Designer</SubType>
       </Page>
       <Page Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml">
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="View\AdminScreensView\ConfigView\SettingUC.xaml">
         <SubType>Designer</SubType>
       </Page>
       <Page Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml">
@@ -100,9 +129,6 @@
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\AdminScreensView\ClientsView\OverviewClientsWindow.xaml.cs">
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="View\AdminScreensView\ConfigView\SettingUC.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\AdminScreensView\InstructoresView\GridInstructoresUC.xaml.cs">

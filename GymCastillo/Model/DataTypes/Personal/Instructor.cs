@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -66,6 +67,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public string NombreClases { get; set; }
 
         /// <summary>
+        /// Indica cuanto dura su paquete Serían 3: 1-Semanal, 2-Quincenal, 3-Mes
+        /// </summary>
+        public int MétodoFechaPago { get; set; }
+
+        /// <summary>
         /// Método que actualiza la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
@@ -92,7 +98,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); // TODO: Ver que onda con la foto
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
                 command.Parameters.AddWithValue("@HoraEntrada", HoraEntrada.ToString("HHmm"));
 
                 command.Parameters.AddWithValue("@HoraSalida", HoraSalida.ToString("HHmm"));
@@ -109,7 +115,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconcoido a la hora de hacer update.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer update.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -118,11 +124,45 @@ namespace GymCastillo.Model.DataTypes.Personal {
         }
 
         /// <summary>
+        /// Método que checa si se puede borrar el instructor.
+        /// </summary>
+        /// <returns>True si pasa todas las validaciones.</returns>
+        private bool CheckDeleteConstrains() {
+            // Fk key constraint check.
+            if (InitInfo.ObCoClaseInstructores.Any(x => x.IdInstructor == Id)) {
+                // Este instructor esta dado asignado en alguna clase
+                ShowPrettyMessages.InfoOk(
+                    "Hay clases asignadas a este instructor, asi que no puedes eliminar al instructor, " +
+                    "cambia esas clases a otro instructor para eliminarlo.",
+                    "Instructor asignado a una clase.");
+                return false;
+            }
+
+            for (var index = 0; index < InitInfo.ObCoEgresos.Count; index++) {
+                var x = InitInfo.ObCoEgresos[index];
+
+                if (x.IdInstructor == Id) {
+                    ShowPrettyMessages.InfoOk(
+                        "No es posible eliminar este instructor ya que hay egresos registrados y al eliminarlo se podría perder la información.",
+                        "instructor en egresos.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Método que borra la instancia actual del instructor en la base de datos.
         /// </summary>
         /// <returns>La cantidad de columnas afectadas.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de delete en un Instructor.");
+
+            // Checamos si podemos eliminar
+            if (!CheckDeleteConstrains()) {
+                return 0;
+            }
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -165,7 +205,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            	@Domicilio, @FechaNacimiento, @Telefono, @NombreContacto,
                                            	@TelefonoContacto, @Foto, @FechaUltimoAcceso, @FechaUltimoPago,
                                            	@MontoUltimoPago, @HoraEntrada, @HoraSalida, @DiasATrabajar,
-                                           	@DiasTrabajados, @Sueldo, @SueldoADescontar, @IdTipoInstructor);";
+                                           	@DiasTrabajados, @Sueldo, @SueldoADescontar, @MetodoFechaPago,
+                                            @IdTipoInstructor);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -179,7 +220,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
                 command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
                 command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
@@ -191,6 +232,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
                 command.Parameters.AddWithValue("@SueldoADescontar", SueldoADescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@MetodoFechaPago", MétodoFechaPago.ToString());
+
                 command.Parameters.AddWithValue("@IdTipoInstructor", IdTipoInstructor.ToString());
 
                 Log.Debug("Se ha creado la query.");
@@ -201,7 +244,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 return res;
             }
             catch (Exception e) {
-                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
+                Log.Error("Ha ocurrido un error desconocido a la hora de dar de alta el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
                     "Error desconocido");
@@ -213,24 +256,91 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// Método que se encarga de dar de alta una nueva asistencia a la instancia actual.
         /// </summary>
         /// <returns>La Cantidad de Columnas afectadas en la bd.</returns>
-        public override Task<int> NuevaAsistencia() {
-            throw new NotImplementedException();
+        public async Task<int> NuevaAsistencia() {
+            Log.Debug("Se ha iniciado el proceso de dar de alta una nueva asistencia en instructor.");
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string asistenciaQuery = @"UPDATE instructor
+                                                     SET FechaUltimoAcceso=@FechaUltimoAcceso,
+                                                     SueldoADescontar=@SueldoADescontar,
+                                                     DiasTrabajados=@DiasTrabajados
+                                                     WHERE IdInstructor=@IdInstructor;";
+
+                await using var command = new MySqlCommand(asistenciaQuery, connection);
+
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@SueldoADescontar",
+                    SueldoADescontar.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@DiasTrabajados",
+                    (DiasTrabajados + 1).ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+
+                Log.Debug("Se ha creado la query.");
+
+                var res =await ExecSql.NonQuery(command, "Nueva Asistencia Cliente");
+                Log.Debug("Se ha registrado la asistencia de un cliente.");
+
+                return res;
+
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de registrar la asistencia del Instructor.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
 
-        /// <summary>
-        /// Método que se encarga de actualizar el pago del obtejo actual en la base de datos
-        /// </summary>
-        /// <param name="cantidad"></param>
-        public override void Pago(decimal cantidad) {
-            throw new NotImplementedException();
-        }
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago de un usuario.");
 
-        /// <summary>
-        /// Método que obtiene el horario del Instructor de la instancia actual en un string
-        /// </summary>
-        /// <returns>Un string con el horario del instructor.</returns>
-        public override string GetHorarioStr() {
-            throw new NotImplementedException();
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update instructor
+                                           set
+                                               FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago,
+                                               DiasTrabajados=@DiasTrabajados,
+                                               SueldoADescontar=@SueldoADescontar
+                                           where IdInstructor=@IdInstructor;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@DiasTrabajados",
+                    DiasTrabajados.ToString());
+
+                command.Parameters.AddWithValue("@SueldoADescontar",
+                    SueldoADescontar.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@IdInstructor",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Instructor");
+                Log.Debug("Se han actualizado los datos del instructor por un pago de nómina.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del Instructor en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del Instructor en el pago. Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
         }
     }
 }

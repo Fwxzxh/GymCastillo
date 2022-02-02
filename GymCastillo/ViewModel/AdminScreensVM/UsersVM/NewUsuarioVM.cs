@@ -2,11 +2,12 @@
 using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.AdminScreensCommands.UsersCommands;
+using GymCastillo.ViewModel.PersonalScreensVM.Commands.UsersCommands;
+using ImageMagick;
 using log4net;
+using Microsoft.Win32;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
     public class NewUsuarioVM : INotifyPropertyChanged {
@@ -17,7 +18,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         public RelayCommand<IClosable> CloseWindowCommand { get; private set; }
 
         public NewUserCommand newUser { get; set; }
-
+        public RelayCommand ImageCommand { get; set; }
 
         private Usuario usuario = new() { FechaNacimiento = DateTime.Now };
 
@@ -30,9 +31,22 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             }
         }
 
+        private string photoPath;
+
+        public string PhotoPath {
+            get { return photoPath; }
+            set
+            {
+                photoPath = value;
+                OnPropertyChanged(nameof(PhotoPath));
+            }
+        }
+
+
         public NewUsuarioVM() {
             try {
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
+                ImageCommand = new RelayCommand(SelectPhoto);
                 newUser = new(this);
 
             }
@@ -42,10 +56,22 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             }
         }
 
+        private void SelectPhoto() {
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+            if (dialog.ShowDialog() == true) {
+                PhotoPath = dialog.FileName;
+                var image = new MagickImage(PhotoPath);
+                usuario.Foto = image;
+            }
+        }
+
         public async void NewUser() {
             await AdminUsuariosGeneral.Alta(Usuario);
             Log.Debug("Nuevo usuario creado");
-            Usuario = new() { FechaNacimiento = DateTime.Now};
+            Usuario = new() { FechaNacimiento = DateTime.Now };
         }
 
         private void CloseWindow(IClosable window) {

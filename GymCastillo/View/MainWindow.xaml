@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:home="clr-namespace:GymCastillo.View"
+        xmlns:settings="clr-namespace:GymCastillo.View.SettingsScreensView"
+        xmlns:pagos="clr-namespace:GymCastillo.View.PagosScreensView"
+        xmlns:admin="clr-namespace:GymCastillo.View.AdminScreensView"
+        xmlns:clases="clr-namespace:GymCastillo.View.ClsesScreensView"
+        xmlns:ventas="clr-namespace:GymCastillo.View.VentasScreensView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:personalScreenView="clr-namespace:GymCastillo.View.PersonalScreenView"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         TextElement.FontWeight="Medium"
@@ -15,7 +21,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowState="Maximized"
-        Title="Gym Castillo" Height="1080" Width="1920">
+        Title="Club Castillo Force" Height="1080" Width="1920">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
@@ -39,7 +45,7 @@
                     <home:HomeViewUserControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem ToolTip="Clientes">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
@@ -50,7 +56,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <home:UsersViewUserControl/>
+                    <personalScreenView:UsersViewUserControl/>
                 </TabItem.Content>
             </TabItem>
             <TabItem ToolTip="Clases">  
@@ -63,6 +69,23 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <clases:ClasesSummaryUC/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip="Ventas">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <materialDesign:PackIcon
+                            Kind="Shop"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <ventas:VentasControl/>
+                </TabItem.Content>
             </TabItem>
             <TabItem ToolTip="Pagos">
                 <TabItem.Header>
@@ -74,8 +97,25 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <pagos:PagosUC/>
+                </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem ToolTip="Administración">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto">
+                        <materialDesign:PackIcon
+                            Kind="PlaylistEdit"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <admin:AdminControl/>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip="Configuración">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
@@ -85,6 +125,9 @@
                             HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
+                <TabItem.Content>
+                    <settings:SettingsControl/>
+                </TabItem.Content>
             </TabItem>
         </TabControl>
     </Grid>

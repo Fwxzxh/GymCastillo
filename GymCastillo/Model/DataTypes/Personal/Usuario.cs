@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
@@ -28,7 +29,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <summary>
         /// La cantidad del último Pago.
         /// </summary>
-        /// TODO: Pensar si mover FechaUltimoPago, Monto UltimoPago a otra tabla.
         public decimal MontoUltimoPago { get; set; }
 
         /// <summary>
@@ -40,6 +40,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// La contraseña del usuario.
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// El sueldo del usuario.
+        /// </summary>
+        public decimal Sueldo { get; set; }
 
         /// <summary>
         /// Método que Actualiza la instancia actual del objeto en la base de datos.
@@ -54,7 +59,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 const string updateQuery = @"UPDATE usuario
                                              SET domicilio=@Domicilio, username=@Username, password=@Password,
                                                  telefono=@Telefono, NombreContacto=@NombreContacto,
-                                                 telefonocontacto=@TelefonoContacto, foto=@Foto
+                                                 telefonocontacto=@TelefonoContacto, foto=@Foto, Sueldo=@Sueldo
                                              WHERE IdUsuario=@IdUsuario";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
@@ -69,7 +74,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
 
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); // TODO foto
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
+
+                command.Parameters.AddWithValue("@Sueldo", Sueldo.ToString(CultureInfo.InvariantCulture));
 
                 var res = await ExecSql.NonQuery(command, "Update Usuario");
 
@@ -90,6 +97,22 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// <returns>El número de columnas afectadas por la operación.</returns>
         public override async Task<int> Delete() {
             Log.Debug("Se ha iniciado el proceso de Delete en usuario.");
+
+            if (Id == 1) {
+                ShowPrettyMessages.ErrorOk(
+                    "No puedes borrar el usuario admin, ya que podrías no poder entrar al programa después.",
+                    "Error al borrar usuario admin.");
+                return 0;
+            }
+
+            if (InitInfo.ObCoEgresos.Any(x => x.IdUsuarioPagar == Id)) {
+                ShowPrettyMessages.ErrorOk(
+                    "Este usuario tiene movimientos registrados, si lo eliminan podría haber perdida de información.",
+                    "Usuario con movimientos.");
+
+                return 0;
+            }
+
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
                 await connection.OpenAsync();
@@ -130,7 +153,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
                                            	    @Domicilio, @Username, @Password, @FechaNacimiento,
                                            	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
-                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago);";
+                                           	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, @Sueldo);";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -141,16 +164,24 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
-                command.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaNacimiento",
+                    FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
                 command.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
-                command.Parameters.AddWithValue("@Foto", null); //TODO: pendiente
+                command.Parameters.AddWithValue("@Foto", FotoRaw);
 
-                command.Parameters.AddWithValue("@FechaUltimoAcceso", FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@FechaUltimoPago", FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@MontoUltimoPago", MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoAcceso",
+                    FechaUltimoAcceso.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    FechaUltimoPago.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+
+                command.Parameters.AddWithValue("@Sueldo",
+                    Sueldo.ToString(CultureInfo.InvariantCulture));
+
                 Log.Debug("Se ha creado la query.");
 
                 var res = await ExecSql.NonQuery(command, "Alta Usuario");
@@ -162,6 +193,44 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
+            }
+        }
+
+        public override async Task<int> Pago() {
+            Log.Debug("Se ha iniciado el proceso de actualizar los campos del pago de un usuario.");
+
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
+                Log.Debug("Se ha creado la conexión.");
+
+                const string pagoQuery = @"update usuario
+                                           set
+                                               FechaUltimoPago=@FechaUltimoPago, MontoUltimoPago=@MontoUltimoPago
+                                           where IdUsuario=@IdUsuario;";
+
+                await using var command = new MySqlCommand(pagoQuery, connection);
+
+                command.Parameters.AddWithValue("@MontoUltimoPago",
+                    MontoUltimoPago.ToString(CultureInfo.InvariantCulture));
+                command.Parameters.AddWithValue("@FechaUltimoPago",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.Parameters.AddWithValue("@IdUsuario",
+                    Id.ToString());
+
+                var res = await ExecSql.NonQuery(command, "Alta Pago Usuario");
+                Log.Debug("Se han actualizado los datos del usuario por un pago de nómina.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de actualizar los datos del usuario en el pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al actualizar los datos del usuario en el pago. Error: {e.Message}",
                     "Error desconocido");
                 return 0;
             }

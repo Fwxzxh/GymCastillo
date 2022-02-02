@@ -39,6 +39,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -48,6 +49,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -57,6 +59,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -80,6 +83,7 @@
                             materialDesign:HintAssist.FloatingScale="0.6"
                             materialDesign:TextFieldAssist.HasClearButton="True"
                             Width="250"
+                            IsEnabled="False"
                             IsTodayHighlighted="True"
                             FontSize="19"
                             Margin="20 0"
@@ -92,6 +96,7 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -110,21 +115,32 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          MaxLength="10"
                          Width="250"
                          FontSize="20"
-                         Margin="10 0"
+                         Margin="20 0"
                          Text="{Binding Usuario.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="3">
+                <TextBox materialDesign:HintAssist.Hint="Sueldo"
+                         materialDesign:HintAssist.FloatingScale="0.6"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         VerticalContentAlignment="Center"
+                         Width="250"
+                         FontSize="20"
+                         Margin="20 0"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Usuario.Sueldo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Nombre Contacto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
-                         Width="375"
+                         Width="250"
                          FontSize="20"
-                         Margin="30 0"
+                         Margin="20 0"
                          Text="{Binding Usuario.NombreContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Teléfono Contacto"
@@ -132,9 +148,10 @@
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
                          MaxLength="10"
-                         Width="375"
+                         Width="250"
+                         PreviewTextInput="TextBox_PreviewTextInput"
                          FontSize="20"
-                         Margin="30 0"
+                         Margin="20 0"
                          Text="{Binding Usuario.TelefonoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
@@ -163,18 +180,19 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="65 0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
+                    Margin="65 0"
+                    Command="{Binding ImageCommand}">
                 <materialDesign:PackIcon Kind="CameraPlusOutline"
                                          Width="30"
                                          Height="30"/>
             </Button>
 
             <!--change for image-->
-            <Rectangle Width="200"
-                       Height="200"
-                       Fill="Transparent"
-                       Stroke="AntiqueWhite"
-                       Margin="20"/>
+            <Image Width="200"
+                   Height="200"
+                   Source="{Binding Usuario.FotoBitmap}"
+                   Margin="20"/>
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 

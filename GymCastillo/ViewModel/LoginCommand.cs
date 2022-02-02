@@ -27,6 +27,8 @@ namespace GymCastillo.ViewModel
         }
 
         public void Execute(object parameter) {
+
+
             loginVM = new LoginVM();
             var values = (object[])parameter;
             var password = values[1] as PasswordBox;

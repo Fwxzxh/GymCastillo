@@ -1,16 +1,15 @@
 ﻿using log4net;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using GymCastillo.Model.Bot;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using GymCastillo.Model.Notificaciones;
+using System.IO;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
@@ -48,33 +47,38 @@ namespace GymCastillo.ViewModel {
 
         public LoginVM() {
             loginCommand = new LoginCommand();
+            Directory.CreateDirectory(@"C:\GymCastillo\Reportes\");
         }
 
-        public void LogIn(string userName, string password) {
+        public async void LogIn(string userName, string password) {
+
             try {
                 if (Init.LogIn(userName, password)) {
 
                     // Cargamos la ventana principal
                     Log.Info("LogIn exitoso.");
-                    var done = Task.Run(() => InitInfo.GetAllInfo());
-                    if (done.GetAwaiter().GetResult()) {
+                    var init= new InitInfo(); // Obtenemos la información inicial
+                    if (init.DoneTasks) {
+                        await Notificaciones.CheckResetFields(); // Verificamos si debemos resetear los cupos.
+
+                        var x = Bot.Estado;
                         MainWindow main = new();
                         main.Show();
                         Application.Current.MainWindow.Close();
                     }
                 }
                 else {
-                    Log.Info("LogIn fallido, credenciales erroneas.");
+                    Log.Info("LogIn fallido, credenciales erróneas.");
                     ShowPrettyMessages.WarningOk(
                         "Usuario y/o contraseña incorrectos.",
                         "Error de credenciales");
                 }
             }
             catch (MySqlException e) {
-                Log.Error("El string de conexión probablemente sea erroneo.");
+                Log.Error("El string de conexión probablemente sea erróneo.");
                 Log.Error($"Error: {e.Message}");
                 ShowPrettyMessages.WarningOk(
-                    "Error: verifica tus credenciales de base de datos, probablemente sean erroneas.",
+                    "Error: verifica tus credenciales de base de datos, probablemente sean erróneas.",
                     "Error de conexión");
             }
             catch (Exception e) {

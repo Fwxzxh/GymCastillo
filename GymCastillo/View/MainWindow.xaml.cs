@@ -21,6 +21,7 @@ namespace GymCastillo {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

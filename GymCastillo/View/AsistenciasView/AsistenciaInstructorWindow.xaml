@@ -1,0 +1,103 @@
+﻿<Window x:Class="GymCastillo.View.AsistenciasView.AsistenciaInstructorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymCastillo.View.AsistenciasView"
+        xmlns:acceso="clr-namespace:GymCastillo.ViewModel.Helpers"
+        Name="asistenciaInstructor"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        BorderThickness="5"
+        d:DesignHeight="600" d:DesignWidth="800">
+    <Window.Resources>
+        <acceso:BoolToAcceso x:Key="acceso"/>
+        <acceso:BoolToColor x:Key="color"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="BorderBrush" Value="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"/>
+        </Style>
+    </Window.Style>
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                       Text="{Binding Instructor.Id, Mode=TwoWay, StringFormat=ID: {0}}"
+                       FontSize="20"/>
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           FontSize="20">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Nombre: {0} {1} {2}">
+                                <Binding Path="Instructor.Nombre"/>
+                                <Binding Path="Instructor.ApellidoPaterno"/>
+                                <Binding Path="Instructor.ApellidoMaterno"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                        </TextBlock>
+                </TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Instructor.NombreTipoInstructor, Mode=TwoWay, StringFormat=Tipo de instructor: {0}}"
+                           FontSize="20"/>
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Instructor.SueldoADescontar, Mode=TwoWay, StringFormat=Sueldo a descontar: {0:C}}"
+                           FontSize="20"/>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Descuento"
+                         materialDesign:HintAssist.FloatingScale=".5"
+                         Width="150"
+                         FontSize="20"
+                         Margin="20"
+                         Visibility="{Binding Asistencia.Entrada, Converter={StaticResource InverseBoolToVisConverter}}"
+                         Text="{Binding Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" 
+                        VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Asistencia.Entrada, Mode=TwoWay, StringFormat=Acceso: {0}, Converter={StaticResource acceso}}"
+                           Foreground="{Binding Asistencia.Entrada, Mode=TwoWay, Converter={StaticResource color}}"
+                           FontSize="30"
+                           HorizontalAlignment="Center"/>
+                <Image Height="150"
+                       Width="150"
+                       Source="{Binding Instructor.FotoBitmap}"/>
+                <!--<TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Fecha límite de pago: {0:d}}"
+                           FontSize="20"/>-->
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Registrar Acceso"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        Command="{Binding AsistenciaCommand}"
+                        CommandParameter="{Binding ElementName=asistenciaInstructor}"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Cancelar"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=asistenciaInstructor}"
+                        FontSize="20"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

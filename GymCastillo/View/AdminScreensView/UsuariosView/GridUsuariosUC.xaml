@@ -178,6 +178,6 @@
                 VerticalAlignment="Center"
                 Command="{Binding newUserWindow}"
                 VerticalContentAlignment="Center"
-                Style="{StaticResource MaterialDesignOutlinedDarkButton}" Height="50"/>
+                Style="{StaticResource MaterialDesignPaperButton}" Height="50"/>
     </Grid>
 </UserControl>

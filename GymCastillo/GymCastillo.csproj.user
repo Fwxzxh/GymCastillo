@@ -4,24 +4,174 @@
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="View\AdminScreensView\AdminControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\InstructoresClasesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\PaquetesView\PaquetesClasesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\PersonalView\GridPersonalUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AsistenciasView\AsistenciaClienteWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AsistenciasView\AsistenciaInstructorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClsesScreensView\ClasesSummaryUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\HomeViewUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UsersViewUserControl.xaml.cs">
+    <Compile Update="View\PagosScreensView\EgresosViews\EgresosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PagosScreensView\PagosUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\ClasesSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\HorariosSettingsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PersonalScreenView\ClientsView\HorariosClienteWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\BotMessagesView\BotMessages.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\BotView\BotConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminScreensView\PaquetesView\PaquetesSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SettingsScreensView\SettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\VentasScreensView\InventarioView\InventarioUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\VentasScreensView\RentasView\RentasUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\VentasScreensView\VentasControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\VentasScreensView\VentasView\VentasUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\AdminScreensView\AdminControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\ClasesView\InstructoresClasesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\EspaciosView\EspaciosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\LockersView\LockersSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PaquetesView\PaquetesClasesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PersonalView\GridPersonalUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PersonalView\OverviewPersonalWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AsistenciasView\AsistenciaClienteWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AsistenciasView\AsistenciaInstructorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClsesScreensView\ClasesSummaryUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\HomeViewUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\UsersViewUserControl.xaml">
+    <Page Update="View\PagosScreensView\EgresosViews\EgresosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PagosScreensView\IngresosViews\IngresosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PagosScreensView\PagosUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\ClasesView\ClasesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\ClasesView\HorariosSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PersonalScreenView\ClientsView\HorariosClienteWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\BotMessagesView\BotMessages.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\BotView\BotConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\ConfigView\MainSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminScreensView\PaquetesView\PaquetesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SettingsScreensView\SettingsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\VentasScreensView\InventarioView\InventarioUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\VentasScreensView\RentasView\RentasUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\VentasScreensView\VentasControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\VentasScreensView\VentasView\VentasUC.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

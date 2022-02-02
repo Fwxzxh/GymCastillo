@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.View.AdminScreensView.UsuariosView;
-using GymCastillo.ViewModel.AdminScreensCommands.UsersCommands;
+using GymCastillo.ViewModel.PersonalScreensVM.Commands.UsersCommands;
 using log4net;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
@@ -27,9 +25,9 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
 
         public ObservableCollection<Usuario> ListaUsuarios { get; set; }
 
-        private List<Usuario> usuarios;
+        private ObservableCollection<Usuario> usuarios;
 
-        public List<Usuario> Usuarios {
+        public ObservableCollection<Usuario> Usuarios {
             get { return usuarios; }
             set
             {
@@ -62,24 +60,22 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
 
         public GridUsuariosVM() {
             try {
-                ListaUsuarios = new ObservableCollection<Usuario>(InitInfo.ListaUsuarios);
-                usuarios = InitInfo.ListaUsuarios;
+                ListaUsuarios = new ObservableCollection<Usuario>(InitInfo.ObCoUsuarios);
+                usuarios = InitInfo.ObCoUsuarios;
                 delete = new(this);
                 newUserWindow = new(this);
                 overview = new(this);
-
-
             }
-            catch (Exception) {
-
-                throw;
+            catch (Exception e) {
+                Log.Error(e.Message);
+                //ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
         }
 
         private async void RefreshGrid() {
             ListaUsuarios.Clear();
             var usuarios = await GetFromDb.GetUsuarios();
-            InitInfo.ListaUsuarios = usuarios;
+            InitInfo.ObCoUsuarios = usuarios;
             foreach (var item in usuarios.OrderBy(c => c.Nombre)) {
                 ListaUsuarios.Add(item);
             }
@@ -108,7 +104,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         private async void FilterList(string query) {
             usuarios = await GetFromDb.GetUsuarios(); 
             if (usuarios != null) {
-                if (query == "") {
+                if (string.IsNullOrWhiteSpace(query)) {
                     ListaUsuarios.Clear();
                     foreach (var cliente in usuarios.OrderBy(i => i.Nombre)) {
                         ListaUsuarios.Add(cliente);

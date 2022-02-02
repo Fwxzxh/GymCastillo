@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
-using GymCastillo.Model.DataTypes;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
-using GymCastillo.Model.Validations;
+using GymCastillo.Model.Validations.Config;
 using GymCastillo.Model.Validations.Personal;
 using log4net;
 
@@ -127,6 +127,35 @@ namespace GymCastillo.Model.Admin {
         }
 
         /// <summary>
+        /// Método que se encarga de registrar el pago del usuario y validarlo.
+        /// </summary>
+        /// <param name="usuario">El usuario a dar de alta.</param>
+        public static async Task Pago(AbstUsuario usuario) {
+            Log.Debug("Se ha iniciado un proceso de pago genérico.");
+
+            try {
+
+                var res = await usuario.Pago();
+
+                // Verificamos los cambios.
+                if (res == 0) {
+                    // No se han hecho cambios a la bd
+                    ShowPrettyMessages.WarningOk("No se han hecho cambios a la base de datos", "Sin cambios");
+                    Log.Warn("No se han hecho cambios a la base de datos.");
+                }
+                else {
+                    ShowPrettyMessages.NiceMessageOk("Se ha actualizado la base de datos.", "Operación Exitosa");
+                }
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrió un error desconocido a la hora de hacer el proceso genérico de pago.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
+
+        /// <summary>
         /// Método que se encarga de averiguar el tipo de objeto es y validar los campos especializados.
         /// </summary>
         private static async Task ValidateAgain(AbstUsuario objeto) {
@@ -153,9 +182,26 @@ namespace GymCastillo.Model.Admin {
                     await clienteRentaValidator.ValidateAndThrowAsync((ClienteRenta) objeto);
                     break;
 
+                case "Personal":
+                    var personalValidator = new PersonalValidator();
+                    await personalValidator.ValidateAndThrowAsync((Personal) objeto);
+                    break;
+
                 default:
                     throw new Exception("Error: no se pudo identificar al objeto.");
             }
+        }
+
+        /// <summary>
+        /// Método que se encarga de actualizar los campos de deuda y sueldo Por pagar del objeto AbsClientInstructor.
+        /// </summary>
+        /// <param name="objeto"></param>
+        /// <param name="cantidad"></param>
+        public static void Pago(AbstClientInstructor objeto, decimal cantidad) {
+            // Validamos si hay deuda.
+            // Si hay deuda descontamos la cantidad al objeto dado.
+            // Validamos
+            throw new NotImplementedException();
         }
     }
 }
