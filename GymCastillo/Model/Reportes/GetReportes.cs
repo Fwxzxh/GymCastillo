@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.Helpers;
@@ -237,6 +238,52 @@ namespace GymCastillo.Model.Reportes {
                     $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
                     "Error desconocido");
                 throw; // -> manejamos el error en el siguiente nivel.
+            }
+        }
+
+        /// <summary>
+        /// Método que regresa una lista de los egresos del dia.
+        /// </summary>
+        /// <returns>Una lista de egresos</returns>
+        public static async Task<List<Egresos>> GetEgresosToday() {
+            var ListEgresos = new List<Egresos>();
+
+            try {
+                var egresos =
+                    InitInfo.ObCoEgresos.Where(x => x.FechaRegistro == DateTime.Today).ToList();
+
+                return egresos;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
+                    "Error desconocido");
+                return ListEgresos;
+            }
+        }
+
+        /// <summary>
+        /// Método que regresa una lista de los ingresos del dia.
+        /// </summary>
+        /// <returns>Una lista de egresos</returns>
+        public static async Task<List<Ingresos>> GetIngresosToday() {
+            var ListIngresos = new List<Ingresos>();
+
+            try {
+                var ingresosList =
+                    InitInfo.ObCoIngresos.Where(x => x.FechaRegistro == DateTime.Today).ToList();
+
+                return ingresosList;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
+                    "Error desconocido");
+                return ListIngresos;
             }
         }
     }

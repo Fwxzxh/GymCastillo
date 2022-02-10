@@ -154,6 +154,7 @@ namespace GymCastillo.Model.Bot {
         /// <param name="botClient"></param>
         /// <param name="chatId"></param>
         /// <param name="cancellationToken"></param>
+        // ReSharper disable once CognitiveComplexity
         private static async void MatchMsg(string text, ITelegramBotClient botClient, long chatId,
             CancellationToken cancellationToken) {
             var command = text.Split(" ");
@@ -350,7 +351,6 @@ namespace GymCastillo.Model.Bot {
             }
         }
 
-
         /// <summary>
         /// Método que se encarga de mandar un mensaje a todos los usuarios registrados en el bot
         /// </summary>
@@ -375,6 +375,53 @@ namespace GymCastillo.Model.Bot {
                         caption: description,
                         cancellationToken: CancellationToken.Token);
 
+                    LogBot += $"Se ha enviado el mensaje con éxito a {cliente.Id.ToString()} {cliente.Nombre} {cliente.ApellidoPaterno} {cliente.ChatId}";
+                    count += 1;
+                }
+
+                LogBot += $"Se ha completado el proceso de mandar los mensajes masivos, Se han enviado: {count.ToString()}.";
+                Log.Debug("Se ha terminado el proceso de mandar mensajes masivos.");
+
+                ShowPrettyMessages.NiceMessageOk(
+                    $"Se ha enviado el lote de mensajes con éxito, se han mandado: {count.ToString()} mensajes.",
+                    "Operación exitosa");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido al mandar los mensajes masivos.");
+                Log.Error($"Error: {e.Message}");
+                LogBot += $"Ha ocurrido un error desconocido al mandar los mensajes masivos.\nError: {e.Message}\n";
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido a la hora de mandar los mensajes masivos. Error: {e.Message}",
+                    "Error al mandar el mensaje.");
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de mandar mensajes del bot por area
+        /// </summary>
+        /// <param name="idEspacio">El id del espacio a mandar mensajes.</param>
+        /// <param name="mensaje">El mensaje a mandar</param>
+        public static async Task SendAreaMessage(int idEspacio, string mensaje) {
+            Log.Debug("Se ha iniciado el proceso ode mandar un lote de mensajes por area");
+
+            var clases =
+                InitInfo.ObCoClases.Where(x => x.IdEspacio == idEspacio)
+                    .Select(x => x.IdClase);
+
+            var paquetes =
+                InitInfo.ListPaquetesClases.Where(x => clases.Contains(x.IdClase))
+                    .Select(x => x.IdPaquete);
+
+            var clientes =
+                InitInfo.ObCoClientes.Where(x => paquetes.Contains(x.IdPaquete));
+
+            try {
+                var count = 0;
+                foreach (var cliente in clientes) {
+                    await BotClient.SendTextMessageAsync(
+                        chatId: cliente.ChatId,
+                        mensaje,
+                        cancellationToken: CancellationToken.Token);
                     LogBot += $"Se ha enviado el mensaje con éxito a {cliente.Id.ToString()} {cliente.Nombre} {cliente.ApellidoPaterno} {cliente.ChatId}";
                     count += 1;
                 }
