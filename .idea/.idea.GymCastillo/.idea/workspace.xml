@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added PlantillaFront.png">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="added Ingresos/Egresos Today &amp; AreaMessage">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Reportes/GetReportes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Reportes/GetReportes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,14 +189,9 @@
       <workItem from="1643253046199" duration="651000" />
       <workItem from="1643682964015" duration="6341000" />
       <workItem from="1643733426302" duration="7939000" />
-      <workItem from="1644461578559" duration="3252000" />
-    </task>
-    <task id="LOCAL-00046" summary="Mayor Fixes to everything">
-      <created>1640938347911</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1640938347911</updated>
+      <workItem from="1644461578559" duration="3457000" />
+      <workItem from="1644468114147" duration="5817000" />
+      <workItem from="1644600071709" duration="30000" />
     </task>
     <task id="LOCAL-00047" summary="fixed shit that havent been fixed in last commit">
       <created>1641013051810</created>
@@ -535,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643744387331</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="added Ingresos/Egresos Today &amp; AreaMessage">
+      <created>1644465472385</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1644465472387</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fixes, added 15 minute tolerance in asistencias" />
     <MESSAGE value="Tickets with telegram done" />
     <MESSAGE value="Minor bug en ventas" />
     <MESSAGE value="Implemented Recent Changes" />
@@ -594,7 +594,8 @@
     <MESSAGE value="Minor fixes" />
     <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
     <MESSAGE value="Added PlantillaFront.png" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added PlantillaFront.png" />
+    <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Ingresos/Egresos Today &amp; AreaMessage" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
