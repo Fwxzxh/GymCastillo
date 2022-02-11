@@ -63,6 +63,16 @@
                         Command="{Binding SavePrecios}"
                         Margin="10 0"
                         FontSize="20"/>
+            <Label Content="Reportes Diarios"
+                   HorizontalAlignment="Left"
+                   FontSize="25"
+                   Margin="0 10"/>
+            <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Reporte de hoy"
+                        HorizontalAlignment="Center"
+                        Command="{Binding MakeReporte}"
+                        Margin="10 0"
+                        FontSize="20"/>
             <Label Content="Configuración del bot"
                    HorizontalAlignment="Left"
                    FontSize="25"

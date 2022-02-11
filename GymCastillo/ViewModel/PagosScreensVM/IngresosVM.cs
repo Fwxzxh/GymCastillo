@@ -30,6 +30,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoRenta { get; set; }
         public RelayCommand MakeReporte { get; set; }
 
+        private PrintTickets tickets;
+
         private Paquete paquete = new();
 
         public Paquete Paquete {
@@ -38,10 +40,11 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             {
                 paquete = value;
                 OnPropertyChanged(nameof(Paquete));
+                ActualizarTotal();
             }
         }
 
-        private Cliente cliente;
+        private Cliente cliente = new();
 
         public Cliente Cliente {
             get { return cliente; }
@@ -98,6 +101,29 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             }
         }
 
+        private decimal inscripcion;
+
+        public decimal Inscripcion {
+            get { return inscripcion; }
+            set
+            {
+                inscripcion = value;
+                OnPropertyChanged(nameof(Inscripcion));
+                ActualizarTotal();
+            }
+        }
+
+        private decimal total;
+
+        public decimal Total {
+            get { return total; }
+            set
+            {
+                total = value;
+                OnPropertyChanged(nameof(Total));
+            }
+        }
+
 
         public IngresosVM() {
             PagoCliente = new RelayCommand(ClientsPyment);
@@ -108,12 +134,19 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             RefreshGrid();
         }
 
+        private void ActualizarTotal() {
+            if (paquete == null) return;
+            
+            Total = paquete.Costo + inscripcion;
+        }
+
+
         private async void ReporteSemanal() {
             var lista = await GetReportes.GetReporteIngresos();
             Document document;
             var fontSize = 15;
             string[] columnas = { "Concepto", "Monto Total", "Monto Recibido" };
-            float[] tamaños = { 1, 1, 1};
+            float[] tamaños = { 1, 1, 1 };
 
             try {
                 PdfDocument pdfDocument = new PdfDocument(new PdfWriter(new FileStream(@$"{path}\Ingresos-{DateTime.Now.Day}-{DateTime.Now.Month}.pdf", FileMode.Create, FileAccess.Write)));
@@ -200,6 +233,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 }
                 document.Add(new Paragraph((string.Format("Monto total últimos 7 días: {0:C}", montoTotalRecibido))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
+                ShowPrettyMessages.InfoOk($"Documento creado en la ruta {path}", "Reporte Generado");
+
 
             }
             catch (Exception e) {
@@ -213,6 +248,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Monto = ClienteRenta.DeudaCliente;
             ingresos.IdClienteRenta = ClienteRenta.Id;
             await PagosHelper.NewIngreso(ingresos);
+            tickets = new($"Pago Renta", ingresos.Monto);
             RefreshGrid();
             InitInfo.ObCoClientesRenta.Clear();
             var newClientesRenta = await GetFromDb.GetClientesRenta();
@@ -224,15 +260,18 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void OthersPayment() {
             ingresos.Tipo = 4;
             await PagosHelper.NewIngreso(ingresos);
+            tickets = new($"Pago Otros", ingresos.Monto);
             RefreshGrid();
         }
 
         private async void ClientsPyment() {
+            if (Cliente == null) return;
             ingresos.Tipo = 1;
-            ingresos.Monto = paquete.Costo;
+            ingresos.Monto = Total;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             await PagosHelper.NewIngreso(ingresos);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
             RefreshGrid();
 
         }
@@ -263,6 +302,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Ingresos = new();
             Cliente = new();
             Paquete = new();
+            Total = 0;
+            Inscripcion = 0;
         }
 
         private void OnPropertyChanged(string propertyName) {

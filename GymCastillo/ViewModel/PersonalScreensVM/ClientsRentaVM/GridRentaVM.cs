@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.IntersectionTables;
@@ -26,7 +27,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM {
 
         public ObservableCollection<ClienteRenta> ListaClientes { get; set; }
 
-        private string query;
+        private string query = "";
 
         public string Query {
             get { return query; }
@@ -34,8 +35,15 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM {
             {
                 query = value;
                 OnPropertyChanged(nameof(Query));
-                //FilterList(Query);
+                FilterData(value);
             }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoClientesRenta).Filter = item => (item as ClienteRenta).Nombre.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoClientesRenta);
         }
 
         private ClienteRenta selectedCliente;

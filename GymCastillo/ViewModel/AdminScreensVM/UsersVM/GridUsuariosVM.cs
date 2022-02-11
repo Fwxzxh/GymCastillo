@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
@@ -47,14 +48,23 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             }
         }
 
-        private string query;
+        private string query = "";
 
         public string Query {
             get { return query; }
-            set { query = value;
+            set
+            {
+                query = value;
                 OnPropertyChanged(nameof(Query));
-                FilterList(Query);
+                FilterData(value);
             }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoUsuarios).Filter = item => (item as Usuario).Nombre.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoUsuarios);
         }
 
 
@@ -100,27 +110,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
             }
             else return;
         }
-
-        private async void FilterList(string query) {
-            usuarios = await GetFromDb.GetUsuarios(); 
-            if (usuarios != null) {
-                if (string.IsNullOrWhiteSpace(query)) {
-                    ListaUsuarios.Clear();
-                    foreach (var cliente in usuarios.OrderBy(i => i.Nombre)) {
-                        ListaUsuarios.Add(cliente);
-                    }
-                }
-                else {
-                    ListaUsuarios.Clear();
-                    var filteredList = usuarios.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList().OrderBy(c => c.Nombre);
-                    foreach (var cliente in filteredList) {
-                        ListaUsuarios.Add(cliente);
-                    }
-                }
-            }
-            else return;
-        }
-
 
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

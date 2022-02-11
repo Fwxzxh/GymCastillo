@@ -34,7 +34,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoOtros { get; set; }
         public RelayCommand MakeReporte { get; set; }
 
-        // private PagosHelper pagos = new();
+        private PrintTickets tickets;
 
         private Usuario usuario = new();
 
@@ -223,8 +223,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 montoTotalTipo = 0;
                 document.Add(new Paragraph((string.Format("Monto total últimos 7 días: {0:C}", montoTotalRecibido))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
-
-
+                ShowPrettyMessages.InfoOk($"Documento creado en la ruta {path}", "Reporte Generado");
             }
             catch (Exception e) {
                 Log.Debug("Error al crear documento pdf");
@@ -249,6 +248,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.IdPersonal = personal.Id;
             egresos.Monto = personal.Sueldo;
             await PagosHelper.NewEgreso(egresos);
+            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 
@@ -257,6 +257,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.IdInstructor = instructor.Id;
             egresos.Monto = MontoFinal;
             await PagosHelper.NewEgreso(egresos);
+            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 
@@ -265,6 +266,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.IdUsuarioPagar = usuario.Id;
             egresos.Monto = usuario.Sueldo;
             await PagosHelper.NewEgreso(egresos);
+            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Data;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
@@ -26,6 +27,25 @@ namespace GymCastillo.ViewModel.AdminScreensVM.EspaciosVM {
             set { espacio = value;
                 OnPropertyChanged(nameof(Espacio));
             }
+        }
+
+        private string query = "";
+
+        public string Query {
+            get { return query; }
+            set
+            {
+                query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoEspacios).Filter = item => (item as Espacio).NombreEspacio.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoEspacios);
         }
 
         public MainSettingsVM() {

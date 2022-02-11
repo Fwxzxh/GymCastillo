@@ -292,6 +292,9 @@ namespace GymCastillo.ViewModel.VentasVM {
             g.DrawString(string.Format("Total Venta ${0,40}", totalVenta), consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
             newYpos += 15;
+            g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
+            newYpos += 15;
             g.DrawString("                   Gracias por su compra!", consola, Brushes.Black, leftMargin, newYpos);
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymCastillo.ViewModel.VentasVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,13 @@ namespace GymCastillo.View.VentasScreensView {
     public partial class VentasControl : UserControl {
         public VentasControl() {
             InitializeComponent();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            RentasVM rentasVM = new();
+            InventarioVM inventarioVM = new();
+            rentasVM.Query = "";
+            inventarioVM.Query = "";
         }
     }
 }

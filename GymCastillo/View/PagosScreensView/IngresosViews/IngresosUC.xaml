@@ -164,20 +164,23 @@
                         HorizontalAlignment="Stretch"
                     Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Nombre Cliente"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}}"
-                      SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      SelectedValuePath="IdEspacio">
+                          materialDesign:HintAssist.Hint="Nombre Cliente"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          Margin="10"
+                          Width="250"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectedValuePath="IdEspacio">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="Id"/>
                                         <Binding Path="Nombre"/>
                                         <Binding Path="ApellidoPaterno"/>
                                     </MultiBinding>
@@ -237,6 +240,14 @@
                      Margin="10"
                      Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Inscripción"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="180"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Inscripcion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="180"
@@ -244,7 +255,7 @@
                      Grid.Row="1"
                      FontSize="20"
                      Margin="10"
-                     Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Text="{Binding Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
                      materialDesign:HintAssist.FloatingScale="0.6"
@@ -323,6 +334,9 @@
                           FontSize="20"
                           Margin="10"
                           Width="250"
+                          IsReadOnly="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
                           SelectedItem="{Binding ClienteRenta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientesRenta}}">
                     <ComboBox.ItemTemplate>

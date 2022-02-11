@@ -1,4 +1,8 @@
 ﻿using GymCastillo.ViewModel.AdminScreensVM.ClasesVM;
+using GymCastillo.ViewModel.AdminScreensVM.EspaciosVM;
+using GymCastillo.ViewModel.AdminScreensVM.PaquetesVM;
+using GymCastillo.ViewModel.AdminScreensVM.PersonalVM;
+using GymCastillo.ViewModel.AdminScreensVM.UsersVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,8 +29,16 @@ namespace GymCastillo.View.AdminScreensView {
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ClasesSettingsVM vM = new();
-            vM.Query = "";
+            ClasesSettingsVM clasesSettings = new();
+            MainSettingsVM espaciosSettings = new();
+            PaquetesSettingsVM paquetesSettings = new();
+            GridPersonalVM gridPersonal = new();
+            GridUsuariosVM gridUsuarios = new();
+            clasesSettings.Query = "";
+            espaciosSettings.Query = "";
+            paquetesSettings.Query = "";
+            gridPersonal.Query = "";
+            gridUsuarios.Query = "";
         }
     }
 }

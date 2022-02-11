@@ -30,12 +30,12 @@
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
                  materialDesign:TextFieldAssist.LeadingIconSize="25"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
                  materialDesign:HintAssist.IsFloating="False"
                  Width="400"
                  FontSize="20"
                  Margin="0 0 0 15"
                  HorizontalAlignment="Right"
+                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
         <DataGrid Grid.Row="1"
                   Margin="0 0 0 20"
@@ -51,7 +51,7 @@
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
                   SelectedItem="{Binding SelectedPersonal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoPersonal}, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoPersonal}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"
                                     Binding="{Binding Nombre}"

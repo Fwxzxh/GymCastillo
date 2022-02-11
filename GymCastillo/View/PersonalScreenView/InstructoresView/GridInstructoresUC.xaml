@@ -30,7 +30,6 @@
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
                  materialDesign:TextFieldAssist.LeadingIconSize="25"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
                  materialDesign:HintAssist.IsFloating="False"
                  Width="400"
                  FontSize="20"

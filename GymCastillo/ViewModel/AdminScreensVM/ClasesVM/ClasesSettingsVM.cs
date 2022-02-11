@@ -65,6 +65,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                 FilterData(value);
             }
         }
+
         private static void FilterData(string value) {
             if (value != null) {
                 CollectionViewSource.GetDefaultView(InitInfo.ObCoClases).Filter = item => (item as Clase).NombreClase.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);

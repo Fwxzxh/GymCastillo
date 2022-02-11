@@ -154,6 +154,9 @@
                           FontSize="20"
                           Margin="10"
                           Width="350"
+                          IsReadOnly="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
                           SelectedItem="{Binding Usuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoUsuarios}}">
                     <ComboBox.ItemTemplate>
@@ -220,6 +223,9 @@
                           FontSize="20"
                           Margin="10"
                           Width="350"
+                          IsReadOnly="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
                           SelectedItem="{Binding Instructor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInstructor}}">
                     <ComboBox.ItemTemplate>
@@ -307,6 +313,9 @@
                           FontSize="20"
                           Margin="10"
                           Width="350"
+                          IsReadOnly="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
                           SelectedItem="{Binding Personal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoPersonal}}">
                     <ComboBox.ItemTemplate>

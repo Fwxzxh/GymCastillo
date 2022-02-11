@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:usersVm="clr-namespace:GymCastillo.ViewModel.AdminScreensVM.UsersVM"
+             xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              BorderThickness="0"
@@ -16,6 +17,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <usersVm:GridUsuariosVM x:Key="vm"/>
+        <oc:InitInfo x:Key="oc"/>
     </UserControl.Resources>
     
     <Grid Margin="30" DataContext="{StaticResource vm}">
@@ -30,7 +32,6 @@
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
                  materialDesign:TextFieldAssist.LeadingIconSize="25"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
                  materialDesign:HintAssist.IsFloating="False"
                  Width="400"
                  FontSize="20"
@@ -51,7 +52,7 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   SelectedItem="{Binding SelectedUsuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding ListaUsuarios}"
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoUsuarios}, UpdateSourceTrigger=PropertyChanged, Mode=Default}"
                   HorizontalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre"

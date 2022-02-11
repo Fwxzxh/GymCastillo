@@ -250,7 +250,7 @@ namespace GymCastillo.Model.Reportes {
 
             try {
                 var egresos =
-                    InitInfo.ObCoEgresos.Where(x => x.FechaRegistro == DateTime.Today).ToList();
+                    InitInfo.ObCoEgresos.Where(x => x.FechaRegistro.Date == DateTime.Today.Date).ToList();
 
                 return egresos;
             }
@@ -273,7 +273,7 @@ namespace GymCastillo.Model.Reportes {
 
             try {
                 var ingresosList =
-                    InitInfo.ObCoIngresos.Where(x => x.FechaRegistro == DateTime.Today).ToList();
+                    InitInfo.ObCoIngresos.Where(x => x.FechaRegistro.Date == DateTime.Today.Date).ToList();
 
                 return ingresosList;
             }

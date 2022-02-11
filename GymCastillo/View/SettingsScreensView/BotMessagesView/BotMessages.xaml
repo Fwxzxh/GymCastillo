@@ -29,6 +29,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Content="Mensajes Individuales"
                Grid.Row="0"/>
@@ -38,6 +40,9 @@
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       HorizontalAlignment="Left"
                       Width="250"
+                      IsReadOnly="True"
+                      IsTextSearchEnabled="True"
+                      TextSearch.TextPath="Nombre"
                       ItemsSource="{Binding Clientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Margin="10 0">
@@ -103,10 +108,40 @@
                 Grid.Row="5"
                 FontSize="20"
                 Margin="10"/>
-        <Label Content="Mensajes para Todos"
+        <Label Content="Mensajes por Espacio"
                Grid.Row="6"/>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="7">
+            <ComboBox materialDesign:HintAssist.Hint="Espacio"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      HorizontalAlignment="Left"
+                      Width="250"
+                      DisplayMemberPath="NombreEspacio"
+                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoEspacios}}"
+                      SelectedItem="{Binding Espacio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="10 0"/>
+
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Mensaje a enviar"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         TextWrapping="Wrap"
+                         Text="{Binding EMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="200"
+                         MaxHeight="60"
+                         Width="700"/>
+        </StackPanel>
+        <Button Style="{StaticResource MaterialDesignPaperButton}"
+                Content="Enviar Mensaje"
+                HorizontalAlignment="Left"
+                Command="{Binding SendAreaMessage}"
+                ToolTip="Envia los mensajes"
+                Grid.Row="8"
+                FontSize="20"
+                Margin="10"/>
+        <Label Content="Mensajes para Todos"
+               Grid.Row="9"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="10">
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:HintAssist.Hint="Mensaje a enviar"
                      materialDesign:TextFieldAssist.HasClearButton="True"
@@ -128,7 +163,7 @@
 
         </StackPanel>
         <StackPanel Orientation="Horizontal"
-                    Grid.Row="9">
+                    Grid.Row="11">
             <Button Style="{StaticResource MaterialDesignPaperButton}"
                     Content="Adjuntar archivo"
                     HorizontalAlignment="Left"
