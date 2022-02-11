@@ -413,7 +413,7 @@ namespace GymCastillo.Model.Bot {
                     .Select(x => x.IdPaquete);
 
             var clientes =
-                InitInfo.ObCoClientes.Where(x => paquetes.Contains(x.IdPaquete));
+                InitInfo.ObCoClientes.Where(x => paquetes.Contains(x.IdPaquete) && x.ChatId != "");
 
             try {
                 var count = 0;
