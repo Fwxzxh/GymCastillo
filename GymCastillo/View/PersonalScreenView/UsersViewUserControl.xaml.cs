@@ -13,12 +13,12 @@ namespace GymCastillo.View.PersonalScreenView {
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            GridRentaVM gridRenta = new();
-            GridClientesVM gridClientes = new();
-            GridInstructoresVM gridInstructores = new();
-            gridRenta.Query = "";
-            gridClientes.Query = "";
-            gridInstructores.Query = "";
+            //GridRentaVM gridRenta = new();
+            //GridClientesVM gridClientes = new();
+            //GridInstructoresVM gridInstructores = new();
+            //gridRenta.Query = "";
+            //gridClientes.Query = "";
+            //gridInstructores.Query = "";
 
         }
     }

@@ -51,15 +51,15 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             renglon += 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
-            g.DrawString(string.Format("{0,2}", concepto), consola, Brushes.Black, leftMargin, yPos);
+            g.DrawString(string.Format("{0,2}", concepto), consola, Brushes.Black, leftMargin, yPos + renglon);
 
-            g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos);
+            g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
             var newYpos = yPos + 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
             newYpos += 15;
-            g.DrawString(string.Format("Total Venta ${0,40}", total), consola, Brushes.Black, leftMargin, newYpos);
+            g.DrawString(string.Format("Total Venta {0,40}", total), consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
             newYpos += 15;
             g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, newYpos);

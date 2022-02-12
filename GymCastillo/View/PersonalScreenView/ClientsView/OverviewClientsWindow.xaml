@@ -41,8 +41,6 @@
                 <TextBox materialDesign:HintAssist.Hint="Nombre"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          VerticalContentAlignment="Center"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -50,8 +48,6 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Apellido Paterno"
                          materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -59,8 +55,6 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Apellido Materno"
                          materialDesign:HintAssist.FloatingScale=".6"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"

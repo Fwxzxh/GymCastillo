@@ -47,7 +47,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Cliente selectedClient;
+        private Cliente selectedClient = new();
         public Cliente SelectedClient {
             get { return selectedClient; }
             set
@@ -120,7 +120,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                     "Publicidad",
                     "Otros"
                 };
-            LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
+            //LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
 
             //descuento = selectedClient.Descuento;
             pago = selectedClient.DeudaCliente;
