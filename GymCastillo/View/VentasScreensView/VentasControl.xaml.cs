@@ -24,10 +24,10 @@ namespace GymCastillo.View.VentasScreensView {
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            RentasVM rentasVM = new();
-            InventarioVM inventarioVM = new();
-            rentasVM.Query = "";
-            inventarioVM.Query = "";
+            //RentasVM rentasVM = new();
+            //InventarioVM inventarioVM = new();
+            //rentasVM.Query = "";
+            //inventarioVM.Query = "";
         }
     }
 }

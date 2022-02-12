@@ -49,13 +49,17 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             //renglon += 15;
             g.DrawString("Concepto                                            Total", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
+            renglon += 15;
+            renglon += 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
             g.DrawString(string.Format("{0,2}", concepto), consola, Brushes.Black, leftMargin, yPos + renglon);
 
             g.DrawString(string.Format("                     {0,40}", total), consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
-            var newYpos = yPos + 15;
+            renglon += 15;
+            renglon += 15;
+            var newYpos = renglon + 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
             newYpos += 15;

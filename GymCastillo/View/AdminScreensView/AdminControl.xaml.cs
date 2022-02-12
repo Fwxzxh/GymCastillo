@@ -29,16 +29,16 @@ namespace GymCastillo.View.AdminScreensView {
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ClasesSettingsVM clasesSettings = new();
-            MainSettingsVM espaciosSettings = new();
-            PaquetesSettingsVM paquetesSettings = new();
-            GridPersonalVM gridPersonal = new();
-            GridUsuariosVM gridUsuarios = new();
-            clasesSettings.Query = "";
-            espaciosSettings.Query = "";
-            paquetesSettings.Query = "";
-            gridPersonal.Query = "";
-            gridUsuarios.Query = "";
+            //ClasesSettingsVM clasesSettings = new();
+            //MainSettingsVM espaciosSettings = new();
+            //PaquetesSettingsVM paquetesSettings = new();
+            //GridPersonalVM gridPersonal = new();
+            //GridUsuariosVM gridUsuarios = new();
+            //clasesSettings.Query = "";
+            //espaciosSettings.Query = "";
+            //paquetesSettings.Query = "";
+            //gridPersonal.Query = "";
+            //gridUsuarios.Query = "";
         }
     }
 }
