@@ -44,16 +44,23 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
                 Log.Debug("Se ha creado la conexión.");
 
-                const string updateQuery = @"UPDATE personal
-                                             SET domicilio=@Domicilio, telefono=@Telefono, 
+                const string updateQuery = @"UPDATE usuario
+                                             SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, 
+                                                 ApellidoMaterno=@ApellidoMaterno,
+                                                 domicilio=@Domicilio, telefono=@Telefono, 
                                                  NombreContacto=@NombreContacto,
-                                                 telefonocontacto=@TelefonoContacto, foto=@Foto,
-                                                 Puesto=@Puesto, Sueldo=@Sueldo
-                                             WHERE IdPersonal=@IdPersonal";
+                                                 telefonocontacto=@TelefonoContacto, foto=@Foto, 
+                                                 sueldo=@Sueldo
+                                             WHERE IdUsuario=@IdUsuario;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdPersonal", Id.ToString());
+
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
 

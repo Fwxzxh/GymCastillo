@@ -7,9 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="added Ingresos/Egresos Today &amp; AreaMessage">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fix in area messages">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,14 +195,9 @@
       <workItem from="1643733426302" duration="7939000" />
       <workItem from="1644461578559" duration="3457000" />
       <workItem from="1644468114147" duration="5817000" />
-      <workItem from="1644600071709" duration="30000" />
-    </task>
-    <task id="LOCAL-00047" summary="fixed shit that havent been fixed in last commit">
-      <created>1641013051810</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1641013051810</updated>
+      <workItem from="1644600071709" duration="56000" />
+      <workItem from="1644817354615" duration="1592000" />
+      <workItem from="1644897433357" duration="189000" />
     </task>
     <task id="LOCAL-00048" summary="Clearer Msg in deuda cliente">
       <created>1641081478753</created>
@@ -536,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644465472387</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Minor fix in area messages">
+      <created>1644600117070</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1644600117070</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +576,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Tickets with telegram done" />
     <MESSAGE value="Minor bug en ventas" />
     <MESSAGE value="Implemented Recent Changes" />
     <MESSAGE value="Added FK key cheks" />
@@ -595,7 +600,8 @@
     <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
     <MESSAGE value="Added PlantillaFront.png" />
     <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Ingresos/Egresos Today &amp; AreaMessage" />
+    <MESSAGE value="Minor fix in area messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fix in area messages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

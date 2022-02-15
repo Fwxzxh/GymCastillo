@@ -125,17 +125,22 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
 
                 const string updateQuery = @"UPDATE cliente
-                                             SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
-                                                 DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
-                                                 NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
-                                                 Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-                                                 IdTipoCliente=@IdTipoCliente
+                                             SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno, 
+                                                 Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
+                                                 DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
+                                                 TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
+                                                 DuracionPaquete=@DuracionPaquete, Nino=@Nino,
+                                                 IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
                                              WHERE IdCliente=@IdCliente;";
 
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
 
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());

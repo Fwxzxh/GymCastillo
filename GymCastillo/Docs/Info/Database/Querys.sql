@@ -142,9 +142,9 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	-- Editar valores (usuario)
 UPDATE usuario
 SET	Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
-	domicilio=@Domicilio, username=@Username, password=@Password,
-    	telefono=@Telefono, NombreContacto=@NombreContacto,
-    	telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
+    domicilio=@Domicilio, username=@Username, password=@Password,
+    telefono=@Telefono, NombreContacto=@NombreContacto,
+    telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)
 
@@ -346,12 +346,12 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 
 	-- Editar valores (usuario)
 UPDATE usuario
-SET 	Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, 
-	ApellidoMaterno=@ApellidoMaterno,
-	domicilio=@Domicilio, telefono=@Telefono, 
-    	NombreContacto=@NombreContacto,
-    	telefonocontacto=@TelefonoContacto, foto=@Foto, 
-    	sueldo=@Sueldo
+SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno,
+    ApellidoMaterno=@ApellidoMaterno,
+    domicilio=@Domicilio, telefono=@Telefono,
+    NombreContacto=@NombreContacto,
+    telefonocontacto=@TelefonoContacto, foto=@Foto,
+    sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)
 
