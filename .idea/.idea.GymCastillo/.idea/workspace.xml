@@ -7,13 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fix in area messages">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed name changes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/Querys.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Personal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,14 +193,7 @@
       <workItem from="1644468114147" duration="5817000" />
       <workItem from="1644600071709" duration="56000" />
       <workItem from="1644817354615" duration="1592000" />
-      <workItem from="1644897433357" duration="189000" />
-    </task>
-    <task id="LOCAL-00048" summary="Clearer Msg in deuda cliente">
-      <created>1641081478753</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1641081478753</updated>
+      <workItem from="1644897433357" duration="1316000" />
     </task>
     <task id="LOCAL-00049" summary="Updated, Pago deuda cliente">
       <created>1641081840088</created>
@@ -542,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644600117070</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Fixed name changes">
+      <created>1644897654194</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1644897654194</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +572,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor bug en ventas" />
     <MESSAGE value="Implemented Recent Changes" />
     <MESSAGE value="Added FK key cheks" />
     <MESSAGE value="Massive msg done" />
@@ -601,7 +596,8 @@
     <MESSAGE value="Added PlantillaFront.png" />
     <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
     <MESSAGE value="Minor fix in area messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix in area messages" />
+    <MESSAGE value="Fixed name changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed name changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
