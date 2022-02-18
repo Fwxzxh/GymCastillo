@@ -172,14 +172,14 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Egresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Concepto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="420"
@@ -263,14 +263,14 @@
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
                         Visibility="{Binding ElementName=instructor, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Egresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Concepto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="420"
@@ -331,14 +331,14 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Egresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Concepto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="420"
@@ -382,14 +382,14 @@
                          Margin="10"
                          Text="{Binding Egresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Egresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Monto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="320"
@@ -424,14 +424,14 @@
                          Margin="10"
                          Text="{Binding Egresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Egresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Monto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="320"
