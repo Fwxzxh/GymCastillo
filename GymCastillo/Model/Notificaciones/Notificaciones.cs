@@ -71,6 +71,7 @@ namespace GymCastillo.Model.Notificaciones {
                 return;
             }
 
+            // Checamos si es lunes
             if (hoy.DayOfWeek == DayOfWeek.Monday) {
                 Log.Info("Se ha detectado que es lunes y se procederá a resetear los campos de los usuarios y las clases.");
 
@@ -79,6 +80,12 @@ namespace GymCastillo.Model.Notificaciones {
             }
             else {
                 Log.Info("Hoy no toca Resetear campos.");
+            }
+
+            // Reset counter de pagos
+            if (hoy.Day == 1) {
+                // Reseteamos la numeración de los pagos.
+                GetInitData.SetNextMonthMovNumerator(true);
             }
         }
 

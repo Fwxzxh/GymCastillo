@@ -33,6 +33,8 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
 
             ingreso.FechaRegistro = DateTime.Now;
+            ingreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
+            GetInitData.SetNextMonthMovNumerator();
 
             try {
                 switch (ingreso.Tipo) {
@@ -49,8 +51,6 @@ namespace GymCastillo.Model.Helpers {
                         cliente.MontoUltimoPago = ingreso.Monto;
                         cliente.FechaUltimoPago = ingreso.FechaRegistro;
 
-                        ingreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}I{ingreso.Tipo.ToString()}";
-
                         // Registramos el proceso.
                         await IngresoCliente(ingreso, cliente);
 
@@ -63,8 +63,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdCliente = 0;
                         ingreso.IdLocker = 0;
                         ingreso.IdClienteRenta = 0;
-
-                        ingreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}I{ingreso.Tipo.ToString()}";
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
@@ -79,8 +77,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdLocker = 0;
                         ingreso.IdVenta = 0;
                         ingreso.IdClienteRenta = 0;
-
-                        ingreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}I{ingreso.Tipo.ToString()}";
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso, silent);
@@ -97,8 +93,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdClienteRenta = 0;
                         ingreso.Otros = true;
 
-                        ingreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}I{ingreso.Tipo.ToString()}";
-
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(ingreso);
 
@@ -111,8 +105,6 @@ namespace GymCastillo.Model.Helpers {
                         ingreso.IdLocker = 0;
                         ingreso.IdVenta = 0;
                         ingreso.IdRenta = 0;
-
-                        ingreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}I{ingreso.Tipo.ToString()}";
 
                         // Registramos el Pago
                         var resPagoDeuda = await AdminOnlyAlta.Alta(ingreso);
@@ -160,6 +152,8 @@ namespace GymCastillo.Model.Helpers {
         private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente) {
 
             var paqueteAntiguo = cliente.IdPaquete;
+            ingreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
+            GetInitData.SetNextMonthMovNumerator();
 
             // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
             if (ingreso.IdPaquete != 0) {
@@ -251,8 +245,6 @@ namespace GymCastillo.Model.Helpers {
                         usuario.MontoUltimoPago = egreso.Monto;
                         usuario.FechaUltimoPago = egreso.FechaRegistro;
 
-                        egreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}E{egreso.Tipo.ToString()}";
-
                         // Registramos el Pago
                         var res = await AdminOnlyAlta.Alta(egreso, true);
 
@@ -277,8 +269,6 @@ namespace GymCastillo.Model.Helpers {
 
                         instructor.DiasTrabajados = 0;
                         instructor.SueldoADescontar = 0;
-
-                        egreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}E{egreso.Tipo.ToString()}";
 
                         // Registramos el Pago
                         var resInstructores = await AdminOnlyAlta.Alta(egreso, true);
@@ -306,8 +296,6 @@ namespace GymCastillo.Model.Helpers {
                         personal.MontoUltimoPago = egreso.Monto;
                         personal.FechaUltimoPago = egreso.FechaRegistro;
 
-                        egreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}E{egreso.Tipo.ToString()}";
-
                         // Registramos el Pago
                         var resAlta = await AdminOnlyAlta.Alta(egreso, true);
 
@@ -327,8 +315,6 @@ namespace GymCastillo.Model.Helpers {
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Servicios.
                         egreso.Servicios = true;
 
-                        egreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}E{egreso.Tipo.ToString()}";
-
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);
 
@@ -338,8 +324,6 @@ namespace GymCastillo.Model.Helpers {
                     case 5: // Otros
                         // Tienen que estar FechaRegistro: IdUsuario, Concepto, NumRecibo?, Monto, Otros.
                         egreso.Otros = true;
-
-                        egreso.NumeroRecibo = $"{DateTime.Now:yyMMddHHmm}E{egreso.Tipo.ToString()}";
 
                         // Registramos el Pago
                         await AdminOnlyAlta.Alta(egreso);

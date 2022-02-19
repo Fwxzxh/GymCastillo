@@ -7,9 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed name changes">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added automatic RegisterNumber">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,14 +196,11 @@
       <workItem from="1644468114147" duration="5817000" />
       <workItem from="1644600071709" duration="56000" />
       <workItem from="1644817354615" duration="1592000" />
-      <workItem from="1644897433357" duration="1316000" />
-    </task>
-    <task id="LOCAL-00049" summary="Updated, Pago deuda cliente">
-      <created>1641081840088</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1641081840088</updated>
+      <workItem from="1644897433357" duration="1497000" />
+      <workItem from="1645020733958" duration="2350000" />
+      <workItem from="1645241894133" duration="137000" />
+      <workItem from="1645242058996" duration="4096000" />
+      <workItem from="1645300524013" duration="3313000" />
     </task>
     <task id="LOCAL-00050" summary="Bot auth &amp; alta in db done">
       <created>1641105699985</created>
@@ -538,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644897654194</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Added automatic RegisterNumber">
+      <created>1644898776714</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1644898776714</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented Recent Changes" />
     <MESSAGE value="Added FK key cheks" />
     <MESSAGE value="Massive msg done" />
     <MESSAGE value="Massive multimeda msg done" />
@@ -597,7 +603,8 @@
     <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
     <MESSAGE value="Minor fix in area messages" />
     <MESSAGE value="Fixed name changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed name changes" />
+    <MESSAGE value="Added automatic RegisterNumber" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added automatic RegisterNumber" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
