@@ -342,9 +342,6 @@ namespace GymCastillo.ViewModel.VentasVM {
                 Venta.IdsProductos += $"{item.IdProducto},";
             }
             // await AdminOnlyAlta.Alta(Venta);
-
-
-            
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
             pd.Print();
