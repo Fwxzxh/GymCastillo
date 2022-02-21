@@ -233,12 +233,17 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             egresos.Tipo = 5;
+            tickets = new($"Pago otros", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago otros", egresos.Monto, GetInitData.GetMonthMovNumerator());
+
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void ServicesPayment() {
             egresos.Tipo = 4;
+            tickets = new($"Pago servicios {egresos.Concepto}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago servicios {egresos.Concepto}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -247,8 +252,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 3;
             egresos.IdPersonal = personal.Id;
             egresos.Monto = personal.Sueldo;
+            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
-            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 
@@ -256,8 +262,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 2;
             egresos.IdInstructor = instructor.Id;
             egresos.Monto = MontoFinal;
+            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
-            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 
@@ -265,8 +272,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 1;
             egresos.IdUsuarioPagar = usuario.Id;
             egresos.Monto = usuario.Sueldo;
+            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
-            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto);
             RefreshGrid();
         }
 

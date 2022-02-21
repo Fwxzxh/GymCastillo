@@ -1,4 +1,5 @@
 ﻿using GymCastillo.Model.DataTypes.Movimientos;
+using GymCastillo.Model.Init;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,12 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private string concepto;
 
         private decimal total = 0.0m;
-        public PrintTickets(string concepto, decimal total) {
+
+        public int noRecibo = 0;
+        public PrintTickets(string concepto, decimal total, int noRecibo) {
             this.concepto = concepto;
             this.total = total;
+            this.noRecibo = noRecibo;
             pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
@@ -32,9 +36,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {
             System.Drawing.Image image = System.Drawing.Image.FromFile(@"C:\GymCastillo\Assets\logo.jpg");
-            var newimage = ResizeImage(image, 500, 350);
+            var newimage = ResizeImage(image, 150, 100);
 
-            Point ulCorner = new Point(55, 0);
+            Point ulCorner = new Point(30, -10);
 
             Graphics g = ppeArgs.Graphics;
             var settings = ppeArgs.PageSettings;
@@ -61,6 +65,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             renglon += 15;
             renglon += 15;
             g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, yPos + renglon);
+            renglon += 15;
+            g.DrawString($"No. Recibo: {noRecibo}", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
             renglon += 15;
             g.DrawString("                  ¡Gracias por su compra!", consola, Brushes.Black, leftMargin, yPos + renglon);

@@ -247,8 +247,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Tipo = 5;
             ingresos.Monto = ClienteRenta.DeudaCliente;
             ingresos.IdClienteRenta = ClienteRenta.Id;
+            tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
-            tickets = new($"Pago Renta", ingresos.Monto);
             RefreshGrid();
             InitInfo.ObCoClientesRenta.Clear();
             var newClientesRenta = await GetFromDb.GetClientesRenta();
@@ -259,8 +260,10 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             ingresos.Tipo = 4;
+            
+            tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
-            tickets = new($"Pago Otros", ingresos.Monto);
             RefreshGrid();
         }
 
@@ -270,8 +273,12 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Monto = Total;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
+
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
+
+            //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
             RefreshGrid();
 
         }

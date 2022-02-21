@@ -152,8 +152,6 @@ namespace GymCastillo.Model.Helpers {
         private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente) {
 
             var paqueteAntiguo = cliente.IdPaquete;
-            ingreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
-            GetInitData.SetNextMonthMovNumerator();
 
             // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
             if (ingreso.IdPaquete != 0) {
@@ -231,6 +229,8 @@ namespace GymCastillo.Model.Helpers {
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo egreso.");
 
             egreso.FechaRegistro = DateTime.Now;
+            egreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
+            GetInitData.SetNextMonthMovNumerator();
 
             try {
                 switch (egreso.Tipo) {

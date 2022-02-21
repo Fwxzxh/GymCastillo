@@ -293,6 +293,8 @@ namespace GymCastillo.ViewModel.VentasVM {
             newYpos += 15;
             g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
+            g.DrawString($"No. Recibo: {GetInitData.GetMonthMovNumerator()}", consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
             newYpos += 15;
             g.DrawString("                   Gracias por su compra!", consola, Brushes.Black, leftMargin, newYpos);
         }
@@ -342,10 +344,11 @@ namespace GymCastillo.ViewModel.VentasVM {
             // await AdminOnlyAlta.Alta(Venta);
 
 
-            await VentasHelper.NuevaVenta(Venta, Recibido);
+            
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
-            //pd.Print();
+            pd.Print();
+            await VentasHelper.NuevaVenta(Venta, Recibido);
             ClearFields();
 
             if (!visita) { // Solo si no es una entrada a un gym.
