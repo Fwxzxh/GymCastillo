@@ -130,7 +130,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                                  DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
                                                  TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
                                                  DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-                                                 IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
+                                                 IdTipoCliente=@IdTipoCliente
                                              WHERE IdCliente=@IdCliente;";
 
 

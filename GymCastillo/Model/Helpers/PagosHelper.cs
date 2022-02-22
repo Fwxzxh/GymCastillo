@@ -232,6 +232,7 @@ namespace GymCastillo.Model.Helpers {
             egreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
             GetInitData.SetNextMonthMovNumerator();
 
+
             try {
                 switch (egreso.Tipo) {
                     case 1: // NominaUsuarios:
