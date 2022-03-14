@@ -79,6 +79,9 @@ namespace GymCastillo.ViewModel.VentasVM {
             Log.Debug("Boton para dar de alta un nuevo producto en inventario");
             if (guardar) {
                 var lista = await GetFromDb.GetInventario();
+                if (InitInfo.ObCoInventario.Count == 0) {
+                    await AdminOtrosTipos.Alta(Inventario);
+                }
                 foreach (var item in InitInfo.ObCoInventario) {
                     if (item.NombreProducto == inventario.NombreProducto) {
                         var producto = InitInfo.ObCoInventario.First(x => x.NombreProducto == inventario.NombreProducto);
