@@ -193,7 +193,6 @@
                              materialDesign:HintAssist.Hint="Deuda Cliente"
                              materialDesign:HintAssist.FloatingScale="0.6"
                              Width="250"
-                             IsReadOnly="True"
                              Margin="20 0"
                              FontSize="20"
                              Text="{Binding SelectedClient.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>

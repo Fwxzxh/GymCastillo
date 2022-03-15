@@ -124,6 +124,18 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             }
         }
 
+        private int noMeses;
+
+        public int NoMeses {
+            get { return noMeses; }
+            set
+            {
+                noMeses = value;
+                OnPropertyChanged(nameof(NoMeses));
+                ActualizarTotal();
+            }
+        }
+
 
         public IngresosVM() {
             PagoCliente = new RelayCommand(ClientsPyment);
@@ -136,8 +148,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private void ActualizarTotal() {
             if (paquete == null) return;
-            
-            Total = paquete.Costo + inscripcion;
+            Total = (paquete.Costo * (NoMeses + 1)) + inscripcion;
         }
 
 
@@ -260,14 +271,14 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             ingresos.Tipo = 4;
-            
+
             tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
         }
 
-        private async void ClientsPyment() {
+        private async void ClientsPyment() {    
             if (Cliente == null) return;
             ingresos.Tipo = 1;
             ingresos.Monto = Total;
@@ -276,7 +287,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
             tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
-            await PagosHelper.NewIngreso(ingresos);
+            await PagosHelper.NewIngreso(ingresos, meses:NoMeses+1);
 
             //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
             RefreshGrid();
@@ -311,6 +322,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Paquete = new();
             Total = 0;
             Inscripcion = 0;
+            NoMeses = 0;
         }
 
         private void OnPropertyChanged(string propertyName) {

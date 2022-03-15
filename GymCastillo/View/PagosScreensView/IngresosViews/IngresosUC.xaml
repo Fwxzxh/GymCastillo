@@ -248,6 +248,26 @@
                      Margin="10"
                      Text="{Binding Inscripcion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Meses"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          SelectedIndex="{Binding NoMeses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="10">
+                    <ComboBoxItem Content="1" IsSelected="True"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="11"/>
+                    <ComboBoxItem Content="12"/>
+                </ComboBox>
                 <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="180"
