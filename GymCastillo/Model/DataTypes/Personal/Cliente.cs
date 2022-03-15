@@ -126,7 +126,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string updateQuery = @"UPDATE cliente
                                              SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno, 
-                                                 Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
+                                                 Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DeudaCliente=@DeudaCliente,
                                                  DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
                                                  TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
                                                  DuracionPaquete=@DuracionPaquete, Nino=@Nino,
@@ -144,6 +144,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@DescripcionCondicionEspecial", DescripciónCondiciónEspecial);
 
