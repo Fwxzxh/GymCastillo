@@ -45,6 +45,9 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public int CupoActual { get; set; }
 
+        /// <summary>
+        /// Da el número de clientes registrados a esta clase.
+        /// </summary>
         public int NumRegistrados {
             get {
                 var num = InitInfo.ObCoClienteHorario

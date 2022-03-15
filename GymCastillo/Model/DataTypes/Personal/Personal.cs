@@ -107,7 +107,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 var res = await ExecSql.NonQuery(command, "Delete Personal");
                 Log.Debug("Se ha eliminado un cliente de la tabla.");
                 return res;
-
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete de Personal.");

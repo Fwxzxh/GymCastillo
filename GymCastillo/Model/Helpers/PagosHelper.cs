@@ -15,7 +15,8 @@ namespace GymCastillo.Model.Helpers {
     /// Clase que se encarga de manejar los pagos
     /// </summary>
     public static class PagosHelper {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         // 1. Me llega el objeto del front con los datos,
         // 2. Valido que los datos necesarios para el tipo de operación estén.
@@ -253,7 +254,6 @@ namespace GymCastillo.Model.Helpers {
             egreso.FechaRegistro = DateTime.Now;
             egreso.NumeroRecibo = GetInitData.GetMonthMovNumerator().ToString();
             GetInitData.SetNextMonthMovNumerator();
-
 
             try {
                 switch (egreso.Tipo) {
