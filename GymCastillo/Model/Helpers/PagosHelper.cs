@@ -28,7 +28,8 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// <param name="silent"><c>true</c> para no mostrar el mensaje de operación exitosa</param>
-        public static async Task NewIngreso(Ingresos ingreso, bool silent = false) {
+        /// <param name="meses">Numero de meses que se va a pagar por la mensualidad, default 1</param>
+        public static async Task NewIngreso(Ingresos ingreso, bool silent = false, int meses=1) {
 
             Log.Debug("Se ha iniciado el proceso de dar de alta un nuevo ingreso");
 
@@ -52,7 +53,7 @@ namespace GymCastillo.Model.Helpers {
                         cliente.FechaUltimoPago = ingreso.FechaRegistro;
 
                         // Registramos el proceso.
-                        await IngresoCliente(ingreso, cliente);
+                        await IngresoCliente(ingreso, cliente, meses);
 
                         Log.Debug("Se ha terminado el proceso de dar de alta un nuevo ingreso tipo Cliente");
                         break;
@@ -149,7 +150,8 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// <param name="cliente">Un objeto con la información del cliente</param>
-        private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente) {
+        /// <param name="meses">Número de meses que se va a comprar el paquete, default 1</param>
+        private static async Task IngresoCliente(Ingresos ingreso, Cliente cliente, int meses=1) {
 
             var paqueteAntiguo = cliente.IdPaquete;
 
@@ -158,10 +160,30 @@ namespace GymCastillo.Model.Helpers {
                 // Obtenemos el paquete.
                 var paquete = InitInfo.ObCoDePaquetes.First(x => x.IdPaquete == ingreso.IdPaquete);
 
-
                 // actualizamos.
                 cliente.IdPaquete = ingreso.IdPaquete;
-                cliente.FechaVencimientoPago = ingreso.FechaRegistro + TimeSpan.FromDays(30);
+
+                // Si no tiene fecha de vencimiento (es un cliente nuevo)
+                if (cliente.FechaVencimientoPago == DateTime.MinValue ||
+                    cliente.FechaVencimientoPago == DateTime.MaxValue) {
+                    // Sumamos un més a la fecha actual de pago
+                    cliente.FechaVencimientoPago = ingreso.FechaRegistro.AddMonths(meses);
+                }
+                else {
+                    //calculo fecha de vencimiento
+
+                    // hay tolerancia, si pagas 5 dias antes o 3 días después del corte
+                    // conservamos el mismo dia del més de pago pasado, si no agregamos 30.
+                    var hoy = DateTime.Today.DayOfYear;
+                    var diaCorteCliente = cliente.FechaVencimientoPago.DayOfYear;
+
+                    if (diaCorteCliente - 5 <= hoy || diaCorteCliente + 3 >= hoy) {
+                        // Conservamos el dia del més del pago pasado
+                        cliente.FechaVencimientoPago = cliente.FechaVencimientoPago.AddMonths(meses);
+                    }
+                }
+
+                // agregamos los demás campos.
                 cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
                 cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
                 cliente.DuraciónPaquete += 30;
