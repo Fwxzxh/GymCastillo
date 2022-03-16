@@ -168,7 +168,7 @@ namespace GymCastillo.Model.Helpers {
                 if (cliente.FechaVencimientoPago == DateTime.MinValue ||
                     cliente.FechaVencimientoPago == DateTime.MaxValue) {
                     // Sumamos un més a la fecha actual de pago
-                    cliente.FechaVencimientoPago = ingreso.FechaRegistro.AddMonths(meses);
+                    cliente.FechaVencimientoPago = ingreso.FechaRegistro.Date.AddMonths(meses);
                 }
                 else {
                     //calculo fecha de vencimiento
@@ -180,7 +180,11 @@ namespace GymCastillo.Model.Helpers {
 
                     if (diaCorteCliente - 5 <= hoy || diaCorteCliente + 3 >= hoy) {
                         // Conservamos el dia del més del pago pasado
-                        cliente.FechaVencimientoPago = cliente.FechaVencimientoPago.AddMonths(meses);
+                        cliente.FechaVencimientoPago = cliente.FechaVencimientoPago.Date.AddMonths(meses);
+                    }
+                    else {
+                        // Esta fuera del colchón, la fecha se calcula a partir del dia del pago.
+                        cliente.FechaVencimientoPago = DateTime.Today.Date.AddMonths(meses);
                     }
                 }
 
