@@ -26,7 +26,7 @@ SELECT
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
     l.IdLocker, l.Nombre as NombreLocker,
-    c.ChatID, c.FechaIngreso
+    c.ChatID, c.FechaIngreso, c.Firma
 FROM cliente c
 LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
 LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -38,13 +38,13 @@ INSERT INTO cliente
      FechaNacimiento, Telefono, CondicionEspecial,
      DescripcionCondicionEspecial, NombreContacto,
      TelefonoContacto, Foto, Activo, MedioConocio,
-     Nino, IdTipoCliente, FechaRenta)
+     Nino, IdTipoCliente, FechaRenta, Firma)
 VALUES
     (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
      @FechaNacimiento, @Telefono, @CondicionEspecial,
      @DescripcionCondicionEspecial, @NombreContacto,
      @TelefonoContacto, @Foto, @Activo, @MedioConocio,
-     @Nino, @IdTipoCliente, @FechaRenta);
+     @Nino, @IdTipoCliente, @FechaRenta, @Firma);
 	-- Editar valores (usuario)
 
 UPDATE cliente
@@ -53,7 +53,8 @@ SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoM
     DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
     TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
     DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
+    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID,
+    Firma=@Firma
 WHERE IdCliente=@IdCliente;
 
 -- Instructor
