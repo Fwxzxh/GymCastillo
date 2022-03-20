@@ -23,7 +23,6 @@ namespace GymCastillo.Model.Helpers {
         /// </summary>
         /// <param name="renta">El objeto con la información de la renta.</param>
         /// <param name="clienteRenta">El objeto con la información del cliente</param>
-        /// <param name="montoRecibido">La cantidad recibida por la renta (para calcular la deuda)</param>
         public static async Task NuevaRenta(Rentas renta, ClienteRenta clienteRenta) {
             // Debemos de Hacer la renta y luego registrar el ingreso
             Log.Debug("Se ha iniciado el proceso de registrar una renta.");

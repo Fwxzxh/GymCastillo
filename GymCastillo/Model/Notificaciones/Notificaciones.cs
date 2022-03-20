@@ -87,6 +87,40 @@ namespace GymCastillo.Model.Notificaciones {
                 // Reseteamos la numeración de los pagos.
                 GetInitData.SetNextMonthMovNumerator(true);
             }
+
+            // Verificar si desactivamos clientes
+            var fechaLimite = DateTime.Today.Date;
+
+            var clientesADesactivar =
+                InitInfo.ObCoClientes.Where(x => x.FechaVencimientoPago.Date + TimeSpan.FromDays(3) < fechaLimite);
+
+            var aDesactivar = clientesADesactivar.ToList();
+
+            // SI hay alguno a desactivar
+            if (aDesactivar.Any()) {
+                try {
+                    foreach (var cliente in aDesactivar) {
+                        // Actualizamos el estado a inactivo y actualizamos la bd.
+                        cliente.Activo = false;
+                        await cliente.Update();
+                    }
+
+                    // actualizamos nuestra copia en memoria
+                    InitInfo.ObCoClientes.Clear();
+                    var newClients = await GetFromDb.GetClientes();
+                    foreach (var cliente in newClients) {
+                        InitInfo.ObCoClientes.Add(cliente);
+                    }
+                }
+                catch (Exception e) {
+                    Log.Error("Ha ocurrido un error desconocido a la hora de Desactivar los clientes inactivos.");
+                    Log.Error($"Error: {e.Message}");
+                    ShowPrettyMessages.ErrorOk(
+                        $"Ha ocurrido un error desconocido al desactivar los clientes inactivos por fecha, Contacte a " +
+                        $"los administradores. Error: {e.Message}",
+                        "Error desconocido");
+                }
+            }
         }
 
         /// <summary>

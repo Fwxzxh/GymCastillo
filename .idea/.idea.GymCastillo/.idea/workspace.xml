@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added GetHorariosCliente to Cliente.cs">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added GetClasesInstructor to Instructor.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,7 @@
     <option name="projectConfigVersion" value="5" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Helpers/RentaHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
@@ -206,14 +208,7 @@
       <workItem from="1647306843536" duration="8463000" />
       <workItem from="1647388000954" duration="1306000" />
       <workItem from="1647765569233" duration="1616000" />
-      <workItem from="1647810490351" duration="256000" />
-    </task>
-    <task id="LOCAL-00058" summary="Fixed Clases disponibles date, Don't copy assets in publish &amp; 1 more todo">
-      <created>1641263048229</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1641263048229</updated>
+      <workItem from="1647810490351" duration="1616000" />
     </task>
     <task id="LOCAL-00059" summary="bot card sending update">
       <created>1641413533480</created>
@@ -551,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647766802420</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Added GetClasesInstructor to Instructor.cs">
+      <created>1647810766667</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1647810766667</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +587,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Only registered horarios in asistencia" />
     <MESSAGE value="Fix ingresos query issue" />
     <MESSAGE value="NewCard Done &amp; working" />
     <MESSAGE value="Minor fix" />
@@ -610,7 +611,8 @@
     <MESSAGE value="Commit committed" />
     <MESSAGE value="Added Firma to Clientes" />
     <MESSAGE value="Added GetHorariosCliente to Cliente.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added GetHorariosCliente to Cliente.cs" />
+    <MESSAGE value="Added GetClasesInstructor to Instructor.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GetClasesInstructor to Instructor.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
