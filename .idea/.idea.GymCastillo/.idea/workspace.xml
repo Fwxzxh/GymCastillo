@@ -7,9 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Firma to Clientes">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added GetHorariosCliente to Cliente.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Instructor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,14 +205,8 @@
       <workItem from="1647230989711" duration="1460000" />
       <workItem from="1647306843536" duration="8463000" />
       <workItem from="1647388000954" duration="1306000" />
-      <workItem from="1647765569233" duration="1159000" />
-    </task>
-    <task id="LOCAL-00057" summary="Minor fixes">
-      <created>1641255488958</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1641255488958</updated>
+      <workItem from="1647765569233" duration="1616000" />
+      <workItem from="1647810490351" duration="256000" />
     </task>
     <task id="LOCAL-00058" summary="Fixed Clases disponibles date, Don't copy assets in publish &amp; 1 more todo">
       <created>1641263048229</created>
@@ -550,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647766349510</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Added GetHorariosCliente to Cliente.cs">
+      <created>1647766802420</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1647766802420</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +585,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor enhancements to Notificaciones.cs" />
     <MESSAGE value="Only registered horarios in asistencia" />
     <MESSAGE value="Fix ingresos query issue" />
     <MESSAGE value="NewCard Done &amp; working" />
@@ -609,7 +609,8 @@
     <MESSAGE value="Minor fixes, added documentation to NumRegistrados." />
     <MESSAGE value="Commit committed" />
     <MESSAGE value="Added Firma to Clientes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Firma to Clientes" />
+    <MESSAGE value="Added GetHorariosCliente to Cliente.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GetHorariosCliente to Cliente.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

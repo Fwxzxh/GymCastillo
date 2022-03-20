@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -347,6 +349,22 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     "Error desconocido");
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Método que obtiene las todas las clases de un instructor.
+        /// </summary>
+        /// <returns>Una lista de objetos tipo clase</returns>
+        public List<Clase> GetClasesInstructor() {
+            // Obtenemos las clases de este instructor
+            var claseInstructor =
+                InitInfo.ObCoClaseInstructores.Where(x => x.IdInstructor == Id)
+                    .Select(x => x.IdClase);
+
+            //
+            var clases = InitInfo.ObCoClases.Where(x => claseInstructor.Contains(x.IdClase));
+
+            return clases.ToList();
         }
     }
 }
