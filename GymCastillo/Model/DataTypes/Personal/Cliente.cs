@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using ImageMagick;
@@ -493,6 +495,24 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     "Error desconocido");
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Método que Obtiene la lista de horarios a los que esta registrado el cliente
+        /// </summary>
+        /// <returns>La lista de objetos tipo horario del cliente</returns>
+        public List<Horario> GetHorariosCliente() {
+
+            // Obtenemos a que clases esta registrado este cliente.
+            var horariosCliente =
+                InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == Id)
+                    .Select(x => x.IdHorario);
+
+            // Obtenemos los horarios del cliente
+            var horarios =
+                InitInfo.ObCoHorarios.Where(x => horariosCliente.Contains(x.IdHorario));
+
+            return horarios.ToList();
         }
     }
 }
