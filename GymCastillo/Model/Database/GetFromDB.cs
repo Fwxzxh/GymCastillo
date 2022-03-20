@@ -45,7 +45,7 @@ namespace GymCastillo.Model.Database {
                                           p.IdPaquete, p.NombrePaquete,
                                           tc.IdTipoCliente, tc.NombreTipoCliente,
                                           l.IdLocker, l.Nombre as NombreLocker,
-                                          c.ChatID, c.FechaRegistro
+                                          c.ChatID, c.FechaRegistro, c.Firma
                                       FROM cliente c
                                       LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
                                       LEFT JOIN TipoCliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -154,7 +154,11 @@ namespace GymCastillo.Model.Database {
                             ? ""
                             : reader.Result.GetString("ChatID"),
 
-                        FechaRegistro = reader.Result.GetDateTime("FechaRegistro")
+                        FechaRegistro = reader.Result.GetDateTime("FechaRegistro"),
+
+                        FirmaRaw = await reader.Result.IsDBNullAsync("Firma")
+                            ? null
+                            : (byte[])reader.Result["Firma"],
                     };
 
                     listCliente.Add(cliente);
