@@ -284,9 +284,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Monto = Total;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
-
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            var nombre = $"{cliente.Id} {cliente.Nombre} {cliente.ApellidoPaterno}"
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
             await PagosHelper.NewIngreso(ingresos, meses:NoMeses+1);
 
             //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
