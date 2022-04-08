@@ -71,7 +71,6 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
                 //MessageBox.Show(e.Message);
             }
 
-
         }
 
         public void OpenOverview() {

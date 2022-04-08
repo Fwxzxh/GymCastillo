@@ -249,14 +249,19 @@
 
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Guardar"
-                        Margin="20"
+                        Margin="10"
                         Command="{Binding updateInstructor}"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Ver Clases"
+                        Margin="10"
+                        Command="{Binding VerClasesCommand}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Salir"
                         Command="{Binding CloseWindowCommand, Mode=OneWay}"
                         CommandParameter="{Binding ElementName=overviewIsntructores}"
-                        Margin="20"
+                        Margin="10"
                         FontSize="20"/>
 
             </StackPanel>
