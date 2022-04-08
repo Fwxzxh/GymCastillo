@@ -41,8 +41,6 @@
                 <TextBox materialDesign:HintAssist.Hint="Nombre"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          VerticalContentAlignment="Center"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -50,8 +48,6 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Apellido Paterno"
                          materialDesign:HintAssist.FloatingScale="0.6"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -59,8 +55,6 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Apellido Materno"
                          materialDesign:HintAssist.FloatingScale=".6"
-                         IsReadOnly="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -199,7 +193,6 @@
                              materialDesign:HintAssist.Hint="Deuda Cliente"
                              materialDesign:HintAssist.FloatingScale="0.6"
                              Width="250"
-                             IsReadOnly="True"
                              Margin="20 0"
                              FontSize="20"
                              Text="{Binding SelectedClient.DeudaCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"/>
@@ -259,7 +252,8 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">
             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
-                    Margin="65 0"
+                    Margin=" 0"
+                    ToolTip="Seleccionar Foto"
                     Command="{Binding ImageCommand}">
                 <materialDesign:PackIcon Kind="CameraPlusOutline"
                                          Width="30"
@@ -268,6 +262,18 @@
             <Image Width="200"
                    Height="200"
                    Source="{Binding SelectedClient.FotoBitmap}"
+                   Margin="20"/>
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" 
+                    Margin=" 0"
+                    ToolTip="Seleccionar Firma"
+                    Command="{Binding FirmaCommand}">
+                <materialDesign:PackIcon Kind="Sign"
+                                         Width="30"
+                                         Height="30"/>
+            </Button>
+            <Image Width="200"
+                   Height="200"
+                   Source="{Binding SelectedClient.FirmaRaw}"
                    Margin="20"/>
 
             <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">

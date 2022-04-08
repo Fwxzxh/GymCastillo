@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Data;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
@@ -45,6 +46,24 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PaquetesVM {
             }
         }
 
+        private string query = "";
+
+        public string Query {
+            get { return query; }
+            set
+            {
+                query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoDePaquetes).Filter = item => (item as Paquete).NombrePaquete.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoDePaquetes);
+        }
         public PaquetesSettingsVM() {
             try {
                 Log.Debug("Ventana de configuración de paquetes iniciada");

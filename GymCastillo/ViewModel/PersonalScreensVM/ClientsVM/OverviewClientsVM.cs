@@ -44,10 +44,11 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public RelayCommand CredencialCommand { get; private set; }
         public RelayCommand ImageCommand { get; set; }
 
+        public RelayCommand FirmaCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Cliente selectedClient;
+        private Cliente selectedClient = new();
         public Cliente SelectedClient {
             get { return selectedClient; }
             set
@@ -98,8 +99,21 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public string PhotoPath {
             get { return photoPath; }
-            set { photoPath = value;
+            set
+            {
+                photoPath = value;
                 OnPropertyChanged(nameof(photoPath));
+            }
+        }
+
+        private string firmaPath;
+
+        public string FirmaPath {
+            get { return firmaPath; }
+            set
+            {
+                firmaPath = value;
+                OnPropertyChanged(nameof(FirmaPath));
             }
         }
 
@@ -109,6 +123,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             SelectedClient = cliente;
             saveClient = new(this);
             ImageCommand = new RelayCommand(SelectPhoto);
+            FirmaCommand = new RelayCommand(SelectFirma);
             HorarioCommand = new RelayCommand(SelectHorario);
             CredencialCommand = new RelayCommand(GenerarCredencial);
             paquetesList = new ObservableCollection<Paquete>(InitInfo.ObCoDePaquetes);
@@ -120,10 +135,23 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                     "Publicidad",
                     "Otros"
                 };
-            LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
+            //LockerIsChecked = SelectedClient.IdLocker != 0 ? true : false;
 
             //descuento = selectedClient.Descuento;
             pago = selectedClient.DeudaCliente;
+        }
+
+        private void SelectFirma() {
+            OpenFileDialog dialog = new() {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+            if (dialog.ShowDialog() == true) {
+                FirmaPath = dialog.FileName;
+                var image = new MagickImage(FirmaPath);
+
+                selectedClient.Firma = image;
+            }
         }
 
         private void SelectHorario() {

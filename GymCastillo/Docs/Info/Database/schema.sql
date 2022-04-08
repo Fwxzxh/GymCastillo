@@ -144,7 +144,8 @@ create table Cliente (
     IdLocker int,
     foreign key (IdLocker) references Locker (IdLocker),
     ChatID varchar(20),
-    FechaRegistro datetime
+    FechaRegistro datetime,
+    Firma blob
 );
 
 -- Ultimo update 08/01/22

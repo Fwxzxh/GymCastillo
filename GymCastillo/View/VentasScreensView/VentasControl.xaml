@@ -22,6 +22,7 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
                     materialDesign:ColorZoneAssist.Mode="Standard"
                     SnapsToDevicePixels="True"
+                    SelectionChanged="TabControl_SelectionChanged"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="False">
             <TabItem Width="150">
                 <TabItem.Header>

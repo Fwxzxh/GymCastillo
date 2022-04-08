@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows;
 using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.Helpers;
+using System.Windows.Data;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class RentasVM : INotifyPropertyChanged {
@@ -62,6 +63,25 @@ namespace GymCastillo.ViewModel.VentasVM {
                 espacio = value;
                 OnPropertyChanged(nameof(Espacio));
             }
+        }
+
+        private string query = "";
+
+        public string Query {
+            get { return query; }
+            set
+            {
+                query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoRentas).Filter = item => (item as Rentas).NombreClienteRenta.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoRentas);
         }
 
 

@@ -40,7 +40,6 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -49,7 +48,6 @@
                 <TextBox materialDesign:HintAssist.Hint="Apellido Paterno"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -58,7 +56,6 @@
                 <TextBox materialDesign:HintAssist.Hint="Apellido Materno"
                          materialDesign:HintAssist.FloatingScale=".6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
-                         IsEnabled="False"
                          Width="250"
                          FontSize="20"
                          Margin="20 0"
@@ -252,14 +249,19 @@
 
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Guardar"
-                        Margin="20"
+                        Margin="10"
                         Command="{Binding updateInstructor}"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Ver Clases"
+                        Margin="10"
+                        Command="{Binding VerClasesCommand}"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Salir"
                         Command="{Binding CloseWindowCommand, Mode=OneWay}"
                         CommandParameter="{Binding ElementName=overviewIsntructores}"
-                        Margin="20"
+                        Margin="10"
                         FontSize="20"/>
 
             </StackPanel>

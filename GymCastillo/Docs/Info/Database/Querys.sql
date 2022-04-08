@@ -26,7 +26,7 @@ SELECT
     p.IdPaquete, p.NombrePaquete,
     tc.IdTipoCliente, tc.NombreTipoCliente,
     l.IdLocker, l.Nombre as NombreLocker,
-    c.ChatID, c.FechaIngreso
+    c.ChatID, c.FechaIngreso, c.Firma
 FROM cliente c
 LEFT JOIN paquete p ON c.IdPaquete = p.IdPaquete
 LEFT JOIN tipocliente tc ON c.IdTipoCliente = tc.IdTipoCliente
@@ -38,20 +38,23 @@ INSERT INTO cliente
      FechaNacimiento, Telefono, CondicionEspecial,
      DescripcionCondicionEspecial, NombreContacto,
      TelefonoContacto, Foto, Activo, MedioConocio,
-     Nino, IdTipoCliente, FechaRenta)
+     Nino, IdTipoCliente, FechaRenta, Firma)
 VALUES
     (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
      @FechaNacimiento, @Telefono, @CondicionEspecial,
      @DescripcionCondicionEspecial, @NombreContacto,
      @TelefonoContacto, @Foto, @Activo, @MedioConocio,
-     @Nino, @IdTipoCliente, @FechaRenta);
+     @Nino, @IdTipoCliente, @FechaRenta, @Firma);
 	-- Editar valores (usuario)
 
 UPDATE cliente
-SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
-    NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
-    Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID
+SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno, 
+    Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
+    DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
+    TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
+    DuracionPaquete=@DuracionPaquete, Nino=@Nino,
+    IdTipoCliente=@IdTipoCliente, ChatID=@ChatID,
+    Firma=@Firma
 WHERE IdCliente=@IdCliente;
 
 -- Instructor
@@ -81,10 +84,11 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	@IdTipoInstructor);
 	-- Editar valores (usuario)
 UPDATE instructor
-SET domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
-telefonocontacto=@TelefonoContacto, foto=@Foto, horaentrada=@HoraEntrada,
-horasalida=@HoraSalida, sueldo=@Sueldo, sueldoadescontar=@SueldoADescontar,
-metodofechapago=@MetodoFechaPago, idtipoinstructor=@IdTipoInstructor
+SET	Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
+	domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
+	telefonocontacto=@TelefonoContacto, foto=@Foto, horaentrada=@HoraEntrada,
+	horasalida=@HoraSalida, sueldo=@Sueldo, sueldoadescontar=@SueldoADescontar,
+	metodofechapago=@MetodoFechaPago, idtipoinstructor=@IdTipoInstructor
 WHERE idinstructor=@IdInstructor;
 	-- Editar valores (automatico)
 
@@ -112,9 +116,10 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
         @DeudaCliente);
 	-- Editar valores (usuario)
 UPDATE clienterenta
-SET Domicilio=@Domicilio, Telefono=@Telefono,
-    NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto,
-    Foto=@Foto
+SET	Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
+	Domicilio=@Domicilio, Telefono=@Telefono,
+	NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto,
+	Foto=@Foto
 WHERE IdClienteRenta=@IdClienteRenta;
 	-- Editar valores (automático)
 
@@ -137,7 +142,8 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 	    @Sueldo);
 	-- Editar valores (usuario)
 UPDATE usuario
-SET domicilio=@Domicilio, username=@Username, password=@Password,
+SET	Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
+    domicilio=@Domicilio, username=@Username, password=@Password,
     telefono=@Telefono, NombreContacto=@NombreContacto,
     telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
@@ -341,9 +347,11 @@ VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
 
 	-- Editar valores (usuario)
 UPDATE usuario
-SET domicilio=@Domicilio, telefono=@Telefono, 
+SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno,
+    ApellidoMaterno=@ApellidoMaterno,
+    domicilio=@Domicilio, telefono=@Telefono,
     NombreContacto=@NombreContacto,
-    telefonocontacto=@TelefonoContacto, foto=@Foto, 
+    telefonocontacto=@TelefonoContacto, foto=@Foto,
     sueldo=@Sueldo
 WHERE IdUsuario=@IdUsuario;
 	-- Editar valores (automático)

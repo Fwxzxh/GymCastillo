@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using log4net;
@@ -84,15 +86,21 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 Log.Debug("Se ha creado la conexión.");
 
                 const string updateQuery = @"UPDATE instructor
-                                             SET domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
-                                             telefonocontacto=@TelefonoContacto, foto=@Foto, HoraEntrada=@HoraEntrada,
-                                             HoraSalida=@HoraSalida, Sueldo=@Sueldo, SueldoADescontar=@SueldoADescontar,
-                                             IdTipoInstructor=@IdTipoInstructor
+                                             SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
+                                             	domicilio=@Domicilio, telefono=@Telefono, NombreContacto=@NombreContacto,
+                                             	telefonocontacto=@TelefonoContacto, foto=@Foto, horaentrada=@HoraEntrada,
+                                             	horasalida=@HoraSalida, sueldo=@Sueldo, sueldoadescontar=@SueldoADescontar,
+                                             	idtipoinstructor=@IdTipoInstructor
                                              WHERE idinstructor=@IdInstructor;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdInstructor", Id.ToString());
+
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
@@ -341,6 +349,22 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     "Error desconocido");
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Método que obtiene las todas las clases de un instructor.
+        /// </summary>
+        /// <returns>Una lista de objetos tipo clase</returns>
+        public List<Clase> GetClasesInstructor() {
+            // Obtenemos las clases de este instructor
+            var claseInstructor =
+                InitInfo.ObCoClaseInstructores.Where(x => x.IdInstructor == Id)
+                    .Select(x => x.IdClase);
+
+            //
+            var clases = InitInfo.ObCoClases.Where(x => claseInstructor.Contains(x.IdClase));
+
+            return clases.ToList();
         }
     }
 }

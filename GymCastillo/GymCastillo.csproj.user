@@ -61,6 +61,9 @@
     <Compile Update="View\PersonalScreenView\ClientsView\HorariosClienteWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\PersonalScreenView\InstructoresView\InstructorClasesSummary.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\SettingsScreensView\BotMessagesView\BotMessages.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,6 +148,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PersonalScreenView\ClientsView\HorariosClienteWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PersonalScreenView\InstructoresView\InstructorClasesSummary.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SettingsScreensView\BotMessagesView\BotMessages.xaml">

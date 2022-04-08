@@ -104,6 +104,66 @@ namespace GymCastillo.Model.Init {
         }
 
         /// <summary>
+        /// Método que se encarga de leer el numero del movimiento en el mes
+        /// </summary>
+        public static int GetMonthMovNumerator() {
+            Log.Info("Se ha iniciado el proceso de obtener el numero de movimiento del mes.");
+
+            try {
+                var ini = new IniFile(IniPath);
+
+                // Checamos si existe la key
+                if (!ini.KeyExists("NumMov", "Movimientos")) {
+                    // SI no existe la escribimos en el 1
+                    ini.Write("NumMov", "1", "Movimientos");
+                    return 1;
+                }
+
+                var res = ini.Read("NumMov", "Movimientos");
+                var num = res == "" ? 1 : int.Parse(res);
+                return num;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al leer la información de el numero de movimiento del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de el numero de movimiento del archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de escribir el siguiente núm de movimiento del mes
+        /// </summary>
+        /// <param name="reset">default false, usar true para resetearlo al inicio del mes</param>
+        public static void SetNextMonthMovNumerator(bool reset = false) {
+            Log.Info("Se ha iniciado el proceso de escribir el siguiente num de movimiento del mes.");
+
+            try {
+                var ini = new IniFile(IniPath);
+
+                if (reset) {
+                    ini.Write("NumMov", "1", "Movimientos");
+                    return;
+                }
+
+                var numActual = GetMonthMovNumerator();
+                ini.Write("NumMov", $"{(numActual + 1).ToString()}", "Movimientos");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error al leer la información de el numero de movimiento del archivo de configuración.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    $"Ha ocurrido un error desconocido al obtener la información de el numero de movimiento del archivo de " +
+                    $"configuración. Error: {e.Message}",
+                    "Error desconocido");
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Método que se encarga de guardar los precios de las visitas en el ini.
         /// </summary>
         public static void SavePreciosVisitas() {

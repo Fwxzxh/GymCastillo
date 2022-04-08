@@ -9,6 +9,7 @@ using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
+using GymCastillo.View.PersonalScreenView.InstructoresView;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.InstructorsCommands;
 using ImageMagick;
 using log4net;
@@ -26,6 +27,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
         public UpdateInstructorCommand updateInstructor { get; set; }
         public RelayCommand ImageCommand { get; set; }
 
+        public RelayCommand VerClasesCommand { get; set; }
 
         private Instructor instructor;
 
@@ -54,6 +56,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
                 this.instructor = instructor;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 ImageCommand = new RelayCommand(SelectPhoto);
+                VerClasesCommand = new RelayCommand(VerHorario);
                 updateInstructor = new(this);
                 TiposInstructor = new ObservableCollection<Tipo>(InitInfo.ObCoTipoInstructor);
             }
@@ -63,6 +66,12 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.InstructoresVM {
             }
 
         }
+
+        private void VerHorario() {
+            InstructorClasesSummary clases = new(instructor);
+            clases.ShowDialog();
+        }
+
         private void SelectPhoto() {
             OpenFileDialog dialog = new() {
                 Filter = "Image files|*.png;*.jpg;*.jpeg",

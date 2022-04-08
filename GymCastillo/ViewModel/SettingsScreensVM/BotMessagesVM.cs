@@ -10,6 +10,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GymCastillo.ViewModel.SettingsScreensVM {
     public class BotMessagesVM : INotifyPropertyChanged {
@@ -19,6 +20,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         public RelayCommand SendMessage { get; set; }
         public RelayCommand SendPacketMessage { get; set; }
         public RelayCommand SendBroadcastMessage { get; set; }
+        public RelayCommand SendAreaMessage { get; set; }
         public RelayCommand AddFile { get; set; }
 
         private Cliente cliente;
@@ -54,6 +56,18 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
+        private Espacio espacio;
+
+        public Espacio Espacio {
+            get { return espacio; }
+            set
+            {
+                espacio = value;
+                OnPropertyChanged(nameof(Espacio));
+            }
+        }
+
+
         private string message;
 
         public string Message {
@@ -87,6 +101,17 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
+        private string eMessage;
+
+        public string EMessage {
+            get { return eMessage; }
+            set
+            {
+                eMessage = value;
+                OnPropertyChanged(nameof(EMessage));
+            }
+        }
+
         private string fileName;
 
         public string FileName {
@@ -114,8 +139,21 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             SendMessage = new RelayCommand(MandarMensaje);
             SendPacketMessage = new RelayCommand(PaqueteMensaje);
             SendBroadcastMessage = new RelayCommand(BroadcastMessage);
+            SendAreaMessage = new RelayCommand(AreaMessageAsync);
             AddFile = new RelayCommand(AgregarArchivo);
             RefreshData();
+        }
+
+        private async void AreaMessageAsync() {
+            if (Espacio != null) {
+                await Bot.SendMessage(EMessage, espacio.IdEspacio);
+                EMessage = "";
+                Espacio = null;
+                Espacio = new();
+            }
+            else {
+                ShowPrettyMessages.ErrorOk("Por favor selecciona a un espacio", "Error");
+            }
         }
 
         private void AgregarArchivo() {
@@ -149,6 +187,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             if (Paquete != null) {
                 await Bot.SendMassiveMessage(PMessage, Paquete.IdPaquete);
                 PMessage = "";
+                Paquete = null;
+                Paquete = new();
             }
             else {
                 ShowPrettyMessages.ErrorOk("Por favor selecciona un paquete", "Error");
@@ -160,6 +200,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             if (Cliente != null) {
                 await Bot.SendMessage(message, cliente.Id);
                 Message = "";
+                Cliente = null;
                 Cliente = new();
             }
             else {

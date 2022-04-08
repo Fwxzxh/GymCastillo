@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
@@ -52,7 +53,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
-        private string query;
+        private string query = "";
 
         public string Query {
             get { return query; }
@@ -60,8 +61,15 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             {
                 query = value;
                 OnPropertyChanged(nameof(Query));
-                //FilterList(query);
+                FilterData(value);
             }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoClientes).Filter = item => (item as Cliente).Nombre.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoClientes);
         }
 
         public GridClientesVM() {
@@ -117,26 +125,6 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 }
             }
         }
-
-        //private async void FilterList(string query) {
-        //    clientes = await GetFromDb.GetClientes();
-        //    if (clientes != null) {  
-        //        if (string.IsNullOrWhiteSpace(query)) {
-        //            ClientesLista.Clear();
-        //            foreach (var cliente in clientes.OrderBy(c => c.Nombre)) {
-        //                ClientesLista.Add(cliente);
-        //            }
-        //        }
-        //        else {
-        //            ClientesLista.Clear();
-        //            var filteredList = clientes.Where(c => c.Nombre.ToLower().Contains(query.ToLower()) || c.ApellidoPaterno.ToLower().Contains(query.ToLower()) || c.ApellidoMaterno.ToLower().Contains(query.ToLower())).ToList().OrderBy(d => d.Nombre);
-        //            foreach (var cliente in filteredList) {
-        //                ClientesLista.Add(cliente);
-        //            }
-        //        }
-        //    }
-        //    else return;
-        //}
 
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

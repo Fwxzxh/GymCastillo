@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Abstract;
+using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
+using ImageMagick;
 using log4net;
 using MySqlConnector;
 
@@ -114,6 +117,52 @@ namespace GymCastillo.Model.DataTypes.Personal {
         public DateTime FechaRegistro { get; set; }
 
         /// <summary>
+        /// Array de bytes de la firma.
+        /// </summary>
+        private byte[] firma = Array.Empty<byte>();
+
+        /// <summary>
+        /// Firma del usuario en formato para manipular.
+        /// </summary>
+        public MagickImage Firma {
+            get => new(firma);
+            set {
+                // Creamos la geometría con el tamaño deseado.
+                var size = new MagickGeometry(355, 355) {
+                    IgnoreAspectRatio = true
+                };
+
+                // La ponemos en el tamaño adecuado
+                value.Resize(size);
+                var bytes = value.ToByteArray();
+
+                // Verificamos que la imagen pueda caber en la base de datos y si no bajamos la calidad.
+                if (bytes.Length >= 64000) {
+                    // Quality base 75
+                    value.Quality = 60;
+                }
+
+                // Si sigue demasiado grande mandamos un mensaje.
+                if (bytes.Length >= 64000) {
+                    ShowPrettyMessages.WarningOk(
+                        "Esta imagen es demasiado grande para ser guardada en la base de datos, elija otra o comprímala.",
+                        "Imagen Demasiado Grande");
+                    return;
+                }
+
+                firma = value.ToByteArray();
+            }
+        }
+
+        /// <summary>
+        /// Firma raw en un array de bytes.
+        /// </summary>
+        public byte[] FirmaRaw {
+            get => firma;
+            set => firma = value;
+        }
+
+        /// <summary>
         /// Método que Actualiza la instancia actual del cliente en la Base de datos.
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
@@ -125,11 +174,12 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 await connection.OpenAsync();
 
                 const string updateQuery = @"UPDATE cliente
-                                             SET Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, 
-                                                 DescripcionCondicionEspecial=@DescripcionCondicionEspecial,
-                                                 NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, Foto=@Foto,
-                                                 Activo=@Activo, MedioConocio=@MedioConocio, DuracionPaquete=@DuracionPaquete, Nino=@Nino,
-                                                 IdTipoCliente=@IdTipoCliente
+                                             SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno, 
+                                                 Telefono=@Telefono, CondicionEspecial=@CondicionEspecial, DeudaCliente=@DeudaCliente,
+                                                 DescripcionCondicionEspecial=@DescripcionCondicionEspecial, NombreContacto=@NombreContacto, 
+                                                 TelefonoContacto=@TelefonoContacto, Foto=@Foto, Activo=@Activo, MedioConocio=@MedioConocio, 
+                                                 DuracionPaquete=@DuracionPaquete, Nino=@Nino,
+                                                 IdTipoCliente=@IdTipoCliente, Firma=@Firma
                                              WHERE IdCliente=@IdCliente;";
 
 
@@ -137,8 +187,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
+
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@CondicionEspecial", Convert.ToInt32(CondicionEspecial).ToString());
+                command.Parameters.AddWithValue("@DeudaCliente", DeudaCliente.ToString(CultureInfo.InvariantCulture));
 
                 command.Parameters.AddWithValue("@DescripcionCondicionEspecial", DescripciónCondiciónEspecial);
 
@@ -152,6 +207,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Nino", Convert.ToInt32(Niño).ToString());
 
                 command.Parameters.AddWithValue("@IdTipoCliente", IdTipoCliente.ToString());
+                command.Parameters.AddWithValue("@Firma", FirmaRaw);
 
                 var res = await ExecSql.NonQuery(command, "Update Cliente");
 
@@ -284,13 +340,13 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                                 FechaNacimiento, Telefono, CondicionEspecial,
                                                 DescripcionCondicionEspecial, NombreContacto,
                                                 TelefonoContacto, Foto, Activo, MedioConocio,
-                                                Nino, IdTipoCliente, FechaRegistro)
+                                                Nino, IdTipoCliente, FechaRegistro, Firma)
                                            VALUES
                                                (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
                                                 @FechaNacimiento, @Telefono, @CondicionEspecial,
                                                 @DescripcionCondicionEspecial, @NombreContacto,
                                                 @TelefonoContacto, @Foto, @Activo, @MedioConocio,
-                                                @Nino, @IdTipoCliente, @FechaRegistro)";
+                                                @Nino, @IdTipoCliente, @FechaRegistro, @Firma)";
 
                 await using var command = new MySqlCommand(altaQuery, connection);
 
@@ -319,6 +375,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@FechaRegistro",
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@Firma", FirmaRaw);
 
                 Log.Debug("Se ha generado la query.");
 
@@ -438,6 +495,24 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     "Error desconocido");
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Método que Obtiene la lista de horarios a los que esta registrado el cliente
+        /// </summary>
+        /// <returns>La lista de objetos tipo horario del cliente</returns>
+        public List<Horario> GetHorariosCliente() {
+
+            // Obtenemos a que clases esta registrado este cliente.
+            var horariosCliente =
+                InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == Id)
+                    .Select(x => x.IdHorario);
+
+            // Obtenemos los horarios del cliente
+            var horarios =
+                InitInfo.ObCoHorarios.Where(x => horariosCliente.Contains(x.IdHorario));
+
+            return horarios.ToList();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public RelayCommand PagoOtros { get; set; }
         public RelayCommand MakeReporte { get; set; }
 
-        // private PagosHelper pagos = new();
+        private PrintTickets tickets;
 
         private Usuario usuario = new();
 
@@ -223,8 +223,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 montoTotalTipo = 0;
                 document.Add(new Paragraph((string.Format("Monto total últimos 7 días: {0:C}", montoTotalRecibido))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
-
-
+                ShowPrettyMessages.InfoOk($"Documento creado en la ruta {path}", "Reporte Generado");
             }
             catch (Exception e) {
                 Log.Debug("Error al crear documento pdf");
@@ -234,12 +233,17 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void OthersPayment() {
             egresos.Tipo = 5;
+            tickets = new($"Pago otros", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago otros", egresos.Monto, GetInitData.GetMonthMovNumerator());
+
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
 
         private async void ServicesPayment() {
             egresos.Tipo = 4;
+            tickets = new($"Pago servicios {egresos.Concepto}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago servicios {egresos.Concepto}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -248,6 +252,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 3;
             egresos.IdPersonal = personal.Id;
             egresos.Monto = personal.Sueldo;
+            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina personal {personal.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -256,6 +262,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 2;
             egresos.IdInstructor = instructor.Id;
             egresos.Monto = MontoFinal;
+            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina instructor {instructor.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }
@@ -264,6 +272,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             egresos.Tipo = 1;
             egresos.IdUsuarioPagar = usuario.Id;
             egresos.Monto = usuario.Sueldo;
+            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Nómina usuario {usuario.Nombre}", egresos.Monto, GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewEgreso(egresos);
             RefreshGrid();
         }

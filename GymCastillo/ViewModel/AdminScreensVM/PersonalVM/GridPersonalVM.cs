@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
     public class GridPersonalVM : INotifyPropertyChanged {
@@ -43,6 +44,25 @@ namespace GymCastillo.ViewModel.AdminScreensVM.PersonalVM {
                 selectedPersonal = value;
                 OnPropertyChanged(nameof(SelectedPersonal));
             }
+        }
+
+        private string query = "";
+
+        public string Query {
+            get { return query; }
+            set
+            {
+                query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoPersonal).Filter = item => (item as Personal).Nombre.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoPersonal);
         }
 
         public GridPersonalVM() {

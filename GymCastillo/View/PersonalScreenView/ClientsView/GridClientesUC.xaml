@@ -37,7 +37,6 @@
                  materialDesign:TextFieldAssist.LeadingIcon="Search"
                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
                  materialDesign:TextFieldAssist.LeadingIconSize="25"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
                  materialDesign:HintAssist.IsFloating="False"
                  Width="400"
                  FontSize="20"
@@ -134,8 +133,8 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Teléfono"
-                                    Binding="{Binding Telefono}"
+                <DataGridTextColumn Header="Paquete"
+                                    Binding="{Binding NombrePaquete}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -152,7 +151,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Activo"
+                <!--<DataGridTextColumn Header="Activo"
                                     Binding="{Binding Activo, Converter={StaticResource converter}}"
                                     Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
@@ -169,7 +168,7 @@
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
                 <DataGridTemplateColumn IsReadOnly="True"
                                         Width=".7*">
                     <DataGridTemplateColumn.CellTemplate>

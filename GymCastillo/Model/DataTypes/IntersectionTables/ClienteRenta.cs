@@ -42,7 +42,8 @@ namespace GymCastillo.Model.DataTypes.IntersectionTables {
                 await connection.OpenAsync();
 
                 const string updateQuery = @"UPDATE ClienteRenta
-                                             SET Domicilio=@Domicilio, Telefono=@Telefono, 
+                                             SET Nombre=@Nombre, ApellidoMaterno=@ApellidoMaterno, ApellidoPaterno=@ApellidoPaterno,
+                                                 Domicilio=@Domicilio, Telefono=@Telefono, 
                                                  NombreContacto=@NombreContacto, TelefonoContacto=@TelefonoContacto, 
                                                  Foto=@Foto
                                              WHERE IdClienteRenta=@IdClienteRenta;";
@@ -50,6 +51,10 @@ namespace GymCastillo.Model.DataTypes.IntersectionTables {
                 await using var command = new MySqlCommand(updateQuery, connection);
 
                 command.Parameters.AddWithValue("@IdClienteRenta", Id.ToString());
+
+                command.Parameters.AddWithValue("@Nombre", Nombre);
+                command.Parameters.AddWithValue("@ApellidoPaterno", ApellidoPaterno);
+                command.Parameters.AddWithValue("@ApellidoMaterno", ApellidoMaterno);
 
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Telefono", Telefono);

@@ -210,10 +210,10 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {
-            Image image = Image.FromFile(@"C:\GymCastillo\Assets\CastilloF2.png");
-            var newimage = ResizeImage(image, 500, 350);
+            Image image = Image.FromFile(@"C:\GymCastillo\Assets\logo.jpg");
+            var newimage = ResizeImage(image, 150, 100);
 
-            Point ulCorner = new Point(55, 0);
+            Point ulCorner = new Point(30, -10);
 
             Graphics g = ppeArgs.Graphics;
             var settings = ppeArgs.PageSettings;
@@ -288,8 +288,12 @@ namespace GymCastillo.ViewModel.VentasVM {
             var newYpos = yPos + 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
+            g.DrawString(string.Format("Total Venta {0,40}", totalVenta), consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
-            g.DrawString(string.Format("Total Venta ${0,40}", totalVenta), consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
+            g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, newYpos);
+            newYpos += 15;
+            g.DrawString($"No. Recibo: {GetInitData.GetMonthMovNumerator()}", consola, Brushes.Black, leftMargin, newYpos);
             newYpos += 15;
             newYpos += 15;
             g.DrawString("                   Gracias por su compra!", consola, Brushes.Black, leftMargin, newYpos);
@@ -338,11 +342,10 @@ namespace GymCastillo.ViewModel.VentasVM {
                 Venta.IdsProductos += $"{item.IdProducto},";
             }
             // await AdminOnlyAlta.Alta(Venta);
-
-
-            await VentasHelper.NuevaVenta(Venta, Recibido);
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
+            pd.Print();
+            await VentasHelper.NuevaVenta(Venta, Recibido);
             ClearFields();
 
             if (!visita) { // Solo si no es una entrada a un gym.

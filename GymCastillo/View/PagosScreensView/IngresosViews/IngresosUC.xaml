@@ -39,7 +39,7 @@
                   ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoIngresos}, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha"
-                                    Binding="{Binding FechaRegistro}"
+                                    Binding="{Binding FechaRegistro, ConverterCulture=es-MX}"
                                     Width="*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
@@ -164,20 +164,23 @@
                         HorizontalAlignment="Stretch"
                     Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      materialDesign:HintAssist.Hint="Nombre Cliente"
-                      materialDesign:HintAssist.FloatingScale="0.6"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      FontSize="20"
-                      Margin="10"
-                      Width="250"
-                      ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}}"
-                      SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      SelectedValuePath="IdEspacio">
+                          materialDesign:HintAssist.Hint="Nombre Cliente"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          Margin="10"
+                          Width="250"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
+                          ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientes}, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Cliente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectedValuePath="IdEspacio">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="Id"/>
                                         <Binding Path="Nombre"/>
                                         <Binding Path="ApellidoPaterno"/>
                                     </MultiBinding>
@@ -197,14 +200,14 @@
                       SelectedItem="{Binding Paquete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                       SelectedValuePath="IdEspacio"
                       DisplayMemberPath="NombrePaquete"/>
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                      materialDesign:HintAssist.FloatingScale="0.6"                 
                      Grid.Row="1"
                      Width="150"
                      FontSize="20"
                      Margin="10"
                      Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Concepto"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="420"
@@ -235,8 +238,36 @@
                      Grid.Row="1"
                      FontSize="20"
                      Margin="10"
-                     Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d}"
+                     Text="{Binding Cliente.FechaUltimoPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d, ConverterCulture=es-MX}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox materialDesign:HintAssist.Hint="Inscripción"
+                     materialDesign:HintAssist.FloatingScale="0.6"
+                     Width="180"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="10"
+                     Text="{Binding Inscripcion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Meses"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          FontSize="20"
+                          SelectedIndex="{Binding NoMeses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="10">
+                    <ComboBoxItem Content="1" IsSelected="True"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="11"/>
+                    <ComboBoxItem Content="12"/>
+                </ComboBox>
                 <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="180"
@@ -244,7 +275,7 @@
                      Grid.Row="1"
                      FontSize="20"
                      Margin="10"
-                     Text="{Binding Paquete.Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                     Text="{Binding Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
                      materialDesign:HintAssist.FloatingScale="0.6"
@@ -323,6 +354,9 @@
                           FontSize="20"
                           Margin="10"
                           Width="250"
+                          IsReadOnly="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="Nombre"
                           SelectedItem="{Binding ClienteRenta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoClientesRenta}}">
                     <ComboBox.ItemTemplate>
@@ -347,14 +381,14 @@
                           SelectedItem="{Binding Espacio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoEspacios}}"
                           DisplayMemberPath="NombreEspacio"/>-->
-                <TextBox materialDesign:HintAssist.Hint="No. Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="No. Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"                 
                          Grid.Row="1"
                          Width="150"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Concepto"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="300"
@@ -406,13 +440,13 @@
                          Margin="10"
                          Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Numero Recibo"
+                <!--<TextBox materialDesign:HintAssist.Hint="Numero Recibo"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Grid.Row="1"
                          FontSize="20"
                          Margin="10"
                          Text="{Binding Ingresos.NumeroRecibo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
                 <TextBox materialDesign:HintAssist.Hint="Monto a Pagar"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          Width="320"

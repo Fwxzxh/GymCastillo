@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace GymCastillo.ViewModel.VentasVM {
     public class InventarioVM : INotifyPropertyChanged {
@@ -31,6 +32,25 @@ namespace GymCastillo.ViewModel.VentasVM {
                 inventario = value;
                 OnPropertyChanged(nameof(Inventario));
             }
+        }
+
+        private string query = "";
+
+        public string Query {
+            get { return query; }
+            set
+            {
+                query = value;
+                OnPropertyChanged(nameof(Query));
+                FilterData(value);
+            }
+        }
+
+        private static void FilterData(string value) {
+            if (value != null) {
+                CollectionViewSource.GetDefaultView(InitInfo.ObCoInventario).Filter = item => (item as Inventario).NombreProducto.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else CollectionViewSource.GetDefaultView(InitInfo.ObCoInventario);
         }
 
         public InventarioVM() {
@@ -59,6 +79,9 @@ namespace GymCastillo.ViewModel.VentasVM {
             Log.Debug("Boton para dar de alta un nuevo producto en inventario");
             if (guardar) {
                 var lista = await GetFromDb.GetInventario();
+                if (InitInfo.ObCoInventario.Count == 0) {
+                    await AdminOtrosTipos.Alta(Inventario);
+                }
                 foreach (var item in InitInfo.ObCoInventario) {
                     if (item.NombreProducto == inventario.NombreProducto) {
                         var producto = InitInfo.ObCoInventario.First(x => x.NombreProducto == inventario.NombreProducto);
