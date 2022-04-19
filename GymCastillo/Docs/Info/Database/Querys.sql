@@ -214,6 +214,12 @@ UPDATE	clase
 SET	cupomaximo=@CupoMaximo, activo=@Activo, idespacio=@IdEspacio
 WHERE	idclase=@IdClase;
 
+--Actualización del nombre de una clase
+UPDATE	clase
+SET	nombreclase=@NombreClase
+WHERE	idclase=@IdClase;
+
+
 -- Paquetes
 -- Consulta paquete
 SELECT
