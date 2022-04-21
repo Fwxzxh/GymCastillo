@@ -189,8 +189,8 @@ namespace GymCastillo.Model.Helpers {
                 }
 
                 // agregamos los demás campos.
-                cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
-                cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
+                cliente.ClasesTotalesDisponibles = paquete.NumClasesTotales;
+                cliente.ClasesSemanaDisponibles = paquete.NumClasesSemanales;
                 cliente.DuraciónPaquete += 30;
             }
 

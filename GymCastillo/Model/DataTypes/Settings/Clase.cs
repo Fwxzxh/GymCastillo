@@ -77,12 +77,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 Log.Debug("Se ha creado la conexión.");
 
                 const string updateQuery = @"UPDATE clase
-                                             SET CupoMaximo=@CupoMaximo, Activo=@Activo,
+                                             SET NombreClase=@NombreClase, 
+                                                 CupoMaximo=@CupoMaximo, Activo=@Activo,
                                                  IdEspacio=@IdEspacio,
                                                  Descripcion=@Descripcion
                                              WHERE IdClase=@IdClase;";
 
                 await using var command = new MySqlCommand(updateQuery, connection);
+                command.Parameters.AddWithValue("@NombreClase", NombreClase);
                 command.Parameters.AddWithValue("@IdClase", IdClase.ToString());
                 command.Parameters.AddWithValue("@CupoMaximo", CupoMaximo.ToString());
                 command.Parameters.AddWithValue("@Activo", Convert.ToInt32(Activo).ToString());
