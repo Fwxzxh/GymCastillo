@@ -10,6 +10,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GymCastillo.Model.Helpers;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class PrintTickets {
@@ -27,14 +28,23 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         string nombreCliente;
         public PrintTickets(string concepto, decimal total, int noRecibo, string nombreCliente = "") {
-            this.concepto = concepto;
-            this.total = total;
-            this.noRecibo = noRecibo;
-            this.nombreCliente = nombreCliente;
-            pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
-            pd.PrintPage += new PrintPageEventHandler(PrintTicket);
-            pd.Print();
-            //pd.Print();
+            try {
+                this.concepto = concepto;
+                this.total = total;
+                this.noRecibo = noRecibo;
+                this.nombreCliente = nombreCliente;
+                pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
+                pd.PrintPage += new PrintPageEventHandler(PrintTicket);
+                pd.Print();
+                //pd.Print();
+            }
+            catch (Exception e) {
+                Log.Warn("Error: de conexión con la impresora");
+                Log.Warn($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    "Ha ocurrido un error al intentar imprimir.\n" +
+                    $"Error: {e.Message}", "Error impresora");
+            }
         }
 
         private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {

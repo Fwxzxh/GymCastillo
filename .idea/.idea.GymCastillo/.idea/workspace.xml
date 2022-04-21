@@ -7,14 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Client deactivation with date, minor fix.">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, Updated schema.sql, Telefono no longer needed.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/DigitalCard.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioGralValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioGralValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/EgresosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/EgresosVM.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/IngresosVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/IngresosVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/PrintTickets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PagosScreensVM/PrintTickets.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +45,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
@@ -214,14 +210,7 @@
       <workItem from="1647810490351" duration="1672000" />
       <workItem from="1650330543324" duration="140000" />
       <workItem from="1650330717681" duration="650000" />
-      <workItem from="1650501321844" duration="5469000" />
-    </task>
-    <task id="LOCAL-00060" summary="Bot custom mesage sending done.">
-      <created>1641435616453</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1641435616454</updated>
+      <workItem from="1650501321844" duration="7945000" />
     </task>
     <task id="LOCAL-00061" summary="Bot horario command done">
       <created>1641444125237</created>
@@ -559,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647812141985</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Minor fixes, Updated schema.sql, Telefono no longer needed.">
+      <created>1650509847079</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1650509847079</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="NewCard Done &amp; working" />
     <MESSAGE value="Minor fix" />
     <MESSAGE value="MinorFix in clase Instructores" />
     <MESSAGE value="Minor type issues" />
@@ -618,7 +613,8 @@
     <MESSAGE value="Added GetHorariosCliente to Cliente.cs" />
     <MESSAGE value="Added GetClasesInstructor to Instructor.cs" />
     <MESSAGE value="Added Client deactivation with date, minor fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Client deactivation with date, minor fix." />
+    <MESSAGE value="Minor fixes, Updated schema.sql, Telefono no longer needed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, Updated schema.sql, Telefono no longer needed." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

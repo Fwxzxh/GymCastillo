@@ -206,7 +206,17 @@ namespace GymCastillo.Model.Helpers {
 
             // Si dan más dinero descontamos de la deuda.
             if (ingreso.MontoRecibido > ingreso.Monto) {
+                // No pueden haber deudas negativas.
                 var resto = ingreso.MontoRecibido - ingreso.Monto;
+                
+                if (cliente.DeudaCliente - resto < 0) {
+                    ShowPrettyMessages.WarningOk(
+                        "Los clientes no pueden tener crédito, revisa los montos de los pagos, \n " +
+                        $"Si la deuda esta en 0 no pueden pagar más de lo que deben ya que no tienen deuda.",
+                        "Monto de pago invalido");
+                        return;
+                }
+
                 cliente.DeudaCliente -= resto;
                 cliente.MontoUltimoPago = resto;
 
@@ -215,7 +225,6 @@ namespace GymCastillo.Model.Helpers {
                     "Actualización de deuda");
             }
 
-            // cliente.DeudaCliente =
             cliente.IdLocker = ingreso.IdLocker;
 
             // Registramos el Pago
