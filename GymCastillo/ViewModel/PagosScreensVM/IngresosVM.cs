@@ -138,7 +138,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
 
         public IngresosVM() {
-            PagoCliente = new RelayCommand(ClientsPyment);
+            PagoCliente = new RelayCommand(ClientsPayment);
             PagoOtros = new RelayCommand(OthersPayment);
             PagoRenta = new RelayCommand(RentPayment);
             MakeReporte = new RelayCommand(ReporteSemanal);
@@ -278,13 +278,13 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             RefreshGrid();
         }
 
-        private async void ClientsPyment() {    
+        private async void ClientsPayment() {
             if (Cliente == null) return;
             ingresos.Tipo = 1;
             ingresos.Monto = Total;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
-            var nombre = $"{cliente.Id} {cliente.Nombre} {cliente.ApellidoPaterno}"
+            var nombre = $"{cliente.Id} {cliente.Nombre} {cliente.ApellidoPaterno}";
             tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
             tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
             await PagosHelper.NewIngreso(ingresos, meses:NoMeses+1);

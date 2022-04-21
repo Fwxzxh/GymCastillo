@@ -113,7 +113,7 @@ namespace GymCastillo.Model.Helpers {
                     code,
                     Color.Black,
                     Color.White,
-                    320, 160);
+                    350, 190);
 
                 using var plantillaFront = new MagickImage(plantillaFrontPath);
                 using var plantillaBack = new MagickImage(plantillaBackPath);
@@ -147,7 +147,7 @@ namespace GymCastillo.Model.Helpers {
                 plantillaBack.Composite(fechaRegistroLabel, 540, 480, CompositeOperator.Over);
 
                 // Agregamos el código de barras
-                plantillaFront.Composite(barcodeImg, 935, 20, CompositeOperator.Over);
+                plantillaFront.Composite(barcodeImg, 885, 160, CompositeOperator.Over);
 
                 // Guardamos
                 plantillaFront.Write(saveDirFront);

@@ -147,7 +147,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Método que hace el proceso de dar de alta un egreso a un cliente.
+        /// Método que hace el proceso de dar de alta un ingreso a un cliente.
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// <param name="cliente">Un objeto con la información del cliente</param>
