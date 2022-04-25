@@ -495,3 +495,46 @@ FROM ingresos i
     LEFT JOIN locker l ON i.IdLocker = l.IdLocker
 WHERE i.FechaRegistro >= NOW() + INTERVAL -7 DAY
     AND	i.FechaRegistro < NOW() + INTERVAL 0 DAY;
+    
+
+-- -- --
+
+SELECT
+	COUNT(ch.IdCliente) AS NumeroClientes
+FROM
+	clientehorario ch
+LEFT JOIN horario h ON h.IdHorario = ch.IdHorario
+LEFT JOIN clase c ON h.IdClase = c.IdClase
+WHERE c.IdClase = #;
+
+--
+
+SELECT
+	COUNT(ch.IdCliente) AS NumeroClientes
+FROM
+	clientehorario ch
+LEFT JOIN horario h ON h.IdHorario = ch.IdHorario
+LEFT JOIN clase c ON h.IdClase = c.IdClase
+WHERE c.IdHorario = #;
+
+--
+
+SELECT
+	ch.IdCliente, CONCAT(cl.Nombre, ' ', cl.ApellidoPaterno, ' ', cl.ApellidoMaterno) as NombreCliente
+FROM
+	clientehorario ch
+LEFT JOIN horario h ON h.IdHorario = ch.IdHorario
+LEFT JOIN clase c ON h.IdClase = c.IdClase
+LEFT JOIN cliente cl ON cl.IdCliente = ch.IdCliente
+WHERE c.IdClase = #;
+
+-- 
+
+SELECT
+	ch.IdCliente, CONCAT(cl.Nombre, ' ', cl.ApellidoPaterno, ' ', cl.ApellidoMaterno) as NombreCliente
+FROM
+	clientehorario ch
+LEFT JOIN horario h ON h.IdHorario = ch.IdHorario
+LEFT JOIN clase c ON h.IdClase = c.IdClase
+LEFT JOIN cliente cl ON cl.IdCliente = ch.IdCliente
+WHERE c.IdHorario = #;
