@@ -7,7 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Las clases ya no se acumulan, Nombre de clase editable" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Las clases ya no se acumulan, Nombre de clase editable">
+      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/ListaAlumnosHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,9 +54,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ed590fbceb913a99e94e76d63c3750b020ef661227a0d2b5aebeaa9ae1f8/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/ViewModel/Commands/CreateUserCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -213,13 +214,6 @@
       <workItem from="1650691517569" duration="48000" />
       <workItem from="1650691594570" duration="2138000" />
       <workItem from="1650846868489" duration="316000" />
-    </task>
-    <task id="LOCAL-00063" summary="added password generation">
-      <created>1641500578685</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1641500578685</updated>
     </task>
     <task id="LOCAL-00064" summary="Added Ini file api key storage">
       <created>1641508083670</created>
@@ -557,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650513198781</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Las clases ya no se acumulan, Nombre de clase editable">
+      <created>1650847293083</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1650847293083</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
