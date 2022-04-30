@@ -118,6 +118,10 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public async void CrearCliente(IClosable window) {
             Log.Debug("Nuevo usuario creado");
+
+            // DuckTape!!
+            newCliente.Telefono ??= string.Empty;
+            
             await AdminUsuariosGeneral.Alta(NewCliente);
             NewCliente = new Cliente();
             PhotoPath = null;
