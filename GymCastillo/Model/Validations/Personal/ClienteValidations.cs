@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Linq;
+using FluentValidation;
 using GymCastillo.Model.DataTypes.Personal;
 
 namespace GymCastillo.Model.Validations.Personal {
@@ -33,6 +34,16 @@ namespace GymCastillo.Model.Validations.Personal {
             RuleFor(usuario => usuario.IdTipoCliente)
                 .NotEmpty().WithMessage("Se debe de seleccionar el tipo de cliente.");
 
+            RuleFor(usuario => usuario.Telefono)
+                .NotEmpty().WithMessage("El número de telefono no puede estar vacío si no es niño.")
+                .Length(10).WithMessage("El número de teléfono debe de ser de 10 dígitos.")
+                .Must(IsNumber).WithMessage("El número de teléfono solo debe de contener números")
+                    .When(x => x.Niño == false);
+
+        }
+        
+        private static bool IsNumber(string number) {
+            return number.All(char.IsNumber);
         }
     }
 }

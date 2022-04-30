@@ -119,7 +119,7 @@ create table Cliente (
     ApellidoPaterno varchar(30) not null,
     ApellidoMaterno varchar(30) not null,
     FechaNacimiento datetime not null,
-    Telefono varchar(10), -- Debe de ser único para poder mandar WhatsApp
+    Telefono varchar(10) null, -- Debe de ser único para poder mandar WhatsApp
     CondicionEspecial bool not null,
     DescripcionCondicionEspecial varchar(150),
     NombreContacto varchar(30),

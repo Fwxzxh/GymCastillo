@@ -180,6 +180,7 @@
                               VerticalAlignment="Center"
                               FontSize="20"
                               Width="auto"
+                              IsChecked="{Binding NewCliente.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Margin="50 0 0 0"/>
                 <!--<TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
