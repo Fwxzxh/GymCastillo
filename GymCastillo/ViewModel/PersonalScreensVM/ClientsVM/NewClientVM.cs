@@ -7,6 +7,7 @@ using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Otros;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
@@ -41,6 +42,8 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public RelayCommand<IClosable> newClientCommand { get; set; }
 
+        public RelayCommand ClearCommand { get; set; }
+
         private Cliente newCliente = new();
 
         public Cliente NewCliente {
@@ -58,7 +61,9 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         public string PhotoPath {
             get { return photoPath; }
-            set { photoPath = value;
+            set
+            {
+                photoPath = value;
                 OnPropertyChanged(nameof(PhotoPath));
             }
         }
@@ -96,13 +101,18 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 newCliente.FechaNacimiento = DateTime.Now;
                 CloseWindowCommand = new RelayCommand<IClosable>(this.CloseWindow);
                 newClientCommand = new RelayCommand<IClosable>(this.CrearCliente);
-                //newClientCommand = new(this);
+                ClearCommand = new RelayCommand(ClearFields);
                 Log.Debug("Nuevo cliente ventana inicializada");
             }
             catch (Exception e) {
                 MessageBox.Show(e.Message);
             }
 
+        }
+
+        private void ClearFields() {
+            NewCliente = new();
+            PhotoPath = null;
         }
 
         private void SelectPhoto() {
@@ -118,10 +128,28 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         public async void CrearCliente(IClosable window) {
-            Log.Debug("Nuevo usuario creado");
-            await AdminUsuariosGeneral.Alta(NewCliente);
-            NewCliente = new Cliente();
-            PhotoPath = null;
+            if (string.IsNullOrWhiteSpace(NewCliente.Telefono)) {
+                if (NewCliente.Niño == true) {
+                    await AdminUsuariosGeneral.Alta(NewCliente);
+                    return;
+                }
+                else {
+                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono.", "Error");
+                }
+            }
+            else {
+                if (NewCliente.Niño == false) {
+                    await AdminUsuariosGeneral.Alta(NewCliente);
+                    return;
+                }
+                else {
+                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono.", "Error");
+                }
+            }
+
+            //NewCliente = new Cliente();
+            //PhotoPath = null;
+
             //window.Close();
         }
 

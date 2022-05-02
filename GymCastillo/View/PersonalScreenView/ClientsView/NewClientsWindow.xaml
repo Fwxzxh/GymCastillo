@@ -105,6 +105,7 @@
                          MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
+                         IsEnabled="{Binding NewCliente.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBooleanConverter}}"
                          Text="{Binding NewCliente.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <CheckBox Content="Condición especial"
@@ -176,11 +177,12 @@
                           ItemsSource="{Binding medioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>
                 <CheckBox Content="Niño"
-                              VerticalContentAlignment="Center"
-                              VerticalAlignment="Center"
-                              FontSize="20"
-                              Width="auto"
-                              Margin="50 0 0 0"/>
+                          IsChecked="{Binding NewCliente.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          VerticalContentAlignment="Center"
+                          VerticalAlignment="Center"
+                          FontSize="20"
+                          Width="auto"
+                          Margin="50 0 0 0"/>
                 <!--<TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
@@ -257,14 +259,20 @@
                         Content="Guardar"
                         Command="{Binding newClientCommand}"
                         CommandParameter="{Binding ElementName=newClientsWindow}"
-                        Margin="20"
+                        Margin="10"
+                        FontSize="20"/>
+                
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Limpiar Campos"
+                        Command="{Binding ClearCommand}"
+                        Margin="10"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         x:Name="btnCancelar"
                         Content="Cancelar"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=newClientsWindow}"
-                        Margin="20"
+                        Margin="10"
                         FontSize="20"/>
 
             </StackPanel>
