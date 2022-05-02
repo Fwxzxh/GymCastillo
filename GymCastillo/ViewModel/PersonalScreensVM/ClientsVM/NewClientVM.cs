@@ -145,11 +145,6 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                     ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono.", "Error");
                 }
             }
-
-            //NewCliente = new Cliente();
-            //PhotoPath = null;
-
-            //window.Close();
         }
 
         private void CloseWindow(IClosable window) {

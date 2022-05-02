@@ -4,6 +4,7 @@ using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using System;
 using System.Collections.Generic;
@@ -100,10 +101,12 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private async void BorrarHorarioAsync() {
+
             clienteHorario.IdHorario = SelectedHorario.IdHorario;
             clienteHorario.IdCliente = Cliente.Id;
+
             await AdminOtrosTipos.Delete(clienteHorario);
-            var list = await GetFromDb.GetClienteHorario();
+            var list = await GetFromDb.GetClienteHorario(); 
             InitInfo.ObCoClienteHorario.Clear();
             foreach (var item in list) {
                 InitInfo.ObCoClienteHorario.Add(item);
@@ -112,9 +115,15 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private async void AgregarHorario() {
-            //Horarios1.Add(SelectedHorario);
+            //checamos que no demos de alta más clases de las permitidas en el paquete por semana
+            if (InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == cliente.Id).Count() > cliente.ClasesSemanaDisponibles) {
+                ShowPrettyMessages.ErrorOk("Número máximo de clases dado de alta", "Error");
+                return;
+            }
+
             clienteHorario.IdHorario = SelectedHorario.IdHorario;
             clienteHorario.IdCliente = Cliente.Id;
+
             await AdminOtrosTipos.Alta(clienteHorario);
             var list = await GetFromDb.GetClienteHorario();
             InitInfo.ObCoClienteHorario.Clear();
