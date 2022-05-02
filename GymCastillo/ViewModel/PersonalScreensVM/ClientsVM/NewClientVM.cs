@@ -10,7 +10,6 @@ using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Interfaces;
-using GymCastillo.ViewModel.PersonalScreensVM.Commands.ClientsCommands;
 using ImageMagick;
 using log4net;
 using Microsoft.Win32;

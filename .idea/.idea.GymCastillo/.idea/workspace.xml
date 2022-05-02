@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Las clases ya no se acumulan, Nombre de clase editable">
-      <change afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/ListaAlumnosHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, Niño binding added, telephone case added">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteValidations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteValidations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ed590fbceb913a99e94e76d63c3750b020ef661227a0d2b5aebeaa9ae1f8/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Validations/Personal/ClienteRentaValidation.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,16 +67,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.GitToolBox Colors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.GymCastillo">
     <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
@@ -214,20 +216,8 @@
       <workItem from="1650691517569" duration="48000" />
       <workItem from="1650691594570" duration="2138000" />
       <workItem from="1650846868489" duration="316000" />
-    </task>
-    <task id="LOCAL-00064" summary="Added Ini file api key storage">
-      <created>1641508083670</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1641508083670</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Better status message">
-      <created>1641514347794</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1641514347794</updated>
+      <workItem from="1651284487978" duration="1231000" />
+      <workItem from="1651288728400" duration="5963000" />
     </task>
     <task id="LOCAL-00066" summary="Minor bot improvements">
       <created>1641518729847</created>
@@ -558,7 +548,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650847293083</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Added ListaAlumnosHelper.cs">
+      <created>1650848947570</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1650848947570</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Minor fixes, Niño binding added, telephone case added">
+      <created>1651293104385</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1651293104386</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,8 +596,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor type issues" />
-    <MESSAGE value="Update UpdateExistencias" />
     <MESSAGE value="Update UpdateExistencias again" />
     <MESSAGE value="Minor fix to card, updated PlantillaFront" />
     <MESSAGE value="Minor error handling in Pagos" />
@@ -617,7 +619,9 @@
     <MESSAGE value="Minor fixes, Updated schema.sql, Telefono no longer needed." />
     <MESSAGE value="Fixed, printer not found crash, fixed bug w deudas." />
     <MESSAGE value="Las clases ya no se acumulan, Nombre de clase editable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Las clases ya no se acumulan, Nombre de clase editable" />
+    <MESSAGE value="Added ListaAlumnosHelper.cs" />
+    <MESSAGE value="Minor fixes, Niño binding added, telephone case added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, Niño binding added, telephone case added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
