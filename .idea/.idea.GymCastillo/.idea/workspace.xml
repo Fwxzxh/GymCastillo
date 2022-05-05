@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, Niño binding added, telephone case added">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="I don't know why. Just move on.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteValidations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/ClienteValidations.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/NewClientVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ed590fbceb913a99e94e76d63c3750b020ef661227a0d2b5aebeaa9ae1f8/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Validations/Personal/ClienteRentaValidation.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,17 +65,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.GitToolBox Colors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.GitToolBox Colors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.GymCastillo">
     <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
@@ -217,14 +215,8 @@
       <workItem from="1650691594570" duration="2138000" />
       <workItem from="1650846868489" duration="316000" />
       <workItem from="1651284487978" duration="1231000" />
-      <workItem from="1651288728400" duration="5963000" />
-    </task>
-    <task id="LOCAL-00066" summary="Minor bot improvements">
-      <created>1641518729847</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1641518729847</updated>
+      <workItem from="1651288728400" duration="6802000" />
+      <workItem from="1651712228981" duration="2938000" />
     </task>
     <task id="LOCAL-00067" summary="Minor bot improvements">
       <created>1641518766788</created>
@@ -562,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651293104386</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="I don't know why. Just move on.">
+      <created>1651295660252</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1651295660252</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +595,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update UpdateExistencias again" />
     <MESSAGE value="Minor fix to card, updated PlantillaFront" />
     <MESSAGE value="Minor error handling in Pagos" />
     <MESSAGE value="Minor fixes" />
@@ -621,7 +619,8 @@
     <MESSAGE value="Las clases ya no se acumulan, Nombre de clase editable" />
     <MESSAGE value="Added ListaAlumnosHelper.cs" />
     <MESSAGE value="Minor fixes, Niño binding added, telephone case added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, Niño binding added, telephone case added" />
+    <MESSAGE value="I don't know why. Just move on." />
+    <option name="LAST_COMMIT_MESSAGE" value="I don't know why. Just move on." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
