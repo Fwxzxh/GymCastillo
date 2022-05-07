@@ -40,6 +40,17 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
+        private int totalActivos;
+
+        public int TotalActivos {
+            get { return totalActivos; }
+            set
+            {
+                totalActivos = value;
+                OnPropertyChanged(nameof(TotalActivos));
+            }
+        }
+
 
         private Cliente selectedClient;
         public Cliente SelectedClient {
@@ -112,6 +123,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private async void RefreshGrid(bool value) {
+            TotalActivos = InitInfo.ObCoClientes.Where(c => c.Activo).Count();
             var lista = await GetFromDb.GetClientes();
             InitInfo.ObCoClientes.Clear();
             if (value) {

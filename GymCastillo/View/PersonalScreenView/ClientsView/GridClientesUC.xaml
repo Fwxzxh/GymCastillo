@@ -27,6 +27,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Total de clientes activos: "/>
+            <Label Content="{Binding TotalActivos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
         <CheckBox HorizontalAlignment="Center"
                   Content="Clientes Activos"
                   FontSize="20"

@@ -24,15 +24,16 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         public ObservableCollection<Clase> ListaClases { get; set; }
         public ObservableCollection<Instructor> ListaInstructores { get; set; }
 
-        //public InitTest lista { get; set; }
         public ObservableCollection<Espacio> ListaEspacios { get; set; }
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
         public RelayCommand OpenInstructores { get; set; }
         public RelayCommand OpenHorarios { get; private set; }
         public RelayCommand<bool> SaveCommand { get; private set; }
+        public RelayCommand InscritosCommand { get; set; }
 
         private Clase clase = new();
+        
         private bool claseActiva;
 
         public Clase Clase {
@@ -53,6 +54,16 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                 RefreshGrid(ClaseActiva);
             }
         }
+
+        private int totalInscritos;
+
+        public int TotalInscritos {
+            get { return totalInscritos; }
+            set { totalInscritos = value;
+                OnPropertyChanged(nameof(TotalInscritos));
+            }
+        }
+
 
         private string query = "";
 
@@ -82,11 +93,20 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
                 SaveCommand = new RelayCommand<bool>(SaveClass);
                 OpenHorarios = new RelayCommand(OpenHorariosW);
                 OpenInstructores = new RelayCommand(InstrctoresAdd);
+                InscritosCommand = new RelayCommand(VerInscritos);
             }
             catch (Exception e) {
                 Log.Error(e.Message);
                 //ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
+        }
+
+        private void VerInscritos() {
+            //ShowPrettyMessages.InfoOk($"Ver inscritos de la clase: {clase.NombreClase}", "Info");   
+            InscritosClaseWindow inscritosClase = new(Clase);
+            inscritosClase.ShowDialog();
+            Clase = null;
+            Clase = new();
         }
 
         private void InstrctoresAdd() {
@@ -104,6 +124,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         }
 
         private async void SaveClass(bool guardar) {
+            
             if (string.IsNullOrEmpty(Clase.NombreClase) ||
                 string.IsNullOrEmpty(Clase.Descripcion) ||
                 Clase.IdEspacio == 0
@@ -149,6 +170,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
         }
 
         public async void RefreshGrid(bool activa) {
+            TotalInscritos = 10;
             Query = "";
             Clase = null;
             Clase = new();
