@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Init;
@@ -248,7 +249,24 @@ namespace GymCastillo.Model.Helpers {
             }
 
             if (ingreso.IdPaquete != paqueteAntiguo) { // Si se compra un paquete diferente al que se tenia
-                // Debemos resetear sus horarios
+                //TODO: Debemos resetear sus horarios
+
+                // Obtenemos los horario
+                var listaHorarios = 
+                    InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == cliente.Id).ToList();
+
+                // Desactivamos
+                foreach (var horario in listaHorarios) {
+                    await horario.Delete();
+                }
+                
+                // Actualizamos la lista de clientesHorario
+                var nuevosClientesHorarios = await GetFromDb.GetClienteHorario();
+                InitInfo.ObCoClienteHorario.Clear();
+                foreach (var clientesHorario in nuevosClientesHorarios) {
+                    InitInfo.ObCoClienteHorario.Add(clientesHorario);
+                }
+                
                 ShowPrettyMessages.InfoOk(
                     "Se ha cambiado el paquete a el usuario, Debe actualizar los horarios de clase " +
                     "asignados a este cliente, de lo contrario podría no poder entrar las clases de su paquete " +
