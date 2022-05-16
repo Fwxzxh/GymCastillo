@@ -183,7 +183,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 foreach (var item in lista.Where(l => l.IdCliente != 0)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     montoTotalTipo += item.MontoRecibido;
                 }
                 document.Add(table);
@@ -197,10 +197,18 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                     table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
                 }
                 foreach (var item in lista.Where(l => l.IdVenta != 0)) {
+                    var listaVenta = await GetFromDb.GetVentas();
+                    foreach (var item1 in listaVenta.Where(x => x.IdVenta == item.IdVenta)) {
+                        if (item1.IdsProductos != "") {
+                            var listaIdProductos = item1.IdsProductos.ToList();
+
+                            ShowPrettyMessages.InfoOk(listaIdProductos.ToString(), "info");
+                        }
+                    }
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.MontoRecibido;
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
@@ -240,7 +248,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
                 montoTotalTipo = 0;
                 foreach (var item in lista) {
-                    montoTotalRecibido += item.MontoRecibido;
+                    montoTotalRecibido += item.Monto;
                 }
                 document.Add(new Paragraph((string.Format("Monto total últimos 7 días: {0:C}", montoTotalRecibido))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
@@ -285,9 +293,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             var nombre = $"{cliente.Id} {cliente.Nombre} {cliente.ApellidoPaterno}";
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente:nombre);
-            await PagosHelper.NewIngreso(ingresos, meses:NoMeses+1);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente: nombre);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente: nombre);
+            await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
 
             //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
             RefreshGrid();
@@ -295,17 +303,25 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         }
 
         private async void RefreshGrid() {
-            var pagos = await GetFromDb.GetIngresos();
-            var clientes = await GetFromDb.GetClientes();
-            InitInfo.ObCoClientes.Clear();
-            InitInfo.ObCoIngresos.Clear();
-            foreach (var item in pagos.OrderByDescending(c => c.FechaRegistro)) {
-                InitInfo.ObCoIngresos.Add(item);
+            try {
+                var pagos = await GetFromDb.GetIngresos();
+                var clientes = await GetFromDb.GetClientes();
+                InitInfo.ObCoClientes.Clear();
+                InitInfo.ObCoIngresos.Clear();
+                foreach (var item in pagos.OrderByDescending(c => c.FechaRegistro)) {
+                    InitInfo.ObCoIngresos.Add(item);
+                }
+                foreach (var item in clientes) {
+                    InitInfo.ObCoClientes.Add(item);
+                }
+                ClearData();
+
             }
-            foreach (var item in clientes) {
-                InitInfo.ObCoClientes.Add(item);
+            catch (Exception e) {
+
+                ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
-            ClearData();
+
 
         }
 

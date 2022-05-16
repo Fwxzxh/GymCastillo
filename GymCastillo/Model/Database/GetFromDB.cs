@@ -1155,7 +1155,7 @@ namespace GymCastillo.Model.Database {
 
                         IdClienteRenta = await reader.Result.IsDBNullAsync("IdClienteRenta")
                             ? 0
-                            : reader.Result.GetInt32("IdPaquete"),
+                            : reader.Result.GetInt32("IdClienteRenta"),
                         NombreClienteRenta = await reader.Result.IsDBNullAsync("NombreClienteRenta")
                             ? ""
                             : reader.Result.GetString("NombreClienteRenta"),

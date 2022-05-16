@@ -115,7 +115,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             {
                 visita = value;
                 OnPropertyChanged(nameof(Visita));
-                RefreshGrid();
+                //RefreshGrid();
             }
         }
 
@@ -180,6 +180,19 @@ namespace GymCastillo.ViewModel.VentasVM {
                 OnPropertyChanged(nameof(ListaVenta));
             }
         }
+
+        private int noVisitas = 1;
+
+        public int NoVisitas {
+            get { return noVisitas; }
+            set
+            {
+                noVisitas = value;
+                OnPropertyChanged(nameof(NoVisitas));
+                UpdateSale();
+            }
+        }
+
 
         public VentasVM() {
             ListaVenta = new ObservableCollection<Inventario>();
@@ -306,20 +319,42 @@ namespace GymCastillo.ViewModel.VentasVM {
 
         private void UpdateSale() {
             if (gym) {
-                Costo = GetInitData.VisitaGym;
-                Concepto = "Visita Gym";
+                if (ListaVenta.Count > 0) {
+                    Costo = 0;
+                    foreach (var item in ListaVenta) {
+                        Costo += item.Costo;
+                    }
+                    Costo += (GetInitData.VisitaGym * NoVisitas);
+                    Concepto = $"Visita gym x{NoVisitas} mas venta de productos.";
+                }
+                else {
+                    Costo = (GetInitData.VisitaGym * NoVisitas);
+                    Concepto = $"Visita Gym x{NoVisitas}";
+                }
                 Venta.Concepto = Concepto;
                 Venta.Costo = Costo;
             }
             else if (box) {
-                Costo = GetInitData.VisitaBox;
-                Concepto = "Visita Box";
+                if (Costo != 0) {
+                    Costo += GetInitData.VisitaBox;
+                    Concepto = "Visita Box más compra de productos";
+                }
+                else {
+                    Costo = GetInitData.VisitaBox;
+                    Concepto = "Visita Box";
+                }
                 Venta.Concepto = Concepto;
                 Venta.Costo = Costo;
             }
             else if (alberca) {
-                Costo = GetInitData.VisitaAlberca;
-                Concepto = "Visita Alberca";
+                if (Costo != 0) {
+                    Costo += GetInitData.VisitaAlberca;
+                    Concepto = "Visita Alberca más compra de productos";
+                }
+                else {
+                    Costo = GetInitData.VisitaAlberca;
+                    Concepto = "Visita Alberca";
+                }
                 Venta.Concepto = Concepto;
                 Venta.Costo = Costo;
             }
@@ -331,7 +366,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             Venta.Costo = Costo;
             Venta.VisitaGym = Visita;
 
-            if (venta.Costo == 0 || venta.VisitaGym == false && ListaVenta.Count == 0) {
+            if (venta.Costo == 0 && ListaVenta.Count == 0) {
                 ShowPrettyMessages.ErrorOk(
                     "No puedes dar de alta una venta vacía.",
                     "Venta vacía");
@@ -371,6 +406,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             Box = false;
             Alberca = false;
             NombreProducto = "";
+            NoVisitas = 1;
             ListaVenta.Clear();
         }
 

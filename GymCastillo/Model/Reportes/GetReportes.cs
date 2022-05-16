@@ -92,7 +92,7 @@ namespace GymCastillo.Model.Reportes {
 
                         IdClienteRenta = await reader.Result.IsDBNullAsync("IdClienteRenta")
                             ? 0
-                            : reader.Result.GetInt32("IdPaquete"),
+                            : reader.Result.GetInt32("IdClienteRenta"),
                         // TODO: preguntar por NombreClienteRentaDeuda
 
                         Otros = !await reader.Result.IsDBNullAsync("Otros") &&

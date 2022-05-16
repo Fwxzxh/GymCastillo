@@ -127,13 +127,14 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         public async void CrearCliente(IClosable window) {
-            if (string.IsNullOrWhiteSpace(NewCliente.Telefono)) {
+            if (string.IsNullOrWhiteSpace(NewCliente.Telefono) || NewCliente.Telefono.Length < 10) {
                 if (NewCliente.Niño == true) {
+                    NewCliente.Telefono = null;
                     await AdminUsuariosGeneral.Alta(NewCliente);
                     return;
                 }
                 else {
-                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono.", "Error");
+                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono válido.", "Error");
                 }
             }
             else {
@@ -142,7 +143,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                     return;
                 }
                 else {
-                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono.", "Error");
+                    ShowPrettyMessages.ErrorOk("Ingresa un número de teléfono valido.", "Error");
                 }
             }
         }
