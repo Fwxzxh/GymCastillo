@@ -18,6 +18,7 @@ using iText.Kernel.Geom;
 using iText.Layout.Properties;
 using iText.Layout.Element;
 using iText.IO.Image;
+using System.Collections.Generic;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class IngresosVM : INotifyPropertyChanged {
@@ -151,7 +152,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             Total = (paquete.Costo * (NoMeses + 1)) + inscripcion;
         }
 
-
         private async void ReporteSemanal() {
             var lista = await GetReportes.GetReporteIngresos();
             Document document;
@@ -184,27 +184,19 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.MontoRecibido;
+                    montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
                 montoTotalTipo = 0;
-                document.Add(new Paragraph("Ventas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
+                document.Add(new Paragraph("Ventas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
                 table.SetWidth(UnitValue.CreatePercentValue(100));
                 foreach (string columa in columnas) {
                     table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
                 }
-                foreach (var item in lista.Where(l => l.IdVenta != 0)) {
-                    var listaVenta = await GetFromDb.GetVentas();
-                    foreach (var item1 in listaVenta.Where(x => x.IdVenta == item.IdVenta)) {
-                        if (item1.IdsProductos != "") {
-                            var listaIdProductos = item1.IdsProductos.ToList();
-
-                            ShowPrettyMessages.InfoOk(listaIdProductos.ToString(), "info");
-                        }
-                    }
+                foreach (var item in lista.Where(l => l.IdVenta != 0).OrderBy(x =>x.Concepto)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
@@ -214,8 +206,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
                 montoTotalTipo = 0;
-                document.Add(new Paragraph("Rentas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
+                document.Add(new Paragraph("Rentas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
                 table.SetWidth(UnitValue.CreatePercentValue(100));
                 foreach (string columa in columnas) {
                     table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
@@ -223,8 +215,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 foreach (var item in lista.Where(l => l.IdRenta != 0)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.MontoRecibido;
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
@@ -240,8 +232,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
                 foreach (var item in lista.Where(l => l.Otros != false)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.MontoRecibido;
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());

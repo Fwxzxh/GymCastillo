@@ -325,7 +325,7 @@ namespace GymCastillo.ViewModel.VentasVM {
                         Costo += item.Costo;
                     }
                     Costo += (GetInitData.VisitaGym * NoVisitas);
-                    Concepto = $"Visita gym x{NoVisitas} mas venta de productos.";
+                    Concepto = $"Visita gym x{NoVisitas} más venta de productos.";
                 }
                 else {
                     Costo = (GetInitData.VisitaGym * NoVisitas);
@@ -335,28 +335,42 @@ namespace GymCastillo.ViewModel.VentasVM {
                 Venta.Costo = Costo;
             }
             else if (box) {
-                if (Costo != 0) {
-                    Costo += GetInitData.VisitaBox;
-                    Concepto = "Visita Box más compra de productos";
+                if (ListaVenta.Count > 0) {
+                    Costo = 0;
+                    foreach (var item in ListaVenta) {
+                        Costo += item.Costo;
+                    }
+                    Costo += (GetInitData.VisitaBox * NoVisitas);
+                    Concepto = $"Visita Box x{NoVisitas} más venta de productos.";
                 }
                 else {
-                    Costo = GetInitData.VisitaBox;
-                    Concepto = "Visita Box";
+                    Costo = (GetInitData.VisitaBox * NoVisitas);
+                    Concepto = $"Visita Box x{NoVisitas}";
                 }
                 Venta.Concepto = Concepto;
                 Venta.Costo = Costo;
             }
             else if (alberca) {
-                if (Costo != 0) {
-                    Costo += GetInitData.VisitaAlberca;
-                    Concepto = "Visita Alberca más compra de productos";
+                if (ListaVenta.Count > 0) {
+                    Costo = 0;
+                    foreach (var item in ListaVenta) {
+                        Costo += item.Costo;
+                    }
+                    Costo += (GetInitData.VisitaAlberca * NoVisitas);
+                    Concepto = $"Visita Alberca x{NoVisitas} más venta de productos.";
                 }
                 else {
-                    Costo = GetInitData.VisitaAlberca;
-                    Concepto = "Visita Alberca";
+                    Costo = (GetInitData.VisitaAlberca * NoVisitas);
+                    Concepto = $"Visita Alberca x{NoVisitas}";
                 }
                 Venta.Concepto = Concepto;
                 Venta.Costo = Costo;
+            }
+            else {
+                Costo = 0;
+                foreach (var item in ListaVenta) {
+                    Costo += item.Costo;
+                }
             }
         }
 
@@ -373,15 +387,17 @@ namespace GymCastillo.ViewModel.VentasVM {
                 return;
             }
 
-            foreach (var item in ListaVenta) {
-                Venta.IdsProductos += $"{item.IdProducto},";
+            if (ListaVenta.Count > 0) {
+                foreach (var item in ListaVenta) {
+                    Venta.IdsProductos += $"{item.IdProducto},";
+                }
             }
+
             // await AdminOnlyAlta.Alta(Venta);
             pd.PrintPage += new PrintPageEventHandler(PrintTicket);
             pd.Print();
             pd.Print();
             await VentasHelper.NuevaVenta(Venta, Recibido);
-            ClearFields();
 
             if (!visita) { // Solo si no es una entrada a un gym.
                 // Actualizamos el inventario por las existencias.
@@ -393,12 +409,13 @@ namespace GymCastillo.ViewModel.VentasVM {
             }
 
             Refresh();
+            ClearFields();
         }
 
         private void ClearFields() {
-            Costo = 0;
-            Recibido = 0;
-            Total = 0;
+            Costo = 0.0m;
+            Recibido = 0.0m;
+            Total = 0.0m;
             Concepto = "";
             Venta = null;
             Venta = new();
@@ -407,17 +424,20 @@ namespace GymCastillo.ViewModel.VentasVM {
             Alberca = false;
             NombreProducto = "";
             NoVisitas = 1;
+            Visita = false;
             ListaVenta.Clear();
         }
 
         private void RemoverProducto() {
             ListaVenta.RemoveAt(Index);
-            RefreshCosto();
+            //RefreshCosto();
+            UpdateSale();
         }
 
         private void NuevoProducto() {
             ListaVenta.Add(Selected);
-            RefreshCosto();
+            //RefreshCosto();
+            UpdateSale();
         }
 
         private void RefreshGrid() {
@@ -447,12 +467,11 @@ namespace GymCastillo.ViewModel.VentasVM {
         }
 
         private void RefreshCosto() {
-            Costo = 0;
-            var costo = 0.0m;
             foreach (var item in ListaVenta) {
-                costo += item.Costo;
+                if (Costo != 0) {
+                    Costo += item.Costo;
+                }
             }
-            Costo += costo;
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Ventas;
 using GymCastillo.Model.Init;
@@ -31,7 +32,7 @@ namespace GymCastillo.Model.Helpers {
             //venta.IdsProductos = venta.VisitaGym ? "" : venta.IdsProductos;
             //if (venta.IdsProductos != "" && venta.VisitaGym == false) {
 
-            if (venta.IdsProductos != "") {
+            if (!string.IsNullOrWhiteSpace(venta.IdsProductos)) {
                 var listaProductos = venta.IdsProductos.Split(",");
 
                 var allProductos = InitInfo.ObCoInventario;
@@ -58,7 +59,7 @@ namespace GymCastillo.Model.Helpers {
                     Log.Debug("Se completo exitosamente la venta");
 
                     // Actualizamos el inventario
-                    if (venta.IdsProductos != "") {
+                    if (!string.IsNullOrWhiteSpace(venta.IdsProductos)) {
                         var listaIdCarrito = venta.IdsProductos.Split(",");
                         var listaCarrito = InitInfo.ObCoInventario
                             .Where(x => listaIdCarrito.Contains(x.IdProducto.ToString()));
@@ -67,6 +68,13 @@ namespace GymCastillo.Model.Helpers {
                             await producto.UpdateExistencias(
                                 listaIdCarrito.Count(x => x == producto.IdProducto.ToString()));
                         }
+                    }
+
+                    //Actualizamos la lista de ventas
+                    var ventasUpdated = await GetFromDb.GetVentas();
+                    InitInfo.ObCoVentas.Clear();
+                    foreach (var item in ventasUpdated) {
+                        InitInfo.ObCoVentas.Add(item);
                     }
 
                     // Creamos el ingreso
