@@ -249,7 +249,6 @@ namespace GymCastillo.Model.Helpers {
             }
 
             if (ingreso.IdPaquete != paqueteAntiguo) { // Si se compra un paquete diferente al que se tenia
-                //TODO: Debemos resetear sus horarios
 
                 // Obtenemos los horario
                 var listaHorarios = 

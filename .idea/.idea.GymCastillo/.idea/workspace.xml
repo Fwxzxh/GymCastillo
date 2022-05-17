@@ -7,9 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="I don't know why. Just move on.">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed issue with Horarios">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/VentasHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,14 +219,11 @@
       <workItem from="1650846868489" duration="316000" />
       <workItem from="1651284487978" duration="1231000" />
       <workItem from="1651288728400" duration="6802000" />
-      <workItem from="1651712228981" duration="2938000" />
-    </task>
-    <task id="LOCAL-00067" summary="Minor bot improvements">
-      <created>1641518766788</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1641518766788</updated>
+      <workItem from="1651712228981" duration="4323000" />
+      <workItem from="1652667530174" duration="333000" />
+      <workItem from="1652738231032" duration="1348000" />
+      <workItem from="1652754218858" duration="2481000" />
+      <workItem from="1652790644957" duration="1968000" />
     </task>
     <task id="LOCAL-00068" summary="Fixed Bot empty paquete bug, minor enhancements to the messages, minor fixes">
       <created>1641543647149</created>
@@ -561,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651295660252</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Fixed issue with Horarios">
+      <created>1651716075110</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1651716075110</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -595,7 +602,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fix to card, updated PlantillaFront" />
     <MESSAGE value="Minor error handling in Pagos" />
     <MESSAGE value="Minor fixes" />
     <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
@@ -620,7 +626,8 @@
     <MESSAGE value="Added ListaAlumnosHelper.cs" />
     <MESSAGE value="Minor fixes, Niño binding added, telephone case added" />
     <MESSAGE value="I don't know why. Just move on." />
-    <option name="LAST_COMMIT_MESSAGE" value="I don't know why. Just move on." />
+    <MESSAGE value="Fixed issue with Horarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with Horarios" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

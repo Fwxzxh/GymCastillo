@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.IntersectionTables;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Otros;
@@ -48,11 +49,18 @@ namespace GymCastillo.Model.Helpers {
                         Monto = renta.Costo,
                         MontoRecibido = renta.MontoRecibido
                     };
+                    
+                    //Actualizamos la lista de rentas
+                    var rentasUpdated = await GetFromDb.GetRentas();
+                    InitInfo.ObCoRentas.Clear();
+                    foreach (var item in rentasUpdated) {
+                        InitInfo.ObCoRentas.Add(item);
+                    }
 
                     // Obtenemos el IdRenta de la renta dada de alta.
                     if (InitInfo.ObCoRentas.Count > 0) {
                         var idRentaMax = InitInfo.ObCoRentas.Max(x => x.IdRenta);
-                        ingreso.IdRenta = idRentaMax + 1;
+                        ingreso.IdRenta = idRentaMax;
                     }
                     else {
                         ingreso.IdRenta = 1;
