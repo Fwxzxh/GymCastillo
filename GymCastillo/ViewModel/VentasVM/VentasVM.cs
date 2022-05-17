@@ -394,10 +394,18 @@ namespace GymCastillo.ViewModel.VentasVM {
             }
 
             // await AdminOnlyAlta.Alta(Venta);
-            pd.PrintPage += new PrintPageEventHandler(PrintTicket);
-            pd.Print();
-            pd.Print();
-            await VentasHelper.NuevaVenta(Venta, Recibido);
+            try {
+                pd.PrintPage += new PrintPageEventHandler(PrintTicket);
+                pd.Print();
+                pd.Print();
+            }
+            catch (Exception e) {
+                ShowPrettyMessages.ErrorOk("No se encontró una impresora de tickets.", "Error");
+            }
+            finally {
+
+                await VentasHelper.NuevaVenta(Venta, Recibido);
+            }
 
             if (!visita) { // Solo si no es una entrada a un gym.
                 // Actualizamos el inventario por las existencias.
