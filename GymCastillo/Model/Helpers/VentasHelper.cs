@@ -89,7 +89,7 @@ namespace GymCastillo.Model.Helpers {
                     // Obtenemos el IdVenta de la renta dada de alta.
                     if (InitInfo.ObCoVentas.Count > 0) {
                         var idVentaMax = InitInfo.ObCoVentas.Max(x => x.IdVenta);
-                        ingreso.IdVenta = idVentaMax + 1;
+                        ingreso.IdVenta = idVentaMax    ;
                     }
                     else {
                         ingreso.IdVenta = 1;
