@@ -115,7 +115,7 @@ namespace GymCastillo.Model.Helpers {
                         if (resPagoDeuda) {
                             var clienteRenta = InitInfo.ObCoClientesRenta.First(x => x.Id == ingreso.IdClienteRenta);
 
-                            clienteRenta.MontoUltimoPago = ingreso.MontoRecibido;
+                            clienteRenta.MontoUltimoPago = ingreso.Monto;
                             clienteRenta.FechaUltimoPago = DateTime.Now;
                             clienteRenta.DeudaCliente -= ingreso.MontoRecibido;
 

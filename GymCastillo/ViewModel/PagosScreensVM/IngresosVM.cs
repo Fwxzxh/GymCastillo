@@ -256,7 +256,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private async void RentPayment() {
             ingresos.Tipo = 5;
-            ingresos.Monto = ClienteRenta.DeudaCliente;
+            ingresos.Monto = ClienteRenta.DeudaCliente - Ingresos.MontoRecibido;
             ingresos.IdClienteRenta = ClienteRenta.Id;
             tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
             tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
@@ -313,7 +313,6 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
                 ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
-
 
         }
 
