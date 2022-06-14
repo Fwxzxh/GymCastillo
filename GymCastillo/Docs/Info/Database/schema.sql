@@ -200,6 +200,7 @@ create table Usuario (
     Domicilio varchar(150) not null,
     Username varchar(20) not null,
     Password varchar(15) not null,
+    Rol int not null,
     FechaNacimiento datetime not null,
     Telefono varchar(10) unique not null, -- Debe de ser único para poder mandar WhatsApp
     NombreContacto varchar(30),
@@ -312,9 +313,9 @@ set id=default, ResetFechaSemana=sysdate();
 
 -- Creamos el usuario admin
 insert into usuario
-    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, FechaNacimiento, Telefono, FechaUltimoAcceso)
+    (IdUsuario, Nombre, ApellidoPaterno, ApellidoMaterno, Domicilio, Username, Password, Rol, FechaNacimiento, Telefono, FechaUltimoAcceso)
 values
-    (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', sysdate(), '0', sysdate());
+    (1, 'admin', 'admin', 'admin', 'calle', 'admin', 'admin', 1, sysdate(), '0', sysdate());
 
     -- Tipos de cliente
 INSERT INTO tipocliente
