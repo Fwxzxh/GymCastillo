@@ -7,11 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes to renta.">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, added rol field, updated schema.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Docs/Info/Database/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/GetFromDB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/Init.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/Init.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioValidation.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,14 +224,8 @@
       <workItem from="1652790644957" duration="4129000" />
       <workItem from="1655083307914" duration="2504000" />
       <workItem from="1655174542245" duration="228000" />
-      <workItem from="1655174814585" duration="885000" />
-    </task>
-    <task id="LOCAL-00069" summary="Minor fixes, added 15 minute tolerance in asistencias">
-      <created>1641597907017</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1641597907018</updated>
+      <workItem from="1655174814585" duration="964000" />
+      <workItem from="1655186033984" duration="238000" />
     </task>
     <task id="LOCAL-00070" summary="Tickets with telegram done">
       <created>1641598835452</created>
@@ -570,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652792694930</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="Minor fixes, added rol field, updated schema.">
+      <created>1655175774380</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1655175774381</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +604,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fixes" />
     <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
     <MESSAGE value="Added PlantillaFront.png" />
     <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
@@ -629,7 +628,8 @@
     <MESSAGE value="I don't know why. Just move on." />
     <MESSAGE value="Fixed issue with Horarios" />
     <MESSAGE value="Minor fixes to renta." />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes to renta." />
+    <MESSAGE value="Minor fixes, added rol field, updated schema." />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, added rol field, updated schema." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

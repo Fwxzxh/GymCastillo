@@ -21,6 +21,10 @@ namespace GymCastillo.Model.Validations.Personal {
             RuleFor(usuario => usuario.Telefono)
                 .Length(10).WithMessage("El número de teléfono debe de ser de 10 dígitos.")
                 .Must(IsNumber).WithMessage("El número de teléfono solo debe de contener números");
+
+            RuleFor(usuario => usuario.Rol)
+                .NotNull().WithMessage("El rol no debe de ser nulo.")
+                .NotEmpty().WithMessage("El rol no debe de estar vacío.");
         }
 
         
