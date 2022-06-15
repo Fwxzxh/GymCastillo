@@ -48,7 +48,7 @@ namespace GymCastillo.Model.Init {
                 if (cmd.HasRows) {
                     while (cmd.Read()) {
                         LoggedId = cmd.GetInt32("IdUsuario");
-                        LoggedId = cmd.GetInt32("Rol");
+                        LoggedRol = cmd.GetInt32("Rol");
                     }
                     Log.Debug("LogIn Exitoso");
                     return true;

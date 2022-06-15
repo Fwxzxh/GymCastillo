@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, added rol field, updated schema.">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Usuario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/Init.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/Init.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Validations/Personal/UsuarioValidation.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,14 +225,8 @@
       <workItem from="1655083307914" duration="2504000" />
       <workItem from="1655174542245" duration="228000" />
       <workItem from="1655174814585" duration="964000" />
-      <workItem from="1655186033984" duration="238000" />
-    </task>
-    <task id="LOCAL-00070" summary="Tickets with telegram done">
-      <created>1641598835452</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1641598835452</updated>
+      <workItem from="1655186033984" duration="450000" />
+      <workItem from="1655310136577" duration="1229000" />
     </task>
     <task id="LOCAL-00071" summary="Minor bug en ventas">
       <created>1641605111341</created>
@@ -570,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655175774381</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs">
+      <created>1655186397803</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1655186397804</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +605,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
     <MESSAGE value="Added PlantillaFront.png" />
     <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
     <MESSAGE value="Minor fix in area messages" />
@@ -629,7 +629,8 @@
     <MESSAGE value="Fixed issue with Horarios" />
     <MESSAGE value="Minor fixes to renta." />
     <MESSAGE value="Minor fixes, added rol field, updated schema." />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, added rol field, updated schema." />
+    <MESSAGE value="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

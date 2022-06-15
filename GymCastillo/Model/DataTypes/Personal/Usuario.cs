@@ -63,7 +63,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string updateQuery = @"UPDATE usuario
                                              SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
-                                                 domicilio=@Domicilio, username=@Username, Rol=@Rol, password=@Password,
+                                                 domicilio=@Domicilio, username=@Username, Password=@Password, Rol=@Rol,
                                                  telefono=@Telefono, NombreContacto=@NombreContacto,
                                                  telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
                                              WHERE IdUsuario=@IdUsuario;";
@@ -162,7 +162,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string altaQuery = @"INSERT INTO usuario
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
-                                           	    @Domicilio, @Username, @Rol, @Password, @FechaNacimiento,
+                                           	    @Domicilio, @Username,  @Password, @Rol, @FechaNacimiento,
                                            	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
                                            	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, @Sueldo);";
 
