@@ -8,12 +8,18 @@
              xmlns:clientsView="clr-namespace:GymCastillo.View.PersonalScreenView.ClientsView"
              xmlns:instructoresView="clr-namespace:GymCastillo.View.PersonalScreenView.InstructoresView"
              xmlns:clientsRentaView="clr-namespace:GymCastillo.View.PersonalScreenView.ClientsRentaView"
+             xmlns:vm="clr-namespace:GymCastillo.Model.Init"
+             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <vm:InitInfo x:Key="init"/>
+        <converter:RolVisibility x:Key="rol"/>
+    </UserControl.Resources>
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
@@ -35,7 +41,8 @@
                     <clientsView:GridClientesUC/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem Width="150">
+            <TabItem Width="150"
+                     Visibility="{Binding Source={x:Static vm:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Instructores"
@@ -46,18 +53,8 @@
                     <instructoresView:GridInstructoresUC/>
                 </TabItem.Content>
             </TabItem>
-            <!--<TabItem Width="150">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto">
-                        <TextBlock Text="Usuarios"
-                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <usuariosView1:GridUsuariosUC/>
-                </TabItem.Content>
-            </TabItem>-->
-            <TabItem Width="160">
+            <TabItem Width="160"
+                     Visibility="{Binding Source={x:Static vm:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Clientes Renta"

@@ -258,8 +258,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.Tipo = 5;
             ingresos.Monto = ClienteRenta.DeudaCliente - Ingresos.MontoRecibido;
             ingresos.IdClienteRenta = ClienteRenta.Id;
-            tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
-            tickets = new($"Pago Renta", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Renta", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Renta", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
             InitInfo.ObCoClientesRenta.Clear();
@@ -272,8 +272,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void OthersPayment() {
             ingresos.Tipo = 4;
 
-            tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
-            tickets = new($"Pago Otros", ingresos.Monto, GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
+            tickets = new($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
         }
@@ -285,8 +285,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             var nombre = $"{cliente.Id} {cliente.Nombre} {cliente.ApellidoPaterno}";
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente: nombre);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), nombreCliente: nombre);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
             await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
 
             //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);

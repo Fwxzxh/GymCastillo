@@ -3,6 +3,7 @@ using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.DataTypes.Personal;
+using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Interfaces;
 using GymCastillo.ViewModel.PersonalScreensVM.Commands.UsersCommands;
 using ImageMagick;
@@ -69,6 +70,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         }
 
         public async void NewUser() {
+            ShowPrettyMessages.InfoOk($"{Usuario.Rol}", "debug");
             await AdminUsuariosGeneral.Alta(Usuario);
             Log.Debug("Nuevo usuario creado");
             Usuario = new() { FechaNacimiento = DateTime.Now };

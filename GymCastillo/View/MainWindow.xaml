@@ -12,6 +12,8 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:personalScreenView="clr-namespace:GymCastillo.View.PersonalScreenView"
+        xmlns:vm="clr-namespace:GymCastillo.Model.Init"
+        xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         TextElement.FontWeight="Medium"
@@ -22,6 +24,10 @@
         ResizeMode="NoResize"
         WindowState="Maximized"
         Title="Club Castillo Force" Height="1080" Width="1920">
+    <Window.Resources>
+        <vm:InitInfo x:Key="init"/>
+        <converter:RolVisibility x:Key="rol"/>
+    </Window.Resources>
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
@@ -102,7 +108,8 @@
                     <pagos:PagosUC/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem ToolTip="Administración">
+            <TabItem ToolTip="Administración"
+                     Visibility="{Binding Source={x:Static vm:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon
@@ -116,7 +123,8 @@
                     <admin:AdminControl/>
                 </TabItem.Content>
             </TabItem>
-            <TabItem ToolTip="Configuración">
+            <TabItem ToolTip="Configuración"
+                     Visibility="{Binding Source={x:Static vm:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <materialDesign:PackIcon

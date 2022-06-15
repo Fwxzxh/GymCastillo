@@ -50,8 +50,14 @@ namespace GymCastillo.Model.DataTypes.Settings {
         /// </summary>
         public int NumRegistrados {
             get {
-                var num = InitInfo.ObCoClienteHorario
-                    .Count(x => x.IdHorario == IdHorario);
+                var clientesActivos = InitInfo.ObCoClientes.Where(x => x.Activo == true);
+
+                var clienteHorario = InitInfo.ObCoClienteHorario.Where(x => x.IdHorario == IdHorario);
+
+                //obtenemos los clientes dentro de ese horario pero que solamente estén activos
+                var num = clienteHorario.Where(x => clientesActivos.Any(y => y.Id == x.IdCliente)).Count();
+
+
                 return num;
             }
         }

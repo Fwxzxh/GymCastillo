@@ -27,12 +27,13 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public int noRecibo = 0;
 
         string nombreCliente;
-        public PrintTickets(string concepto, decimal total, int noRecibo, string nombreCliente = "") {
+        public PrintTickets(string concepto, decimal total, int noRecibo, decimal montoRecibido = 0, int idCliente = 0) {
             try {
+                var cliente = InitInfo.ObCoClientes.Where(x => x.Id == idCliente).First();
                 this.concepto = concepto;
                 this.total = total;
                 this.noRecibo = noRecibo;
-                this.nombreCliente = nombreCliente;
+                nombreCliente = $"{cliente.Nombre} {cliente.ApellidoPaterno}";
                 pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
                 pd.PrintPage += new PrintPageEventHandler(PrintTicket);
                 pd.Print();

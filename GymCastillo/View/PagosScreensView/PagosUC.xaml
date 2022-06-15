@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:GymCastillo.View.PagosScreensView"
              xmlns:ingresos="clr-namespace:GymCastillo.View.PagosScreensView.IngresosViews"
              xmlns:egresos="clr-namespace:GymCastillo.View.PagosScreensView.EgresosViews"
+             xmlns:vm="clr-namespace:GymCastillo.Model.Init"
+             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
@@ -14,6 +16,10 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <vm:InitInfo x:Key="init"/>
+        <converter:RolVisibility x:Key="rol"/>
+    </UserControl.Resources>
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     BorderThickness="0"
@@ -36,7 +42,8 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Width="150">
+            <TabItem Width="150"
+                     Visibility="{Binding Source={x:Static vm:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto">
                         <TextBlock Text="Egresos"
