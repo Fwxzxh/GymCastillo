@@ -23,7 +23,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowState="Maximized"
-        Title="Club Castillo Force" Height="1080" Width="1920">
+        Title="Gym Castillo Force" Height="1080" Width="1920">
     <Window.Resources>
         <vm:InitInfo x:Key="init"/>
         <converter:RolVisibility x:Key="rol"/>

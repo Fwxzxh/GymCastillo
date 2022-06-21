@@ -70,7 +70,6 @@ namespace GymCastillo.ViewModel.AdminScreensVM.UsersVM {
         }
 
         public async void NewUser() {
-            ShowPrettyMessages.InfoOk($"{Usuario.Rol}", "debug");
             await AdminUsuariosGeneral.Alta(Usuario);
             Log.Debug("Nuevo usuario creado");
             Usuario = new() { FechaNacimiento = DateTime.Now };
