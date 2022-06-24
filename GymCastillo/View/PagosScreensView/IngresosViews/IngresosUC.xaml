@@ -219,7 +219,7 @@
                      Grid.Row="1"
                      FontSize="20"
                      Margin="10"
-                     Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
 
@@ -282,7 +282,7 @@
                      Margin="10"
                      Text="{Binding Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                <TextBox materialDesign:HintAssist.Hint="Monto Pagado"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="180"
                      Grid.Row="1"

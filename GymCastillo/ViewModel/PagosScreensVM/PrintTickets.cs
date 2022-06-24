@@ -27,12 +27,15 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public int noRecibo = 0;
 
         string nombreCliente;
+
+        public decimal montoRecibido { get; set; }
         public PrintTickets(string concepto, decimal total, int noRecibo, decimal montoRecibido = 0, int idCliente = 0) {
             try {
                 var cliente = InitInfo.ObCoClientes.Where(x => x.Id == idCliente).First();
                 this.concepto = concepto;
                 this.total = total;
                 this.noRecibo = noRecibo;
+                this.montoRecibido = montoRecibido;
                 nombreCliente = $"{cliente.Nombre} {cliente.ApellidoPaterno}";
                 pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
                 pd.PrintPage += new PrintPageEventHandler(PrintTicket);
@@ -75,7 +78,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             renglon += 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
-            g.DrawString(string.Format("Total Venta {0,45}", total), consola, Brushes.Black, leftMargin, yPos + renglon);
+            g.DrawString(string.Format("Monto Pagado {0,45}", montoRecibido), consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
             renglon += 15;
             if (!string.IsNullOrWhiteSpace(nombreCliente)) {
