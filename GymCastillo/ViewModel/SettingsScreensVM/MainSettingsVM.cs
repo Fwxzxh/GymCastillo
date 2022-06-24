@@ -183,11 +183,12 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.Monto;
+                    montoTotalTipo += item.MontoRecibido;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
                 montoTotalTipo = 0;
                 document.Add(new Paragraph("Ventas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
@@ -198,12 +199,13 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 foreach (var item in ingrsosHoy.Where(l => l.IdVenta != 0)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
                 montoTotalTipo = 0;
                 document.Add(new Paragraph("Rentas").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
@@ -215,11 +217,12 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    montoTotalTipo += item.Monto;
+                    montoTotalTipo += item.MontoRecibido;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
                 montoTotalTipo = 0;
 
                 document.Add(new Paragraph("Otros").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
@@ -231,12 +234,13 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 foreach (var item in ingrsosHoy.Where(l => l.Otros != false)) {
                     table.AddCell(new Cell().Add(new Paragraph(item.Concepto).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
-                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.MontoRecibido)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph(string.Format("{0:C}", item.Monto)).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
                     montoTotalTipo += item.Monto;
                 }
                 document.Add(table);
                 document.Add(new Paragraph((string.Format("Monto total recibido: {0:C}", montoTotalTipo))).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(fontSize).SetBold());
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
+                montoTotalRecibido += montoTotalTipo;
                 montoTotalTipo = 0;
 
 
@@ -330,9 +334,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 table = new Table(UnitValue.CreatePercentArray(tamaños));
                 var ingresos = 0m;
                 var egresos = 0m;
-                foreach (var item in ingrsosHoy) {
-                    montoTotalRecibido += item.Monto;
-                }
+                //foreach (var item in ingrsosHoy) {
+                //    montoTotalRecibido += item.Monto;
+                //}
 
                 document.Add(new Paragraph((string.Format("Monto total ingresos del día {1}: {0:C}", montoTotalRecibido, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
                 ingresos = montoTotalRecibido;
@@ -344,8 +348,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 egresos = montoTotalRecibido;
                 document.Add(new Paragraph((string.Format("Monto total egresos del día {1}: {0:C}", montoTotalRecibido, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
-                var resultado = ingresos - egresos;
-                document.Add(new Paragraph((string.Format("Monto total de ingresos menos egresos del día {1}: {0:C}", resultado, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
+                //var resultado = ingresos - egresos;
+                //document.Add(new Paragraph((string.Format("Monto total de ingresos menos egresos del día {1}: {0:C}", resultado, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
                 ShowPrettyMessages.InfoOk($"Documento creado en la ruta {path}", "Reporte Diario Generado");
 
