@@ -26,6 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0">
@@ -71,7 +72,8 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
-
         </DataGrid>
+        <Button Content="Generar PDF"
+                Grid.Row="2"/>
     </Grid>
 </Window>

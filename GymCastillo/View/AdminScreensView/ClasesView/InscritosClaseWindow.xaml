@@ -25,6 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Content="{Binding Clase.NombreClase, Mode=TwoWay}"
                HorizontalAlignment="Center"
@@ -64,7 +65,14 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
-
         </DataGrid>
+        <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                Content="Generar Lista de Inscritos"
+                Command="{Binding ListaInscritos}"
+                VerticalAlignment="Center"
+                Margin="10"
+                FontSize="20"
+                Grid.Row="2"
+                HorizontalAlignment="Center"/>
     </Grid>
 </Window>
