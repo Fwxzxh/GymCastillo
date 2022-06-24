@@ -73,7 +73,13 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Generar PDF"
-                Grid.Row="2"/>
+        <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                Content="Generar Lista de Inscritos"
+                Command="{Binding ListaInscritos}"
+                VerticalAlignment="Center"
+                Margin="10"
+                FontSize="20"
+                Grid.Row="2"
+                HorizontalAlignment="Center"/>
     </Grid>
 </Window>

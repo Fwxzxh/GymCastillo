@@ -5,15 +5,11 @@ using GymCastillo.Model.Helpers;
 using iText.Layout;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using iText.Kernel.Pdf;
-using iText.Layout;
 using iText.Kernel.Geom;
 using iText.Layout.Properties;
 using iText.Layout.Element;
@@ -31,7 +27,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
 
         public RelayCommand ListaInscritos { get; set; }
 
-        private string path = @"C:\GymCastillo\Reportes\ListasAsistencia";
+        private string path = @"C:\GymCastillo\Reportes\ListasdeClientesPorClase";
 
 
         private Clase clase;
@@ -70,7 +66,7 @@ namespace GymCastillo.ViewModel.AdminScreensVM.ClasesVM {
 
         private void PdfInscritos() {
             var listaClientes = ListaAlumnosHelper.GetClientesDeClase(clase.IdClase).Where(x => x.Activo == true).OrderBy(n => n.ApellidoPaterno);
-            if (ListaClientes.Count() == 0) {
+            if (listaClientes.Count() == 0) {
                 ShowPrettyMessages.WarningOk("No hay alumnos en esta clase", "Advertencia");
                 return;
             }
