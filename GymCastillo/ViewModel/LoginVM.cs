@@ -10,6 +10,7 @@ using GymCastillo.Model.Helpers;
 using GymCastillo.Model.Init;
 using GymCastillo.Model.Notificaciones;
 using System.IO;
+using GymCastillo.Model.Database;
 
 namespace GymCastillo.ViewModel {
     public class LoginVM : INotifyPropertyChanged {
