@@ -31,11 +31,12 @@
                    FontSize="20"/>
             <Button Style="{StaticResource MaterialDesignPaperButton}"
                     Content="Actualizar Manualmente"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     Command="{Binding ManualCommand}"
                     ToolTip="Actualiza los cupos semanales manualmente."
                     Margin="10"
                     FontSize="20"/>
+
             <Label Content="Precios por Visita"
                    HorizontalAlignment="Left"
                    FontSize="25"
@@ -59,11 +60,11 @@
             </StackPanel>
             <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Actualizar Precios"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         Command="{Binding SavePrecios}"
                         Margin="10 0"
                         FontSize="20"/>
-            <Label Content="Reportes"
+            <Label Content="Reportes y Respaldo"
                    HorizontalAlignment="Left"
                    FontSize="25"
                    Margin="0 10"/>
@@ -75,18 +76,23 @@
                         Margin="10 0"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Reporte mensual"
+                        HorizontalAlignment="Center"
+                        Command="{Binding ReporteMensualCommand}"
+                        Margin="10 0"
+                        FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Reporte ventas inventario"
                         HorizontalAlignment="Center"
                         Command="{Binding InventarioCommand}"
                         Margin="10 0"
                         FontSize="20"/>
-                <!--<Button Style="{StaticResource MaterialDesignPaperButton}"
-                        Content="Reporte mensual"
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Respaldo BD"
                         HorizontalAlignment="Center"
-                        Command="{Binding MakeReporte}"
+                        Command="{Binding RespaldoCommand}"
                         Margin="10 0"
-                        FontSize="20"/>-->
-
+                        FontSize="20"/>
             </StackPanel>
 
             
