@@ -17,6 +17,8 @@ namespace GymCastillo.Model.Database {
         public static async Task DumpDatabase() {
             Log.Debug("Se ha iniciado el proceso para hacer el dump de la base de datos.");
 
+            CheckBackupFolder();
+
             var date = DateTime.Now;
 
             var file = $"Backup-{date.Day.ToString()}-{date.Month.ToString()}-{date.Year.ToString()}_{date.Hour.ToString()}-{date.Minute.ToString()}.sql";
@@ -32,10 +34,11 @@ namespace GymCastillo.Model.Database {
                 
                 await connection.OpenAsync();
 
-                backup.ExportInfo.AddCreateDatabase = true;
-                backup.ExportInfo.ResetAutoIncrement = true;
-                backup.ExportInfo.AddDropDatabase = true;
                 backup.ExportToFile(fullPath);
+                
+                ShowPrettyMessages.InfoOk(
+                    $"Se ha creado el backup de la base de datos exitosamente en la ruta: {fullPath}",
+                    "Backup exitoso");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error desconocido a la hora de crear el backup.");

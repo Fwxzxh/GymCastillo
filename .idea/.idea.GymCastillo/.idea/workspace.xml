@@ -7,9 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes, Added db Dump">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added days parameter in GetReportes.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Reportes/GetReportes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Reportes/GetReportes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/DbDump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/DbDump.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,14 +230,9 @@
       <workItem from="1655579934304" duration="595000" />
       <workItem from="1656179287519" duration="1734000" />
       <workItem from="1656183456746" duration="3567000" />
-      <workItem from="1656194204620" duration="608000" />
-    </task>
-    <task id="LOCAL-00073" summary="Added FK key cheks">
-      <created>1641868159960</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1641868159960</updated>
+      <workItem from="1656194204620" duration="905000" />
+      <workItem from="1656460563441" duration="300000" />
+      <workItem from="1656460896549" duration="497000" />
     </task>
     <task id="LOCAL-00074" summary="Massive msg done">
       <created>1641887806767</created>
@@ -575,7 +570,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656189051386</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Added days parameter in GetReportes.cs">
+      <created>1656194841380</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1656194841380</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +611,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fix in area messages" />
     <MESSAGE value="Fixed name changes" />
     <MESSAGE value="Added automatic RegisterNumber" />
     <MESSAGE value="Added new Numeration" />
@@ -634,7 +635,8 @@
     <MESSAGE value="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs" />
     <MESSAGE value="Minor Fixes" />
     <MESSAGE value="Minor fixes, Added db Dump" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes, Added db Dump" />
+    <MESSAGE value="Added days parameter in GetReportes.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added days parameter in GetReportes.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
