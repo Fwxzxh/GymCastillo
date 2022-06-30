@@ -7,9 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added days parameter in GetReportes.cs">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes to DbDump.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Database/DbDump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Database/DbDump.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +73,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.GitToolBox Colors&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -104,6 +105,27 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="GymCastillo.Model.Init.GetInitData.GetPreciosVisitas" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+      <option name="EXE_PATH" value="C:\Users\jorge\AppData\Local\JetBrains\Toolbox\apps\Rider\ch-1\221.5591.20\lib\ReSharperHost\JetLauncherILc.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" />
+      <option name="PROJECT_TFM" value="net5.0-windows7.0" />
+      <option name="CLASS_NAME" value="GymCastillo.Model.Init.GetInitData" />
+      <option name="METHOD_NAME" value="GetPreciosVisitas" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Static Method.GymCastillo.Model.Init.GetInitData.GetPreciosVisitas" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -232,14 +254,8 @@
       <workItem from="1656183456746" duration="3567000" />
       <workItem from="1656194204620" duration="905000" />
       <workItem from="1656460563441" duration="300000" />
-      <workItem from="1656460896549" duration="497000" />
-    </task>
-    <task id="LOCAL-00074" summary="Massive msg done">
-      <created>1641887806767</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1641887806767</updated>
+      <workItem from="1656460896549" duration="687000" />
+      <workItem from="1656627002613" duration="709000" />
     </task>
     <task id="LOCAL-00075" summary="Massive multimeda msg done">
       <created>1641888058638</created>
@@ -577,7 +593,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656194841380</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="Minor fixes to DbDump.cs">
+      <created>1656461411306</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1656461411306</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +634,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed name changes" />
     <MESSAGE value="Added automatic RegisterNumber" />
     <MESSAGE value="Added new Numeration" />
     <MESSAGE value="Fixed issues while editing names" />
@@ -636,7 +658,8 @@
     <MESSAGE value="Minor Fixes" />
     <MESSAGE value="Minor fixes, Added db Dump" />
     <MESSAGE value="Added days parameter in GetReportes.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added days parameter in GetReportes.cs" />
+    <MESSAGE value="Minor fixes to DbDump.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes to DbDump.cs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

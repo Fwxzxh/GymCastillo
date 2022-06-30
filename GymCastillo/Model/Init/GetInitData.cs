@@ -56,7 +56,7 @@ namespace GymCastillo.Model.Init {
                 var pass = ini.Read("DbPass", "Config");
                 Log.Info("Se han leído los datos de conexión exitosamente del archivo de configuración.");
 
-                ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=GymCastillo";
+                ConnString = $"server=localhost; Uid={user}; pwd={pass}; Database=GymCastillo; CharSet=utf8";
 
                 GetPreciosVisitas();
 
