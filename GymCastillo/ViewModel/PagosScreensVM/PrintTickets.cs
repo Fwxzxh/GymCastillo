@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GymCastillo.Model.Helpers;
+using GymCastillo.Model.DataTypes.Personal;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class PrintTickets {
@@ -28,15 +29,23 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         string nombreCliente;
 
+        int idCliente;
+
+        Cliente cliente;
+
         public decimal montoRecibido { get; set; }
         public PrintTickets(string concepto, decimal total, int noRecibo, decimal montoRecibido = 0, int idCliente = 0) {
             try {
-                var cliente = InitInfo.ObCoClientes.Where(x => x.Id == idCliente).First();
+                this.idCliente = idCliente;
+                if (idCliente != 0) {
+                    cliente = InitInfo.ObCoClientes.Where(x => x.Id == idCliente).First();
+                    nombreCliente = $"{cliente.Nombre} {cliente.ApellidoPaterno}";
+                }
+
                 this.concepto = concepto;
                 this.total = total;
                 this.noRecibo = noRecibo;
                 this.montoRecibido = montoRecibido;
-                nombreCliente = $"{cliente.Nombre} {cliente.ApellidoPaterno}";
                 pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
                 pd.PrintPage += new PrintPageEventHandler(PrintTicket);
                 pd.Print();
@@ -82,7 +91,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             renglon += 15;
             renglon += 15;
             if (!string.IsNullOrWhiteSpace(nombreCliente)) {
-                g.DrawString($"Cliente: {nombreCliente}", consola, Brushes.Black, leftMargin, yPos + renglon);
+                g.DrawString($"Cliente: {idCliente} {nombreCliente}", consola, Brushes.Black, leftMargin, yPos + renglon);
                 renglon += 15;
             }
             g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, yPos + renglon);

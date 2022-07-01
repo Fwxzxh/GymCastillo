@@ -296,10 +296,10 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                     montoTotalRecibido += item.Monto;   
                 }
                 egresos = montoTotalRecibido;
-                document.Add(new Paragraph(string.Format("Monto total egresos de los últimos 30 días: {0:C}", montoTotalRecibido)).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+                document.Add(new Paragraph(string.Format("Monto total egresos de los últimos 30 días: {0:C}", egresos)).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
-                //var resultado = ingresos - egresos;
-                //document.Add(new Paragraph((string.Format("Monto total de ingresos menos egresos del día {1}: {0:C}", resultado, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
+                var resultado = ingresos - egresos;
+                document.Add(new Paragraph(string.Format("Monto total de ingresos menos egresos: {0:C}", resultado)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
                 ShowPrettyMessages.InfoOk($"Documento creado en la ruta {pathMes}", "Reporte Mensual Generado");
 
@@ -567,10 +567,10 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                     montoTotalRecibido += item.Monto;
                 }
                 egresos = montoTotalRecibido;
-                document.Add(new Paragraph((string.Format("Monto total egresos del día {1}: {0:C}", montoTotalRecibido, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+                document.Add(new Paragraph((string.Format("Monto total egresos del día {1}: {0:C}", egresos, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
 
-                //var resultado = ingresos - egresos;
-                //document.Add(new Paragraph((string.Format("Monto total de ingresos menos egresos del día {1}: {0:C}", resultado, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
+                var resultado = ingresos - egresos;
+                document.Add(new Paragraph((string.Format("Monto total de ingresos menos egresos del día {1}: {0:C}", resultado, DateTime.Now.Date.ToShortDateString()))).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
                 document.Close();
                 ShowPrettyMessages.InfoOk($"Documento creado en la ruta {path}", "Reporte Diario Generado");
 
