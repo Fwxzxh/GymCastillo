@@ -116,7 +116,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
 
         private async void AgregarHorario() {
             //checamos que no demos de alta más clases de las permitidas en el paquete por semana
-            if (InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == cliente.Id).Count() > cliente.ClasesSemanaDisponibles) {
+            if (InitInfo.ObCoClienteHorario.Count(x => x.IdCliente == cliente.Id) > cliente.ClasesSemanaDisponibles) {
                 ShowPrettyMessages.ErrorOk("Número máximo de clases dado de alta", "Error");
                 return;
             }

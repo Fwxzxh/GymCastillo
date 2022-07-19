@@ -46,7 +46,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
         public int CupoActual { get; set; }
 
         /// <summary>
-        /// Da el número de clientes registrados a esta clase.
+        /// Da el número de clientes registrados a esta clase. 
         /// </summary>
         public int NumRegistrados {
             get {
@@ -55,7 +55,7 @@ namespace GymCastillo.Model.DataTypes.Settings {
                 var clienteHorario = InitInfo.ObCoClienteHorario.Where(x => x.IdHorario == IdHorario);
 
                 //obtenemos los clientes dentro de ese horario pero que solamente estén activos
-                var num = clienteHorario.Where(x => clientesActivos.Any(y => y.Id == x.IdCliente)).Count();
+                var num = clienteHorario.Count(x => clientesActivos.Any(y => y.Id == x.IdCliente));
 
 
                 return num;
@@ -148,17 +148,35 @@ namespace GymCastillo.Model.DataTypes.Settings {
 
             var chocan = false;
 
+            // los horarios chocan si:
+            // Es el mismo día
+            // Es la misma hora
+            // Es la misma clase!!
+            // Es el mismo lugar (No aplica)
+            // && la hora de inicio es igual o menor que nuestra hora de inicio o final
+            // && la hora final es igual o menor que nuestra hora de inicio o final
             foreach (var horario in InitInfo.ObCoHorarios) {
+                // Si la clase no es el mismo día no nos interesa verificar
                 if (horario.Dia != Dia) continue;
-                Log.Debug($"{horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
-                if (HoraInicio.TimeOfDay == horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay == horario.HoraFin.TimeOfDay) {
+                
+                // Si la clase no es la misma no nos interesa verificar
+                if (horario.IdClase != IdClase) continue;
+                
+                // Si la hora de inicio es igual a nuestra hora de inicio o 
+                if (HoraInicio.TimeOfDay == horario.HoraInicio.TimeOfDay && 
+                    HoraFin.TimeOfDay == horario.HoraFin.TimeOfDay) {
+                    // Log.Debug($"1-Horario{horario.IdHorario}: {horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} Nuevo {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
                     chocan = true;
                 }
 
-                if (HoraInicio.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraInicio.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                if (HoraInicio.TimeOfDay > horario.HoraInicio.TimeOfDay && 
+                    HoraInicio.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                    // Log.Debug($"2-Horario{horario.IdHorario}: {horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} Nuevo {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
                     chocan = true;
                 }
-                if (HoraFin.TimeOfDay > horario.HoraInicio.TimeOfDay && HoraFin.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                if (HoraFin.TimeOfDay > horario.HoraInicio.TimeOfDay && 
+                    HoraFin.TimeOfDay < horario.HoraFin.TimeOfDay) {
+                    // Log.Debug($"3-Horario{horario.IdHorario}: {horario.HoraInicio.TimeOfDay.ToString()}:{HoraInicio.TimeOfDay.ToString()} Nuevo {horario.HoraFin.TimeOfDay.ToString()}:{HoraFin.TimeOfDay.ToString()}");
                     chocan = true;
                 }
             }

@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes to DbDump.cs">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Little fixes to fix charset issue.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Init/GetInitData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Horario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/ClientesHorarioVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/ClientesHorarioVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,19 +66,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.GitToolBox Colors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.GymCastillo">
     <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
@@ -255,14 +256,13 @@
       <workItem from="1656194204620" duration="905000" />
       <workItem from="1656460563441" duration="300000" />
       <workItem from="1656460896549" duration="687000" />
-      <workItem from="1656627002613" duration="709000" />
-    </task>
-    <task id="LOCAL-00075" summary="Massive multimeda msg done">
-      <created>1641888058638</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1641888058638</updated>
+      <workItem from="1656627002613" duration="968000" />
+      <workItem from="1656789508965" duration="61000" />
+      <workItem from="1656789609131" duration="1012000" />
+      <workItem from="1657850051918" duration="3586000" />
+      <workItem from="1658192744563" duration="684000" />
+      <workItem from="1658193570838" duration="417000" />
+      <workItem from="1658194047275" duration="6980000" />
     </task>
     <task id="LOCAL-00076" summary="Added paquete in massive msg">
       <created>1641953499353</created>
@@ -600,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656461411306</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Little fixes to fix charset issue.">
+      <created>1656627891313</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1656627891313</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,7 +641,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added automatic RegisterNumber" />
     <MESSAGE value="Added new Numeration" />
     <MESSAGE value="Fixed issues while editing names" />
     <MESSAGE value="Added Day conservation in FechaVencimientoPago, added number of Months for payments" />
@@ -659,7 +665,8 @@
     <MESSAGE value="Minor fixes, Added db Dump" />
     <MESSAGE value="Added days parameter in GetReportes.cs" />
     <MESSAGE value="Minor fixes to DbDump.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes to DbDump.cs" />
+    <MESSAGE value="Little fixes to fix charset issue." />
+    <option name="LAST_COMMIT_MESSAGE" value="Little fixes to fix charset issue." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
