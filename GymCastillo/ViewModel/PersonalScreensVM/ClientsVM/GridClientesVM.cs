@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
@@ -27,6 +29,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public DeleteClientCommand deleteClient { get; set; }
 
         public OverViewClienteCommand OverViewCommand { get; set; }
+        public RelayCommand EliminarInactivosCommand { get; set; }
 
         private bool activo = false;
 
@@ -89,6 +92,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
+                EliminarInactivosCommand = new RelayCommand(EliminarInactivos);
                 Log.Debug("Se ha inicializado y se han obtenido los datos de la pantalla de GridClientes.");
             }
             catch (Exception e) {
@@ -100,6 +104,31 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
+        private async void  EliminarInactivos() {
+            await DeleteWithTime();
+            RefreshGrid(Activo);
+        }
+
+        public static async Task DeleteWithTime() {
+            var fechaLimite = DateTime.Today - TimeSpan.FromDays(120); // 120 dias = ~4 meses, pero puede ser configurable
+
+            // Obtenemos los clientes cuya fecha de ultimo acceso sea hace más de 4 meses
+            var clientes =
+                InitInfo.ObCoClientes.Where(x => x.FechaUltimoAcceso > fechaLimite);
+
+            try {
+                foreach (var cliente in clientes) {
+                    await cliente.Delete();
+                }
+                ShowPrettyMessages.InfoOk("Clientes inactivos eliminados correctamente.", "Eliminar Clientes Inactivos");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el borrado de clientes inactivos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido al eliminar los clientes inactivos, Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
         public void OpenOverview() {
             OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
             window.ShowDialog();

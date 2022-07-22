@@ -30,6 +30,7 @@
         <StackPanel Orientation="Horizontal">
             <Label Content="Total de clientes activos: "/>
             <Label Content="{Binding TotalActivos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         </StackPanel>
         <CheckBox HorizontalAlignment="Center"
                   Content="Clientes Activos"
@@ -199,18 +200,36 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <!--CommandParameter="{Binding ElementName=ClientesDataGrid, Path=SelectedItem}"-->
 
-        <Button x:Name="BtnNuevo"
-                Content="Nuevo Cliente"
-                HorizontalAlignment="Right"
-                FontSize="25"
-                Grid.Row="2"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Center"
-                Style="{StaticResource MaterialDesignPaperButton}"
-                Height="50"
-                ToolTip="Nuevo Cliente"
-                Command="{Binding newClient}"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Content="Eliminar Inactivos"
+                    Grid.Row="2"
+                    Style="{StaticResource MaterialDesignPaperButton}"
+                    ToolTip="Elimina los clientes inactivos"
+                    Margin="10 0"
+                    HorizontalAlignment="Left"
+                    Grid.Column="0"
+                    Command="{Binding EliminarInactivosCommand}"/>
+            
+            <Button x:Name="BtnNuevo"
+                    Content="Nuevo Cliente"
+                    HorizontalAlignment="Right"
+                    FontSize="25"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Grid.Column="1"
+                    Style="{StaticResource MaterialDesignPaperButton}"
+                    Height="50"
+                    ToolTip="Nuevo Cliente"
+                    Command="{Binding newClient}"/>
+
+        </Grid>
+
     </Grid>
 </UserControl>

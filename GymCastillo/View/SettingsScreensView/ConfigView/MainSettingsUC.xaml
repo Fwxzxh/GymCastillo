@@ -87,12 +87,21 @@
                         Command="{Binding InventarioCommand}"
                         Margin="10 0"
                         FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Respaldo BD"
                         HorizontalAlignment="Center"
                         Command="{Binding RespaldoCommand}"
-                        Margin="10 0"
+                        Margin="10 10"
                         FontSize="20"/>
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Reporte Gym"
+                        HorizontalAlignment="Center"
+                        Command="{Binding ReportesAsistencias}"
+                        Margin="10 10"
+                        FontSize="20"/>
+
             </StackPanel>
 
             

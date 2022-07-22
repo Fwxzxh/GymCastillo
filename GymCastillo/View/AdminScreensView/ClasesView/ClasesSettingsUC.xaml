@@ -258,6 +258,12 @@
                         Command="{Binding CancelCommand, Mode=OneWay}"
                         Margin="20"
                         FontSize="20"/>
+                <!--<Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Reporte Gym"
+                        HorizontalAlignment="Center"
+                        Command="{Binding RespaldoCommand}"
+                        Margin="10 10"
+                        FontSize="20"/>-->
             </StackPanel>
         </StackPanel>
     </Grid>

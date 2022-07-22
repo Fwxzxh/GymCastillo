@@ -25,6 +25,8 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         private string path = @"C:\GymCastillo\Reportes\ReportesDiarios";
         private string pathMes = @"C:\GymCastillo\Reportes\ReportesMensuales";
         private string path1 = @"C:\GymCastillo\Reportes\ReporteInvetarioSemanal";
+        private string asistencias = @"C:\GymCastillo\Reportes\ListasdeClientesPorClase";
+
 
         public RelayCommand ManualCommand { get; set; }
         public RelayCommand SaveKey { get; set; }
@@ -33,6 +35,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
         public RelayCommand InventarioCommand { get; set; }
         public RelayCommand ReporteMensualCommand { get; set; }
         public RelayCommand RespaldoCommand { get; set; }
+        public RelayCommand ReportesAsistencias { get; set; }
 
         private string apiKey;
 
@@ -88,12 +91,60 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             InventarioCommand = new RelayCommand(ReporteInventario);
             ReporteMensualCommand = new RelayCommand(ReportePDF);
             RespaldoCommand = new RelayCommand(MakeRespaldo);
+            ReportesAsistencias = new RelayCommand(ReporteAsistenciasGym);
             VisitaGym = GetInitData.VisitaGym;
             VisitaBox = GetInitData.VisitaBox;
             VisitaAlberca = GetInitData.VisitaAlberca;
             Directory.CreateDirectory(path);
             Directory.CreateDirectory(path1);
             Directory.CreateDirectory(pathMes);
+            Directory.CreateDirectory(asistencias);
+        }
+
+        private void ReporteAsistenciasGym() {
+            try {
+                Document document;
+                var fontSize = 15;
+                string[] columnas = { "ID", "Nombre", "Hora Ingreso" };
+                float[] tamaños = { .5f, 1, 1 };
+
+                var listaClientes = InitInfo.ObCoClientes.Where(x => x.FechaUltimoAcceso.DayOfYear == DateTime.Today.DayOfYear);
+
+                PdfDocument pdfDocument = new PdfDocument(new PdfWriter(new FileStream(@$"{asistencias}\Gym-{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}.pdf", FileMode.Create, FileAccess.Write)));
+                document = new Document(pdfDocument, PageSize.A4);
+                document.SetMargins(20, 20, 20, 20);
+                ImageData imageData = ImageDataFactory.Create(@"C:\GymCastillo\Assets\logo.jpg");
+                Image image = new Image(imageData).ScaleAbsolute(200, 100);
+                image.SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                document.Add(image);
+
+                var titulo = $"Ingresos de Hoy";
+
+                document.Add(new Paragraph(titulo).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize).SetBold());
+                Table table = new Table(UnitValue.CreatePercentArray(tamaños));
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                foreach (string columa in columnas) {
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(columa).SetTextAlignment(TextAlignment.CENTER).SetFontSize(fontSize)));
+                }
+                foreach (var item in listaClientes) {
+                    table.AddCell(new Cell().Add(new Paragraph(item.Id.ToString()).SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph($"{item.Nombre} {item.ApellidoPaterno}").SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+                    table.AddCell(new Cell().Add(new Paragraph($"{item.FechaUltimoAcceso.TimeOfDay}").SetFontSize(fontSize).SetTextAlignment(TextAlignment.CENTER)));
+
+                }
+                var totalIngresos = listaClientes.Count();
+                document.Add(table);
+                document.Add(new Paragraph($"Total de ingresos hoy: {totalIngresos}").SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
+                document.Close();
+                ShowPrettyMessages.InfoOk($"Reporte creado en la ruta {asistencias}", "Reporte Creado");
+
+            }
+            catch (Exception e) {
+
+                Log.Error("Error al crear reporte de asistencias");
+                Log.Error(e.Message);
+                ShowPrettyMessages.ErrorOk("Error al crear el reporte de asistencias", "Error");
+            }
         }
 
         private async void MakeRespaldo() {
@@ -293,7 +344,7 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
                 montoTotalRecibido = 0;
 
                 foreach (var item in egresosHoy) {
-                    montoTotalRecibido += item.Monto;   
+                    montoTotalRecibido += item.Monto;
                 }
                 egresos = montoTotalRecibido;
                 document.Add(new Paragraph(string.Format("Monto total egresos de los últimos 30 días: {0:C}", egresos)).SetTextAlignment(TextAlignment.LEFT).SetFontSize(fontSize).SetBold());
