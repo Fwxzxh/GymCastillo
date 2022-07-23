@@ -294,33 +294,32 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     return 0;
                 }
             }
-            else {
-                // desactivamos
-                try {
-                    await using var connection = new MySqlConnection(GetInitData.ConnString);
-                    await connection.OpenAsync();
 
-                    const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+            // desactivamos
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
 
-                    await using var command = new MySqlCommand(deleteQuery, connection);
-                    command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
 
-                    var res = await ExecSql.NonQuery(command, "Update Cliente");
+                await using var command = new MySqlCommand(deleteQuery, connection);
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
-                    // Desactivamos la instancia actual
-                    Activo = false;
+                var res = await ExecSql.NonQuery(command, "Update Cliente");
 
-                    Log.Debug("Se ha desactivado un cliente de la tabla.");
+                // Desactivamos la instancia actual
+                Activo = false;
 
-                    return res;
-                }
-                catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
-                    Log.Error($"Error: {e.Message}");
-                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
-                        "Error desconocido");
-                    return 0;
-                }
+                Log.Debug("Se ha desactivado un cliente de la tabla.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
             }
         }
 
