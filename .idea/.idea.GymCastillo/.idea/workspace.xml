@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed Horarios Bug, minor fixes">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Minor fixes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Settings/Paquete.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/GridClientesVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsVM/GridClientesVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,14 +268,8 @@
       <workItem from="1658348933770" duration="1095000" />
       <workItem from="1658360003866" duration="1471000" />
       <workItem from="1658525481017" duration="1432000" />
-      <workItem from="1658614763724" duration="901000" />
-    </task>
-    <task id="LOCAL-00077" summary="Added paquete in massive msg">
-      <created>1641955369000</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1641955369000</updated>
+      <workItem from="1658614763724" duration="4421000" />
+      <workItem from="1658683483228" duration="3989000" />
     </task>
     <task id="LOCAL-00078" summary="Added PreciosVisitas in ini">
       <created>1642042993837</created>
@@ -613,7 +607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658213918986</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Minor fixes">
+      <created>1658616097067</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1658616097068</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +648,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed issues while editing names" />
     <MESSAGE value="Added Day conservation in FechaVencimientoPago, added number of Months for payments" />
     <MESSAGE value="DeudaCliente can now be Updated" />
     <MESSAGE value="Minor fixes, added documentation to NumRegistrados." />
@@ -672,7 +672,8 @@
     <MESSAGE value="Minor fixes to DbDump.cs" />
     <MESSAGE value="Little fixes to fix charset issue." />
     <MESSAGE value="Fixed Horarios Bug, minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Horarios Bug, minor fixes" />
+    <MESSAGE value="Minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

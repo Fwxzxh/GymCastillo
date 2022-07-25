@@ -109,18 +109,12 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             RefreshGrid(Activo);
         }
 
-        public static async Task DeleteWithTime() {
-            var fechaLimite = DateTime.Today - TimeSpan.FromDays(120); // 120 dias = ~4 meses, pero puede ser configurable
-
-            // Obtenemos los clientes cuya fecha de ultimo acceso sea hace más de 4 meses
-            var clientes =
-                InitInfo.ObCoClientes.Where(x => x.FechaUltimoAcceso > fechaLimite);
-
+        public async Task DeleteWithTime() {
             try {
-                foreach (var cliente in clientes) {
-                    await cliente.Delete();
-                }
-                ShowPrettyMessages.InfoOk("Clientes inactivos eliminados correctamente.", "Eliminar Clientes Inactivos");
+                await Cliente.BatchDelete();
+                RefreshGrid(Activo);
+                ShowPrettyMessages.WarningOk($"Se ha completado el proceso de eliminar clientes, se recomienda reiniciar el programa para evitar errores",
+                    "Reinicie el programa");
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error desconocido a la hora de hacer el borrado de clientes inactivos.");
@@ -152,11 +146,11 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private async void RefreshGrid(bool value) {
-            TotalActivos = InitInfo.ObCoClientes.Where(c => c.Activo).Count();
+            TotalActivos = InitInfo.ObCoClientes.Count(c => c.Activo);
             var lista = await GetFromDb.GetClientes();
             InitInfo.ObCoClientes.Clear();
             if (value) {
-                foreach (var item in lista.Where(c => c.Activo == true)) {
+                foreach (var item in lista.Where(c => c.Activo)) {
                     InitInfo.ObCoClientes.Add(item);
                 }
             }
