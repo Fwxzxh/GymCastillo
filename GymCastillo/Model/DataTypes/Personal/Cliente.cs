@@ -255,7 +255,6 @@ namespace GymCastillo.Model.DataTypes.Personal {
                         ShowPrettyMessages.InfoOk(
                             $"No es posible eliminar el cliente {Id.ToString()} {Nombre} {ApellidoPaterno} ya que tiene ingresos registrados y al eliminarlo se perdería la información sobre sus ingresos.",
                             "Cliente con Ingresos registrados.");
-                        
                     }
                     return false;
                 }
