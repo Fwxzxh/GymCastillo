@@ -147,8 +147,16 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
             }
         }
 
-        private async void MakeRespaldo() {
-            await DbDump.DumpDatabase();
+        private void MakeRespaldo() {
+            try {
+                System.Diagnostics.Process.Start(@"C:\GymCastillo\backup.bat", "root");
+
+            }
+            catch (Exception e) {
+                Log.Error(e.Message);
+                ShowPrettyMessages.ErrorOk($"Error al crear el respaldo. {e.Message}", "Error");
+                throw;
+            }
         }
 
         private async void ReportePDF() {
