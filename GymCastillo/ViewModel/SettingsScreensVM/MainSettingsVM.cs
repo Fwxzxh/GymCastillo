@@ -149,8 +149,9 @@ namespace GymCastillo.ViewModel.SettingsScreensVM {
 
         private void MakeRespaldo() {
             try {
-                System.Diagnostics.Process.Start(@"C:\GymCastillo\backup.bat", "root");
-
+                //System.Diagnostics.Process.Start(@"C:\GymCastillo\backup.bat", "root", $"Respaldo-{DateTime.Today.Day}-{DateTime.Today.Month}-{DateTime.Now.Year}");
+                System.Diagnostics.Process.Start(@"C:\GymCastillo\backup.bat", String.Format("{0} {1}", "root", $"Respaldo-{DateTime.Today.Day}-{DateTime.Today.Month}-{DateTime.Now.Year}"));
+                ShowPrettyMessages.InfoOk(@"Respaldo realizado en la ruta C:\GymCastillo\Backups", "Completo");
             }
             catch (Exception e) {
                 Log.Error(e.Message);
