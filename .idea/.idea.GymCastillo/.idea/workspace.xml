@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added Batch Delete of clients">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Telefono niño fix">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/NewClienteRVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/ViewModel/PersonalScreensVM/ClientsRentaVM/NewClienteRVM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,14 +270,12 @@
       <workItem from="1658614763724" duration="4421000" />
       <workItem from="1658683483228" duration="5187000" />
       <workItem from="1658883508690" duration="2117000" />
-      <workItem from="1660700275567" duration="2017000" />
-    </task>
-    <task id="LOCAL-00079" summary="Added sueldo to Personal.cs &amp; Usuario.cs">
-      <created>1642125954329</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1642125954329</updated>
+      <workItem from="1660700275567" duration="2726000" />
+      <workItem from="1661220789916" duration="144000" />
+      <workItem from="1661648675842" duration="819000" />
+      <workItem from="1661888943245" duration="452000" />
+      <workItem from="1661889428169" duration="6449000" />
+      <workItem from="1661975724238" duration="1119000" />
     </task>
     <task id="LOCAL-00080" summary="Reportes Done">
       <created>1642211143820</created>
@@ -616,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658711000481</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="Telefono niño fix">
+      <created>1660702393364</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1660702393365</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +654,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="DeudaCliente can now be Updated" />
     <MESSAGE value="Minor fixes, added documentation to NumRegistrados." />
     <MESSAGE value="Commit committed" />
     <MESSAGE value="Added Firma to Clientes" />
@@ -675,7 +678,8 @@
     <MESSAGE value="Fixed Horarios Bug, minor fixes" />
     <MESSAGE value="Minor fixes" />
     <MESSAGE value="Added Batch Delete of clients" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Batch Delete of clients" />
+    <MESSAGE value="Telefono niño fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Telefono niño fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
