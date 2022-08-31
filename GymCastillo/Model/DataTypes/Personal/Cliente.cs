@@ -522,7 +522,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                                FechaVencimientoPago=@FechaVencimientoPago, DeudaCliente=@DeudaCliente,
                                                ClasesTotalesDisponibles=@ClasesTotalesDisponibles, 
                                                ClasesSemanaDisponibles=@ClasesSemanaDisponibles,
-                                               DuracionPaquete=@DuracionPaquete, IdLocker=@IdLocker, IdPaquete=@IdPaquete
+                                               DuracionPaquete=@DuracionPaquete, IdLocker=@IdLocker, IdPaquete=@IdPaquete,
+                                               Activo=@Activo
                                            where IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(pagoQuery, connection);
@@ -551,6 +552,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@IdCliente",
                     Id.ToString());
+                
+                command.Parameters.AddWithValue("@Activo",
+                    Activo ? "1" : "0");
 
                 var res = await ExecSql.NonQuery(command, "Alta Pago Cliente");
                 Log.Debug("Se han actualizado los datos del cliente por un pago.");

@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Telefono niño fix">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed Horarios Day bug">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Otros/Asistencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,14 +276,7 @@
       <workItem from="1661648675842" duration="819000" />
       <workItem from="1661888943245" duration="452000" />
       <workItem from="1661889428169" duration="6449000" />
-      <workItem from="1661975724238" duration="1119000" />
-    </task>
-    <task id="LOCAL-00080" summary="Reportes Done">
-      <created>1642211143820</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1642211143821</updated>
+      <workItem from="1661975724238" duration="1796000" />
     </task>
     <task id="LOCAL-00081" summary="Minor enhancements to Notificaciones.cs">
       <created>1642212238128</created>
@@ -620,7 +614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660702393365</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Fixed Horarios Day bug">
+      <created>1661977294991</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1661977294992</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,7 +655,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fixes, added documentation to NumRegistrados." />
     <MESSAGE value="Commit committed" />
     <MESSAGE value="Added Firma to Clientes" />
     <MESSAGE value="Added GetHorariosCliente to Cliente.cs" />
@@ -679,7 +679,8 @@
     <MESSAGE value="Minor fixes" />
     <MESSAGE value="Added Batch Delete of clients" />
     <MESSAGE value="Telefono niño fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Telefono niño fix" />
+    <MESSAGE value="Fixed Horarios Day bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Horarios Day bug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

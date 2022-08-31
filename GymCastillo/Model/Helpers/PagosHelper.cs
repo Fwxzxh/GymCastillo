@@ -53,6 +53,7 @@ namespace GymCastillo.Model.Helpers {
                         // Actualizamos los datos del cliente.
                         cliente.MontoUltimoPago = ingreso.Monto;
                         cliente.FechaUltimoPago = ingreso.FechaRegistro;
+                        cliente.Activo = true;
 
                         // Registramos el proceso.
                         await IngresoCliente(ingreso, cliente, meses);
