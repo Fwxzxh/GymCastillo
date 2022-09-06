@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using GymCastillo.Model.Admin;
+using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Movimientos;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.Init;
@@ -52,6 +53,7 @@ namespace GymCastillo.Model.Helpers {
                         // Actualizamos los datos del cliente.
                         cliente.MontoUltimoPago = ingreso.Monto;
                         cliente.FechaUltimoPago = ingreso.FechaRegistro;
+                        cliente.Activo = true;
 
                         // Registramos el proceso.
                         await IngresoCliente(ingreso, cliente, meses);
@@ -114,7 +116,7 @@ namespace GymCastillo.Model.Helpers {
                         if (resPagoDeuda) {
                             var clienteRenta = InitInfo.ObCoClientesRenta.First(x => x.Id == ingreso.IdClienteRenta);
 
-                            clienteRenta.MontoUltimoPago = ingreso.MontoRecibido;
+                            clienteRenta.MontoUltimoPago = ingreso.Monto;
                             clienteRenta.FechaUltimoPago = DateTime.Now;
                             clienteRenta.DeudaCliente -= ingreso.MontoRecibido;
 
@@ -147,7 +149,7 @@ namespace GymCastillo.Model.Helpers {
         }
 
         /// <summary>
-        /// Método que hace el proceso de dar de alta un egreso a un cliente.
+        /// Método que hace el proceso de dar de alta un ingreso a un cliente.
         /// </summary>
         /// <param name="ingreso">Un objeto con la información del ingreso.</param>
         /// <param name="cliente">Un objeto con la información del cliente</param>
@@ -189,8 +191,8 @@ namespace GymCastillo.Model.Helpers {
                 }
 
                 // agregamos los demás campos.
-                cliente.ClasesTotalesDisponibles += paquete.NumClasesTotales;
-                cliente.ClasesSemanaDisponibles += paquete.NumClasesSemanales;
+                cliente.ClasesTotalesDisponibles = paquete.NumClasesTotales;
+                cliente.ClasesSemanaDisponibles = paquete.NumClasesSemanales;
                 cliente.DuraciónPaquete += 30;
             }
 
@@ -206,7 +208,17 @@ namespace GymCastillo.Model.Helpers {
 
             // Si dan más dinero descontamos de la deuda.
             if (ingreso.MontoRecibido > ingreso.Monto) {
+                // No pueden haber deudas negativas.
                 var resto = ingreso.MontoRecibido - ingreso.Monto;
+                
+                if (cliente.DeudaCliente - resto < 0) {
+                    ShowPrettyMessages.WarningOk(
+                        "Los clientes no pueden tener crédito, revisa los montos de los pagos, \n " +
+                        $"Si la deuda esta en 0 no pueden pagar más de lo que deben ya que no tienen deuda.",
+                        "Monto de pago invalido");
+                        return;
+                }
+
                 cliente.DeudaCliente -= resto;
                 cliente.MontoUltimoPago = resto;
 
@@ -215,7 +227,6 @@ namespace GymCastillo.Model.Helpers {
                     "Actualización de deuda");
             }
 
-            // cliente.DeudaCliente =
             cliente.IdLocker = ingreso.IdLocker;
 
             // Registramos el Pago
@@ -239,7 +250,23 @@ namespace GymCastillo.Model.Helpers {
             }
 
             if (ingreso.IdPaquete != paqueteAntiguo) { // Si se compra un paquete diferente al que se tenia
-                // Debemos resetear sus horarios
+
+                // Obtenemos los horario
+                var listaHorarios = 
+                    InitInfo.ObCoClienteHorario.Where(x => x.IdCliente == cliente.Id).ToList();
+
+                // Desactivamos
+                foreach (var horario in listaHorarios) {
+                    await horario.Delete();
+                }
+                
+                // Actualizamos la lista de clientesHorario
+                var nuevosClientesHorarios = await GetFromDb.GetClienteHorario();
+                InitInfo.ObCoClienteHorario.Clear();
+                foreach (var clientesHorario in nuevosClientesHorarios) {
+                    InitInfo.ObCoClienteHorario.Add(clientesHorario);
+                }
+                
                 ShowPrettyMessages.InfoOk(
                     "Se ha cambiado el paquete a el usuario, Debe actualizar los horarios de clase " +
                     "asignados a este cliente, de lo contrario podría no poder entrar las clases de su paquete " +

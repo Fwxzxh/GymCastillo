@@ -11,9 +11,14 @@ namespace GymCastillo.Model.Init {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// String que contiene el username del usuario que inicio sección.
+        /// String que contiene el username del usuario que inicio sección.A
         /// </summary>
         public static int LoggedId { get; set; }
+        
+        /// <summary>
+        /// El número del rol que tiene el usuario que inicio sección.
+        /// </summary>
+        public static int LoggedRol { get; set; }
 
         /// <summary>
         /// Método que se encarga del proceso de logIn.
@@ -29,7 +34,7 @@ namespace GymCastillo.Model.Init {
 
             var login = new MySqlCommand {
                 Connection = connObj,
-                CommandText = @"select IdUsuario
+                CommandText = @"select IdUsuario, Rol
                                 from usuario 
                                 where Username=@user and Password=@pass"
             };
@@ -43,6 +48,7 @@ namespace GymCastillo.Model.Init {
                 if (cmd.HasRows) {
                     while (cmd.Read()) {
                         LoggedId = cmd.GetInt32("IdUsuario");
+                        LoggedRol = cmd.GetInt32("Rol");
                     }
                     Log.Debug("LogIn Exitoso");
                     return true;

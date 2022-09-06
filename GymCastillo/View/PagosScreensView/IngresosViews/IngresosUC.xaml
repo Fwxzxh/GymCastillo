@@ -7,6 +7,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
              xmlns:vm="clr-namespace:GymCastillo.ViewModel.PagosScreensVM"
+             xmlns:init="clr-namespace:GymCastillo.Model.Init"
+             xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
@@ -16,6 +18,8 @@
     <UserControl.Resources>
         <oc:InitInfo x:Key="oc"/>
         <vm:IngresosVM x:Key="vm"/>
+        <init:InitInfo x:Key="init"/>
+        <converter:RolVisibility x:Key="rol"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -156,7 +160,8 @@
                     VerticalAlignment="Center"
                     Margin="10"
                     FontSize="20"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right" 
+                    Visibility="{Binding Source={x:Static init:Init.LoggedRol}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource rol}}"/>
             <!--Clientes-->
 
             <StackPanel Grid.Row="1"
@@ -214,7 +219,7 @@
                      Grid.Row="1"
                      FontSize="20"
                      Margin="10"
-                     Text="{Binding Ingresos.Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Concepto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
 
@@ -277,7 +282,7 @@
                      Margin="10"
                      Text="{Binding Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <TextBox materialDesign:HintAssist.Hint="Monto Recibido"
+                <TextBox materialDesign:HintAssist.Hint="Monto Pagado"
                      materialDesign:HintAssist.FloatingScale="0.6"
                      Width="180"
                      Grid.Row="1"

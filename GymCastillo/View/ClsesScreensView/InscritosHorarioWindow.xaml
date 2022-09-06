@@ -1,0 +1,85 @@
+﻿<Window x:Class="GymCastillo.View.ClsesScreensView.InscritosHorarioWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymCastillo.View.ClsesScreensView"
+        mc:Ignorable="d"
+        xmlns:oc="clr-namespace:GymCastillo.Model.Init"
+        xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="20"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="Inscritos"
+        Height="500" Width="850">
+    <Window.Resources>
+        <converter:DiasConverter x:Key="dias"/>
+        <converter:IdToNombreCliente x:Key="toNombre"/>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0">
+            <Label Content="Clase:"/>
+            <Label Content="{Binding NombreClase}"/>
+            
+            <Label Content="Día:"
+                   Margin="10 0 0 0"/>
+            <Label Content="{Binding DiaClase, Converter={StaticResource dias}}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+                  Margin="20"
+                  CanUserAddRows="True"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserResizeColumns="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  FontSize="20"
+                  HeadersVisibility="All"
+                  ItemsSource="{Binding ListaClientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  HorizontalContentAlignment="Center"
+                  HorizontalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Inscritos"
+                                    Binding="{Binding Id, Converter={StaticResource toNombre}}"
+                                    Width="*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="20"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                Content="Generar Lista de Inscritos"
+                Command="{Binding ListaInscritos}"
+                VerticalAlignment="Center"
+                Margin="10"
+                FontSize="20"
+                Grid.Row="2"
+                HorizontalAlignment="Center"/>
+    </Grid>
+</Window>

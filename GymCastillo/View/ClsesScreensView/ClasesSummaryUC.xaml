@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymCastillo.View.ClsesScreensView"
              xmlns:oc="clr-namespace:GymCastillo.Model.Init"
+             xmlns:vm="clr-namespace:GymCastillo.ViewModel.ClasesVM"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -15,11 +16,12 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
+        <vm:ClasesVM x:Key="vm"/>
         <oc:InitInfo x:Key="oc"/>
         <converter:DiasConverter x:Key="dias"/>
         <converter:IdToClaseConverter x:Key="clase"/>
     </UserControl.Resources>
-    <Grid Margin="30">
+    <Grid Margin="30" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -40,7 +42,8 @@
                   HeadersVisibility="All"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoHorarios}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
+                  ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoHorarios}, UpdateSourceTrigger=PropertyChanged, Mode=Default}"
+                  SelectedItem="{Binding Horario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Día"
                                     Binding="{Binding Dia, Converter={StaticResource dias}}"
@@ -120,7 +123,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Inscritos"
                                     Binding="{Binding NumRegistrados}"
-                                    Width="*"
+                                    Width=".7*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
@@ -156,6 +159,20 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
+                <DataGridTemplateColumn IsReadOnly="True"
+                                        Width=".5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button ToolTip="Ver Inscritos"
+                                    Margin="5 0"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding InscritosCommand}"
+                                    DataContext="{StaticResource vm}">
+                                <materialDesign:PackIcon Kind="EyeCheckOutline"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
         </DataGrid>

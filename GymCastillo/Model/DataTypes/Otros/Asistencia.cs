@@ -4,12 +4,15 @@ using System.Linq;
 using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
 using GymCastillo.Model.Init;
+using log4net;
 
 namespace GymCastillo.Model.DataTypes.Otros {
     /// <summary>
     /// Clase que contiene los campos para registrar una nueva asistencia.
     /// </summary>
     public class Asistencia {
+        private static readonly ILog Log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
         /// El tipo de la asistencia, puede ser 1:Cliente, 2:Instructor.
@@ -61,10 +64,14 @@ namespace GymCastillo.Model.DataTypes.Otros {
         /// </summary>
         /// <param name="clases">Lista Con las clases a las que puede entrar el cliente.</param>
         public void GetHorarios(IEnumerable<int> clases) {
+            var day =(int) DateTime.Today.DayOfWeek;
 
             var horarios =
                 InitInfo.ObCoHorarios.Where(
-                    x => clases.Contains(x.IdHorario) && x.HoraInicio.TimeOfDay >= DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(15))
+                    x => clases.Contains(x.IdHorario) && 
+                         x.Dia == day &&
+                         x.HoraInicio.TimeOfDay >= DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(15)
+                         )
                     .OrderBy(x => x.HoraInicio).AsParallel().ToList();
 
             ListaHorarios = horarios;

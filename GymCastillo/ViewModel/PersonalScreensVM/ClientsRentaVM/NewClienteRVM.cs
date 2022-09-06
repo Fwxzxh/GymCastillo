@@ -73,6 +73,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsRentaVM {
         }
 
         public async void NewCliente() {
+            Cliente.Telefono ??= "";
             await AdminUsuariosGeneral.Alta(Cliente);
             Log.Debug("Nuevo Cliente de renta registrado");
             Cliente = new() {

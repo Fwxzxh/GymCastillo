@@ -35,7 +35,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <!--<RowDefinition/>-->
                 <!--<RowDefinition/>-->
             </Grid.RowDefinitions>
 
@@ -71,6 +71,23 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Grid.Row="1">
+                <StackPanel Margin="45 0">
+                    <CheckBox Content="Condición Especial"
+                          VerticalContentAlignment="Center"
+                          VerticalAlignment="Center"
+                          FontSize="20"
+                          Width="200"
+                          IsChecked="{Binding NewCliente.CondicionEspecial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <CheckBox Content="Niño"
+                          IsChecked="{Binding NewCliente.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          VerticalContentAlignment="Center"
+                          VerticalAlignment="Center"
+                          FontSize="20"
+                          Width="auto"/>
+
+                </StackPanel>
+
                 <TextBox materialDesign:HintAssist.Hint="Descripción Condición Especial"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Center"
@@ -78,9 +95,9 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
                          VerticalContentAlignment="Center"
-                         Width="830"
+                         Width="545"
                          FontSize="20"
-                         Margin="20 0"
+                         Margin="40 0"
                          Text="{Binding NewCliente.DescripciónCondiciónEspecial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             </StackPanel>
@@ -105,15 +122,21 @@
                          MaxLength="10"
                          FontSize="20"
                          Margin="20 0"
+                         IsEnabled="{Binding NewCliente.Niño, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBooleanConverter}}"
                          Text="{Binding NewCliente.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <CheckBox Content="Condición especial"
-                          VerticalContentAlignment="Center"
-                          VerticalAlignment="Center"
+
+                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Medio Conoció"
+                          materialDesign:HintAssist.FloatingScale="0.6"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          x:Name="cbHorario"
                           FontSize="20"
-                          Width="200"
-                          IsChecked="{Binding NewCliente.CondicionEspecial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Margin="45 0"/>
+                          Margin="20 0"
+                          SelectedValue="{Binding NewCliente.MedioConocio}"
+                          ItemsSource="{Binding medioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Width="250"/>
+
 
             </StackPanel>
 
@@ -152,8 +175,8 @@
                           Width="250"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <!--<ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+            <!--<StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                --><!--<ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           materialDesign:HintAssist.Hint="Paquete"
                           materialDesign:HintAssist.FloatingScale="0.6"
                           materialDesign:TextFieldAssist.HasClearButton="True"
@@ -165,22 +188,8 @@
                           SelectedValue="{Binding NewCliente.IdPaquete}"
                           ItemsSource="{Binding paquetesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Width="250"/>-->
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          materialDesign:HintAssist.Hint="Medio Conoció"
-                          materialDesign:HintAssist.FloatingScale="0.6"
-                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          x:Name="cbHorario"
-                          FontSize="20"
-                          Margin="20 0"
-                          SelectedValue="{Binding NewCliente.MedioConocio}"
-                          ItemsSource="{Binding medioList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Width="250"/>
-                <CheckBox Content="Niño"
-                              VerticalContentAlignment="Center"
-                              VerticalAlignment="Center"
-                              FontSize="20"
-                              Width="auto"
-                              Margin="50 0 0 0"/>
+
+
                 <!--<TextBox materialDesign:HintAssist.Hint="Descuento"
                          materialDesign:HintAssist.FloatingScale="0.6"
                          materialDesign:TextFieldAssist.HasClearButton="True"
@@ -190,9 +199,9 @@
                          FontSize="20"
                          Margin="20 0"
                          Text="{Binding NewCliente.Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>-->
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>--><!--
 
-            </StackPanel>
+            </StackPanel>-->
 
             <!--<StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
@@ -257,14 +266,20 @@
                         Content="Guardar"
                         Command="{Binding newClientCommand}"
                         CommandParameter="{Binding ElementName=newClientsWindow}"
-                        Margin="20"
+                        Margin="10"
+                        FontSize="20"/>
+                
+                <Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Limpiar Campos"
+                        Command="{Binding ClearCommand}"
+                        Margin="10"
                         FontSize="20"/>
                 <Button Style="{StaticResource MaterialDesignPaperButton}"
                         x:Name="btnCancelar"
                         Content="Cancelar"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=newClientsWindow}"
-                        Margin="20"
+                        Margin="10"
                         FontSize="20"/>
 
             </StackPanel>

@@ -143,8 +143,8 @@
                 </TextBlock>
 
             <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}"
-                           Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Límite de pago: {0:D}, ConverterCulture=es-MX}"
-                           FontSize="20"/>
+                           Text="{Binding Cliente.FechaVencimientoPago, Mode=TwoWay, StringFormat=Vencimiento de paquete: {0:D}, ConverterCulture=es-MX}"
+                           FontSize="18"/>
             <Button Style="{StaticResource MaterialDesignPaperButton}"
                         Content="Registrar Acceso"
                         Margin="10"

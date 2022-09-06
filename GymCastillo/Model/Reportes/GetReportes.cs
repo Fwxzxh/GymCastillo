@@ -13,14 +13,14 @@ namespace GymCastillo.Model.Reportes {
     /// <summary>
     /// Clase que se encarga de
     /// </summary>
-    public class GetReportes {
+    public static class GetReportes {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
         /// <summary>
-        /// Método que obtiene los ingresos de la ultima semana.
+        /// Método que obtiene los ingresos, por defecto toma los últimos 7 días
         /// </summary>
         /// <returns>Una lista de elementos tipo ingreso</returns>
-        public static async Task<List<Ingresos>> GetReporteIngresos() {
+        public static async Task<List<Ingresos>> GetReporteIngresos(int dias = 7) {
             await using var connection = new MySqlConnection(GetInitData.ConnString);
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
@@ -43,11 +43,14 @@ namespace GymCastillo.Model.Reportes {
                                           LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
                                           LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
                                           LEFT JOIN locker l ON i.IdLocker = l.IdLocker
-                                      WHERE	i.FechaRegistro >= NOW() + INTERVAL -7 DAY
+                                      WHERE	i.FechaRegistro >= NOW() + INTERVAL -@days DAY
                                           AND i.FechaRegistro < NOW() + INTERVAL 0 DAY;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
+
+                command.Parameters.AddWithValue("@days", dias.ToString());
+                
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
@@ -92,7 +95,7 @@ namespace GymCastillo.Model.Reportes {
 
                         IdClienteRenta = await reader.Result.IsDBNullAsync("IdClienteRenta")
                             ? 0
-                            : reader.Result.GetInt32("IdPaquete"),
+                            : reader.Result.GetInt32("IdClienteRenta"),
                         // TODO: preguntar por NombreClienteRentaDeuda
 
                         Otros = !await reader.Result.IsDBNullAsync("Otros") &&
@@ -144,7 +147,7 @@ namespace GymCastillo.Model.Reportes {
         /// Método que obtiene los egresos de la ultima semana.
         /// </summary>
         /// <returns>Una lista de elementos tipo egresos.</returns>
-        public static async Task<List<Egresos>> GetReporteEgresos() {
+        public static async Task<List<Egresos>> GetReporteEgresos(int days = 7) {
             Log.Debug("Se ha empezado el proceso de obtener todos los ingresos.");
 
             await using var connection = new MySqlConnection(GetInitData.ConnString);
@@ -164,11 +167,14 @@ namespace GymCastillo.Model.Reportes {
                                           LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
                                           LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor
                                           LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal
-                                      WHERE	p.FechaRegistro >= NOW() + INTERVAL -7 DAY
+                                      WHERE	p.FechaRegistro >= NOW() + INTERVAL -@days DAY
                                           AND	p.FechaRegistro < NOW() + INTERVAL 0 DAY;";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
+                
+                command.Parameters.AddWithValue("@days", days.ToString());
+                
                 using var reader = command.ExecuteReaderAsync();
                 Log.Debug("Ejecutamos la query.");
 
@@ -245,14 +251,14 @@ namespace GymCastillo.Model.Reportes {
         /// Método que regresa una lista de los egresos del dia.
         /// </summary>
         /// <returns>Una lista de egresos</returns>
-        public static async Task<List<Egresos>> GetEgresosToday() {
-            var ListEgresos = new List<Egresos>();
+        public static Task<List<Egresos>> GetEgresosToday() {
+            var listEgresos = new List<Egresos>();
 
             try {
                 var egresos =
                     InitInfo.ObCoEgresos.Where(x => x.FechaRegistro.Date == DateTime.Today.Date).ToList();
 
-                return egresos;
+                return Task.FromResult(egresos);
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
@@ -260,7 +266,7 @@ namespace GymCastillo.Model.Reportes {
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
                     "Error desconocido");
-                return ListEgresos;
+                return Task.FromResult(listEgresos);
             }
         }
 
@@ -268,14 +274,14 @@ namespace GymCastillo.Model.Reportes {
         /// Método que regresa una lista de los ingresos del dia.
         /// </summary>
         /// <returns>Una lista de egresos</returns>
-        public static async Task<List<Ingresos>> GetIngresosToday() {
-            var ListIngresos = new List<Ingresos>();
+        public static Task<List<Ingresos>> GetIngresosToday() {
+            var listIngresos = new List<Ingresos>();
 
             try {
                 var ingresosList =
                     InitInfo.ObCoIngresos.Where(x => x.FechaRegistro.Date == DateTime.Today.Date).ToList();
 
-                return ingresosList;
+                return Task.FromResult(ingresosList);
             }
             catch (Exception e) {
                 Log.Error("Ha ocurrido un error al obtener la información de los Ingresos.");
@@ -283,8 +289,9 @@ namespace GymCastillo.Model.Reportes {
                 ShowPrettyMessages.ErrorOk(
                     $"Ha ocurrido un error desconocido al obtener la información de los clientes. Error: {e.Message}",
                     "Error desconocido");
-                return ListIngresos;
+                return Task.FromResult(listIngresos);
             }
         }
+        
     }
 }

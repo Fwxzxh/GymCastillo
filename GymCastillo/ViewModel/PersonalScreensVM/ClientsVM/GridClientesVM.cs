@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Command;
 using GymCastillo.Model.Admin;
 using GymCastillo.Model.Database;
 using GymCastillo.Model.DataTypes.Personal;
@@ -27,6 +29,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         public DeleteClientCommand deleteClient { get; set; }
 
         public OverViewClienteCommand OverViewCommand { get; set; }
+        public RelayCommand EliminarInactivosCommand { get; set; }
 
         private bool activo = false;
 
@@ -37,6 +40,17 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 activo = value;
                 OnPropertyChanged(nameof(Activo));
                 RefreshGrid(value);
+            }
+        }
+
+        private int totalActivos;
+
+        public int TotalActivos {
+            get { return totalActivos; }
+            set
+            {
+                totalActivos = value;
+                OnPropertyChanged(nameof(TotalActivos));
             }
         }
 
@@ -78,6 +92,7 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
                 OverViewCommand = new(this);
                 newClient = new(this);
                 deleteClient = new(this);
+                EliminarInactivosCommand = new RelayCommand(EliminarInactivos);
                 Log.Debug("Se ha inicializado y se han obtenido los datos de la pantalla de GridClientes.");
             }
             catch (Exception e) {
@@ -89,6 +104,25 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
             }
         }
 
+        private async void  EliminarInactivos() {
+            await DeleteWithTime();
+            RefreshGrid(Activo);
+        }
+
+        public async Task DeleteWithTime() {
+            try {
+                await Cliente.BatchDelete();
+                RefreshGrid(Activo);
+                ShowPrettyMessages.WarningOk($"Se ha completado el proceso de eliminar clientes, se recomienda reiniciar el programa para evitar errores",
+                    "Reinicie el programa");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el borrado de clientes inactivos.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido al eliminar los clientes inactivos, Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
         public void OpenOverview() {
             OverviewClientsWindow window = new OverviewClientsWindow(selectedClient);
             window.ShowDialog();
@@ -112,10 +146,11 @@ namespace GymCastillo.ViewModel.PersonalScreensVM.ClientsVM {
         }
 
         private async void RefreshGrid(bool value) {
+            TotalActivos = InitInfo.ObCoClientes.Count(c => c.Activo);
             var lista = await GetFromDb.GetClientes();
             InitInfo.ObCoClientes.Clear();
             if (value) {
-                foreach (var item in lista.Where(c => c.Activo == true)) {
+                foreach (var item in lista.Where(c => c.Activo)) {
                     InitInfo.ObCoClientes.Add(item);
                 }
             }

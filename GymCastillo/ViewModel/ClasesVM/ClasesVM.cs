@@ -1,5 +1,9 @@
-﻿using GymCastillo.Model.Database;
+﻿using GalaSoft.MvvmLight.Command;
+using GymCastillo.Model.Database;
+using GymCastillo.Model.DataTypes.Personal;
 using GymCastillo.Model.DataTypes.Settings;
+using GymCastillo.Model.Helpers;
+using GymCastillo.View.ClsesScreensView;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -13,29 +17,28 @@ namespace GymCastillo.ViewModel.ClasesVM {
     public class ClasesVM : INotifyPropertyChanged {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
-        private ObservableCollection<Horario> horarios;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Horario> Horarios {
-            get { return horarios; }
+        public RelayCommand InscritosCommand { get; set; }
+
+        private Horario horario = new();
+
+        public Horario Horario {
+            get { return horario; }
             set
             {
-                horarios = value;
-                OnPropertyChanged(nameof(Horarios));
+                horario = value;
+                OnPropertyChanged(nameof(Horario));
             }
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ClasesVM() {
-            GetHorarios();
+            InscritosCommand = new RelayCommand(VerInscritos);
         }
 
-        private async void GetHorarios() {
-            var lista = await GetFromDb.GetHorarios();
-            //foreach (var item in lista.Where(c => c.Dia)) {
-
-            //}
+        private void VerInscritos() {
+            InscritosHorarioWindow inscritosHorario = new(Horario);
+            inscritosHorario.ShowDialog();
         }
 
         private void OnPropertyChanged(string propertyName) {

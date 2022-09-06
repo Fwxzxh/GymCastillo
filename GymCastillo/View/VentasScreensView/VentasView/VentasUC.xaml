@@ -46,7 +46,6 @@
                       HorizontalContentAlignment="Center"
                       HorizontalAlignment="Stretch"
                       SelectedItem="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
                       ItemsSource="{Binding Source={x:Static oc:InitInfo.ObCoInventario}, UpdateSourceTrigger=PropertyChanged, Mode=Default}">
                 <DataGrid.Columns>
                     
@@ -173,7 +172,6 @@
                       HorizontalContentAlignment="Center"
                       HorizontalAlignment="Stretch"
                       SelectedIndex="{Binding Index, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      IsEnabled="{Binding ElementName=visita, Path=IsChecked, Converter={StaticResource InvertBooleanConverter}}"
                       ItemsSource="{Binding ListaVenta, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <!--<DataGridTextColumn Header="ID"
@@ -259,7 +257,7 @@
                               HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            Visibility="{Binding Visita, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding Visita, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <RadioButton Content="Gym"
                                  FontSize="20"
                                  IsChecked="{Binding Gym, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -272,6 +270,16 @@
                                  FontSize="20"
                                  IsChecked="{Binding Alberca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}"/>
+                    
+                    <TextBox materialDesign:HintAssist.Hint="No. Visitas"
+                             materialDesign:HintAssist.FloatingScale="0.6"
+                             materialDesign:TextFieldAssist.PrefixText="x"
+                             VerticalContentAlignment="Center"
+                             FontSize="20"
+                             Width="150"
+                             Margin="20 0"
+                             Text="{Binding NoVisitas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 </StackPanel>
 
 

@@ -40,6 +40,11 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// La contraseña del usuario.
         /// </summary>
         public string Password { get; set; }
+        
+        /// <summary>
+        /// El rol del usuario
+        /// </summary>
+        public int Rol { get; set; }
 
         /// <summary>
         /// El sueldo del usuario.
@@ -58,7 +63,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string updateQuery = @"UPDATE usuario
                                              SET Nombre=@Nombre, ApellidoPaterno=@ApellidoPaterno, ApellidoMaterno=@ApellidoMaterno,
-                                                 domicilio=@Domicilio, username=@Username, password=@Password,
+                                                 domicilio=@Domicilio, username=@Username, Password=@Password, Rol=@Rol,
                                                  telefono=@Telefono, NombreContacto=@NombreContacto,
                                                  telefonocontacto=@TelefonoContacto, foto=@Foto, sueldo=@Sueldo
                                              WHERE IdUsuario=@IdUsuario;";
@@ -74,6 +79,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Rol", Rol.ToString());
 
                 command.Parameters.AddWithValue("@Telefono", Telefono);
                 command.Parameters.AddWithValue("@NombreContacto", NombreContacto);
@@ -156,7 +162,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 const string altaQuery = @"INSERT INTO usuario
                                            VALUES (default, @Nombre, @ApellidoPaterno, @ApellidoMaterno,
-                                           	    @Domicilio, @Username, @Password, @FechaNacimiento,
+                                           	    @Domicilio, @Username,  @Password, @Rol, @FechaNacimiento,
                                            	    @Telefono, @NombreContacto, @TelefonoContacto, @Foto,
                                            	    @FechaUltimoAcceso, @FechaUltimoPago, @MontoUltimoPago, @Sueldo);";
 
@@ -169,6 +175,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                 command.Parameters.AddWithValue("@Domicilio", Domicilio);
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Rol", Rol.ToString());
+                
                 command.Parameters.AddWithValue("@FechaNacimiento",
                     FechaNacimiento.ToString("yyyy-MM-dd HH:mm:ss"));
 

@@ -10,6 +10,8 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GymCastillo.Model.Helpers;
+using GymCastillo.Model.DataTypes.Personal;
 
 namespace GymCastillo.ViewModel.PagosScreensVM {
     public class PrintTickets {
@@ -26,15 +28,36 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         public int noRecibo = 0;
 
         string nombreCliente;
-        public PrintTickets(string concepto, decimal total, int noRecibo, string nombreCliente = "") {
-            this.concepto = concepto;
-            this.total = total;
-            this.noRecibo = noRecibo;
-            this.nombreCliente = nombreCliente;
-            pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
-            pd.PrintPage += new PrintPageEventHandler(PrintTicket);
-            pd.Print();
-            //pd.Print();
+
+        int idCliente;
+
+        Cliente cliente;
+
+        public decimal montoRecibido { get; set; }
+        public PrintTickets(string concepto, decimal total, int noRecibo, decimal montoRecibido = 0, int idCliente = 0) {
+            try {
+                this.idCliente = idCliente;
+                if (idCliente != 0) {
+                    cliente = InitInfo.ObCoClientes.Where(x => x.Id == idCliente).First();
+                    nombreCliente = $"{cliente.Nombre} {cliente.ApellidoPaterno}";
+                }
+
+                this.concepto = concepto;
+                this.total = total;
+                this.noRecibo = noRecibo;
+                this.montoRecibido = montoRecibido;
+                pd.PrinterSettings.PrinterName = "EPSON TM-T88V Receipt";
+                pd.PrintPage += new PrintPageEventHandler(PrintTicket);
+                pd.Print();
+                //pd.Print();
+            }
+            catch (Exception e) {
+                Log.Warn("Error: de conexión con la impresora");
+                Log.Warn($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk(
+                    "Ha ocurrido un error al intentar imprimir.\n" +
+                    $"Error: {e.Message}", "Error impresora");
+            }
         }
 
         private void PrintTicket(object sender, PrintPageEventArgs ppeArgs) {
@@ -64,11 +87,11 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             renglon += 15;
             g.DrawString("----------------------------------------------------------------", consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
-            g.DrawString(string.Format("Total Venta {0,45}", total), consola, Brushes.Black, leftMargin, yPos + renglon);
+            g.DrawString(string.Format("Monto Pagado {0,45}", montoRecibido), consola, Brushes.Black, leftMargin, yPos + renglon);
             renglon += 15;
             renglon += 15;
             if (!string.IsNullOrWhiteSpace(nombreCliente)) {
-                g.DrawString($"Cliente: {nombreCliente}", consola, Brushes.Black, leftMargin, yPos + renglon);
+                g.DrawString($"Cliente: {idCliente} {nombreCliente}", consola, Brushes.Black, leftMargin, yPos + renglon);
                 renglon += 15;
             }
             g.DrawString($"Fecha: {DateTime.Now}", consola, Brushes.Black, leftMargin, yPos + renglon);

@@ -226,30 +226,36 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// Método que checa si se puede eliminar el objeto en la base de datos.
         /// </summary>
         /// <returns>False si falla una validación.</returns>
-        private bool CheckDeleteConstrains() {
+        private bool CheckDeleteConstrains(bool batch = false) {
             // Checamos que podamos eliminarlo
-            if (DeudaCliente > 0) {
-                ShowPrettyMessages.InfoOk(
-                    $"No es posible eliminar este cliente ya que tiene una deuda actual de $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
-                    "Cliente con deuda");
+            if (DeudaCliente > 0 ) {
+                if (!batch) {
+                    ShowPrettyMessages.InfoOk(
+                        $"No es posible eliminar el cliente {Id.ToString()} {Nombre} {ApellidoPaterno} ya que tiene una deuda actual de $ {DeudaCliente.ToString(CultureInfo.InvariantCulture)}",
+                        "Cliente con deuda");
+                    
+                }
                 return false;
             }
 
-            if (ClasesTotalesDisponibles > 0) {
-                ShowPrettyMessages.InfoOk(
-                    $"No es posible eliminar este cliente ya que tiene {ClasesTotalesDisponibles.ToString()} clases disponibles.",
-                    "Cliente con clases disponibles.");
-                return false;
-            }
+            // Eliminamos el check de las clases disponibles
+            // if (ClasesTotalesDisponibles > 0) {
+            //     ShowPrettyMessages.InfoOk(
+            //         $"No es posible eliminar el cliente {Id.ToString()} {Nombre} {ApellidoPaterno} ya que tiene {ClasesTotalesDisponibles.ToString()} clases disponibles.",
+            //         "Cliente con clases disponibles.");
+            //     return false;
+            // }
 
             // Checamos si no hay ingresos para este cliente.
             for (var index = 0; index < InitInfo.ObCoIngresos.Count; index++) {
                 var x = InitInfo.ObCoIngresos[index];
 
                 if (x.IdCliente == Id) {
-                    ShowPrettyMessages.InfoOk(
-                        $"No es posible eliminar este cliente ya que tiene ingresos registrados y al eliminarlo se perdería la información sobre sus ingresos.",
-                        "Cliente con Ingresos registrados.");
+                    if (!batch) {
+                        ShowPrettyMessages.InfoOk(
+                            $"No es posible eliminar el cliente {Id.ToString()} {Nombre} {ApellidoPaterno} ya que tiene ingresos registrados y al eliminarlo se perdería la información sobre sus ingresos.",
+                            "Cliente con Ingresos registrados.");
+                    }
                     return false;
                 }
             }
@@ -257,6 +263,71 @@ namespace GymCastillo.Model.DataTypes.Personal {
             return true;
         }
 
+        
+        /// <summary>
+        /// Borra (desactiva) varias instancias de clientes cuya fecha de ultimo acceso haya sido hace más de 4
+        /// meses por default
+        /// </summary>
+        /// <param name="dias">dias de inactividad para desactivar por default 120 días</param>
+        /// <returns>El número de clientes desactivados o eliminados</returns>
+        public static async Task BatchDelete(int dias = 120) {
+            Log.Debug("Se ha iniciado el proceso de Batch Delete de los clientes");
+            
+            var fechaLimite = DateTime.Today - TimeSpan.FromDays(120); // 120 dias = ~4 meses, pero puede ser configurable
+            
+            // Obtenemos los clientes cuya fecha de ultimo acceso sea hace más de 4 meses, no tengan deudas y sean activos
+            var clientes =
+                InitInfo.ObCoClientes.Where(x => x.FechaUltimoAcceso > fechaLimite && x.DeudaCliente == 0 && x.Activo);
+
+
+            try {
+                // Desactivamos todos los clientes
+                var countDeactivated = 0;
+                foreach (var cliente in clientes) {
+                    await using var connection = new MySqlConnection(GetInitData.ConnString);
+                    await connection.OpenAsync();
+
+                    const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+
+                    await using var command = new MySqlCommand(deleteQuery, connection);
+                    command.Parameters.AddWithValue("@IdCliente", cliente.Id.ToString());
+
+                    var res = await ExecSql.NonQuery(command, "Update Cliente");
+
+                    Log.Debug("Se ha desactivado un cliente de la tabla.");
+
+                    countDeactivated++;
+                }
+                ShowPrettyMessages.NiceMessageOk($"Se han desactivado {countDeactivated} clientes",
+                    "Clientes desactivados");
+                
+                // eliminamos los que podamos eliminar
+                var countDeleted = 0;
+                foreach (var cliente in clientes) {
+                    if (!cliente.CheckDeleteConstrains(batch:true)) continue; // Si se puede eliminar eliminamos
+                    await using var connection = new MySqlConnection(GetInitData.ConnString);
+                    await connection.OpenAsync();
+
+                    const string deleteQuery = @"delete from cliente where IdCliente=@IdCliente";
+
+                    await using var command = new MySqlCommand(deleteQuery, connection);
+                    command.Parameters.AddWithValue("@IdCliente", cliente.Id.ToString());
+
+                    var res = await ExecSql.NonQuery(command, "Delete Cliente");
+                    Log.Debug("Se ha eliminado un cliente de la tabla.");
+                    countDeleted++;
+                }
+                ShowPrettyMessages.NiceMessageOk($"Se han eliminado {countDeleted} clientes",
+                    "Clientes eliminados");
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de hacer el delete de los clientes.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+            }
+        }
+        
         /// <summary>
         /// Método que borra (desactiva) la instancia actual del cliente en la Base de datos.
         /// </summary>
@@ -294,33 +365,32 @@ namespace GymCastillo.Model.DataTypes.Personal {
                     return 0;
                 }
             }
-            else {
-                // desactivamos
-                try {
-                    await using var connection = new MySqlConnection(GetInitData.ConnString);
-                    await connection.OpenAsync();
 
-                    const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
+            // desactivamos
+            try {
+                await using var connection = new MySqlConnection(GetInitData.ConnString);
+                await connection.OpenAsync();
 
-                    await using var command = new MySqlCommand(deleteQuery, connection);
-                    command.Parameters.AddWithValue("@IdCliente", Id.ToString());
+                const string deleteQuery = @"update cliente set Activo=false where IdCliente=@IdCliente";
 
-                    var res = await ExecSql.NonQuery(command, "Update Cliente");
+                await using var command = new MySqlCommand(deleteQuery, connection);
+                command.Parameters.AddWithValue("@IdCliente", Id.ToString());
 
-                    // Desactivamos la instancia actual
-                    Activo = false;
+                var res = await ExecSql.NonQuery(command, "Update Cliente");
 
-                    Log.Debug("Se ha desactivado un cliente de la tabla.");
+                // Desactivamos la instancia actual
+                Activo = false;
 
-                    return res;
-                }
-                catch (Exception e) {
-                    Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
-                    Log.Error($"Error: {e.Message}");
-                    ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
-                        "Error desconocido");
-                    return 0;
-                }
+                Log.Debug("Se ha desactivado un cliente de la tabla.");
+
+                return res;
+            }
+            catch (Exception e) {
+                Log.Error("Ha ocurrido un error desconocido a la hora de desactivar el cliente.");
+                Log.Error($"Error: {e.Message}");
+                ShowPrettyMessages.ErrorOk($"Ha ocurrido un error desconocido, Error: {e.Message}",
+                    "Error desconocido");
+                return 0;
             }
         }
 
@@ -452,7 +522,8 @@ namespace GymCastillo.Model.DataTypes.Personal {
                                                FechaVencimientoPago=@FechaVencimientoPago, DeudaCliente=@DeudaCliente,
                                                ClasesTotalesDisponibles=@ClasesTotalesDisponibles, 
                                                ClasesSemanaDisponibles=@ClasesSemanaDisponibles,
-                                               DuracionPaquete=@DuracionPaquete, IdLocker=@IdLocker, IdPaquete=@IdPaquete
+                                               DuracionPaquete=@DuracionPaquete, IdLocker=@IdLocker, IdPaquete=@IdPaquete,
+                                               Activo=@Activo
                                            where IdCliente=@IdCliente";
 
                 await using var command = new MySqlCommand(pagoQuery, connection);
@@ -481,6 +552,9 @@ namespace GymCastillo.Model.DataTypes.Personal {
 
                 command.Parameters.AddWithValue("@IdCliente",
                     Id.ToString());
+                
+                command.Parameters.AddWithValue("@Activo",
+                    Activo ? "1" : "0");
 
                 var res = await ExecSql.NonQuery(command, "Alta Pago Cliente");
                 Log.Debug("Se han actualizado los datos del cliente por un pago.");

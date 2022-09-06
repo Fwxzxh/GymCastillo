@@ -10,6 +10,9 @@
     <Compile Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminScreensView\ClasesView\InscritosClaseWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AdminScreensView\ClasesView\InstructoresClasesWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ClsesScreensView\ClasesSummaryUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ClsesScreensView\InscritosHorarioWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\LoginWindow.xaml.cs">
@@ -99,6 +105,9 @@
     <Page Update="View\AdminScreensView\ClasesView\HorariosWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\AdminScreensView\ClasesView\InscritosClaseWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\AdminScreensView\ClasesView\InstructoresClasesWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -124,6 +133,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ClsesScreensView\ClasesSummaryUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ClsesScreensView\InscritosHorarioWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\LoginWindow.xaml">

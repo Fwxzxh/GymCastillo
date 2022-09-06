@@ -18,6 +18,7 @@
         <clasesVm:ClasesSettingsVM x:Key="vm"/>
         <oc:InitInfo x:Key="oc"/>
         <converter:Converter x:Key="converter"/>
+        <converter:IdToTotalAlumnosClase x:Key="total"/>
     </UserControl.Resources>
     <Grid Margin="20" DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -54,6 +55,7 @@
                   CanUserResizeColumns="False"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
+                  ClipboardCopyMode="IncludeHeader"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   FontSize="20"
@@ -81,27 +83,9 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <!--<DataGridTextColumn Header="Instructor"
-                                    Binding="{Binding NombreInstructor}"
-                                    Width="*"
-                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
-                    <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader"
-                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                            <Setter Property="TextBlock.FontSize" Value="25"/>
-                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGridTextColumn.HeaderStyle>
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>-->
                 <DataGridTextColumn Header="Espacio"
                                     Binding="{Binding NombreEspacio}"
-                                    Width="*"
+                                    Width=".7*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
@@ -117,9 +101,27 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Cupo Máximo"
+                <DataGridTextColumn Header="Cupo"
                                     Binding="{Binding CupoMaximo}"
-                                    Width="*"
+                                    Width=".5*"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="TextBlock.FontSize" Value="25"/>
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Inscritos"
+                                    Binding="{Binding IdClase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource total}}"
+                                    Width=".5*"
                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                     <DataGridTextColumn.HeaderStyle>
@@ -136,7 +138,7 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTemplateColumn IsReadOnly="True"
-                                        Width=".8*">
+                                        Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -146,6 +148,12 @@
                                         Foreground="{DynamicResource MaterialDesignDarkForeground}"
                                         DataContext="{StaticResource vm}">
                                     <materialDesign:PackIcon Kind="EditOutline"/>
+                                </Button>
+                                <Button ToolTip="Ver Inscritos"
+                                        Margin="5 0"
+                                        Command="{Binding InscritosCommand}"
+                                    DataContext="{StaticResource vm}">
+                                    <materialDesign:PackIcon Kind="EyeCheckOutline"/>
                                 </Button>
                                 <Button ToolTip="Agregar Horarios"
                                         Margin="5 0"
@@ -182,7 +190,6 @@
                          materialDesign:HintAssist.FloatingScale="0.6"
                          VerticalContentAlignment="Center"
                          Width="250"
-                         IsEnabled="{Binding SelectedItem, ElementName=grid, Converter={StaticResource converter}}"
                          FontSize="20"
                          Margin="20 0"
                          Text="{Binding Clase.NombreClase, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
@@ -251,6 +258,12 @@
                         Command="{Binding CancelCommand, Mode=OneWay}"
                         Margin="20"
                         FontSize="20"/>
+                <!--<Button Style="{StaticResource MaterialDesignPaperButton}"
+                        Content="Reporte Gym"
+                        HorizontalAlignment="Center"
+                        Command="{Binding RespaldoCommand}"
+                        Margin="10 10"
+                        FontSize="20"/>-->
             </StackPanel>
         </StackPanel>
     </Grid>

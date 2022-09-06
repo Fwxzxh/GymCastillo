@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Added GetClasesInstructor to Instructor.cs">
+    <list default="true" id="39e976cd-5378-4276-9dcf-290c5eeecfdb" name="Changes" comment="Fixed Horarios Day bug">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GymCastillo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/RentaHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Notificaciones/Notificaciones.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/DataTypes/Personal/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GymCastillo/Model/Helpers/PagosHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +39,22 @@
     <option name="projectConfigVersion" value="5" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://E:/Proyectos/ProyectoGym/GymCastillo/GymCastillo/Model/Helpers/RentaHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d8834d4ff0c545bab3121d81625ab42750a00/fa/e64973ed/MySqlBackup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/169acf71b6adbe71f5a3c347e07554a59d62205ae76abb462fe67c7b86a77612/MagickExceptionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31186cda33a19e58c2fa4e6965693ebcb886fb26bb2bd1f86355aa44a1f244ca/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/707d6b5707534ece88f9713b03485a72a7f10/c1/ecd0c98f/02000085pdb.il" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c7289b82f51c012a5026bbddd2046c124f5162f77ee4ec599eccebd19a5/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8742d3b6b6b36ff5a4bf2b1a71186e203f107ae3cbc5083889280e7a754b2/MagickImage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b65ed2254d5d4cfc81c65139c240a3947600/f8/393bbe56/RelayCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/847eb618332dc7f4898f9184789686dc449210e3f714c3387772efb3c38c/PropertyPathWorker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7c333b3ba5aa9a253e19585ec71ff6f2730ee768d389b5baeb74542b65ce1/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/847eb618332dc7f4898f9184789686dc449210e3f714c3387772efb3c38c/PropertyPathWorker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97892987fb2a9bc79b06cbf7fbedf98a5ef75c6a588983bbc038064cfaba/Select.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b76b5f645d8fb42b848f84ed209ba97235bf67904a953a4bce1d86c41a95/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ed590fbceb913a99e94e76d63c3750b020ef661227a0d2b5aebeaa9ae1f8/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GymCastillo/Logger.config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GymCastillo/Model/Bot/Bot.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,22 +67,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.33793738" />
-    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="PLAIN_TEXT" />
-    <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager" selected=".NET Project.GymCastillo">
     <configuration name="Publish GymCastillo to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/GymCastillo/bin/Release/net5.0-windows/publish" target_framework="net5.0-windows" uuid_high="-3927103700214002379" uuid_low="-8968508626708732188" />
@@ -110,6 +107,27 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="GymCastillo.Model.Init.GetInitData.GetPreciosVisitas" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+      <option name="EXE_PATH" value="C:\Users\jorge\AppData\Local\JetBrains\Toolbox\apps\Rider\ch-1\221.5591.20\lib\ReSharperHost\JetLauncherILc.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/GymCastillo/GymCastillo.csproj" />
+      <option name="PROJECT_TFM" value="net5.0-windows7.0" />
+      <option name="CLASS_NAME" value="GymCastillo.Model.Init.GetInitData" />
+      <option name="METHOD_NAME" value="GetPreciosVisitas" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Static Method.GymCastillo.Model.Init.GetInitData.GetPreciosVisitas" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -208,161 +226,57 @@
       <workItem from="1647306843536" duration="8463000" />
       <workItem from="1647388000954" duration="1306000" />
       <workItem from="1647765569233" duration="1616000" />
-      <workItem from="1647810490351" duration="1616000" />
-    </task>
-    <task id="LOCAL-00059" summary="bot card sending update">
-      <created>1641413533480</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1641413533481</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Bot custom mesage sending done.">
-      <created>1641435616453</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1641435616454</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Bot horario command done">
-      <created>1641444125237</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1641444125237</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Added more checks in AsistenciasHelper.cs">
-      <created>1641455789455</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1641455789455</updated>
-    </task>
-    <task id="LOCAL-00063" summary="added password generation">
-      <created>1641500578685</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1641500578685</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Added Ini file api key storage">
-      <created>1641508083670</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1641508083670</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Better status message">
-      <created>1641514347794</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1641514347794</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Minor bot improvements">
-      <created>1641518729847</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1641518729847</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Minor bot improvements">
-      <created>1641518766788</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1641518766788</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Fixed Bot empty paquete bug, minor enhancements to the messages, minor fixes">
-      <created>1641543647149</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1641543647149</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Minor fixes, added 15 minute tolerance in asistencias">
-      <created>1641597907017</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1641597907018</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Tickets with telegram done">
-      <created>1641598835452</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1641598835452</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Minor bug en ventas">
-      <created>1641605111341</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1641605111342</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Implemented Recent Changes">
-      <created>1641864535153</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1641864535153</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Added FK key cheks">
-      <created>1641868159960</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1641868159960</updated>
-    </task>
-    <task id="LOCAL-00074" summary="Massive msg done">
-      <created>1641887806767</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1641887806767</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Massive multimeda msg done">
-      <created>1641888058638</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1641888058638</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Added paquete in massive msg">
-      <created>1641953499353</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1641953499354</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Added paquete in massive msg">
-      <created>1641955369000</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1641955369000</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Added PreciosVisitas in ini">
-      <created>1642042993837</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1642042993838</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Added sueldo to Personal.cs &amp; Usuario.cs">
-      <created>1642125954329</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1642125954329</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Reportes Done">
-      <created>1642211143820</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1642211143821</updated>
+      <workItem from="1647810490351" duration="1672000" />
+      <workItem from="1650330543324" duration="140000" />
+      <workItem from="1650330717681" duration="650000" />
+      <workItem from="1650501321844" duration="8516000" />
+      <workItem from="1650604035836" duration="274000" />
+      <workItem from="1650604340209" duration="4280000" />
+      <workItem from="1650609029165" duration="263000" />
+      <workItem from="1650609325196" duration="140000" />
+      <workItem from="1650609505466" duration="93000" />
+      <workItem from="1650690689435" duration="770000" />
+      <workItem from="1650691517569" duration="48000" />
+      <workItem from="1650691594570" duration="2138000" />
+      <workItem from="1650846868489" duration="316000" />
+      <workItem from="1651284487978" duration="1231000" />
+      <workItem from="1651288728400" duration="6802000" />
+      <workItem from="1651712228981" duration="4323000" />
+      <workItem from="1652667530174" duration="333000" />
+      <workItem from="1652738231032" duration="1348000" />
+      <workItem from="1652754218858" duration="2481000" />
+      <workItem from="1652790644957" duration="4129000" />
+      <workItem from="1655083307914" duration="2504000" />
+      <workItem from="1655174542245" duration="228000" />
+      <workItem from="1655174814585" duration="964000" />
+      <workItem from="1655186033984" duration="450000" />
+      <workItem from="1655310136577" duration="2713000" />
+      <workItem from="1655579934304" duration="595000" />
+      <workItem from="1656179287519" duration="1734000" />
+      <workItem from="1656183456746" duration="3567000" />
+      <workItem from="1656194204620" duration="905000" />
+      <workItem from="1656460563441" duration="300000" />
+      <workItem from="1656460896549" duration="687000" />
+      <workItem from="1656627002613" duration="968000" />
+      <workItem from="1656789508965" duration="61000" />
+      <workItem from="1656789609131" duration="1012000" />
+      <workItem from="1657850051918" duration="3586000" />
+      <workItem from="1658192744563" duration="684000" />
+      <workItem from="1658193570838" duration="417000" />
+      <workItem from="1658194047275" duration="7019000" />
+      <workItem from="1658260970752" duration="3478000" />
+      <workItem from="1658348933770" duration="1095000" />
+      <workItem from="1658360003866" duration="1471000" />
+      <workItem from="1658525481017" duration="1432000" />
+      <workItem from="1658614763724" duration="4421000" />
+      <workItem from="1658683483228" duration="5187000" />
+      <workItem from="1658883508690" duration="2117000" />
+      <workItem from="1660700275567" duration="2726000" />
+      <workItem from="1661220789916" duration="144000" />
+      <workItem from="1661648675842" duration="819000" />
+      <workItem from="1661888943245" duration="452000" />
+      <workItem from="1661889428169" duration="6449000" />
+      <workItem from="1661975724238" duration="1796000" />
     </task>
     <task id="LOCAL-00081" summary="Minor enhancements to Notificaciones.cs">
       <created>1642212238128</created>
@@ -553,7 +467,161 @@
       <option name="project" value="LOCAL" />
       <updated>1647810766667</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Added Client deactivation with date, minor fix.">
+      <created>1647812141985</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1647812141985</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Minor fixes, Updated schema.sql, Telefono no longer needed.">
+      <created>1650509847079</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1650509847079</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Fixed, printer not found crash, fixed bug w deudas.">
+      <created>1650512744502</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1650512744502</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Las clases ya no se acumulan, Nombre de clase editable">
+      <created>1650513198781</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1650513198781</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Las clases ya no se acumulan, Nombre de clase editable">
+      <created>1650847293083</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1650847293083</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Added ListaAlumnosHelper.cs">
+      <created>1650848947570</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1650848947570</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Minor fixes, Niño binding added, telephone case added">
+      <created>1651293104385</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1651293104386</updated>
+    </task>
+    <task id="LOCAL-00115" summary="I don't know why. Just move on.">
+      <created>1651295660252</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1651295660252</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Fixed issue with Horarios">
+      <created>1651716075110</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1651716075110</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Minor fixes to renta.">
+      <created>1652792694930</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1652792694930</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Minor fixes, added rol field, updated schema.">
+      <created>1655175774380</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1655175774381</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs">
+      <created>1655186397803</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1655186397804</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Minor Fixes">
+      <created>1655311656274</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1655311656274</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Minor fixes, Added db Dump">
+      <created>1656189051385</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1656189051386</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Added days parameter in GetReportes.cs">
+      <created>1656194841380</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1656194841380</updated>
+    </task>
+    <task id="LOCAL-00123" summary="Minor fixes to DbDump.cs">
+      <created>1656461411306</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1656461411306</updated>
+    </task>
+    <task id="LOCAL-00124" summary="Little fixes to fix charset issue.">
+      <created>1656627891313</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1656627891313</updated>
+    </task>
+    <task id="LOCAL-00125" summary="Fixed Horarios Bug, minor fixes">
+      <created>1658213918986</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1658213918986</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Minor fixes">
+      <created>1658616097067</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1658616097068</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Added Batch Delete of clients">
+      <created>1658711000481</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1658711000481</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Telefono niño fix">
+      <created>1660702393364</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1660702393365</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Fixed Horarios Day bug">
+      <created>1661977294991</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1661977294992</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,32 +655,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix ingresos query issue" />
-    <MESSAGE value="NewCard Done &amp; working" />
-    <MESSAGE value="Minor fix" />
-    <MESSAGE value="MinorFix in clase Instructores" />
-    <MESSAGE value="Minor type issues" />
-    <MESSAGE value="Update UpdateExistencias" />
-    <MESSAGE value="Update UpdateExistencias again" />
-    <MESSAGE value="Minor fix to card, updated PlantillaFront" />
-    <MESSAGE value="Minor error handling in Pagos" />
-    <MESSAGE value="Minor fixes" />
-    <MESSAGE value="Added NumRegistrados in Horario.cs, minor fixes" />
-    <MESSAGE value="Added PlantillaFront.png" />
-    <MESSAGE value="added Ingresos/Egresos Today &amp; AreaMessage" />
-    <MESSAGE value="Minor fix in area messages" />
-    <MESSAGE value="Fixed name changes" />
-    <MESSAGE value="Added automatic RegisterNumber" />
-    <MESSAGE value="Added new Numeration" />
-    <MESSAGE value="Fixed issues while editing names" />
-    <MESSAGE value="Added Day conservation in FechaVencimientoPago, added number of Months for payments" />
-    <MESSAGE value="DeudaCliente can now be Updated" />
-    <MESSAGE value="Minor fixes, added documentation to NumRegistrados." />
     <MESSAGE value="Commit committed" />
     <MESSAGE value="Added Firma to Clientes" />
     <MESSAGE value="Added GetHorariosCliente to Cliente.cs" />
     <MESSAGE value="Added GetClasesInstructor to Instructor.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added GetClasesInstructor to Instructor.cs" />
+    <MESSAGE value="Added Client deactivation with date, minor fix." />
+    <MESSAGE value="Minor fixes, Updated schema.sql, Telefono no longer needed." />
+    <MESSAGE value="Fixed, printer not found crash, fixed bug w deudas." />
+    <MESSAGE value="Las clases ya no se acumulan, Nombre de clase editable" />
+    <MESSAGE value="Added ListaAlumnosHelper.cs" />
+    <MESSAGE value="Minor fixes, Niño binding added, telephone case added" />
+    <MESSAGE value="I don't know why. Just move on." />
+    <MESSAGE value="Fixed issue with Horarios" />
+    <MESSAGE value="Minor fixes to renta." />
+    <MESSAGE value="Minor fixes, added rol field, updated schema." />
+    <MESSAGE value="Updated Usuario validations, and added LoggedRol variable in UsuarioValidation.cs" />
+    <MESSAGE value="Minor Fixes" />
+    <MESSAGE value="Minor fixes, Added db Dump" />
+    <MESSAGE value="Added days parameter in GetReportes.cs" />
+    <MESSAGE value="Minor fixes to DbDump.cs" />
+    <MESSAGE value="Little fixes to fix charset issue." />
+    <MESSAGE value="Fixed Horarios Bug, minor fixes" />
+    <MESSAGE value="Minor fixes" />
+    <MESSAGE value="Added Batch Delete of clients" />
+    <MESSAGE value="Telefono niño fix" />
+    <MESSAGE value="Fixed Horarios Day bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Horarios Day bug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

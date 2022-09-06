@@ -320,7 +320,7 @@ namespace GymCastillo.Model.Database {
             const string sqlQuery = @"SELECT
                                           u.IdUsuario, u.Nombre, u.ApellidoPaterno,
                                           u.ApellidoMaterno, u.Domicilio, u.Username,
-                                          u.Password, u.FechaNacimiento, u.Telefono,
+                                          u.Password, u.Rol, u.FechaNacimiento, u.Telefono,
                                           u.NombreContacto, u.TelefonoContacto,
                                           u.Foto, u.FechaUltimoAcceso,
                                           u.FechaUltimoPago, u.MontoUltimoPago, u.Sueldo
@@ -356,6 +356,9 @@ namespace GymCastillo.Model.Database {
                         Password = await reader.Result.IsDBNullAsync("Password")
                             ? ""
                             : reader.Result.GetString("Password"),
+                        Rol = await reader.Result.IsDBNullAsync("Rol")
+                            ? 0
+                            : reader.Result.GetInt32("Rol"),
                         FechaNacimiento = await reader.Result.IsDBNullAsync("FechaNacimiento")
                             ? DateTime.Parse("00:00")
                             : reader.Result.GetDateTime("FechaNacimiento"),
@@ -1116,7 +1119,8 @@ namespace GymCastillo.Model.Database {
                                       LEFT JOIN clienteRenta cr ON i.IdClienteRenta = cr.IdClienteRenta
                                       LEFT JOIN ventas v ON i.IdVenta = v.IdVenta
                                       LEFT JOIN paquete p ON i.IdPaquete = p.IdPaquete
-                                      LEFT JOIN locker l ON i.IdLocker = l.IdLocker;";
+                                      LEFT JOIN locker l ON i.IdLocker = l.IdLocker
+                                      limit 1500";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -1155,7 +1159,7 @@ namespace GymCastillo.Model.Database {
 
                         IdClienteRenta = await reader.Result.IsDBNullAsync("IdClienteRenta")
                             ? 0
-                            : reader.Result.GetInt32("IdPaquete"),
+                            : reader.Result.GetInt32("IdClienteRenta"),
                         NombreClienteRenta = await reader.Result.IsDBNullAsync("NombreClienteRenta")
                             ? ""
                             : reader.Result.GetString("NombreClienteRenta"),
@@ -1230,7 +1234,8 @@ namespace GymCastillo.Model.Database {
                                       INNER JOIN usuario u ON p.IdUsuario = u.IdUsuario
                                       LEFT JOIN usuario up ON p.IdUsuarioPagar = up.IdUsuario
                                       LEFT JOIN instructor i ON p.IdInstructor = i.IdInstructor
-                                      LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal;";
+                                      LEFT JOIN personal ps ON p.IdPersonal = ps.IdPersonal
+                                      limit 1500";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
@@ -1360,7 +1365,7 @@ namespace GymCastillo.Model.Database {
             await connection.OpenAsync();
             Log.Debug("Creamos la conexión.");
 
-            const string sqlQuery = @"select * from ventas";
+            const string sqlQuery = @"select * from ventas limit 1000";
 
             try {
                 await using var command = new MySqlCommand(sqlQuery, connection);
