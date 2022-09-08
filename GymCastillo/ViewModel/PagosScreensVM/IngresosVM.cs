@@ -306,11 +306,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             ingresos.Concepto = Concepto;
-            
+            var time = horaNuevaRegistro - DoublePagoProtection;
 
-            if (horaNuevaRegistro.Minute == DoublePagoProtection.Minute &&
-                horaNuevaRegistro.Hour == DoublePagoProtection.Hour) {
-                
+            if (time.Seconds <= 30) {
                 var res = ShowPrettyMessages.QuestionYesNo(
                     "Estas a punto de registrar dos pagos seguidos ¿deseas continuar?",
                     "Protección de pagos duplicados");
@@ -321,8 +319,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             }
             
             await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
             DoublePagoProtection = horaNuevaRegistro;
             
             ClearData();
