@@ -19,6 +19,8 @@ namespace GymCastillo.Model.Helpers {
         private static readonly ILog Log =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
+
+
         // 1. Me llega el objeto del front con los datos,
         // 2. Valido que los datos necesarios para el tipo de operación estén.
         // 3. hago el insert a donde va (Ingresos/Egresos)
@@ -240,7 +242,7 @@ namespace GymCastillo.Model.Helpers {
                 if (cliente.ChatId != "") {
                     var msg = $"Se ha registrado exitosamente tu pago de $ {ingreso.MontoRecibido.ToString(CultureInfo.InvariantCulture)} \n" +
                               $"En la compra de: {ingreso.Concepto} \n" +
-                              $"El {ingreso.FechaRegistro.ToString("g")} \n" +
+                              $"El {ingreso.FechaRegistro:g} \n" +
                               $"¡Gracias por su preferencia!";
                     await Bot.Bot.SendMessage(msg, cliente.Id);
                 }

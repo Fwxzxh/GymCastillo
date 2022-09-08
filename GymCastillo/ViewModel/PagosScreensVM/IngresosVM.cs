@@ -35,6 +35,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private Paquete paquete = new();
 
+        public static DateTime DoublePagoProtection = DateTime.Now - TimeSpan.FromMinutes(2);
+
         public Paquete Paquete {
             get { return paquete; }
             set
@@ -289,22 +291,41 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
         private async void OthersPayment() {
             ingresos.Tipo = 4;
 
-            tickets = new($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
-            tickets = new($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
+            tickets = new PrintTickets($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
+            tickets = new PrintTickets($"Pago Otros", ingresos.Monto, noRecibo: GetInitData.GetMonthMovNumerator());
             await PagosHelper.NewIngreso(ingresos);
             RefreshGrid();
         }
 
         private async void ClientsPayment() {
+            var horaNuevaRegistro = DateTime.Now;
+            
             if (Cliente == null) return;
             ingresos.Tipo = 1;
             ingresos.Monto = Total;
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             ingresos.Concepto = Concepto;
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
-            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            
+
+            if (horaNuevaRegistro.Minute == DoublePagoProtection.Minute &&
+                horaNuevaRegistro.Hour == DoublePagoProtection.Hour) {
+                
+                var res = ShowPrettyMessages.QuestionYesNo(
+                    "Estas a punto de registrar dos pagos seguidos ¿deseas continuar?",
+                    "Protección de pagos duplicados");
+                
+                if (!res) {
+                    return;
+                }
+            }
+            
             await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            DoublePagoProtection = horaNuevaRegistro;
+            
+            ClearData();
 
             //tickets = new($"Pago {paquete.NombrePaquete}", ingresos.Monto);
             RefreshGrid();
