@@ -35,7 +35,7 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
 
         private Paquete paquete = new();
 
-        public static DateTime DoublePagoProtection = DateTime.Now - TimeSpan.FromMinutes(2);
+        public static (DateTime, int) DoublePagoProtection = (DateTime.Now - TimeSpan.FromMinutes(2), 0);
 
         public Paquete Paquete {
             get { return paquete; }
@@ -306,9 +306,9 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             ingresos.IdPaquete = paquete.IdPaquete;
             ingresos.IdCliente = cliente.Id;
             ingresos.Concepto = Concepto;
-            var time = horaNuevaRegistro - DoublePagoProtection;
+            var time = horaNuevaRegistro - DoublePagoProtection.Item1;
 
-            if (time.Seconds <= 30) {
+            if (time.Seconds <= 30 && DoublePagoProtection.Item2 == Cliente.Id) {
                 var res = ShowPrettyMessages.QuestionYesNo(
                     "Estas a punto de registrar dos pagos seguidos ¿deseas continuar?",
                     "Protección de pagos duplicados");
@@ -321,7 +321,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
             //tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
             //tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
-            DoublePagoProtection = horaNuevaRegistro;
+            DoublePagoProtection.Item1 = horaNuevaRegistro;
+            DoublePagoProtection.Item2 = Cliente.Id;
             
             ClearData();
 

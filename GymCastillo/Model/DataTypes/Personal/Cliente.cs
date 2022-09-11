@@ -167,7 +167,7 @@ namespace GymCastillo.Model.DataTypes.Personal {
         /// </summary>
         /// <returns>El número de columnas afectadas en la bd.</returns>
         public override async Task<int> Update() {
-            Log.Debug("Se ha iniciado el proceso de update de un objeto tipo Cliente.");
+            Log.Debug($"Se ha iniciado el proceso de update de un objeto tipo Cliente. {Id}");
 
             try {
                 await using var connection = new MySqlConnection(GetInitData.ConnString);
