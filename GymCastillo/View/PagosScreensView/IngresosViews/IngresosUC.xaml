@@ -9,6 +9,7 @@
              xmlns:vm="clr-namespace:GymCastillo.ViewModel.PagosScreensVM"
              xmlns:init="clr-namespace:GymCastillo.Model.Init"
              xmlns:converter="clr-namespace:GymCastillo.ViewModel.Helpers"
+             xmlns:helper="clr-namespace:GymCastillo.ViewModel.Helpers"
              TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              TextElement.FontWeight="Medium"
@@ -297,7 +298,8 @@
                         HorizontalAlignment="Center"
                         Visibility="{Binding ElementName=clientes, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
-                    Content="Pagar"
+                        helper:ControlHelper.DisableDoubleClick="True"
+                        Content="Pagar"
                     Command="{Binding PagoCliente}"
                     VerticalAlignment="Center"
                     Margin="10"

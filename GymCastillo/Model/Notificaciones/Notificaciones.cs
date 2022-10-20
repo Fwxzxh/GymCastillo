@@ -92,7 +92,7 @@ namespace GymCastillo.Model.Notificaciones {
             var fechaLimite = DateTime.Today.Date;
 
             var clientesADesactivar =
-                InitInfo.ObCoClientes.Where(x => x.FechaVencimientoPago.Date + TimeSpan.FromDays(3) < fechaLimite);
+                InitInfo.ObCoClientes.Where(x => x.FechaVencimientoPago.Date + TimeSpan.FromDays(3) < fechaLimite && x.Activo);
 
             var aDesactivar = clientesADesactivar.ToList();
 

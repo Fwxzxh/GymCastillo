@@ -19,6 +19,8 @@ namespace GymCastillo.Model.Helpers {
         private static readonly ILog Log =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
+
+
         // 1. Me llega el objeto del front con los datos,
         // 2. Valido que los datos necesarios para el tipo de operación estén.
         // 3. hago el insert a donde va (Ingresos/Egresos)
@@ -158,6 +160,8 @@ namespace GymCastillo.Model.Helpers {
 
             var paqueteAntiguo = cliente.IdPaquete;
 
+            var fechaAnterior = cliente.FechaVencimientoPago.Date;
+            
             // Obtenemos el paquete y los datos de este y actualizamos. (si es que eligió uno)
             if (ingreso.IdPaquete != 0) {
                 // Obtenemos el paquete.
@@ -172,15 +176,21 @@ namespace GymCastillo.Model.Helpers {
                     // Sumamos un més a la fecha actual de pago
                     cliente.FechaVencimientoPago = ingreso.FechaRegistro.Date.AddMonths(meses);
                 }
+                
                 else {
                     //calculo fecha de vencimiento
 
                     // hay tolerancia, si pagas 5 dias antes o 3 días después del corte
                     // conservamos el mismo dia del més de pago pasado, si no agregamos 30.
-                    var hoy = DateTime.Today.DayOfYear;
-                    var diaCorteCliente = cliente.FechaVencimientoPago.DayOfYear;
-
-                    if (diaCorteCliente - 5 <= hoy || diaCorteCliente + 3 >= hoy) {
+                    var hoy = DateTime.Today.DayOfYear; 
+                    var diaCorteCliente = cliente.FechaVencimientoPago.DayOfYear; 
+                    
+                    // 254 -> entre 249 y 257 se mantiene el día
+                    var upperLimit = diaCorteCliente + 3;
+                    var lowerLimit = diaCorteCliente - 5;
+                    
+                    // si la fecha de pago este entre los limites se suma un mes desde la fecha.
+                    if (lowerLimit >= hoy && upperLimit <= hoy) {
                         // Conservamos el dia del més del pago pasado
                         cliente.FechaVencimientoPago = cliente.FechaVencimientoPago.Date.AddMonths(meses);
                     }
@@ -189,6 +199,17 @@ namespace GymCastillo.Model.Helpers {
                         cliente.FechaVencimientoPago = DateTime.Today.Date.AddMonths(meses);
                     }
                 }
+                
+                // ShowPrettyMessages.InfoOk(
+                //     $"payment date: {DateTime.Today.Date} \n" +
+                //     $"Fecha anterior Pago: {fechaAnterior.Date}\n" +
+                //     $"expiration date {cliente.FechaVencimientoPago.Date} \n" +
+                //     $"Dias: {DateTime.Today.Date.DayOfYear - cliente.FechaVencimientoPago.Date.DayOfYear}" +
+                //     $"mes: {meses}\n" +
+                //     $"Calculo directo: {DateTime.Today.Date.AddMonths(1)}\n", 
+                //     "");
+                
+                Log.Warn($"{cliente.FechaVencimientoPago.ToString()}");
 
                 // agregamos los demás campos.
                 cliente.ClasesTotalesDisponibles = paquete.NumClasesTotales;
@@ -240,7 +261,7 @@ namespace GymCastillo.Model.Helpers {
                 if (cliente.ChatId != "") {
                     var msg = $"Se ha registrado exitosamente tu pago de $ {ingreso.MontoRecibido.ToString(CultureInfo.InvariantCulture)} \n" +
                               $"En la compra de: {ingreso.Concepto} \n" +
-                              $"El {ingreso.FechaRegistro.ToString("g")} \n" +
+                              $"El {ingreso.FechaRegistro:g} \n" +
                               $"¡Gracias por su preferencia!";
                     await Bot.Bot.SendMessage(msg, cliente.Id);
                 }

@@ -401,6 +401,7 @@ namespace GymCastillo.ViewModel.VentasVM {
             }
             catch (Exception e) {
                 ShowPrettyMessages.ErrorOk("No se encontró una impresora de tickets.", "Error");
+                ShowPrettyMessages.ErrorOk(e.Message, "Error");
             }
             finally {
                 await VentasHelper.NuevaVenta(Venta, Recibido);
