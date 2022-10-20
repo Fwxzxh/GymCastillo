@@ -319,8 +319,8 @@ namespace GymCastillo.ViewModel.PagosScreensVM {
             }
             
             await PagosHelper.NewIngreso(ingresos, meses: NoMeses + 1);
-            //tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
-            //tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
+            tickets = new PrintTickets($"Pago {paquete.NombrePaquete}", ingresos.Monto, GetInitData.GetMonthMovNumerator(), ingresos.MontoRecibido, idCliente: cliente.Id);
             DoublePagoProtection.Item1 = horaNuevaRegistro;
             DoublePagoProtection.Item2 = Cliente.Id;
             
